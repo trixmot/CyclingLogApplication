@@ -80,6 +80,7 @@
             this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
+            this.label22 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -104,9 +105,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(73, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Log Year";
+            this.label1.Text = "Log Year*";
             // 
             // dateTimePicker1
             // 
@@ -157,9 +158,9 @@
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(73, 72);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(55, 13);
+            this.label18.Size = new System.Drawing.Size(59, 13);
             this.label18.TabIndex = 5;
-            this.label18.Text = "Ride Date";
+            this.label18.Text = "Ride Date*";
             // 
             // button2
             // 
@@ -183,6 +184,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Controls.Add(this.label21);
             this.groupBox2.Controls.Add(this.cbLocationDataEntry);
             this.groupBox2.Controls.Add(this.label20);
@@ -232,9 +234,9 @@
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(18, 256);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(48, 13);
+            this.label21.Size = new System.Drawing.Size(52, 13);
             this.label21.TabIndex = 39;
-            this.label21.Text = "Location";
+            this.label21.Text = "Location*";
             // 
             // cbLocationDataEntry
             // 
@@ -269,11 +271,11 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(30, 73);
+            this.label19.Location = new System.Drawing.Point(36, 70);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(30, 13);
+            this.label19.Size = new System.Drawing.Size(34, 13);
             this.label19.TabIndex = 36;
-            this.label19.Text = "Time";
+            this.label19.Text = "Time*";
             // 
             // dateTimePicker2
             // 
@@ -327,45 +329,45 @@
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(17, 95);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(49, 13);
+            this.label15.Size = new System.Drawing.Size(53, 13);
             this.label15.TabIndex = 29;
-            this.label15.Text = "Distance";
+            this.label15.Text = "Distance*";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(6, 121);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(60, 13);
+            this.label14.Size = new System.Drawing.Size(64, 13);
             this.label14.TabIndex = 28;
-            this.label14.Text = "Avg Speed";
+            this.label14.Text = "Avg Speed*";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(35, 228);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(31, 13);
+            this.label13.Size = new System.Drawing.Size(35, 13);
             this.label13.TabIndex = 27;
-            this.label13.Text = "Type";
+            this.label13.Text = "Type*";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(38, 202);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(28, 13);
+            this.label12.Size = new System.Drawing.Size(32, 13);
             this.label12.TabIndex = 26;
-            this.label12.Text = "Bike";
+            this.label12.Text = "Bike*";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(30, 44);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(36, 13);
+            this.label11.Size = new System.Drawing.Size(40, 13);
             this.label11.TabIndex = 25;
-            this.label11.Text = "Route";
+            this.label11.Text = "Route*";
             // 
             // label10
             // 
@@ -563,6 +565,15 @@
             // 
             this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(372, 363);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(87, 13);
+            this.label22.TabIndex = 40;
+            this.label22.Text = "* Required Fields";
+            // 
             // RideDataEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -640,5 +651,6 @@
         private CyclingLogDatabaseDataSet cyclingLogDatabaseDataSet;
         private System.Windows.Forms.BindingSource tableRideInformationBindingSource;
         private CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter table_Ride_InformationTableAdapter;
+        private System.Windows.Forms.Label label22;
     }
 }

@@ -41,7 +41,6 @@ namespace CyclingLogApplication
             tbWeekCount.Text = GetCurrentWeekCount().ToString();
             tbDayCount.Text = GetCurrentDayCount().ToString();
             tbTimeChange.Text = getDaysToNextTimeChange().ToString();       
-
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -73,6 +72,7 @@ namespace CyclingLogApplication
                 cbLogYear4.Items.Add(val);
                 cbLogYear5.Items.Add(val);
                 rideDataDisplayForm.cbLogYearFilter.Items.Add(val);
+                Logger.Log("Data Loading: Log Year: " + val, 0, logSetting);
             }
        
             //Load Route values:
@@ -80,6 +80,7 @@ namespace CyclingLogApplication
             {
                 cbRouteConfig.Items.Add(val);
                 rideDataEntryForm.cbRouteDataEntry.Items.Add(val);
+                Logger.Log("Data Loading: Route: " + val, 1, logSetting);
             }
 
             //Load Bike values:
@@ -87,6 +88,7 @@ namespace CyclingLogApplication
             {
                 cbBikeConfig.Items.Add(val);
                 rideDataEntryForm.cbBikeDataEntry.Items.Add(val);
+                Logger.Log("Data Loading: Bikes: " + val, 1, logSetting);
             }
 
             if (logYearList.Count == 0)
@@ -116,6 +118,8 @@ namespace CyclingLogApplication
             cbLogYear3.SelectedIndex = Convert.ToInt32(getcbStatistic3());
             cbLogYear4.SelectedIndex = Convert.ToInt32(getcbStatistic4());
             cbLogYear5.SelectedIndex = Convert.ToInt32(getcbStatistic5());
+
+            label2.Text = "App Version: " + getLogVersion();
         }
 
         private void closeForm(object sender, EventArgs e)
@@ -288,6 +292,7 @@ namespace CyclingLogApplication
             SqlConnection conn = null;
             SqlDataReader reader = null;
             List<string> nameList = new List<string>();
+            int logSetting = getLogLevel();
 
             try
             {
@@ -317,6 +322,7 @@ namespace CyclingLogApplication
                     //MessageBox.Show(String.Format("{0}", reader[0]));
                     //Console.WriteLine(String.Format("{0}", reader[0]));
                     nameList.Add(returnValue);
+                    Logger.Log("Reading data from the database: columnName:" + returnValue, 0, logSetting);
                 }
             }
             finally
@@ -392,33 +398,37 @@ namespace CyclingLogApplication
 
         private void btAddLogYearConfig(object sender, EventArgs e)
         {
-            string bikeString = tbLogYearConfig.Text;
+            string item = tbLogYearConfig.Text;
             //Check to see if the string has already been entered to eliminate duplicates:
             for (int index = 0; index < cbLogYearConfig.Items.Count; index++)
             {
-                if (cbLogYearConfig.SelectedItem.ToString().Equals(bikeString))
+                if (cbLogYearConfig.SelectedItem.ToString().Equals(item))
                 {
                     MessageBox.Show("Duplicate name entered. Enter a unique name for the log.");
                     return;
                 }
             }
 
+            int logSetting = getLogLevel();
+
             //Add new entry to the LogYear Table:
             List<object> objectValues = new List<object>();
-            objectValues.Add(bikeString);
+            objectValues.Add(item);
             runStoredProcedure(objectValues, "Log_Year_Add");
 
-            cbLogYearConfig.Items.Add(bikeString);
+            cbLogYearConfig.Items.Add(item);
             cbLogYearConfig.SelectedIndex = cbLogYearConfig.Items.Count-1;
-            rideDataEntryForm.AddLogYearDataEntry(bikeString);
-            rideDataDisplayForm.AddLogYearFilter(bikeString);
+            rideDataEntryForm.AddLogYearDataEntry(item);
+            rideDataDisplayForm.AddLogYearFilter(item);
 
             //Update combo's on stat tab:
-            cbLogYear1.Items.Add(bikeString);
-            cbLogYear2.Items.Add(bikeString);
-            cbLogYear3.Items.Add(bikeString);
-            cbLogYear4.Items.Add(bikeString);
-            cbLogYear5.Items.Add(bikeString);
+            cbLogYear1.Items.Add(item);
+            cbLogYear2.Items.Add(item);
+            cbLogYear3.Items.Add(item);
+            cbLogYear4.Items.Add(item);
+            cbLogYear5.Items.Add(item);
+
+            Logger.Log("Adding a Log Year entry to the Configuration:" + item, 0, logSetting);
         }
 
         private void removeLogYearConfig(object sender, EventArgs e)
@@ -607,6 +617,8 @@ namespace CyclingLogApplication
         private void btAddRoute_Click(object sender, EventArgs e)
         {
             string routeString = tbRouteConfig.Text;
+            int logSetting = getLogLevel();
+
             //Check to see if the string has already been entered to eliminate duplicates:
             for (int index = 0; index < cbRouteConfig.Items.Count; index++)
             {
@@ -624,6 +636,8 @@ namespace CyclingLogApplication
             cbRouteConfig.Items.Add(routeString);
             cbRouteConfig.SelectedIndex = cbRouteConfig.Items.Count - 1;
             rideDataEntryForm.AddRouteDataEntry(routeString);
+
+            Logger.Log("Adding a Route entry to the Configuration:" + routeString, 0, logSetting);
         }
 
         private void btRemoveRouteConfig(object sender, EventArgs e)
@@ -1369,7 +1383,7 @@ namespace CyclingLogApplication
                         }
                     } catch (Exception ex)
                     {
-                        MessageBox.Show("Check to see if the file is already opened in another process.  If so, close it and try again. \n\n" + ex.Message.ToString());
+                        MessageBox.Show("[ERROR] Check to see if the file is already opened in another process.  If so, close it and try again. \n\n" + ex.Message.ToString());
                         return;
                     }
                 }
