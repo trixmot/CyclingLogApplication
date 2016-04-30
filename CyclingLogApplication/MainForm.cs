@@ -55,9 +55,9 @@ namespace CyclingLogApplication
             List<string> routeList = new List<string>();
             List<string> bikeList = new List<string>();
 
-            logYearList = readDataNames("Table_Log_year");
-            routeList = readDataNames("Table_Routes");
-            bikeList = readDataNames("Table_Bikes");
+            logYearList = readDataNames("Table_Log_year", "Name");
+            routeList = readDataNames("Table_Routes", "Name");
+            bikeList = readDataNames("Table_Bikes", "Name");
 
             rideDataEntryForm = new RideDataEntry(this);
             rideDataDisplayForm = new RideDataDisplay();
@@ -282,7 +282,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private List<string> readDataNames(string tableName)
+        private List<string> readDataNames(string tableName, string columnName)
         {
             // conn and reader declared outside try block for visibility in finally block
             SqlConnection conn = null;
@@ -296,7 +296,7 @@ namespace CyclingLogApplication
                 conn.Open();
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("select Name from " + tableName, conn);
+                SqlCommand cmd = new SqlCommand("select " + columnName + " from " + tableName, conn);
 
                 // 2. define parameters used in command object
                 //SqlParameter param = new SqlParameter();
@@ -1077,7 +1077,7 @@ namespace CyclingLogApplication
         private void RefreshStatisticsData(object sender, EventArgs e)
         {
             int logYearIndex = -1;
-            //TODO need to get log index and pass to all the methods:
+            // Get log index and pass to all the methods:
             logYearIndex = getLogYearIndex(cbLogYear1.SelectedItem.ToString());
 
 
@@ -1282,6 +1282,7 @@ namespace CyclingLogApplication
         private void importFromExcelLog(object sender, EventArgs e)
         {
             //TODO: Need to set the index for the log year that is getting imported:
+            //Add window to selct the index:
             int logIndex = 1;
 
             string[] splitList = new string[18];
@@ -1294,7 +1295,7 @@ namespace CyclingLogApplication
                 if (openfileDialog.ShowDialog() == DialogResult.OK)
                 {
                     string line;
-                    //TODO check if the file is used by another process
+                    //Check if the file is used by another process
                     try {
                         StreamReader file = new StreamReader(openfileDialog.FileName);
                         int rowCount = 0;
@@ -1371,10 +1372,58 @@ namespace CyclingLogApplication
                         MessageBox.Show("Check to see if the file is already opened in another process.  If so, close it and try again. \n\n" + ex.Message.ToString());
                         return;
                     }
-
-                    MessageBox.Show("Data Import successful.");
                 }
             }
+
+            //Go through list of Routes and see if any of them need to be added to the Routes table:
+            List<string> currentRouteList = new List<string>();
+            for (int index = 0; index < cbRouteConfig.Items.Count; index++)
+            {
+                currentRouteList.Add(cbRouteConfig.GetItemText(cbRouteConfig.Items[index]));               
+            }
+
+            List<string> routeList = readDataNames("Table_Ride_Information", "Route");
+            foreach (var route in routeList)
+            {
+                if (!currentRouteList.Contains(route))
+                {
+                    currentRouteList.Add(route);
+                    cbRouteConfig.Items.Add(route);
+                    rideDataEntryForm.cbRouteDataEntry.Items.Add(route);
+
+                    //Add new entry to the Route Table:
+                    List<object> routeObjectValues = new List<object>();
+                    routeObjectValues.Add(route);
+                    runStoredProcedure(routeObjectValues, "Route_Add");
+                }
+            }
+
+            //Now go through the list of Bikes and see if any of them need to be added to the Bike table:
+            List<string> currentBikeList = new List<string>();
+            for (int index = 0; index < cbBikeConfig.Items.Count; index++)
+            {
+                currentBikeList.Add(cbBikeConfig.GetItemText(cbBikeConfig.Items[index]));
+            }
+
+            List<string> bikeList = readDataNames("Table_Ride_Information", "Bike");
+            foreach (var bike in bikeList)
+            {
+                if (!currentBikeList.Contains(bike))
+                {
+                    currentBikeList.Add(bike);
+                    cbBikeConfig.Items.Add(bike);
+                    rideDataEntryForm.cbBikeDataEntry.Items.Add(bike);
+
+                    //Add new entry to the Route Table:
+                    List<object> bikeObjectValues = new List<object>();
+                    bikeObjectValues.Add(bike);
+                    runStoredProcedure(bikeObjectValues, "Bike_Add");
+                }
+            }
+
+            //TODO: Sort comboboxes:
+
+            MessageBox.Show("Data Import successful.");
         }
 
         private void cbRenameRoute(object sender, EventArgs e)
