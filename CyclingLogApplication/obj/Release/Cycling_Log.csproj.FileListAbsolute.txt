@@ -1,0 +1,12 @@
+\\Mac\Home\Documents\Visual Studio 2015\Projects\WindowsFormsApplication\WindowsFormsApplication1\bin\Release\Database1.mdf
+\\Mac\Home\Documents\Visual Studio 2015\Projects\WindowsFormsApplication\WindowsFormsApplication1\bin\Release\Database1_log.ldf
+\\Mac\Home\Documents\Visual Studio 2015\Projects\WindowsFormsApplication\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.exe.config
+\\Mac\Home\Documents\Visual Studio 2015\Projects\WindowsFormsApplication\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.exe
+\\Mac\Home\Documents\Visual Studio 2015\Projects\WindowsFormsApplication\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.pdb
+\\Mac\Home\Documents\Visual Studio 2015\Projects\WindowsFormsApplication\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.MainForm.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\WindowsFormsApplication\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Properties.Resources.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\WindowsFormsApplication\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.RideDataDisplay.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\WindowsFormsApplication\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.RideDataEntry.resources
+\\Mac\Home\Documents\Visual Studio 2015\Projects\WindowsFormsApplication\WindowsFormsApplication1\obj\Release\Cycling_Log.csproj.GenerateResource.Cache
+\\Mac\Home\Documents\Visual Studio 2015\Projects\WindowsFormsApplication\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.exe
+\\Mac\Home\Documents\Visual Studio 2015\Projects\WindowsFormsApplication\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.pdb

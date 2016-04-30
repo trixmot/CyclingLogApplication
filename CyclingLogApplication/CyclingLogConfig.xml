@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CONFIG>
+  <DAYSTOKEEPLOGS>90</DAYSTOKEEPLOGS>
+  <LOGLEVEL>0</LOGLEVEL>
+  <VERSION>0.1</VERSION>
+  <cbStatistic1>-1</cbStatistic1>
+  <cbStatistic2>-1</cbStatistic2>
+  <cbStatistic3>-1</cbStatistic3>
+  <cbStatistic4>-1</cbStatistic4>
+  <cbStatistic5>-1</cbStatistic5>
+  <LastBikeSelected>-1</LastBikeSelected>
+  <LastLogSelected>-1</LastLogSelected>
+</CONFIG>

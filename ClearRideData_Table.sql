@@ -1,0 +1,1 @@
+﻿DELETE Table_Ride_Information
