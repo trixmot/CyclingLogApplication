@@ -495,6 +495,9 @@ namespace CyclingLogApplication
                         returnValue = int.Parse(temp);
                     }
                 }
+            } catch (Exception ex)
+            {
+                //TODO:
             }
             finally
             {
@@ -570,6 +573,9 @@ namespace CyclingLogApplication
                         returnValue = int.Parse(temp);
                     }
                 }
+            } catch (Exception ex)
+            {
+                //TODO:
             }
             finally
             {
@@ -642,10 +648,9 @@ namespace CyclingLogApplication
 
         private void btRemoveRouteConfig(object sender, EventArgs e)
         {
+            //Note: only removing value as an option, all records using this value are unchanged:
             cbRouteConfig.Items.Remove(cbRouteConfig.SelectedItem);
             rideDataEntryForm.RemoveRouteDataEntry(tbRouteConfig.Text);
-
-            //TODO: Replace value in the database
         }
 
         private void btAddBikeConfig_Click(object sender, EventArgs e)
@@ -672,10 +677,9 @@ namespace CyclingLogApplication
 
         private void btRemoveBikeConfig_Click(object sender, EventArgs e)
         {
+            //Note: only removing value as an option, all records using this value are unchanged:
             cbBikeConfig.Items.Remove(cbBikeConfig.SelectedItem);
             rideDataEntryForm.RemoveBikeDataEntry(tbBikeConfig.Text);
-
-            //TODO: Replace value in the database
         }
 
         // private void openRideDataEntryForm(object obj)

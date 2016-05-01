@@ -31,18 +31,22 @@
             this.components = new System.ComponentModel.Container();
             this.cbLogYearDataEntry = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpRideDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btUpdateRideDateEntry = new System.Windows.Forms.Button();
+            this.lbErrorMessage = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbRecordID = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.cbLocationDataEntry = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbComments = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.cbRouteDataEntry = new System.Windows.Forms.ComboBox();
@@ -80,7 +84,7 @@
             this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
-            this.label22 = new System.Windows.Forms.Label();
+            this.lbNoLogYearSelected = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -94,7 +98,7 @@
             // cbLogYearDataEntry
             // 
             this.cbLogYearDataEntry.FormattingEnabled = true;
-            this.cbLogYearDataEntry.Location = new System.Drawing.Point(73, 32);
+            this.cbLogYearDataEntry.Location = new System.Drawing.Point(73, 37);
             this.cbLogYearDataEntry.Name = "cbLogYearDataEntry";
             this.cbLogYearDataEntry.Size = new System.Drawing.Size(121, 21);
             this.cbLogYearDataEntry.TabIndex = 0;
@@ -103,35 +107,57 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(73, 16);
+            this.label1.Location = new System.Drawing.Point(73, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Log Year*";
             // 
-            // dateTimePicker1
+            // dtpRideDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(73, 88);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(121, 20);
-            this.dateTimePicker1.TabIndex = 2;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.dtpRideDate.Location = new System.Drawing.Point(73, 79);
+            this.dtpRideDate.Name = "dtpRideDate";
+            this.dtpRideDate.Size = new System.Drawing.Size(121, 20);
+            this.dtpRideDate.TabIndex = 2;
+            this.dtpRideDate.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lbNoLogYearSelected);
+            this.groupBox1.Controls.Add(this.btUpdateRideDateEntry);
+            this.groupBox1.Controls.Add(this.lbErrorMessage);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.cbLogYearDataEntry);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.dtpRideDate);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(488, 134);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
+            // 
+            // btUpdateRideDateEntry
+            // 
+            this.btUpdateRideDateEntry.Location = new System.Drawing.Point(384, 76);
+            this.btUpdateRideDateEntry.Name = "btUpdateRideDateEntry";
+            this.btUpdateRideDateEntry.Size = new System.Drawing.Size(75, 23);
+            this.btUpdateRideDateEntry.TabIndex = 27;
+            this.btUpdateRideDateEntry.Text = "Update";
+            this.btUpdateRideDateEntry.UseVisualStyleBackColor = true;
+            this.btUpdateRideDateEntry.Click += new System.EventHandler(this.btUpdateRideDateEntry_Click);
+            // 
+            // lbErrorMessage
+            // 
+            this.lbErrorMessage.AutoSize = true;
+            this.lbErrorMessage.ForeColor = System.Drawing.Color.Crimson;
+            this.lbErrorMessage.Location = new System.Drawing.Point(73, 110);
+            this.lbErrorMessage.Name = "lbErrorMessage";
+            this.lbErrorMessage.Size = new System.Drawing.Size(205, 13);
+            this.lbErrorMessage.TabIndex = 26;
+            this.lbErrorMessage.Text = "No Ride Data found for the selected date.";
             // 
             // button4
             // 
@@ -156,25 +182,15 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(73, 72);
+            this.label18.Location = new System.Drawing.Point(73, 63);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(59, 13);
             this.label18.TabIndex = 5;
             this.label18.Text = "Ride Date*";
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(384, 105);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Close";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.closeRideDataEntry);
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(384, 76);
+            this.button1.Location = new System.Drawing.Point(384, 105);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -182,13 +198,24 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.submitData);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(425, 551);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Close";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.closeRideDataEntry);
+            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.tbRecordID);
             this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Controls.Add(this.label21);
             this.groupBox2.Controls.Add(this.cbLocationDataEntry);
             this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.tbComments);
             this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.dateTimePicker2);
             this.groupBox2.Controls.Add(this.cbRouteDataEntry);
@@ -229,6 +256,22 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             // 
+            // tbRecordID
+            // 
+            this.tbRecordID.Location = new System.Drawing.Point(73, 14);
+            this.tbRecordID.Name = "tbRecordID";
+            this.tbRecordID.Size = new System.Drawing.Size(100, 20);
+            this.tbRecordID.TabIndex = 28;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(372, 363);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(87, 13);
+            this.label22.TabIndex = 40;
+            this.label22.Text = "* Required Fields";
+            // 
             // label21
             // 
             this.label21.AutoSize = true;
@@ -260,13 +303,13 @@
             this.label20.TabIndex = 37;
             this.label20.Text = "Comments";
             // 
-            // textBox1
+            // tbComments
             // 
-            this.textBox1.Location = new System.Drawing.Point(117, 302);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(342, 42);
-            this.textBox1.TabIndex = 3;
+            this.tbComments.Location = new System.Drawing.Point(117, 302);
+            this.tbComments.Multiline = true;
+            this.tbComments.Name = "tbComments";
+            this.tbComments.Size = new System.Drawing.Size(342, 42);
+            this.tbComments.TabIndex = 3;
             // 
             // label19
             // 
@@ -565,22 +608,23 @@
             // 
             this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
             // 
-            // label22
+            // lbNoLogYearSelected
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(372, 363);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(87, 13);
-            this.label22.TabIndex = 40;
-            this.label22.Text = "* Required Fields";
+            this.lbNoLogYearSelected.AutoSize = true;
+            this.lbNoLogYearSelected.ForeColor = System.Drawing.Color.Crimson;
+            this.lbNoLogYearSelected.Location = new System.Drawing.Point(216, 24);
+            this.lbNoLogYearSelected.Name = "lbNoLogYearSelected";
+            this.lbNoLogYearSelected.Size = new System.Drawing.Size(0, 13);
+            this.lbNoLogYearSelected.TabIndex = 28;
             // 
             // RideDataEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(518, 555);
+            this.ClientSize = new System.Drawing.Size(518, 601);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.button2);
             this.Name = "RideDataEntry";
             this.Text = "RideDataEntry";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RideDataEntryFormClosed);
@@ -601,7 +645,7 @@
 
         #endregion
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpRideDate;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
@@ -638,7 +682,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbComments;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button button4;
@@ -652,5 +696,9 @@
         private System.Windows.Forms.BindingSource tableRideInformationBindingSource;
         private CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter table_Ride_InformationTableAdapter;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label lbErrorMessage;
+        private System.Windows.Forms.Button btUpdateRideDateEntry;
+        private System.Windows.Forms.TextBox tbRecordID;
+        private System.Windows.Forms.Label lbNoLogYearSelected;
     }
 }
