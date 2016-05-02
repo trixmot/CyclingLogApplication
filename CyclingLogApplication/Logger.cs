@@ -31,10 +31,11 @@ namespace CyclingLogApplication
                     //ServiceLogger.Log("The directory was created successfully at " + Directory.GetCreationTime(path));
                }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
- 
-               return;
+                Logger.LogError("[ERROR] Exception setting Log File path: " + ex.Message.ToString());
+
+                return;
             }
             finally
             {

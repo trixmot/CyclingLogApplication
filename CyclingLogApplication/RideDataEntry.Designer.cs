@@ -48,7 +48,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.tbComments = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dtpTimeRideDataEntry = new System.Windows.Forms.DateTimePicker();
             this.cbRouteDataEntry = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -77,7 +77,7 @@
             this.max_heart_rate = new System.Windows.Forms.TextBox();
             this.avg_heart_rate = new System.Windows.Forms.TextBox();
             this.avg_cadence = new System.Windows.Forms.TextBox();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.nudDistanceRideDataEntry = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.cbRideTypeDataEntry = new System.Windows.Forms.ComboBox();
             this.cbBikeDataEntry = new System.Windows.Forms.ComboBox();
@@ -85,11 +85,12 @@
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
             this.lbNoLogYearSelected = new System.Windows.Forms.Label();
+            this.tbWeekNumber = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDistanceRideDataEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).BeginInit();
@@ -194,7 +195,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Submit";
+            this.button1.Text = "Add";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.submitData);
             // 
@@ -210,6 +211,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.tbWeekNumber);
             this.groupBox2.Controls.Add(this.tbRecordID);
             this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Controls.Add(this.label21);
@@ -217,7 +219,7 @@
             this.groupBox2.Controls.Add(this.label20);
             this.groupBox2.Controls.Add(this.tbComments);
             this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.dateTimePicker2);
+            this.groupBox2.Controls.Add(this.dtpTimeRideDataEntry);
             this.groupBox2.Controls.Add(this.cbRouteDataEntry);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.label17);
@@ -246,7 +248,7 @@
             this.groupBox2.Controls.Add(this.max_heart_rate);
             this.groupBox2.Controls.Add(this.avg_heart_rate);
             this.groupBox2.Controls.Add(this.avg_cadence);
-            this.groupBox2.Controls.Add(this.numericUpDown2);
+            this.groupBox2.Controls.Add(this.nudDistanceRideDataEntry);
             this.groupBox2.Controls.Add(this.numericUpDown1);
             this.groupBox2.Controls.Add(this.cbRideTypeDataEntry);
             this.groupBox2.Controls.Add(this.cbBikeDataEntry);
@@ -260,7 +262,7 @@
             // 
             this.tbRecordID.Location = new System.Drawing.Point(73, 14);
             this.tbRecordID.Name = "tbRecordID";
-            this.tbRecordID.Size = new System.Drawing.Size(100, 20);
+            this.tbRecordID.Size = new System.Drawing.Size(54, 20);
             this.tbRecordID.TabIndex = 28;
             // 
             // label22
@@ -320,12 +322,12 @@
             this.label19.TabIndex = 36;
             this.label19.Text = "Time*";
             // 
-            // dateTimePicker2
+            // dtpTimeRideDataEntry
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(73, 67);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(101, 20);
-            this.dateTimePicker2.TabIndex = 35;
+            this.dtpTimeRideDataEntry.Location = new System.Drawing.Point(73, 67);
+            this.dtpTimeRideDataEntry.Name = "dtpTimeRideDataEntry";
+            this.dtpTimeRideDataEntry.Size = new System.Drawing.Size(101, 20);
+            this.dtpTimeRideDataEntry.TabIndex = 35;
             // 
             // cbRouteDataEntry
             // 
@@ -556,12 +558,12 @@
             this.avg_cadence.Size = new System.Drawing.Size(100, 20);
             this.avg_cadence.TabIndex = 7;
             // 
-            // numericUpDown2
+            // nudDistanceRideDataEntry
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(73, 93);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(101, 20);
-            this.numericUpDown2.TabIndex = 6;
+            this.nudDistanceRideDataEntry.Location = new System.Drawing.Point(73, 93);
+            this.nudDistanceRideDataEntry.Name = "nudDistanceRideDataEntry";
+            this.nudDistanceRideDataEntry.Size = new System.Drawing.Size(101, 20);
+            this.nudDistanceRideDataEntry.TabIndex = 6;
             // 
             // numericUpDown1
             // 
@@ -617,6 +619,13 @@
             this.lbNoLogYearSelected.Size = new System.Drawing.Size(0, 13);
             this.lbNoLogYearSelected.TabIndex = 28;
             // 
+            // tbWeekNumber
+            // 
+            this.tbWeekNumber.Location = new System.Drawing.Point(133, 14);
+            this.tbWeekNumber.Name = "tbWeekNumber";
+            this.tbWeekNumber.Size = new System.Drawing.Size(41, 20);
+            this.tbWeekNumber.TabIndex = 41;
+            // 
             // RideDataEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -635,7 +644,7 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDistanceRideDataEntry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).EndInit();
@@ -652,7 +661,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cbRideTypeDataEntry;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown nudDistanceRideDataEntry;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox total_ascent;
         private System.Windows.Forms.Label label5;
@@ -683,7 +692,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox tbComments;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dtpTimeRideDataEntry;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label20;
@@ -700,5 +709,6 @@
         private System.Windows.Forms.Button btUpdateRideDateEntry;
         private System.Windows.Forms.TextBox tbRecordID;
         private System.Windows.Forms.Label lbNoLogYearSelected;
+        private System.Windows.Forms.TextBox tbWeekNumber;
     }
 }

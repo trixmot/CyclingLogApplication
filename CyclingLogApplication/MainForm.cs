@@ -132,7 +132,7 @@ namespace CyclingLogApplication
                 configurationFile.writeConfigFile();
 
                 Logger.Log("**********************************************", 1, logSetting);
-                Logger.Log("Ending Log Application", 1, 0);
+                Logger.Log("Ending Log Application", 1, logSetting);
                 Logger.Log("**********************************************", 1, logSetting);
 
                 Application.Exit();
@@ -301,7 +301,7 @@ namespace CyclingLogApplication
                 conn.Open();
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("select " + columnName + " from " + tableName, conn);
+                SqlCommand cmd = new SqlCommand("SELECT " + columnName + " FROM " + tableName + " ORDER BY " + columnName + " ASC", conn);
 
                 // 2. define parameters used in command object
                 //SqlParameter param = new SqlParameter();
@@ -350,7 +350,7 @@ namespace CyclingLogApplication
             SqlConnection conn = null;
             SqlDataReader reader = null;
 
-            int inputValue = 3;
+            //int inputValue = 3;
 
             try
             {
@@ -497,7 +497,7 @@ namespace CyclingLogApplication
                 }
             } catch (Exception ex)
             {
-                //TODO:
+                Logger.LogError("[ERROR]: Exception while trying to the Log year Index from the database." + ex.Message.ToString());
             }
             finally
             {
@@ -575,7 +575,7 @@ namespace CyclingLogApplication
                 }
             } catch (Exception ex)
             {
-                //TODO:
+                Logger.LogError("[ERROR]: Exception while trying to remove Log year data from the database." + ex.Message.ToString());
             }
             finally
             {
@@ -1299,7 +1299,6 @@ namespace CyclingLogApplication
 
         private void importFromExcelLog(object sender, EventArgs e)
         {
-            //TODO: Need to set the index for the log year that is getting imported:
             //Add window to selct the index:
             int logIndex = 1;
 
@@ -1438,8 +1437,6 @@ namespace CyclingLogApplication
                     runStoredProcedure(bikeObjectValues, "Bike_Add");
                 }
             }
-
-            //TODO: Sort comboboxes:
 
             MessageBox.Show("Data Import successful.");
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -290,7 +291,7 @@ namespace CyclingLogApplication
             {
                 Console.WriteLine("The process failed: {0}", e.ToString());
 
-                //TODO: message about failure and set default values
+                MessageBox.Show("[ERROR] Unable to write the Configuration file. ");
 
                 return;
             }
