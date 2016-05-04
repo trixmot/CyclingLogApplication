@@ -6,14 +6,16 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Globalization;
 using System.Collections.Specialized;
+using System.Threading;
 //using System.Threading;
 
-    //TODO: Prevent multipe runs of app
+//TODO: Prevent multipe runs of app
 
 namespace CyclingLogApplication
 {
     public partial class MainForm : Form
     {
+        private static Mutex mutex;
         RideDataEntry rideDataEntryForm;
         RideDataDisplay rideDataDisplayForm;
         //private Thread thread;
@@ -29,6 +31,14 @@ namespace CyclingLogApplication
 
         public MainForm()
         {
+            Text = "Single Instance!";
+            mutex = new Mutex(false, "SINGLE_INSTANCE_MUTEX");
+            if (!mutex.WaitOne(0, false))
+            {
+                mutex.Close();
+                mutex = null;
+            }
+
             InitializeComponent();
             //rideDataEntryForm = new RideDataEntry(this);
             int logSetting = getLogLevel();
@@ -45,6 +55,15 @@ namespace CyclingLogApplication
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            if (getMutex() != null)
+            {
+                //Application.Run(app);
+            }
+            else {
+                Logger.Log("Instance of ExtraViewToRallyConnector is already running", 1, logLevel);
+                System.Environment.Exit(0);
+            }
+
             ConfigurationFile configfile = new ConfigurationFile();
             configfile.readConfigFile();
             int logSetting = getLogLevel();
@@ -138,6 +157,18 @@ namespace CyclingLogApplication
                 Application.Exit();
             }
         }
+
+        private Mutex getMutex()
+        {
+            return mutex;
+        }
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //        mutex.ReleaseMutex();
+        //    base.Dispose(disposing);
+        //}
 
         public string getLogVersion()
         {

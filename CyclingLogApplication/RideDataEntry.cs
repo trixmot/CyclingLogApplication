@@ -21,6 +21,7 @@ namespace CyclingLogApplication
         {
             InitializeComponent();
             //Hidden field to store the record id of the current displaying record that has been loaded on the page:
+            //TODO: uncomment after testing
             //tbRecordID.Hide();
             //tbWeekNumber.Hide();
             tbRecordID.Text = "0";
@@ -245,7 +246,7 @@ namespace CyclingLogApplication
 
         private void submitData(object sender, EventArgs e)
         {
-            RideInformationChange("Add", "Ride_Information_Add", "");
+            RideInformationChange("Add", "Ride_Information_Add");
         }
 
         private void closeRideDataEntry(object sender, EventArgs e)
@@ -296,10 +297,11 @@ namespace CyclingLogApplication
 
 
 
-        private void RideInformationChange(string changeType, string procedureName, string recordID)
+        private void RideInformationChange(string changeType, string procedureName)
         {
             MainForm mainForm = new MainForm();
             int logSetting = mainForm.getLogLevel();
+            string recordID = tbRecordID.Text;
 
             // Check recordID value:
             if (!tbRecordID.Text.Equals("0") && changeType.Equals("Add"))
@@ -322,6 +324,13 @@ namespace CyclingLogApplication
             }
             else
             {
+                if (tbRecordID.Text.Equals("0"))
+                {
+                    MessageBox.Show("The current ride can not be updated since it was not loaded from the database.");
+                    Logger.Log("The current ride can not be updated since it was not loaded from the database." + recordID, 0, logSetting);
+
+                    return;
+                }
                 DialogResult result = MessageBox.Show("Updating the ride in the database. Do you want to continue?", "Update Data", MessageBoxButtons.YesNo);
                 if (result == DialogResult.No)
                 {
@@ -687,6 +696,8 @@ namespace CyclingLogApplication
             tbComments.Text = "";                                                                                         //Comments:
             //cbLogYearDataEntry.SelectedIndex = cbLogYearDataEntry.FindStringExact("");                                  //LogYear index:
             cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.FindStringExact("");
+            tbWeekNumber.Text = "0";
+            tbRecordID.Text = "0";
         }
 
         private void clearDataEntryFields_click(object sender, EventArgs e)
@@ -721,10 +732,79 @@ namespace CyclingLogApplication
 
         private void btUpdateRideDateEntry_Click(object sender, EventArgs e)
         {
-            string recordID = tbRecordID.Text;
-            RideInformationChange("Update", "Ride_Information_Update", recordID);
+            RideInformationChange("Update", "Ride_Information_Update");
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //TODO: Get the Index of the Ride to delete:
 
+
+            DialogResult result = MessageBox.Show("Do you really want to delete the selected ride and its data from the database?", "Delete Ride", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                // conn and reader declared outside try block for visibility in finally block
+                SqlConnection conn = null;
+                SqlDataReader reader = null;
+
+                int returnValue = 0;
+
+                try
+                {
+                    // instantiate and open connection
+                    conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+                    conn.Open();
+
+                    // 1. declare command object with parameter
+                    SqlCommand cmd = new SqlCommand("DELETE FROM Table_Ride_Information WHERE @Id=[Id]", conn);
+
+                    // 2. define parameters used in command object
+                    SqlParameter param = new SqlParameter();
+                    param.ParameterName = "@Id";
+                    param.Value = logIndex;
+
+                    // 3. add new parameter to command object
+                    cmd.Parameters.Add(param);
+
+                    // get data stream
+                    reader = cmd.ExecuteReader();
+
+                    // write each record
+                    while (reader.Read())
+                    {
+                        //Console.WriteLine("{0}, {1}", reader["field1"], reader["field2"]);
+                        //MessageBox.Show(String.Format("{0}", reader[0]));
+                        //Console.WriteLine(String.Format("{0}", reader[0]));
+                        string temp = reader[0].ToString();
+
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else {
+                            returnValue = int.Parse(temp);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError("[ERROR]: Exception while trying to remove Log year data from the database." + ex.Message.ToString());
+                }
+                finally
+                {
+                    // close reader
+                    if (reader != null)
+                    {
+                        reader.Close();
+                    }
+
+                    // close connection
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
     }
 }
