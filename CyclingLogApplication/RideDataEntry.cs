@@ -262,7 +262,6 @@ namespace CyclingLogApplication
 
         }
 
-
         //private void textBox1_Validating(object sender, CancelEventArgs e)
         //{
         //    TextBox box = sender as TextBox;
@@ -735,12 +734,12 @@ namespace CyclingLogApplication
             RideInformationChange("Update", "Ride_Information_Update");
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btDeleteRideDataEntry_Click(object sender, EventArgs e)
         {
-            //TODO: Get the Index of the Ride to delete:
+            //Get ride recordID:
+            string rideRecordID = tbRecordID.Text;
 
-
-            DialogResult result = MessageBox.Show("Do you really want to delete the selected ride and its data from the database?", "Delete Ride", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Do you really want to delete the Ride and all its data?", "Delete Ride From Database", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 // conn and reader declared outside try block for visibility in finally block
@@ -761,7 +760,7 @@ namespace CyclingLogApplication
                     // 2. define parameters used in command object
                     SqlParameter param = new SqlParameter();
                     param.ParameterName = "@Id";
-                    param.Value = logIndex;
+                    param.Value = rideRecordID;
 
                     // 3. add new parameter to command object
                     cmd.Parameters.Add(param);
@@ -788,7 +787,7 @@ namespace CyclingLogApplication
                 }
                 catch (Exception ex)
                 {
-                    Logger.LogError("[ERROR]: Exception while trying to remove Log year data from the database." + ex.Message.ToString());
+                    Logger.LogError("[ERROR]: Exception while trying to remove a Ride year from the database. rideRecordID:" + rideRecordID + " : " + ex.Message.ToString());
                 }
                 finally
                 {

@@ -33,6 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtpRideDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btDeleteRideDataEntry = new System.Windows.Forms.Button();
+            this.lbNoLogYearSelected = new System.Windows.Forms.Label();
             this.btUpdateRideDateEntry = new System.Windows.Forms.Button();
             this.lbErrorMessage = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
@@ -41,6 +43,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tbWeekNumber = new System.Windows.Forms.TextBox();
             this.tbRecordID = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -84,9 +87,6 @@
             this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
-            this.lbNoLogYearSelected = new System.Windows.Forms.Label();
-            this.tbWeekNumber = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
@@ -125,7 +125,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button5);
+            this.groupBox1.Controls.Add(this.btDeleteRideDataEntry);
             this.groupBox1.Controls.Add(this.lbNoLogYearSelected);
             this.groupBox1.Controls.Add(this.btUpdateRideDateEntry);
             this.groupBox1.Controls.Add(this.lbErrorMessage);
@@ -142,6 +142,25 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
+            // btDeleteRideDataEntry
+            // 
+            this.btDeleteRideDataEntry.Location = new System.Drawing.Point(384, 105);
+            this.btDeleteRideDataEntry.Name = "btDeleteRideDataEntry";
+            this.btDeleteRideDataEntry.Size = new System.Drawing.Size(75, 23);
+            this.btDeleteRideDataEntry.TabIndex = 29;
+            this.btDeleteRideDataEntry.Text = "Delete";
+            this.btDeleteRideDataEntry.UseVisualStyleBackColor = true;
+            this.btDeleteRideDataEntry.Click += new System.EventHandler(this.btDeleteRideDataEntry_Click);
+            // 
+            // lbNoLogYearSelected
+            // 
+            this.lbNoLogYearSelected.AutoSize = true;
+            this.lbNoLogYearSelected.ForeColor = System.Drawing.Color.Crimson;
+            this.lbNoLogYearSelected.Location = new System.Drawing.Point(216, 24);
+            this.lbNoLogYearSelected.Name = "lbNoLogYearSelected";
+            this.lbNoLogYearSelected.Size = new System.Drawing.Size(0, 13);
+            this.lbNoLogYearSelected.TabIndex = 28;
+            // 
             // btUpdateRideDateEntry
             // 
             this.btUpdateRideDateEntry.Location = new System.Drawing.Point(384, 47);
@@ -156,7 +175,7 @@
             // 
             this.lbErrorMessage.AutoSize = true;
             this.lbErrorMessage.ForeColor = System.Drawing.Color.Crimson;
-            this.lbErrorMessage.Location = new System.Drawing.Point(73, 110);
+            this.lbErrorMessage.Location = new System.Drawing.Point(73, 124);
             this.lbErrorMessage.Name = "lbErrorMessage";
             this.lbErrorMessage.Size = new System.Drawing.Size(205, 13);
             this.lbErrorMessage.TabIndex = 26;
@@ -259,6 +278,13 @@
             this.groupBox2.Size = new System.Drawing.Size(488, 379);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
+            // 
+            // tbWeekNumber
+            // 
+            this.tbWeekNumber.Location = new System.Drawing.Point(133, 14);
+            this.tbWeekNumber.Name = "tbWeekNumber";
+            this.tbWeekNumber.Size = new System.Drawing.Size(41, 20);
+            this.tbWeekNumber.TabIndex = 41;
             // 
             // tbRecordID
             // 
@@ -612,32 +638,6 @@
             // 
             this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
             // 
-            // lbNoLogYearSelected
-            // 
-            this.lbNoLogYearSelected.AutoSize = true;
-            this.lbNoLogYearSelected.ForeColor = System.Drawing.Color.Crimson;
-            this.lbNoLogYearSelected.Location = new System.Drawing.Point(216, 24);
-            this.lbNoLogYearSelected.Name = "lbNoLogYearSelected";
-            this.lbNoLogYearSelected.Size = new System.Drawing.Size(0, 13);
-            this.lbNoLogYearSelected.TabIndex = 28;
-            // 
-            // tbWeekNumber
-            // 
-            this.tbWeekNumber.Location = new System.Drawing.Point(133, 14);
-            this.tbWeekNumber.Name = "tbWeekNumber";
-            this.tbWeekNumber.Size = new System.Drawing.Size(41, 20);
-            this.tbWeekNumber.TabIndex = 41;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(384, 105);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 29;
-            this.button5.Text = "Delete";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // RideDataEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -722,6 +722,6 @@
         private System.Windows.Forms.TextBox tbRecordID;
         private System.Windows.Forms.Label lbNoLogYearSelected;
         private System.Windows.Forms.TextBox tbWeekNumber;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btDeleteRideDataEntry;
     }
 }

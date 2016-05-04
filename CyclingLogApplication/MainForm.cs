@@ -1330,8 +1330,16 @@ namespace CyclingLogApplication
 
         private void importFromExcelLog(object sender, EventArgs e)
         {
-            //Add window to selct the index:
-            int logIndex = 1;
+            //TODO: Add window to selct the index:
+            LegacyImport legacyImport = new LegacyImport();
+            legacyImport.ShowDialog();
+
+            int logIndex = legacyImport.getLegacyIndexSelection();
+
+            if (logIndex == -1)
+            {
+                return;
+            }
 
             string[] splitList = new string[18];
             List<object> objectValues = new List<object>();

@@ -136,14 +136,14 @@
             this.cbLogYearConfig.Location = new System.Drawing.Point(68, 109);
             this.cbLogYearConfig.Name = "cbLogYearConfig";
             this.cbLogYearConfig.Size = new System.Drawing.Size(121, 21);
-            this.cbLogYearConfig.TabIndex = 2;
+            this.cbLogYearConfig.TabIndex = 0;
             // 
             // btAddLogYear
             // 
             this.btAddLogYear.Location = new System.Drawing.Point(68, 175);
             this.btAddLogYear.Name = "btAddLogYear";
             this.btAddLogYear.Size = new System.Drawing.Size(75, 23);
-            this.btAddLogYear.TabIndex = 3;
+            this.btAddLogYear.TabIndex = 2;
             this.btAddLogYear.Text = "Add";
             this.btAddLogYear.UseVisualStyleBackColor = true;
             this.btAddLogYear.Click += new System.EventHandler(this.btAddLogYearConfig);
@@ -153,7 +153,7 @@
             this.btRemoveLogYear.Location = new System.Drawing.Point(68, 204);
             this.btRemoveLogYear.Name = "btRemoveLogYear";
             this.btRemoveLogYear.Size = new System.Drawing.Size(75, 23);
-            this.btRemoveLogYear.TabIndex = 4;
+            this.btRemoveLogYear.TabIndex = 3;
             this.btRemoveLogYear.Text = "remove";
             this.btRemoveLogYear.UseVisualStyleBackColor = true;
             this.btRemoveLogYear.Click += new System.EventHandler(this.removeLogYearConfig);
@@ -163,14 +163,14 @@
             this.tbLogYearConfig.Location = new System.Drawing.Point(68, 136);
             this.tbLogYearConfig.Name = "tbLogYearConfig";
             this.tbLogYearConfig.Size = new System.Drawing.Size(121, 20);
-            this.tbLogYearConfig.TabIndex = 5;
+            this.tbLogYearConfig.TabIndex = 1;
             // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(226, 146);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(105, 23);
-            this.button5.TabIndex = 6;
+            this.button5.Size = new System.Drawing.Size(123, 30);
+            this.button5.TabIndex = 1;
             this.button5.Text = "Open Ride Data";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.openRideDataForm);
@@ -179,8 +179,8 @@
             // 
             this.button7.Location = new System.Drawing.Point(226, 101);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(105, 23);
-            this.button7.TabIndex = 8;
+            this.button7.Size = new System.Drawing.Size(123, 30);
+            this.button7.TabIndex = 0;
             this.button7.Text = "Ride Data Entry";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.openRideDataEntry);
@@ -211,8 +211,8 @@
             // 
             this.button4.Location = new System.Drawing.Point(226, 238);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(105, 23);
-            this.button4.TabIndex = 10;
+            this.button4.Size = new System.Drawing.Size(123, 30);
+            this.button4.TabIndex = 3;
             this.button4.Text = "Export Data";
             this.button4.UseVisualStyleBackColor = true;
             // 
@@ -220,9 +220,9 @@
             // 
             this.button11.Location = new System.Drawing.Point(226, 192);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(105, 23);
-            this.button11.TabIndex = 9;
-            this.button11.Text = "Import Old Data";
+            this.button11.Size = new System.Drawing.Size(123, 30);
+            this.button11.TabIndex = 2;
+            this.button11.Text = "Legacy Data Import";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.importFromExcelLog);
             // 
@@ -231,10 +231,10 @@
             this.button3.Location = new System.Drawing.Point(305, 302);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 10;
+            this.button3.TabIndex = 5;
             this.button3.Text = "Refresh";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(RefreshStatisticsData);
+            this.button3.Click += new System.EventHandler(this.RefreshStatisticsData);
             // 
             // tabControl1
             // 
@@ -411,7 +411,7 @@
             this.cbLogYear5.Location = new System.Drawing.Point(549, 98);
             this.cbLogYear5.Name = "cbLogYear5";
             this.cbLogYear5.Size = new System.Drawing.Size(100, 21);
-            this.cbLogYear5.TabIndex = 39;
+            this.cbLogYear5.TabIndex = 4;
             this.cbLogYear5.SelectedIndexChanged += new System.EventHandler(this.cb5LogYear_changed);
             // 
             // tb6Log5
@@ -483,7 +483,7 @@
             this.cbLogYear4.Location = new System.Drawing.Point(443, 98);
             this.cbLogYear4.Name = "cbLogYear4";
             this.cbLogYear4.Size = new System.Drawing.Size(100, 21);
-            this.cbLogYear4.TabIndex = 31;
+            this.cbLogYear4.TabIndex = 3;
             this.cbLogYear4.SelectedIndexChanged += new System.EventHandler(this.cb4LogYear_changed);
             // 
             // tb6Log4
@@ -555,7 +555,7 @@
             this.cbLogYear3.Location = new System.Drawing.Point(337, 98);
             this.cbLogYear3.Name = "cbLogYear3";
             this.cbLogYear3.Size = new System.Drawing.Size(100, 21);
-            this.cbLogYear3.TabIndex = 23;
+            this.cbLogYear3.TabIndex = 2;
             this.cbLogYear3.SelectedIndexChanged += new System.EventHandler(this.cb3LogYear_changed);
             // 
             // tb6Log3
@@ -627,7 +627,7 @@
             this.cbLogYear2.Location = new System.Drawing.Point(231, 98);
             this.cbLogYear2.Name = "cbLogYear2";
             this.cbLogYear2.Size = new System.Drawing.Size(100, 21);
-            this.cbLogYear2.TabIndex = 15;
+            this.cbLogYear2.TabIndex = 1;
             this.cbLogYear2.SelectedIndexChanged += new System.EventHandler(this.cb2LogYear_changed);
             // 
             // tb6Log2
@@ -852,7 +852,7 @@
             this.bRenameBike.Location = new System.Drawing.Point(437, 233);
             this.bRenameBike.Name = "bRenameBike";
             this.bRenameBike.Size = new System.Drawing.Size(75, 23);
-            this.bRenameBike.TabIndex = 19;
+            this.bRenameBike.TabIndex = 14;
             this.bRenameBike.Text = "Rename";
             this.bRenameBike.UseVisualStyleBackColor = true;
             this.bRenameBike.Click += new System.EventHandler(this.bRenameBike_Click);
@@ -862,7 +862,7 @@
             this.bRenameLogYear.Location = new System.Drawing.Point(68, 233);
             this.bRenameLogYear.Name = "bRenameLogYear";
             this.bRenameLogYear.Size = new System.Drawing.Size(75, 23);
-            this.bRenameLogYear.TabIndex = 18;
+            this.bRenameLogYear.TabIndex = 4;
             this.bRenameLogYear.Text = "Rename";
             this.bRenameLogYear.UseVisualStyleBackColor = true;
             this.bRenameLogYear.Click += new System.EventHandler(this.bRenameLogYear_Click);
@@ -872,7 +872,7 @@
             this.button6.Location = new System.Drawing.Point(212, 233);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 17;
+            this.button6.TabIndex = 9;
             this.button6.Text = "Rename";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.cbRenameRoute);
@@ -891,14 +891,14 @@
             this.tbBikeConfig.Location = new System.Drawing.Point(437, 136);
             this.tbBikeConfig.Name = "tbBikeConfig";
             this.tbBikeConfig.Size = new System.Drawing.Size(121, 20);
-            this.tbBikeConfig.TabIndex = 15;
+            this.tbBikeConfig.TabIndex = 11;
             // 
             // btRemoveBikeConfig
             // 
             this.btRemoveBikeConfig.Location = new System.Drawing.Point(437, 204);
             this.btRemoveBikeConfig.Name = "btRemoveBikeConfig";
             this.btRemoveBikeConfig.Size = new System.Drawing.Size(75, 23);
-            this.btRemoveBikeConfig.TabIndex = 14;
+            this.btRemoveBikeConfig.TabIndex = 13;
             this.btRemoveBikeConfig.Text = "remove";
             this.btRemoveBikeConfig.UseVisualStyleBackColor = true;
             this.btRemoveBikeConfig.Click += new System.EventHandler(this.btRemoveBikeConfig_Click);
@@ -909,14 +909,14 @@
             this.cbBikeConfig.Location = new System.Drawing.Point(437, 109);
             this.cbBikeConfig.Name = "cbBikeConfig";
             this.cbBikeConfig.Size = new System.Drawing.Size(121, 21);
-            this.cbBikeConfig.TabIndex = 12;
+            this.cbBikeConfig.TabIndex = 10;
             // 
             // btAddBikeConfig
             // 
             this.btAddBikeConfig.Location = new System.Drawing.Point(437, 175);
             this.btAddBikeConfig.Name = "btAddBikeConfig";
             this.btAddBikeConfig.Size = new System.Drawing.Size(75, 23);
-            this.btAddBikeConfig.TabIndex = 13;
+            this.btAddBikeConfig.TabIndex = 12;
             this.btAddBikeConfig.Text = "Add";
             this.btAddBikeConfig.UseVisualStyleBackColor = true;
             this.btAddBikeConfig.Click += new System.EventHandler(this.btAddBikeConfig_Click);
@@ -927,7 +927,7 @@
             this.label4.Location = new System.Drawing.Point(209, 93);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(138, 13);
-            this.label4.TabIndex = 11;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Add or Update Ride Routes";
             // 
             // tbRouteConfig
@@ -935,14 +935,14 @@
             this.tbRouteConfig.Location = new System.Drawing.Point(212, 136);
             this.tbRouteConfig.Name = "tbRouteConfig";
             this.tbRouteConfig.Size = new System.Drawing.Size(205, 20);
-            this.tbRouteConfig.TabIndex = 10;
+            this.tbRouteConfig.TabIndex = 6;
             // 
             // btRemoveRoute
             // 
             this.btRemoveRoute.Location = new System.Drawing.Point(212, 204);
             this.btRemoveRoute.Name = "btRemoveRoute";
             this.btRemoveRoute.Size = new System.Drawing.Size(75, 23);
-            this.btRemoveRoute.TabIndex = 9;
+            this.btRemoveRoute.TabIndex = 8;
             this.btRemoveRoute.Text = "remove";
             this.btRemoveRoute.UseVisualStyleBackColor = true;
             this.btRemoveRoute.Click += new System.EventHandler(this.btRemoveRouteConfig);
@@ -953,14 +953,14 @@
             this.cbRouteConfig.Location = new System.Drawing.Point(212, 109);
             this.cbRouteConfig.Name = "cbRouteConfig";
             this.cbRouteConfig.Size = new System.Drawing.Size(205, 21);
-            this.cbRouteConfig.TabIndex = 7;
+            this.cbRouteConfig.TabIndex = 5;
             // 
             // btAddRoute
             // 
             this.btAddRoute.Location = new System.Drawing.Point(212, 175);
             this.btAddRoute.Name = "btAddRoute";
             this.btAddRoute.Size = new System.Drawing.Size(75, 23);
-            this.btAddRoute.TabIndex = 8;
+            this.btAddRoute.TabIndex = 7;
             this.btAddRoute.Text = "Add";
             this.btAddRoute.UseVisualStyleBackColor = true;
             this.btAddRoute.Click += new System.EventHandler(this.btAddRoute_Click);
@@ -971,7 +971,7 @@
             this.label3.Location = new System.Drawing.Point(65, 93);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(127, 13);
-            this.label3.TabIndex = 6;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Add or Update Log Years";
             // 
             // tabPage5
@@ -989,7 +989,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(304, 247);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 23);
+            this.button1.Size = new System.Drawing.Size(105, 30);
             this.button1.TabIndex = 11;
             this.button1.Text = "Chart";
             this.button1.UseVisualStyleBackColor = true;

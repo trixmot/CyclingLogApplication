@@ -25,3 +25,4 @@
 \\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.exe
 \\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.pdb
 \\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\obj\Debug\Cycling_Log.csprojResolveAssemblyReference.cache
+\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.LegacyImport.resources
