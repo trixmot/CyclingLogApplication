@@ -56,6 +56,10 @@ namespace CyclingLogApplication
             string cbStatistic4 = nodes.Item(0).SelectSingleNode("cbStatistic4").InnerText;
             string cbStatistic5 = nodes.Item(0).SelectSingleNode("cbStatistic5").InnerText;
 
+            string lastLogYearSelected = nodes.Item(0).SelectSingleNode("LastLogSelected").InnerText;
+            string lastBikeSelected = nodes.Item(0).SelectSingleNode("LastBikeSelected").InnerText;
+            string lastLogYearFilterSelected = nodes.Item(0).SelectSingleNode("LastLogFilterSelected").InnerText;
+
             MainForm mainForm = new MainForm();
             mainForm.setLogLevel(logLevel);
             mainForm.setcbStatistic1(cbStatistic1);
@@ -63,6 +67,9 @@ namespace CyclingLogApplication
             mainForm.setcbStatistic3(cbStatistic3);
             mainForm.setcbStatistic4(cbStatistic4);
             mainForm.setcbStatistic5(cbStatistic5);
+            mainForm.setLastLogFilterSelected(Convert.ToInt32(lastLogYearFilterSelected));
+            mainForm.setLastBikeSelected(Convert.ToInt32(lastBikeSelected));
+            mainForm.setLastLogSelected(Convert.ToInt32(lastLogYearSelected));
 
             //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
             Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, 1, 0);
@@ -73,6 +80,9 @@ namespace CyclingLogApplication
             Logger.Log("Configuration Read: cbStatistic3 : " + cbStatistic3, 1, 0);
             Logger.Log("Configuration Read: cbStatistic4 : " + cbStatistic4, 1, 0);
             Logger.Log("Configuration Read: cbStatistic5 : " + cbStatistic5, 1, 0);
+            Logger.Log("Configuration Read: lastLogYearFilterSelected : " + lastLogYearFilterSelected, 1, 0);
+            Logger.Log("Configuration Read: lastLogYearSelected : " + lastLogYearSelected, 1, 0);
+            Logger.Log("Configuration Read: lastBikeSelected : " + lastBikeSelected, 1, 0);
 
             returnStatus = true;
 
@@ -147,6 +157,10 @@ namespace CyclingLogApplication
                     LastLogSelectedNode.InnerText = "-1";
                     rootNode.AppendChild(LastLogSelectedNode);
 
+                    XmlNode LastLogFilterSelectedNode = xmlDoc.CreateElement("LastLogFilterSelected");
+                    LastLogFilterSelectedNode.InnerText = "-1";
+                    rootNode.AppendChild(LastLogFilterSelectedNode);
+
                     xmlDoc.Save("C:\\CyclingLogApplication\\CyclingLogConfig.xml");
                 }
             }
@@ -167,8 +181,9 @@ namespace CyclingLogApplication
                 string cbStatistic4 = mainForm.getcbStatistic4();
                 string cbStatistic5 = mainForm.getcbStatistic5();
 
-                string LastLogSelected = mainForm.getLastLogSelected();
-                string LastBikeSelected = mainForm.getLastBikeSelected();
+                int LastLogSelected = mainForm.getLastLogSelected();
+                int LastBikeSelected = mainForm.getLastBikeSelected();
+                int LastLogFilterSelected = mainForm.getLastLogFilterSelected();
 
                 xmlDoc.SelectSingleNode("/Config/cbStatistic1").InnerText = cbStatistic1;
                 xmlDoc.SelectSingleNode("/Config/cbStatistic2").InnerText = cbStatistic2;
@@ -176,8 +191,9 @@ namespace CyclingLogApplication
                 xmlDoc.SelectSingleNode("/Config/cbStatistic4").InnerText = cbStatistic4;
                 xmlDoc.SelectSingleNode("/Config/cbStatistic5").InnerText = cbStatistic5;
 
-                xmlDoc.SelectSingleNode("/Config/LastLogSelected").InnerText = LastLogSelected;
-                xmlDoc.SelectSingleNode("/Config/LastBikeSelected").InnerText = LastBikeSelected;
+                xmlDoc.SelectSingleNode("/Config/LastLogSelected").InnerText = LastLogSelected.ToString();
+                xmlDoc.SelectSingleNode("/Config/LastBikeSelected").InnerText = LastBikeSelected.ToString();
+                xmlDoc.SelectSingleNode("/Config/LastLogFilterSelected").InnerText = LastLogFilterSelected.ToString();
 
                 Logger.Log("Write Config Values: cbStatistic1 written:" + cbStatistic1, 0, logSetting);
                 Logger.Log("Write Config Values: cbStatistic2 written:" + cbStatistic2, 0, logSetting);
@@ -186,6 +202,7 @@ namespace CyclingLogApplication
                 Logger.Log("Write Config Values: cbStatistic5 written:" + cbStatistic5, 0, logSetting);
                 Logger.Log("Write Config Values: LastLogSelected written:" + LastLogSelected, 0, logSetting);
                 Logger.Log("Write Config Values: LastBikeSelected written:" + LastBikeSelected, 0, logSetting);
+                Logger.Log("Write Config Values: LastLogFilterSelected written:" + LastLogFilterSelected, 0, logSetting);
 
                 xmlDoc.Save(@"C:\\CyclingLogApplication\\CyclingLogConfig.xml");
             }

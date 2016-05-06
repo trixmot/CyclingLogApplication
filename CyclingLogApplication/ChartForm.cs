@@ -32,5 +32,25 @@ namespace CyclingLogApplication
             this.table_Ride_InformationTableAdapter.Fill(this.cyclingLogDatabaseDataSet.Table_Ride_Information);
 
         }
+
+        private void chart1_MouseMove(object sender, MouseEventArgs e)
+        {
+            Point mousePoint = new Point(e.X, e.Y);
+
+            chart1.ChartAreas[0].CursorX.Interval = 0;
+            chart1.ChartAreas[0].CursorY.Interval = 0;
+
+            chart1.ChartAreas[0].CursorX.SetCursorPixelPosition(mousePoint, true);
+            chart1.ChartAreas[0].CursorY.SetCursorPixelPosition(mousePoint, true);
+
+            HitTestResult result = chart1.HitTest(e.X, e.Y);
+            
+
+            if (result.PointIndex > -1 && result.ChartArea != null)
+            {
+                label1.Text = result.Series.Points[result.PointIndex].YValues[0].ToString();
+                label2.Text = DateTime.FromOADate(result.Series.Points[result.PointIndex].XValue).ToString();
+            }
+        }
     }
 }

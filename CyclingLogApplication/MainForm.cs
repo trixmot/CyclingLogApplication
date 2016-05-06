@@ -26,8 +26,9 @@ namespace CyclingLogApplication
         private static string cbStatistic3 = "-1";
         private static string cbStatistic4 = "-1";
         private static string cbStatistic5 = "-1";
-        private static string LastLogSelected = "-1";
-        private static string LastBikeSelected = "-1";
+        private static int LastLogSelected = -1;
+        private static int LastBikeSelected = -1;
+        private static int LastLogFilterSelected = -1;
 
         public MainForm()
         {
@@ -226,24 +227,34 @@ namespace CyclingLogApplication
             cbStatistic5 = setcbStatistic5Config;
         }
 
-        public string getLastBikeSelected()
+        public int getLastBikeSelected()
         {
             return LastBikeSelected;
         }
 
-        public string getLastLogSelected()
-        {
-            return LastLogSelected;
-        }
-
-        public void setLastBikeSelected(string bikeIndex)
+        public void setLastBikeSelected(int bikeIndex)
         {
             LastBikeSelected = bikeIndex;
         }
 
-        public void setLastLogSelected(string logIndex)
+        public int getLastLogSelected()
+        {
+            return LastLogSelected;
+        }
+
+        public void setLastLogSelected(int logIndex)
         {
             LastLogSelected = logIndex;
+        }
+
+        public void setLastLogFilterSelected(int logIndex)
+        {
+            LastLogFilterSelected = logIndex;
+        }
+
+        public int getLastLogFilterSelected()
+        {
+            return LastLogFilterSelected;
         }
 
         public List<string> GetLogYears()
@@ -626,7 +637,8 @@ namespace CyclingLogApplication
 
         private void openRideDataForm(object sender, EventArgs e)
         {
-            rideDataDisplayForm.ShowDialog();
+            rideDataDisplayForm.setLogYearFilterIndex(getLastLogFilterSelected());
+            rideDataDisplayForm.ShowDialog();      
         }
 
         private void openRideDataEntry(object sender, EventArgs e)
@@ -643,6 +655,8 @@ namespace CyclingLogApplication
                     //Give a warning if no additional routed have been entered:
                     MessageBox.Show("Reminder: No Routes have been entered. Add a new Route in the Configuration tab.");
                 }
+
+                rideDataEntryForm.setLastLogYearSelected(getLastLogSelected());
                 rideDataEntryForm.ShowDialog();
             }
 
@@ -1390,7 +1404,6 @@ namespace CyclingLogApplication
                                 objectValues.Add(null);              //Max Power:
                                 objectValues.Add(splitList[15]);     //Route:
                                 
-
                                 //string tmepValue = splitList[17];
                                 if (splitList[17].Contains('"'))
                                 {

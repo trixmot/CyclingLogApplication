@@ -37,6 +37,7 @@
             this.bFilter = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cbLogYearFilter = new System.Windows.Forms.ComboBox();
+            this.btClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,6 +63,7 @@
             // 
             this.cbFilterField.FormattingEnabled = true;
             this.cbFilterField.Items.AddRange(new object[] {
+            "NONE",
             "Bike",
             "Location",
             "RideType",
@@ -125,12 +127,24 @@
             this.cbLogYearFilter.Name = "cbLogYearFilter";
             this.cbLogYearFilter.Size = new System.Drawing.Size(131, 21);
             this.cbLogYearFilter.TabIndex = 7;
+            this.cbLogYearFilter.SelectedIndexChanged += new System.EventHandler(this.cbLogYearFilter_SelectedIndexChanged);
+            // 
+            // btClear
+            // 
+            this.btClear.Location = new System.Drawing.Point(682, 26);
+            this.btClear.Name = "btClear";
+            this.btClear.Size = new System.Drawing.Size(75, 23);
+            this.btClear.TabIndex = 9;
+            this.btClear.Text = "Clear";
+            this.btClear.UseVisualStyleBackColor = true;
+            this.btClear.Click += new System.EventHandler(this.btClear_Click);
             // 
             // RideDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1031, 596);
+            this.Controls.Add(this.btClear);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbLogYearFilter);
             this.Controls.Add(this.bFilter);
@@ -159,5 +173,6 @@
         private System.Windows.Forms.Button bFilter;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.ComboBox cbLogYearFilter;
+        private System.Windows.Forms.Button btClear;
     }
 }

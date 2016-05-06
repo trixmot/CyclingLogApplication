@@ -70,7 +70,7 @@ namespace CyclingLogApplication
 
             //Set index for the LogYear:
             int logYearIndex = Convert.ToInt32(mainForm.getLastLogSelected());
-            cbLogYearDataEntry.SelectedIndex = logYearIndex;
+            
             if (logYearIndex == -1)
             {
                 lbErrorMessage.Show();
@@ -78,6 +78,7 @@ namespace CyclingLogApplication
             }
             else
             {
+                //cbLogYearDataEntry.SelectedIndex = logYearIndex;
                 lbErrorMessage.Hide();
             }
         }
@@ -90,8 +91,6 @@ namespace CyclingLogApplication
         {
             cbLogYearDataEntry.Items.Remove(item);
         }
-
-
 
         public void AddRouteDataEntry(string item)
         {
@@ -111,6 +110,11 @@ namespace CyclingLogApplication
         public void RemoveBikeDataEntry(string item)
         {
             cbBikeDataEntry.Items.Remove(item);
+        }
+
+        public void setLastLogYearSelected(int index)
+        {
+            cbLogYearDataEntry.SelectedIndex = index;
         }
 
         //Diable x close option:
@@ -475,7 +479,7 @@ namespace CyclingLogApplication
         {
             // NOTE: This line of code loads data into the 'cyclingLogDatabaseDataSet.Table_Ride_Information' table. You can move, or remove it, as needed.
             this.table_Ride_InformationTableAdapter.Fill(this.cyclingLogDatabaseDataSet.Table_Ride_Information);
-            cbLogYearDataEntry.SelectedIndex = cbRouteDataEntry.FindStringExact("");
+           // cbLogYearDataEntry.SelectedIndex = cbRouteDataEntry.FindStringExact("");
         }
 
         private void RideDataEntryFormClosed(object sender, FormClosedEventArgs e)
@@ -492,7 +496,7 @@ namespace CyclingLogApplication
             string tempStr = "";
 
             //TODO: I think only the Summary line is required:
-
+            //TODO: how to show splits:
             try
             {
                 using (OpenFileDialog openfileDialog = new OpenFileDialog() { Filter = "CSV|*.csv", Multiselect = false })
@@ -711,7 +715,7 @@ namespace CyclingLogApplication
         private void cbLogYearDataEntry_SelectedIndexChanged(object sender, EventArgs e)
         {
             MainForm mainForm = new MainForm();
-            mainForm.setLastLogSelected(cbLogYearDataEntry.SelectedIndex.ToString());
+            mainForm.setLastLogSelected(cbLogYearDataEntry.SelectedIndex);
             if (cbLogYearDataEntry.SelectedIndex == -1)
             {
                 lbErrorMessage.Show();
@@ -726,7 +730,7 @@ namespace CyclingLogApplication
         private void cbBikeDataEntry_SelectedIndexChanged(object sender, EventArgs e)
         {
             MainForm mainForm = new MainForm();
-            mainForm.setLastBikeSelected(cbBikeDataEntry.SelectedIndex.ToString());
+            mainForm.setLastBikeSelected(cbBikeDataEntry.SelectedIndex);
         }
 
         private void btUpdateRideDateEntry_Click(object sender, EventArgs e)
