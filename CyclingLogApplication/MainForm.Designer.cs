@@ -112,7 +112,6 @@
             this.cbRouteConfig = new System.Windows.Forms.ComboBox();
             this.btAddRoute = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -125,7 +124,6 @@
             this.groupBox4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.tabPage5.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -167,7 +165,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(226, 146);
+            this.button5.Location = new System.Drawing.Point(235, 118);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(123, 30);
             this.button5.TabIndex = 1;
@@ -177,7 +175,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(226, 101);
+            this.button7.Location = new System.Drawing.Point(235, 73);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(123, 30);
             this.button7.TabIndex = 0;
@@ -197,6 +195,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button11);
             this.groupBox1.Controls.Add(this.button7);
@@ -209,7 +208,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(226, 238);
+            this.button4.Location = new System.Drawing.Point(235, 208);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(123, 30);
             this.button4.TabIndex = 3;
@@ -218,7 +217,7 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(226, 192);
+            this.button11.Location = new System.Drawing.Point(235, 163);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(123, 30);
             this.button11.TabIndex = 2;
@@ -241,7 +240,6 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(20, 24);
             this.tabControl1.Name = "tabControl1";
@@ -974,22 +972,11 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Add or Update Log Years";
             // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.button1);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(719, 415);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Charts";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(304, 247);
+            this.button1.Location = new System.Drawing.Point(235, 253);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(105, 30);
+            this.button1.Size = new System.Drawing.Size(123, 30);
             this.button1.TabIndex = 11;
             this.button1.Text = "Chart";
             this.button1.UseVisualStyleBackColor = true;
@@ -1054,7 +1041,6 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -1152,7 +1138,6 @@
         private System.Windows.Forms.Button bRenameBike;
         private System.Windows.Forms.Button bRenameLogYear;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TabPage tabPage5;
     }
 }
 

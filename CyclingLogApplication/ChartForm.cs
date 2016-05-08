@@ -13,7 +13,7 @@ namespace CyclingLogApplication
 {
     public partial class ChartForm : Form
     {
-        public ChartForm()
+        public ChartForm(MainForm mainForm)
         {
             InitializeComponent();
 
@@ -48,9 +48,44 @@ namespace CyclingLogApplication
 
             if (result.PointIndex > -1 && result.ChartArea != null)
             {
-                label1.Text = result.Series.Points[result.PointIndex].YValues[0].ToString();
-                label2.Text = DateTime.FromOADate(result.Series.Points[result.PointIndex].XValue).ToString();
+                tbXAxis.Text = result.Series.Points[result.PointIndex].YValues[0].ToString();
+                tbYAxis.Text = DateTime.FromOADate(result.Series.Points[result.PointIndex].XValue).ToString();
             }
+        }
+
+        private void btCloseChart_Click(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
+        }
+
+        private void cbTypeChart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            mainForm.setLastTypeChartSelected(cbTypeChart.SelectedIndex);
+        }
+
+        private void cbLogYearChart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            mainForm.setLastLogYearChartSelected(cbLogYearChart.SelectedIndex);
+        }
+
+        private void cbRoutesChart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            mainForm.setLastRouteChartSelected(cbRoutesChart.SelectedIndex);
+        }
+
+        private void rbAllWeeks_MouseClick(object sender, MouseEventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            mainForm.setLastTimelineChartSelected(0);
+        }
+
+        private void rbCurrentWeek_MouseClick(object sender, MouseEventArgs e)
+        {
+            MainForm mainForm = new MainForm();
+            mainForm.setLastTimelineChartSelected(1);
         }
     }
 }

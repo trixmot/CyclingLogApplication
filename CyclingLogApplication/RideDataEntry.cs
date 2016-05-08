@@ -298,8 +298,6 @@ namespace CyclingLogApplication
         //    }
         //}
 
-
-
         private void RideInformationChange(string changeType, string procedureName)
         {
             MainForm mainForm = new MainForm();

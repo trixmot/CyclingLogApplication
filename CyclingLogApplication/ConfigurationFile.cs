@@ -60,6 +60,11 @@ namespace CyclingLogApplication
             string lastBikeSelected = nodes.Item(0).SelectSingleNode("LastBikeSelected").InnerText;
             string lastLogYearFilterSelected = nodes.Item(0).SelectSingleNode("LastLogFilterSelected").InnerText;
 
+            string chartLogYearSelected = nodes.Item(0).SelectSingleNode("ChartLogYear").InnerText;
+            string chartRouteSelected = nodes.Item(0).SelectSingleNode("ChartRoute").InnerText;
+            string chartTypeSelected = nodes.Item(0).SelectSingleNode("ChartType").InnerText;
+            string charTimeLine = nodes.Item(0).SelectSingleNode("ChartTimeLine").InnerText;
+
             MainForm mainForm = new MainForm();
             mainForm.setLogLevel(logLevel);
             mainForm.setcbStatistic1(cbStatistic1);
@@ -70,6 +75,12 @@ namespace CyclingLogApplication
             mainForm.setLastLogFilterSelected(Convert.ToInt32(lastLogYearFilterSelected));
             mainForm.setLastBikeSelected(Convert.ToInt32(lastBikeSelected));
             mainForm.setLastLogSelected(Convert.ToInt32(lastLogYearSelected));
+
+            mainForm.setLastLogYearChartSelected(Convert.ToInt32(chartLogYearSelected));
+            mainForm.setLastRouteChartSelected(Convert.ToInt32(chartRouteSelected));
+            mainForm.setLastTypeChartSelected(Convert.ToInt32(chartTypeSelected));
+            mainForm.setLastTimelineChartSelected(Convert.ToInt32(charTimeLine));
+
 
             //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
             Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, 1, 0);
@@ -83,6 +94,11 @@ namespace CyclingLogApplication
             Logger.Log("Configuration Read: lastLogYearFilterSelected : " + lastLogYearFilterSelected, 1, 0);
             Logger.Log("Configuration Read: lastLogYearSelected : " + lastLogYearSelected, 1, 0);
             Logger.Log("Configuration Read: lastBikeSelected : " + lastBikeSelected, 1, 0);
+
+            Logger.Log("Configuration Read: chartLogYearSelected : " + chartLogYearSelected, 1, 0);
+            Logger.Log("Configuration Read: chartRouteSelected : " + chartRouteSelected, 1, 0);
+            Logger.Log("Configuration Read: chartTypeSelected : " + chartTypeSelected, 1, 0);
+            Logger.Log("Configuration Read: charTimeLine : " + charTimeLine, 1, 0);
 
             returnStatus = true;
 
@@ -149,17 +165,33 @@ namespace CyclingLogApplication
                     cbStatistic5Node.InnerText = "-1";
                     rootNode.AppendChild(cbStatistic5Node);
 
-                    XmlNode LastBikeSelectedNode = xmlDoc.CreateElement("LastBikeSelected");
-                    LastBikeSelectedNode.InnerText = "-1";
-                    rootNode.AppendChild(LastBikeSelectedNode);
+                    XmlNode lastBikeSelectedNode = xmlDoc.CreateElement("LastBikeSelected");
+                    lastBikeSelectedNode.InnerText = "-1";
+                    rootNode.AppendChild(lastBikeSelectedNode);
 
-                    XmlNode LastLogSelectedNode = xmlDoc.CreateElement("LastLogSelected");
-                    LastLogSelectedNode.InnerText = "-1";
-                    rootNode.AppendChild(LastLogSelectedNode);
+                    XmlNode lastLogSelectedNode = xmlDoc.CreateElement("LastLogSelected");
+                    lastLogSelectedNode.InnerText = "-1";
+                    rootNode.AppendChild(lastLogSelectedNode);
 
-                    XmlNode LastLogFilterSelectedNode = xmlDoc.CreateElement("LastLogFilterSelected");
-                    LastLogFilterSelectedNode.InnerText = "-1";
-                    rootNode.AppendChild(LastLogFilterSelectedNode);
+                    XmlNode lastLogFilterSelectedNode = xmlDoc.CreateElement("LastLogFilterSelected");
+                    lastLogFilterSelectedNode.InnerText = "-1";
+                    rootNode.AppendChild(lastLogFilterSelectedNode);
+
+                    XmlNode lastLogYearChartSelectedNode = xmlDoc.CreateElement("ChartLogYear");
+                    lastLogYearChartSelectedNode.InnerText = "-1";
+                    rootNode.AppendChild(lastLogYearChartSelectedNode);
+
+                    XmlNode lastRouteChartSelectedNode = xmlDoc.CreateElement("ChartRoute");
+                    lastRouteChartSelectedNode.InnerText = "-1";
+                    rootNode.AppendChild(lastRouteChartSelectedNode);
+
+                    XmlNode lastTypeChartSelectedNode = xmlDoc.CreateElement("ChartType");
+                    lastTypeChartSelectedNode.InnerText = "-1";
+                    rootNode.AppendChild(lastTypeChartSelectedNode);
+
+                    XmlNode lastTimelineChartSelectedNode = xmlDoc.CreateElement("ChartTimeLine");
+                    lastTimelineChartSelectedNode.InnerText = "-1";
+                    rootNode.AppendChild(lastTimelineChartSelectedNode);
 
                     xmlDoc.Save("C:\\CyclingLogApplication\\CyclingLogConfig.xml");
                 }
@@ -181,9 +213,14 @@ namespace CyclingLogApplication
                 string cbStatistic4 = mainForm.getcbStatistic4();
                 string cbStatistic5 = mainForm.getcbStatistic5();
 
-                int LastLogSelected = mainForm.getLastLogSelected();
-                int LastBikeSelected = mainForm.getLastBikeSelected();
-                int LastLogFilterSelected = mainForm.getLastLogFilterSelected();
+                int lastLogSelected = mainForm.getLastLogSelected();
+                int lastBikeSelected = mainForm.getLastBikeSelected();
+                int lastLogFilterSelected = mainForm.getLastLogFilterSelected();
+
+                int lastLogYearChartSelected = mainForm.getLastLogYearChartSelected();
+                int lastRouteChartSelected = mainForm.getLastRouteChartSelected();
+                int lastTypeChartSelected = mainForm.getLastTypeChartSelected();
+                int lastTimelineChartSelected = mainForm.getLastTimelineChartSelected();
 
                 xmlDoc.SelectSingleNode("/Config/cbStatistic1").InnerText = cbStatistic1;
                 xmlDoc.SelectSingleNode("/Config/cbStatistic2").InnerText = cbStatistic2;
@@ -191,18 +228,28 @@ namespace CyclingLogApplication
                 xmlDoc.SelectSingleNode("/Config/cbStatistic4").InnerText = cbStatistic4;
                 xmlDoc.SelectSingleNode("/Config/cbStatistic5").InnerText = cbStatistic5;
 
-                xmlDoc.SelectSingleNode("/Config/LastLogSelected").InnerText = LastLogSelected.ToString();
-                xmlDoc.SelectSingleNode("/Config/LastBikeSelected").InnerText = LastBikeSelected.ToString();
-                xmlDoc.SelectSingleNode("/Config/LastLogFilterSelected").InnerText = LastLogFilterSelected.ToString();
+                xmlDoc.SelectSingleNode("/Config/LastLogSelected").InnerText = lastLogSelected.ToString();
+                xmlDoc.SelectSingleNode("/Config/LastBikeSelected").InnerText = lastBikeSelected.ToString();
+                xmlDoc.SelectSingleNode("/Config/LastLogFilterSelected").InnerText = lastLogFilterSelected.ToString();
+
+                xmlDoc.SelectSingleNode("/Config/ChartLogYear").InnerText = lastLogYearChartSelected.ToString();
+                xmlDoc.SelectSingleNode("/Config/ChartRoute").InnerText = lastRouteChartSelected.ToString();
+                xmlDoc.SelectSingleNode("/Config/ChartType").InnerText = lastTypeChartSelected.ToString();
+                xmlDoc.SelectSingleNode("/Config/ChartTimeLine").InnerText = lastTimelineChartSelected.ToString();
 
                 Logger.Log("Write Config Values: cbStatistic1 written:" + cbStatistic1, 0, logSetting);
                 Logger.Log("Write Config Values: cbStatistic2 written:" + cbStatistic2, 0, logSetting);
                 Logger.Log("Write Config Values: cbStatistic3 written:" + cbStatistic3, 0, logSetting);
                 Logger.Log("Write Config Values: cbStatistic4 written:" + cbStatistic4, 0, logSetting);
                 Logger.Log("Write Config Values: cbStatistic5 written:" + cbStatistic5, 0, logSetting);
-                Logger.Log("Write Config Values: LastLogSelected written:" + LastLogSelected, 0, logSetting);
-                Logger.Log("Write Config Values: LastBikeSelected written:" + LastBikeSelected, 0, logSetting);
-                Logger.Log("Write Config Values: LastLogFilterSelected written:" + LastLogFilterSelected, 0, logSetting);
+                Logger.Log("Write Config Values: lastLogSelected written:" + lastLogSelected, 0, logSetting);
+                Logger.Log("Write Config Values: lastBikeSelected written:" + lastBikeSelected, 0, logSetting);
+                Logger.Log("Write Config Values: lastLogFilterSelected written:" + lastLogFilterSelected, 0, logSetting);
+
+                Logger.Log("Write Config Values: lastLogYearChartSelected written:" + lastLogYearChartSelected, 0, logSetting);
+                Logger.Log("Write Config Values: lastRouteChartSelected written:" + lastRouteChartSelected, 0, logSetting);
+                Logger.Log("Write Config Values: lastTypeChartSelected written:" + lastTypeChartSelected, 0, logSetting);
+                Logger.Log("Write Config Values: lastTimelineChartSelected written:" + lastTimelineChartSelected, 0, logSetting);
 
                 xmlDoc.Save(@"C:\\CyclingLogApplication\\CyclingLogConfig.xml");
             }

@@ -18,6 +18,7 @@ namespace CyclingLogApplication
         private static Mutex mutex;
         RideDataEntry rideDataEntryForm;
         RideDataDisplay rideDataDisplayForm;
+        ChartForm chartForm;
         //private Thread thread;
         private static string logVersion = "0.0.1";
         private static int logLevel = 0;
@@ -26,9 +27,13 @@ namespace CyclingLogApplication
         private static string cbStatistic3 = "-1";
         private static string cbStatistic4 = "-1";
         private static string cbStatistic5 = "-1";
-        private static int LastLogSelected = -1;
-        private static int LastBikeSelected = -1;
-        private static int LastLogFilterSelected = -1;
+        private static int lastLogSelected = -1;
+        private static int lastBikeSelected = -1;
+        private static int lastLogFilterSelected = -1;
+        private static int lastLogYearChart = -1;
+        private static int lastRouteChart = -1;
+        private static int lastTypeChart = -1;
+        private static int lastTimelineChart = -1;
 
         public MainForm()
         {
@@ -80,6 +85,7 @@ namespace CyclingLogApplication
 
             rideDataEntryForm = new RideDataEntry(this);
             rideDataDisplayForm = new RideDataDisplay();
+            chartForm = new ChartForm(this);
 
             //Load LogYear values:
             foreach (string val in logYearList)
@@ -92,6 +98,7 @@ namespace CyclingLogApplication
                 cbLogYear4.Items.Add(val);
                 cbLogYear5.Items.Add(val);
                 rideDataDisplayForm.cbLogYearFilter.Items.Add(val);
+                chartForm.cbLogYearChart.Items.Add(val);
                 Logger.Log("Data Loading: Log Year: " + val, 0, logSetting);
             }
        
@@ -100,6 +107,7 @@ namespace CyclingLogApplication
             {
                 cbRouteConfig.Items.Add(val);
                 rideDataEntryForm.cbRouteDataEntry.Items.Add(val);
+                chartForm.cbRoutesChart.Items.Add(val);
                 Logger.Log("Data Loading: Route: " + val, 1, logSetting);
             }
 
@@ -229,32 +237,72 @@ namespace CyclingLogApplication
 
         public int getLastBikeSelected()
         {
-            return LastBikeSelected;
+            return lastBikeSelected;
         }
 
         public void setLastBikeSelected(int bikeIndex)
         {
-            LastBikeSelected = bikeIndex;
+            lastBikeSelected = bikeIndex;
         }
 
         public int getLastLogSelected()
         {
-            return LastLogSelected;
+            return lastLogSelected;
         }
 
         public void setLastLogSelected(int logIndex)
         {
-            LastLogSelected = logIndex;
+            lastLogSelected = logIndex;
         }
 
         public void setLastLogFilterSelected(int logIndex)
         {
-            LastLogFilterSelected = logIndex;
+            lastLogFilterSelected = logIndex;
         }
 
         public int getLastLogFilterSelected()
         {
-            return LastLogFilterSelected;
+            return lastLogFilterSelected;
+        }
+
+        public void setLastLogYearChartSelected(int logIndex)
+        {
+            lastLogYearChart = logIndex;
+        }
+
+        public int getLastLogYearChartSelected()
+        {
+            return lastLogYearChart;
+        }
+
+        public void setLastRouteChartSelected(int logIndex)
+        {
+            lastRouteChart = logIndex;
+        }
+
+        public int getLastRouteChartSelected()
+        {
+            return lastRouteChart;
+        }
+
+        public void setLastTypeChartSelected(int logIndex)
+        {
+            lastTypeChart = logIndex;
+        }
+
+        public int getLastTypeChartSelected()
+        {
+            return lastTypeChart;
+        }
+
+        public void setLastTimelineChartSelected(int logIndex)
+        {
+            lastTimelineChart = logIndex;
+        }
+
+        public int getLastTimelineChartSelected()
+        {
+            return lastTimelineChart;
         }
 
         public List<string> GetLogYears()
@@ -462,6 +510,7 @@ namespace CyclingLogApplication
             cbLogYearConfig.SelectedIndex = cbLogYearConfig.Items.Count-1;
             rideDataEntryForm.AddLogYearDataEntry(item);
             rideDataDisplayForm.AddLogYearFilter(item);
+            chartForm.cbLogYearChart.Items.Add(item);
 
             //Update combo's on stat tab:
             cbLogYear1.Items.Add(item);
@@ -482,6 +531,7 @@ namespace CyclingLogApplication
                 cbLogYearConfig.Items.Remove(cbLogYearConfig.SelectedItem);
                 rideDataEntryForm.RemoveLogYearDataEntry(cbLogYearConfig.SelectedText);
                 rideDataDisplayForm.RemoveLogYearFilter(cbLogYearConfig.SelectedText);
+                chartForm.cbLogYearChart.Items.Remove(cbLogYearConfig.SelectedItem);
                 cbLogYear1.Items.Remove(tbLogYearConfig.Text);
                 cbLogYear2.Items.Remove(tbLogYearConfig.Text);
                 cbLogYear3.Items.Remove(tbLogYearConfig.Text);
@@ -687,7 +737,7 @@ namespace CyclingLogApplication
             cbRouteConfig.Items.Add(routeString);
             cbRouteConfig.SelectedIndex = cbRouteConfig.Items.Count - 1;
             rideDataEntryForm.AddRouteDataEntry(routeString);
-
+            chartForm.cbRoutesChart.Items.Add(routeString);
             Logger.Log("Adding a Route entry to the Configuration:" + routeString, 0, logSetting);
         }
 
@@ -696,6 +746,7 @@ namespace CyclingLogApplication
             //Note: only removing value as an option, all records using this value are unchanged:
             cbRouteConfig.Items.Remove(cbRouteConfig.SelectedItem);
             rideDataEntryForm.RemoveRouteDataEntry(tbRouteConfig.Text);
+            chartForm.cbRoutesChart.Items.Remove(tbRouteConfig.Text);
         }
 
         private void btAddBikeConfig_Click(object sender, EventArgs e)
@@ -1519,6 +1570,8 @@ namespace CyclingLogApplication
             cbRouteConfig.Items.Clear();
             rideDataEntryForm.cbRouteDataEntry.DataSource = null;
             rideDataEntryForm.cbRouteDataEntry.Items.Clear();
+            chartForm.cbRoutesChart.Items.Clear();
+            chartForm.cbRoutesChart.DataSource = null;
 
             for (int i = 0; i < tempList.Count; i++)
             {
@@ -1526,10 +1579,12 @@ namespace CyclingLogApplication
                 {
                     cbRouteConfig.Items.Add(newValue);
                     rideDataEntryForm.cbRouteDataEntry.Items.Add(newValue);
+                    chartForm.cbRoutesChart.Items.Add(newValue);
                 }
                 else {
                     cbRouteConfig.Items.Add(tempList[i]);
                     rideDataEntryForm.cbRouteDataEntry.Items.Add(tempList[i]);
+                    chartForm.cbRoutesChart.Items.Add(tempList[i]);
                 }
             }
             cbRouteConfig.SelectedIndex = selectedIndex;
@@ -1628,6 +1683,8 @@ namespace CyclingLogApplication
             rideDataEntryForm.cbLogYearDataEntry.Items.Clear();
             rideDataDisplayForm.cbLogYearFilter.DataSource = null;
             rideDataDisplayForm.cbLogYearFilter.Items.Clear();
+            chartForm.cbLogYearChart.Items.Clear();
+            chartForm.cbLogYearChart.DataSource = null;
             cbLogYear1.DataSource = null;
             cbLogYear1.Items.Clear();
             cbLogYear2.DataSource = null;
@@ -1646,6 +1703,7 @@ namespace CyclingLogApplication
                     cbLogYearConfig.Items.Add(newValue);
                     rideDataEntryForm.cbLogYearDataEntry.Items.Add(newValue);
                     rideDataDisplayForm.cbLogYearFilter.Items.Add(newValue);
+                    chartForm.cbLogYearChart.Items.Add(newValue);
                     cbLogYear1.Items.Add(newValue);
                     cbLogYear2.Items.Add(newValue);
                     cbLogYear3.Items.Add(newValue);
@@ -1656,6 +1714,7 @@ namespace CyclingLogApplication
                     cbLogYearConfig.Items.Add(tempList[i]);
                     rideDataEntryForm.cbLogYearDataEntry.Items.Add(tempList[i]);
                     rideDataDisplayForm.cbLogYearFilter.Items.Add(tempList[i]);
+                    chartForm.cbLogYearChart.Items.Add(tempList[i]);
                     cbLogYear1.Items.Add(tempList[i]);
                     cbLogYear2.Items.Add(tempList[i]);
                     cbLogYear3.Items.Add(tempList[i]);
@@ -1666,6 +1725,7 @@ namespace CyclingLogApplication
             cbLogYearConfig.SelectedIndex = selectedIndex;
             rideDataEntryForm.cbLogYearDataEntry.SelectedIndex = selectedIndex;
             rideDataDisplayForm.cbLogYearFilter.SelectedIndex = selectedIndex;
+            chartForm.cbLogYearChart.SelectedIndex = selectedIndex;
             cbLogYear1.SelectedIndex = statIndex1;
             cbLogYear2.SelectedIndex = statIndex2;
             cbLogYear3.SelectedIndex = statIndex3;
@@ -1780,7 +1840,7 @@ namespace CyclingLogApplication
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            ChartForm chartForm = new ChartForm();
+            //ChartForm chartForm = new ChartForm(this);
             chartForm.Show();
 
         }
