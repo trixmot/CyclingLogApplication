@@ -33,7 +33,6 @@ namespace CyclingLogApplication
         private static int lastLogYearChart = -1;
         private static int lastRouteChart = -1;
         private static int lastTypeChart = -1;
-        private static int lastTimelineChart = -1;
 
         public MainForm()
         {
@@ -293,16 +292,6 @@ namespace CyclingLogApplication
         public int getLastTypeChartSelected()
         {
             return lastTypeChart;
-        }
-
-        public void setLastTimelineChartSelected(int logIndex)
-        {
-            lastTimelineChart = logIndex;
-        }
-
-        public int getLastTimelineChartSelected()
-        {
-            return lastTimelineChart;
         }
 
         public List<string> GetLogYears()
