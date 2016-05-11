@@ -18,6 +18,7 @@ namespace CyclingLogApplication
         {
             InitializeComponent();
 
+            labelChartError.Hide();
             //chart1.Series["Series1"].XValueMember = "Date";
             //chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
             //chart1.Series["Series1"].YValueMembers = "AvgSpeed";
@@ -67,18 +68,21 @@ namespace CyclingLogApplication
 
         private void cbTypeChart_SelectedIndexChanged(object sender, EventArgs e)
         {
+            labelChartError.Hide();
             MainForm mainForm = new MainForm();
             mainForm.setLastTypeChartSelected(cbTypeChart.SelectedIndex);
         }
 
         private void cbLogYearChart_SelectedIndexChanged(object sender, EventArgs e)
         {
+            labelChartError.Hide();
             MainForm mainForm = new MainForm();
             mainForm.setLastLogYearChartSelected(cbLogYearChart.SelectedIndex);
         }
 
         private void cbRoutesChart_SelectedIndexChanged(object sender, EventArgs e)
         {
+            labelChartError.Hide();
             MainForm mainForm = new MainForm();
             mainForm.setLastRouteChartSelected(cbRoutesChart.SelectedIndex);
         }
@@ -109,6 +113,29 @@ namespace CyclingLogApplication
 
         private void btRunChart_Click(object sender, EventArgs e)
         {
+            //Verify the required values are available before running chart:
+            if (cbTypeChart.SelectedIndex == -1)
+            {
+                labelChartError.Text = "Select a Chart Type option from the dropdown list.";
+                labelChartError.Show();
+
+                return;
+            }
+            if (cbLogYearChart.SelectedIndex == -1)
+            {
+                labelChartError.Text = "Select a Log Year option from the dropdown list.";
+                labelChartError.Show();
+
+                return;
+            }
+            if (cbRoutesChart.SelectedIndex == -1 && checkBoxRouteOption.Checked)
+            {
+                labelChartError.Text = "Select a Route option from the dropdown list.";
+                labelChartError.Show();
+
+                return;
+            }
+
             // conn and reader declared outside try block for visibility in finally block
             SqlConnection conn = null;
             SqlDataReader reader = null;
