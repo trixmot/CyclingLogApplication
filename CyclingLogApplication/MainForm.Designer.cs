@@ -116,15 +116,17 @@
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.cbBikeMaint = new System.Windows.Forms.ComboBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.btGetMaintLog = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvMaint = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btMaintAdd = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -133,7 +135,7 @@
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMaint)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -267,6 +269,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(727, 441);
             this.tabControl1.TabIndex = 11;
+            this.tabControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseClick);
             // 
             // tabPage1
             // 
@@ -995,13 +998,15 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.richTextBox1);
+            this.tabPage5.Controls.Add(this.label18);
+            this.tabPage5.Controls.Add(this.label17);
             this.tabPage5.Controls.Add(this.btMaintAdd);
             this.tabPage5.Controls.Add(this.dateTimePicker1);
             this.tabPage5.Controls.Add(this.cbBikeMaint);
-            this.tabPage5.Controls.Add(this.textBox2);
             this.tabPage5.Controls.Add(this.label16);
             this.tabPage5.Controls.Add(this.btGetMaintLog);
-            this.tabPage5.Controls.Add(this.dataGridView1);
+            this.tabPage5.Controls.Add(this.dgvMaint);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -1012,52 +1017,47 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(74, 64);
+            this.dateTimePicker1.Location = new System.Drawing.Point(37, 30);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(140, 20);
             this.dateTimePicker1.TabIndex = 6;
             // 
             // cbBikeMaint
             // 
             this.cbBikeMaint.FormattingEnabled = true;
-            this.cbBikeMaint.Location = new System.Drawing.Point(280, 63);
+            this.cbBikeMaint.Location = new System.Drawing.Point(214, 30);
             this.cbBikeMaint.Name = "cbBikeMaint";
             this.cbBikeMaint.Size = new System.Drawing.Size(121, 21);
             this.cbBikeMaint.TabIndex = 5;
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(74, 90);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(612, 20);
-            this.textBox2.TabIndex = 4;
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(81, 36);
+            this.label16.Location = new System.Drawing.Point(34, 66);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(41, 13);
+            this.label16.Size = new System.Drawing.Size(56, 13);
             this.label16.TabIndex = 2;
-            this.label16.Text = "label16";
+            this.label16.Text = "Comments";
             // 
             // btGetMaintLog
             // 
-            this.btGetMaintLog.Location = new System.Drawing.Point(429, 122);
+            this.btGetMaintLog.Location = new System.Drawing.Point(514, 31);
             this.btGetMaintLog.Name = "btGetMaintLog";
             this.btGetMaintLog.Size = new System.Drawing.Size(75, 23);
             this.btGetMaintLog.TabIndex = 1;
-            this.btGetMaintLog.Text = "Get Log";
+            this.btGetMaintLog.Text = "Refresh";
             this.btGetMaintLog.UseVisualStyleBackColor = true;
             this.btGetMaintLog.Click += new System.EventHandler(this.btGetMaintLog_Click);
             // 
-            // dataGridView1
+            // dgvMaint
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(37, 172);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(661, 223);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvMaint.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvMaint.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMaint.Location = new System.Drawing.Point(37, 157);
+            this.dgvMaint.Name = "dgvMaint";
+            this.dgvMaint.Size = new System.Drawing.Size(661, 238);
+            this.dgvMaint.TabIndex = 0;
+            this.dgvMaint.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaint_CellContentClick);
             // 
             // tabPage3
             // 
@@ -1101,12 +1101,39 @@
             // 
             // btMaintAdd
             // 
-            this.btMaintAdd.Location = new System.Drawing.Point(560, 132);
+            this.btMaintAdd.Location = new System.Drawing.Point(623, 31);
             this.btMaintAdd.Name = "btMaintAdd";
             this.btMaintAdd.Size = new System.Drawing.Size(75, 23);
             this.btMaintAdd.TabIndex = 7;
-            this.btMaintAdd.Text = "button2";
+            this.btMaintAdd.Text = "Add Entry";
             this.btMaintAdd.UseVisualStyleBackColor = true;
+            this.btMaintAdd.Click += new System.EventHandler(this.btMaintAdd_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(34, 14);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(30, 13);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "Date";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(211, 14);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(28, 13);
+            this.label18.TabIndex = 9;
+            this.label18.Text = "Bike";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(37, 82);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(661, 58);
+            this.richTextBox1.TabIndex = 10;
+            this.richTextBox1.Text = "";
             // 
             // MainForm
             // 
@@ -1129,7 +1156,7 @@
             this.groupBox2.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMaint)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -1230,11 +1257,13 @@
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox cbBikeMaint;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button btGetMaintLog;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvMaint;
         private System.Windows.Forms.Button btMaintAdd;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
     }
 }
 

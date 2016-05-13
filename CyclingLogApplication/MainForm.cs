@@ -1908,7 +1908,7 @@ namespace CyclingLogApplication
 
         private void btGetMaintLog_Click(object sender, EventArgs e)
         {
-            InitializeComponent();
+     
             SqlConnection conn = null;
 
             try
@@ -1918,11 +1918,12 @@ namespace CyclingLogApplication
                 SqlDataAdapter sqlDataAdapter = null;
 
                 sqlDataAdapter = new SqlDataAdapter();
-                sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [Date],[Bike] from Table_Bike_Maintenance", conn);
+                sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [Date],[Bike], [Comments] FROM Table_Bike_Maintenance", conn);
 
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);
-                dataGridView1.DataSource = dataTable;
+                dgvMaint.DataSource = dataTable;
+                dgvMaint.Refresh();
             }
             catch (Exception ex)
             {
@@ -1936,6 +1937,26 @@ namespace CyclingLogApplication
                     conn.Close();
                 }
             }
+        }
+
+        private void btMaintAdd_Click(object sender, EventArgs e)
+        {
+
+            List<object> objectValues = new List<object>();
+            objectValues.Add(cbBikeMaint.SelectedItem.ToString());
+            objectValues.Add(richTextBox1.Text);
+            objectValues.Add(dateTimePicker1.Value);
+            runStoredProcedure(objectValues, "Maintenance_Add");
+        }
+
+        private void dgvMaint_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void tabControl1_MouseClick(object sender, MouseEventArgs e)
+        {
+            btGetMaintLog_Click( sender, e);
         }
     }
 }
