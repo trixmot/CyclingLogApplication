@@ -365,6 +365,11 @@ namespace CyclingLogApplication
                 MessageBox.Show("A Ride Location must be selected.");
                 return;
             }
+            if (cbEffortRideDataEntry.SelectedIndex < 0)
+            {
+                MessageBox.Show("An Effort option must be selected.");
+                return;
+            }
 
             List<object> objectValues = new List<object>();
             objectValues.Add(dtpTimeRideDataEntry.Value);            //Moving Time:
@@ -417,6 +422,8 @@ namespace CyclingLogApplication
             {
                 objectValues.Add("");                           //Winchill:
             }
+
+            objectValues.Add(cbEffortRideDataEntry.SelectedItem.ToString());                    //Effort:
 
             if (changeType.Equals("Update")) {
                 objectValues.Add(recordID);                           //Record ID:

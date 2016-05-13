@@ -36,6 +36,7 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -112,11 +113,18 @@
             this.cbRouteConfig = new System.Windows.Forms.ComboBox();
             this.btAddRoute = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.cbBikeMaint = new System.Windows.Forms.ComboBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.btGetMaintLog = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btMaintAdd = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -124,6 +132,8 @@
             this.groupBox4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -152,7 +162,7 @@
             this.btRemoveLogYear.Name = "btRemoveLogYear";
             this.btRemoveLogYear.Size = new System.Drawing.Size(75, 23);
             this.btRemoveLogYear.TabIndex = 3;
-            this.btRemoveLogYear.Text = "remove";
+            this.btRemoveLogYear.Text = "Remove";
             this.btRemoveLogYear.UseVisualStyleBackColor = true;
             this.btRemoveLogYear.Click += new System.EventHandler(this.removeLogYearConfig);
             // 
@@ -206,6 +216,16 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(235, 253);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(123, 30);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Chart";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(235, 208);
@@ -240,6 +260,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(20, 24);
             this.tabControl1.Name = "tabControl1";
@@ -897,7 +918,7 @@
             this.btRemoveBikeConfig.Name = "btRemoveBikeConfig";
             this.btRemoveBikeConfig.Size = new System.Drawing.Size(75, 23);
             this.btRemoveBikeConfig.TabIndex = 13;
-            this.btRemoveBikeConfig.Text = "remove";
+            this.btRemoveBikeConfig.Text = "Remove";
             this.btRemoveBikeConfig.UseVisualStyleBackColor = true;
             this.btRemoveBikeConfig.Click += new System.EventHandler(this.btRemoveBikeConfig_Click);
             // 
@@ -941,7 +962,7 @@
             this.btRemoveRoute.Name = "btRemoveRoute";
             this.btRemoveRoute.Size = new System.Drawing.Size(75, 23);
             this.btRemoveRoute.TabIndex = 8;
-            this.btRemoveRoute.Text = "remove";
+            this.btRemoveRoute.Text = "Remove";
             this.btRemoveRoute.UseVisualStyleBackColor = true;
             this.btRemoveRoute.Click += new System.EventHandler(this.btRemoveRouteConfig);
             // 
@@ -972,15 +993,71 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Add or Update Log Years";
             // 
-            // button1
+            // tabPage5
             // 
-            this.button1.Location = new System.Drawing.Point(235, 253);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 30);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Chart";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.tabPage5.Controls.Add(this.btMaintAdd);
+            this.tabPage5.Controls.Add(this.dateTimePicker1);
+            this.tabPage5.Controls.Add(this.cbBikeMaint);
+            this.tabPage5.Controls.Add(this.textBox2);
+            this.tabPage5.Controls.Add(this.label16);
+            this.tabPage5.Controls.Add(this.btGetMaintLog);
+            this.tabPage5.Controls.Add(this.dataGridView1);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(719, 415);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Maintenance";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(74, 64);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 6;
+            // 
+            // cbBikeMaint
+            // 
+            this.cbBikeMaint.FormattingEnabled = true;
+            this.cbBikeMaint.Location = new System.Drawing.Point(280, 63);
+            this.cbBikeMaint.Name = "cbBikeMaint";
+            this.cbBikeMaint.Size = new System.Drawing.Size(121, 21);
+            this.cbBikeMaint.TabIndex = 5;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(74, 90);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(612, 20);
+            this.textBox2.TabIndex = 4;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(81, 36);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(41, 13);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "label16";
+            // 
+            // btGetMaintLog
+            // 
+            this.btGetMaintLog.Location = new System.Drawing.Point(429, 122);
+            this.btGetMaintLog.Name = "btGetMaintLog";
+            this.btGetMaintLog.Size = new System.Drawing.Size(75, 23);
+            this.btGetMaintLog.TabIndex = 1;
+            this.btGetMaintLog.Text = "Get Log";
+            this.btGetMaintLog.UseVisualStyleBackColor = true;
+            this.btGetMaintLog.Click += new System.EventHandler(this.btGetMaintLog_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(37, 172);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(661, 223);
+            this.dataGridView1.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -1022,6 +1099,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
+            // btMaintAdd
+            // 
+            this.btMaintAdd.Location = new System.Drawing.Point(560, 132);
+            this.btMaintAdd.Name = "btMaintAdd";
+            this.btMaintAdd.Size = new System.Drawing.Size(75, 23);
+            this.btMaintAdd.TabIndex = 7;
+            this.btMaintAdd.Text = "button2";
+            this.btMaintAdd.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1041,6 +1127,9 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -1138,6 +1227,14 @@
         private System.Windows.Forms.Button bRenameBike;
         private System.Windows.Forms.Button bRenameLogYear;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox cbBikeMaint;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btGetMaintLog;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btMaintAdd;
     }
 }
 

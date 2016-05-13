@@ -43,5 +43,11 @@ namespace CyclingLogApplication
         {
             legacyImportIndex = index;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            setLegacyIndexSelection(cbLegacyIndexSelection.SelectedIndex);
+            this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
+        }
     }
 }

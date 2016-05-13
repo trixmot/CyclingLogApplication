@@ -7,6 +7,7 @@ using System.IO;
 using System.Globalization;
 using System.Collections.Specialized;
 using System.Threading;
+using System.Data;
 //using System.Threading;
 
 //TODO: Prevent multipe runs of app
@@ -115,12 +116,13 @@ namespace CyclingLogApplication
             {
                 cbBikeConfig.Items.Add(val);
                 rideDataEntryForm.cbBikeDataEntry.Items.Add(val);
+                cbBikeMaint.Items.Add(val);
                 Logger.Log("Data Loading: Bikes: " + val, 1, logSetting);
             }
 
             if (logYearList.Count == 0)
             {
-                MessageBox.Show("No Yearly Logs have been created and no Bikes have been added. Please add an entry for each.");
+                MessageBox.Show("No Yearly Logs have been added to the database. Please add an entry before continuing.");
                 tabControl1.SelectedIndex = 2;
                 return;
             }
@@ -479,7 +481,7 @@ namespace CyclingLogApplication
         {
             string item = tbLogYearConfig.Text;
             //Check to see if the string has already been entered to eliminate duplicates:
-            for (int index = 0; index < cbLogYearConfig.Items.Count; index++)
+            for (int index = 1; index < cbLogYearConfig.Items.Count; index++)
             {
                 if (cbLogYearConfig.SelectedItem.ToString().Equals(item))
                 {
@@ -516,7 +518,8 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to delete the Log and all its data?", "Delete Log", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                int selectedIndex = cbLogYearConfig.SelectedIndex;
+                int logYearIndex = getLogYearIndex(cbLogYearConfig.SelectedItem.ToString());
+                //int selectedIndex = cbLogYearConfig.SelectedIndex;
                 cbLogYearConfig.Items.Remove(cbLogYearConfig.SelectedItem);
                 rideDataEntryForm.RemoveLogYearDataEntry(cbLogYearConfig.SelectedText);
                 rideDataDisplayForm.RemoveLogYearFilter(cbLogYearConfig.SelectedText);
@@ -527,8 +530,14 @@ namespace CyclingLogApplication
                 cbLogYear4.Items.Remove(tbLogYearConfig.Text);
                 cbLogYear5.Items.Remove(tbLogYearConfig.Text);
 
+                //Remove logyear from the Log year table:
+                List<object> objectValues = new List<object>();
+                objectValues.Add(logYearIndex);
+                runStoredProcedure(objectValues, "Log_Year_Remove");
+
                 //Need to remove all data for this log from the database:
-                removeLogYearData(getLogYearIndex(cbLogYearConfig.SelectedText));
+                removeLogYearData(logYearIndex);
+                cbLogYearConfig.Text = "";
             }
         }
 
@@ -732,10 +741,14 @@ namespace CyclingLogApplication
 
         private void btRemoveRouteConfig(object sender, EventArgs e)
         {
-            //Note: only removing value as an option, all records using this value are unchanged:
-            cbRouteConfig.Items.Remove(cbRouteConfig.SelectedItem);
-            rideDataEntryForm.RemoveRouteDataEntry(tbRouteConfig.Text);
-            chartForm.cbRoutesChart.Items.Remove(tbRouteConfig.Text);
+            DialogResult result = MessageBox.Show("Do you really want to delete the Route option?", "Delete Route Option", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                //Note: only removing value as an option, all records using this value are unchanged:
+                cbRouteConfig.Items.Remove(cbRouteConfig.SelectedItem);
+                rideDataEntryForm.RemoveRouteDataEntry(tbRouteConfig.Text);
+                chartForm.cbRoutesChart.Items.Remove(tbRouteConfig.Text);
+            }
         }
 
         private void btAddBikeConfig_Click(object sender, EventArgs e)
@@ -756,15 +769,55 @@ namespace CyclingLogApplication
             runStoredProcedure(objectValues, "Bike_Add");
 
             cbBikeConfig.Items.Add(bikeString);
+            cbBikeMaint.Items.Add(bikeString);
             cbBikeConfig.SelectedIndex = cbBikeConfig.Items.Count - 1;
             rideDataEntryForm.AddBikeDataEntry(bikeString);
         }
 
         private void btRemoveBikeConfig_Click(object sender, EventArgs e)
         {
-            //Note: only removing value as an option, all records using this value are unchanged:
-            cbBikeConfig.Items.Remove(cbBikeConfig.SelectedItem);
-            rideDataEntryForm.RemoveBikeDataEntry(tbBikeConfig.Text);
+            DialogResult result = MessageBox.Show("Do you really want to delete the bike option?", "Delete Bike Option", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                //Note: only removing value as an option, all records using this value are unchanged:
+                cbBikeConfig.Items.Remove(cbBikeConfig.SelectedItem);
+                cbBikeMaint.Items.Remove(cbBikeConfig.SelectedItem);
+                rideDataEntryForm.RemoveBikeDataEntry(tbBikeConfig.Text);
+
+                List<string> tempList = new List<string>();
+
+                int selectedIndex = cbBikeConfig.SelectedIndex;
+                cbBikeConfig.DataSource = cbBikeConfig.Items;
+
+                for (int i = 0; i < cbBikeConfig.Items.Count; i++)
+                {
+                    tempList.Add(cbBikeConfig.Items[i].ToString());
+                }
+
+                cbBikeConfig.DataSource = null;
+                cbBikeConfig.Items.Clear();
+
+                cbBikeMaint.DataSource = null;
+                cbBikeMaint.Items.Clear();
+
+                rideDataEntryForm.cbBikeDataEntry.DataSource = null;
+                rideDataEntryForm.cbBikeDataEntry.Items.Clear();
+
+                for (int i = 0; i < tempList.Count; i++)
+                {
+                    //if (selectedIndex == i)
+                    //{
+                    //    cbBikeConfig.Items.Add(newValue);
+                    //    cbBikeMaint.Items.Add(newValue);
+                    //    rideDataEntryForm.cbBikeDataEntry.Items.Add(newValue);
+                    //}
+                    //else {
+                        cbBikeConfig.Items.Add(tempList[i]);
+                        cbBikeMaint.Items.Add(tempList[i]);
+                        rideDataEntryForm.cbBikeDataEntry.Items.Add(tempList[i]);
+                    //}
+                }
+            }
         }
 
         // private void openRideDataEntryForm(object obj)
@@ -1382,15 +1435,15 @@ namespace CyclingLogApplication
             }
         }
 
-        private void importFromExcelLog(object sender, EventArgs e)
+        public void importFromExcelLog(object sender, EventArgs e)
         {
-            //TODO: Add window to selct the index:
+            //window to selct the index:
             LegacyImport legacyImport = new LegacyImport();
             legacyImport.ShowDialog();
 
-            int logIndex = legacyImport.getLegacyIndexSelection();
+            int logIndex = legacyImport.getLegacyIndexSelection() + 1;
 
-            if (logIndex == -1)
+            if (logIndex < 1)
             {
                 return;
             }
@@ -1429,41 +1482,50 @@ namespace CyclingLogApplication
                                 objectValues.Add(splitList[2]);     //Ride Distance:
                                 objectValues.Add(splitList[3]);     //Average Speed:
                                 objectValues.Add(splitList[4]);     //Bike:
-                                objectValues.Add(splitList[5]);     //Ride Type:
-                                objectValues.Add(splitList[6]);     //Wind:
-                                objectValues.Add(splitList[7]);     //Temp:
+                                objectValues.Add(splitList[5]);     //Ride Type:                            
+                                objectValues.Add(splitList[7]);     //Wind:
+                                objectValues.Add(splitList[8]);     //Temp:
                                 objectValues.Add(splitList[0]);     //Date:
-                                objectValues.Add(splitList[8]);     //Average Cadence:
-                                objectValues.Add(splitList[9]);     //Average Heart Rate:
-                                objectValues.Add(splitList[10]);     //Max Heart Rate:
-                                objectValues.Add(splitList[13]);     //Calories:
-                                objectValues.Add(splitList[11]);     //Total Ascent:
-                                objectValues.Add(splitList[12]);     //Total Descent:
-                                objectValues.Add(splitList[14]);     //Max Speed:
+                                objectValues.Add(splitList[9]);     //Average Cadence:
+                                objectValues.Add(splitList[10]);     //Average Heart Rate:
+                                objectValues.Add(splitList[11]);     //Max Heart Rate:
+                                objectValues.Add(splitList[15]);     //Calories:
+                                objectValues.Add(splitList[12]);     //Total Ascent:
+                                objectValues.Add(splitList[13]);     //Total Descent:
+                                objectValues.Add(splitList[16]);     //Max Speed:
                                 objectValues.Add(null);              //Average Power:
                                 objectValues.Add(null);              //Max Power:
-                                objectValues.Add(splitList[15]);     //Route:
-                                
-                                //string tmepValue = splitList[17];
-                                if (splitList[17].Contains('"'))
-                                {
-                                   // MessageBox.Show(splitList[17] + "=" + splitList[18]);
-                                    string tempStr = splitList[17] + splitList[18];
+                                objectValues.Add(splitList[17]);     //Route:
 
-                                    splitList[17] = tempStr.Replace("\"", "");
+                                //string tmepValue = splitList[18];
+                                //if (splitList[18].Contains('"'))
+                                //{
+                                //   // MessageBox.Show(splitList[18] + "=" + splitList[19]);
+                                //    string tempStr = splitList[18];
+
+                                //    splitList[18] = tempStr.Replace("\"", "");
+                                //}
+                                string comment = "";
+                                if (splitList.Length > 19)
+                                {
+                                    //Get the total:
+                                    int arraySize = splitList.Length;
+                                    for (int index = 18; index < arraySize; index++)
+                                    {
+                                        comment = comment + splitList[index];
+                                    }
                                 }
 
-
-                                objectValues.Add(splitList[17]);     //Comments:
+                                objectValues.Add(comment);     //Comments:
                                 objectValues.Add(logIndex);         //LogYear index:
 
                                 //Need to figure out the week from the ride date:
                                 DateTime rideDate = Convert.ToDateTime(splitList[0]);
                                 int weekValue = cal.GetWeekOfYear(rideDate, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
                                 objectValues.Add(weekValue);        //Week number:
-                                objectValues.Add(splitList[16]);     //Location:
+                                objectValues.Add(splitList[14]);     //Location:
                                 objectValues.Add(null);     //Windchill:
-                                //MessageBox.Show(splitList[0]);
+                                objectValues.Add(splitList[6]);     //Effort:
 
                                 using (var results = ExecuteSimpleQueryConnection("Ride_Information_Add", objectValues))
                                 {
@@ -1478,7 +1540,7 @@ namespace CyclingLogApplication
                         }
                     } catch (Exception ex)
                     {
-                        MessageBox.Show("[ERROR] Check to see if the file is already opened in another process.  If so, close it and try again. \n\n" + ex.Message.ToString());
+                        MessageBox.Show("[ERROR] An error occured while reading the .CVS file. \n\n" + ex.Message.ToString());
                         return;
                     }
                 }
@@ -1538,10 +1600,11 @@ namespace CyclingLogApplication
             //Read textbox for value
             //Read selected index and update the value for that index:
             string newValue = tbRouteConfig.Text;
-            string oldValue = cbRouteConfig.SelectedValue.ToString();
+            string oldValue = cbRouteConfig.SelectedItem.ToString();
 
             List<object> objectValues = new List<object>();
             objectValues.Add(newValue);
+            objectValues.Add(oldValue);
 
             runStoredProcedure(objectValues, "Route_Update");          
 
@@ -1592,18 +1655,12 @@ namespace CyclingLogApplication
                 conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
                 conn.Open();
 
-                // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information(Route) SET Route=@NewValue WHERE [Route]=@OldValue", conn);
-
-                // 2. define parameters used in command object
-                SqlParameter param = new SqlParameter();
-                param.ParameterName = "@NewValue";
-                param.Value = newValue;
-                param.ParameterName = "@OldValue";
-                param.Value = oldValue;
-
-                // 3. add new parameter to command object
-                cmd.Parameters.Add(param);
+                // declare command object with parameter
+                SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET Route=@NewValue WHERE [Route]=@OldValue", conn);
+                
+                // setcbStatistic1 parameters
+                cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = newValue;
+                cmd.Parameters.Add("@OldValue", SqlDbType.NVarChar).Value = oldValue;
 
                 // get data stream
                 reader = cmd.ExecuteReader();
@@ -1644,9 +1701,11 @@ namespace CyclingLogApplication
         private void bRenameLogYear_Click(object sender, EventArgs e)
         {
             string newValue = tbLogYearConfig.Text;
+            string oldValue = cbLogYearConfig.SelectedItem.ToString();
 
             List<object> objectValues = new List<object>();
-            objectValues.Add(newValue);                
+            objectValues.Add(newValue);
+            objectValues.Add(oldValue);
 
             runStoredProcedure(objectValues, "Log_Year_Update");
 
@@ -1720,15 +1779,18 @@ namespace CyclingLogApplication
             cbLogYear3.SelectedIndex = statIndex3;
             cbLogYear4.SelectedIndex = statIndex4;
             cbLogYear5.SelectedIndex = statIndex5;
+
+            //NOTE: The Table_Ride_Information only contains the LogYearID and not the name:
         }
 
         private void bRenameBike_Click(object sender, EventArgs e)
         {
             string newValue = tbBikeConfig.Text;
-            string oldValue = cbBikeConfig.SelectedValue.ToString();
+            string oldValue = cbBikeConfig.SelectedItem.ToString();
 
             List<object> objectValues = new List<object>();
             objectValues.Add(newValue);
+            objectValues.Add(oldValue);
 
             runStoredProcedure(objectValues, "Bike_Update");
 
@@ -1744,6 +1806,10 @@ namespace CyclingLogApplication
 
             cbBikeConfig.DataSource = null;
             cbBikeConfig.Items.Clear();
+
+            cbBikeMaint.DataSource = null;
+            cbBikeMaint.Items.Clear();
+
             rideDataEntryForm.cbBikeDataEntry.DataSource = null;
             rideDataEntryForm.cbBikeDataEntry.Items.Clear();
 
@@ -1752,10 +1818,12 @@ namespace CyclingLogApplication
                 if (selectedIndex == i)
                 {
                     cbBikeConfig.Items.Add(newValue);
+                    cbBikeMaint.Items.Add(newValue);
                     rideDataEntryForm.cbBikeDataEntry.Items.Add(newValue);
                 }
                 else {
                     cbBikeConfig.Items.Add(tempList[i]);
+                    cbBikeMaint.Items.Add(tempList[i]);
                     rideDataEntryForm.cbBikeDataEntry.Items.Add(tempList[i]);
                 }
             }
@@ -1775,17 +1843,21 @@ namespace CyclingLogApplication
                 conn.Open();
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information(Route) SET [Bike]=@NewValue WHERE [Bike]=@OldValue", conn);
+                SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET [Bike]=@NewValue WHERE [Bike]=@OldValue", conn);
 
                 // 2. define parameters used in command object
-                SqlParameter param = new SqlParameter();
-                param.ParameterName = "@NewValue";
-                param.Value = newValue;
-                param.ParameterName = "@OldValue";
-                param.Value = oldValue;
+                //SqlParameter sqlparams = new SqlParameter();
+                //sqlparams.ParameterName = "NewValue";
+                //sqlparams.Value = newValue;
+
+                //sqlparams.ParameterName = "OldValue";
+                //sqlparams.Value = oldValue;
 
                 // 3. add new parameter to command object
-                cmd.Parameters.Add(param);
+                //cmd.Parameters.Add(sqlparams);
+
+                cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = newValue;
+                cmd.Parameters.Add("@OldValue", SqlDbType.NVarChar).Value = oldValue;
 
                 // get data stream
                 reader = cmd.ExecuteReader();
@@ -1832,6 +1904,38 @@ namespace CyclingLogApplication
             //ChartForm chartForm = new ChartForm(this);
             chartForm.Show();
 
+        }
+
+        private void btGetMaintLog_Click(object sender, EventArgs e)
+        {
+            InitializeComponent();
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+                conn.Open();
+                SqlDataAdapter sqlDataAdapter = null;
+
+                sqlDataAdapter = new SqlDataAdapter();
+                sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [Date],[Bike] from Table_Bike_Maintenance", conn);
+
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+                dataGridView1.DataSource = dataTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                // close connection
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
         }
     }
 }
