@@ -1958,5 +1958,49 @@ namespace CyclingLogApplication
         {
             btGetMaintLog_Click( sender, e);
         }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            if (cbBikeMaint.SelectedIndex == -1)
+            {
+                MessageBox.Show("A Bike option must be selected before continuing.");
+                return;
+            }
+            List<object> objectValues = new List<object>();
+            objectValues.Add(dateTimePicker1.Text);      
+            objectValues.Add(cbBikeMaint.SelectedItem.ToString());
+
+            string comments;
+
+            try
+            {
+                //ExecuteScalarFunction
+                using (var results = ExecuteSimpleQueryConnection("Maintenance_Get", objectValues))
+                {
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            //MessageBox.Show(String.Format("{0}", results[0]));
+                            //lbErrorMessage.Hide();
+                            comments = results[0].ToString();
+
+                            //Load maintenance data page:
+                            richTextBox1.Text = comments;                         
+                        }
+                    }
+                    else
+                    {
+                        //lbErrorMessage.Show();
+                        //lbErrorMessage.Text = "No ride data found for the selected date.";
+                        //tbRecordID.Text = "0";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
+            }
+        }
     }
 }
