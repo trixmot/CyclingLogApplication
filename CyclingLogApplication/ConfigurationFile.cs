@@ -64,7 +64,7 @@ namespace CyclingLogApplication
             string chartRouteSelected = nodes.Item(0).SelectSingleNode("ChartRoute").InnerText;
             string chartTypeSelected = nodes.Item(0).SelectSingleNode("ChartType").InnerText;
 
-            MainForm mainForm = new MainForm();
+            MainForm mainForm = new MainForm("");
             mainForm.setLogLevel(logLevel);
             mainForm.setcbStatistic1(cbStatistic1);
             mainForm.setcbStatistic2(cbStatistic2);
@@ -105,7 +105,7 @@ namespace CyclingLogApplication
         {
             string path = "C:\\CyclingLogApplication";
             string pathFile = "C:\\CyclingLogApplication\\CyclingLogConfig.xml";
-            MainForm mainForm = new MainForm();
+            MainForm mainForm = new MainForm("");
             int logSetting = mainForm.getLogLevel();
 
             try

@@ -29,6 +29,7 @@ namespace CyclingLogApplication
 
             checkBoxRouteOption.Checked = false;
             cbRoutesChart.Enabled = false;
+            rbChartTypeLine.Checked = true;
         }
 
         private void ChartForm_Load(object sender, EventArgs e)
@@ -69,27 +70,27 @@ namespace CyclingLogApplication
         private void cbTypeChart_SelectedIndexChanged(object sender, EventArgs e)
         {
             labelChartError.Hide();
-            MainForm mainForm = new MainForm();
-            mainForm.setLastTypeChartSelected(cbTypeChart.SelectedIndex);
+            MainForm mainForm = new MainForm("");
+            mainForm.setLastTypeChartSelected(cbTypeData.SelectedIndex);
         }
 
         private void cbLogYearChart_SelectedIndexChanged(object sender, EventArgs e)
         {
             labelChartError.Hide();
-            MainForm mainForm = new MainForm();
+            MainForm mainForm = new MainForm("");
             mainForm.setLastLogYearChartSelected(cbLogYearChart.SelectedIndex);
         }
 
         private void cbRoutesChart_SelectedIndexChanged(object sender, EventArgs e)
         {
             labelChartError.Hide();
-            MainForm mainForm = new MainForm();
+            MainForm mainForm = new MainForm("");
             mainForm.setLastRouteChartSelected(cbRoutesChart.SelectedIndex);
         }
 
         public void chartTest()
         {
-            MainForm mainForm = new MainForm();
+            MainForm mainForm = new MainForm("");
             int logSetting = mainForm.getLogLevel();
             int logIndex = 1;
 
@@ -109,12 +110,14 @@ namespace CyclingLogApplication
             chart1.Series["Series1"].Points.AddXY("2/10/16", "18");
 
             chart1.Titles.Add("Average Speed Chart");
+            //chart1.Series["Series1"].ChartType = SeriesChartType.Line;
+            chart1.Series["Series1"].ChartType = SeriesChartType.Bar;
         }
 
         private void btRunChart_Click(object sender, EventArgs e)
         {
             //Verify the required values are available before running chart:
-            if (cbTypeChart.SelectedIndex == -1)
+            if (cbTypeData.SelectedIndex == -1)
             {
                 labelChartError.Text = "Select a Chart Type option from the dropdown list.";
                 labelChartError.Show();
@@ -140,7 +143,7 @@ namespace CyclingLogApplication
             SqlConnection conn = null;
             SqlDataReader reader = null;
             List<string> nameList = new List<string>();
-            MainForm mainForm = new MainForm();
+            MainForm mainForm = new MainForm("");
             int logSetting = mainForm.getLogLevel();
 
             try
@@ -152,7 +155,7 @@ namespace CyclingLogApplication
                 int logIndex = mainForm.getLogYearIndex(cbLogYearChart.SelectedItem.ToString());
 
                 //Daily:
-                if (cbTypeChart.SelectedIndex == 0)
+                if (cbTypeData.SelectedIndex == 0)
                 {
                     if (!checkBoxRouteOption.Checked) {
                         cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, conn);
@@ -162,7 +165,7 @@ namespace CyclingLogApplication
                     }
                 }
                 //Weekly:
-                else if (cbTypeChart.SelectedIndex == 1)
+                else if (cbTypeData.SelectedIndex == 1)
                 {
                     if (!checkBoxRouteOption.Checked)
                     {
@@ -174,7 +177,7 @@ namespace CyclingLogApplication
                     }
                 }
                 //Monthly:
-                else if (cbTypeChart.SelectedIndex == 2)
+                else if (cbTypeData.SelectedIndex == 2)
                 {
                     if (!checkBoxRouteOption.Checked)
                     {
@@ -196,6 +199,17 @@ namespace CyclingLogApplication
 
                 chart1.Series[0].Points.Clear();
 
+                if (rbChartTypeBar.Checked)
+                {
+                    chart1.Series["Series1"].ChartType = SeriesChartType.Bar;
+                } else if (rbChartTypeColumn.Checked)
+                {
+                    chart1.Series["Series1"].ChartType = SeriesChartType.Column;
+                } else
+                {
+                    chart1.Series["Series1"].ChartType = SeriesChartType.Line;
+                }
+                
                 // write each record
                 while (reader.Read())
                 {
@@ -206,7 +220,7 @@ namespace CyclingLogApplication
                     //this.chart1.Series["Series1"].Points.AddXY(reader[0].ToString(), reader[1].ToString());
 
                     //Daily
-                    if (cbTypeChart.SelectedIndex == 0)
+                    if (cbTypeData.SelectedIndex == 0)
                     {
                         if (!date.Equals(""))
                         {
@@ -215,7 +229,7 @@ namespace CyclingLogApplication
                         }
                     }
                     //Weekly:
-                    else if (cbTypeChart.SelectedIndex == 1)
+                    else if (cbTypeData.SelectedIndex == 1)
                     {
                         if (weekCount != weekValue)
                         {
@@ -247,7 +261,7 @@ namespace CyclingLogApplication
                         }
                     }
                     //Monthly:
-                    else if (cbTypeChart.SelectedIndex == 2)
+                    else if (cbTypeData.SelectedIndex == 2)
                     {
                         DateTime datetime = Convert.ToDateTime(date);
                         int month = datetime.Month;
@@ -292,13 +306,13 @@ namespace CyclingLogApplication
             }
 
             //---------------------
-            if (cbTypeChart.SelectedIndex == 0)
+            if (cbTypeData.SelectedIndex == 0)
             {
 
-            } else if (cbTypeChart.SelectedIndex == 1)
+            } else if (cbTypeData.SelectedIndex == 1)
             {
 
-            } else if (cbTypeChart.SelectedIndex == 2)
+            } else if (cbTypeData.SelectedIndex == 2)
             {
                 // Average Speed Chart
                 chart1.Series["Series1"].XValueMember = "Date";

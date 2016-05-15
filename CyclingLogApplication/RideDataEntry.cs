@@ -150,7 +150,7 @@ namespace CyclingLogApplication
 
             int logID;
 
-            MainForm mainForm = new MainForm();
+            MainForm mainForm = new MainForm("");
             logID = mainForm.getLogYearIndex(cbLogYearDataEntry.SelectedItem.ToString());
             objectValues.Add(Convert.ToInt32(logID));
 
@@ -300,7 +300,7 @@ namespace CyclingLogApplication
 
         private void RideInformationChange(string changeType, string procedureName)
         {
-            MainForm mainForm = new MainForm();
+            MainForm mainForm = new MainForm("");
             int logSetting = mainForm.getLogLevel();
             string recordID = tbRecordID.Text;
 
@@ -719,7 +719,7 @@ namespace CyclingLogApplication
 
         private void cbLogYearDataEntry_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm();
+            MainForm mainForm = new MainForm("");
             mainForm.setLastLogSelected(cbLogYearDataEntry.SelectedIndex);
             if (cbLogYearDataEntry.SelectedIndex == -1)
             {
@@ -734,7 +734,7 @@ namespace CyclingLogApplication
 
         private void cbBikeDataEntry_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm();
+            MainForm mainForm = new MainForm("");
             mainForm.setLastBikeSelected(cbBikeDataEntry.SelectedIndex);
         }
 

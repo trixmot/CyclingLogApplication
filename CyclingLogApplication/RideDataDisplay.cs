@@ -222,7 +222,7 @@ namespace CyclingLogApplication
 
         private void cbLogYearFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm();
+            MainForm mainForm = new MainForm("");
             mainForm.setLastLogFilterSelected(cbLogYearFilter.SelectedIndex);
         }
     }

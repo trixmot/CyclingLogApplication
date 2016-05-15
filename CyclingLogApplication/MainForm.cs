@@ -8,6 +8,8 @@ using System.Globalization;
 using System.Collections.Specialized;
 using System.Threading;
 using System.Data;
+using System.Drawing;
+using System.ComponentModel;
 //using System.Threading;
 
 //TODO: Prevent multipe runs of app
@@ -59,6 +61,13 @@ namespace CyclingLogApplication
             tbTimeChange.Text = getDaysToNextTimeChange().ToString();       
         }
 
+
+        public MainForm(string emotyConstructor)
+        {
+            
+        }
+
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             if (getMutex() != null)
@@ -86,6 +95,13 @@ namespace CyclingLogApplication
             rideDataEntryForm = new RideDataEntry(this);
             rideDataDisplayForm = new RideDataDisplay();
             chartForm = new ChartForm(this);
+
+            //Set first option of 'None':
+            cbLogYear1.Items.Add("--None--");
+            cbLogYear2.Items.Add("--None--");
+            cbLogYear3.Items.Add("--None--");
+            cbLogYear4.Items.Add("--None--");
+            cbLogYear5.Items.Add("--None--");
 
             //Load LogYear values:
             foreach (string val in logYearList)
@@ -156,6 +172,7 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to exit?", "Exit Application", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                chartForm.Close();
                 int logSetting = getLogLevel();
                 ConfigurationFile configurationFile = new ConfigurationFile();
                 configurationFile.writeConfigFile();
@@ -518,17 +535,65 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to delete the Log and all its data?", "Delete Log", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                List<string> tempList = new List<string>();
+
+                int selectedIndex = cbLogYearConfig.SelectedIndex;
+                int statIndex1 = cbLogYear1.SelectedIndex;
+                int statIndex2 = cbLogYear1.SelectedIndex;
+                int statIndex3 = cbLogYear1.SelectedIndex;
+                int statIndex4 = cbLogYear1.SelectedIndex;
+                int statIndex5 = cbLogYear1.SelectedIndex;
+
+                cbLogYearConfig.DataSource = cbLogYearConfig.Items;
+
+                for (int i = 0; i < cbLogYearConfig.Items.Count; i++)
+                {
+                    tempList.Add(cbLogYearConfig.Items[i].ToString());
+                }
+
+                cbLogYearConfig.DataSource = null;
+                cbLogYearConfig.Items.Clear();
+                rideDataEntryForm.cbLogYearDataEntry.DataSource = null;
+                rideDataEntryForm.cbLogYearDataEntry.Items.Clear();
+                rideDataDisplayForm.cbLogYearFilter.DataSource = null;
+                rideDataDisplayForm.cbLogYearFilter.Items.Clear();
+                chartForm.cbLogYearChart.Items.Clear();
+                chartForm.cbLogYearChart.DataSource = null;
+                cbLogYear1.DataSource = null;
+                cbLogYear1.Items.Clear();
+                cbLogYear2.DataSource = null;
+                cbLogYear2.Items.Clear();
+                cbLogYear3.DataSource = null;
+                cbLogYear3.Items.Clear();
+                cbLogYear4.DataSource = null;
+                cbLogYear4.Items.Clear();
+                cbLogYear5.DataSource = null;
+                cbLogYear5.Items.Clear();
+
+                for (int i = 0; i < tempList.Count; i++)
+                {
+                    cbLogYearConfig.Items.Add(tempList[i]);
+                    rideDataEntryForm.cbLogYearDataEntry.Items.Add(tempList[i]);
+                    rideDataDisplayForm.cbLogYearFilter.Items.Add(tempList[i]);
+                    chartForm.cbLogYearChart.Items.Add(tempList[i]);
+                    cbLogYear1.Items.Add(tempList[i]);
+                    cbLogYear2.Items.Add(tempList[i]);
+                    cbLogYear3.Items.Add(tempList[i]);
+                    cbLogYear4.Items.Add(tempList[i]);
+                    cbLogYear5.Items.Add(tempList[i]);
+                }
+
                 int logYearIndex = getLogYearIndex(cbLogYearConfig.SelectedItem.ToString());
-                //int selectedIndex = cbLogYearConfig.SelectedIndex;
-                cbLogYearConfig.Items.Remove(cbLogYearConfig.SelectedItem);
-                rideDataEntryForm.RemoveLogYearDataEntry(cbLogYearConfig.SelectedText);
-                rideDataDisplayForm.RemoveLogYearFilter(cbLogYearConfig.SelectedText);
-                chartForm.cbLogYearChart.Items.Remove(cbLogYearConfig.SelectedItem);
-                cbLogYear1.Items.Remove(tbLogYearConfig.Text);
-                cbLogYear2.Items.Remove(tbLogYearConfig.Text);
-                cbLogYear3.Items.Remove(tbLogYearConfig.Text);
-                cbLogYear4.Items.Remove(tbLogYearConfig.Text);
-                cbLogYear5.Items.Remove(tbLogYearConfig.Text);
+                ////int selectedIndex = cbLogYearConfig.SelectedIndex;
+                //cbLogYearConfig.Items.Remove(cbLogYearConfig.SelectedItem);
+                //rideDataEntryForm.RemoveLogYearDataEntry(cbLogYearConfig.SelectedText);
+                //rideDataDisplayForm.RemoveLogYearFilter(cbLogYearConfig.SelectedText);
+                //chartForm.cbLogYearChart.Items.Remove(cbLogYearConfig.SelectedItem);
+                //cbLogYear1.Items.Remove(tbLogYearConfig.Text);
+                //cbLogYear2.Items.Remove(tbLogYearConfig.Text);
+                //cbLogYear3.Items.Remove(tbLogYearConfig.Text);
+                //cbLogYear4.Items.Remove(tbLogYearConfig.Text);
+                //cbLogYear5.Items.Remove(tbLogYearConfig.Text);
 
                 //Remove logyear from the Log year table:
                 List<object> objectValues = new List<object>();
@@ -744,10 +809,34 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to delete the Route option?", "Delete Route Option", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                List<string> tempList = new List<string>();
+
+                int selectedIndex = cbRouteConfig.SelectedIndex;
+                cbRouteConfig.DataSource = cbRouteConfig.Items;
+
+                for (int i = 0; i < cbRouteConfig.Items.Count; i++)
+                {
+                    tempList.Add(cbRouteConfig.Items[i].ToString());
+                }
+
+                cbRouteConfig.DataSource = null;
+                cbRouteConfig.Items.Clear();
+                rideDataEntryForm.cbRouteDataEntry.DataSource = null;
+                rideDataEntryForm.cbRouteDataEntry.Items.Clear();
+                chartForm.cbRoutesChart.Items.Clear();
+                chartForm.cbRoutesChart.DataSource = null;
+
+                for (int i = 0; i < tempList.Count; i++)
+                {
+                    cbRouteConfig.Items.Add(tempList[i]);
+                    rideDataEntryForm.cbRouteDataEntry.Items.Add(tempList[i]);
+                    chartForm.cbRoutesChart.Items.Add(tempList[i]);
+                }
+
                 //Note: only removing value as an option, all records using this value are unchanged:
-                cbRouteConfig.Items.Remove(cbRouteConfig.SelectedItem);
-                rideDataEntryForm.RemoveRouteDataEntry(tbRouteConfig.Text);
-                chartForm.cbRoutesChart.Items.Remove(tbRouteConfig.Text);
+                //cbRouteConfig.Items.Remove(cbRouteConfig.SelectedItem);
+                //rideDataEntryForm.RemoveRouteDataEntry(tbRouteConfig.Text);
+                //chartForm.cbRoutesChart.Items.Remove(tbRouteConfig.Text);
             }
         }
 
@@ -1237,7 +1326,7 @@ namespace CyclingLogApplication
             logYearIndex = getLogYearIndex(cbLogYear1.SelectedItem.ToString());
 
 
-            if (cbLogYear1.SelectedIndex > -1)
+            if (cbLogYear1.SelectedIndex > 0)
             {
                 tb1Log1.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log1.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
@@ -1248,7 +1337,7 @@ namespace CyclingLogApplication
                 tb7Log1.Text = getHighMileageDay(logYearIndex).ToString();
             }
 
-            if (cbLogYear2.SelectedIndex > -1)
+            if (cbLogYear2.SelectedIndex > 0)
             {
                 logYearIndex = getLogYearIndex(cbLogYear2.SelectedItem.ToString());
 
@@ -1261,7 +1350,7 @@ namespace CyclingLogApplication
                 tb7Log2.Text = getHighMileageDay(logYearIndex).ToString();
             }
 
-            if (cbLogYear3.SelectedIndex > -1)
+            if (cbLogYear3.SelectedIndex > 0)
             {
                 logYearIndex = getLogYearIndex(cbLogYear3.SelectedItem.ToString());
 
@@ -1274,7 +1363,7 @@ namespace CyclingLogApplication
                 tb7Log3.Text = getHighMileageDay(logYearIndex).ToString();
             }
 
-            if (cbLogYear4.SelectedIndex > -1)
+            if (cbLogYear4.SelectedIndex > 0)
             {
                 logYearIndex = getLogYearIndex(cbLogYear4.SelectedItem.ToString());
 
@@ -1287,7 +1376,7 @@ namespace CyclingLogApplication
                 tb7Log4.Text = getHighMileageDay(logYearIndex).ToString();
             }
 
-            if (cbLogYear5.SelectedIndex > -1)
+            if (cbLogYear5.SelectedIndex > 0)
             {
                 logYearIndex = getLogYearIndex(cbLogYear5.SelectedItem.ToString());
 
@@ -1306,7 +1395,7 @@ namespace CyclingLogApplication
             int logYearIndex = getLogYearIndex(cbLogYear1.SelectedItem.ToString());
             setcbStatistic1(cbLogYear1.SelectedIndex.ToString());
 
-            if (cbLogYear1.SelectedIndex > -1)
+            if (cbLogYear1.SelectedIndex > 0)
             {
                 tb1Log1.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log1.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
@@ -1332,7 +1421,7 @@ namespace CyclingLogApplication
             int logYearIndex = getLogYearIndex(cbLogYear2.SelectedItem.ToString());
             setcbStatistic2(cbLogYear2.SelectedIndex.ToString());
 
-            if (cbLogYear2.SelectedIndex > -1)
+            if (cbLogYear2.SelectedIndex > 0)
             {
                 tb1Log2.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log2.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
@@ -1359,7 +1448,7 @@ namespace CyclingLogApplication
             int logYearIndex = getLogYearIndex(cbLogYear3.SelectedItem.ToString());
             setcbStatistic3(cbLogYear3.SelectedIndex.ToString());
 
-            if (cbLogYear3.SelectedIndex > -1)
+            if (cbLogYear3.SelectedIndex > 0)
             {
                 tb1Log3.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log3.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
@@ -1386,7 +1475,7 @@ namespace CyclingLogApplication
             int logYearIndex = getLogYearIndex(cbLogYear4.SelectedItem.ToString());
             setcbStatistic4(cbLogYear4.SelectedIndex.ToString());
 
-            if (cbLogYear4.SelectedIndex > -1)
+            if (cbLogYear4.SelectedIndex > 0)
             {
                 tb1Log4.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log4.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
@@ -1413,7 +1502,7 @@ namespace CyclingLogApplication
             int logYearIndex = getLogYearIndex(cbLogYear5.SelectedItem.ToString());
             setcbStatistic5(cbLogYear5.SelectedIndex.ToString());
 
-            if (cbLogYear5.SelectedIndex > -1)
+            if (cbLogYear5.SelectedIndex > 0)
             {
                 tb1Log5.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log5.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
@@ -1425,13 +1514,13 @@ namespace CyclingLogApplication
             }
             else
             {
-                tb1Log4.Text = "";
-                tb2Log4.Text = "";
-                tb3Log4.Text = "";
-                tb4Log4.Text = "";
-                tb5Log4.Text = "";
-                tb6Log4.Text = "";
-                tb7Log4.Text = "";
+                tb1Log5.Text = "";
+                tb2Log5.Text = "";
+                tb3Log5.Text = "";
+                tb4Log5.Text = "";
+                tb5Log5.Text = "";
+                tb6Log5.Text = "";
+                tb7Log5.Text = "";
             }
         }
 
@@ -1713,10 +1802,10 @@ namespace CyclingLogApplication
 
             int selectedIndex = cbLogYearConfig.SelectedIndex;
             int statIndex1 = cbLogYear1.SelectedIndex;
-            int statIndex2 = cbLogYear1.SelectedIndex;
-            int statIndex3 = cbLogYear1.SelectedIndex;
-            int statIndex4 = cbLogYear1.SelectedIndex;
-            int statIndex5 = cbLogYear1.SelectedIndex;
+            int statIndex2 = cbLogYear2.SelectedIndex;
+            int statIndex3 = cbLogYear3.SelectedIndex;
+            int statIndex4 = cbLogYear4.SelectedIndex;
+            int statIndex5 = cbLogYear5.SelectedIndex;
 
             cbLogYearConfig.DataSource = cbLogYearConfig.Items;
 
@@ -1908,7 +1997,6 @@ namespace CyclingLogApplication
 
         private void btGetMaintLog_Click(object sender, EventArgs e)
         {
-     
             SqlConnection conn = null;
 
             try
@@ -1918,12 +2006,15 @@ namespace CyclingLogApplication
                 SqlDataAdapter sqlDataAdapter = null;
 
                 sqlDataAdapter = new SqlDataAdapter();
-                sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [Date],[Bike], [Comments] FROM Table_Bike_Maintenance", conn);
+                sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [Date],[Bike],[Miles],[Comments] FROM Table_Bike_Maintenance", conn);
 
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);
+                dgvMaint.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
+                dgvMaint.EnableHeadersVisualStyles = false;
                 dgvMaint.DataSource = dataTable;
                 dgvMaint.Refresh();
+                dgvMaint.Sort(dgvMaint.Columns["Date"], ListSortDirection.Descending);
             }
             catch (Exception ex)
             {
@@ -1941,12 +2032,27 @@ namespace CyclingLogApplication
 
         private void btMaintAdd_Click(object sender, EventArgs e)
         {
+            if (!tbMaintID.Text.Equals(""))
+            {
+                MessageBox.Show("The selected date already has an entry. The entry can be updated but not added.");
+                return;
+            }
+
+            if (cbBikeMaint.SelectedIndex == -1 || rtbMaintComments.Text.Equals(""))
+            {
+                MessageBox.Show("All the selections are not set.");
+                return;
+            }
 
             List<object> objectValues = new List<object>();
             objectValues.Add(cbBikeMaint.SelectedItem.ToString());
-            objectValues.Add(richTextBox1.Text);
+            objectValues.Add(rtbMaintComments.Text);
             objectValues.Add(dateTimePicker1.Value);
+            objectValues.Add(tbMaintMiles.Text);
             runStoredProcedure(objectValues, "Maintenance_Add");
+
+            tbMaintID.Text = "";
+            btGetMaintLog_Click(sender, e);
         }
 
         private void dgvMaint_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1971,6 +2077,7 @@ namespace CyclingLogApplication
             objectValues.Add(cbBikeMaint.SelectedItem.ToString());
 
             string comments;
+            string mainID;
 
             try
             {
@@ -1984,9 +2091,11 @@ namespace CyclingLogApplication
                             //MessageBox.Show(String.Format("{0}", results[0]));
                             //lbErrorMessage.Hide();
                             comments = results[0].ToString();
+                            mainID = results[1].ToString();
 
                             //Load maintenance data page:
-                            richTextBox1.Text = comments;                         
+                            rtbMaintComments.Text = comments;
+                            tbMaintID.Text = mainID;                      
                         }
                     }
                     else
@@ -2001,6 +2110,29 @@ namespace CyclingLogApplication
             {
                 Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
             }
+        }
+
+        private void btMaintUpdate_Click(object sender, EventArgs e)
+        {
+            if (tbMaintID.Equals(""))
+            {
+                MessageBox.Show("The selected entry has not been saved yet. Select Add Entry instead of Update.");
+                return;
+            }
+
+            if (cbBikeMaint.SelectedIndex == -1 || rtbMaintComments.Text.Equals(""))
+            {
+                MessageBox.Show("All the selections are not set.");
+                return;
+            }
+
+            List<object> objectValues = new List<object>();
+            objectValues.Add(tbMaintID.Text);
+            objectValues.Add(cbBikeMaint.SelectedItem.ToString());
+            objectValues.Add(rtbMaintComments.Text);
+            objectValues.Add(dateTimePicker1.Value);
+            objectValues.Add(tbMaintMiles.Text);
+            runStoredProcedure(objectValues, "Maintenance_Update");
         }
     }
 }
