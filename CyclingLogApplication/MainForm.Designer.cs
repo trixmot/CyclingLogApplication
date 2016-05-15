@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.cbLogYearConfig = new System.Windows.Forms.ComboBox();
             this.btAddLogYear = new System.Windows.Forms.Button();
             this.btRemoveLogYear = new System.Windows.Forms.Button();
@@ -152,6 +153,8 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.btMaintRemove = new System.Windows.Forms.Button();
+            this.lbMaintError = new System.Windows.Forms.Label();
+            this.btMaintRetrieve = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1069,6 +1072,10 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.btMaintRetrieve);
+            this.tabPage5.Controls.Add(this.lbMaintError);
+            this.tabPage5.Controls.Add(this.label18);
+            this.tabPage5.Controls.Add(this.cbBikeMaint);
             this.tabPage5.Controls.Add(this.btMaintRemove);
             this.tabPage5.Controls.Add(this.tbMaintMiles);
             this.tabPage5.Controls.Add(this.label19);
@@ -1077,9 +1084,7 @@
             this.tabPage5.Controls.Add(this.tbMaintID);
             this.tabPage5.Controls.Add(this.btMaintUpdate);
             this.tabPage5.Controls.Add(this.rtbMaintComments);
-            this.tabPage5.Controls.Add(this.label18);
             this.tabPage5.Controls.Add(this.btMaintAdd);
-            this.tabPage5.Controls.Add(this.cbBikeMaint);
             this.tabPage5.Controls.Add(this.label16);
             this.tabPage5.Controls.Add(this.btGetMaintLog);
             this.tabPage5.Controls.Add(this.dgvMaint);
@@ -1093,7 +1098,7 @@
             // 
             // tbMaintMiles
             // 
-            this.tbMaintMiles.Location = new System.Drawing.Point(314, 30);
+            this.tbMaintMiles.Location = new System.Drawing.Point(310, 31);
             this.tbMaintMiles.Name = "tbMaintMiles";
             this.tbMaintMiles.Size = new System.Drawing.Size(100, 20);
             this.tbMaintMiles.TabIndex = 14;
@@ -1101,7 +1106,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(311, 14);
+            this.label19.Location = new System.Drawing.Point(307, 15);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(31, 13);
             this.label19.TabIndex = 13;
@@ -1110,7 +1115,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(156, 15);
+            this.label17.Location = new System.Drawing.Point(19, 14);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(30, 13);
             this.label17.TabIndex = 8;
@@ -1118,7 +1123,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(159, 31);
+            this.dateTimePicker1.Location = new System.Drawing.Point(22, 30);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(140, 20);
             this.dateTimePicker1.TabIndex = 6;
@@ -1126,14 +1131,14 @@
             // 
             // tbMaintID
             // 
-            this.tbMaintID.Location = new System.Drawing.Point(361, 56);
+            this.tbMaintID.Location = new System.Drawing.Point(439, 30);
             this.tbMaintID.Name = "tbMaintID";
             this.tbMaintID.Size = new System.Drawing.Size(53, 20);
             this.tbMaintID.TabIndex = 12;
             // 
             // btMaintUpdate
             // 
-            this.btMaintUpdate.Location = new System.Drawing.Point(687, 31);
+            this.btMaintUpdate.Location = new System.Drawing.Point(687, 44);
             this.btMaintUpdate.Name = "btMaintUpdate";
             this.btMaintUpdate.Size = new System.Drawing.Size(75, 23);
             this.btMaintUpdate.TabIndex = 11;
@@ -1152,7 +1157,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(19, 14);
+            this.label18.Location = new System.Drawing.Point(172, 14);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(28, 13);
             this.label18.TabIndex = 9;
@@ -1160,7 +1165,7 @@
             // 
             // btMaintAdd
             // 
-            this.btMaintAdd.Location = new System.Drawing.Point(606, 31);
+            this.btMaintAdd.Location = new System.Drawing.Point(606, 44);
             this.btMaintAdd.Name = "btMaintAdd";
             this.btMaintAdd.Size = new System.Drawing.Size(75, 23);
             this.btMaintAdd.TabIndex = 7;
@@ -1171,7 +1176,7 @@
             // cbBikeMaint
             // 
             this.cbBikeMaint.FormattingEnabled = true;
-            this.cbBikeMaint.Location = new System.Drawing.Point(22, 30);
+            this.cbBikeMaint.Location = new System.Drawing.Point(175, 30);
             this.cbBikeMaint.Name = "cbBikeMaint";
             this.cbBikeMaint.Size = new System.Drawing.Size(121, 21);
             this.cbBikeMaint.TabIndex = 5;
@@ -1187,12 +1192,13 @@
             // 
             // btGetMaintLog
             // 
-            this.btGetMaintLog.Location = new System.Drawing.Point(525, 5);
+            this.btGetMaintLog.Location = new System.Drawing.Point(498, 27);
             this.btGetMaintLog.Name = "btGetMaintLog";
             this.btGetMaintLog.Size = new System.Drawing.Size(75, 23);
             this.btGetMaintLog.TabIndex = 1;
             this.btGetMaintLog.Text = "Refresh";
             this.btGetMaintLog.UseVisualStyleBackColor = true;
+            this.btGetMaintLog.Visible = false;
             this.btGetMaintLog.Click += new System.EventHandler(this.btGetMaintLog_Click);
             // 
             // dgvMaint
@@ -1431,12 +1437,33 @@
             // 
             // btMaintRemove
             // 
-            this.btMaintRemove.Location = new System.Drawing.Point(525, 32);
+            this.btMaintRemove.Location = new System.Drawing.Point(687, 10);
             this.btMaintRemove.Name = "btMaintRemove";
             this.btMaintRemove.Size = new System.Drawing.Size(75, 23);
             this.btMaintRemove.TabIndex = 15;
             this.btMaintRemove.Text = "Remove";
             this.btMaintRemove.UseVisualStyleBackColor = true;
+            this.btMaintRemove.Click += new System.EventHandler(this.btMaintRemove_Click);
+            // 
+            // lbMaintError
+            // 
+            this.lbMaintError.AutoSize = true;
+            this.lbMaintError.ForeColor = System.Drawing.Color.Red;
+            this.lbMaintError.Location = new System.Drawing.Point(198, 66);
+            this.lbMaintError.Name = "lbMaintError";
+            this.lbMaintError.Size = new System.Drawing.Size(41, 13);
+            this.lbMaintError.TabIndex = 16;
+            this.lbMaintError.Text = "label23";
+            // 
+            // btMaintRetrieve
+            // 
+            this.btMaintRetrieve.Location = new System.Drawing.Point(606, 10);
+            this.btMaintRetrieve.Name = "btMaintRetrieve";
+            this.btMaintRetrieve.Size = new System.Drawing.Size(75, 23);
+            this.btMaintRetrieve.TabIndex = 17;
+            this.btMaintRetrieve.Text = "Retrieve";
+            this.btMaintRetrieve.UseVisualStyleBackColor = true;
+            this.btMaintRetrieve.Click += new System.EventHandler(this.btMaintRetrieve_Click);
             // 
             // MainForm
             // 
@@ -1445,6 +1472,7 @@
             this.ClientSize = new System.Drawing.Size(834, 561);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Cycling Log";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -1595,6 +1623,8 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btMaintRemove;
+        private System.Windows.Forms.Label lbMaintError;
+        private System.Windows.Forms.Button btMaintRetrieve;
     }
 }
 

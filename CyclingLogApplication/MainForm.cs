@@ -165,6 +165,7 @@ namespace CyclingLogApplication
             cbLogYear5.SelectedIndex = Convert.ToInt32(getcbStatistic5());
 
             label2.Text = "App Version: " + getLogVersion();
+            lbMaintError.Text = "";
         }
 
         private void closeForm(object sender, EventArgs e)
@@ -1987,16 +1988,19 @@ namespace CyclingLogApplication
         //End Statistics Section
         //=============================================================================
 
-
+        //=============================================================================
+        //Start Maintenance Section
+        //=============================================================================
         private void button1_Click_1(object sender, EventArgs e)
         {
             //ChartForm chartForm = new ChartForm(this);
             chartForm.Show();
-
+            lbMaintError.Text = "";
         }
 
         private void btGetMaintLog_Click(object sender, EventArgs e)
         {
+            lbMaintError.Text = "";
             SqlConnection conn = null;
 
             try
@@ -2032,15 +2036,19 @@ namespace CyclingLogApplication
 
         private void btMaintAdd_Click(object sender, EventArgs e)
         {
+            lbMaintError.Text = "";
+
             if (!tbMaintID.Text.Equals(""))
             {
-                MessageBox.Show("The selected date already has an entry. The entry can be updated but not added.");
+                //MessageBox.Show("The selected date already has an entry. The entry can be updated but not added.");
+                lbMaintError.Text = "The selected date and bike already have an entry. Select the Update option.";
                 return;
             }
 
             if (cbBikeMaint.SelectedIndex == -1 || rtbMaintComments.Text.Equals(""))
             {
-                MessageBox.Show("All the selections are not set.");
+                //MessageBox.Show("All the selections are not set.");
+                lbMaintError.Text = "All the selections are not set.";
                 return;
             }
 
@@ -2052,6 +2060,9 @@ namespace CyclingLogApplication
             runStoredProcedure(objectValues, "Maintenance_Add");
 
             tbMaintID.Text = "";
+            btGetMaintLog_Click(sender, e);
+            tbMaintMiles.Text = "";
+            rtbMaintComments.Text = "";
             btGetMaintLog_Click(sender, e);
         }
 
@@ -2067,17 +2078,83 @@ namespace CyclingLogApplication
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
+           
+        }
+
+        private void btMaintUpdate_Click(object sender, EventArgs e)
+        {
+            lbMaintError.Text = "";
+
+            if (tbMaintID.Equals(""))
+            {
+                //MessageBox.Show("The selected entry has not been saved yet. Select Add Entry instead of Update.");
+                lbMaintError.Text = "The selected entry has not been saved yet. Select Add Entry instead of Update.";
+                return;
+            }
+
+            if (cbBikeMaint.SelectedIndex == -1 || rtbMaintComments.Text.Equals(""))
+            {
+                //MessageBox.Show("All the selections are not set.");
+                lbMaintError.Text = "All the selections are not set.";
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("Updating the Maintenance entry. Do you want to continue?", "Update Maintenance Entry", MessageBoxButtons.YesNo);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+
+            List<object> objectValues = new List<object>();
+            objectValues.Add(tbMaintID.Text);
+            objectValues.Add(cbBikeMaint.SelectedItem.ToString());
+            objectValues.Add(rtbMaintComments.Text);
+            objectValues.Add(dateTimePicker1.Value);
+            objectValues.Add(tbMaintMiles.Text);
+            runStoredProcedure(objectValues, "Maintenance_Update");
+            btGetMaintLog_Click(sender, e);
+        }
+
+        private void btMaintRemove_Click(object sender, EventArgs e)
+        {
+            if (tbMaintID.Text.Equals(""))
+            {
+                // MessageBox.Show("A Maintenance entry must be retrieved before trying to delete it.");
+                lbMaintError.Text = "A Maintenance entry must be retrieved before trying to delete it.";
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("Deleting the Maintenance entry. Do you want to continue?", "Delete Maintenance Entry", MessageBoxButtons.YesNo);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+
+            List<object> objectValues = new List<object>();
+            objectValues.Add(tbMaintID.Text);
+            runStoredProcedure(objectValues, "Maintenance_Remove");
+            rtbMaintComments.Text = "";
+            tbMaintMiles.Text = "";
+            btGetMaintLog_Click(sender, e);
+        }
+
+        private void btMaintRetrieve_Click(object sender, EventArgs e)
+        {
+            lbMaintError.Text = "";
+
             if (cbBikeMaint.SelectedIndex == -1)
             {
-                MessageBox.Show("A Bike option must be selected before continuing.");
+                //MessageBox.Show("A Bike option must be selected before continuing.");
+                lbMaintError.Text = "A Bike option must be selected before continuing.";
                 return;
             }
             List<object> objectValues = new List<object>();
-            objectValues.Add(dateTimePicker1.Text);      
+            objectValues.Add(dateTimePicker1.Text);
             objectValues.Add(cbBikeMaint.SelectedItem.ToString());
 
             string comments;
             string mainID;
+            string miles;
 
             try
             {
@@ -2092,10 +2169,12 @@ namespace CyclingLogApplication
                             //lbErrorMessage.Hide();
                             comments = results[0].ToString();
                             mainID = results[1].ToString();
+                            miles = results[2].ToString();
 
                             //Load maintenance data page:
                             rtbMaintComments.Text = comments;
-                            tbMaintID.Text = mainID;                      
+                            tbMaintID.Text = mainID;
+                            tbMaintMiles.Text = miles;
                         }
                     }
                     else
@@ -2103,6 +2182,7 @@ namespace CyclingLogApplication
                         //lbErrorMessage.Show();
                         //lbErrorMessage.Text = "No ride data found for the selected date.";
                         //tbRecordID.Text = "0";
+                        lbMaintError.Text = "No entry found for the selected Bike and Date.";
                     }
                 }
             }
@@ -2112,27 +2192,8 @@ namespace CyclingLogApplication
             }
         }
 
-        private void btMaintUpdate_Click(object sender, EventArgs e)
-        {
-            if (tbMaintID.Equals(""))
-            {
-                MessageBox.Show("The selected entry has not been saved yet. Select Add Entry instead of Update.");
-                return;
-            }
-
-            if (cbBikeMaint.SelectedIndex == -1 || rtbMaintComments.Text.Equals(""))
-            {
-                MessageBox.Show("All the selections are not set.");
-                return;
-            }
-
-            List<object> objectValues = new List<object>();
-            objectValues.Add(tbMaintID.Text);
-            objectValues.Add(cbBikeMaint.SelectedItem.ToString());
-            objectValues.Add(rtbMaintComments.Text);
-            objectValues.Add(dateTimePicker1.Value);
-            objectValues.Add(tbMaintMiles.Text);
-            runStoredProcedure(objectValues, "Maintenance_Update");
-        }
+        //=============================================================================
+        //End Maintenance Section
+        //=============================================================================
     }
 }
