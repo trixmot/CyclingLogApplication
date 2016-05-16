@@ -300,158 +300,164 @@ namespace CyclingLogApplication
 
         private void RideInformationChange(string changeType, string procedureName)
         {
-            MainForm mainForm = new MainForm("");
-            int logSetting = mainForm.getLogLevel();
-            string recordID = tbRecordID.Text;
+            try {
+                MainForm mainForm = new MainForm("");
+                int logSetting = mainForm.getLogLevel();
+                string recordID = tbRecordID.Text;
 
-            // Check recordID value:
-            if (!tbRecordID.Text.Equals("0") && changeType.Equals("Add"))
-            {
-                DialogResult result = MessageBox.Show("Detected that the current data was retrieved from a record that was already saved to the database. Do you want to add a duplicate record?", "Add Date - Duplicate Record Detected", MessageBoxButtons.YesNo);
-                if (result == DialogResult.No)
+                // Check recordID value:
+                if (!tbRecordID.Text.Equals("0") && changeType.Equals("Add"))
                 {
-                    Logger.Log("Detected that the current data was retrieved from a record that was already saved to the database. RecordID" + recordID, 0, logSetting);
-
-                    return;
-                }
-            }
-            if (changeType.Equals("Add"))
-            {
-                DialogResult result = MessageBox.Show("Adding the ride to the database. Do you want to continue?", "Add Data", MessageBoxButtons.YesNo);
-                if (result == DialogResult.No)
-                {
-                    return;
-                }
-            }
-            else
-            {
-                if (tbRecordID.Text.Equals("0"))
-                {
-                    MessageBox.Show("The current ride can not be updated since it was not loaded from the database.");
-                    Logger.Log("The current ride can not be updated since it was not loaded from the database." + recordID, 0, logSetting);
-
-                    return;
-                }
-                DialogResult result = MessageBox.Show("Updating the ride in the database. Do you want to continue?", "Update Data", MessageBoxButtons.YesNo);
-                if (result == DialogResult.No)
-                {
-                    return;
-                }
-            }
-
-            //Make sure certain required fields are filled in:
-            if (cbLogYearDataEntry.SelectedIndex < 0)
-            {
-                MessageBox.Show("A Log year must be selected.");
-                return;
-            }
-            if (cbRouteDataEntry.SelectedIndex < 0)
-            {
-                MessageBox.Show("A Route must be selected.");
-                return;
-            }
-            if (cbBikeDataEntry.SelectedIndex < 0)
-            {
-                MessageBox.Show("A Bike must be selected.");
-                return;
-            }
-            if (cbRideTypeDataEntry.SelectedIndex < 0)
-            {
-                MessageBox.Show("A Ride Type must be selected.");
-                return;
-            }
-            if (cbLocationDataEntry.SelectedIndex < 0)
-            {
-                MessageBox.Show("A Ride Location must be selected.");
-                return;
-            }
-            if (cbEffortRideDataEntry.SelectedIndex < 0)
-            {
-                MessageBox.Show("An Effort option must be selected.");
-                return;
-            }
-
-            List<object> objectValues = new List<object>();
-            objectValues.Add(dtpTimeRideDataEntry.Value);            //Moving Time:
-            objectValues.Add(nudDistanceRideDataEntry.Value);             //Ride Distance:
-            objectValues.Add(numericUpDown1.Value);             //Average Speed:
-            objectValues.Add(cbBikeDataEntry.SelectedItem.ToString());    //Bike:
-            objectValues.Add(cbRideTypeDataEntry.SelectedItem.ToString());//Ride Type:
-            double windspeed = (double)numericUpDown4.Value;
-            objectValues.Add(numericUpDown4.Value);             //Wind:
-            double temp = (double)numericUpDown3.Value;
-            objectValues.Add(numericUpDown3.Value);             //Temp:
-            objectValues.Add(dtpRideDate.Value);            //Date:
-            objectValues.Add(avg_cadence.Text);                 //Average Cadence:
-            objectValues.Add(avg_heart_rate.Text);              //Average Heart Rate:
-            objectValues.Add(max_heart_rate.Text);              //Max Heart Rate:
-            objectValues.Add(calories.Text);                    //Calories:
-            objectValues.Add(total_ascent.Text);                //Total Ascent:
-            objectValues.Add(total_descent.Text);               //Total Descent:
-            objectValues.Add(max_speed.Text);                   //Max Speed:
-            objectValues.Add(avg_power.Text);                   //Average Power:
-            objectValues.Add(max_power.Text);                   //Max Power:
-            objectValues.Add(cbRouteDataEntry.SelectedItem.ToString());   //Route:
-            objectValues.Add(tbComments.Text);                    //Comments:
-
-            string logYearName = cbLogYearDataEntry.SelectedItem.ToString();
-            int logIndex = mainForm.getLogYearIndex(logYearName);
-            objectValues.Add(logIndex);                         //LogYear index:
-
-            DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
-            Calendar cal = dfi.Calendar;
-            int weekValue = cal.GetWeekOfYear(dtpRideDate.Value, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
-
-            if (changeType.Equals("Update"))                    //Week number:
-            {
-                objectValues.Add(tbWeekNumber.Text);                        
-            } else
-            {
-                objectValues.Add(weekValue);                        
-            }
-
-            objectValues.Add(cbLocationDataEntry.SelectedItem.ToString());//Location:
-            double winchill = 0;
-
-            if (windspeed > 3 && temp > 50)
-            {
-                winchill = 35.74 + (0.6215) * (temp) - (35.75) * (Math.Pow(windspeed, 0.16)) + (0.4275) * (Math.Pow(windspeed, 0.16));
-                objectValues.Add(winchill.ToString());          //Winchill:
-            }
-            else
-            {
-                objectValues.Add("");                           //Winchill:
-            }
-
-            objectValues.Add(cbEffortRideDataEntry.SelectedItem.ToString());                    //Effort:
-
-            if (changeType.Equals("Update")) {
-                objectValues.Add(recordID);                           //Record ID:
-            }
-
-            using (var results = ExecuteSimpleQueryConnection(procedureName, objectValues))
-            {
-                if (results == null)
-                {
-                    if (changeType.Equals("Update"))
+                    DialogResult result = MessageBox.Show("Detected that the current data was retrieved from a record that was already saved to the database. Do you want to add a duplicate record?", "Add Date - Duplicate Record Detected", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No)
                     {
-                        MessageBox.Show("[ERROR] There was a problem updating the ride.");
-                    } else
-                    {
-                        MessageBox.Show("[ERROR] There was a problem adding the ride.");
+                        Logger.Log("Detected that the current data was retrieved from a record that was already saved to the database. RecordID" + recordID, 0, logSetting);
+
+                        return;
                     }
+                }
+                if (changeType.Equals("Add"))
+                {
+                    DialogResult result = MessageBox.Show("Adding the ride to the database. Do you want to continue?", "Add Data", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    if (tbRecordID.Text.Equals("0"))
+                    {
+                        MessageBox.Show("The current ride can not be updated since it was not loaded from the database.");
+                        Logger.Log("The current ride can not be updated since it was not loaded from the database." + recordID, 0, logSetting);
+
+                        return;
+                    }
+                    DialogResult result = MessageBox.Show("Updating the ride in the database. Do you want to continue?", "Update Data", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+
+                //Make sure certain required fields are filled in:
+                if (cbLogYearDataEntry.SelectedIndex < 0)
+                {
+                    MessageBox.Show("A Log year must be selected.");
+                    return;
+                }
+                if (cbRouteDataEntry.SelectedIndex < 0)
+                {
+                    MessageBox.Show("A Route must be selected.");
+                    return;
+                }
+                if (cbBikeDataEntry.SelectedIndex < 0)
+                {
+                    MessageBox.Show("A Bike must be selected.");
+                    return;
+                }
+                if (cbRideTypeDataEntry.SelectedIndex < 0)
+                {
+                    MessageBox.Show("A Ride Type must be selected.");
+                    return;
+                }
+                if (cbLocationDataEntry.SelectedIndex < 0)
+                {
+                    MessageBox.Show("A Ride Location must be selected.");
+                    return;
+                }
+                if (cbEffortRideDataEntry.SelectedIndex < 0)
+                {
+                    MessageBox.Show("An Effort option must be selected.");
+                    return;
+                }
+
+                List<object> objectValues = new List<object>();
+                objectValues.Add(dtpTimeRideDataEntry.Value);            //Moving Time:
+                objectValues.Add(nudDistanceRideDataEntry.Value);             //Ride Distance:
+                objectValues.Add(numericUpDown1.Value);             //Average Speed:
+                objectValues.Add(cbBikeDataEntry.SelectedItem.ToString());    //Bike:
+                objectValues.Add(cbRideTypeDataEntry.SelectedItem.ToString());//Ride Type:
+                double windspeed = (double)numericUpDown4.Value;
+                objectValues.Add(numericUpDown4.Value);             //Wind:
+                double temp = (double)numericUpDown3.Value;
+                objectValues.Add(numericUpDown3.Value);             //Temp:
+                objectValues.Add(dtpRideDate.Value);            //Date:
+                objectValues.Add(avg_cadence.Text);                 //Average Cadence:
+                objectValues.Add(avg_heart_rate.Text);              //Average Heart Rate:
+                objectValues.Add(max_heart_rate.Text);              //Max Heart Rate:
+                objectValues.Add(calories.Text);                    //Calories:
+                objectValues.Add(total_ascent.Text);                //Total Ascent:
+                objectValues.Add(total_descent.Text);               //Total Descent:
+                objectValues.Add(max_speed.Text);                   //Max Speed:
+                objectValues.Add(avg_power.Text);                   //Average Power:
+                objectValues.Add(max_power.Text);                   //Max Power:
+                objectValues.Add(cbRouteDataEntry.SelectedItem.ToString());   //Route:
+                objectValues.Add(tbComments.Text);                    //Comments:
+
+                string logYearName = cbLogYearDataEntry.SelectedItem.ToString();
+                int logIndex = mainForm.getLogYearIndex(logYearName);
+                objectValues.Add(logIndex);                         //LogYear index:
+
+                DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+                Calendar cal = dfi.Calendar;
+                int weekValue = cal.GetWeekOfYear(dtpRideDate.Value, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+
+                if (changeType.Equals("Update"))                    //Week number:
+                {
+                    objectValues.Add(tbWeekNumber.Text);
                 } else
                 {
-                    if (changeType.Equals("Update"))
+                    objectValues.Add(weekValue);
+                }
+
+                objectValues.Add(cbLocationDataEntry.SelectedItem.ToString());//Location:
+                double winchill = 0;
+
+                if (windspeed > 3 && temp > 50)
+                {
+                    winchill = 35.74 + (0.6215) * (temp) - (35.75) * (Math.Pow(windspeed, 0.16)) + (0.4275) * (Math.Pow(windspeed, 0.16));
+                    objectValues.Add(winchill.ToString());          //Winchill:
+                }
+                else
+                {
+                    objectValues.Add("");                           //Winchill:
+                }
+
+                objectValues.Add(cbEffortRideDataEntry.SelectedItem.ToString());                    //Effort:
+
+                if (changeType.Equals("Update")) {
+                    objectValues.Add(recordID);                           //Record ID:
+                }
+
+                using (var results = ExecuteSimpleQueryConnection(procedureName, objectValues))
+                {
+                    if (results == null)
                     {
-                        MessageBox.Show("The ride has been updated successfully.");
+                        if (changeType.Equals("Update"))
+                        {
+                            MessageBox.Show("[ERROR] There was a problem updating the ride.");
+                        } else
+                        {
+                            MessageBox.Show("[ERROR] There was a problem adding the ride.");
+                        }
                     } else
                     {
-                        MessageBox.Show("The ride has been added successfully.");
+                        if (changeType.Equals("Update"))
+                        {
+                            MessageBox.Show("The ride has been updated successfully.");
+                        } else
+                        {
+                            MessageBox.Show("The ride has been added successfully.");
+                        }
                     }
-                }            
 
-                return;
+                    return;
+                }
+
+            } catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to update ride information." + ex.Message.ToString());
             }
         }
 
@@ -676,7 +682,8 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                MessageBox.Show("[ERROR] Exception occurred: " + ex.Message);
+                Logger.LogError("[ERROR]: Exception while trying to retrive ride data." + ex.Message.ToString());
+                MessageBox.Show("[ERROR] Exception occurred. Refer to the log for more information. ");
             }
         }
 

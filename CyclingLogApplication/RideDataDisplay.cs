@@ -198,10 +198,14 @@ namespace CyclingLogApplication
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);
                 dataGridView1.DataSource = dataTable;
+                dataGridView1.Columns["AvgSpeed"].DefaultCellStyle.Format = "0.00";
+                dataGridView1.Columns["RideDistance"].DefaultCellStyle.Format = "0.0";
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                
+                Logger.LogError("[ERROR]: Exception while trying to Clear ride data." + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred.  Review the log for more information.");
             }
             finally
             {
@@ -237,7 +241,8 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Logger.LogError("[ERROR]: Exception while trying to Clear ride data." + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred.  Review the log for more information.");
             }
             finally
             {

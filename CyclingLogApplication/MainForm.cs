@@ -36,6 +36,11 @@ namespace CyclingLogApplication
         private static int lastLogYearChart = -1;
         private static int lastRouteChart = -1;
         private static int lastTypeChart = -1;
+        private static double bikeMiles1 = 0;
+        private static double bikeMiles2 = 0;
+        private static double bikeMiles3 = 0;
+        private static double bikeMiles4 = 0;
+        private static double bikeMiles5 = 0;
 
         public MainForm()
         {
@@ -166,6 +171,13 @@ namespace CyclingLogApplication
 
             label2.Text = "App Version: " + getLogVersion();
             lbMaintError.Text = "";
+
+            tbBikeMilesAdd1.Text = getBikeMiles1().ToString();
+            tbBikeMilesAdd2.Text = getBikeMiles2().ToString();
+            tbBikeMilesAdd3.Text = getBikeMiles3().ToString();
+            tbBikeMilesAdd4.Text = getBikeMiles4().ToString();
+            tbBikeMilesAdd5.Text = getBikeMiles5().ToString();
+
         }
 
         private void closeForm(object sender, EventArgs e)
@@ -231,6 +243,56 @@ namespace CyclingLogApplication
         public string getcbStatistic5()
         {
             return cbStatistic5;
+        }
+
+        public void setBikeMiles1(double bike)
+        {
+            bikeMiles1 = bike;
+        }
+
+        public double getBikeMiles1()
+        {
+            return bikeMiles1;
+        }
+
+        public void setBikeMiles2(double bike)
+        {
+            bikeMiles2 = bike;
+        }
+
+        public double getBikeMiles2()
+        {
+            return bikeMiles2;
+        }
+
+        public void setBikeMiles3(double bike)
+        {
+            bikeMiles3 = bike;
+        }
+
+        public double getBikeMiles3()
+        {
+            return bikeMiles3;
+        }
+
+        public void setBikeMiles4(double bike)
+        {
+            bikeMiles4 = bike;
+        }
+
+        public double getBikeMiles4()
+        {
+            return bikeMiles4;
+        }
+
+        public void setBikeMiles5(double bike)
+        {
+            bikeMiles5 = bike;
+        }
+
+        public double getBikeMiles5()
+        {
+            return bikeMiles5;
         }
 
         public void setcbStatistic1(string setcbStatistic1Config)
@@ -969,6 +1031,34 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
+        private float getTotalMilesForAllLogs()
+        {
+            List<object> objectValues = new List<object>();
+            float returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetTotalMiles_AllLogs", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        //MessageBox.Show(String.Format("{0}", results[0]));
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else {
+                            returnValue = float.Parse(temp);
+                        }
+
+                    }
+                }
+            }
+
+            return returnValue;
+        }
 
         //Get total number of rides for the selected log:
         //SELECT Count(LogYearID) FROM Table_Ride_Information;
@@ -1326,7 +1416,6 @@ namespace CyclingLogApplication
             // Get log index and pass to all the methods:
             logYearIndex = getLogYearIndex(cbLogYear1.SelectedItem.ToString());
 
-
             if (cbLogYear1.SelectedIndex > 0)
             {
                 tb1Log1.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
@@ -1389,6 +1478,11 @@ namespace CyclingLogApplication
                 tb6Log5.Text = getHighMileageWeekNumber(logYearIndex).ToString();
                 tb7Log5.Text = getHighMileageDay(logYearIndex).ToString();
             }
+
+            //Get total miles for all logs:
+            double totalMiles = getTotalMilesForAllLogs();
+            totalMiles = Math.Truncate(totalMiles * 100) / 100;
+            tbStatisticsTotalMiles.Text = Convert.ToString(totalMiles);
         }
 
         private void cb1LogYear_changed(object sender, EventArgs e)
@@ -1630,7 +1724,8 @@ namespace CyclingLogApplication
                         }
                     } catch (Exception ex)
                     {
-                        MessageBox.Show("[ERROR] An error occured while reading the .CVS file. \n\n" + ex.Message.ToString());
+                        Logger.LogError("[ERROR]: Exception while trying to read the .CVS file." + ex.Message.ToString());
+                        MessageBox.Show("[ERROR] An error occured while reading the .CVS file. \n\n");
                         return;
                     }
                 }
@@ -1967,6 +2062,9 @@ namespace CyclingLogApplication
                         returnValue = float.Parse(temp);
                     }
                 }
+            } catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to Rename bike name." + ex.Message.ToString());
             }
             finally
             {
@@ -2022,7 +2120,8 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Logger.LogError("[ERROR]: Exception while trying to Get Maintenance Log entry." + ex.Message.ToString());
+                //MessageBox.Show(ex.Message);
             }
             finally
             {
@@ -2190,6 +2289,148 @@ namespace CyclingLogApplication
             {
                 Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
             }
+        }
+
+        private void btBikeMilesUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<string> bikeList = new List<string>();
+                bikeList = readDataNames("Table_Bikes", "Name");
+                Dictionary<string, double> bikeMilesDictionary = new Dictionary<string, double>();
+
+                for (int index = 0; index < bikeList.Count; index++)
+                {
+                    List<object> objectValues = new List<object>();
+                    objectValues.Add(bikeList[index]);
+                    double returnValue = 0;
+
+                    //ExecuteScalarFunction
+                    using (var results = ExecuteSimpleQueryConnection("GetTotalMiles_AllLogs_ForABike", objectValues))
+                    {
+                        if (results.HasRows)
+                        {
+                            while (results.Read())
+                            {
+                                //MessageBox.Show(String.Format("{0}", results[0]));
+                                string temp = results[0].ToString();
+                                if (temp.Equals(""))
+                                {
+                                    returnValue = 0;
+                                }
+                                else {
+                                    returnValue = Convert.ToDouble(temp);
+                                }
+                            }
+                        }
+                    }
+                    bikeMilesDictionary.Add(bikeList[index], returnValue);
+                }
+
+                //Load textboxes with bikes with the highest values:
+                int bikeCount;
+                if (bikeList.Count >= 5)
+                {
+                    bikeCount = 5;
+                } else
+                {
+                    bikeCount = bikeList.Count;
+                }
+
+                for (int i = 1; i <= bikeCount; i++)
+                {
+                    double bikeMiles = bikeMilesDictionary.Values.Max();
+                    string bikeName = "";
+                    double totalMiles;
+
+                    foreach (KeyValuePair<string, double> bike in bikeMilesDictionary)
+                    {
+                        if (bike.Value == bikeMiles)
+                        {
+                            bikeName = bike.Key;
+                            break;
+                        }
+                    }
+
+                    bikeMilesDictionary.Remove(bikeName);
+
+                    if (i == 1)
+                    {
+                        tbBikeMiles1.Text = Convert.ToString(bikeName);
+                        if (tbBikeMilesAdd1.Text.Equals(""))
+                        {
+                            totalMiles = bikeMiles;
+                        } else
+                        {
+                            totalMiles = bikeMiles + Convert.ToDouble(tbBikeMilesAdd1.Text);
+                        }
+                        
+                        tbBikeMilesTotal1.Text = Convert.ToString(totalMiles);
+                    }
+                    else if (i == 2)
+                    {
+                        tbBikeMiles2.Text = Convert.ToString(bikeName);
+                        if (tbBikeMilesAdd2.Text.Equals(""))
+                        {
+                            totalMiles = bikeMiles;
+                        }
+                        else
+                        {
+                            totalMiles = bikeMiles + Convert.ToDouble(tbBikeMilesAdd2.Text);
+                        }
+                        tbBikeMilesTotal2.Text = Convert.ToString(totalMiles);
+                    }
+                    else if (i == 3)
+                    {
+                        tbBikeMiles3.Text = Convert.ToString(bikeName);
+                        if (tbBikeMilesAdd3.Text.Equals(""))
+                        {
+                            totalMiles = bikeMiles;
+                        }
+                        else
+                        {
+                            totalMiles = bikeMiles + Convert.ToDouble(tbBikeMilesAdd3.Text);
+                        }
+                        tbBikeMilesTotal3.Text = Convert.ToString(totalMiles);
+                    }
+                    else if (i == 4)
+                    {
+                        tbBikeMiles4.Text = Convert.ToString(bikeName);
+                        if (tbBikeMilesAdd4.Text.Equals(""))
+                        {
+                            totalMiles = bikeMiles;
+                        }
+                        else
+                        {
+                            totalMiles = bikeMiles + Convert.ToDouble(tbBikeMilesAdd4.Text);
+                        }
+                        tbBikeMilesTotal4.Text = Convert.ToString(totalMiles);
+                    }
+                    else if (i == 5)
+                    {
+                        tbBikeMiles5.Text = Convert.ToString(bikeName);
+                        if (tbBikeMilesAdd5.Text.Equals(""))
+                        {
+                            totalMiles = bikeMiles;
+                        }
+                        else
+                        {
+                            totalMiles = bikeMiles + Convert.ToDouble(tbBikeMilesAdd5.Text);
+                        }
+                        tbBikeMilesTotal5.Text = Convert.ToString(totalMiles);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to retrive Bike names." + ex.Message.ToString());
+            }
+
+            setBikeMiles1(Convert.ToDouble(tbBikeMilesAdd1.Text));
+            setBikeMiles2(Convert.ToDouble(tbBikeMilesAdd2.Text));
+            setBikeMiles3(Convert.ToDouble(tbBikeMilesAdd3.Text));
+            setBikeMiles4(Convert.ToDouble(tbBikeMilesAdd4.Text));
+            setBikeMiles5(Convert.ToDouble(tbBikeMilesAdd5.Text));
         }
 
         //=============================================================================

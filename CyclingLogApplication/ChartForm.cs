@@ -90,6 +90,7 @@ namespace CyclingLogApplication
 
         public void chartTest()
         {
+            
             MainForm mainForm = new MainForm("");
             int logSetting = mainForm.getLogLevel();
             int logIndex = 1;
@@ -289,6 +290,9 @@ namespace CyclingLogApplication
                         }
                     }
                 }
+            } catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to run a chart." + ex.Message.ToString());
             }
             finally
             {
