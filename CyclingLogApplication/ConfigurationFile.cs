@@ -64,12 +64,6 @@ namespace CyclingLogApplication
             string chartRouteSelected = nodes.Item(0).SelectSingleNode("ChartRoute").InnerText;
             string chartTypeSelected = nodes.Item(0).SelectSingleNode("ChartType").InnerText;
 
-            string bikeMiles1 = nodes.Item(0).SelectSingleNode("BikeMiles1").InnerText;
-            string bikeMiles2 = nodes.Item(0).SelectSingleNode("BikeMiles2").InnerText;
-            string bikeMiles3 = nodes.Item(0).SelectSingleNode("BikeMiles3").InnerText;
-            string bikeMiles4 = nodes.Item(0).SelectSingleNode("BikeMiles4").InnerText;
-            string bikeMiles5 = nodes.Item(0).SelectSingleNode("BikeMiles5").InnerText;
-
             MainForm mainForm = new MainForm("");
             mainForm.setLogLevel(logLevel);
             mainForm.setcbStatistic1(cbStatistic1);
@@ -84,12 +78,6 @@ namespace CyclingLogApplication
             mainForm.setLastLogYearChartSelected(Convert.ToInt32(chartLogYearSelected));
             mainForm.setLastRouteChartSelected(Convert.ToInt32(chartRouteSelected));
             mainForm.setLastTypeChartSelected(Convert.ToInt32(chartTypeSelected));
-
-            mainForm.setBikeMiles1(Convert.ToDouble(bikeMiles1));
-            mainForm.setBikeMiles2(Convert.ToDouble(bikeMiles2));
-            mainForm.setBikeMiles3(Convert.ToDouble(bikeMiles3));
-            mainForm.setBikeMiles4(Convert.ToDouble(bikeMiles4));
-            mainForm.setBikeMiles5(Convert.ToDouble(bikeMiles5));
 
             //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
             Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, 1, 0);
@@ -107,12 +95,6 @@ namespace CyclingLogApplication
             Logger.Log("Configuration Read: chartLogYearSelected : " + chartLogYearSelected, 1, 0);
             Logger.Log("Configuration Read: chartRouteSelected : " + chartRouteSelected, 1, 0);
             Logger.Log("Configuration Read: chartTypeSelected : " + chartTypeSelected, 1, 0);
-
-            Logger.Log("Configuration Read: bikeMiles1 : " + bikeMiles1, 1, 0);
-            Logger.Log("Configuration Read: bikeMiles2 : " + bikeMiles2, 1, 0);
-            Logger.Log("Configuration Read: bikeMiles3 : " + bikeMiles3, 1, 0);
-            Logger.Log("Configuration Read: bikeMiles4 : " + bikeMiles4, 1, 0);
-            Logger.Log("Configuration Read: bikeMiles5 : " + bikeMiles5, 1, 0);
 
             returnStatus = true;
 
@@ -207,26 +189,6 @@ namespace CyclingLogApplication
                     lastTimelineChartSelectedNode.InnerText = "-1";
                     rootNode.AppendChild(lastTimelineChartSelectedNode);
 
-                    XmlNode bikeMilesNode1 = xmlDoc.CreateElement("BikeMiles1");
-                    bikeMilesNode1.InnerText = "0";
-                    rootNode.AppendChild(bikeMilesNode1);
-
-                    XmlNode bikeMilesNode2 = xmlDoc.CreateElement("BikeMiles2");
-                    bikeMilesNode1.InnerText = "0";
-                    rootNode.AppendChild(bikeMilesNode2);
-
-                    XmlNode bikeMilesNode3 = xmlDoc.CreateElement("BikeMiles3");
-                    bikeMilesNode1.InnerText = "0";
-                    rootNode.AppendChild(bikeMilesNode3);
-
-                    XmlNode bikeMilesNode4 = xmlDoc.CreateElement("BikeMiles4");
-                    bikeMilesNode1.InnerText = "0";
-                    rootNode.AppendChild(bikeMilesNode4);
-
-                    XmlNode bikeMilesNode5 = xmlDoc.CreateElement("BikeMiles5");
-                    bikeMilesNode1.InnerText = "0";
-                    rootNode.AppendChild(bikeMilesNode5);
-
                     xmlDoc.Save("C:\\CyclingLogApplication\\CyclingLogConfig.xml");
                 }
             }
@@ -255,12 +217,6 @@ namespace CyclingLogApplication
                 int lastRouteChartSelected = mainForm.getLastRouteChartSelected();
                 int lastTypeChartSelected = mainForm.getLastTypeChartSelected();
 
-                double bikeMiles1 = mainForm.getBikeMiles1();
-                double bikeMiles2 = mainForm.getBikeMiles2();
-                double bikeMiles3 = mainForm.getBikeMiles3();
-                double bikeMiles4 = mainForm.getBikeMiles4();
-                double bikeMiles5 = mainForm.getBikeMiles5();
-
                 xmlDoc.SelectSingleNode("/Config/cbStatistic1").InnerText = cbStatistic1;
                 xmlDoc.SelectSingleNode("/Config/cbStatistic2").InnerText = cbStatistic2;
                 xmlDoc.SelectSingleNode("/Config/cbStatistic3").InnerText = cbStatistic3;
@@ -275,12 +231,6 @@ namespace CyclingLogApplication
                 xmlDoc.SelectSingleNode("/Config/ChartRoute").InnerText = lastRouteChartSelected.ToString();
                 xmlDoc.SelectSingleNode("/Config/ChartType").InnerText = lastTypeChartSelected.ToString();
 
-                xmlDoc.SelectSingleNode("/Config/BikeMiles1").InnerText = bikeMiles1.ToString();
-                xmlDoc.SelectSingleNode("/Config/BikeMiles2").InnerText = bikeMiles2.ToString();
-                xmlDoc.SelectSingleNode("/Config/BikeMiles3").InnerText = bikeMiles3.ToString();
-                xmlDoc.SelectSingleNode("/Config/BikeMiles4").InnerText = bikeMiles4.ToString();
-                xmlDoc.SelectSingleNode("/Config/BikeMiles5").InnerText = bikeMiles5.ToString();
-
                 Logger.Log("Write Config Values: cbStatistic1 written:" + cbStatistic1, 0, logSetting);
                 Logger.Log("Write Config Values: cbStatistic2 written:" + cbStatistic2, 0, logSetting);
                 Logger.Log("Write Config Values: cbStatistic3 written:" + cbStatistic3, 0, logSetting);
@@ -293,12 +243,6 @@ namespace CyclingLogApplication
                 Logger.Log("Write Config Values: lastLogYearChartSelected written:" + lastLogYearChartSelected, 0, logSetting);
                 Logger.Log("Write Config Values: lastRouteChartSelected written:" + lastRouteChartSelected, 0, logSetting);
                 Logger.Log("Write Config Values: lastTypeChartSelected written:" + lastTypeChartSelected, 0, logSetting);
-
-                Logger.Log("Write Config Values: bikeMiles1 written:" + bikeMiles1, 0, logSetting);
-                Logger.Log("Write Config Values: bikeMiles2 written:" + bikeMiles2, 0, logSetting);
-                Logger.Log("Write Config Values: bikeMiles3 written:" + bikeMiles3, 0, logSetting);
-                Logger.Log("Write Config Values: bikeMiles4 written:" + bikeMiles4, 0, logSetting);
-                Logger.Log("Write Config Values: bikeMiles5 written:" + bikeMiles5, 0, logSetting);
 
                 xmlDoc.Save(@"C:\\CyclingLogApplication\\CyclingLogConfig.xml");
             }

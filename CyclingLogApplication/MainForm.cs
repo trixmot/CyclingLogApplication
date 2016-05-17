@@ -36,11 +36,6 @@ namespace CyclingLogApplication
         private static int lastLogYearChart = -1;
         private static int lastRouteChart = -1;
         private static int lastTypeChart = -1;
-        private static double bikeMiles1 = 0;
-        private static double bikeMiles2 = 0;
-        private static double bikeMiles3 = 0;
-        private static double bikeMiles4 = 0;
-        private static double bikeMiles5 = 0;
 
         public MainForm()
         {
@@ -171,13 +166,7 @@ namespace CyclingLogApplication
 
             label2.Text = "App Version: " + getLogVersion();
             lbMaintError.Text = "";
-
-            tbBikeMilesAdd1.Text = getBikeMiles1().ToString();
-            tbBikeMilesAdd2.Text = getBikeMiles2().ToString();
-            tbBikeMilesAdd3.Text = getBikeMiles3().ToString();
-            tbBikeMilesAdd4.Text = getBikeMiles4().ToString();
-            tbBikeMilesAdd5.Text = getBikeMiles5().ToString();
-
+            lbConfigError.Text = "";
         }
 
         private void closeForm(object sender, EventArgs e)
@@ -243,56 +232,6 @@ namespace CyclingLogApplication
         public string getcbStatistic5()
         {
             return cbStatistic5;
-        }
-
-        public void setBikeMiles1(double bike)
-        {
-            bikeMiles1 = bike;
-        }
-
-        public double getBikeMiles1()
-        {
-            return bikeMiles1;
-        }
-
-        public void setBikeMiles2(double bike)
-        {
-            bikeMiles2 = bike;
-        }
-
-        public double getBikeMiles2()
-        {
-            return bikeMiles2;
-        }
-
-        public void setBikeMiles3(double bike)
-        {
-            bikeMiles3 = bike;
-        }
-
-        public double getBikeMiles3()
-        {
-            return bikeMiles3;
-        }
-
-        public void setBikeMiles4(double bike)
-        {
-            bikeMiles4 = bike;
-        }
-
-        public double getBikeMiles4()
-        {
-            return bikeMiles4;
-        }
-
-        public void setBikeMiles5(double bike)
-        {
-            bikeMiles5 = bike;
-        }
-
-        public double getBikeMiles5()
-        {
-            return bikeMiles5;
         }
 
         public void setcbStatistic1(string setcbStatistic1Config)
@@ -872,6 +811,13 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to delete the Route option?", "Delete Route Option", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                string deleteValue = cbRouteConfig.SelectedItem.ToString();
+
+                //Note: only removing value as an option, all records using this value are unchanged:
+                cbRouteConfig.Items.Remove(cbRouteConfig.SelectedItem);
+                rideDataEntryForm.RemoveRouteDataEntry(tbRouteConfig.Text);
+                chartForm.cbRoutesChart.Items.Remove(tbRouteConfig.Text);
+
                 List<string> tempList = new List<string>();
 
                 int selectedIndex = cbRouteConfig.SelectedIndex;
@@ -896,10 +842,22 @@ namespace CyclingLogApplication
                     chartForm.cbRoutesChart.Items.Add(tempList[i]);
                 }
 
-                //Note: only removing value as an option, all records using this value are unchanged:
-                //cbRouteConfig.Items.Remove(cbRouteConfig.SelectedItem);
-                //rideDataEntryForm.RemoveRouteDataEntry(tbRouteConfig.Text);
-                //chartForm.cbRoutesChart.Items.Remove(tbRouteConfig.Text);
+                //Remove the Route from the database table:
+                List<object> objectValues = new List<object>();
+                objectValues.Add(deleteValue);
+
+                try
+                {
+                    //ExecuteScalarFunction
+                    using (var results = ExecuteSimpleQueryConnection("Route_Remove", objectValues))
+                    {
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError("[ERROR]: Exception while trying to Delete the Route name entry." + ex.Message.ToString());
+                }
             }
         }
 
@@ -916,12 +874,21 @@ namespace CyclingLogApplication
                 }
             }
 
+            //Verify Miles is entered and in the correct format:
+            int parsedValue;
+            if (!int.TryParse(tbConfigMilesNotInLog.Text, out parsedValue))
+            {
+                lbConfigError.Text = "The miles for the Bike must be in numeric format. Enter 0 if unknown.";
+                return;
+            }
+
             List<object> objectValues = new List<object>();
+            objectValues.Add(bikeString);
             objectValues.Add(bikeString);
             runStoredProcedure(objectValues, "Bike_Add");
 
             cbBikeConfig.Items.Add(bikeString);
-            cbBikeMaint.Items.Add(bikeString);
+            cbBikeMaint.Items.Add(tbConfigMilesNotInLog.Text);
             cbBikeConfig.SelectedIndex = cbBikeConfig.Items.Count - 1;
             rideDataEntryForm.AddBikeDataEntry(bikeString);
         }
@@ -931,6 +898,8 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to delete the bike option?", "Delete Bike Option", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                string deleteValue = cbBikeConfig.SelectedItem.ToString();
+
                 //Note: only removing value as an option, all records using this value are unchanged:
                 cbBikeConfig.Items.Remove(cbBikeConfig.SelectedItem);
                 cbBikeMaint.Items.Remove(cbBikeConfig.SelectedItem);
@@ -968,6 +937,23 @@ namespace CyclingLogApplication
                         cbBikeMaint.Items.Add(tempList[i]);
                         rideDataEntryForm.cbBikeDataEntry.Items.Add(tempList[i]);
                     //}
+                }
+
+                //Remove the Bike from the database table:
+                List<object> objectValues = new List<object>();
+                objectValues.Add(deleteValue);
+
+                try
+                {
+                    //ExecuteScalarFunction
+                    using (var results = ExecuteSimpleQueryConnection("Bike_Remove", objectValues))
+                    {
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError("[ERROR]: Exception while trying to Delete Bike name entry." + ex.Message.ToString());
                 }
             }
         }
@@ -2144,10 +2130,25 @@ namespace CyclingLogApplication
                 return;
             }
 
-            if (cbBikeMaint.SelectedIndex == -1 || rtbMaintComments.Text.Equals(""))
+            if (cbBikeMaint.SelectedIndex == -1)
             {
                 //MessageBox.Show("All the selections are not set.");
-                lbMaintError.Text = "All the selections are not set.";
+                lbMaintError.Text = "The Bike selection is not set.";
+                return;
+            }
+
+            if (rtbMaintComments.Text.Equals(""))
+            {
+                //MessageBox.Show("All the selections are not set.");
+                lbMaintError.Text = "The Comments are missing.";
+                return;
+            }
+
+            //Check format of miles:
+            int parsedValue;
+            if (!int.TryParse(tbMaintMiles.Text, out parsedValue))
+            {
+                lbMaintError.Text = "The miles value must be in numeric format. Enter 0 if unknown.";
                 return;
             }
 
@@ -2191,10 +2192,40 @@ namespace CyclingLogApplication
                 return;
             }
 
+            if (cbBikeMaint.SelectedIndex == -1)
+            {
+                //MessageBox.Show("All the selections are not set.");
+                lbMaintError.Text = "The Bike selection is not set.";
+                return;
+            }
+
+            if (rtbMaintComments.Text.Equals(""))
+            {
+                //MessageBox.Show("All the selections are not set.");
+                lbMaintError.Text = "The Comments are missing.";
+                return;
+            }
+
+            //Check format of miles:
+            int parsedValue;
+            if (!int.TryParse(tbMaintMiles.Text, out parsedValue))
+            {
+                lbMaintError.Text = "The miles value must be in numeric format. Enter 0 if unknown.";
+                return;
+            }
+
             if (cbBikeMaint.SelectedIndex == -1 || rtbMaintComments.Text.Equals(""))
             {
                 //MessageBox.Show("All the selections are not set.");
                 lbMaintError.Text = "All the selections are not set.";
+                return;
+            }
+
+            //Check format of miles:
+            //int parsedValue;
+            if (!int.TryParse(tbMaintMiles.Text, out parsedValue))
+            {
+                lbMaintError.Text = "The miles value must be in numeric format.";
                 return;
             }
 
@@ -2293,6 +2324,18 @@ namespace CyclingLogApplication
 
         private void btBikeMilesUpdate_Click(object sender, EventArgs e)
         {
+            //TODO:
+            //Load bike names and notinlogmiles from the database:
+
+
+            tbBikeMiles1.Text = "";
+            tbBikeMiles2.Text = "";
+            tbBikeMiles3.Text = "";
+            tbBikeMiles4.Text = "";
+            tbBikeMiles5.Text = "";
+
+            float bikeMilesAdd = 0;
+
             try
             {
                 List<string> bikeList = new List<string>();
@@ -2356,67 +2399,27 @@ namespace CyclingLogApplication
 
                     if (i == 1)
                     {
-                        tbBikeMiles1.Text = Convert.ToString(bikeName);
-                        if (tbBikeMilesAdd1.Text.Equals(""))
-                        {
-                            totalMiles = bikeMiles;
-                        } else
-                        {
-                            totalMiles = bikeMiles + Convert.ToDouble(tbBikeMilesAdd1.Text);
-                        }
-                        
+                        totalMiles = bikeMiles + bikeMilesAdd;
                         tbBikeMilesTotal1.Text = Convert.ToString(totalMiles);
                     }
                     else if (i == 2)
                     {
-                        tbBikeMiles2.Text = Convert.ToString(bikeName);
-                        if (tbBikeMilesAdd2.Text.Equals(""))
-                        {
-                            totalMiles = bikeMiles;
-                        }
-                        else
-                        {
-                            totalMiles = bikeMiles + Convert.ToDouble(tbBikeMilesAdd2.Text);
-                        }
+                        totalMiles = bikeMiles + bikeMilesAdd;
                         tbBikeMilesTotal2.Text = Convert.ToString(totalMiles);
                     }
                     else if (i == 3)
                     {
-                        tbBikeMiles3.Text = Convert.ToString(bikeName);
-                        if (tbBikeMilesAdd3.Text.Equals(""))
-                        {
-                            totalMiles = bikeMiles;
-                        }
-                        else
-                        {
-                            totalMiles = bikeMiles + Convert.ToDouble(tbBikeMilesAdd3.Text);
-                        }
+                        totalMiles = bikeMiles + bikeMilesAdd;
                         tbBikeMilesTotal3.Text = Convert.ToString(totalMiles);
                     }
                     else if (i == 4)
                     {
-                        tbBikeMiles4.Text = Convert.ToString(bikeName);
-                        if (tbBikeMilesAdd4.Text.Equals(""))
-                        {
-                            totalMiles = bikeMiles;
-                        }
-                        else
-                        {
-                            totalMiles = bikeMiles + Convert.ToDouble(tbBikeMilesAdd4.Text);
-                        }
+                        totalMiles = bikeMiles + bikeMilesAdd;
                         tbBikeMilesTotal4.Text = Convert.ToString(totalMiles);
                     }
                     else if (i == 5)
                     {
-                        tbBikeMiles5.Text = Convert.ToString(bikeName);
-                        if (tbBikeMilesAdd5.Text.Equals(""))
-                        {
-                            totalMiles = bikeMiles;
-                        }
-                        else
-                        {
-                            totalMiles = bikeMiles + Convert.ToDouble(tbBikeMilesAdd5.Text);
-                        }
+                        totalMiles = bikeMiles + bikeMilesAdd;
                         tbBikeMilesTotal5.Text = Convert.ToString(totalMiles);
                     }
                 }
@@ -2425,12 +2428,11 @@ namespace CyclingLogApplication
             {
                 Logger.LogError("[ERROR]: Exception while trying to retrive Bike names." + ex.Message.ToString());
             }
+        }
 
-            setBikeMiles1(Convert.ToDouble(tbBikeMilesAdd1.Text));
-            setBikeMiles2(Convert.ToDouble(tbBikeMilesAdd2.Text));
-            setBikeMiles3(Convert.ToDouble(tbBikeMilesAdd3.Text));
-            setBikeMiles4(Convert.ToDouble(tbBikeMilesAdd4.Text));
-            setBikeMiles5(Convert.ToDouble(tbBikeMilesAdd5.Text));
+        private void cbBikeConfig_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("test.");
         }
 
         //=============================================================================
