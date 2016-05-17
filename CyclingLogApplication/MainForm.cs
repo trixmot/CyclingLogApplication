@@ -864,6 +864,8 @@ namespace CyclingLogApplication
         private void btAddBikeConfig_Click(object sender, EventArgs e)
         {
             string bikeString = tbBikeConfig.Text;
+            string miles = tbConfigMilesNotInLog.Text;
+
             //Check to see if the string has already been entered to eliminate duplicates:
             for (int index = 0; index < cbBikeConfig.Items.Count; index++)
             {
@@ -884,7 +886,7 @@ namespace CyclingLogApplication
 
             List<object> objectValues = new List<object>();
             objectValues.Add(bikeString);
-            objectValues.Add(bikeString);
+            objectValues.Add(miles);
             runStoredProcedure(objectValues, "Bike_Add");
 
             cbBikeConfig.Items.Add(bikeString);
@@ -924,19 +926,15 @@ namespace CyclingLogApplication
                 rideDataEntryForm.cbBikeDataEntry.DataSource = null;
                 rideDataEntryForm.cbBikeDataEntry.Items.Clear();
 
+                //Clear entires:
+                tbConfigMilesNotInLog.Text = "0";
+                tbBikeConfig.Text = "";
+
                 for (int i = 0; i < tempList.Count; i++)
                 {
-                    //if (selectedIndex == i)
-                    //{
-                    //    cbBikeConfig.Items.Add(newValue);
-                    //    cbBikeMaint.Items.Add(newValue);
-                    //    rideDataEntryForm.cbBikeDataEntry.Items.Add(newValue);
-                    //}
-                    //else {
-                        cbBikeConfig.Items.Add(tempList[i]);
-                        cbBikeMaint.Items.Add(tempList[i]);
-                        rideDataEntryForm.cbBikeDataEntry.Items.Add(tempList[i]);
-                    //}
+                    cbBikeConfig.Items.Add(tempList[i]);
+                    cbBikeMaint.Items.Add(tempList[i]);
+                    rideDataEntryForm.cbBikeDataEntry.Items.Add(tempList[i]);
                 }
 
                 //Remove the Bike from the database table:
@@ -1956,12 +1954,23 @@ namespace CyclingLogApplication
 
         private void bRenameBike_Click(object sender, EventArgs e)
         {
+            //Verify Miles is entered and in the correct format:
+            int parsedValue;
+            string miles = tbConfigMilesNotInLog.Text;
+
+            if (!int.TryParse(miles, out parsedValue))
+            {
+                lbConfigError.Text = "The miles for the Bike must be in numeric format. Enter 0 if unknown.";
+                return;
+            }
+
             string newValue = tbBikeConfig.Text;
             string oldValue = cbBikeConfig.SelectedItem.ToString();
 
             List<object> objectValues = new List<object>();
             objectValues.Add(newValue);
             objectValues.Add(oldValue);
+            objectValues.Add(Convert.ToDouble(miles));
 
             runStoredProcedure(objectValues, "Bike_Update");
 
@@ -2334,7 +2343,8 @@ namespace CyclingLogApplication
             tbBikeMiles4.Text = "";
             tbBikeMiles5.Text = "";
 
-            float bikeMilesAdd = 0;
+            double bikeMilesAdd = 0;
+            double runningTotalMiles = 0;
 
             try
             {
@@ -2397,30 +2407,71 @@ namespace CyclingLogApplication
 
                     bikeMilesDictionary.Remove(bikeName);
 
+                    try
+                    {
+                        List<object> objectValues = new List<object>();
+                        objectValues.Add(bikeName);
+
+                        //ExecuteScalarFunction
+                        using (var results = ExecuteSimpleQueryConnection("Bike_GetMiles", objectValues))
+                        {
+                            if (results.HasRows)
+                            {
+                                while (results.Read())
+                                {
+                                    string mileNotInLog = results[0].ToString();
+                                    if (mileNotInLog.Equals(""))
+                                    {
+                                        mileNotInLog = "0";
+                                    }
+                                    bikeMilesAdd = Convert.ToDouble(mileNotInLog);
+                                }
+                            }
+                            else
+                            {
+                                lbMaintError.Text = "No entry found for the selected Bike and Date.";
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
+                    }
+
                     if (i == 1)
                     {
                         totalMiles = bikeMiles + bikeMilesAdd;
+                        runningTotalMiles += totalMiles;
                         tbBikeMilesTotal1.Text = Convert.ToString(totalMiles);
+                        tbBikeMiles1.Text = bikeName;
                     }
                     else if (i == 2)
                     {
                         totalMiles = bikeMiles + bikeMilesAdd;
+                        runningTotalMiles += totalMiles;
                         tbBikeMilesTotal2.Text = Convert.ToString(totalMiles);
+                        tbBikeMiles2.Text = bikeName;
                     }
                     else if (i == 3)
                     {
                         totalMiles = bikeMiles + bikeMilesAdd;
+                        runningTotalMiles += totalMiles;
                         tbBikeMilesTotal3.Text = Convert.ToString(totalMiles);
+                        tbBikeMiles3.Text = bikeName;
                     }
                     else if (i == 4)
                     {
                         totalMiles = bikeMiles + bikeMilesAdd;
+                        runningTotalMiles += totalMiles;
                         tbBikeMilesTotal4.Text = Convert.ToString(totalMiles);
+                        tbBikeMiles4.Text = bikeName;
                     }
                     else if (i == 5)
                     {
                         totalMiles = bikeMiles + bikeMilesAdd;
+                        runningTotalMiles += totalMiles;
                         tbBikeMilesTotal5.Text = Convert.ToString(totalMiles);
+                        tbBikeMiles5.Text = bikeName;
                     }
                 }
             }
@@ -2428,11 +2479,44 @@ namespace CyclingLogApplication
             {
                 Logger.LogError("[ERROR]: Exception while trying to retrive Bike names." + ex.Message.ToString());
             }
+
+            tbBikeMilesTotal.Text = runningTotalMiles.ToString();
         }
 
         private void cbBikeConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show("test.");
+            string miles;
+            //Load miles from the database:
+            try
+            {
+                List<object> objectValues = new List<object>();
+                objectValues.Add(cbBikeConfig.SelectedItem.ToString());
+
+                //ExecuteScalarFunction
+                using (var results = ExecuteSimpleQueryConnection("Bike_GetMiles", objectValues))
+                {
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            miles = results[0].ToString();
+                            if (miles.Equals(""))
+                            {
+                                miles = "0";
+                            }
+                            tbConfigMilesNotInLog.Text = miles;
+                        }
+                    }
+                    else
+                    {
+                        lbConfigError.Text = "No entry found for the selected Bike and Date.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to retrive Bike miles data." + ex.Message.ToString());
+            }
         }
 
         //=============================================================================

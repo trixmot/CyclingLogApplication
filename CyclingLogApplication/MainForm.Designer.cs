@@ -159,6 +159,8 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.lbConfigError = new System.Windows.Forms.Label();
+            this.tbBikeMilesTotal = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1286,6 +1288,8 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.label28);
+            this.groupBox5.Controls.Add(this.tbBikeMilesTotal);
             this.groupBox5.Controls.Add(this.label21);
             this.groupBox5.Controls.Add(this.btBikeMilesUpdate);
             this.groupBox5.Controls.Add(this.label22);
@@ -1308,9 +1312,9 @@
             // 
             // btBikeMilesUpdate
             // 
-            this.btBikeMilesUpdate.Location = new System.Drawing.Point(530, 300);
+            this.btBikeMilesUpdate.Location = new System.Drawing.Point(566, 181);
             this.btBikeMilesUpdate.Name = "btBikeMilesUpdate";
-            this.btBikeMilesUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btBikeMilesUpdate.Size = new System.Drawing.Size(77, 35);
             this.btBikeMilesUpdate.TabIndex = 18;
             this.btBikeMilesUpdate.Text = "Update";
             this.btBikeMilesUpdate.UseVisualStyleBackColor = true;
@@ -1342,6 +1346,7 @@
             this.tbBikeMiles5.ReadOnly = true;
             this.tbBikeMiles5.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMiles5.TabIndex = 14;
+            this.tbBikeMiles5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMiles4
             // 
@@ -1351,6 +1356,7 @@
             this.tbBikeMiles4.ReadOnly = true;
             this.tbBikeMiles4.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMiles4.TabIndex = 13;
+            this.tbBikeMiles4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMiles3
             // 
@@ -1360,6 +1366,7 @@
             this.tbBikeMiles3.ReadOnly = true;
             this.tbBikeMiles3.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMiles3.TabIndex = 12;
+            this.tbBikeMiles3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMiles2
             // 
@@ -1369,6 +1376,7 @@
             this.tbBikeMiles2.ReadOnly = true;
             this.tbBikeMiles2.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMiles2.TabIndex = 11;
+            this.tbBikeMiles2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMiles1
             // 
@@ -1378,6 +1386,7 @@
             this.tbBikeMiles1.ReadOnly = true;
             this.tbBikeMiles1.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMiles1.TabIndex = 10;
+            this.tbBikeMiles1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMilesTotal5
             // 
@@ -1386,6 +1395,7 @@
             this.tbBikeMilesTotal5.ReadOnly = true;
             this.tbBikeMilesTotal5.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMilesTotal5.TabIndex = 9;
+            this.tbBikeMilesTotal5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMilesTotal4
             // 
@@ -1394,6 +1404,7 @@
             this.tbBikeMilesTotal4.ReadOnly = true;
             this.tbBikeMilesTotal4.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMilesTotal4.TabIndex = 8;
+            this.tbBikeMilesTotal4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMilesTotal3
             // 
@@ -1402,6 +1413,7 @@
             this.tbBikeMilesTotal3.ReadOnly = true;
             this.tbBikeMilesTotal3.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMilesTotal3.TabIndex = 7;
+            this.tbBikeMilesTotal3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMilesTotal2
             // 
@@ -1410,6 +1422,7 @@
             this.tbBikeMilesTotal2.ReadOnly = true;
             this.tbBikeMilesTotal2.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMilesTotal2.TabIndex = 6;
+            this.tbBikeMilesTotal2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMilesTotal1
             // 
@@ -1418,6 +1431,7 @@
             this.tbBikeMilesTotal1.ReadOnly = true;
             this.tbBikeMilesTotal1.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMilesTotal1.TabIndex = 5;
+            this.tbBikeMilesTotal1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tabPage3
             // 
@@ -1465,6 +1479,7 @@
             this.tbConfigMilesNotInLog.Name = "tbConfigMilesNotInLog";
             this.tbConfigMilesNotInLog.Size = new System.Drawing.Size(121, 20);
             this.tbConfigMilesNotInLog.TabIndex = 17;
+            this.tbConfigMilesNotInLog.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label24
             // 
@@ -1521,6 +1536,24 @@
             this.lbConfigError.Size = new System.Drawing.Size(41, 13);
             this.lbConfigError.TabIndex = 22;
             this.lbConfigError.Text = "label28";
+            // 
+            // tbBikeMilesTotal
+            // 
+            this.tbBikeMilesTotal.Location = new System.Drawing.Point(374, 303);
+            this.tbBikeMilesTotal.Name = "tbBikeMilesTotal";
+            this.tbBikeMilesTotal.ReadOnly = true;
+            this.tbBikeMilesTotal.Size = new System.Drawing.Size(100, 20);
+            this.tbBikeMilesTotal.TabIndex = 20;
+            this.tbBikeMilesTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(373, 287);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(101, 13);
+            this.label28.TabIndex = 21;
+            this.label28.Text = "Total Miles All Bikes";
             // 
             // MainForm
             // 
@@ -1688,6 +1721,8 @@
         private System.Windows.Forms.TextBox tbConfigMilesNotInLog;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label lbConfigError;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox tbBikeMilesTotal;
     }
 }
 
