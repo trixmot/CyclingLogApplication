@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtpRideDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.tbRecordID = new System.Windows.Forms.TextBox();
             this.tbWeekNumber = new System.Windows.Forms.TextBox();
             this.btDeleteRideDataEntry = new System.Windows.Forms.Button();
@@ -90,8 +91,9 @@
             this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.chk1RideDataEntry = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
@@ -99,13 +101,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // cbLogYearDataEntry
             // 
             this.cbLogYearDataEntry.FormattingEnabled = true;
-            this.cbLogYearDataEntry.Location = new System.Drawing.Point(73, 37);
+            this.cbLogYearDataEntry.Location = new System.Drawing.Point(59, 62);
             this.cbLogYearDataEntry.Name = "cbLogYearDataEntry";
             this.cbLogYearDataEntry.Size = new System.Drawing.Size(121, 21);
             this.cbLogYearDataEntry.TabIndex = 0;
@@ -114,7 +115,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(73, 21);
+            this.label1.Location = new System.Drawing.Point(59, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 13);
             this.label1.TabIndex = 1;
@@ -122,7 +123,7 @@
             // 
             // dtpRideDate
             // 
-            this.dtpRideDate.Location = new System.Drawing.Point(73, 79);
+            this.dtpRideDate.Location = new System.Drawing.Point(59, 104);
             this.dtpRideDate.Name = "dtpRideDate";
             this.dtpRideDate.Size = new System.Drawing.Size(121, 20);
             this.dtpRideDate.TabIndex = 2;
@@ -130,6 +131,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chk1RideDataEntry);
             this.groupBox1.Controls.Add(this.numericUpDown2);
             this.groupBox1.Controls.Add(this.tbRecordID);
             this.groupBox1.Controls.Add(this.tbWeekNumber);
@@ -144,11 +146,19 @@
             this.groupBox1.Controls.Add(this.cbLogYearDataEntry);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.dtpRideDate);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(18, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(465, 165);
+            this.groupBox1.Size = new System.Drawing.Size(490, 165);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(195, 65);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(34, 20);
+            this.numericUpDown2.TabIndex = 43;
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // tbRecordID
             // 
@@ -156,6 +166,7 @@
             this.tbRecordID.Name = "tbRecordID";
             this.tbRecordID.Size = new System.Drawing.Size(41, 20);
             this.tbRecordID.TabIndex = 28;
+            this.tbRecordID.Visible = false;
             // 
             // tbWeekNumber
             // 
@@ -163,10 +174,11 @@
             this.tbWeekNumber.Name = "tbWeekNumber";
             this.tbWeekNumber.Size = new System.Drawing.Size(41, 20);
             this.tbWeekNumber.TabIndex = 41;
+            this.tbWeekNumber.Visible = false;
             // 
             // btDeleteRideDataEntry
             // 
-            this.btDeleteRideDataEntry.Location = new System.Drawing.Point(346, 105);
+            this.btDeleteRideDataEntry.Location = new System.Drawing.Point(382, 105);
             this.btDeleteRideDataEntry.Name = "btDeleteRideDataEntry";
             this.btDeleteRideDataEntry.Size = new System.Drawing.Size(75, 23);
             this.btDeleteRideDataEntry.TabIndex = 29;
@@ -178,14 +190,14 @@
             // 
             this.lbNoLogYearSelected.AutoSize = true;
             this.lbNoLogYearSelected.ForeColor = System.Drawing.Color.Crimson;
-            this.lbNoLogYearSelected.Location = new System.Drawing.Point(216, 24);
+            this.lbNoLogYearSelected.Location = new System.Drawing.Point(202, 49);
             this.lbNoLogYearSelected.Name = "lbNoLogYearSelected";
             this.lbNoLogYearSelected.Size = new System.Drawing.Size(0, 13);
             this.lbNoLogYearSelected.TabIndex = 28;
             // 
             // btUpdateRideDateEntry
             // 
-            this.btUpdateRideDateEntry.Location = new System.Drawing.Point(346, 47);
+            this.btUpdateRideDateEntry.Location = new System.Drawing.Point(382, 47);
             this.btUpdateRideDateEntry.Name = "btUpdateRideDateEntry";
             this.btUpdateRideDateEntry.Size = new System.Drawing.Size(75, 23);
             this.btUpdateRideDateEntry.TabIndex = 27;
@@ -197,15 +209,15 @@
             // 
             this.lbRideDataEntryError.AutoSize = true;
             this.lbRideDataEntryError.ForeColor = System.Drawing.Color.Crimson;
-            this.lbRideDataEntryError.Location = new System.Drawing.Point(73, 124);
+            this.lbRideDataEntryError.Location = new System.Drawing.Point(73, 134);
             this.lbRideDataEntryError.Name = "lbRideDataEntryError";
-            this.lbRideDataEntryError.Size = new System.Drawing.Size(205, 13);
+            this.lbRideDataEntryError.Size = new System.Drawing.Size(107, 13);
             this.lbRideDataEntryError.TabIndex = 26;
-            this.lbRideDataEntryError.Text = "No Ride Data found for the selected date.";
+            this.lbRideDataEntryError.Text = "Ride Data Entry Error";
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(346, 76);
+            this.button4.Location = new System.Drawing.Point(382, 76);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 7;
@@ -215,7 +227,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(346, 134);
+            this.button3.Location = new System.Drawing.Point(382, 134);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 6;
@@ -226,7 +238,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(73, 63);
+            this.label18.Location = new System.Drawing.Point(59, 88);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(59, 13);
             this.label18.TabIndex = 5;
@@ -234,7 +246,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(346, 21);
+            this.button1.Location = new System.Drawing.Point(382, 21);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -244,9 +256,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(367, 576);
+            this.button2.Location = new System.Drawing.Point(400, 590);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(85, 35);
             this.button2.TabIndex = 4;
             this.button2.Text = "Close";
             this.button2.UseVisualStyleBackColor = true;
@@ -295,9 +307,9 @@
             this.groupBox2.Controls.Add(this.numericUpDown1);
             this.groupBox2.Controls.Add(this.cbRideTypeDataEntry);
             this.groupBox2.Controls.Add(this.cbBikeDataEntry);
-            this.groupBox2.Location = new System.Drawing.Point(12, 181);
+            this.groupBox2.Location = new System.Drawing.Point(18, 183);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(465, 379);
+            this.groupBox2.Size = new System.Drawing.Size(490, 389);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             // 
@@ -326,7 +338,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(343, 363);
+            this.label22.Location = new System.Drawing.Point(370, 363);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(87, 13);
             this.label22.TabIndex = 40;
@@ -368,7 +380,7 @@
             this.tbComments.Location = new System.Drawing.Point(79, 302);
             this.tbComments.Multiline = true;
             this.tbComments.Name = "tbComments";
-            this.tbComments.Size = new System.Drawing.Size(342, 42);
+            this.tbComments.Size = new System.Drawing.Size(378, 42);
             this.tbComments.TabIndex = 3;
             // 
             // label19
@@ -392,7 +404,7 @@
             this.cbRouteDataEntry.FormattingEnabled = true;
             this.cbRouteDataEntry.Location = new System.Drawing.Point(76, 21);
             this.cbRouteDataEntry.Name = "cbRouteDataEntry";
-            this.cbRouteDataEntry.Size = new System.Drawing.Size(345, 21);
+            this.cbRouteDataEntry.Size = new System.Drawing.Size(272, 21);
             this.cbRouteDataEntry.TabIndex = 34;
             // 
             // label16
@@ -475,7 +487,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(251, 261);
+            this.label10.Location = new System.Drawing.Point(287, 264);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(60, 13);
             this.label10.TabIndex = 24;
@@ -483,15 +495,16 @@
             // 
             // max_power
             // 
-            this.max_power.Location = new System.Drawing.Point(321, 258);
+            this.max_power.Location = new System.Drawing.Point(357, 261);
             this.max_power.Name = "max_power";
             this.max_power.Size = new System.Drawing.Size(100, 20);
             this.max_power.TabIndex = 23;
+            this.max_power.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(253, 235);
+            this.label9.Location = new System.Drawing.Point(289, 238);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(59, 13);
             this.label9.TabIndex = 22;
@@ -499,15 +512,16 @@
             // 
             // avg_power
             // 
-            this.avg_power.Location = new System.Drawing.Point(321, 232);
+            this.avg_power.Location = new System.Drawing.Point(357, 235);
             this.avg_power.Name = "avg_power";
             this.avg_power.Size = new System.Drawing.Size(100, 20);
             this.avg_power.TabIndex = 21;
+            this.avg_power.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(251, 209);
+            this.label8.Location = new System.Drawing.Point(287, 212);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(61, 13);
             this.label8.TabIndex = 20;
@@ -515,15 +529,16 @@
             // 
             // max_speed
             // 
-            this.max_speed.Location = new System.Drawing.Point(321, 206);
+            this.max_speed.Location = new System.Drawing.Point(357, 209);
             this.max_speed.Name = "max_speed";
             this.max_speed.Size = new System.Drawing.Size(100, 20);
             this.max_speed.TabIndex = 19;
+            this.max_speed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(238, 183);
+            this.label7.Location = new System.Drawing.Point(274, 186);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 13);
             this.label7.TabIndex = 18;
@@ -531,15 +546,16 @@
             // 
             // total_descent
             // 
-            this.total_descent.Location = new System.Drawing.Point(321, 180);
+            this.total_descent.Location = new System.Drawing.Point(357, 183);
             this.total_descent.Name = "total_descent";
             this.total_descent.Size = new System.Drawing.Size(100, 20);
             this.total_descent.TabIndex = 17;
+            this.total_descent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(245, 157);
+            this.label6.Location = new System.Drawing.Point(281, 160);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 13);
             this.label6.TabIndex = 16;
@@ -547,15 +563,16 @@
             // 
             // total_ascent
             // 
-            this.total_ascent.Location = new System.Drawing.Point(321, 154);
+            this.total_ascent.Location = new System.Drawing.Point(357, 157);
             this.total_ascent.Name = "total_ascent";
             this.total_ascent.Size = new System.Drawing.Size(100, 20);
             this.total_ascent.TabIndex = 15;
+            this.total_ascent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(268, 131);
+            this.label5.Location = new System.Drawing.Point(304, 134);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 13);
             this.label5.TabIndex = 14;
@@ -564,7 +581,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(230, 105);
+            this.label4.Location = new System.Drawing.Point(266, 108);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 13);
             this.label4.TabIndex = 13;
@@ -573,7 +590,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(231, 79);
+            this.label3.Location = new System.Drawing.Point(267, 82);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 13);
             this.label3.TabIndex = 12;
@@ -582,7 +599,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(240, 53);
+            this.label2.Location = new System.Drawing.Point(276, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 13);
             this.label2.TabIndex = 11;
@@ -590,31 +607,35 @@
             // 
             // calories
             // 
-            this.calories.Location = new System.Drawing.Point(321, 128);
+            this.calories.Location = new System.Drawing.Point(357, 131);
             this.calories.Name = "calories";
             this.calories.Size = new System.Drawing.Size(100, 20);
             this.calories.TabIndex = 10;
+            this.calories.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // max_heart_rate
             // 
-            this.max_heart_rate.Location = new System.Drawing.Point(321, 102);
+            this.max_heart_rate.Location = new System.Drawing.Point(357, 105);
             this.max_heart_rate.Name = "max_heart_rate";
             this.max_heart_rate.Size = new System.Drawing.Size(100, 20);
             this.max_heart_rate.TabIndex = 9;
+            this.max_heart_rate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // avg_heart_rate
             // 
-            this.avg_heart_rate.Location = new System.Drawing.Point(321, 76);
+            this.avg_heart_rate.Location = new System.Drawing.Point(357, 79);
             this.avg_heart_rate.Name = "avg_heart_rate";
             this.avg_heart_rate.Size = new System.Drawing.Size(100, 20);
             this.avg_heart_rate.TabIndex = 8;
+            this.avg_heart_rate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // avg_cadence
             // 
-            this.avg_cadence.Location = new System.Drawing.Point(321, 50);
+            this.avg_cadence.Location = new System.Drawing.Point(357, 53);
             this.avg_cadence.Name = "avg_cadence";
             this.avg_cadence.Size = new System.Drawing.Size(100, 20);
             this.avg_cadence.TabIndex = 7;
+            this.avg_cadence.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // nudDistanceRideDataEntry
             // 
@@ -668,33 +689,34 @@
             // 
             this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
             // 
-            // numericUpDown2
+            // chk1RideDataEntry
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(204, 61);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(34, 20);
-            this.numericUpDown2.TabIndex = 43;
-            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+            this.chk1RideDataEntry.AutoSize = true;
+            this.chk1RideDataEntry.Location = new System.Drawing.Point(195, 108);
+            this.chk1RideDataEntry.Name = "chk1RideDataEntry";
+            this.chk1RideDataEntry.Size = new System.Drawing.Size(144, 17);
+            this.chk1RideDataEntry.TabIndex = 44;
+            this.chk1RideDataEntry.Text = "Retrieve Data From Date";
+            this.chk1RideDataEntry.UseVisualStyleBackColor = true;
             // 
             // RideDataEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(489, 611);
+            this.ClientSize = new System.Drawing.Size(526, 644);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "RideDataEntry";
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "RideDataEntry";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RideDataEntryFormClosed);
             this.Load += new System.EventHandler(this.RideDataEntryLoad);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
@@ -703,7 +725,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -770,5 +791,6 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ComboBox cbEffortRideDataEntry;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.CheckBox chk1RideDataEntry;
     }
 }

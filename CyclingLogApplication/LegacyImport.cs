@@ -22,16 +22,9 @@ namespace CyclingLogApplication
 
         private void cancel_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure you want to exit the Legacy Data Import function?", "Exit Legacy Data Import", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                setLegacyIndexSelection(-1);
-                //Close();
-                this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
-            } else
-            {
-                setLegacyIndexSelection(cbLegacyIndexSelection.SelectedIndex);
-            }
+            setLegacyIndexSelection(-1);
+            //Close();
+            this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
         }
 
         public int getLegacyIndexSelection()

@@ -14,11 +14,15 @@ namespace CyclingLogApplication
 {
     public partial class ChartForm : Form
     {
+        private static SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+
+
         public ChartForm(MainForm mainForm)
         {
             InitializeComponent();
-
             labelChartError.Hide();
+            //MainForm mainForm = new MainForm("");
+            sqlConnection = mainForm.getsqlConnectionString();
             //chart1.Series["Series1"].XValueMember = "Date";
             //chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
             //chart1.Series["Series1"].YValueMembers = "AvgSpeed";
@@ -96,10 +100,10 @@ namespace CyclingLogApplication
             int logIndex = 1;
 
 
-            SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-            conn.Open();
+            //SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+            sqlConnection.Open();
             DataSet ds = new DataSet();
-            SqlDataAdapter adapt = new SqlDataAdapter("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, conn);
+            SqlDataAdapter adapt = new SqlDataAdapter("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, sqlConnection);
             //adapt.Fill(ds);
             chart1.DataSource = ds;
             //set the member of the chart data source used to data bind to the X-values of the series  
@@ -141,7 +145,7 @@ namespace CyclingLogApplication
             }
 
             // conn and reader declared outside try block for visibility in finally block
-            SqlConnection conn = null;
+            //SqlConnection conn = null;
             SqlDataReader reader = null;
             List<string> nameList = new List<string>();
             MainForm mainForm = new MainForm("");
@@ -150,8 +154,8 @@ namespace CyclingLogApplication
             try
             {
                 // instantiate and open connection
-                conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                conn.Open();
+                //conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+                
                 SqlCommand cmd = null;
                 int logIndex = mainForm.getLogYearIndex(cbLogYearChart.SelectedItem.ToString());
 
@@ -159,10 +163,10 @@ namespace CyclingLogApplication
                 if (cbTypeData.SelectedIndex == 0)
                 {
                     if (!checkBoxRouteOption.Checked) {
-                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, conn);
+                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, sqlConnection);
                     } else
                     {
-                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex, conn);
+                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex, sqlConnection);
                     }
                 }
                 //Weekly:
@@ -170,11 +174,11 @@ namespace CyclingLogApplication
                 {
                     if (!checkBoxRouteOption.Checked)
                     {
-                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, conn);
+                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, sqlConnection);
                     }
                     else
                     {
-                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex, conn);
+                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex, sqlConnection);
                     }
                 }
                 //Monthly:
@@ -182,14 +186,15 @@ namespace CyclingLogApplication
                 {
                     if (!checkBoxRouteOption.Checked)
                     {
-                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, conn);
+                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, sqlConnection);
                     }
                     else
                     {
-                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex, conn);
+                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex, sqlConnection);
                     }
                 }
 
+                sqlConnection.Open();
                 reader = cmd.ExecuteReader();
                 int weekCount = 1;
                 int monthCount = 1;
@@ -303,9 +308,9 @@ namespace CyclingLogApplication
                 }
 
                 // close connection
-                if (conn != null)
+                if (sqlConnection != null)
                 {
-                    conn.Close();
+                    sqlConnection.Close();
                 }
             }
 

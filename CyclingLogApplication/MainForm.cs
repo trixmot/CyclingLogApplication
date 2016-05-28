@@ -10,9 +10,8 @@ using System.Threading;
 using System.Data;
 using System.Drawing;
 using System.ComponentModel;
-//using System.Threading;
+using System.Configuration;
 
-//TODO: Prevent multipe runs of app
 
 namespace CyclingLogApplication
 {
@@ -22,7 +21,7 @@ namespace CyclingLogApplication
         RideDataEntry rideDataEntryForm;
         RideDataDisplay rideDataDisplayForm;
         ChartForm chartForm;
-        //private Thread thread;
+
         private static string logVersion = "0.0.1";
         private static int logLevel = 0;
         private static string cbStatistic1 = "-1";
@@ -36,6 +35,9 @@ namespace CyclingLogApplication
         private static int lastLogYearChart = -1;
         private static int lastRouteChart = -1;
         private static int lastTypeChart = -1;
+        private static SqlConnection sqlConnection;             // = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+        private static DatabaseConnection databaseConnection;   // = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+
 
         public MainForm()
         {
@@ -47,8 +49,9 @@ namespace CyclingLogApplication
                 mutex = null;
             }
 
+            
             InitializeComponent();
-            //rideDataEntryForm = new RideDataEntry(this);
+            GetConnectionStrings();
             int logSetting = getLogLevel();
 
             Logger.Log("**********************************************", 1, logSetting);
@@ -62,11 +65,10 @@ namespace CyclingLogApplication
         }
 
 
-        public MainForm(string emotyConstructor)
+        public MainForm(string emetyConstructor)
         {
-            
+            //Empoty consturctor to prevent from running InitializeComponent():
         }
-
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -93,7 +95,7 @@ namespace CyclingLogApplication
             bikeList = readDataNames("Table_Bikes", "Name");
 
             rideDataEntryForm = new RideDataEntry(this);
-            rideDataDisplayForm = new RideDataDisplay();
+            rideDataDisplayForm = new RideDataDisplay(this);
             chartForm = new ChartForm(this);
 
             //Set first option of 'None':
@@ -185,6 +187,39 @@ namespace CyclingLogApplication
 
                 Application.Exit();
             }
+        }
+
+        static void GetConnectionStrings()
+        {
+            ConnectionStringSettingsCollection settings = ConfigurationManager.ConnectionStrings;
+
+            if (settings != null)
+            {
+                foreach (ConnectionStringSettings cs in settings)
+                {
+                    if (cs.Name.Equals("CyclingLogApplication.Properties.Settings.CyclingLogDatabaseConnectionString"))
+                    {
+                        Logger.Log("ConnectionStringSettingsCollection Name: " + cs.Name, 1, 1);
+                        Logger.Log("ConnectionStringSettingsCollection ProviderName: " + cs.ProviderName, 1, 1);
+                        Logger.Log("ConnectionStringSettingsCollection ConnectionString: " + cs.ConnectionString, 1, 1);
+
+                        sqlConnection = new SqlConnection(cs.ConnectionString);
+                        databaseConnection = new DatabaseConnection(cs.ConnectionString);
+
+                        break;
+                    }              
+                }
+            }
+        }
+
+        public SqlConnection getsqlConnectionString()
+        {
+            return sqlConnection;
+        }
+
+        public DatabaseConnection getsDatabaseConnectionString()
+        {
+            return databaseConnection;
         }
 
         private Mutex getMutex()
@@ -351,57 +386,18 @@ namespace CyclingLogApplication
             }
         }
 
-        //TESTING ONLY
-        private void writeData(object sender, EventArgs e)
-        {
-            // conn and reader declared outside try block for visibility in finally block
-            SqlConnection conn = null;
-
-            string input1 = "testvalue1";
-            string input2 = "testvalue2";
-
-            try
-            {
-                // instantiate and open connection
-                conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                conn.Open();
-
-                // declare command object with parameter
-                String query = "INSERT INTO dbo.Table1 (field1,field2) VALUES(@field1,@field2)";
-
-                SqlCommand cmd = new SqlCommand(query, conn);
-
-                cmd.Parameters.AddWithValue("@field1", input1);
-                cmd.Parameters.AddWithValue("@field2", input2);
-
-                cmd.ExecuteNonQuery();
-            }
-            finally
-            {
-                // close connection
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
-        }
-
         private List<string> readDataNames(string tableName, string columnName)
         {
-            // conn and reader declared outside try block for visibility in finally block
-            SqlConnection conn = null;
             SqlDataReader reader = null;
             List<string> nameList = new List<string>();
-            int logSetting = getLogLevel();
+            int logSetting = getLogLevel();  
 
             try
             {
-                // instantiate and open connection
-                conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                conn.Open();
+                sqlConnection.Open();
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("SELECT " + columnName + " FROM " + tableName + " ORDER BY " + columnName + " ASC", conn);
+                SqlCommand cmd = new SqlCommand("SELECT " + columnName + " FROM " + tableName + " ORDER BY " + columnName + " ASC", sqlConnection);
 
                 // 2. define parameters used in command object
                 //SqlParameter param = new SqlParameter();
@@ -420,7 +416,6 @@ namespace CyclingLogApplication
                     string returnValue = reader[0].ToString();
                     //Console.WriteLine("{0}, {1}", reader["field1"], reader["field2"]);
                     //MessageBox.Show(String.Format("{0}", reader[0]));
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
                     nameList.Add(returnValue);
                     Logger.Log("Reading data from the database: columnName:" + returnValue, 0, logSetting);
                 }
@@ -434,66 +429,13 @@ namespace CyclingLogApplication
                 }
 
                 // close connection
-                if (conn != null)
+                if (sqlConnection != null)
                 {
-                    conn.Close();
+                    sqlConnection.Close();
                 }
             }
 
             return nameList;
-        }
-
-        //TESTING only
-        private void readData(object sender, EventArgs e)
-        {
-            // conn and reader declared outside try block for visibility in finally block
-            SqlConnection conn = null;
-            SqlDataReader reader = null;
-
-            //int inputValue = 3;
-
-            try
-            {
-                // instantiate and open connection
-                conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                conn.Open();
-
-                // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("select SUM(RideDistance) from Table_Ride_Information", conn);
-
-                // 2. define parameters used in command object
-                //SqlParameter param = new SqlParameter();
-                //param.ParameterName = "@Id";
-                //param.Value = inputValue;
-
-                // 3. add new parameter to command object
-                //cmd.Parameters.Add(param);
-
-                // get data stream
-                reader = cmd.ExecuteReader();
-
-                // write each record
-                while (reader.Read())
-                {
-                    //Console.WriteLine("{0}, {1}", reader["field1"], reader["field2"]);
-                    //MessageBox.Show(String.Format("{0}", reader[0]));
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
-                }
-            }
-            finally
-            {
-                // close reader
-                if (reader != null)
-                {
-                    reader.Close();
-                }
-
-                // close connection
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
         }
 
         private void btAddLogYearConfig(object sender, EventArgs e)
@@ -586,16 +528,6 @@ namespace CyclingLogApplication
                 }
 
                 int logYearIndex = getLogYearIndex(cbLogYearConfig.SelectedItem.ToString());
-                ////int selectedIndex = cbLogYearConfig.SelectedIndex;
-                //cbLogYearConfig.Items.Remove(cbLogYearConfig.SelectedItem);
-                //rideDataEntryForm.RemoveLogYearDataEntry(cbLogYearConfig.SelectedText);
-                //rideDataDisplayForm.RemoveLogYearFilter(cbLogYearConfig.SelectedText);
-                //chartForm.cbLogYearChart.Items.Remove(cbLogYearConfig.SelectedItem);
-                //cbLogYear1.Items.Remove(tbLogYearConfig.Text);
-                //cbLogYear2.Items.Remove(tbLogYearConfig.Text);
-                //cbLogYear3.Items.Remove(tbLogYearConfig.Text);
-                //cbLogYear4.Items.Remove(tbLogYearConfig.Text);
-                //cbLogYear5.Items.Remove(tbLogYearConfig.Text);
 
                 //Remove logyear from the Log year table:
                 List<object> objectValues = new List<object>();
@@ -610,20 +542,18 @@ namespace CyclingLogApplication
 
         public int getLogYearIndex(string logYearName)
         {
-            // conn and reader declared outside try block for visibility in finally block
-            SqlConnection conn = null;
             SqlDataReader reader = null;
-
             int returnValue = -1;
 
             try
             {
-                // instantiate and open connection
-                conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                conn.Open();
+                if (sqlConnection != null && sqlConnection.State == ConnectionState.Closed)
+                {
+                    sqlConnection.Open();
+                }
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("SELECT LogYearID FROM Table_Log_Year WHERE @logYearName=[Name]", conn);
+                SqlCommand cmd = new SqlCommand("SELECT LogYearID FROM Table_Log_Year WHERE @logYearName=[Name]", sqlConnection);
 
                 // 2. define parameters used in command object
                 SqlParameter param = new SqlParameter();
@@ -641,7 +571,6 @@ namespace CyclingLogApplication
                 {
                     //Console.WriteLine("{0}, {1}", reader["field1"], reader["field2"]);
                     //MessageBox.Show(String.Format("{0}", reader[0]));
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
                     string temp = reader[0].ToString();
 
                     if (temp.Equals(""))
@@ -665,9 +594,9 @@ namespace CyclingLogApplication
                 }
 
                 // close connection
-                if (conn != null)
+                if (sqlConnection != null)
                 {
-                    conn.Close();
+                    sqlConnection.Close();
                 }
             }
 
@@ -688,20 +617,16 @@ namespace CyclingLogApplication
 
         private void removeLogYearData(int logIndex)
         {
-            // conn and reader declared outside try block for visibility in finally block
-            SqlConnection conn = null;
             SqlDataReader reader = null;
 
             int returnValue = 0;
 
             try
             {
-                // instantiate and open connection
-                conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                conn.Open();
+                sqlConnection.Open();
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("DELETE FROM Table_Ride_Information WHERE @Id=[LogYearID]", conn);
+                SqlCommand cmd = new SqlCommand("DELETE FROM Table_Ride_Information WHERE @Id=[LogYearID]", sqlConnection);
 
                 // 2. define parameters used in command object
                 SqlParameter param = new SqlParameter();
@@ -719,7 +644,6 @@ namespace CyclingLogApplication
                 {
                     //Console.WriteLine("{0}, {1}", reader["field1"], reader["field2"]);
                     //MessageBox.Show(String.Format("{0}", reader[0]));
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
                     string temp = reader[0].ToString();
 
                     if (temp.Equals(""))
@@ -743,9 +667,9 @@ namespace CyclingLogApplication
                 }
 
                 // close connection
-                if (conn != null)
+                if (sqlConnection != null)
                 {
-                    conn.Close();
+                    sqlConnection.Close();
                 }
             }
         }
@@ -974,12 +898,9 @@ namespace CyclingLogApplication
                 tmpProcedureName += "@" + i.ToString() + ",";
             }
 
-            tmpProcedureName = tmpProcedureName.TrimEnd(',') + ";";
-            DatabaseConnection databaseConnection = new DatabaseConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-            //Object ToReturnTest = databaseConnection.ExecuteScalarFunctionTest(ProcedureName, _Parameters);
-            //MessageBox.Show(ToReturnTest.ToString());
+            tmpProcedureName = tmpProcedureName.TrimEnd(',') + ";";         
             SqlDataReader ToReturn = databaseConnection.ExecuteQueryConnection(tmpProcedureName, _Parameters);
-            //qlDataReader ToReturn = null;
+
             return ToReturn;
         }
 
@@ -998,7 +919,6 @@ namespace CyclingLogApplication
                 {
                     while (results.Read())
                     {
-                        //MessageBox.Show(String.Format("{0}", results[0]));
                         string temp = results[0].ToString();
                         if (temp.Equals(""))
                         {
@@ -1027,7 +947,6 @@ namespace CyclingLogApplication
                 {
                     while (results.Read())
                     {
-                        //MessageBox.Show(String.Format("{0}", results[0]));
                         string temp = results[0].ToString();
                         if (temp.Equals(""))
                         {
@@ -1048,20 +967,16 @@ namespace CyclingLogApplication
         //SELECT Count(LogYearID) FROM Table_Ride_Information;
         private int getTotalRidesForSelectedLog(int logIndex)
         {
-            // conn and reader declared outside try block for visibility in finally block
-            SqlConnection conn = null;
             SqlDataReader reader = null;
 
             int returnValue = 0;
 
             try
             {
-                // instantiate and open connection
-                conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                conn.Open();
+                sqlConnection.Open();
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("select COUNT(RideDistance) from Table_Ride_Information WHERE @Id=[LogYearID]", conn);
+                SqlCommand cmd = new SqlCommand("select COUNT(RideDistance) from Table_Ride_Information WHERE @Id=[LogYearID]", sqlConnection);
 
                 // 2. define parameters used in command object
                 SqlParameter param = new SqlParameter();
@@ -1079,7 +994,6 @@ namespace CyclingLogApplication
                 {
                     //Console.WriteLine("{0}, {1}", reader["field1"], reader["field2"]);
                     //MessageBox.Show(String.Format("{0}", reader[0]));
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
                     string temp = reader[0].ToString();
 
                     if (temp.Equals(""))
@@ -1100,9 +1014,9 @@ namespace CyclingLogApplication
                 }
 
                 // close connection
-                if (conn != null)
+                if (sqlConnection != null)
                 {
-                    conn.Close();
+                    sqlConnection.Close();
                 }
             }
 
@@ -1163,20 +1077,16 @@ namespace CyclingLogApplication
             //loop through each week
             //Call DB query to get total miles for the selected week
             //store week number and miles if its > then current value
-            // conn and reader declared outside try block for visibility in finally block
-            SqlConnection conn = null;
             SqlDataReader reader = null;
 
             float returnValue = 0;
 
             try
             {
-                // instantiate and open connection
-                conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                conn.Open();
+                sqlConnection.Open();
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("select SUM(RideDistance) from Table_Ride_Information WHERE @LogYearID=[LogYearID]", conn);
+                SqlCommand cmd = new SqlCommand("select SUM(RideDistance) from Table_Ride_Information WHERE @LogYearID=[LogYearID]", sqlConnection);
 
                 // 2. define parameters used in command object
                 SqlParameter param = new SqlParameter();
@@ -1193,7 +1103,6 @@ namespace CyclingLogApplication
                 while (reader.Read())
                 {
                     //MessageBox.Show(String.Format("{0}", reader[0]));
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
                     string temp = reader[0].ToString();
                     //MessageBox.Show(temp);
                     if (temp.Equals(""))
@@ -1214,9 +1123,9 @@ namespace CyclingLogApplication
                 }
 
                 // close connection
-                if (conn != null)
+                if (sqlConnection != null)
                 {
-                    conn.Close();
+                    sqlConnection.Close();
                 }
             }
 
@@ -1228,20 +1137,16 @@ namespace CyclingLogApplication
         //SELECT MAX(RideDistance) FROM Table_Ride_Information;
         private float getHighMileageDay(int logIndex)
         {
-            // conn and reader declared outside try block for visibility in finally block
-            SqlConnection conn = null;
             SqlDataReader reader = null;
 
             float returnValue = 0;
 
             try
             {
-                // instantiate and open connection
-                conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                conn.Open();
+                sqlConnection.Open();
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("select MAX(RideDistance) from Table_Ride_Information WHERE @Id=[LogYearID]", conn);
+                SqlCommand cmd = new SqlCommand("select MAX(RideDistance) from Table_Ride_Information WHERE @Id=[LogYearID]", sqlConnection);
 
                 // 2. define parameters used in command object
                 SqlParameter param = new SqlParameter();
@@ -1258,7 +1163,6 @@ namespace CyclingLogApplication
                 while (reader.Read())
                 {
                     //MessageBox.Show(String.Format("{0}", reader[0]));
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
                     string temp = reader[0].ToString();
                     if (temp.Equals(""))
                     {
@@ -1278,9 +1182,9 @@ namespace CyclingLogApplication
                 }
 
                 // close connection
-                if (conn != null)
+                if (sqlConnection != null)
                 {
-                    conn.Close();
+                    sqlConnection.Close();
                 }
             }
 
@@ -1813,19 +1717,16 @@ namespace CyclingLogApplication
 
             //Update the route name in the database for each row:
             //Update value in database:
-            SqlConnection conn = null;
             SqlDataReader reader = null;
 
             float returnValue = 0;
 
             try
             {
-                // instantiate and open connection
-                conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                conn.Open();
+                sqlConnection.Open();
 
                 // declare command object with parameter
-                SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET Route=@NewValue WHERE [Route]=@OldValue", conn);
+                SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET Route=@NewValue WHERE [Route]=@OldValue", sqlConnection);
                 
                 // setcbStatistic1 parameters
                 cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = newValue;
@@ -1838,9 +1739,8 @@ namespace CyclingLogApplication
                 while (reader.Read())
                 {
                     //MessageBox.Show(String.Format("{0}", reader[0]));
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
                     string temp = reader[0].ToString();
-                    //MessageBox.Show(temp);
+
                     if (temp.Equals(""))
                     {
                         returnValue = 0;
@@ -1859,9 +1759,9 @@ namespace CyclingLogApplication
                 }
 
                 // close connection
-                if (conn != null)
+                if (sqlConnection != null)
                 {
-                    conn.Close();
+                    sqlConnection.Close();
                 }
             }
 
@@ -1952,130 +1852,6 @@ namespace CyclingLogApplication
             //NOTE: The Table_Ride_Information only contains the LogYearID and not the name:
         }
 
-        private void bRenameBike_Click(object sender, EventArgs e)
-        {
-            //Verify Miles is entered and in the correct format:
-            int parsedValue;
-            string miles = tbConfigMilesNotInLog.Text;
-
-            if (!int.TryParse(miles, out parsedValue))
-            {
-                lbConfigError.Text = "The miles for the Bike must be in numeric format. Enter 0 if unknown.";
-                return;
-            }
-
-            string newValue = tbBikeConfig.Text;
-            string oldValue = cbBikeConfig.SelectedItem.ToString();
-
-            List<object> objectValues = new List<object>();
-            objectValues.Add(newValue);
-            objectValues.Add(oldValue);
-            objectValues.Add(Convert.ToDouble(miles));
-
-            runStoredProcedure(objectValues, "Bike_Update");
-
-            List<string> tempList = new List<string>();
-
-            int selectedIndex = cbBikeConfig.SelectedIndex;
-            cbBikeConfig.DataSource = cbBikeConfig.Items;
-
-            for (int i = 0; i < cbBikeConfig.Items.Count; i++)
-            {
-                tempList.Add(cbBikeConfig.Items[i].ToString());
-            }
-
-            cbBikeConfig.DataSource = null;
-            cbBikeConfig.Items.Clear();
-
-            cbBikeMaint.DataSource = null;
-            cbBikeMaint.Items.Clear();
-
-            rideDataEntryForm.cbBikeDataEntry.DataSource = null;
-            rideDataEntryForm.cbBikeDataEntry.Items.Clear();
-
-            for (int i = 0; i < tempList.Count; i++)
-            {
-                if (selectedIndex == i)
-                {
-                    cbBikeConfig.Items.Add(newValue);
-                    cbBikeMaint.Items.Add(newValue);
-                    rideDataEntryForm.cbBikeDataEntry.Items.Add(newValue);
-                }
-                else {
-                    cbBikeConfig.Items.Add(tempList[i]);
-                    cbBikeMaint.Items.Add(tempList[i]);
-                    rideDataEntryForm.cbBikeDataEntry.Items.Add(tempList[i]);
-                }
-            }
-            cbBikeConfig.SelectedIndex = selectedIndex;
-            rideDataEntryForm.cbBikeDataEntry.SelectedIndex = selectedIndex;
-
-            //Update value in database:
-            SqlConnection conn = null;
-            SqlDataReader reader = null;
-
-            float returnValue = 0;
-
-            try
-            {
-                // instantiate and open connection
-                conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                conn.Open();
-
-                // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET [Bike]=@NewValue WHERE [Bike]=@OldValue", conn);
-
-                // 2. define parameters used in command object
-                //SqlParameter sqlparams = new SqlParameter();
-                //sqlparams.ParameterName = "NewValue";
-                //sqlparams.Value = newValue;
-
-                //sqlparams.ParameterName = "OldValue";
-                //sqlparams.Value = oldValue;
-
-                // 3. add new parameter to command object
-                //cmd.Parameters.Add(sqlparams);
-
-                cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = newValue;
-                cmd.Parameters.Add("@OldValue", SqlDbType.NVarChar).Value = oldValue;
-
-                // get data stream
-                reader = cmd.ExecuteReader();
-
-                // write each record
-                while (reader.Read())
-                {
-                    //MessageBox.Show(String.Format("{0}", reader[0]));
-                    //Console.WriteLine(String.Format("{0}", reader[0]));
-                    string temp = reader[0].ToString();
-                    //MessageBox.Show(temp);
-                    if (temp.Equals(""))
-                    {
-                        returnValue = 0;
-                    }
-                    else {
-                        returnValue = float.Parse(temp);
-                    }
-                }
-            } catch (Exception ex)
-            {
-                Logger.LogError("[ERROR]: Exception while trying to Rename bike name." + ex.Message.ToString());
-            }
-            finally
-            {
-                // close reader
-                if (reader != null)
-                {
-                    reader.Close();
-                }
-
-                // close connection
-                if (conn != null)
-                {
-                    conn.Close();
-                }
-            }
-        }
 
         //=============================================================================
         //End Statistics Section
@@ -2094,16 +1870,18 @@ namespace CyclingLogApplication
         private void btGetMaintLog_Click(object sender, EventArgs e)
         {
             lbMaintError.Text = "";
-            SqlConnection conn = null;
+            //SqlConnection conn = null;
 
             try
             {
-                conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                conn.Open();
+                //conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+                //conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""c:\LogFiles\CyclingLogDatabase.mdf"";Integrated Security=True");
+
+                sqlConnection.Open();
                 SqlDataAdapter sqlDataAdapter = null;
 
                 sqlDataAdapter = new SqlDataAdapter();
-                sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [Date],[Bike],[Miles],[Comments] FROM Table_Bike_Maintenance", conn);
+                sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [Date],[Bike],[Miles],[Comments] FROM Table_Bike_Maintenance", sqlConnection);
 
                 DataTable dataTable = new DataTable();
                 sqlDataAdapter.Fill(dataTable);
@@ -2121,9 +1899,9 @@ namespace CyclingLogApplication
             finally
             {
                 // close connection
-                if (conn != null)
+                if (sqlConnection != null)
                 {
-                    conn.Close();
+                    sqlConnection.Close();
                 }
             }
         }
@@ -2333,9 +2111,7 @@ namespace CyclingLogApplication
 
         private void btBikeMilesUpdate_Click(object sender, EventArgs e)
         {
-            //TODO:
             //Load bike names and notinlogmiles from the database:
-
 
             tbBikeMiles1.Text = "";
             tbBikeMiles2.Text = "";
@@ -2518,6 +2294,145 @@ namespace CyclingLogApplication
                 Logger.LogError("[ERROR]: Exception while trying to retrive Bike miles data." + ex.Message.ToString());
             }
         }
+
+        private void btDeleteAllData_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("This function will delete all data and from the Cycling Log Application and database. Are you sure you want to continue? If you have not made a backup copy of the database, select No, and make a copy and then run the function once again.", "Delete All Data From Database", MessageBoxButtons.YesNo);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+
+            //List of things to clean up:
+            //Clear out all tables:
+            //Delete the config file and a default new one will be created:
+
+        }
+
+        private void btRenameBike_Click(object sender, EventArgs e)
+        {
+            //Verify Miles is entered and in the correct format:
+            int parsedValue;
+            string miles = tbConfigMilesNotInLog.Text;
+
+            if (!int.TryParse(miles, out parsedValue))
+            {
+                lbConfigError.Text = "The miles for the Bike must be in numeric format. Enter 0 if unknown.";
+                return;
+            }
+
+            string newValue = tbBikeConfig.Text;
+            string oldValue = cbBikeConfig.SelectedItem.ToString();
+
+            List<object> objectValues = new List<object>();
+            objectValues.Add(newValue);
+            objectValues.Add(oldValue);
+            objectValues.Add(Convert.ToDouble(miles));
+
+            runStoredProcedure(objectValues, "Bike_Update");
+
+            List<string> tempList = new List<string>();
+
+            int selectedIndex = cbBikeConfig.SelectedIndex;
+            cbBikeConfig.DataSource = cbBikeConfig.Items;
+
+            for (int i = 0; i < cbBikeConfig.Items.Count; i++)
+            {
+                tempList.Add(cbBikeConfig.Items[i].ToString());
+            }
+
+            cbBikeConfig.DataSource = null;
+            cbBikeConfig.Items.Clear();
+
+            cbBikeMaint.DataSource = null;
+            cbBikeMaint.Items.Clear();
+
+            rideDataEntryForm.cbBikeDataEntry.DataSource = null;
+            rideDataEntryForm.cbBikeDataEntry.Items.Clear();
+
+            for (int i = 0; i < tempList.Count; i++)
+            {
+                if (selectedIndex == i)
+                {
+                    cbBikeConfig.Items.Add(newValue);
+                    cbBikeMaint.Items.Add(newValue);
+                    rideDataEntryForm.cbBikeDataEntry.Items.Add(newValue);
+                }
+                else
+                {
+                    cbBikeConfig.Items.Add(tempList[i]);
+                    cbBikeMaint.Items.Add(tempList[i]);
+                    rideDataEntryForm.cbBikeDataEntry.Items.Add(tempList[i]);
+                }
+            }
+            cbBikeConfig.SelectedIndex = selectedIndex;
+            rideDataEntryForm.cbBikeDataEntry.SelectedIndex = selectedIndex;
+
+            //Update value in database:
+            SqlDataReader reader = null;
+
+            float returnValue = 0;
+
+            try
+            {
+                sqlConnection.Open();
+
+                // 1. declare command object with parameter
+                SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET [Bike]=@NewValue WHERE [Bike]=@OldValue", sqlConnection);
+
+                // 2. define parameters used in command object
+                //SqlParameter sqlparams = new SqlParameter();
+                //sqlparams.ParameterName = "NewValue";
+                //sqlparams.Value = newValue;
+
+                //sqlparams.ParameterName = "OldValue";
+                //sqlparams.Value = oldValue;
+
+                // 3. add new parameter to command object
+                //cmd.Parameters.Add(sqlparams);
+
+                cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = newValue;
+                cmd.Parameters.Add("@OldValue", SqlDbType.NVarChar).Value = oldValue;
+
+                // get data stream
+                reader = cmd.ExecuteReader();
+
+                // write each record
+                while (reader.Read())
+                {
+                    //MessageBox.Show(String.Format("{0}", reader[0]));
+                    string temp = reader[0].ToString();
+
+                    if (temp.Equals(""))
+                    {
+                        returnValue = 0;
+                    }
+                    else
+                    {
+                        returnValue = float.Parse(temp);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to Rename bike name." + ex.Message.ToString());
+            }
+            finally
+            {
+                // close reader
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+                // close connection
+                if (sqlConnection != null)
+                {
+                    sqlConnection.Close();
+                }
+            }
+        }
+
 
         //=============================================================================
         //End Maintenance Section

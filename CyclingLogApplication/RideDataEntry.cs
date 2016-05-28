@@ -18,15 +18,21 @@ namespace CyclingLogApplication
     {
         private static int formLoad = 1;
         private static int formClosing = 0;
+        private SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+        private DatabaseConnection databaseConnection;// = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+
 
         //MainForm mainForm;
         public RideDataEntry(MainForm mainForm)
         {
             InitializeComponent();
+            //MainForm mainForm = new MainForm("");
+            sqlConnection = mainForm.getsqlConnectionString();
+            databaseConnection = mainForm.getsDatabaseConnectionString();
+            
             //Hidden field to store the record id of the current displaying record that has been loaded on the page:
-            //TODO: uncomment after testing
-            //tbRecordID.Hide();
-            //tbWeekNumber.Hide();
+            tbRecordID.Hide();
+            tbWeekNumber.Hide();
             tbRecordID.Text = "0";
             lbRideDataEntryError.Hide();
             lbRideDataEntryError.Text = "";
@@ -52,12 +58,12 @@ namespace CyclingLogApplication
             dtpTimeRideDataEntry.ShowUpDown = true;
             dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
 
-            //Update Ride Type CB3:
-            //comboBox3.Items.Add("Recovery");
-            //comboBox3.Items.Add("Base");
-            //comboBox3.Items.Add("Distance");
-            //comboBox3.Items.Add("Speed");
-            //comboBox3.Items.Add("Race");
+            //Update Ride Type cbRideTypeDataEntry:
+            //cbRideTypeDataEntry.Items.Add("Recovery");
+            //cbRideTypeDataEntry.Items.Add("Base");
+            //cbRideTypeDataEntry.Items.Add("Distance");
+            //cbRideTypeDataEntry.Items.Add("Speed");
+            //cbRideTypeDataEntry.Items.Add("Race");
 
             List<string> routeList = mainForm.GetRoutes();
             for (int i = 0; i < routeList.Count; i++)
@@ -73,7 +79,7 @@ namespace CyclingLogApplication
 
             //Set index for the LogYear:
             int logYearIndex = Convert.ToInt32(mainForm.getLastLogSelected());
-            
+
             if (logYearIndex == -1)
             {
                 lbRideDataEntryError.Show();
@@ -140,7 +146,7 @@ namespace CyclingLogApplication
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            if (formClosing == 0)
+            if (formClosing == 0 && chk1RideDataEntry.Checked)
             {
                 if (cbLogYearDataEntry.SelectedIndex == -1)
                 {
@@ -254,7 +260,8 @@ namespace CyclingLogApplication
                                 tbComments.Text = comments;
                                 tbRecordID.Text = recordID;
                                 tbWeekNumber.Text = weekNumber;
-                            } else
+                            }
+                            else
                             {
                                 Logger.Log("Ride data for an unselected date index was selected.", 0, mainForm.getLogLevel());
                             }
@@ -276,7 +283,8 @@ namespace CyclingLogApplication
                 if (recordIndex == 1)
                 {
                     numericUpDown2.Enabled = false;
-                } else
+                }
+                else
                 {
                     numericUpDown2.Enabled = true;
                 }
@@ -298,10 +306,10 @@ namespace CyclingLogApplication
             //this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
             //DialogResult result = MessageBox.Show("Any unsaved changes will be lost, do you want to continue?", "Exit Data Entry Form", MessageBoxButtons.YesNo);
             //if (result == DialogResult.Yes)
-           // {
-                //Close();
-                formClosing = 1;
-                this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
+            // {
+            //Close();
+            formClosing = 1;
+            this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
             //}
 
         }
@@ -340,31 +348,67 @@ namespace CyclingLogApplication
 
         private void RideInformationChange(string changeType, string procedureName)
         {
-            try {
+            lbRideDataEntryError.Hide();
+
+            try
+            {
+                //Make sure certain required fields are filled in:
+                DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                if (dtpTimeRideDataEntry.Value == dt)
+                {
+                    lbRideDataEntryError.Text = "The Ride Time must be greater than 0:00:00.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                decimal avgspeed = numericUpDown1.Value;
+                if (avgspeed == 0)
+                {
+                    lbRideDataEntryError.Text = "The Average Speed must be greater than 0.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (cbLogYearDataEntry.SelectedIndex < 0)
+                {
+                    lbRideDataEntryError.Text = "A Log year must be selected.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (cbRouteDataEntry.SelectedIndex < 0)
+                {
+                    lbRideDataEntryError.Text = "A Route must be selected.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (cbBikeDataEntry.SelectedIndex < 0)
+                {
+                    lbRideDataEntryError.Text = "A Bike must be selected.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (cbRideTypeDataEntry.SelectedIndex < 0)
+                {
+                    lbRideDataEntryError.Text = "A Ride Type must be selected.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (cbLocationDataEntry.SelectedIndex < 0)
+                {
+                    lbRideDataEntryError.Text = "A Ride Location must be selected.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (cbEffortRideDataEntry.SelectedIndex < 0)
+                {
+                    lbRideDataEntryError.Text = "An Effort option must be selected.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+
                 MainForm mainForm = new MainForm("");
                 int logSetting = mainForm.getLogLevel();
                 string recordID = tbRecordID.Text;
 
-                // Check recordID value:
-                if (!tbRecordID.Text.Equals("0") && changeType.Equals("Add"))
-                {
-                    DialogResult result = MessageBox.Show("Detected that the current data was retrieved from a record that was already saved to the database. Do you want to add a duplicate record?", "Add Date - Duplicate Record Detected", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.No)
-                    {
-                        Logger.Log("Detected that the current data was retrieved from a record that was already saved to the database. RecordID" + recordID, 0, logSetting);
-
-                        return;
-                    }
-                }
-                if (changeType.Equals("Add"))
-                {
-                    DialogResult result = MessageBox.Show("Adding the ride to the database. Do you want to continue?", "Add Data", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-                else
+                if (changeType.Equals("Update"))
                 {
                     if (tbRecordID.Text.Equals("0"))
                     {
@@ -380,36 +424,37 @@ namespace CyclingLogApplication
                     }
                 }
 
-                //Make sure certain required fields are filled in:
-                if (cbLogYearDataEntry.SelectedIndex < 0)
+                // Check recordID value:
+                if (!tbRecordID.Text.Equals("0") && changeType.Equals("Add"))
                 {
-                    lbRideDataEntryError.Text = "A Log year must be selected.";
-                    return;
+                    DialogResult result = MessageBox.Show("Detected that the current data was retrieved from a record that was already saved to the database. Do you want to continue adding the record?", "Add Ride Data", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No)
+                    {
+                        Logger.Log("Detected that the current data was retrieved from a record that was already saved to the database. RecordID" + recordID, 0, logSetting);
+
+                        return;
+                    }
                 }
-                if (cbRouteDataEntry.SelectedIndex < 0)
+                else
                 {
-                    lbRideDataEntryError.Text = "A Route must be selected.";
-                    return;
+                    if (changeType.Equals("Add"))
+                    {
+                        DialogResult result = MessageBox.Show("Adding the ride to the database. Do you want to continue?", "Add Data", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.No)
+                        {
+                            return;
+                        }
+                    }
+
                 }
-                if (cbBikeDataEntry.SelectedIndex < 0)
+
+                if (changeType.Equals("Update"))
                 {
-                    lbRideDataEntryError.Text = "A Bike must be selected.";
-                    return;
-                }
-                if (cbRideTypeDataEntry.SelectedIndex < 0)
-                {
-                    lbRideDataEntryError.Text = "A Ride Type must be selected.";
-                    return;
-                }
-                if (cbLocationDataEntry.SelectedIndex < 0)
-                {
-                    lbRideDataEntryError.Text = "A Ride Location must be selected.";
-                    return;
-                }
-                if (cbEffortRideDataEntry.SelectedIndex < 0)
-                {
-                    lbRideDataEntryError.Text = "An Effort option must be selected.";
-                    return;
+                    DialogResult result = MessageBox.Show("Updating the ride in the database. Do you want to continue?", "Update Data", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
                 }
 
                 List<object> objectValues = new List<object>();
@@ -446,7 +491,8 @@ namespace CyclingLogApplication
                 if (changeType.Equals("Update"))                    //Week number:
                 {
                     objectValues.Add(tbWeekNumber.Text);
-                } else
+                }
+                else
                 {
                     objectValues.Add(weekValue);
                 }
@@ -466,7 +512,8 @@ namespace CyclingLogApplication
 
                 objectValues.Add(cbEffortRideDataEntry.SelectedItem.ToString());                    //Effort:
 
-                if (changeType.Equals("Update")) {
+                if (changeType.Equals("Update"))
+                {
                     objectValues.Add(recordID);                           //Record ID:
                 }
 
@@ -477,16 +524,19 @@ namespace CyclingLogApplication
                         if (changeType.Equals("Update"))
                         {
                             MessageBox.Show("[ERROR] There was a problem updating the ride.");
-                        } else
+                        }
+                        else
                         {
                             MessageBox.Show("[ERROR] There was a problem adding the ride.");
                         }
-                    } else
+                    }
+                    else
                     {
                         if (changeType.Equals("Update"))
                         {
                             MessageBox.Show("The ride has been updated successfully.");
-                        } else
+                        }
+                        else
                         {
                             MessageBox.Show("The ride has been added successfully.");
                         }
@@ -495,7 +545,8 @@ namespace CyclingLogApplication
                     return;
                 }
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Logger.LogError("[ERROR]: Exception while trying to update ride information." + ex.Message.ToString());
             }
@@ -514,7 +565,6 @@ namespace CyclingLogApplication
                 }
 
                 tmpProcedureName = tmpProcedureName.TrimEnd(',') + ";";
-                DatabaseConnection databaseConnection = new DatabaseConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
                 ToReturn = databaseConnection.ExecuteQueryConnection(tmpProcedureName, _Parameters);
 
             }
@@ -530,7 +580,7 @@ namespace CyclingLogApplication
         {
             // NOTE: This line of code loads data into the 'cyclingLogDatabaseDataSet.Table_Ride_Information' table. You can move, or remove it, as needed.
             this.table_Ride_InformationTableAdapter.Fill(this.cyclingLogDatabaseDataSet.Table_Ride_Information);
-           // cbLogYearDataEntry.SelectedIndex = cbRouteDataEntry.FindStringExact("");
+            // cbLogYearDataEntry.SelectedIndex = cbRouteDataEntry.FindStringExact("");
         }
 
         private void RideDataEntryFormClosed(object sender, FormClosedEventArgs e)
@@ -547,7 +597,6 @@ namespace CyclingLogApplication
             string tempStr = "";
 
             //TODO: I think only the Summary line is required:
-            //TODO: how to show splits:
             try
             {
                 using (OpenFileDialog openfileDialog = new OpenFileDialog() { Filter = "CSV|*.csv", Multiselect = false })
@@ -799,7 +848,7 @@ namespace CyclingLogApplication
             if (result == DialogResult.Yes)
             {
                 // conn and reader declared outside try block for visibility in finally block
-                SqlConnection conn = null;
+                //SqlConnection conn = null;
                 SqlDataReader reader = null;
 
                 int returnValue = 0;
@@ -807,11 +856,11 @@ namespace CyclingLogApplication
                 try
                 {
                     // instantiate and open connection
-                    conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                    conn.Open();
+                    //conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+                    sqlConnection.Open();
 
                     // 1. declare command object with parameter
-                    SqlCommand cmd = new SqlCommand("DELETE FROM Table_Ride_Information WHERE @Id=[Id]", conn);
+                    SqlCommand cmd = new SqlCommand("DELETE FROM Table_Ride_Information WHERE @Id=[Id]", sqlConnection);
 
                     // 2. define parameters used in command object
                     SqlParameter param = new SqlParameter();
@@ -836,7 +885,8 @@ namespace CyclingLogApplication
                         {
                             returnValue = 0;
                         }
-                        else {
+                        else
+                        {
                             returnValue = int.Parse(temp);
                         }
                     }
@@ -854,9 +904,9 @@ namespace CyclingLogApplication
                     }
 
                     // close connection
-                    if (conn != null)
+                    if (sqlConnection != null)
                     {
-                        conn.Close();
+                        sqlConnection.Close();
                     }
                 }
             }

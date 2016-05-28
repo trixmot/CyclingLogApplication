@@ -38,7 +38,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btDeleteAllData = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -102,7 +102,13 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.bRenameBike = new System.Windows.Forms.Button();
+            this.lbConfigError = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.tbConfigMilesNotInLog = new System.Windows.Forms.TextBox();
+            this.btRenameBike = new System.Windows.Forms.Button();
             this.bRenameLogYear = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -135,6 +141,9 @@
             this.dgvMaint = new System.Windows.Forms.DataGridView();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.tbBikeMilesTotal = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.btBikeMilesUpdate = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -152,15 +161,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbConfigMilesNotInLog = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.lbConfigError = new System.Windows.Forms.Label();
-            this.tbBikeMilesTotal = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -213,9 +213,9 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(299, 132);
+            this.button5.Location = new System.Drawing.Point(299, 147);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(123, 30);
+            this.button5.Size = new System.Drawing.Size(130, 35);
             this.button5.TabIndex = 1;
             this.button5.Text = "View Ride Data";
             this.button5.UseVisualStyleBackColor = true;
@@ -223,9 +223,9 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(299, 87);
+            this.button7.Location = new System.Drawing.Point(299, 102);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(123, 30);
+            this.button7.Size = new System.Drawing.Size(130, 35);
             this.button7.TabIndex = 0;
             this.button7.Text = "Ride Data Entry";
             this.button7.UseVisualStyleBackColor = true;
@@ -233,9 +233,9 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(711, 519);
+            this.button8.Location = new System.Drawing.Point(691, 514);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(76, 30);
+            this.button8.Size = new System.Drawing.Size(85, 35);
             this.button8.TabIndex = 9;
             this.button8.Text = "Close";
             this.button8.UseVisualStyleBackColor = true;
@@ -244,8 +244,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button11);
+            this.groupBox1.Controls.Add(this.btDeleteAllData);
             this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Location = new System.Drawing.Point(32, 33);
@@ -256,28 +255,29 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(299, 267);
+            this.button1.Location = new System.Drawing.Point(299, 196);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 30);
+            this.button1.Size = new System.Drawing.Size(130, 35);
             this.button1.TabIndex = 11;
-            this.button1.Text = "Chart";
+            this.button1.Text = "Charts";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // button4
+            // btDeleteAllData
             // 
-            this.button4.Location = new System.Drawing.Point(299, 222);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(123, 30);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Export Data";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btDeleteAllData.Location = new System.Drawing.Point(299, 247);
+            this.btDeleteAllData.Name = "btDeleteAllData";
+            this.btDeleteAllData.Size = new System.Drawing.Size(130, 35);
+            this.btDeleteAllData.TabIndex = 3;
+            this.btDeleteAllData.Text = "Delete All Data";
+            this.btDeleteAllData.UseVisualStyleBackColor = true;
+            this.btDeleteAllData.Click += new System.EventHandler(this.btDeleteAllData_Click);
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(299, 177);
+            this.button11.Location = new System.Drawing.Point(284, 266);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(123, 30);
+            this.button11.Size = new System.Drawing.Size(130, 35);
             this.button11.TabIndex = 2;
             this.button11.Text = "Legacy Data Import";
             this.button11.UseVisualStyleBackColor = true;
@@ -952,7 +952,7 @@
             this.groupBox2.Controls.Add(this.label25);
             this.groupBox2.Controls.Add(this.label24);
             this.groupBox2.Controls.Add(this.tbConfigMilesNotInLog);
-            this.groupBox2.Controls.Add(this.bRenameBike);
+            this.groupBox2.Controls.Add(this.btRenameBike);
             this.groupBox2.Controls.Add(this.bRenameLogYear);
             this.groupBox2.Controls.Add(this.button6);
             this.groupBox2.Controls.Add(this.label5);
@@ -976,15 +976,69 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             // 
-            // bRenameBike
+            // lbConfigError
             // 
-            this.bRenameBike.Location = new System.Drawing.Point(512, 288);
-            this.bRenameBike.Name = "bRenameBike";
-            this.bRenameBike.Size = new System.Drawing.Size(75, 23);
-            this.bRenameBike.TabIndex = 14;
-            this.bRenameBike.Text = "Update";
-            this.bRenameBike.UseVisualStyleBackColor = true;
-            this.bRenameBike.Click += new System.EventHandler(this.bRenameBike_Click);
+            this.lbConfigError.AutoSize = true;
+            this.lbConfigError.ForeColor = System.Drawing.Color.Red;
+            this.lbConfigError.Location = new System.Drawing.Point(222, 336);
+            this.lbConfigError.Name = "lbConfigError";
+            this.lbConfigError.Size = new System.Drawing.Size(41, 13);
+            this.lbConfigError.TabIndex = 22;
+            this.lbConfigError.Text = "label28";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(483, 172);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(77, 13);
+            this.label27.TabIndex = 21;
+            this.label27.Text = "Miles not in log";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(483, 73);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(75, 13);
+            this.label26.TabIndex = 20;
+            this.label26.Text = "Bike Selection";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(257, 122);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(83, 13);
+            this.label25.TabIndex = 19;
+            this.label25.Text = "Route Selection";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(113, 122);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(97, 13);
+            this.label24.TabIndex = 18;
+            this.label24.Text = "Log Year Selection";
+            // 
+            // tbConfigMilesNotInLog
+            // 
+            this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(486, 191);
+            this.tbConfigMilesNotInLog.Name = "tbConfigMilesNotInLog";
+            this.tbConfigMilesNotInLog.Size = new System.Drawing.Size(121, 20);
+            this.tbConfigMilesNotInLog.TabIndex = 17;
+            this.tbConfigMilesNotInLog.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btRenameBike
+            // 
+            this.btRenameBike.Location = new System.Drawing.Point(512, 288);
+            this.btRenameBike.Name = "btRenameBike";
+            this.btRenameBike.Size = new System.Drawing.Size(75, 23);
+            this.btRenameBike.TabIndex = 14;
+            this.btRenameBike.Text = "Update";
+            this.btRenameBike.UseVisualStyleBackColor = true;
+            this.btRenameBike.Click += new System.EventHandler(this.btRenameBike_Click);
             // 
             // bRenameLogYear
             // 
@@ -1310,11 +1364,39 @@
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(373, 287);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(101, 13);
+            this.label28.TabIndex = 21;
+            this.label28.Text = "Total Miles All Bikes";
+            // 
+            // tbBikeMilesTotal
+            // 
+            this.tbBikeMilesTotal.Location = new System.Drawing.Point(374, 303);
+            this.tbBikeMilesTotal.Name = "tbBikeMilesTotal";
+            this.tbBikeMilesTotal.ReadOnly = true;
+            this.tbBikeMilesTotal.Size = new System.Drawing.Size(100, 20);
+            this.tbBikeMilesTotal.TabIndex = 20;
+            this.tbBikeMilesTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(243, 54);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(241, 24);
+            this.label21.TabIndex = 19;
+            this.label21.Text = "Top 5 Bikes and Total Miles";
+            // 
             // btBikeMilesUpdate
             // 
             this.btBikeMilesUpdate.Location = new System.Drawing.Point(566, 181);
             this.btBikeMilesUpdate.Name = "btBikeMilesUpdate";
-            this.btBikeMilesUpdate.Size = new System.Drawing.Size(77, 35);
+            this.btBikeMilesUpdate.Size = new System.Drawing.Size(85, 35);
             this.btBikeMilesUpdate.TabIndex = 18;
             this.btBikeMilesUpdate.Text = "Update";
             this.btBikeMilesUpdate.UseVisualStyleBackColor = true;
@@ -1332,7 +1414,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(283, 120);
+            this.label20.Location = new System.Drawing.Point(262, 120);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(28, 13);
             this.label20.TabIndex = 15;
@@ -1341,50 +1423,50 @@
             // tbBikeMiles5
             // 
             this.tbBikeMiles5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tbBikeMiles5.Location = new System.Drawing.Point(247, 245);
+            this.tbBikeMiles5.Location = new System.Drawing.Point(207, 245);
             this.tbBikeMiles5.Name = "tbBikeMiles5";
             this.tbBikeMiles5.ReadOnly = true;
-            this.tbBikeMiles5.Size = new System.Drawing.Size(100, 20);
+            this.tbBikeMiles5.Size = new System.Drawing.Size(140, 20);
             this.tbBikeMiles5.TabIndex = 14;
             this.tbBikeMiles5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMiles4
             // 
             this.tbBikeMiles4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tbBikeMiles4.Location = new System.Drawing.Point(247, 219);
+            this.tbBikeMiles4.Location = new System.Drawing.Point(207, 219);
             this.tbBikeMiles4.Name = "tbBikeMiles4";
             this.tbBikeMiles4.ReadOnly = true;
-            this.tbBikeMiles4.Size = new System.Drawing.Size(100, 20);
+            this.tbBikeMiles4.Size = new System.Drawing.Size(140, 20);
             this.tbBikeMiles4.TabIndex = 13;
             this.tbBikeMiles4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMiles3
             // 
             this.tbBikeMiles3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tbBikeMiles3.Location = new System.Drawing.Point(247, 193);
+            this.tbBikeMiles3.Location = new System.Drawing.Point(207, 193);
             this.tbBikeMiles3.Name = "tbBikeMiles3";
             this.tbBikeMiles3.ReadOnly = true;
-            this.tbBikeMiles3.Size = new System.Drawing.Size(100, 20);
+            this.tbBikeMiles3.Size = new System.Drawing.Size(140, 20);
             this.tbBikeMiles3.TabIndex = 12;
             this.tbBikeMiles3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMiles2
             // 
             this.tbBikeMiles2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tbBikeMiles2.Location = new System.Drawing.Point(247, 167);
+            this.tbBikeMiles2.Location = new System.Drawing.Point(207, 167);
             this.tbBikeMiles2.Name = "tbBikeMiles2";
             this.tbBikeMiles2.ReadOnly = true;
-            this.tbBikeMiles2.Size = new System.Drawing.Size(100, 20);
+            this.tbBikeMiles2.Size = new System.Drawing.Size(140, 20);
             this.tbBikeMiles2.TabIndex = 11;
             this.tbBikeMiles2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMiles1
             // 
             this.tbBikeMiles1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tbBikeMiles1.Location = new System.Drawing.Point(247, 141);
+            this.tbBikeMiles1.Location = new System.Drawing.Point(207, 141);
             this.tbBikeMiles1.Name = "tbBikeMiles1";
             this.tbBikeMiles1.ReadOnly = true;
-            this.tbBikeMiles1.Size = new System.Drawing.Size(100, 20);
+            this.tbBikeMiles1.Size = new System.Drawing.Size(140, 20);
             this.tbBikeMiles1.TabIndex = 10;
             this.tbBikeMiles1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1448,6 +1530,7 @@
             // 
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.button11);
             this.groupBox3.Location = new System.Drawing.Point(32, 33);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(720, 385);
@@ -1472,88 +1555,6 @@
             this.label1.Size = new System.Drawing.Size(264, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
-            // 
-            // tbConfigMilesNotInLog
-            // 
-            this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(486, 191);
-            this.tbConfigMilesNotInLog.Name = "tbConfigMilesNotInLog";
-            this.tbConfigMilesNotInLog.Size = new System.Drawing.Size(121, 20);
-            this.tbConfigMilesNotInLog.TabIndex = 17;
-            this.tbConfigMilesNotInLog.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(113, 122);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(97, 13);
-            this.label24.TabIndex = 18;
-            this.label24.Text = "Log Year Selection";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(257, 122);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(83, 13);
-            this.label25.TabIndex = 19;
-            this.label25.Text = "Route Selection";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(483, 73);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(75, 13);
-            this.label26.TabIndex = 20;
-            this.label26.Text = "Bike Selection";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(483, 172);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(77, 13);
-            this.label27.TabIndex = 21;
-            this.label27.Text = "Miles not in log";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(243, 54);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(241, 24);
-            this.label21.TabIndex = 19;
-            this.label21.Text = "Top 5 Bikes and Total Miles";
-            // 
-            // lbConfigError
-            // 
-            this.lbConfigError.AutoSize = true;
-            this.lbConfigError.ForeColor = System.Drawing.Color.Red;
-            this.lbConfigError.Location = new System.Drawing.Point(222, 336);
-            this.lbConfigError.Name = "lbConfigError";
-            this.lbConfigError.Size = new System.Drawing.Size(41, 13);
-            this.lbConfigError.TabIndex = 22;
-            this.lbConfigError.Text = "label28";
-            // 
-            // tbBikeMilesTotal
-            // 
-            this.tbBikeMilesTotal.Location = new System.Drawing.Point(374, 303);
-            this.tbBikeMilesTotal.Name = "tbBikeMilesTotal";
-            this.tbBikeMilesTotal.ReadOnly = true;
-            this.tbBikeMilesTotal.Size = new System.Drawing.Size(100, 20);
-            this.tbBikeMilesTotal.TabIndex = 20;
-            this.tbBikeMilesTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(373, 287);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(101, 13);
-            this.label28.TabIndex = 21;
-            this.label28.Text = "Total Miles All Bikes";
             // 
             // MainForm
             // 
@@ -1637,7 +1638,7 @@
         private System.Windows.Forms.ComboBox cbLogYear1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btDeleteAllData;
         private System.Windows.Forms.TextBox tb3Log5;
         private System.Windows.Forms.TextBox tb7Log5;
         private System.Windows.Forms.ComboBox cbLogYear5;
@@ -1677,7 +1678,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox tbTimeChange;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button bRenameBike;
+        private System.Windows.Forms.Button btRenameBike;
         private System.Windows.Forms.Button bRenameLogYear;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabPage tabPage5;

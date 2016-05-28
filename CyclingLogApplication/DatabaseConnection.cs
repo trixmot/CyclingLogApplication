@@ -110,14 +110,28 @@ namespace CyclingLogApplication
 
         private bool IsConnectionOpen()
         {
-            try
+            if (this.Connection != null)
             {
-                return ((this.Connection.State != ConnectionState.Broken) || (this.Connection.State != ConnectionState.Closed));
-            }
-            catch
+                if ((this.Connection.State != ConnectionState.Broken) || (this.Connection.State != ConnectionState.Closed))
+                {
+                    return true;
+                }
+                
+            } else
             {
                 return false;
             }
+
+            //try
+            //{
+
+            //    return ((this.Connection.State != ConnectionState.Broken) || (this.Connection.State != ConnectionState.Closed));
+            //}
+            //catch
+            //{
+            //    return false;
+            //}
+            return false;
         }
 
         #endregion
