@@ -191,6 +191,8 @@ namespace CyclingLogApplication
 
         static void GetConnectionStrings()
         {
+            string conStr = ConfigurationManager.ConnectionStrings["CyclingLogApplication.Properties.Settings.CyclingLogDatabaseConnectionString"].ConnectionString;
+            Logger.Log("conStr Name: " + conStr, 1, 1);
             ConnectionStringSettingsCollection settings = ConfigurationManager.ConnectionStrings;
 
             if (settings != null)
