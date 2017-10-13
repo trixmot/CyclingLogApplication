@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9Z7LCHIwZWxWMLmLdbbiHEJah6E/QCSWJkbaRY2ur5c=</dsig:DigestValue>
+        <dsig:DigestValue>lZOO8kq3W66ufJasG7sIV4Smi3JfxBhowjTf4l2iZGE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -65,13 +65,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="CyclingLogApplication.exe.config" size="1060">
+  <file name="CyclingLogApplication.exe.config" size="1098">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>VuaeE16k6xXWI913I5Ltu9hr31L0SpVmzUVFKYOFuEM=</dsig:DigestValue>
+      <dsig:DigestValue>SvXLuKgctlrLn7XHskI07Q46b/wwfIDz5VvXrpwrUGc=</dsig:DigestValue>
     </hash>
   </file>
   <file name="CyclingLogConfig.xml" size="413" writeableType="applicationData">
@@ -89,16 +89,16 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>vt+m/t7ZrGHARrRMvcbvcu5zrOZX+5/71XMxFlz88tI=</dsig:DigestValue>
+      <dsig:DigestValue>EWYTOtqAMxj49gYd3bAq4Q9bK+f6W9AIGCKHM+XDgOM=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="CyclingLogDatabase_log.ldf" size="573440" writeableType="applicationData">
+  <file name="CyclingLogDatabase_log.ldf" size="851968" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>0+NXi6Au9iCNf8nMviytT+6/EVVk5Kg0ouNl+ysLIf0=</dsig:DigestValue>
+      <dsig:DigestValue>5Ozjoduxcvgz/be0t2NOXkpdktcnPzcTGtf9duxzwcY=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

@@ -1043,7 +1043,12 @@ namespace CyclingLogApplication
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
             Calendar cal = dfi.Calendar;
             int weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
-            float avgRides = (float)rides / weekValue;
+            float avgRides = 0;
+
+            if (rides > 0)
+            {
+                avgRides = (float)rides / weekValue;
+            }
             //MessageBox.Show(Convert.ToString(avgRides));
 
             return (float)(Math.Round((double)avgRides, 2)); 
@@ -1054,13 +1059,18 @@ namespace CyclingLogApplication
         private float getAverageMilesPerWeek(int logIndex)
         {
             float totalMiles = getTotalMilesForSelectedLog(logIndex);
+            float avgMiles = 0;
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
             Calendar cal = dfi.Calendar;
             int weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
-            totalMiles = (float)totalMiles / weekValue;
+
+            if (totalMiles > 0)
+            {
+                avgMiles = (float)totalMiles / weekValue;
+            }
             //MessageBox.Show(Convert.ToString(totalMiles));
 
-            return (float)(Math.Round((double)totalMiles, 2));
+            return (float)(Math.Round((double)avgMiles, 2));
         }
 
         //Get average miles per ride value:
@@ -1069,7 +1079,13 @@ namespace CyclingLogApplication
         {
             float miles = getTotalMilesForSelectedLog(logIndex);
             int rides = getTotalRidesForSelectedLog(logIndex);
-            float averageMiles = (float)miles / rides;
+            float averageMiles = 0;
+
+            if (miles > 0)
+            {
+                averageMiles = (float)miles / rides;
+            }
+
             //MessageBox.Show(Convert.ToString(averageMiles));
             double avgMiles = Math.Round((double)averageMiles, 2);
 
