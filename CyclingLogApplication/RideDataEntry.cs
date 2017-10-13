@@ -650,38 +650,57 @@ namespace CyclingLogApplication
                 //10Max HR
                 //11Avg Bike Cadence
                 //12Max Bike Cadence
-                //13Avg Temperature
-                //14Calories
-                //15Location
+                //13Normalized power
+                //14Avg Power
+                //15Max Power
+                //16Avg Temperature
+                //17Calories
+                Logger.LogError("[DEBUG]: a");
 
                 //Split time and enter hours-min-sec
                 string temp = splitList[2];
                 string[] temp2 = temp.Split(':');
+
+                if (temp2.Length == 3)
+                {
+                    temp2[2] = temp2[2].Split('.')[0];
+                }
+
+                Logger.LogError("[DEBUG]: b");
 
                 //Check size to see if hours is included:
                 //hh:mm:ss
                 if (temp2.Length == 0)
                 {
                     //MessageBox.Show("Count is 0");
+                    Logger.LogError("[DEBUG]: 1");
                     dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                    
                 }
                 else if (temp2.Length == 1)
                 {
                     //MessageBox.Show("Count is 1");
+                    Logger.LogError("[DEBUG]: 2");
                     dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, Int32.Parse(temp2[0]));
+                    
                 }
                 else if (temp2.Length == 2)
                 {
                     //MessageBox.Show("Count is 2");
+                    Logger.LogError("[DEBUG]: 3");
                     dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, Int32.Parse(temp2[0]), Int32.Parse(temp2[1]));
+                    
                 }
                 else if (temp2.Length == 3)
                 {
                     //MessageBox.Show("Count is 3");
+                    Logger.LogError("[DEBUG]: 4");
                     dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Int32.Parse(temp2[0]), Int32.Parse(temp2[1]), Int32.Parse(temp2[2]));
+                    
                 }
 
                 nudDistanceRideDataEntry.Value = System.Convert.ToDecimal(splitList[3]);                                              //4Ride Distance:
+                Logger.LogError("[DEBUG]: 5");
 
                 //NOTE: Need to check if any of the values have double quotes and is so, also need to include the next index since they were split because of the comma ex("1,200"):
                 //==============================================================
@@ -761,17 +780,17 @@ namespace CyclingLogApplication
                             calories.Text = splitList[index];
                         }
                     }
-                    else if (headingList[headingIndex].Equals("Location"))
-                    {
-                        cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.Items.IndexOf(splitList[index]);                //Location:
-                    }
+                    //else if (headingList[headingIndex].Equals("Location"))
+                    //{
+                    //    cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.Items.IndexOf(splitList[index]);                //Location:
+                    //}
 
                     headingIndex++;
                 }
             }
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to retrive ride data." + ex.Message.ToString());
+                Logger.LogError("[ERROR]: Exception while trying to retrive ride data. " + ex.Message.ToString());
                 MessageBox.Show("[ERROR] Exception occurred. Refer to the log for more information. ");
             }
         }
