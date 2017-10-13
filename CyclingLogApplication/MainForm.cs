@@ -443,13 +443,17 @@ namespace CyclingLogApplication
         private void btAddLogYearConfig(object sender, EventArgs e)
         {
             string item = tbLogYearConfig.Text;
-            //Check to see if the string has already been entered to eliminate duplicates:
-            for (int index = 1; index < cbLogYearConfig.Items.Count; index++)
+
+            if (cbLogYearConfig.SelectedItem != null)
             {
-                if (cbLogYearConfig.SelectedItem.ToString().Equals(item))
+                //Check to see if the string has already been entered to eliminate duplicates:
+                for (int index = 1; index < cbLogYearConfig.Items.Count; index++)
                 {
-                    MessageBox.Show("Duplicate name entered. Enter a unique name for the log.");
-                    return;
+                    if (cbLogYearConfig.SelectedItem.ToString().Equals(item))
+                    {
+                        MessageBox.Show("Duplicate name entered. Enter a unique name for the log.");
+                        return;
+                    }
                 }
             }
 
@@ -711,13 +715,16 @@ namespace CyclingLogApplication
             string routeString = tbRouteConfig.Text;
             int logSetting = getLogLevel();
 
-            //Check to see if the string has already been entered to eliminate duplicates:
-            for (int index = 0; index < cbRouteConfig.Items.Count; index++)
+            if (cbRouteConfig.SelectedItem != null)
             {
-                if (cbRouteConfig.Items.IndexOf(index).Equals(routeString))
+                //Check to see if the string has already been entered to eliminate duplicates:
+                for (int index = 0; index < cbRouteConfig.Items.Count; index++)
                 {
-                    MessageBox.Show("Duplicate name entered. Enter a unique name for the route.");
-                    return;
+                    if (cbRouteConfig.Items.IndexOf(index).Equals(routeString))
+                    {
+                        MessageBox.Show("Duplicate name entered. Enter a unique name for the route.");
+                        return;
+                    }
                 }
             }
 
@@ -792,13 +799,16 @@ namespace CyclingLogApplication
             string bikeString = tbBikeConfig.Text;
             string miles = tbConfigMilesNotInLog.Text;
 
-            //Check to see if the string has already been entered to eliminate duplicates:
-            for (int index = 0; index < cbBikeConfig.Items.Count; index++)
+            if (cbBikeConfig.SelectedItem != null)
             {
-                if (cbBikeConfig.Items.IndexOf(index).Equals(bikeString))
+                //Check to see if the string has already been entered to eliminate duplicates:
+                for (int index = 0; index < cbBikeConfig.Items.Count; index++)
                 {
-                    MessageBox.Show("Duplicate name entered. Enter a unique name for the bike.");
-                    return;
+                    if (cbBikeConfig.Items.IndexOf(index).Equals(bikeString))
+                    {
+                        MessageBox.Show("Duplicate name entered. Enter a unique name for the bike.");
+                        return;
+                    }
                 }
             }
 
