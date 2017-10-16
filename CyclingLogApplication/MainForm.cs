@@ -1259,7 +1259,7 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    DateTime changeDate2 = new DateTime(2016, 11, 5);
+                    DateTime changeDate2 = new DateTime(2017, 11, 5);
                     dayCount = (changeDate2 - date).TotalDays;
                 }
 
@@ -1272,7 +1272,7 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    DateTime changeDate2 = new DateTime(2016, 11, 4);
+                    DateTime changeDate2 = new DateTime(2018, 11, 4);
                     dayCount = (changeDate2 - date).TotalDays;
                 }
             } else if (year == 2019)
@@ -1284,7 +1284,7 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    DateTime changeDate2 = new DateTime(2016, 11, 3);
+                    DateTime changeDate2 = new DateTime(2019, 11, 3);
                     dayCount = (changeDate2 - date).TotalDays;
                 }
             } else if (year == 2020)
@@ -1296,7 +1296,7 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    DateTime changeDate2 = new DateTime(2016, 11, 2);
+                    DateTime changeDate2 = new DateTime(2020, 11, 2);
                     dayCount = (changeDate2 - date).TotalDays;
                 }
             }
