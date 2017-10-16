@@ -1249,8 +1249,9 @@ namespace CyclingLogApplication
                     DateTime changeDate2 = new DateTime(2016, 11, 6);
                     dayCount = (changeDate2 - date).TotalDays;
                 }
-                
-            } else if (year == 2017)
+
+            }
+            else if (year == 2017)
             {
                 DateTime changeDate = new DateTime(2017, 3, 12);
                 if ((changeDate - date).TotalDays > 0)
@@ -1263,7 +1264,8 @@ namespace CyclingLogApplication
                     dayCount = (changeDate2 - date).TotalDays;
                 }
 
-            } else if (year == 2018)
+            }
+            else if (year == 2018)
             {
                 DateTime changeDate = new DateTime(2018, 3, 11);
                 if ((changeDate - date).TotalDays > 0)
@@ -1275,7 +1277,8 @@ namespace CyclingLogApplication
                     DateTime changeDate2 = new DateTime(2018, 11, 4);
                     dayCount = (changeDate2 - date).TotalDays;
                 }
-            } else if (year == 2019)
+            }
+            else if (year == 2019)
             {
                 DateTime changeDate = new DateTime(2019, 3, 10);
                 if ((changeDate - date).TotalDays > 0)
@@ -1287,21 +1290,52 @@ namespace CyclingLogApplication
                     DateTime changeDate2 = new DateTime(2019, 11, 3);
                     dayCount = (changeDate2 - date).TotalDays;
                 }
-            } else if (year == 2020)
+            }
+            else if (year == 2020)
             {
-                DateTime changeDate = new DateTime(2020, 3, 9);
+                DateTime changeDate = new DateTime(2020, 3, 8);
                 if ((changeDate - date).TotalDays > 0)
                 {
                     dayCount = (changeDate - date).TotalDays;
                 }
                 else
                 {
-                    DateTime changeDate2 = new DateTime(2020, 11, 2);
+                    DateTime changeDate2 = new DateTime(2020, 11, 1);
                     dayCount = (changeDate2 - date).TotalDays;
                 }
             }
+            else if (year == 2021)
+            {
+                DateTime changeDate = new DateTime(2021, 3, 14);
+                if ((changeDate - date).TotalDays > 0)
+                {
+                    dayCount = (changeDate - date).TotalDays;
+                }
+                else
+                {
+                    DateTime changeDate2 = new DateTime(2021, 11, 7);
+                    dayCount = (changeDate2 - date).TotalDays;
+                }
+            }
+            else if (year == 2022)
+            {
+                DateTime changeDate = new DateTime(2022, 3, 13);
+                if ((changeDate - date).TotalDays > 0)
+                {
+                    dayCount = (changeDate - date).TotalDays;
+                }
+                else
+                {
+                    DateTime changeDate2 = new DateTime(2022, 11, 6);
+                    dayCount = (changeDate2 - date).TotalDays;
+                }
+            } else
+            {
+                DateTime changeDate2 = new DateTime(Convert.ToInt32(year), 11, 6);
+                dayCount = (changeDate2 - date).TotalDays;
+            }
 
-            double result = Math.Ceiling(dayCount);
+                double result = Math.Ceiling(dayCount);
             return result;
         }
 
