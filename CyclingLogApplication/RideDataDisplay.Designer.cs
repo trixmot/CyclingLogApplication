@@ -106,7 +106,7 @@
             this.bFilter.Name = "bFilter";
             this.bFilter.Size = new System.Drawing.Size(75, 23);
             this.bFilter.TabIndex = 6;
-            this.bFilter.Text = "Filter";
+            this.bFilter.Text = "Run";
             this.bFilter.UseVisualStyleBackColor = true;
             this.bFilter.Click += new System.EventHandler(this.bFilter_Click);
             // 

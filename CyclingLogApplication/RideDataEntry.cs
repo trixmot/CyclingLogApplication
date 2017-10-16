@@ -468,17 +468,35 @@ namespace CyclingLogApplication
                 double temp = (double)numericUpDown3.Value;
                 objectValues.Add(numericUpDown3.Value);             //Temp:
                 objectValues.Add(dtpRideDate.Value);            //Date:
-                objectValues.Add(avg_cadence.Text);                 //Average Cadence:
-                objectValues.Add(avg_heart_rate.Text);              //Average Heart Rate:
-                objectValues.Add(max_heart_rate.Text);              //Max Heart Rate:
-                objectValues.Add(calories.Text);                    //Calories:
-                objectValues.Add(total_ascent.Text);                //Total Ascent:
-                objectValues.Add(total_descent.Text);               //Total Descent:
-                objectValues.Add(max_speed.Text);                   //Max Speed:
-                objectValues.Add(avg_power.Text);                   //Average Power:
-                objectValues.Add(max_power.Text);                   //Max Power:
-                objectValues.Add(cbRouteDataEntry.SelectedItem.ToString());   //Route:
-                objectValues.Add(tbComments.Text);                    //Comments:
+
+                objectValues.Add(Convert.ToDouble(avg_cadence.Text));                 //Average Cadence:
+                objectValues.Add(Convert.ToDouble(avg_heart_rate.Text));              //Average Heart Rate:
+                objectValues.Add(Convert.ToDouble(max_heart_rate.Text));              //Max Heart Rate:
+                objectValues.Add(Convert.ToDouble(calories.Text));                    //Calories:
+                objectValues.Add(Convert.ToDouble(total_ascent.Text));                //Total Ascent:
+                objectValues.Add(Convert.ToDouble(total_descent.Text));               //Total Descent:
+                objectValues.Add(Convert.ToDouble(max_speed.Text));                   //Max Speed:
+
+                if (avg_power.Text.Equals(""))
+                {
+                    objectValues.Add(0);                                               //Average Power:
+                }
+                else
+                {
+                    objectValues.Add(Convert.ToDouble(avg_power.Text));                 //Average Power:
+                }
+
+                if (max_power.Text.Equals(""))
+                { 
+                    objectValues.Add(0);                                                //Max Power:
+                }
+                else
+                {
+                    objectValues.Add(Convert.ToDouble(max_power.Text));                 //Max Power:
+                }
+
+                objectValues.Add(cbRouteDataEntry.SelectedItem.ToString());                 //Route:
+                objectValues.Add(tbComments.Text);                                          //Comments:
 
                 string logYearName = cbLogYearDataEntry.SelectedItem.ToString();
                 int logIndex = mainForm.getLogYearIndex(logYearName);
@@ -655,7 +673,6 @@ namespace CyclingLogApplication
                 //15Max Power
                 //16Avg Temperature
                 //17Calories
-                Logger.LogError("[DEBUG]: a");
 
                 //Split time and enter hours-min-sec
                 string temp = splitList[2];
@@ -666,41 +683,30 @@ namespace CyclingLogApplication
                     temp2[2] = temp2[2].Split('.')[0];
                 }
 
-                Logger.LogError("[DEBUG]: b");
-
                 //Check size to see if hours is included:
                 //hh:mm:ss
                 if (temp2.Length == 0)
                 {
                     //MessageBox.Show("Count is 0");
-                    Logger.LogError("[DEBUG]: 1");
-                    dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-                    
+                    dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);                  
                 }
                 else if (temp2.Length == 1)
                 {
                     //MessageBox.Show("Count is 1");
-                    Logger.LogError("[DEBUG]: 2");
-                    dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, Int32.Parse(temp2[0]));
-                    
+                    dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, Int32.Parse(temp2[0]));                   
                 }
                 else if (temp2.Length == 2)
                 {
                     //MessageBox.Show("Count is 2");
-                    Logger.LogError("[DEBUG]: 3");
-                    dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, Int32.Parse(temp2[0]), Int32.Parse(temp2[1]));
-                    
+                    dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, Int32.Parse(temp2[0]), Int32.Parse(temp2[1]));                  
                 }
                 else if (temp2.Length == 3)
                 {
                     //MessageBox.Show("Count is 3");
-                    Logger.LogError("[DEBUG]: 4");
-                    dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Int32.Parse(temp2[0]), Int32.Parse(temp2[1]), Int32.Parse(temp2[2]));
-                    
+                    dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Int32.Parse(temp2[0]), Int32.Parse(temp2[1]), Int32.Parse(temp2[2]));                  
                 }
 
                 nudDistanceRideDataEntry.Value = System.Convert.ToDecimal(splitList[3]);                                              //4Ride Distance:
-                Logger.LogError("[DEBUG]: 5");
 
                 //NOTE: Need to check if any of the values have double quotes and is so, also need to include the next index since they were split because of the comma ex("1,200"):
                 //==============================================================
