@@ -469,15 +469,37 @@ namespace CyclingLogApplication
                 objectValues.Add(numericUpDown3.Value);             //Temp:
                 objectValues.Add(dtpRideDate.Value);            //Date:
 
-                objectValues.Add(Convert.ToDouble(avg_cadence.Text));                 //Average Cadence:
-                objectValues.Add(Convert.ToDouble(avg_heart_rate.Text));              //Average Heart Rate:
-                objectValues.Add(Convert.ToDouble(max_heart_rate.Text));              //Max Heart Rate:
+                if (avg_cadence.Text.Equals("") || avg_cadence.Text.Equals("--"))
+                {
+                    objectValues.Add(0);                                                //Average Cadence:
+                }
+                else
+                {
+                    objectValues.Add(Convert.ToDouble(avg_cadence.Text));                 //Average Cadence:
+                }
+                
+                if (avg_heart_rate.Text.Equals("") || avg_heart_rate.Text.Equals("--"))
+                {
+                    objectValues.Add(0);                                                //Average Heart Rate:
+                } else
+                {
+                    objectValues.Add(Convert.ToDouble(avg_heart_rate.Text));              //Average Heart Rate:
+                }
+                
+                if (max_heart_rate.Text.Equals("") || max_heart_rate.Text.Equals("--"))
+                {
+                    objectValues.Add(0);                                                   //Max Heart Rate:
+                } else
+                {
+                    objectValues.Add(Convert.ToDouble(max_heart_rate.Text));              //Max Heart Rate:
+                }
+                
                 objectValues.Add(Convert.ToDouble(calories.Text));                    //Calories:
                 objectValues.Add(Convert.ToDouble(total_ascent.Text));                //Total Ascent:
                 objectValues.Add(Convert.ToDouble(total_descent.Text));               //Total Descent:
                 objectValues.Add(Convert.ToDouble(max_speed.Text));                   //Max Speed:
 
-                if (avg_power.Text.Equals(""))
+                if (avg_power.Text.Equals("") || avg_power.Text.Equals("--"))
                 {
                     objectValues.Add(0);                                               //Average Power:
                 }
@@ -486,7 +508,7 @@ namespace CyclingLogApplication
                     objectValues.Add(Convert.ToDouble(avg_power.Text));                 //Average Power:
                 }
 
-                if (max_power.Text.Equals(""))
+                if (max_power.Text.Equals("") || max_power.Text.Equals("--"))
                 { 
                     objectValues.Add(0);                                                //Max Power:
                 }
@@ -614,7 +636,7 @@ namespace CyclingLogApplication
             string[] summary = new string[16];
             string tempStr = "";
 
-            //TODO: I think only the Summary line is required:
+            // Only the Summary line is required:
             try
             {
                 using (OpenFileDialog openfileDialog = new OpenFileDialog() { Filter = "CSV|*.csv", Multiselect = false })
@@ -637,22 +659,25 @@ namespace CyclingLogApplication
                             }
                             else if (tempList[0].Equals("Summary"))
                             {
-                                summary = line.Split(',');
+                                splitList = line.Split(',');
                                 //MessageBox.Show(summary[0]);
                             }
-                            else if (rowCount == 1)
-                            {
-                                splitList = line.Split(',');
-                                //MessageBox.Show(splitList[9]);
-                            }
-                            else
-                            {
-                                // split item and need to add to or avg in with the previous split
-                                tempSplitList = line.Split(',');
-                                //MessageBox.Show(tempSplitList[0]);
-                            }
+                            //else if (rowCount > 0)
+                            //{
+                            //    //splitList = line.Split(',');
+                            //    //MessageBox.Show(splitList[9]);
+                            //}
+                            //else
+                            //{
+                            //    // split item and need to add to or avg in with the previous split
+                            //    tempSplitList = line.Split(',');
+                            //    //MessageBox.Show(tempSplitList[0]);
+                            //}
                             rowCount++;
                         }
+                    } else
+                    {
+                        return;
                     }
                 }
                 //0Data items:
