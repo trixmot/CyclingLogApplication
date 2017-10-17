@@ -199,6 +199,7 @@ namespace CyclingLogApplication
             string location;
             string recordID;
             string weekNumber;
+            string effort;
 
             int recordIndex = 0;
 
@@ -238,6 +239,7 @@ namespace CyclingLogApplication
                                 location = results[18].ToString();
                                 recordID = results[19].ToString();
                                 weekNumber = results[20].ToString();
+                                effort = results[21].ToString();
 
                                 //Load ride data page:
                                 dtpTimeRideDataEntry.Value = Convert.ToDateTime(movingTime);
@@ -260,6 +262,8 @@ namespace CyclingLogApplication
                                 tbComments.Text = comments;
                                 tbRecordID.Text = recordID;
                                 tbWeekNumber.Text = weekNumber;
+                                cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.Items.IndexOf(location);
+                                cbEffortRideDataEntry.SelectedIndex = cbEffortRideDataEntry.Items.IndexOf(effort);
                             }
                             else
                             {
@@ -448,26 +452,17 @@ namespace CyclingLogApplication
 
                 }
 
-                if (changeType.Equals("Update"))
-                {
-                    DialogResult result = MessageBox.Show("Updating the ride in the database. Do you want to continue?", "Update Data", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-
                 List<object> objectValues = new List<object>();
-                objectValues.Add(dtpTimeRideDataEntry.Value);            //Moving Time:
-                objectValues.Add(nudDistanceRideDataEntry.Value);             //Ride Distance:
-                objectValues.Add(numericUpDown1.Value);             //Average Speed:
-                objectValues.Add(cbBikeDataEntry.SelectedItem.ToString());    //Bike:
-                objectValues.Add(cbRideTypeDataEntry.SelectedItem.ToString());//Ride Type:
+                objectValues.Add(dtpTimeRideDataEntry.Value);                           //Moving Time:
+                objectValues.Add(nudDistanceRideDataEntry.Value);                       //Ride Distance:
+                objectValues.Add(numericUpDown1.Value);                                 //Average Speed:
+                objectValues.Add(cbBikeDataEntry.SelectedItem.ToString());              //Bike:
+                objectValues.Add(cbRideTypeDataEntry.SelectedItem.ToString());          //Ride Type:
                 double windspeed = (double)numericUpDown4.Value;
-                objectValues.Add(numericUpDown4.Value);             //Wind:
+                objectValues.Add(numericUpDown4.Value);                                 //Wind:
                 double temp = (double)numericUpDown3.Value;
-                objectValues.Add(numericUpDown3.Value);             //Temp:
-                objectValues.Add(dtpRideDate.Value);            //Date:
+                objectValues.Add(numericUpDown3.Value);                                 //Temp:
+                objectValues.Add(dtpRideDate.Value);                                    //Date:
 
                 if (avg_cadence.Text.Equals("") || avg_cadence.Text.Equals("--"))
                 {
@@ -475,7 +470,7 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    objectValues.Add(Convert.ToDouble(avg_cadence.Text));                 //Average Cadence:
+                    objectValues.Add(Convert.ToDouble(avg_cadence.Text));                //Average Cadence:
                 }
                 
                 if (avg_heart_rate.Text.Equals("") || avg_heart_rate.Text.Equals("--"))
@@ -522,13 +517,13 @@ namespace CyclingLogApplication
 
                 string logYearName = cbLogYearDataEntry.SelectedItem.ToString();
                 int logIndex = mainForm.getLogYearIndex(logYearName);
-                objectValues.Add(logIndex);                         //LogYear index:
+                objectValues.Add(logIndex);                                             //LogYear index:
 
                 DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
                 Calendar cal = dfi.Calendar;
                 int weekValue = cal.GetWeekOfYear(dtpRideDate.Value, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
 
-                if (changeType.Equals("Update"))                    //Week number:
+                if (changeType.Equals("Update"))                                        //Week number:
                 {
                     objectValues.Add(tbWeekNumber.Text);
                 }
@@ -795,7 +790,7 @@ namespace CyclingLogApplication
                     }
                     else if (headingList[headingIndex].Equals("Avg Temperature"))
                     {
-                        numericUpDown3.Value = System.Convert.ToDecimal(splitList[index]);                                     //12Temp:
+                        numericUpDown3.Value = decimal.Round(System.Convert.ToDecimal(splitList[index]), 2, MidpointRounding.AwayFromZero);                                     //12Temp:
                     }
                     else if (headingList[headingIndex].Equals("Calories"))
                     {
@@ -850,6 +845,7 @@ namespace CyclingLogApplication
             tbComments.Text = "";                                                                                         //Comments:
             //cbLogYearDataEntry.SelectedIndex = cbLogYearDataEntry.FindStringExact("");                                  //LogYear index:
             cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.FindStringExact("");
+            cbEffortRideDataEntry.SelectedIndex = cbEffortRideDataEntry.FindStringExact("");
             tbWeekNumber.Text = "0";
             tbRecordID.Text = "0";
         }
