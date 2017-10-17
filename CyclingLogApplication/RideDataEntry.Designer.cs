@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtpRideDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chk1RideDataEntry = new System.Windows.Forms.CheckBox();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.tbRecordID = new System.Windows.Forms.TextBox();
             this.tbWeekNumber = new System.Windows.Forms.TextBox();
@@ -91,7 +92,6 @@
             this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
-            this.chk1RideDataEntry = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -151,6 +151,16 @@
             this.groupBox1.Size = new System.Drawing.Size(490, 165);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
+            // 
+            // chk1RideDataEntry
+            // 
+            this.chk1RideDataEntry.AutoSize = true;
+            this.chk1RideDataEntry.Location = new System.Drawing.Point(195, 108);
+            this.chk1RideDataEntry.Name = "chk1RideDataEntry";
+            this.chk1RideDataEntry.Size = new System.Drawing.Size(144, 17);
+            this.chk1RideDataEntry.TabIndex = 44;
+            this.chk1RideDataEntry.Text = "Retrieve Data From Date";
+            this.chk1RideDataEntry.UseVisualStyleBackColor = true;
             // 
             // numericUpDown2
             // 
@@ -398,6 +408,7 @@
             this.dtpTimeRideDataEntry.Name = "dtpTimeRideDataEntry";
             this.dtpTimeRideDataEntry.Size = new System.Drawing.Size(101, 20);
             this.dtpTimeRideDataEntry.TabIndex = 35;
+            this.dtpTimeRideDataEntry.ValueChanged += new System.EventHandler(this.dtpTimeRideDataEntry_ValueChanged);
             // 
             // cbRouteDataEntry
             // 
@@ -688,16 +699,6 @@
             // table_Ride_InformationTableAdapter
             // 
             this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
-            // 
-            // chk1RideDataEntry
-            // 
-            this.chk1RideDataEntry.AutoSize = true;
-            this.chk1RideDataEntry.Location = new System.Drawing.Point(195, 108);
-            this.chk1RideDataEntry.Name = "chk1RideDataEntry";
-            this.chk1RideDataEntry.Size = new System.Drawing.Size(144, 17);
-            this.chk1RideDataEntry.TabIndex = 44;
-            this.chk1RideDataEntry.Text = "Retrieve Data From Date";
-            this.chk1RideDataEntry.UseVisualStyleBackColor = true;
             // 
             // RideDataEntry
             // 

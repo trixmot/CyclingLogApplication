@@ -979,5 +979,10 @@ namespace CyclingLogApplication
                 }
             }
         }
+
+        private void dtpTimeRideDataEntry_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
