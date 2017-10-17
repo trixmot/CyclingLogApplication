@@ -161,6 +161,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -243,8 +245,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btDeleteAllData);
+            this.groupBox1.Controls.Add(this.button11);
             this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Location = new System.Drawing.Point(32, 33);
@@ -275,7 +279,7 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(284, 266);
+            this.button11.Location = new System.Drawing.Point(299, 299);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(130, 35);
             this.button11.TabIndex = 2;
@@ -1528,9 +1532,9 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label29);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.button11);
             this.groupBox3.Location = new System.Drawing.Point(32, 33);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(720, 385);
@@ -1556,6 +1560,25 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(308, 241);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(86, 13);
+            this.label29.TabIndex = 2;
+            this.label29.Text = "By: John T Flynn";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(241, 42);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(264, 29);
+            this.label30.TabIndex = 12;
+            this.label30.Text = "Cycling Log Application";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1570,6 +1593,7 @@
             this.Text = "Cycling Log";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
@@ -1724,6 +1748,8 @@
         private System.Windows.Forms.Label lbConfigError;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox tbBikeMilesTotal;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label29;
     }
 }
 

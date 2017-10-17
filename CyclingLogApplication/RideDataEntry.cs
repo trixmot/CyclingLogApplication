@@ -821,6 +821,7 @@ namespace CyclingLogApplication
             }
         }
 
+        // Used to clear the form on date changes:
         private void clearDataEntryFields()
         {
             //Reset and clear values:
