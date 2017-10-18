@@ -163,6 +163,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.cbLogYear = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -181,10 +183,11 @@
             // cbLogYearConfig
             // 
             this.cbLogYearConfig.FormattingEnabled = true;
-            this.cbLogYearConfig.Location = new System.Drawing.Point(116, 138);
+            this.cbLogYearConfig.Location = new System.Drawing.Point(116, 89);
             this.cbLogYearConfig.Name = "cbLogYearConfig";
             this.cbLogYearConfig.Size = new System.Drawing.Size(121, 21);
             this.cbLogYearConfig.TabIndex = 0;
+            this.cbLogYearConfig.SelectedIndexChanged += new System.EventHandler(this.cbLogYearConfig_SelectedIndexChanged);
             // 
             // btAddLogYear
             // 
@@ -208,7 +211,7 @@
             // 
             // tbLogYearConfig
             // 
-            this.tbLogYearConfig.Location = new System.Drawing.Point(116, 191);
+            this.tbLogYearConfig.Location = new System.Drawing.Point(116, 139);
             this.tbLogYearConfig.Name = "tbLogYearConfig";
             this.tbLogYearConfig.Size = new System.Drawing.Size(121, 20);
             this.tbLogYearConfig.TabIndex = 1;
@@ -950,6 +953,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label31);
+            this.groupBox2.Controls.Add(this.cbLogYear);
             this.groupBox2.Controls.Add(this.lbConfigError);
             this.groupBox2.Controls.Add(this.label27);
             this.groupBox2.Controls.Add(this.label26);
@@ -979,6 +984,7 @@
             this.groupBox2.Size = new System.Drawing.Size(720, 385);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // lbConfigError
             // 
@@ -1020,7 +1026,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(113, 122);
+            this.label24.Location = new System.Drawing.Point(113, 73);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(97, 13);
             this.label24.TabIndex = 18;
@@ -1156,7 +1162,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(113, 172);
+            this.label3.Location = new System.Drawing.Point(113, 120);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(127, 13);
             this.label3.TabIndex = 0;
@@ -1579,6 +1585,37 @@
             this.label30.TabIndex = 12;
             this.label30.Text = "Cycling Log Application";
             // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(119, 172);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(97, 13);
+            this.label31.TabIndex = 24;
+            this.label31.Text = "Log Year Selection";
+            // 
+            // cbLogYear
+            // 
+            this.cbLogYear.FormattingEnabled = true;
+            this.cbLogYear.Items.AddRange(new object[] {
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022"});
+            this.cbLogYear.Location = new System.Drawing.Point(119, 191);
+            this.cbLogYear.Name = "cbLogYear";
+            this.cbLogYear.Size = new System.Drawing.Size(121, 21);
+            this.cbLogYear.TabIndex = 23;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1750,6 +1787,8 @@
         private System.Windows.Forms.TextBox tbBikeMilesTotal;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.ComboBox cbLogYear;
     }
 }
 

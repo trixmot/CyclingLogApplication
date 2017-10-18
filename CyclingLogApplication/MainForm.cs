@@ -87,10 +87,12 @@ namespace CyclingLogApplication
 
             //Get all values and load the comboboxes:
             List<string> logYearList = new List<string>();
+            //List<string> yearList = new List<string>();
             List<string> routeList = new List<string>();
             List<string> bikeList = new List<string>();
 
             logYearList = readDataNames("Table_Log_year", "Name");
+            //yearList = readDataNames("Table_Log_year", "Year");
             routeList = readDataNames("Table_Routes", "Name");
             bikeList = readDataNames("Table_Bikes", "Name");
 
@@ -442,42 +444,55 @@ namespace CyclingLogApplication
 
         private void btAddLogYearConfig(object sender, EventArgs e)
         {
-            string item = tbLogYearConfig.Text;
+            string logYearTitle;
 
             if (cbLogYearConfig.SelectedItem != null)
             {
+                logYearTitle = tbLogYearConfig.Text;
                 //Check to see if the string has already been entered to eliminate duplicates:
                 for (int index = 1; index < cbLogYearConfig.Items.Count; index++)
                 {
-                    if (cbLogYearConfig.SelectedItem.ToString().Equals(item))
+                    if (cbLogYearConfig.SelectedItem.ToString().Equals(logYearTitle))
                     {
                         MessageBox.Show("Duplicate name entered. Enter a unique name for the log.");
                         return;
                     }
                 }
+            } else
+            {
+                MessageBox.Show("Invalid name entered. Enter a unique name for the log.");
+                return;
             }
 
+            if (cbLogYear.SelectedIndex == 0)
+            {
+                MessageBox.Show("Invalid Log Year selected. Select a valid year.");
+                return;
+            }
+          
+            string logYearValue = cbLogYear.SelectedItem.ToString();
             int logSetting = getLogLevel();
 
             //Add new entry to the LogYear Table:
             List<object> objectValues = new List<object>();
-            objectValues.Add(item);
+            objectValues.Add(logYearTitle);
+            objectValues.Add(Convert.ToInt32(logYearValue));
             runStoredProcedure(objectValues, "Log_Year_Add");
 
-            cbLogYearConfig.Items.Add(item);
+            cbLogYearConfig.Items.Add(logYearTitle);
             cbLogYearConfig.SelectedIndex = cbLogYearConfig.Items.Count-1;
-            rideDataEntryForm.AddLogYearDataEntry(item);
-            rideDataDisplayForm.AddLogYearFilter(item);
-            chartForm.cbLogYearChart.Items.Add(item);
+            rideDataEntryForm.AddLogYearDataEntry(logYearTitle);
+            rideDataDisplayForm.AddLogYearFilter(logYearTitle);
+            chartForm.cbLogYearChart.Items.Add(logYearTitle);
 
             //Update combo's on stat tab:
-            cbLogYear1.Items.Add(item);
-            cbLogYear2.Items.Add(item);
-            cbLogYear3.Items.Add(item);
-            cbLogYear4.Items.Add(item);
-            cbLogYear5.Items.Add(item);
+            cbLogYear1.Items.Add(logYearTitle);
+            cbLogYear2.Items.Add(logYearTitle);
+            cbLogYear3.Items.Add(logYearTitle);
+            cbLogYear4.Items.Add(logYearTitle);
+            cbLogYear5.Items.Add(logYearTitle);
 
-            Logger.Log("Adding a Log Year entry to the Configuration:" + item, 0, logSetting);
+            Logger.Log("Adding a Log Year entry to the Configuration:" + logYearTitle, 0, logSetting);
         }
 
         private void removeLogYearConfig(object sender, EventArgs e)
@@ -1826,7 +1841,6 @@ namespace CyclingLogApplication
                     sqlConnection.Close();
                 }
             }
-
         }
 
         private void bRenameLogYear_Click(object sender, EventArgs e)
@@ -1834,9 +1848,18 @@ namespace CyclingLogApplication
             string newValue = tbLogYearConfig.Text;
             string oldValue = cbLogYearConfig.SelectedItem.ToString();
 
+            if (cbLogYear.SelectedIndex == 0)
+            {
+                MessageBox.Show("Invalid Log Year selected.");
+                return;
+            }
+
+            string logYear = cbLogYear.SelectedItem.ToString();
+
             List<object> objectValues = new List<object>();
             objectValues.Add(newValue);
             objectValues.Add(oldValue);
+            objectValues.Add(logYear);
 
             runStoredProcedure(objectValues, "Log_Year_Update");
 
@@ -1874,6 +1897,13 @@ namespace CyclingLogApplication
             cbLogYear4.Items.Clear();
             cbLogYear5.DataSource = null;
             cbLogYear5.Items.Clear();
+
+            //Set first option of 'None':
+            cbLogYear1.Items.Add("--None--");
+            cbLogYear2.Items.Add("--None--");
+            cbLogYear3.Items.Add("--None--");
+            cbLogYear4.Items.Add("--None--");
+            cbLogYear5.Items.Add("--None--");
 
             for (int i = 0; i < tempList.Count; i++)
             {
@@ -2492,6 +2522,45 @@ namespace CyclingLogApplication
                 {
                     sqlConnection.Close();
                 }
+            }
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbLogYearConfig_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string year = "";
+            List<object> objectValues = new List<object>();
+            objectValues.Add(cbLogYearConfig.SelectedItem);
+
+            try
+            {
+                //ExecuteScalarFunction
+                using (var results = ExecuteSimpleQueryConnection("Log_Year_Get", objectValues))
+                {
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            year = results[0].ToString();
+
+                        }
+                    }
+                    else
+                    {
+                        // lbMaintError.Text = "No entry found for the selected Bike and Date.";
+                        return;
+                    }
+                }
+
+                cbLogYear.SelectedItem = year;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
             }
         }
 
