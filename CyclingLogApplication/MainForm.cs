@@ -161,6 +161,9 @@ namespace CyclingLogApplication
                 return;
             }
 
+            btBikeMilesUpdate_click();
+            btGetMaintLog_Click(sender, e);
+
             //Load Statistic combo index values:
             cbLogYear1.SelectedIndex = Convert.ToInt32(getcbStatistic1());
             cbLogYear2.SelectedIndex = Convert.ToInt32(getcbStatistic2());
@@ -2046,7 +2049,7 @@ namespace CyclingLogApplication
             runStoredProcedure(objectValues, "Maintenance_Add");
 
             tbMaintID.Text = "";
-            btGetMaintLog_Click(sender, e);
+            //btGetMaintLog_Click(sender, e);
             tbMaintMiles.Text = "";
             rtbMaintComments.Text = "";
             btGetMaintLog_Click(sender, e);
@@ -2059,7 +2062,7 @@ namespace CyclingLogApplication
 
         private void tabControl1_MouseClick(object sender, MouseEventArgs e)
         {
-            btGetMaintLog_Click( sender, e);
+            //btGetMaintLog_Click( sender, e);
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -2208,7 +2211,8 @@ namespace CyclingLogApplication
             }
         }
 
-        private void btBikeMilesUpdate_Click(object sender, EventArgs e)
+        //private void btBikeMilesUpdate_Click(object sender, EventArgs e)
+        private void btBikeMilesUpdate_click()
         {
             //Load bike names and notinlogmiles from the database:
 

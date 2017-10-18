@@ -1411,7 +1411,7 @@
             this.btBikeMilesUpdate.TabIndex = 18;
             this.btBikeMilesUpdate.Text = "Update";
             this.btBikeMilesUpdate.UseVisualStyleBackColor = true;
-            this.btBikeMilesUpdate.Click += new System.EventHandler(this.btBikeMilesUpdate_Click);
+            //this.btBikeMilesUpdate.Click += new System.EventHandler(this.btBikeMilesUpdate_Click);
             // 
             // label22
             // 
