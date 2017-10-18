@@ -37,6 +37,7 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label30 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.btDeleteAllData = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
@@ -102,6 +103,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.cbLogYear = new System.Windows.Forms.ComboBox();
             this.lbConfigError = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -159,12 +162,9 @@
             this.tbBikeMilesTotal1 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label29 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.cbLogYear = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -259,6 +259,16 @@
             this.groupBox1.Size = new System.Drawing.Size(720, 385);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(241, 42);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(264, 29);
+            this.label30.TabIndex = 12;
+            this.label30.Text = "Cycling Log Application";
             // 
             // button1
             // 
@@ -986,6 +996,37 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(113, 172);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(97, 13);
+            this.label31.TabIndex = 24;
+            this.label31.Text = "Log Year Selection";
+            // 
+            // cbLogYear
+            // 
+            this.cbLogYear.FormattingEnabled = true;
+            this.cbLogYear.Items.AddRange(new object[] {
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022"});
+            this.cbLogYear.Location = new System.Drawing.Point(116, 191);
+            this.cbLogYear.Name = "cbLogYear";
+            this.cbLogYear.Size = new System.Drawing.Size(121, 21);
+            this.cbLogYear.TabIndex = 23;
+            // 
             // lbConfigError
             // 
             this.lbConfigError.AutoSize = true;
@@ -1028,9 +1069,9 @@
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(113, 73);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(97, 13);
+            this.label24.Size = new System.Drawing.Size(99, 13);
             this.label24.TabIndex = 18;
-            this.label24.Text = "Log Year Selection";
+            this.label24.Text = "Log Entry Selection";
             // 
             // tbConfigMilesNotInLog
             // 
@@ -1411,7 +1452,6 @@
             this.btBikeMilesUpdate.TabIndex = 18;
             this.btBikeMilesUpdate.Text = "Update";
             this.btBikeMilesUpdate.UseVisualStyleBackColor = true;
-            //this.btBikeMilesUpdate.Click += new System.EventHandler(this.btBikeMilesUpdate_Click);
             // 
             // label22
             // 
@@ -1548,6 +1588,15 @@
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(308, 241);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(86, 13);
+            this.label29.TabIndex = 2;
+            this.label29.Text = "By: John T Flynn";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -1566,56 +1615,6 @@
             this.label1.Size = new System.Drawing.Size(264, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(308, 241);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(86, 13);
-            this.label29.TabIndex = 2;
-            this.label29.Text = "By: John T Flynn";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(241, 42);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(264, 29);
-            this.label30.TabIndex = 12;
-            this.label30.Text = "Cycling Log Application";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(119, 172);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(97, 13);
-            this.label31.TabIndex = 24;
-            this.label31.Text = "Log Year Selection";
-            // 
-            // cbLogYear
-            // 
-            this.cbLogYear.FormattingEnabled = true;
-            this.cbLogYear.Items.AddRange(new object[] {
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022"});
-            this.cbLogYear.Location = new System.Drawing.Point(119, 191);
-            this.cbLogYear.Name = "cbLogYear";
-            this.cbLogYear.Size = new System.Drawing.Size(121, 21);
-            this.cbLogYear.TabIndex = 23;
             // 
             // MainForm
             // 

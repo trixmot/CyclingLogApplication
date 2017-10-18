@@ -22,7 +22,7 @@ namespace CyclingLogApplication
         RideDataDisplay rideDataDisplayForm;
         ChartForm chartForm;
 
-        private static string logVersion = "0.0.2";
+        private static string logVersion = "0.0.3";
         private static int logLevel = 0;
         private static string cbStatistic1 = "-1";
         private static string cbStatistic2 = "-1";
@@ -1856,9 +1856,19 @@ namespace CyclingLogApplication
         private void bRenameLogYear_Click(object sender, EventArgs e)
         {
             string newValue = tbLogYearConfig.Text;
-            string oldValue = cbLogYearConfig.SelectedItem.ToString();
+            string oldValue = "";
 
-            if (cbLogYear.SelectedIndex == 0)
+            if (cbLogYearConfig.SelectedItem != null)
+            {
+                oldValue = cbLogYearConfig.SelectedItem.ToString();
+            } else
+            {
+                MessageBox.Show("Invalid Log Year selected.");
+                return;
+            }
+            
+
+            if (cbLogYear.SelectedItem == null)
             {
                 MessageBox.Show("Invalid Log Year selected.");
                 return;
@@ -2546,6 +2556,7 @@ namespace CyclingLogApplication
             string year = "";
             List<object> objectValues = new List<object>();
             objectValues.Add(cbLogYearConfig.SelectedItem);
+            tbLogYearConfig.Text = cbLogYearConfig.SelectedItem.ToString();
 
             try
             {
