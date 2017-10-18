@@ -1280,6 +1280,7 @@
             this.tbMaintID.Name = "tbMaintID";
             this.tbMaintID.Size = new System.Drawing.Size(53, 20);
             this.tbMaintID.TabIndex = 12;
+            this.tbMaintID.Visible = false;
             // 
             // btMaintUpdate
             // 
