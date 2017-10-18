@@ -408,6 +408,39 @@ namespace CyclingLogApplication
                     return;
                 }
 
+                //===============================
+                string year = "";
+                List<object> objectValuesLogYear = new List<object>();
+                objectValuesLogYear.Add(cbLogYearDataEntry.SelectedItem);
+
+                //ExecuteScalarFunction
+                using (var results = ExecuteSimpleQueryConnection("Log_Year_Get", objectValuesLogYear))
+                {
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            year = results[0].ToString();
+
+                        }
+                    }
+                    else
+                    {
+                        // lbMaintError.Text = "No entry found for the selected Bike and Date.";
+                        return;
+                    }
+                }
+
+                DateTime rideDate = dtpRideDate.Value;
+                if (!year.Equals(rideDate.Year.ToString()))
+                {
+                    lbRideDataEntryError.Text = "The Log year does not match up with the current ride date.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+
+                //===============================
+
                 MainForm mainForm = new MainForm("");
                 int logSetting = mainForm.getLogLevel();
                 string recordID = tbRecordID.Text;

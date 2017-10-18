@@ -535,6 +535,13 @@ namespace CyclingLogApplication
                 cbLogYear5.DataSource = null;
                 cbLogYear5.Items.Clear();
 
+                //Set first option of 'None':
+                cbLogYear1.Items.Add("--None--");
+                cbLogYear2.Items.Add("--None--");
+                cbLogYear3.Items.Add("--None--");
+                cbLogYear4.Items.Add("--None--");
+                cbLogYear5.Items.Add("--None--");
+
                 for (int i = 0; i < tempList.Count; i++)
                 {
                     cbLogYearConfig.Items.Add(tempList[i]);
