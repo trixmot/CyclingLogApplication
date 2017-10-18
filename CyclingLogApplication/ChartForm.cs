@@ -75,7 +75,7 @@ namespace CyclingLogApplication
         {
             labelChartError.Hide();
             MainForm mainForm = new MainForm("");
-            mainForm.setLastTypeChartSelected(cbTypeData.SelectedIndex);
+            mainForm.setLastTypeChartSelected(cbTypeTime.SelectedIndex);
         }
 
         private void cbLogYearChart_SelectedIndexChanged(object sender, EventArgs e)
@@ -121,10 +121,13 @@ namespace CyclingLogApplication
 
         private void btRunChart_Click(object sender, EventArgs e)
         {
+            string chartDataType = "";
+            bool averageDataType = false;
+
             //Verify the required values are available before running chart:
-            if (cbTypeData.SelectedIndex == -1)
+            if (cbTypeTime.SelectedIndex == -1)
             {
-                labelChartError.Text = "Select a Chart Type option from the dropdown list.";
+                labelChartError.Text = "Select a Chart time option from the dropdown list.";
                 labelChartError.Show();
 
                 return;
@@ -144,6 +147,23 @@ namespace CyclingLogApplication
                 return;
             }
 
+            if (cbTypeChartData.SelectedIndex == -1)
+            {
+                labelChartError.Text = "Select a Chart data type from the dropdown list.";
+                labelChartError.Show();
+
+                return;
+            }
+
+            if (cbTypeChartData.SelectedIndex == 0)
+            {
+                chartDataType = "AvgSpeed";
+                averageDataType = true;
+            } else
+            {
+                chartDataType = "RideDistance";
+            }
+
             // conn and reader declared outside try block for visibility in finally block
             //SqlConnection conn = null;
             SqlDataReader reader = null;
@@ -160,37 +180,37 @@ namespace CyclingLogApplication
                 int logIndex = mainForm.getLogYearIndex(cbLogYearChart.SelectedItem.ToString());
 
                 //Daily:
-                if (cbTypeData.SelectedIndex == 0)
+                if (cbTypeTime.SelectedIndex == 0)
                 {
                     if (!checkBoxRouteOption.Checked) {
-                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, sqlConnection);
+                        cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
                     } else
                     {
-                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex, sqlConnection);
+                        cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
                     }
                 }
                 //Weekly:
-                else if (cbTypeData.SelectedIndex == 1)
+                else if (cbTypeTime.SelectedIndex == 1)
                 {
                     if (!checkBoxRouteOption.Checked)
                     {
-                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, sqlConnection);
+                        cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
                     }
                     else
                     {
-                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex, sqlConnection);
+                        cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
                     }
                 }
                 //Monthly:
-                else if (cbTypeData.SelectedIndex == 2)
+                else if (cbTypeTime.SelectedIndex == 2)
                 {
                     if (!checkBoxRouteOption.Checked)
                     {
-                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, sqlConnection);
+                        cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
                     }
                     else
                     {
-                        cmd = new SqlCommand("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex, sqlConnection);
+                        cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
                     }
                 }
 
@@ -198,10 +218,9 @@ namespace CyclingLogApplication
                 reader = cmd.ExecuteReader();
                 int weekCount = 1;
                 int monthCount = 1;
-                int recordCount = 0;
-                double avg_avgSpeed = 0;
-                double total_avgSpeed = 0;
-                string recordDate = "";
+                int recordCount = 1;
+                double total_value = 0;
+                double avg_value = 0;
 
                 chart1.Series[0].Points.Clear();
 
@@ -221,78 +240,86 @@ namespace CyclingLogApplication
                 {
                     string date = reader[0].ToString();
                     date = Convert.ToDateTime(date).ToShortDateString();
-                    double avgSpeed = Convert.ToDouble(reader[1].ToString());
+                    double chartDataTypeValue = Convert.ToDouble(reader[1].ToString());
                     int weekValue = Convert.ToInt32(reader[2].ToString());                
                     //this.chart1.Series["Series1"].Points.AddXY(reader[0].ToString(), reader[1].ToString());
 
                     //Daily
-                    if (cbTypeData.SelectedIndex == 0)
+                    if (cbTypeTime.SelectedIndex == 0)
                     {
                         if (!date.Equals(""))
                         {
-                            chart1.Series["Series1"].Points.AddXY(date, avgSpeed.ToString());
-                            Logger.Log("Chart Testing: Daily avgSpeed: " + avgSpeed + "::" + date + "::" + date, 1, 0);
+                            chart1.Series["Series1"].Points.AddXY(date, chartDataTypeValue.ToString());
+                            Logger.Log("Chart Testing: Daily values: " + chartDataTypeValue + "::" + date, 1, 0);
                         }
                     }
                     //Weekly:
-                    else if (cbTypeData.SelectedIndex == 1)
+                    else if (cbTypeTime.SelectedIndex == 1)
                     {
                         if (weekCount != weekValue)
-                        {
-                            //Run chart series data on previous values:
-                            avg_avgSpeed = total_avgSpeed / recordCount;
-                            
-                            if (!recordDate.Equals(""))
+                        {     
+                            if (averageDataType)
                             {
-                                chart1.Series["Series1"].Points.AddXY(recordDate, avg_avgSpeed.ToString());
-                                Logger.Log("Chart Testing: Weekly current_avgSpeed: " + avg_avgSpeed + "::" + recordDate + "::" + date, 1, 0);
+                                if (total_value != 0)
+                                {
+                                    avg_value = total_value / recordCount;
+                                    chart1.Series["Series1"].Points.AddXY(date, avg_value.ToString());
+                                }
+                            } else
+                            {
+                                if (total_value != 0)
+                                {
+                                    chart1.Series["Series1"].Points.AddXY(date, total_value.ToString());
+                                }
                             }
-
+                                            
                             //Restart values over since starting a new week:
                             recordCount = 1;
-                            recordDate = date;
-                            total_avgSpeed = avgSpeed;
-                            Logger.Log("Chart Testing: Weekly total_avgSpeed: " + total_avgSpeed + "::" + date, 1, 0);
-                            weekCount++;
+                            total_value = chartDataTypeValue;
+                            weekCount = weekValue;
                         }
                         else
                         {
-                            if (recordDate.Equals(""))
-                            {
-                                recordDate = date;
-                            }
-                            total_avgSpeed = total_avgSpeed + avgSpeed;
+                            total_value = total_value + chartDataTypeValue;
                             recordCount++;
-                            Logger.Log("Chart Testing: Weekly total_avgSpeed: " + total_avgSpeed + "::" + date, 1, 0);
                         }
+                    
+                        Logger.Log("Chart Testing: Weekly values: " + total_value + "::" + date, 1, 0);
                     }
                     //Monthly:
-                    else if (cbTypeData.SelectedIndex == 2)
+                    else if (cbTypeTime.SelectedIndex == 2)
                     {
                         DateTime datetime = Convert.ToDateTime(date);
                         int month = datetime.Month;
 
                         if (monthCount != month)
                         {
-                            //Run chart series data on previous values:
-                            avg_avgSpeed = total_avgSpeed / recordCount;
-
-                            if (!recordDate.Equals(""))
+                            if (averageDataType)
                             {
-                                chart1.Series["Series1"].Points.AddXY(recordDate, avg_avgSpeed.ToString());
-                                Logger.Log("Chart Testing: Monthly current_avgSpeed: " + avg_avgSpeed + "::" + recordDate + "::" + date, 1, 0);
+                                if (total_value != 0)
+                                {
+                                    avg_value = total_value / recordCount;
+                                    chart1.Series["Series1"].Points.AddXY(date, avg_value.ToString());
+                                }
+                            } else
+                            { 
+                                if (total_value != 0)
+                                {
+                                    chart1.Series["Series1"].Points.AddXY(date, total_value.ToString());
+                                }
+                                
                             }
-
-                            //Restart values over since starting a new month:
+                            //Restart values over since starting a new week:
                             recordCount = 1;
-                            recordDate = date;
-                            total_avgSpeed = avgSpeed;
-                            Logger.Log("Chart Testing: Monthly total_avgSpeed: " + total_avgSpeed + "::" + date, 1, 0);
-                            monthCount++;
+                            total_value = chartDataTypeValue;
+                            monthCount = month;
                         } else
                         {
-                            Logger.Log("Chart Testing: Monthly total_avgSpeed: " + total_avgSpeed + "::" + date, 1, 0);
+                            total_value = total_value + chartDataTypeValue;
+                            recordCount++;                          
                         }
+
+                        Logger.Log("Chart Testing: Monthly values: " + total_value + "::" + date, 1, 0);
                     }
                 }
             } catch (Exception ex)
@@ -315,13 +342,13 @@ namespace CyclingLogApplication
             }
 
             //---------------------
-            if (cbTypeData.SelectedIndex == 0)
+            if (cbTypeTime.SelectedIndex == 0)
             {
 
-            } else if (cbTypeData.SelectedIndex == 1)
+            } else if (cbTypeTime.SelectedIndex == 1)
             {
 
-            } else if (cbTypeData.SelectedIndex == 2)
+            } else if (cbTypeTime.SelectedIndex == 2)
             {
                 // Average Speed Chart
                 chart1.Series["Series1"].XValueMember = "Date";
@@ -343,5 +370,6 @@ namespace CyclingLogApplication
                 cbRoutesChart.SelectedIndex = -1;
             }
         }
+
     }
 }

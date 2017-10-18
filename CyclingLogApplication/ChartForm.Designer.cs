@@ -41,6 +41,12 @@
             this.lbXAxis = new System.Windows.Forms.Label();
             this.lbYAxis = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbTypeChartData = new System.Windows.Forms.ComboBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbChartTypeColumn = new System.Windows.Forms.RadioButton();
+            this.rbChartTypeLine = new System.Windows.Forms.RadioButton();
+            this.rbChartTypeBar = new System.Windows.Forms.RadioButton();
             this.labelChartError = new System.Windows.Forms.Label();
             this.checkBoxRouteOption = new System.Windows.Forms.CheckBox();
             this.btCloseChart = new System.Windows.Forms.Button();
@@ -52,11 +58,7 @@
             this.cbLogYearChart = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbTypeData = new System.Windows.Forms.ComboBox();
-            this.rbChartTypeBar = new System.Windows.Forms.RadioButton();
-            this.rbChartTypeColumn = new System.Windows.Forms.RadioButton();
-            this.rbChartTypeLine = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbTypeTime = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).BeginInit();
@@ -124,6 +126,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.cbTypeChartData);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.labelChartError);
             this.groupBox1.Controls.Add(this.checkBoxRouteOption);
@@ -136,7 +140,7 @@
             this.groupBox1.Controls.Add(this.cbLogYearChart);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.cbTypeData);
+            this.groupBox1.Controls.Add(this.cbTypeTime);
             this.groupBox1.Controls.Add(this.lbXAxis);
             this.groupBox1.Controls.Add(this.lbYAxis);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -144,6 +148,71 @@
             this.groupBox1.Size = new System.Drawing.Size(223, 562);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 184);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Data";
+            // 
+            // cbTypeChartData
+            // 
+            this.cbTypeChartData.FormattingEnabled = true;
+            this.cbTypeChartData.Items.AddRange(new object[] {
+            "Average Speed",
+            "Miles"});
+            this.cbTypeChartData.Location = new System.Drawing.Point(22, 200);
+            this.cbTypeChartData.Name = "cbTypeChartData";
+            this.cbTypeChartData.Size = new System.Drawing.Size(146, 21);
+            this.cbTypeChartData.TabIndex = 20;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.rbChartTypeColumn);
+            this.groupBox2.Controls.Add(this.rbChartTypeLine);
+            this.groupBox2.Controls.Add(this.rbChartTypeBar);
+            this.groupBox2.Location = new System.Drawing.Point(22, 310);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(175, 100);
+            this.groupBox2.TabIndex = 19;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Chart Type";
+            // 
+            // rbChartTypeColumn
+            // 
+            this.rbChartTypeColumn.AutoSize = true;
+            this.rbChartTypeColumn.Location = new System.Drawing.Point(32, 46);
+            this.rbChartTypeColumn.Name = "rbChartTypeColumn";
+            this.rbChartTypeColumn.Size = new System.Drawing.Size(60, 17);
+            this.rbChartTypeColumn.TabIndex = 17;
+            this.rbChartTypeColumn.TabStop = true;
+            this.rbChartTypeColumn.Text = "Column";
+            this.rbChartTypeColumn.UseVisualStyleBackColor = true;
+            // 
+            // rbChartTypeLine
+            // 
+            this.rbChartTypeLine.AutoSize = true;
+            this.rbChartTypeLine.Location = new System.Drawing.Point(32, 69);
+            this.rbChartTypeLine.Name = "rbChartTypeLine";
+            this.rbChartTypeLine.Size = new System.Drawing.Size(45, 17);
+            this.rbChartTypeLine.TabIndex = 18;
+            this.rbChartTypeLine.TabStop = true;
+            this.rbChartTypeLine.Text = "Line";
+            this.rbChartTypeLine.UseVisualStyleBackColor = true;
+            // 
+            // rbChartTypeBar
+            // 
+            this.rbChartTypeBar.AutoSize = true;
+            this.rbChartTypeBar.Location = new System.Drawing.Point(32, 23);
+            this.rbChartTypeBar.Name = "rbChartTypeBar";
+            this.rbChartTypeBar.Size = new System.Drawing.Size(41, 17);
+            this.rbChartTypeBar.TabIndex = 16;
+            this.rbChartTypeBar.TabStop = true;
+            this.rbChartTypeBar.Text = "Bar";
+            this.rbChartTypeBar.UseVisualStyleBackColor = true;
             // 
             // labelChartError
             // 
@@ -160,7 +229,7 @@
             // checkBoxRouteOption
             // 
             this.checkBoxRouteOption.AutoSize = true;
-            this.checkBoxRouteOption.Location = new System.Drawing.Point(22, 202);
+            this.checkBoxRouteOption.Location = new System.Drawing.Point(22, 227);
             this.checkBoxRouteOption.Name = "checkBoxRouteOption";
             this.checkBoxRouteOption.Size = new System.Drawing.Size(96, 17);
             this.checkBoxRouteOption.TabIndex = 14;
@@ -209,7 +278,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 235);
+            this.label5.Location = new System.Drawing.Point(19, 256);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 13);
             this.label5.TabIndex = 9;
@@ -218,7 +287,7 @@
             // cbRoutesChart
             // 
             this.cbRoutesChart.FormattingEnabled = true;
-            this.cbRoutesChart.Location = new System.Drawing.Point(22, 251);
+            this.cbRoutesChart.Location = new System.Drawing.Point(22, 272);
             this.cbRoutesChart.Name = "cbRoutesChart";
             this.cbRoutesChart.Size = new System.Drawing.Size(175, 21);
             this.cbRoutesChart.TabIndex = 8;
@@ -227,7 +296,7 @@
             // cbLogYearChart
             // 
             this.cbLogYearChart.FormattingEnabled = true;
-            this.cbLogYearChart.Location = new System.Drawing.Point(22, 160);
+            this.cbLogYearChart.Location = new System.Drawing.Point(22, 151);
             this.cbLogYearChart.Name = "cbLogYearChart";
             this.cbLogYearChart.Size = new System.Drawing.Size(146, 21);
             this.cbLogYearChart.TabIndex = 6;
@@ -236,7 +305,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 144);
+            this.label4.Location = new System.Drawing.Point(19, 135);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 5;
@@ -245,69 +314,24 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 95);
+            this.label3.Location = new System.Drawing.Point(19, 86);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Data";
+            this.label3.Text = "Time";
             // 
-            // cbTypeData
+            // cbTypeTime
             // 
-            this.cbTypeData.FormattingEnabled = true;
-            this.cbTypeData.Items.AddRange(new object[] {
+            this.cbTypeTime.FormattingEnabled = true;
+            this.cbTypeTime.Items.AddRange(new object[] {
             "Daily",
             "Weekly",
             "Monthly"});
-            this.cbTypeData.Location = new System.Drawing.Point(22, 111);
-            this.cbTypeData.Name = "cbTypeData";
-            this.cbTypeData.Size = new System.Drawing.Size(146, 21);
-            this.cbTypeData.TabIndex = 3;
-            this.cbTypeData.SelectedIndexChanged += new System.EventHandler(this.cbTypeChart_SelectedIndexChanged);
-            // 
-            // rbChartTypeBar
-            // 
-            this.rbChartTypeBar.AutoSize = true;
-            this.rbChartTypeBar.Location = new System.Drawing.Point(32, 23);
-            this.rbChartTypeBar.Name = "rbChartTypeBar";
-            this.rbChartTypeBar.Size = new System.Drawing.Size(41, 17);
-            this.rbChartTypeBar.TabIndex = 16;
-            this.rbChartTypeBar.TabStop = true;
-            this.rbChartTypeBar.Text = "Bar";
-            this.rbChartTypeBar.UseVisualStyleBackColor = true;
-            // 
-            // rbChartTypeColumn
-            // 
-            this.rbChartTypeColumn.AutoSize = true;
-            this.rbChartTypeColumn.Location = new System.Drawing.Point(32, 46);
-            this.rbChartTypeColumn.Name = "rbChartTypeColumn";
-            this.rbChartTypeColumn.Size = new System.Drawing.Size(60, 17);
-            this.rbChartTypeColumn.TabIndex = 17;
-            this.rbChartTypeColumn.TabStop = true;
-            this.rbChartTypeColumn.Text = "Column";
-            this.rbChartTypeColumn.UseVisualStyleBackColor = true;
-            // 
-            // rbChartTypeLine
-            // 
-            this.rbChartTypeLine.AutoSize = true;
-            this.rbChartTypeLine.Location = new System.Drawing.Point(32, 69);
-            this.rbChartTypeLine.Name = "rbChartTypeLine";
-            this.rbChartTypeLine.Size = new System.Drawing.Size(45, 17);
-            this.rbChartTypeLine.TabIndex = 18;
-            this.rbChartTypeLine.TabStop = true;
-            this.rbChartTypeLine.Text = "Line";
-            this.rbChartTypeLine.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.rbChartTypeColumn);
-            this.groupBox2.Controls.Add(this.rbChartTypeLine);
-            this.groupBox2.Controls.Add(this.rbChartTypeBar);
-            this.groupBox2.Location = new System.Drawing.Point(22, 294);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(175, 100);
-            this.groupBox2.TabIndex = 19;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Chart Type";
+            this.cbTypeTime.Location = new System.Drawing.Point(22, 102);
+            this.cbTypeTime.Name = "cbTypeTime";
+            this.cbTypeTime.Size = new System.Drawing.Size(146, 21);
+            this.cbTypeTime.TabIndex = 3;
+            this.cbTypeTime.SelectedIndexChanged += new System.EventHandler(this.cbTypeChart_SelectedIndexChanged);
             // 
             // ChartForm
             // 
@@ -352,12 +376,14 @@
         public System.Windows.Forms.ComboBox cbLogYearChart;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbTypeData;
+        private System.Windows.Forms.ComboBox cbTypeTime;
         private System.Windows.Forms.CheckBox checkBoxRouteOption;
         private System.Windows.Forms.Label labelChartError;
         private System.Windows.Forms.RadioButton rbChartTypeLine;
         private System.Windows.Forms.RadioButton rbChartTypeColumn;
         private System.Windows.Forms.RadioButton rbChartTypeBar;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbTypeChartData;
     }
 }
