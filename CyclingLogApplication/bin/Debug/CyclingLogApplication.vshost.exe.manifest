@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CyclingLogApplication.exe" size="240128">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CyclingLogApplication.exe" size="243712">
       <assemblyIdentity name="CyclingLogApplication" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>eNcgue/AnT+Kt5O9u/+T0obEUgrvZ463Ml+6vgf1iwI=</dsig:DigestValue>
+        <dsig:DigestValue>wrfbf144j7BhxNkvTdV7Hxk7PpCKOhOuQ3RGo2fNQzQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -89,7 +89,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>t2mEXEZQwisFTmt0sUu35TaiAJ5w9HxA1Qf2bZDICyw=</dsig:DigestValue>
+      <dsig:DigestValue>fXny94BabE0XVucv1JeCsGhj/z7OWPDsPOoaYvI1750=</dsig:DigestValue>
     </hash>
   </file>
   <file name="CyclingLogDatabase_log.ldf" size="851968" writeableType="applicationData">
@@ -98,7 +98,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>YVBGjLIU2neHgSGMY7r8cxlivjpSWpDAESXFFvboTcA=</dsig:DigestValue>
+      <dsig:DigestValue>M+hwQF6q/OZszYZFseihssJwNZ2CYr0nSGbihB+EY5Q=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
