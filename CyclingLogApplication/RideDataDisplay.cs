@@ -192,5 +192,10 @@ namespace CyclingLogApplication
             MainForm mainForm = new MainForm("");
             mainForm.setLastLogFilterSelected(cbLogYearFilter.SelectedIndex);
         }
+
+        private void cbFilterFieldChanged(object sender, EventArgs e)
+        {
+            //TODO: Add values to Dropdown list:
+        }
     }
 }

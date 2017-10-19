@@ -74,6 +74,7 @@
             this.cbFilterField.Name = "cbFilterField";
             this.cbFilterField.Size = new System.Drawing.Size(121, 21);
             this.cbFilterField.TabIndex = 2;
+            this.cbFilterField.SelectedIndexChanged += new System.EventHandler(this.cbFilterFieldChanged);
             // 
             // tbFilterText
             // 

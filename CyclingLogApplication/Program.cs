@@ -39,15 +39,6 @@ namespace CyclingLogApplication
             //sc query MSSQLSERVER
             //Wmic service where (PathName like '%Binn\\sqlservr%') get caption, name, startmode, state, PathName, ProcessId
 
-            if (!EnumerateSQLInstances())
-            {
-                Logger.Log("There are no instances of SQL Server 2005 or SQL Server 2008 installed", 0, 0);
-                //Console.WriteLine("There are no instances of SQL Server 2005 or SQL Server 2008 installed");
-            } else
-            {
-                Logger.Log("A version of SQL Server has been detected.", 0, 0);
-            }
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
