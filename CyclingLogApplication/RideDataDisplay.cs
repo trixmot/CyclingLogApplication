@@ -133,6 +133,12 @@ namespace CyclingLogApplication
                 dataGridView1.DataSource = dataTable;
                 dataGridView1.Columns["AvgSpeed"].DefaultCellStyle.Format = "0.00";
                 dataGridView1.Columns["RideDistance"].DefaultCellStyle.Format = "0.0";
+
+                // Resize the master DataGridView columns to fit the newly loaded data.
+                dataGridView1.AutoResizeColumns();
+
+                // Configure the details DataGridView so that its columns automatically adjust their widths when the data changes.
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             }
             catch (Exception ex)
             {
