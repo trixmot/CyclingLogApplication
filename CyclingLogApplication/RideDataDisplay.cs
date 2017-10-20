@@ -195,11 +195,8 @@ namespace CyclingLogApplication
 
         private void cbFilterFieldChanged(object sender, EventArgs e)
         {
-            //TODO: Add values to Dropdown list:
             MainForm mainForm = new MainForm("");
-
             cbFilterValue.Items.Clear();
-            
 
             if (cbFilterField.SelectedIndex == 0)
             {
