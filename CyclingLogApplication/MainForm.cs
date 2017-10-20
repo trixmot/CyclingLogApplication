@@ -393,7 +393,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private List<string> readDataNames(string tableName, string columnName)
+        public List<string> readDataNames(string tableName, string columnName)
         {
             SqlDataReader reader = null;
             List<string> nameList = new List<string>();

@@ -77,7 +77,7 @@ namespace CyclingLogApplication
                     sqlDataAdapter = new SqlDataAdapter();
                     sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @WeekNumber LIKE WeekNumber" + logYearIDQuery, sqlConnection);
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@WeekNumber", SqlDbType.BigInt, 5);
-                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@WeekNumber", tbFilterText.Text);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@WeekNumber", cbFilterValue.Text);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
 
                     //sqlDataAdapter = new SqlDataAdapter("select [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Comments] from Table_Ride_Information WHERE WeekNumber LIKE " + cbFilter.Text + "%", conn);
@@ -87,7 +87,7 @@ namespace CyclingLogApplication
                     sqlDataAdapter = new SqlDataAdapter();
                     sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @Bike LIKE Bike" + logYearIDQuery, sqlConnection);
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@Bike", SqlDbType.NVarChar, 50);
-                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Bike", tbFilterText.Text);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Bike", cbFilterValue.Text);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
                 }
                 else if (cbFilterField.Text.Equals("RideType"))
@@ -95,7 +95,7 @@ namespace CyclingLogApplication
                     sqlDataAdapter = new SqlDataAdapter();
                     sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @RideType LIKE RideType" + logYearIDQuery, sqlConnection);
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@RideType", SqlDbType.NVarChar, 50);
-                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@RideType", tbFilterText.Text);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@RideType", cbFilterValue.Text);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
                 }
                 else if (cbFilterField.Text.Equals("Route"))
@@ -103,7 +103,7 @@ namespace CyclingLogApplication
                     sqlDataAdapter = new SqlDataAdapter();
                     sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @Route LIKE Route" + logYearIDQuery, sqlConnection);
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
-                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Route", tbFilterText.Text);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Route", cbFilterValue.Text);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
                 }
                 else if (cbFilterField.Text.Equals("Location"))
@@ -111,7 +111,7 @@ namespace CyclingLogApplication
                     sqlDataAdapter = new SqlDataAdapter();
                     sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @Location LIKE Location" + logYearIDQuery, sqlConnection);
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
-                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Location", tbFilterText.Text);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Location", cbFilterValue.Text);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
                 }
                 else
@@ -152,7 +152,7 @@ namespace CyclingLogApplication
 
         private void btClear_Click(object sender, EventArgs e)
         {
-            tbFilterText.Text = "";
+            cbFilterValue.SelectedIndex = 0;
             cbFilterField.SelectedIndex = 0;
 
             SqlConnection conn = null;
@@ -196,6 +196,65 @@ namespace CyclingLogApplication
         private void cbFilterFieldChanged(object sender, EventArgs e)
         {
             //TODO: Add values to Dropdown list:
+            MainForm mainForm = new MainForm("");
+
+            cbFilterValue.Items.Clear();
+            
+
+            if (cbFilterField.SelectedIndex == 0)
+            {
+                //NONE
+            }
+            else if (cbFilterField.SelectedIndex == 1)
+            {
+                //Load Bike values:
+                List<string> bikeList = new List<string>();
+                bikeList = mainForm.readDataNames("Table_Bikes", "Name");
+
+                foreach (var val in bikeList)
+                {
+                    cbFilterValue.Items.Add(val);
+                }
+                cbFilterValue.SelectedIndex = 0;
+            }
+            else if (cbFilterField.SelectedIndex == 2)
+            {
+                //Location
+                cbFilterValue.Items.Add("Road");
+                cbFilterValue.Items.Add("Rollers");
+                cbFilterValue.Items.Add("Trail");
+                cbFilterValue.Items.Add("Trainer");
+                cbFilterValue.SelectedIndex = 0;
+            }
+            else if (cbFilterField.SelectedIndex == 3)
+            {
+                //RideType
+                cbFilterValue.Items.Add("Recovery");
+                cbFilterValue.Items.Add("Base");
+                cbFilterValue.Items.Add("Distance");
+                cbFilterValue.Items.Add("Speed");
+                cbFilterValue.Items.Add("Race");
+                cbFilterValue.SelectedIndex = 0;
+            }
+            else if (cbFilterField.SelectedIndex == 4)
+            {
+                //Route
+                List<string> routeList = mainForm.readDataNames("Table_Routes", "Name");
+                for (int i = 1; i < routeList.Count; i++)
+                {
+                    cbFilterValue.Items.Add(routeList.ElementAt(i));
+                }
+                cbFilterValue.SelectedIndex = 0;
+            }
+            else if (cbFilterField.SelectedIndex == 5)
+            {
+                //WeekNumber
+                for (int i = 1; i < 53; i++)
+                {
+                    cbFilterValue.Items.Add(i);
+                }
+                cbFilterValue.SelectedIndex = 0;
+            }
         }
     }
 }

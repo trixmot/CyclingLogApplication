@@ -32,13 +32,13 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.cbFilterField = new System.Windows.Forms.ComboBox();
-            this.tbFilterText = new System.Windows.Forms.TextBox();
             this.Field = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.bFilter = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cbLogYearFilter = new System.Windows.Forms.ComboBox();
             this.btClear = new System.Windows.Forms.Button();
+            this.cbFilterValue = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,13 +76,6 @@
             this.cbFilterField.TabIndex = 2;
             this.cbFilterField.SelectedIndexChanged += new System.EventHandler(this.cbFilterFieldChanged);
             // 
-            // tbFilterText
-            // 
-            this.tbFilterText.Location = new System.Drawing.Point(338, 28);
-            this.tbFilterText.Name = "tbFilterText";
-            this.tbFilterText.Size = new System.Drawing.Size(237, 20);
-            this.tbFilterText.TabIndex = 3;
-            // 
             // Field
             // 
             this.Field.AutoSize = true;
@@ -103,7 +96,7 @@
             // 
             // bFilter
             // 
-            this.bFilter.Location = new System.Drawing.Point(601, 25);
+            this.bFilter.Location = new System.Drawing.Point(694, 24);
             this.bFilter.Name = "bFilter";
             this.bFilter.Size = new System.Drawing.Size(75, 23);
             this.bFilter.TabIndex = 6;
@@ -133,7 +126,7 @@
             // 
             // btClear
             // 
-            this.btClear.Location = new System.Drawing.Point(682, 26);
+            this.btClear.Location = new System.Drawing.Point(775, 25);
             this.btClear.Name = "btClear";
             this.btClear.Size = new System.Drawing.Size(75, 23);
             this.btClear.TabIndex = 9;
@@ -141,18 +134,33 @@
             this.btClear.UseVisualStyleBackColor = true;
             this.btClear.Click += new System.EventHandler(this.btClear_Click);
             // 
+            // cbFilterValue
+            // 
+            this.cbFilterValue.FormattingEnabled = true;
+            this.cbFilterValue.Items.AddRange(new object[] {
+            "NONE",
+            "Bike",
+            "Location",
+            "RideType",
+            "Route",
+            "WeekNumber"});
+            this.cbFilterValue.Location = new System.Drawing.Point(338, 28);
+            this.cbFilterValue.Name = "cbFilterValue";
+            this.cbFilterValue.Size = new System.Drawing.Size(316, 21);
+            this.cbFilterValue.TabIndex = 10;
+            // 
             // RideDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1031, 596);
+            this.Controls.Add(this.cbFilterValue);
             this.Controls.Add(this.btClear);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbLogYearFilter);
             this.Controls.Add(this.bFilter);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Field);
-            this.Controls.Add(this.tbFilterText);
             this.Controls.Add(this.cbFilterField);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
@@ -173,12 +181,12 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox cbFilterField;
-        private System.Windows.Forms.TextBox tbFilterText;
         private System.Windows.Forms.Label Field;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button bFilter;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.ComboBox cbLogYearFilter;
         private System.Windows.Forms.Button btClear;
+        private System.Windows.Forms.ComboBox cbFilterValue;
     }
 }
