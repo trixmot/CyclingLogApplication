@@ -113,6 +113,42 @@ namespace CyclingLogApplication
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Location", cbFilterValue.Text);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
                 }
+                else if (cbFilterField.Text.Equals("Temperature"))
+                {
+                    int temp_value = 0;
+                    sqlDataAdapter = new SqlDataAdapter();
+
+                    //cbFilterValue.Items.Add("Below 30");
+                    //cbFilterValue.Items.Add("31-50");
+                    //cbFilterValue.Items.Add("51-70");
+                    //cbFilterValue.Items.Add("71-90");
+                    //cbFilterValue.Items.Add("Above 91");
+
+                    if (cbFilterValue.SelectedIndex == 0)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [Temperature] < " + 30 + " " + logYearIDQuery + " ORDER BY[Temperature] ASC", sqlConnection);
+                    }
+                    else if (cbFilterValue.SelectedIndex == 1)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [Temperature] >= " + 30 + " and [Temperature] < " + 50 + " " + logYearIDQuery + " ORDER BY[Temperature] ASC", sqlConnection);
+                    }
+                    else if (cbFilterValue.SelectedIndex == 2)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [Temperature] >= " + 50 + " and [Temperature] < " + 70 + " " + logYearIDQuery + " ORDER BY[Temperature] ASC", sqlConnection);
+                    }
+                    else if (cbFilterValue.SelectedIndex == 3)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [Temperature] >= " + 70 + " and [Temperature] < " + 90 + " " + logYearIDQuery + " ORDER BY[Temperature] ASC", sqlConnection);
+                    }
+                    else if (cbFilterValue.SelectedIndex == 4)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [Temperature] >= " + 90 + " " + logYearIDQuery, sqlConnection);
+                    }
+                    //sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [Temperature] > " + temp_value + " " + logYearIDQuery, sqlConnection);
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
+                    //sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Temperature", temp_value);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                }
                 else
                 {
                     sqlDataAdapter = new SqlDataAdapter();
@@ -150,8 +186,8 @@ namespace CyclingLogApplication
             catch (Exception ex)
             {
                 
-                Logger.LogError("[ERROR]: Exception while trying to Clear ride data." + ex.Message.ToString());
-                MessageBox.Show("An exception error has occurred.  Review the log for more information.");
+                Logger.LogError("[ERROR]: Exception while trying to run query ride data." + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred while quering ride data.  Review the log for more information.");
             }
             finally
             {
@@ -257,6 +293,15 @@ namespace CyclingLogApplication
                 cbFilterValue.SelectedIndex = 0;
             }
             else if (cbFilterField.SelectedIndex == 5)
+            {
+                cbFilterValue.Items.Add("Below 30");
+                cbFilterValue.Items.Add("30-49");
+                cbFilterValue.Items.Add("50-69");
+                cbFilterValue.Items.Add("70-89");
+                cbFilterValue.Items.Add("Above 90");
+                cbFilterValue.SelectedIndex = 0;
+            }
+            else if (cbFilterField.SelectedIndex == 6)
             {
                 //WeekNumber
                 for (int i = 1; i < 53; i++)

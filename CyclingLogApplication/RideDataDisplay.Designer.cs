@@ -69,6 +69,7 @@
             "Location",
             "RideType",
             "Route",
+            "Temperature",
             "WeekNumber"});
             this.cbFilterField.Location = new System.Drawing.Point(181, 27);
             this.cbFilterField.Name = "cbFilterField";
