@@ -115,14 +115,13 @@ namespace CyclingLogApplication
                 }
                 else if (cbFilterField.Text.Equals("Temperature"))
                 {
-                    int temp_value = 0;
                     sqlDataAdapter = new SqlDataAdapter();
 
-                    //cbFilterValue.Items.Add("Below 30");
-                    //cbFilterValue.Items.Add("31-50");
-                    //cbFilterValue.Items.Add("51-70");
-                    //cbFilterValue.Items.Add("71-90");
-                    //cbFilterValue.Items.Add("Above 91");
+                    //index 0 = "Below 30":
+                    //index 1 = "30-49":
+                    //index 2 = "50-69":
+                    //index 3 = "70-89":
+                    //index 4 = "Above 90":
 
                     if (cbFilterValue.SelectedIndex == 0)
                     {
@@ -265,7 +264,7 @@ namespace CyclingLogApplication
             }
             else if (cbFilterField.SelectedIndex == 2)
             {
-                //Location
+                //Location:
                 cbFilterValue.Items.Add("Road");
                 cbFilterValue.Items.Add("Rollers");
                 cbFilterValue.Items.Add("Trail");
@@ -274,7 +273,7 @@ namespace CyclingLogApplication
             }
             else if (cbFilterField.SelectedIndex == 3)
             {
-                //RideType
+                //RideType:
                 cbFilterValue.Items.Add("Recovery");
                 cbFilterValue.Items.Add("Base");
                 cbFilterValue.Items.Add("Distance");
@@ -284,7 +283,7 @@ namespace CyclingLogApplication
             }
             else if (cbFilterField.SelectedIndex == 4)
             {
-                //Route
+                //Route:
                 List<string> routeList = mainForm.readDataNames("Table_Routes", "Name");
                 for (int i = 1; i < routeList.Count; i++)
                 {
@@ -294,6 +293,7 @@ namespace CyclingLogApplication
             }
             else if (cbFilterField.SelectedIndex == 5)
             {
+                //Temperature:
                 cbFilterValue.Items.Add("Below 30");
                 cbFilterValue.Items.Add("30-49");
                 cbFilterValue.Items.Add("50-69");
@@ -303,7 +303,7 @@ namespace CyclingLogApplication
             }
             else if (cbFilterField.SelectedIndex == 6)
             {
-                //WeekNumber
+                //WeekNumber:
                 for (int i = 1; i < 53; i++)
                 {
                     cbFilterValue.Items.Add(i);
