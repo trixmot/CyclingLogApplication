@@ -69,7 +69,6 @@ namespace CyclingLogApplication
                     logYearID = mainForm.getLogYearIndex(cbLogYearFilter.SelectedItem.ToString());
                     logYearIDQuery = " and [LogYearID]=@logyearID";
                 }
-                
 
                 //WeekNumber, Bike, RideType, route
                 if (cbFilterField.Text.Equals("WeekNumber"))
@@ -129,6 +128,14 @@ namespace CyclingLogApplication
                 }
 
                 DataTable dataTable = new DataTable();
+                dataTable.Columns.Add(new DataColumn("Item", typeof(int)));
+                //Set AutoIncrement True for the First Column.
+                dataTable.Columns["Item"].AutoIncrement = true;
+                //Set the Starting or Seed value.
+                dataTable.Columns["Item"].AutoIncrementSeed = 1;
+                //Set the Increment value.
+                dataTable.Columns["Item"].AutoIncrementStep = 1;
+
                 sqlDataAdapter.Fill(dataTable);
                 dataGridView1.DataSource = dataTable;
                 dataGridView1.Columns["AvgSpeed"].DefaultCellStyle.Format = "0.00";
