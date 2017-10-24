@@ -164,6 +164,15 @@ namespace CyclingLogApplication
             btBikeMilesUpdate_click();
             btGetMaintLog_Click(sender, e);
 
+            //Set first option of 'None':
+            cbStatMonthlyLogYear.Items.Add("--None--");
+
+            //Load LogYear Monthly values:
+            foreach (string val in logYearList)
+            {
+                cbStatMonthlyLogYear.Items.Add(val);
+            }
+
             //Load Statistic combo index values:
             cbLogYear1.SelectedIndex = Convert.ToInt32(getcbStatistic1());
             cbLogYear2.SelectedIndex = Convert.ToInt32(getcbStatistic2());
@@ -1383,7 +1392,6 @@ namespace CyclingLogApplication
             return weekValue;
         }
 
-
         //NOTE reference in designer is commented out to not run on tabcontrol1:
         private void RefreshStatisticsData(object sender, EventArgs e)
         {
@@ -2585,6 +2593,13 @@ namespace CyclingLogApplication
                 Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
             }
         }
+
+        private void cbStatMonthlyLogYear_changed(object sender, EventArgs e)
+        {
+
+        }
+
+
 
 
         //=============================================================================
