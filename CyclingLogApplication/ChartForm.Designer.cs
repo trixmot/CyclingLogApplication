@@ -84,7 +84,7 @@
             series1.XValueMember = "Date";
             series1.YValueMembers = "RideDistance";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(791, 562);
+            this.chart1.Size = new System.Drawing.Size(861, 589);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             title1.Name = "chart";
@@ -145,7 +145,7 @@
             this.groupBox1.Controls.Add(this.lbYAxis);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(223, 562);
+            this.groupBox1.Size = new System.Drawing.Size(223, 589);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
@@ -337,7 +337,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1054, 587);
+            this.ClientSize = new System.Drawing.Size(1124, 613);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.chart1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

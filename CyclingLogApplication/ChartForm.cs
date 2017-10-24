@@ -321,6 +321,7 @@ namespace CyclingLogApplication
 
                         Logger.Log("Chart Testing: Monthly values: " + total_value + "::" + date, 1, 0);
                     }
+                    chart1.ChartAreas[0].AxisX.Interval = 1;
                 }
             } catch (Exception ex)
             {
