@@ -203,6 +203,9 @@ namespace CyclingLogApplication
                 Logger.Log("Ending Log Application", 1, logSetting);
                 Logger.Log("**********************************************", 1, logSetting);
 
+                rideDataDisplayForm.Dispose();
+                chartForm.Dispose();
+                this.Dispose();
                 Application.Exit();
             }
         }
@@ -1145,7 +1148,6 @@ namespace CyclingLogApplication
             //MessageBox.Show(Convert.ToString(averageMiles));
             double avgMiles = Math.Round((double)averageMiles, 2);
 
-
             return (float)(avgMiles);
         }
 
@@ -1279,7 +1281,6 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-
         private double getDaysToNextTimeChange()
         {
             DateTime date = DateTime.Now;
@@ -1290,7 +1291,7 @@ namespace CyclingLogApplication
             //DateTime changeDate = new DateTime(moment.Year, moment.Month, moment.Day);
             //Days to time change -  (DateTime.Now - DateTime(Int32 year, Int32 month, Int32 day)).TotalDays {type DateTime}
 
-            //2016    Sun, Mar 13 -,Sun, Nov 6
+            //2016  Sun, Mar 13 -,Sun, Nov 6
             //2017	Sun, Mar 12 - Sun, Nov 5,
             //2018	Sun, Mar 11 - Sun, Nov 4
             //2019	Sun, Mar 10 - Sun, Nov 3,
