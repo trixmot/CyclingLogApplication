@@ -1150,63 +1150,61 @@ namespace CyclingLogApplication
         }
 
         //Get the highest mileage for a week value:
-        private float getHighMileageWeekNumber(int logIndex)
+        private double getHighMileageWeekNumber(int logIndex)
         {
-            //add up miles for each week number
-            //SELECT SUM(RideDistance) FROM Table_Ride_Information WHERE @LogYearID=[LogYearID]
-            //SELECT RideDistance FROM Table_Ride_Information WHERE @WeekNumber=[WeekNumber]
-
-            //SELECT SUM(RideDistance) FROM Table_Ride_Information WHERE @LogYearID=[LogYearID]
-
-            //loop through each week
-            //Call DB query to get total miles for the selected week
-            //store week number and miles if its > then current value
-            SqlDataReader reader = null;
-
-            float returnValue = 0;
+            List<double> rideDistanceList = new List<double>();
+            int weekNumber = 1;
+            int weekNumberTmp = 0;
+            double weekMilesTotal = 0;
+            double weeklyMax = 0;
 
             try
             {
-                sqlConnection.Open();
-
-                // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("select SUM(RideDistance) from Table_Ride_Information WHERE @LogYearID=[LogYearID]", sqlConnection);
-
-                // 2. define parameters used in command object
-                SqlParameter param = new SqlParameter();
-                param.ParameterName = "@LogYearID";
-                param.Value = logIndex;
-
-                // 3. add new parameter to command object
-                cmd.Parameters.Add(param);
-
-                // get data stream
-                reader = cmd.ExecuteReader();
-
-                // write each record
-                while (reader.Read())
+                if (sqlConnection != null && sqlConnection.State == ConnectionState.Closed)
                 {
-                    //MessageBox.Show(String.Format("{0}", reader[0]));
-                    string temp = reader[0].ToString();
-                    //MessageBox.Show(temp);
-                    if (temp.Equals(""))
-                    {
-                        returnValue = 0;
-                    }
-                    else
-                    {
-                        returnValue = float.Parse(temp);
-                    }
+                    sqlConnection.Open();
                 }
+
+                string query = "SELECT RideDistance,WeekNumber FROM Table_Ride_Information WHERE " + logIndex + "=[LogYearID]";
+                using (SqlCommand command = new SqlCommand(query, sqlConnection))
+                {
+                    command.CommandType = CommandType.Text;
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            weekNumber = (int)reader["WeekNumber"];
+                            //Check if on a different week:
+                            if (weekNumber > weekNumberTmp)
+                            {
+                                weekNumberTmp = weekNumber;
+                                // Compare weekly total to see if max:
+                                if (weekMilesTotal > weeklyMax)
+                                {
+                                    weeklyMax = weekMilesTotal;
+                                }
+
+                                // Onto a new week, so reset weekly total:
+                                weekMilesTotal = (double)reader["RideDistance"];
+                            }
+                            else
+                            {
+                                weekMilesTotal = weekMilesTotal + (double)reader["RideDistance"];
+                            }
+                        }
+
+                        reader.Close();
+                    }
+                    command.Cancel();
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to the Log year Index from the database." + ex.Message.ToString());
             }
             finally
             {
-                // close reader
-                if (reader != null)
-                {
-                    reader.Close();
-                }
-
                 // close connection
                 if (sqlConnection != null)
                 {
@@ -1214,8 +1212,13 @@ namespace CyclingLogApplication
                 }
             }
 
-            return returnValue;
+            // Check last weekly total to see if max:
+            if (weekMilesTotal > weeklyMax)
+            {
+                weeklyMax = weekMilesTotal;
+            }
 
+            return weeklyMax;
         }
 
         //Get the highest milelage for a day value:
