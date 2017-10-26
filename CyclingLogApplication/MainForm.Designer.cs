@@ -101,6 +101,120 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tb4Log1 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label45 = new System.Windows.Forms.Label();
+            this.month12R3 = new System.Windows.Forms.TextBox();
+            this.month12R7 = new System.Windows.Forms.TextBox();
+            this.month12R6 = new System.Windows.Forms.TextBox();
+            this.month12R1 = new System.Windows.Forms.TextBox();
+            this.month12R5 = new System.Windows.Forms.TextBox();
+            this.month12R2 = new System.Windows.Forms.TextBox();
+            this.month12R4 = new System.Windows.Forms.TextBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.month11R3 = new System.Windows.Forms.TextBox();
+            this.month11R7 = new System.Windows.Forms.TextBox();
+            this.month11R6 = new System.Windows.Forms.TextBox();
+            this.month11R1 = new System.Windows.Forms.TextBox();
+            this.month11R5 = new System.Windows.Forms.TextBox();
+            this.month11R2 = new System.Windows.Forms.TextBox();
+            this.month11R4 = new System.Windows.Forms.TextBox();
+            this.label47 = new System.Windows.Forms.Label();
+            this.month10R3 = new System.Windows.Forms.TextBox();
+            this.month10R7 = new System.Windows.Forms.TextBox();
+            this.month10R6 = new System.Windows.Forms.TextBox();
+            this.month10R1 = new System.Windows.Forms.TextBox();
+            this.month10R5 = new System.Windows.Forms.TextBox();
+            this.month10R2 = new System.Windows.Forms.TextBox();
+            this.month10R4 = new System.Windows.Forms.TextBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.month9R3 = new System.Windows.Forms.TextBox();
+            this.month9R7 = new System.Windows.Forms.TextBox();
+            this.month9R6 = new System.Windows.Forms.TextBox();
+            this.month9R1 = new System.Windows.Forms.TextBox();
+            this.month9R5 = new System.Windows.Forms.TextBox();
+            this.month9R2 = new System.Windows.Forms.TextBox();
+            this.month9R4 = new System.Windows.Forms.TextBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.month8R3 = new System.Windows.Forms.TextBox();
+            this.month8R7 = new System.Windows.Forms.TextBox();
+            this.month8R6 = new System.Windows.Forms.TextBox();
+            this.month8R1 = new System.Windows.Forms.TextBox();
+            this.month8R5 = new System.Windows.Forms.TextBox();
+            this.month8R2 = new System.Windows.Forms.TextBox();
+            this.month8R4 = new System.Windows.Forms.TextBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.month7R3 = new System.Windows.Forms.TextBox();
+            this.month7R7 = new System.Windows.Forms.TextBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.month7R6 = new System.Windows.Forms.TextBox();
+            this.month7R1 = new System.Windows.Forms.TextBox();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.month7R5 = new System.Windows.Forms.TextBox();
+            this.month7R2 = new System.Windows.Forms.TextBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.month7R4 = new System.Windows.Forms.TextBox();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.month6R3 = new System.Windows.Forms.TextBox();
+            this.month6R7 = new System.Windows.Forms.TextBox();
+            this.month6R6 = new System.Windows.Forms.TextBox();
+            this.month6R1 = new System.Windows.Forms.TextBox();
+            this.month6R5 = new System.Windows.Forms.TextBox();
+            this.month6R2 = new System.Windows.Forms.TextBox();
+            this.month6R4 = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.month5R3 = new System.Windows.Forms.TextBox();
+            this.month5R7 = new System.Windows.Forms.TextBox();
+            this.month5R6 = new System.Windows.Forms.TextBox();
+            this.month5R1 = new System.Windows.Forms.TextBox();
+            this.month5R5 = new System.Windows.Forms.TextBox();
+            this.month5R2 = new System.Windows.Forms.TextBox();
+            this.month5R4 = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.month4R3 = new System.Windows.Forms.TextBox();
+            this.month4R7 = new System.Windows.Forms.TextBox();
+            this.month4R6 = new System.Windows.Forms.TextBox();
+            this.month4R1 = new System.Windows.Forms.TextBox();
+            this.month4R5 = new System.Windows.Forms.TextBox();
+            this.month4R2 = new System.Windows.Forms.TextBox();
+            this.month4R4 = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.month3R3 = new System.Windows.Forms.TextBox();
+            this.month3R7 = new System.Windows.Forms.TextBox();
+            this.month3R6 = new System.Windows.Forms.TextBox();
+            this.month3R1 = new System.Windows.Forms.TextBox();
+            this.month3R5 = new System.Windows.Forms.TextBox();
+            this.month3R2 = new System.Windows.Forms.TextBox();
+            this.month3R4 = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.month2R3 = new System.Windows.Forms.TextBox();
+            this.month2R7 = new System.Windows.Forms.TextBox();
+            this.month2R6 = new System.Windows.Forms.TextBox();
+            this.month2R1 = new System.Windows.Forms.TextBox();
+            this.month2R5 = new System.Windows.Forms.TextBox();
+            this.month2R2 = new System.Windows.Forms.TextBox();
+            this.month2R4 = new System.Windows.Forms.TextBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.month1R3 = new System.Windows.Forms.TextBox();
+            this.month1R7 = new System.Windows.Forms.TextBox();
+            this.cbStatMonthlyLogYear = new System.Windows.Forms.ComboBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.month1R6 = new System.Windows.Forms.TextBox();
+            this.month1R1 = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.month1R5 = new System.Windows.Forms.TextBox();
+            this.month1R2 = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.month1R4 = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label31 = new System.Windows.Forms.Label();
@@ -165,125 +279,15 @@
             this.label29 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label45 = new System.Windows.Forms.Label();
-            this.textBox43 = new System.Windows.Forms.TextBox();
-            this.textBox44 = new System.Windows.Forms.TextBox();
-            this.textBox45 = new System.Windows.Forms.TextBox();
-            this.textBox46 = new System.Windows.Forms.TextBox();
-            this.textBox47 = new System.Windows.Forms.TextBox();
-            this.textBox48 = new System.Windows.Forms.TextBox();
-            this.textBox49 = new System.Windows.Forms.TextBox();
-            this.label46 = new System.Windows.Forms.Label();
-            this.textBox50 = new System.Windows.Forms.TextBox();
-            this.textBox51 = new System.Windows.Forms.TextBox();
-            this.textBox52 = new System.Windows.Forms.TextBox();
-            this.textBox53 = new System.Windows.Forms.TextBox();
-            this.textBox54 = new System.Windows.Forms.TextBox();
-            this.textBox55 = new System.Windows.Forms.TextBox();
-            this.textBox56 = new System.Windows.Forms.TextBox();
-            this.label47 = new System.Windows.Forms.Label();
-            this.textBox57 = new System.Windows.Forms.TextBox();
-            this.textBox58 = new System.Windows.Forms.TextBox();
-            this.textBox59 = new System.Windows.Forms.TextBox();
-            this.textBox60 = new System.Windows.Forms.TextBox();
-            this.textBox61 = new System.Windows.Forms.TextBox();
-            this.textBox62 = new System.Windows.Forms.TextBox();
-            this.textBox63 = new System.Windows.Forms.TextBox();
-            this.label48 = new System.Windows.Forms.Label();
-            this.textBox64 = new System.Windows.Forms.TextBox();
-            this.textBox65 = new System.Windows.Forms.TextBox();
-            this.textBox66 = new System.Windows.Forms.TextBox();
-            this.textBox67 = new System.Windows.Forms.TextBox();
-            this.textBox68 = new System.Windows.Forms.TextBox();
-            this.textBox69 = new System.Windows.Forms.TextBox();
-            this.textBox70 = new System.Windows.Forms.TextBox();
-            this.label49 = new System.Windows.Forms.Label();
-            this.textBox71 = new System.Windows.Forms.TextBox();
-            this.textBox72 = new System.Windows.Forms.TextBox();
-            this.textBox73 = new System.Windows.Forms.TextBox();
-            this.textBox74 = new System.Windows.Forms.TextBox();
-            this.textBox75 = new System.Windows.Forms.TextBox();
-            this.textBox76 = new System.Windows.Forms.TextBox();
-            this.textBox77 = new System.Windows.Forms.TextBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.textBox78 = new System.Windows.Forms.TextBox();
-            this.textBox79 = new System.Windows.Forms.TextBox();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.textBox80 = new System.Windows.Forms.TextBox();
-            this.textBox81 = new System.Windows.Forms.TextBox();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.textBox82 = new System.Windows.Forms.TextBox();
-            this.textBox83 = new System.Windows.Forms.TextBox();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.textBox84 = new System.Windows.Forms.TextBox();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.textBox36 = new System.Windows.Forms.TextBox();
-            this.textBox37 = new System.Windows.Forms.TextBox();
-            this.textBox38 = new System.Windows.Forms.TextBox();
-            this.textBox39 = new System.Windows.Forms.TextBox();
-            this.textBox40 = new System.Windows.Forms.TextBox();
-            this.textBox41 = new System.Windows.Forms.TextBox();
-            this.textBox42 = new System.Windows.Forms.TextBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.textBox29 = new System.Windows.Forms.TextBox();
-            this.textBox30 = new System.Windows.Forms.TextBox();
-            this.textBox31 = new System.Windows.Forms.TextBox();
-            this.textBox32 = new System.Windows.Forms.TextBox();
-            this.textBox33 = new System.Windows.Forms.TextBox();
-            this.textBox34 = new System.Windows.Forms.TextBox();
-            this.textBox35 = new System.Windows.Forms.TextBox();
-            this.label42 = new System.Windows.Forms.Label();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.textBox23 = new System.Windows.Forms.TextBox();
-            this.textBox24 = new System.Windows.Forms.TextBox();
-            this.textBox25 = new System.Windows.Forms.TextBox();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.textBox27 = new System.Windows.Forms.TextBox();
-            this.textBox28 = new System.Windows.Forms.TextBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.cbStatMonthlyLogYear = new System.Windows.Forms.ComboBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -292,9 +296,6 @@
             this.groupBox5.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.tabPage7.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbLogYearConfig
@@ -1068,6 +1069,1229 @@
             this.label9.TabIndex = 7;
             this.label9.Text = "Avg Miles per week";
             // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.groupBox6);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(785, 450);
+            this.tabPage7.TabIndex = 5;
+            this.tabPage7.Text = "Statistics-Monthly";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.panel1);
+            this.groupBox6.Location = new System.Drawing.Point(6, 6);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(773, 438);
+            this.groupBox6.TabIndex = 0;
+            this.groupBox6.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.label45);
+            this.panel1.Controls.Add(this.month12R3);
+            this.panel1.Controls.Add(this.month12R7);
+            this.panel1.Controls.Add(this.month12R6);
+            this.panel1.Controls.Add(this.month12R1);
+            this.panel1.Controls.Add(this.month12R5);
+            this.panel1.Controls.Add(this.month12R2);
+            this.panel1.Controls.Add(this.month12R4);
+            this.panel1.Controls.Add(this.label46);
+            this.panel1.Controls.Add(this.month11R3);
+            this.panel1.Controls.Add(this.month11R7);
+            this.panel1.Controls.Add(this.month11R6);
+            this.panel1.Controls.Add(this.month11R1);
+            this.panel1.Controls.Add(this.month11R5);
+            this.panel1.Controls.Add(this.month11R2);
+            this.panel1.Controls.Add(this.month11R4);
+            this.panel1.Controls.Add(this.label47);
+            this.panel1.Controls.Add(this.month10R3);
+            this.panel1.Controls.Add(this.month10R7);
+            this.panel1.Controls.Add(this.month10R6);
+            this.panel1.Controls.Add(this.month10R1);
+            this.panel1.Controls.Add(this.month10R5);
+            this.panel1.Controls.Add(this.month10R2);
+            this.panel1.Controls.Add(this.month10R4);
+            this.panel1.Controls.Add(this.label48);
+            this.panel1.Controls.Add(this.month9R3);
+            this.panel1.Controls.Add(this.month9R7);
+            this.panel1.Controls.Add(this.month9R6);
+            this.panel1.Controls.Add(this.month9R1);
+            this.panel1.Controls.Add(this.month9R5);
+            this.panel1.Controls.Add(this.month9R2);
+            this.panel1.Controls.Add(this.month9R4);
+            this.panel1.Controls.Add(this.label49);
+            this.panel1.Controls.Add(this.month8R3);
+            this.panel1.Controls.Add(this.month8R7);
+            this.panel1.Controls.Add(this.month8R6);
+            this.panel1.Controls.Add(this.month8R1);
+            this.panel1.Controls.Add(this.month8R5);
+            this.panel1.Controls.Add(this.month8R2);
+            this.panel1.Controls.Add(this.month8R4);
+            this.panel1.Controls.Add(this.label50);
+            this.panel1.Controls.Add(this.month7R3);
+            this.panel1.Controls.Add(this.month7R7);
+            this.panel1.Controls.Add(this.label51);
+            this.panel1.Controls.Add(this.label52);
+            this.panel1.Controls.Add(this.month7R6);
+            this.panel1.Controls.Add(this.month7R1);
+            this.panel1.Controls.Add(this.label53);
+            this.panel1.Controls.Add(this.label54);
+            this.panel1.Controls.Add(this.month7R5);
+            this.panel1.Controls.Add(this.month7R2);
+            this.panel1.Controls.Add(this.label55);
+            this.panel1.Controls.Add(this.label56);
+            this.panel1.Controls.Add(this.month7R4);
+            this.panel1.Controls.Add(this.label57);
+            this.panel1.Controls.Add(this.label44);
+            this.panel1.Controls.Add(this.month6R3);
+            this.panel1.Controls.Add(this.month6R7);
+            this.panel1.Controls.Add(this.month6R6);
+            this.panel1.Controls.Add(this.month6R1);
+            this.panel1.Controls.Add(this.month6R5);
+            this.panel1.Controls.Add(this.month6R2);
+            this.panel1.Controls.Add(this.month6R4);
+            this.panel1.Controls.Add(this.label43);
+            this.panel1.Controls.Add(this.month5R3);
+            this.panel1.Controls.Add(this.month5R7);
+            this.panel1.Controls.Add(this.month5R6);
+            this.panel1.Controls.Add(this.month5R1);
+            this.panel1.Controls.Add(this.month5R5);
+            this.panel1.Controls.Add(this.month5R2);
+            this.panel1.Controls.Add(this.month5R4);
+            this.panel1.Controls.Add(this.label42);
+            this.panel1.Controls.Add(this.month4R3);
+            this.panel1.Controls.Add(this.month4R7);
+            this.panel1.Controls.Add(this.month4R6);
+            this.panel1.Controls.Add(this.month4R1);
+            this.panel1.Controls.Add(this.month4R5);
+            this.panel1.Controls.Add(this.month4R2);
+            this.panel1.Controls.Add(this.month4R4);
+            this.panel1.Controls.Add(this.label41);
+            this.panel1.Controls.Add(this.month3R3);
+            this.panel1.Controls.Add(this.month3R7);
+            this.panel1.Controls.Add(this.month3R6);
+            this.panel1.Controls.Add(this.month3R1);
+            this.panel1.Controls.Add(this.month3R5);
+            this.panel1.Controls.Add(this.month3R2);
+            this.panel1.Controls.Add(this.month3R4);
+            this.panel1.Controls.Add(this.label40);
+            this.panel1.Controls.Add(this.month2R3);
+            this.panel1.Controls.Add(this.month2R7);
+            this.panel1.Controls.Add(this.month2R6);
+            this.panel1.Controls.Add(this.month2R1);
+            this.panel1.Controls.Add(this.month2R5);
+            this.panel1.Controls.Add(this.month2R2);
+            this.panel1.Controls.Add(this.month2R4);
+            this.panel1.Controls.Add(this.label39);
+            this.panel1.Controls.Add(this.month1R3);
+            this.panel1.Controls.Add(this.month1R7);
+            this.panel1.Controls.Add(this.cbStatMonthlyLogYear);
+            this.panel1.Controls.Add(this.label32);
+            this.panel1.Controls.Add(this.label33);
+            this.panel1.Controls.Add(this.month1R6);
+            this.panel1.Controls.Add(this.month1R1);
+            this.panel1.Controls.Add(this.label34);
+            this.panel1.Controls.Add(this.label35);
+            this.panel1.Controls.Add(this.month1R5);
+            this.panel1.Controls.Add(this.month1R2);
+            this.panel1.Controls.Add(this.label36);
+            this.panel1.Controls.Add(this.label37);
+            this.panel1.Controls.Add(this.month1R4);
+            this.panel1.Controls.Add(this.label38);
+            this.panel1.Location = new System.Drawing.Point(6, 10);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(761, 428);
+            this.panel1.TabIndex = 0;
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(565, 240);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(56, 13);
+            this.label45.TabIndex = 125;
+            this.label45.Text = "December";
+            // 
+            // month12R3
+            // 
+            this.month12R3.Enabled = false;
+            this.month12R3.Location = new System.Drawing.Point(557, 305);
+            this.month12R3.Name = "month12R3";
+            this.month12R3.ReadOnly = true;
+            this.month12R3.Size = new System.Drawing.Size(63, 20);
+            this.month12R3.TabIndex = 120;
+            this.month12R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month12R7
+            // 
+            this.month12R7.Enabled = false;
+            this.month12R7.Location = new System.Drawing.Point(557, 385);
+            this.month12R7.Name = "month12R7";
+            this.month12R7.ReadOnly = true;
+            this.month12R7.Size = new System.Drawing.Size(63, 20);
+            this.month12R7.TabIndex = 124;
+            this.month12R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month12R6
+            // 
+            this.month12R6.Enabled = false;
+            this.month12R6.Location = new System.Drawing.Point(557, 365);
+            this.month12R6.Name = "month12R6";
+            this.month12R6.ReadOnly = true;
+            this.month12R6.Size = new System.Drawing.Size(63, 20);
+            this.month12R6.TabIndex = 123;
+            this.month12R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month12R1
+            // 
+            this.month12R1.Enabled = false;
+            this.month12R1.Location = new System.Drawing.Point(557, 265);
+            this.month12R1.Name = "month12R1";
+            this.month12R1.ReadOnly = true;
+            this.month12R1.Size = new System.Drawing.Size(63, 20);
+            this.month12R1.TabIndex = 118;
+            this.month12R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month12R5
+            // 
+            this.month12R5.Enabled = false;
+            this.month12R5.Location = new System.Drawing.Point(557, 345);
+            this.month12R5.Name = "month12R5";
+            this.month12R5.ReadOnly = true;
+            this.month12R5.Size = new System.Drawing.Size(63, 20);
+            this.month12R5.TabIndex = 122;
+            this.month12R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month12R2
+            // 
+            this.month12R2.Enabled = false;
+            this.month12R2.Location = new System.Drawing.Point(557, 285);
+            this.month12R2.Name = "month12R2";
+            this.month12R2.ReadOnly = true;
+            this.month12R2.Size = new System.Drawing.Size(63, 20);
+            this.month12R2.TabIndex = 119;
+            this.month12R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month12R4
+            // 
+            this.month12R4.Enabled = false;
+            this.month12R4.Location = new System.Drawing.Point(557, 325);
+            this.month12R4.Name = "month12R4";
+            this.month12R4.ReadOnly = true;
+            this.month12R4.Size = new System.Drawing.Size(63, 20);
+            this.month12R4.TabIndex = 121;
+            this.month12R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(496, 240);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(56, 13);
+            this.label46.TabIndex = 117;
+            this.label46.Text = "November";
+            // 
+            // month11R3
+            // 
+            this.month11R3.Enabled = false;
+            this.month11R3.Location = new System.Drawing.Point(488, 305);
+            this.month11R3.Name = "month11R3";
+            this.month11R3.ReadOnly = true;
+            this.month11R3.Size = new System.Drawing.Size(63, 20);
+            this.month11R3.TabIndex = 112;
+            this.month11R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month11R7
+            // 
+            this.month11R7.Enabled = false;
+            this.month11R7.Location = new System.Drawing.Point(488, 385);
+            this.month11R7.Name = "month11R7";
+            this.month11R7.ReadOnly = true;
+            this.month11R7.Size = new System.Drawing.Size(63, 20);
+            this.month11R7.TabIndex = 116;
+            this.month11R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month11R6
+            // 
+            this.month11R6.Enabled = false;
+            this.month11R6.Location = new System.Drawing.Point(488, 365);
+            this.month11R6.Name = "month11R6";
+            this.month11R6.ReadOnly = true;
+            this.month11R6.Size = new System.Drawing.Size(63, 20);
+            this.month11R6.TabIndex = 115;
+            this.month11R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month11R1
+            // 
+            this.month11R1.Enabled = false;
+            this.month11R1.Location = new System.Drawing.Point(488, 265);
+            this.month11R1.Name = "month11R1";
+            this.month11R1.ReadOnly = true;
+            this.month11R1.Size = new System.Drawing.Size(63, 20);
+            this.month11R1.TabIndex = 110;
+            this.month11R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month11R5
+            // 
+            this.month11R5.Enabled = false;
+            this.month11R5.Location = new System.Drawing.Point(488, 345);
+            this.month11R5.Name = "month11R5";
+            this.month11R5.ReadOnly = true;
+            this.month11R5.Size = new System.Drawing.Size(63, 20);
+            this.month11R5.TabIndex = 114;
+            this.month11R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month11R2
+            // 
+            this.month11R2.Enabled = false;
+            this.month11R2.Location = new System.Drawing.Point(488, 285);
+            this.month11R2.Name = "month11R2";
+            this.month11R2.ReadOnly = true;
+            this.month11R2.Size = new System.Drawing.Size(63, 20);
+            this.month11R2.TabIndex = 111;
+            this.month11R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month11R4
+            // 
+            this.month11R4.Enabled = false;
+            this.month11R4.Location = new System.Drawing.Point(488, 325);
+            this.month11R4.Name = "month11R4";
+            this.month11R4.ReadOnly = true;
+            this.month11R4.Size = new System.Drawing.Size(63, 20);
+            this.month11R4.TabIndex = 113;
+            this.month11R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(427, 240);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(45, 13);
+            this.label47.TabIndex = 109;
+            this.label47.Text = "October";
+            // 
+            // month10R3
+            // 
+            this.month10R3.Enabled = false;
+            this.month10R3.Location = new System.Drawing.Point(419, 305);
+            this.month10R3.Name = "month10R3";
+            this.month10R3.ReadOnly = true;
+            this.month10R3.Size = new System.Drawing.Size(63, 20);
+            this.month10R3.TabIndex = 104;
+            this.month10R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month10R7
+            // 
+            this.month10R7.Enabled = false;
+            this.month10R7.Location = new System.Drawing.Point(419, 385);
+            this.month10R7.Name = "month10R7";
+            this.month10R7.ReadOnly = true;
+            this.month10R7.Size = new System.Drawing.Size(63, 20);
+            this.month10R7.TabIndex = 108;
+            this.month10R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month10R6
+            // 
+            this.month10R6.Enabled = false;
+            this.month10R6.Location = new System.Drawing.Point(419, 365);
+            this.month10R6.Name = "month10R6";
+            this.month10R6.ReadOnly = true;
+            this.month10R6.Size = new System.Drawing.Size(63, 20);
+            this.month10R6.TabIndex = 107;
+            this.month10R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month10R1
+            // 
+            this.month10R1.Enabled = false;
+            this.month10R1.Location = new System.Drawing.Point(419, 265);
+            this.month10R1.Name = "month10R1";
+            this.month10R1.ReadOnly = true;
+            this.month10R1.Size = new System.Drawing.Size(63, 20);
+            this.month10R1.TabIndex = 102;
+            this.month10R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month10R5
+            // 
+            this.month10R5.Enabled = false;
+            this.month10R5.Location = new System.Drawing.Point(419, 345);
+            this.month10R5.Name = "month10R5";
+            this.month10R5.ReadOnly = true;
+            this.month10R5.Size = new System.Drawing.Size(63, 20);
+            this.month10R5.TabIndex = 106;
+            this.month10R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month10R2
+            // 
+            this.month10R2.Enabled = false;
+            this.month10R2.Location = new System.Drawing.Point(419, 285);
+            this.month10R2.Name = "month10R2";
+            this.month10R2.ReadOnly = true;
+            this.month10R2.Size = new System.Drawing.Size(63, 20);
+            this.month10R2.TabIndex = 103;
+            this.month10R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month10R4
+            // 
+            this.month10R4.Enabled = false;
+            this.month10R4.Location = new System.Drawing.Point(419, 325);
+            this.month10R4.Name = "month10R4";
+            this.month10R4.ReadOnly = true;
+            this.month10R4.Size = new System.Drawing.Size(63, 20);
+            this.month10R4.TabIndex = 105;
+            this.month10R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(358, 240);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(58, 13);
+            this.label48.TabIndex = 101;
+            this.label48.Text = "September";
+            // 
+            // month9R3
+            // 
+            this.month9R3.Enabled = false;
+            this.month9R3.Location = new System.Drawing.Point(350, 305);
+            this.month9R3.Name = "month9R3";
+            this.month9R3.ReadOnly = true;
+            this.month9R3.Size = new System.Drawing.Size(63, 20);
+            this.month9R3.TabIndex = 96;
+            this.month9R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month9R7
+            // 
+            this.month9R7.Enabled = false;
+            this.month9R7.Location = new System.Drawing.Point(350, 385);
+            this.month9R7.Name = "month9R7";
+            this.month9R7.ReadOnly = true;
+            this.month9R7.Size = new System.Drawing.Size(63, 20);
+            this.month9R7.TabIndex = 100;
+            this.month9R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month9R6
+            // 
+            this.month9R6.Enabled = false;
+            this.month9R6.Location = new System.Drawing.Point(350, 365);
+            this.month9R6.Name = "month9R6";
+            this.month9R6.ReadOnly = true;
+            this.month9R6.Size = new System.Drawing.Size(63, 20);
+            this.month9R6.TabIndex = 99;
+            this.month9R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month9R1
+            // 
+            this.month9R1.Enabled = false;
+            this.month9R1.Location = new System.Drawing.Point(350, 265);
+            this.month9R1.Name = "month9R1";
+            this.month9R1.ReadOnly = true;
+            this.month9R1.Size = new System.Drawing.Size(63, 20);
+            this.month9R1.TabIndex = 94;
+            this.month9R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month9R5
+            // 
+            this.month9R5.Enabled = false;
+            this.month9R5.Location = new System.Drawing.Point(350, 345);
+            this.month9R5.Name = "month9R5";
+            this.month9R5.ReadOnly = true;
+            this.month9R5.Size = new System.Drawing.Size(63, 20);
+            this.month9R5.TabIndex = 98;
+            this.month9R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month9R2
+            // 
+            this.month9R2.Enabled = false;
+            this.month9R2.Location = new System.Drawing.Point(350, 285);
+            this.month9R2.Name = "month9R2";
+            this.month9R2.ReadOnly = true;
+            this.month9R2.Size = new System.Drawing.Size(63, 20);
+            this.month9R2.TabIndex = 95;
+            this.month9R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month9R4
+            // 
+            this.month9R4.Enabled = false;
+            this.month9R4.Location = new System.Drawing.Point(350, 325);
+            this.month9R4.Name = "month9R4";
+            this.month9R4.ReadOnly = true;
+            this.month9R4.Size = new System.Drawing.Size(63, 20);
+            this.month9R4.TabIndex = 97;
+            this.month9R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(289, 240);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(40, 13);
+            this.label49.TabIndex = 93;
+            this.label49.Text = "August";
+            // 
+            // month8R3
+            // 
+            this.month8R3.Enabled = false;
+            this.month8R3.Location = new System.Drawing.Point(281, 305);
+            this.month8R3.Name = "month8R3";
+            this.month8R3.ReadOnly = true;
+            this.month8R3.Size = new System.Drawing.Size(63, 20);
+            this.month8R3.TabIndex = 88;
+            this.month8R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month8R7
+            // 
+            this.month8R7.Enabled = false;
+            this.month8R7.Location = new System.Drawing.Point(281, 385);
+            this.month8R7.Name = "month8R7";
+            this.month8R7.ReadOnly = true;
+            this.month8R7.Size = new System.Drawing.Size(63, 20);
+            this.month8R7.TabIndex = 92;
+            this.month8R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month8R6
+            // 
+            this.month8R6.Enabled = false;
+            this.month8R6.Location = new System.Drawing.Point(281, 365);
+            this.month8R6.Name = "month8R6";
+            this.month8R6.ReadOnly = true;
+            this.month8R6.Size = new System.Drawing.Size(63, 20);
+            this.month8R6.TabIndex = 91;
+            this.month8R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month8R1
+            // 
+            this.month8R1.Enabled = false;
+            this.month8R1.Location = new System.Drawing.Point(281, 265);
+            this.month8R1.Name = "month8R1";
+            this.month8R1.ReadOnly = true;
+            this.month8R1.Size = new System.Drawing.Size(63, 20);
+            this.month8R1.TabIndex = 86;
+            this.month8R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month8R5
+            // 
+            this.month8R5.Enabled = false;
+            this.month8R5.Location = new System.Drawing.Point(281, 345);
+            this.month8R5.Name = "month8R5";
+            this.month8R5.ReadOnly = true;
+            this.month8R5.Size = new System.Drawing.Size(63, 20);
+            this.month8R5.TabIndex = 90;
+            this.month8R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month8R2
+            // 
+            this.month8R2.Enabled = false;
+            this.month8R2.Location = new System.Drawing.Point(281, 285);
+            this.month8R2.Name = "month8R2";
+            this.month8R2.ReadOnly = true;
+            this.month8R2.Size = new System.Drawing.Size(63, 20);
+            this.month8R2.TabIndex = 87;
+            this.month8R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month8R4
+            // 
+            this.month8R4.Enabled = false;
+            this.month8R4.Location = new System.Drawing.Point(281, 325);
+            this.month8R4.Name = "month8R4";
+            this.month8R4.ReadOnly = true;
+            this.month8R4.Size = new System.Drawing.Size(63, 20);
+            this.month8R4.TabIndex = 89;
+            this.month8R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(220, 240);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(25, 13);
+            this.label50.TabIndex = 85;
+            this.label50.Text = "July";
+            // 
+            // month7R3
+            // 
+            this.month7R3.Enabled = false;
+            this.month7R3.Location = new System.Drawing.Point(212, 305);
+            this.month7R3.Name = "month7R3";
+            this.month7R3.ReadOnly = true;
+            this.month7R3.Size = new System.Drawing.Size(63, 20);
+            this.month7R3.TabIndex = 76;
+            this.month7R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month7R7
+            // 
+            this.month7R7.Enabled = false;
+            this.month7R7.Location = new System.Drawing.Point(212, 385);
+            this.month7R7.Name = "month7R7";
+            this.month7R7.ReadOnly = true;
+            this.month7R7.Size = new System.Drawing.Size(63, 20);
+            this.month7R7.TabIndex = 84;
+            this.month7R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(136, 388);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(70, 13);
+            this.label51.TabIndex = 83;
+            this.label51.Text = "Longest Ride";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(143, 268);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(63, 13);
+            this.label52.TabIndex = 71;
+            this.label52.Text = "Yearly Miles";
+            // 
+            // month7R6
+            // 
+            this.month7R6.Enabled = false;
+            this.month7R6.Location = new System.Drawing.Point(212, 365);
+            this.month7R6.Name = "month7R6";
+            this.month7R6.ReadOnly = true;
+            this.month7R6.Size = new System.Drawing.Size(63, 20);
+            this.month7R6.TabIndex = 82;
+            this.month7R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month7R1
+            // 
+            this.month7R1.Enabled = false;
+            this.month7R1.Location = new System.Drawing.Point(212, 265);
+            this.month7R1.Name = "month7R1";
+            this.month7R1.ReadOnly = true;
+            this.month7R1.Size = new System.Drawing.Size(63, 20);
+            this.month7R1.TabIndex = 72;
+            this.month7R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(103, 368);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(103, 13);
+            this.label53.TabIndex = 81;
+            this.label53.Text = "High Week Milelage";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(120, 288);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(86, 13);
+            this.label54.TabIndex = 73;
+            this.label54.Text = "Number of Rides";
+            // 
+            // month7R5
+            // 
+            this.month7R5.Enabled = false;
+            this.month7R5.Location = new System.Drawing.Point(212, 345);
+            this.month7R5.Name = "month7R5";
+            this.month7R5.ReadOnly = true;
+            this.month7R5.Size = new System.Drawing.Size(63, 20);
+            this.month7R5.TabIndex = 80;
+            this.month7R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month7R2
+            // 
+            this.month7R2.Enabled = false;
+            this.month7R2.Location = new System.Drawing.Point(212, 285);
+            this.month7R2.Name = "month7R2";
+            this.month7R2.ReadOnly = true;
+            this.month7R2.Size = new System.Drawing.Size(63, 20);
+            this.month7R2.TabIndex = 74;
+            this.month7R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(110, 348);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(96, 13);
+            this.label55.TabIndex = 79;
+            this.label55.Text = "Avg Miles per Ride";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(103, 308);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(103, 13);
+            this.label56.TabIndex = 75;
+            this.label56.Text = "Avg Rides per week";
+            // 
+            // month7R4
+            // 
+            this.month7R4.Enabled = false;
+            this.month7R4.Location = new System.Drawing.Point(212, 325);
+            this.month7R4.Name = "month7R4";
+            this.month7R4.ReadOnly = true;
+            this.month7R4.Size = new System.Drawing.Size(63, 20);
+            this.month7R4.TabIndex = 78;
+            this.month7R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(106, 328);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(100, 13);
+            this.label57.TabIndex = 77;
+            this.label57.Text = "Avg Miles per week";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(565, 63);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(30, 13);
+            this.label44.TabIndex = 70;
+            this.label44.Text = "June";
+            // 
+            // month6R3
+            // 
+            this.month6R3.Enabled = false;
+            this.month6R3.Location = new System.Drawing.Point(557, 128);
+            this.month6R3.Name = "month6R3";
+            this.month6R3.ReadOnly = true;
+            this.month6R3.Size = new System.Drawing.Size(63, 20);
+            this.month6R3.TabIndex = 65;
+            this.month6R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month6R7
+            // 
+            this.month6R7.Enabled = false;
+            this.month6R7.Location = new System.Drawing.Point(557, 208);
+            this.month6R7.Name = "month6R7";
+            this.month6R7.ReadOnly = true;
+            this.month6R7.Size = new System.Drawing.Size(63, 20);
+            this.month6R7.TabIndex = 69;
+            this.month6R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month6R6
+            // 
+            this.month6R6.Enabled = false;
+            this.month6R6.Location = new System.Drawing.Point(557, 188);
+            this.month6R6.Name = "month6R6";
+            this.month6R6.ReadOnly = true;
+            this.month6R6.Size = new System.Drawing.Size(63, 20);
+            this.month6R6.TabIndex = 68;
+            this.month6R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month6R1
+            // 
+            this.month6R1.Enabled = false;
+            this.month6R1.Location = new System.Drawing.Point(557, 88);
+            this.month6R1.Name = "month6R1";
+            this.month6R1.ReadOnly = true;
+            this.month6R1.Size = new System.Drawing.Size(63, 20);
+            this.month6R1.TabIndex = 63;
+            this.month6R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month6R5
+            // 
+            this.month6R5.Enabled = false;
+            this.month6R5.Location = new System.Drawing.Point(557, 168);
+            this.month6R5.Name = "month6R5";
+            this.month6R5.ReadOnly = true;
+            this.month6R5.Size = new System.Drawing.Size(63, 20);
+            this.month6R5.TabIndex = 67;
+            this.month6R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month6R2
+            // 
+            this.month6R2.Enabled = false;
+            this.month6R2.Location = new System.Drawing.Point(557, 108);
+            this.month6R2.Name = "month6R2";
+            this.month6R2.ReadOnly = true;
+            this.month6R2.Size = new System.Drawing.Size(63, 20);
+            this.month6R2.TabIndex = 64;
+            this.month6R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month6R4
+            // 
+            this.month6R4.Enabled = false;
+            this.month6R4.Location = new System.Drawing.Point(557, 148);
+            this.month6R4.Name = "month6R4";
+            this.month6R4.ReadOnly = true;
+            this.month6R4.Size = new System.Drawing.Size(63, 20);
+            this.month6R4.TabIndex = 66;
+            this.month6R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(496, 63);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(27, 13);
+            this.label43.TabIndex = 62;
+            this.label43.Text = "May";
+            // 
+            // month5R3
+            // 
+            this.month5R3.Enabled = false;
+            this.month5R3.Location = new System.Drawing.Point(488, 128);
+            this.month5R3.Name = "month5R3";
+            this.month5R3.ReadOnly = true;
+            this.month5R3.Size = new System.Drawing.Size(63, 20);
+            this.month5R3.TabIndex = 57;
+            this.month5R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month5R7
+            // 
+            this.month5R7.Enabled = false;
+            this.month5R7.Location = new System.Drawing.Point(488, 208);
+            this.month5R7.Name = "month5R7";
+            this.month5R7.ReadOnly = true;
+            this.month5R7.Size = new System.Drawing.Size(63, 20);
+            this.month5R7.TabIndex = 61;
+            this.month5R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month5R6
+            // 
+            this.month5R6.Enabled = false;
+            this.month5R6.Location = new System.Drawing.Point(488, 188);
+            this.month5R6.Name = "month5R6";
+            this.month5R6.ReadOnly = true;
+            this.month5R6.Size = new System.Drawing.Size(63, 20);
+            this.month5R6.TabIndex = 60;
+            this.month5R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month5R1
+            // 
+            this.month5R1.Enabled = false;
+            this.month5R1.Location = new System.Drawing.Point(488, 88);
+            this.month5R1.Name = "month5R1";
+            this.month5R1.ReadOnly = true;
+            this.month5R1.Size = new System.Drawing.Size(63, 20);
+            this.month5R1.TabIndex = 55;
+            this.month5R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month5R5
+            // 
+            this.month5R5.Enabled = false;
+            this.month5R5.Location = new System.Drawing.Point(488, 168);
+            this.month5R5.Name = "month5R5";
+            this.month5R5.ReadOnly = true;
+            this.month5R5.Size = new System.Drawing.Size(63, 20);
+            this.month5R5.TabIndex = 59;
+            this.month5R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month5R2
+            // 
+            this.month5R2.Enabled = false;
+            this.month5R2.Location = new System.Drawing.Point(488, 108);
+            this.month5R2.Name = "month5R2";
+            this.month5R2.ReadOnly = true;
+            this.month5R2.Size = new System.Drawing.Size(63, 20);
+            this.month5R2.TabIndex = 56;
+            this.month5R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month5R4
+            // 
+            this.month5R4.Enabled = false;
+            this.month5R4.Location = new System.Drawing.Point(488, 148);
+            this.month5R4.Name = "month5R4";
+            this.month5R4.ReadOnly = true;
+            this.month5R4.Size = new System.Drawing.Size(63, 20);
+            this.month5R4.TabIndex = 58;
+            this.month5R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(427, 63);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(27, 13);
+            this.label42.TabIndex = 54;
+            this.label42.Text = "April";
+            // 
+            // month4R3
+            // 
+            this.month4R3.Enabled = false;
+            this.month4R3.Location = new System.Drawing.Point(419, 128);
+            this.month4R3.Name = "month4R3";
+            this.month4R3.ReadOnly = true;
+            this.month4R3.Size = new System.Drawing.Size(63, 20);
+            this.month4R3.TabIndex = 49;
+            this.month4R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month4R7
+            // 
+            this.month4R7.Enabled = false;
+            this.month4R7.Location = new System.Drawing.Point(419, 208);
+            this.month4R7.Name = "month4R7";
+            this.month4R7.ReadOnly = true;
+            this.month4R7.Size = new System.Drawing.Size(63, 20);
+            this.month4R7.TabIndex = 53;
+            this.month4R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month4R6
+            // 
+            this.month4R6.Enabled = false;
+            this.month4R6.Location = new System.Drawing.Point(419, 188);
+            this.month4R6.Name = "month4R6";
+            this.month4R6.ReadOnly = true;
+            this.month4R6.Size = new System.Drawing.Size(63, 20);
+            this.month4R6.TabIndex = 52;
+            this.month4R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month4R1
+            // 
+            this.month4R1.Enabled = false;
+            this.month4R1.Location = new System.Drawing.Point(419, 88);
+            this.month4R1.Name = "month4R1";
+            this.month4R1.ReadOnly = true;
+            this.month4R1.Size = new System.Drawing.Size(63, 20);
+            this.month4R1.TabIndex = 47;
+            this.month4R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month4R5
+            // 
+            this.month4R5.Enabled = false;
+            this.month4R5.Location = new System.Drawing.Point(419, 168);
+            this.month4R5.Name = "month4R5";
+            this.month4R5.ReadOnly = true;
+            this.month4R5.Size = new System.Drawing.Size(63, 20);
+            this.month4R5.TabIndex = 51;
+            this.month4R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month4R2
+            // 
+            this.month4R2.Enabled = false;
+            this.month4R2.Location = new System.Drawing.Point(419, 108);
+            this.month4R2.Name = "month4R2";
+            this.month4R2.ReadOnly = true;
+            this.month4R2.Size = new System.Drawing.Size(63, 20);
+            this.month4R2.TabIndex = 48;
+            this.month4R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month4R4
+            // 
+            this.month4R4.Enabled = false;
+            this.month4R4.Location = new System.Drawing.Point(419, 148);
+            this.month4R4.Name = "month4R4";
+            this.month4R4.ReadOnly = true;
+            this.month4R4.Size = new System.Drawing.Size(63, 20);
+            this.month4R4.TabIndex = 50;
+            this.month4R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(358, 63);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(37, 13);
+            this.label41.TabIndex = 46;
+            this.label41.Text = "March";
+            // 
+            // month3R3
+            // 
+            this.month3R3.Enabled = false;
+            this.month3R3.Location = new System.Drawing.Point(350, 128);
+            this.month3R3.Name = "month3R3";
+            this.month3R3.ReadOnly = true;
+            this.month3R3.Size = new System.Drawing.Size(63, 20);
+            this.month3R3.TabIndex = 41;
+            this.month3R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month3R7
+            // 
+            this.month3R7.Enabled = false;
+            this.month3R7.Location = new System.Drawing.Point(350, 208);
+            this.month3R7.Name = "month3R7";
+            this.month3R7.ReadOnly = true;
+            this.month3R7.Size = new System.Drawing.Size(63, 20);
+            this.month3R7.TabIndex = 45;
+            this.month3R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month3R6
+            // 
+            this.month3R6.Enabled = false;
+            this.month3R6.Location = new System.Drawing.Point(350, 188);
+            this.month3R6.Name = "month3R6";
+            this.month3R6.ReadOnly = true;
+            this.month3R6.Size = new System.Drawing.Size(63, 20);
+            this.month3R6.TabIndex = 44;
+            this.month3R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month3R1
+            // 
+            this.month3R1.Enabled = false;
+            this.month3R1.Location = new System.Drawing.Point(350, 88);
+            this.month3R1.Name = "month3R1";
+            this.month3R1.ReadOnly = true;
+            this.month3R1.Size = new System.Drawing.Size(63, 20);
+            this.month3R1.TabIndex = 39;
+            this.month3R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month3R5
+            // 
+            this.month3R5.Enabled = false;
+            this.month3R5.Location = new System.Drawing.Point(350, 168);
+            this.month3R5.Name = "month3R5";
+            this.month3R5.ReadOnly = true;
+            this.month3R5.Size = new System.Drawing.Size(63, 20);
+            this.month3R5.TabIndex = 43;
+            this.month3R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month3R2
+            // 
+            this.month3R2.Enabled = false;
+            this.month3R2.Location = new System.Drawing.Point(350, 108);
+            this.month3R2.Name = "month3R2";
+            this.month3R2.ReadOnly = true;
+            this.month3R2.Size = new System.Drawing.Size(63, 20);
+            this.month3R2.TabIndex = 40;
+            this.month3R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month3R4
+            // 
+            this.month3R4.Enabled = false;
+            this.month3R4.Location = new System.Drawing.Point(350, 148);
+            this.month3R4.Name = "month3R4";
+            this.month3R4.ReadOnly = true;
+            this.month3R4.Size = new System.Drawing.Size(63, 20);
+            this.month3R4.TabIndex = 42;
+            this.month3R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(289, 63);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(48, 13);
+            this.label40.TabIndex = 38;
+            this.label40.Text = "February";
+            // 
+            // month2R3
+            // 
+            this.month2R3.Enabled = false;
+            this.month2R3.Location = new System.Drawing.Point(281, 128);
+            this.month2R3.Name = "month2R3";
+            this.month2R3.ReadOnly = true;
+            this.month2R3.Size = new System.Drawing.Size(63, 20);
+            this.month2R3.TabIndex = 33;
+            this.month2R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month2R7
+            // 
+            this.month2R7.Enabled = false;
+            this.month2R7.Location = new System.Drawing.Point(281, 208);
+            this.month2R7.Name = "month2R7";
+            this.month2R7.ReadOnly = true;
+            this.month2R7.Size = new System.Drawing.Size(63, 20);
+            this.month2R7.TabIndex = 37;
+            this.month2R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month2R6
+            // 
+            this.month2R6.Enabled = false;
+            this.month2R6.Location = new System.Drawing.Point(281, 188);
+            this.month2R6.Name = "month2R6";
+            this.month2R6.ReadOnly = true;
+            this.month2R6.Size = new System.Drawing.Size(63, 20);
+            this.month2R6.TabIndex = 36;
+            this.month2R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month2R1
+            // 
+            this.month2R1.Enabled = false;
+            this.month2R1.Location = new System.Drawing.Point(281, 88);
+            this.month2R1.Name = "month2R1";
+            this.month2R1.ReadOnly = true;
+            this.month2R1.Size = new System.Drawing.Size(63, 20);
+            this.month2R1.TabIndex = 31;
+            this.month2R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month2R5
+            // 
+            this.month2R5.Enabled = false;
+            this.month2R5.Location = new System.Drawing.Point(281, 168);
+            this.month2R5.Name = "month2R5";
+            this.month2R5.ReadOnly = true;
+            this.month2R5.Size = new System.Drawing.Size(63, 20);
+            this.month2R5.TabIndex = 35;
+            this.month2R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month2R2
+            // 
+            this.month2R2.Enabled = false;
+            this.month2R2.Location = new System.Drawing.Point(281, 108);
+            this.month2R2.Name = "month2R2";
+            this.month2R2.ReadOnly = true;
+            this.month2R2.Size = new System.Drawing.Size(63, 20);
+            this.month2R2.TabIndex = 32;
+            this.month2R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month2R4
+            // 
+            this.month2R4.Enabled = false;
+            this.month2R4.Location = new System.Drawing.Point(281, 148);
+            this.month2R4.Name = "month2R4";
+            this.month2R4.ReadOnly = true;
+            this.month2R4.Size = new System.Drawing.Size(63, 20);
+            this.month2R4.TabIndex = 34;
+            this.month2R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(220, 63);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(44, 13);
+            this.label39.TabIndex = 30;
+            this.label39.Text = "January";
+            // 
+            // month1R3
+            // 
+            this.month1R3.Enabled = false;
+            this.month1R3.Location = new System.Drawing.Point(212, 128);
+            this.month1R3.Name = "month1R3";
+            this.month1R3.ReadOnly = true;
+            this.month1R3.Size = new System.Drawing.Size(63, 20);
+            this.month1R3.TabIndex = 21;
+            this.month1R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month1R7
+            // 
+            this.month1R7.Enabled = false;
+            this.month1R7.Location = new System.Drawing.Point(212, 208);
+            this.month1R7.Name = "month1R7";
+            this.month1R7.ReadOnly = true;
+            this.month1R7.Size = new System.Drawing.Size(63, 20);
+            this.month1R7.TabIndex = 29;
+            this.month1R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // cbStatMonthlyLogYear
+            // 
+            this.cbStatMonthlyLogYear.BackColor = System.Drawing.Color.Silver;
+            this.cbStatMonthlyLogYear.FormattingEnabled = true;
+            this.cbStatMonthlyLogYear.Location = new System.Drawing.Point(314, 19);
+            this.cbStatMonthlyLogYear.Name = "cbStatMonthlyLogYear";
+            this.cbStatMonthlyLogYear.Size = new System.Drawing.Size(136, 21);
+            this.cbStatMonthlyLogYear.TabIndex = 15;
+            this.cbStatMonthlyLogYear.SelectedIndexChanged += new System.EventHandler(this.cbStatMonthlyLogYear_changed);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(136, 211);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(70, 13);
+            this.label32.TabIndex = 28;
+            this.label32.Text = "Longest Ride";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(143, 91);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(63, 13);
+            this.label33.TabIndex = 16;
+            this.label33.Text = "Yearly Miles";
+            // 
+            // month1R6
+            // 
+            this.month1R6.Enabled = false;
+            this.month1R6.Location = new System.Drawing.Point(212, 188);
+            this.month1R6.Name = "month1R6";
+            this.month1R6.ReadOnly = true;
+            this.month1R6.Size = new System.Drawing.Size(63, 20);
+            this.month1R6.TabIndex = 27;
+            this.month1R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month1R1
+            // 
+            this.month1R1.Enabled = false;
+            this.month1R1.Location = new System.Drawing.Point(212, 88);
+            this.month1R1.Name = "month1R1";
+            this.month1R1.ReadOnly = true;
+            this.month1R1.Size = new System.Drawing.Size(63, 20);
+            this.month1R1.TabIndex = 17;
+            this.month1R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(103, 191);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(103, 13);
+            this.label34.TabIndex = 26;
+            this.label34.Text = "High Week Milelage";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(120, 111);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(86, 13);
+            this.label35.TabIndex = 18;
+            this.label35.Text = "Number of Rides";
+            // 
+            // month1R5
+            // 
+            this.month1R5.Enabled = false;
+            this.month1R5.Location = new System.Drawing.Point(212, 168);
+            this.month1R5.Name = "month1R5";
+            this.month1R5.ReadOnly = true;
+            this.month1R5.Size = new System.Drawing.Size(63, 20);
+            this.month1R5.TabIndex = 25;
+            this.month1R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // month1R2
+            // 
+            this.month1R2.Enabled = false;
+            this.month1R2.Location = new System.Drawing.Point(212, 108);
+            this.month1R2.Name = "month1R2";
+            this.month1R2.ReadOnly = true;
+            this.month1R2.Size = new System.Drawing.Size(63, 20);
+            this.month1R2.TabIndex = 19;
+            this.month1R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(110, 171);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(96, 13);
+            this.label36.TabIndex = 24;
+            this.label36.Text = "Avg Miles per Ride";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(103, 131);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(103, 13);
+            this.label37.TabIndex = 20;
+            this.label37.Text = "Avg Rides per week";
+            // 
+            // month1R4
+            // 
+            this.month1R4.Enabled = false;
+            this.month1R4.Location = new System.Drawing.Point(212, 148);
+            this.month1R4.Name = "month1R4";
+            this.month1R4.ReadOnly = true;
+            this.month1R4.Size = new System.Drawing.Size(63, 20);
+            this.month1R4.TabIndex = 23;
+            this.month1R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(106, 151);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(100, 13);
+            this.label38.TabIndex = 22;
+            this.label38.Text = "Avg Miles per week";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.groupBox2);
@@ -1734,1227 +2958,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.groupBox6);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(785, 450);
-            this.tabPage7.TabIndex = 5;
-            this.tabPage7.Text = "Statistics-Monthly";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.panel1);
-            this.groupBox6.Location = new System.Drawing.Point(6, 6);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(773, 438);
-            this.groupBox6.TabIndex = 0;
-            this.groupBox6.TabStop = false;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label45);
-            this.panel1.Controls.Add(this.textBox43);
-            this.panel1.Controls.Add(this.textBox44);
-            this.panel1.Controls.Add(this.textBox45);
-            this.panel1.Controls.Add(this.textBox46);
-            this.panel1.Controls.Add(this.textBox47);
-            this.panel1.Controls.Add(this.textBox48);
-            this.panel1.Controls.Add(this.textBox49);
-            this.panel1.Controls.Add(this.label46);
-            this.panel1.Controls.Add(this.textBox50);
-            this.panel1.Controls.Add(this.textBox51);
-            this.panel1.Controls.Add(this.textBox52);
-            this.panel1.Controls.Add(this.textBox53);
-            this.panel1.Controls.Add(this.textBox54);
-            this.panel1.Controls.Add(this.textBox55);
-            this.panel1.Controls.Add(this.textBox56);
-            this.panel1.Controls.Add(this.label47);
-            this.panel1.Controls.Add(this.textBox57);
-            this.panel1.Controls.Add(this.textBox58);
-            this.panel1.Controls.Add(this.textBox59);
-            this.panel1.Controls.Add(this.textBox60);
-            this.panel1.Controls.Add(this.textBox61);
-            this.panel1.Controls.Add(this.textBox62);
-            this.panel1.Controls.Add(this.textBox63);
-            this.panel1.Controls.Add(this.label48);
-            this.panel1.Controls.Add(this.textBox64);
-            this.panel1.Controls.Add(this.textBox65);
-            this.panel1.Controls.Add(this.textBox66);
-            this.panel1.Controls.Add(this.textBox67);
-            this.panel1.Controls.Add(this.textBox68);
-            this.panel1.Controls.Add(this.textBox69);
-            this.panel1.Controls.Add(this.textBox70);
-            this.panel1.Controls.Add(this.label49);
-            this.panel1.Controls.Add(this.textBox71);
-            this.panel1.Controls.Add(this.textBox72);
-            this.panel1.Controls.Add(this.textBox73);
-            this.panel1.Controls.Add(this.textBox74);
-            this.panel1.Controls.Add(this.textBox75);
-            this.panel1.Controls.Add(this.textBox76);
-            this.panel1.Controls.Add(this.textBox77);
-            this.panel1.Controls.Add(this.label50);
-            this.panel1.Controls.Add(this.textBox78);
-            this.panel1.Controls.Add(this.textBox79);
-            this.panel1.Controls.Add(this.label51);
-            this.panel1.Controls.Add(this.label52);
-            this.panel1.Controls.Add(this.textBox80);
-            this.panel1.Controls.Add(this.textBox81);
-            this.panel1.Controls.Add(this.label53);
-            this.panel1.Controls.Add(this.label54);
-            this.panel1.Controls.Add(this.textBox82);
-            this.panel1.Controls.Add(this.textBox83);
-            this.panel1.Controls.Add(this.label55);
-            this.panel1.Controls.Add(this.label56);
-            this.panel1.Controls.Add(this.textBox84);
-            this.panel1.Controls.Add(this.label57);
-            this.panel1.Controls.Add(this.label44);
-            this.panel1.Controls.Add(this.textBox36);
-            this.panel1.Controls.Add(this.textBox37);
-            this.panel1.Controls.Add(this.textBox38);
-            this.panel1.Controls.Add(this.textBox39);
-            this.panel1.Controls.Add(this.textBox40);
-            this.panel1.Controls.Add(this.textBox41);
-            this.panel1.Controls.Add(this.textBox42);
-            this.panel1.Controls.Add(this.label43);
-            this.panel1.Controls.Add(this.textBox29);
-            this.panel1.Controls.Add(this.textBox30);
-            this.panel1.Controls.Add(this.textBox31);
-            this.panel1.Controls.Add(this.textBox32);
-            this.panel1.Controls.Add(this.textBox33);
-            this.panel1.Controls.Add(this.textBox34);
-            this.panel1.Controls.Add(this.textBox35);
-            this.panel1.Controls.Add(this.label42);
-            this.panel1.Controls.Add(this.textBox22);
-            this.panel1.Controls.Add(this.textBox23);
-            this.panel1.Controls.Add(this.textBox24);
-            this.panel1.Controls.Add(this.textBox25);
-            this.panel1.Controls.Add(this.textBox26);
-            this.panel1.Controls.Add(this.textBox27);
-            this.panel1.Controls.Add(this.textBox28);
-            this.panel1.Controls.Add(this.label41);
-            this.panel1.Controls.Add(this.textBox15);
-            this.panel1.Controls.Add(this.textBox16);
-            this.panel1.Controls.Add(this.textBox17);
-            this.panel1.Controls.Add(this.textBox18);
-            this.panel1.Controls.Add(this.textBox19);
-            this.panel1.Controls.Add(this.textBox20);
-            this.panel1.Controls.Add(this.textBox21);
-            this.panel1.Controls.Add(this.label40);
-            this.panel1.Controls.Add(this.textBox8);
-            this.panel1.Controls.Add(this.textBox9);
-            this.panel1.Controls.Add(this.textBox10);
-            this.panel1.Controls.Add(this.textBox11);
-            this.panel1.Controls.Add(this.textBox12);
-            this.panel1.Controls.Add(this.textBox13);
-            this.panel1.Controls.Add(this.textBox14);
-            this.panel1.Controls.Add(this.label39);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.cbStatMonthlyLogYear);
-            this.panel1.Controls.Add(this.label32);
-            this.panel1.Controls.Add(this.label33);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox4);
-            this.panel1.Controls.Add(this.label34);
-            this.panel1.Controls.Add(this.label35);
-            this.panel1.Controls.Add(this.textBox5);
-            this.panel1.Controls.Add(this.textBox6);
-            this.panel1.Controls.Add(this.label36);
-            this.panel1.Controls.Add(this.label37);
-            this.panel1.Controls.Add(this.textBox7);
-            this.panel1.Controls.Add(this.label38);
-            this.panel1.Location = new System.Drawing.Point(6, 10);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(761, 428);
-            this.panel1.TabIndex = 0;
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(565, 240);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(56, 13);
-            this.label45.TabIndex = 125;
-            this.label45.Text = "December";
-            // 
-            // textBox43
-            // 
-            this.textBox43.Enabled = false;
-            this.textBox43.Location = new System.Drawing.Point(557, 305);
-            this.textBox43.Name = "textBox43";
-            this.textBox43.ReadOnly = true;
-            this.textBox43.Size = new System.Drawing.Size(63, 20);
-            this.textBox43.TabIndex = 120;
-            this.textBox43.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox44
-            // 
-            this.textBox44.Enabled = false;
-            this.textBox44.Location = new System.Drawing.Point(557, 385);
-            this.textBox44.Name = "textBox44";
-            this.textBox44.ReadOnly = true;
-            this.textBox44.Size = new System.Drawing.Size(63, 20);
-            this.textBox44.TabIndex = 124;
-            this.textBox44.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox45
-            // 
-            this.textBox45.Enabled = false;
-            this.textBox45.Location = new System.Drawing.Point(557, 365);
-            this.textBox45.Name = "textBox45";
-            this.textBox45.ReadOnly = true;
-            this.textBox45.Size = new System.Drawing.Size(63, 20);
-            this.textBox45.TabIndex = 123;
-            this.textBox45.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox46
-            // 
-            this.textBox46.Enabled = false;
-            this.textBox46.Location = new System.Drawing.Point(557, 265);
-            this.textBox46.Name = "textBox46";
-            this.textBox46.ReadOnly = true;
-            this.textBox46.Size = new System.Drawing.Size(63, 20);
-            this.textBox46.TabIndex = 118;
-            this.textBox46.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox47
-            // 
-            this.textBox47.Enabled = false;
-            this.textBox47.Location = new System.Drawing.Point(557, 345);
-            this.textBox47.Name = "textBox47";
-            this.textBox47.ReadOnly = true;
-            this.textBox47.Size = new System.Drawing.Size(63, 20);
-            this.textBox47.TabIndex = 122;
-            this.textBox47.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox48
-            // 
-            this.textBox48.Enabled = false;
-            this.textBox48.Location = new System.Drawing.Point(557, 285);
-            this.textBox48.Name = "textBox48";
-            this.textBox48.ReadOnly = true;
-            this.textBox48.Size = new System.Drawing.Size(63, 20);
-            this.textBox48.TabIndex = 119;
-            this.textBox48.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox49
-            // 
-            this.textBox49.Enabled = false;
-            this.textBox49.Location = new System.Drawing.Point(557, 325);
-            this.textBox49.Name = "textBox49";
-            this.textBox49.ReadOnly = true;
-            this.textBox49.Size = new System.Drawing.Size(63, 20);
-            this.textBox49.TabIndex = 121;
-            this.textBox49.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(496, 240);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(56, 13);
-            this.label46.TabIndex = 117;
-            this.label46.Text = "November";
-            // 
-            // textBox50
-            // 
-            this.textBox50.Enabled = false;
-            this.textBox50.Location = new System.Drawing.Point(488, 305);
-            this.textBox50.Name = "textBox50";
-            this.textBox50.ReadOnly = true;
-            this.textBox50.Size = new System.Drawing.Size(63, 20);
-            this.textBox50.TabIndex = 112;
-            this.textBox50.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox51
-            // 
-            this.textBox51.Enabled = false;
-            this.textBox51.Location = new System.Drawing.Point(488, 385);
-            this.textBox51.Name = "textBox51";
-            this.textBox51.ReadOnly = true;
-            this.textBox51.Size = new System.Drawing.Size(63, 20);
-            this.textBox51.TabIndex = 116;
-            this.textBox51.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox52
-            // 
-            this.textBox52.Enabled = false;
-            this.textBox52.Location = new System.Drawing.Point(488, 365);
-            this.textBox52.Name = "textBox52";
-            this.textBox52.ReadOnly = true;
-            this.textBox52.Size = new System.Drawing.Size(63, 20);
-            this.textBox52.TabIndex = 115;
-            this.textBox52.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox53
-            // 
-            this.textBox53.Enabled = false;
-            this.textBox53.Location = new System.Drawing.Point(488, 265);
-            this.textBox53.Name = "textBox53";
-            this.textBox53.ReadOnly = true;
-            this.textBox53.Size = new System.Drawing.Size(63, 20);
-            this.textBox53.TabIndex = 110;
-            this.textBox53.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox54
-            // 
-            this.textBox54.Enabled = false;
-            this.textBox54.Location = new System.Drawing.Point(488, 345);
-            this.textBox54.Name = "textBox54";
-            this.textBox54.ReadOnly = true;
-            this.textBox54.Size = new System.Drawing.Size(63, 20);
-            this.textBox54.TabIndex = 114;
-            this.textBox54.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox55
-            // 
-            this.textBox55.Enabled = false;
-            this.textBox55.Location = new System.Drawing.Point(488, 285);
-            this.textBox55.Name = "textBox55";
-            this.textBox55.ReadOnly = true;
-            this.textBox55.Size = new System.Drawing.Size(63, 20);
-            this.textBox55.TabIndex = 111;
-            this.textBox55.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox56
-            // 
-            this.textBox56.Enabled = false;
-            this.textBox56.Location = new System.Drawing.Point(488, 325);
-            this.textBox56.Name = "textBox56";
-            this.textBox56.ReadOnly = true;
-            this.textBox56.Size = new System.Drawing.Size(63, 20);
-            this.textBox56.TabIndex = 113;
-            this.textBox56.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(427, 240);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(45, 13);
-            this.label47.TabIndex = 109;
-            this.label47.Text = "October";
-            // 
-            // textBox57
-            // 
-            this.textBox57.Enabled = false;
-            this.textBox57.Location = new System.Drawing.Point(419, 305);
-            this.textBox57.Name = "textBox57";
-            this.textBox57.ReadOnly = true;
-            this.textBox57.Size = new System.Drawing.Size(63, 20);
-            this.textBox57.TabIndex = 104;
-            this.textBox57.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox58
-            // 
-            this.textBox58.Enabled = false;
-            this.textBox58.Location = new System.Drawing.Point(419, 385);
-            this.textBox58.Name = "textBox58";
-            this.textBox58.ReadOnly = true;
-            this.textBox58.Size = new System.Drawing.Size(63, 20);
-            this.textBox58.TabIndex = 108;
-            this.textBox58.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox59
-            // 
-            this.textBox59.Enabled = false;
-            this.textBox59.Location = new System.Drawing.Point(419, 365);
-            this.textBox59.Name = "textBox59";
-            this.textBox59.ReadOnly = true;
-            this.textBox59.Size = new System.Drawing.Size(63, 20);
-            this.textBox59.TabIndex = 107;
-            this.textBox59.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox60
-            // 
-            this.textBox60.Enabled = false;
-            this.textBox60.Location = new System.Drawing.Point(419, 265);
-            this.textBox60.Name = "textBox60";
-            this.textBox60.ReadOnly = true;
-            this.textBox60.Size = new System.Drawing.Size(63, 20);
-            this.textBox60.TabIndex = 102;
-            this.textBox60.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox61
-            // 
-            this.textBox61.Enabled = false;
-            this.textBox61.Location = new System.Drawing.Point(419, 345);
-            this.textBox61.Name = "textBox61";
-            this.textBox61.ReadOnly = true;
-            this.textBox61.Size = new System.Drawing.Size(63, 20);
-            this.textBox61.TabIndex = 106;
-            this.textBox61.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox62
-            // 
-            this.textBox62.Enabled = false;
-            this.textBox62.Location = new System.Drawing.Point(419, 285);
-            this.textBox62.Name = "textBox62";
-            this.textBox62.ReadOnly = true;
-            this.textBox62.Size = new System.Drawing.Size(63, 20);
-            this.textBox62.TabIndex = 103;
-            this.textBox62.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox63
-            // 
-            this.textBox63.Enabled = false;
-            this.textBox63.Location = new System.Drawing.Point(419, 325);
-            this.textBox63.Name = "textBox63";
-            this.textBox63.ReadOnly = true;
-            this.textBox63.Size = new System.Drawing.Size(63, 20);
-            this.textBox63.TabIndex = 105;
-            this.textBox63.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(358, 240);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(58, 13);
-            this.label48.TabIndex = 101;
-            this.label48.Text = "September";
-            // 
-            // textBox64
-            // 
-            this.textBox64.Enabled = false;
-            this.textBox64.Location = new System.Drawing.Point(350, 305);
-            this.textBox64.Name = "textBox64";
-            this.textBox64.ReadOnly = true;
-            this.textBox64.Size = new System.Drawing.Size(63, 20);
-            this.textBox64.TabIndex = 96;
-            this.textBox64.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox65
-            // 
-            this.textBox65.Enabled = false;
-            this.textBox65.Location = new System.Drawing.Point(350, 385);
-            this.textBox65.Name = "textBox65";
-            this.textBox65.ReadOnly = true;
-            this.textBox65.Size = new System.Drawing.Size(63, 20);
-            this.textBox65.TabIndex = 100;
-            this.textBox65.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox66
-            // 
-            this.textBox66.Enabled = false;
-            this.textBox66.Location = new System.Drawing.Point(350, 365);
-            this.textBox66.Name = "textBox66";
-            this.textBox66.ReadOnly = true;
-            this.textBox66.Size = new System.Drawing.Size(63, 20);
-            this.textBox66.TabIndex = 99;
-            this.textBox66.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox67
-            // 
-            this.textBox67.Enabled = false;
-            this.textBox67.Location = new System.Drawing.Point(350, 265);
-            this.textBox67.Name = "textBox67";
-            this.textBox67.ReadOnly = true;
-            this.textBox67.Size = new System.Drawing.Size(63, 20);
-            this.textBox67.TabIndex = 94;
-            this.textBox67.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox68
-            // 
-            this.textBox68.Enabled = false;
-            this.textBox68.Location = new System.Drawing.Point(350, 345);
-            this.textBox68.Name = "textBox68";
-            this.textBox68.ReadOnly = true;
-            this.textBox68.Size = new System.Drawing.Size(63, 20);
-            this.textBox68.TabIndex = 98;
-            this.textBox68.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox69
-            // 
-            this.textBox69.Enabled = false;
-            this.textBox69.Location = new System.Drawing.Point(350, 285);
-            this.textBox69.Name = "textBox69";
-            this.textBox69.ReadOnly = true;
-            this.textBox69.Size = new System.Drawing.Size(63, 20);
-            this.textBox69.TabIndex = 95;
-            this.textBox69.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox70
-            // 
-            this.textBox70.Enabled = false;
-            this.textBox70.Location = new System.Drawing.Point(350, 325);
-            this.textBox70.Name = "textBox70";
-            this.textBox70.ReadOnly = true;
-            this.textBox70.Size = new System.Drawing.Size(63, 20);
-            this.textBox70.TabIndex = 97;
-            this.textBox70.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(289, 240);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(40, 13);
-            this.label49.TabIndex = 93;
-            this.label49.Text = "August";
-            // 
-            // textBox71
-            // 
-            this.textBox71.Enabled = false;
-            this.textBox71.Location = new System.Drawing.Point(281, 305);
-            this.textBox71.Name = "textBox71";
-            this.textBox71.ReadOnly = true;
-            this.textBox71.Size = new System.Drawing.Size(63, 20);
-            this.textBox71.TabIndex = 88;
-            this.textBox71.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox72
-            // 
-            this.textBox72.Enabled = false;
-            this.textBox72.Location = new System.Drawing.Point(281, 385);
-            this.textBox72.Name = "textBox72";
-            this.textBox72.ReadOnly = true;
-            this.textBox72.Size = new System.Drawing.Size(63, 20);
-            this.textBox72.TabIndex = 92;
-            this.textBox72.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox73
-            // 
-            this.textBox73.Enabled = false;
-            this.textBox73.Location = new System.Drawing.Point(281, 365);
-            this.textBox73.Name = "textBox73";
-            this.textBox73.ReadOnly = true;
-            this.textBox73.Size = new System.Drawing.Size(63, 20);
-            this.textBox73.TabIndex = 91;
-            this.textBox73.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox74
-            // 
-            this.textBox74.Enabled = false;
-            this.textBox74.Location = new System.Drawing.Point(281, 265);
-            this.textBox74.Name = "textBox74";
-            this.textBox74.ReadOnly = true;
-            this.textBox74.Size = new System.Drawing.Size(63, 20);
-            this.textBox74.TabIndex = 86;
-            this.textBox74.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox75
-            // 
-            this.textBox75.Enabled = false;
-            this.textBox75.Location = new System.Drawing.Point(281, 345);
-            this.textBox75.Name = "textBox75";
-            this.textBox75.ReadOnly = true;
-            this.textBox75.Size = new System.Drawing.Size(63, 20);
-            this.textBox75.TabIndex = 90;
-            this.textBox75.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox76
-            // 
-            this.textBox76.Enabled = false;
-            this.textBox76.Location = new System.Drawing.Point(281, 285);
-            this.textBox76.Name = "textBox76";
-            this.textBox76.ReadOnly = true;
-            this.textBox76.Size = new System.Drawing.Size(63, 20);
-            this.textBox76.TabIndex = 87;
-            this.textBox76.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox77
-            // 
-            this.textBox77.Enabled = false;
-            this.textBox77.Location = new System.Drawing.Point(281, 325);
-            this.textBox77.Name = "textBox77";
-            this.textBox77.ReadOnly = true;
-            this.textBox77.Size = new System.Drawing.Size(63, 20);
-            this.textBox77.TabIndex = 89;
-            this.textBox77.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(220, 240);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(25, 13);
-            this.label50.TabIndex = 85;
-            this.label50.Text = "July";
-            // 
-            // textBox78
-            // 
-            this.textBox78.Enabled = false;
-            this.textBox78.Location = new System.Drawing.Point(212, 305);
-            this.textBox78.Name = "textBox78";
-            this.textBox78.ReadOnly = true;
-            this.textBox78.Size = new System.Drawing.Size(63, 20);
-            this.textBox78.TabIndex = 76;
-            this.textBox78.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox79
-            // 
-            this.textBox79.Enabled = false;
-            this.textBox79.Location = new System.Drawing.Point(212, 385);
-            this.textBox79.Name = "textBox79";
-            this.textBox79.ReadOnly = true;
-            this.textBox79.Size = new System.Drawing.Size(63, 20);
-            this.textBox79.TabIndex = 84;
-            this.textBox79.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(136, 388);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(70, 13);
-            this.label51.TabIndex = 83;
-            this.label51.Text = "Longest Ride";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(143, 268);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(63, 13);
-            this.label52.TabIndex = 71;
-            this.label52.Text = "Yearly Miles";
-            // 
-            // textBox80
-            // 
-            this.textBox80.Enabled = false;
-            this.textBox80.Location = new System.Drawing.Point(212, 365);
-            this.textBox80.Name = "textBox80";
-            this.textBox80.ReadOnly = true;
-            this.textBox80.Size = new System.Drawing.Size(63, 20);
-            this.textBox80.TabIndex = 82;
-            this.textBox80.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox81
-            // 
-            this.textBox81.Enabled = false;
-            this.textBox81.Location = new System.Drawing.Point(212, 265);
-            this.textBox81.Name = "textBox81";
-            this.textBox81.ReadOnly = true;
-            this.textBox81.Size = new System.Drawing.Size(63, 20);
-            this.textBox81.TabIndex = 72;
-            this.textBox81.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(103, 368);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(103, 13);
-            this.label53.TabIndex = 81;
-            this.label53.Text = "High Week Milelage";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(120, 288);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(86, 13);
-            this.label54.TabIndex = 73;
-            this.label54.Text = "Number of Rides";
-            // 
-            // textBox82
-            // 
-            this.textBox82.Enabled = false;
-            this.textBox82.Location = new System.Drawing.Point(212, 345);
-            this.textBox82.Name = "textBox82";
-            this.textBox82.ReadOnly = true;
-            this.textBox82.Size = new System.Drawing.Size(63, 20);
-            this.textBox82.TabIndex = 80;
-            this.textBox82.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox83
-            // 
-            this.textBox83.Enabled = false;
-            this.textBox83.Location = new System.Drawing.Point(212, 285);
-            this.textBox83.Name = "textBox83";
-            this.textBox83.ReadOnly = true;
-            this.textBox83.Size = new System.Drawing.Size(63, 20);
-            this.textBox83.TabIndex = 74;
-            this.textBox83.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(110, 348);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(96, 13);
-            this.label55.TabIndex = 79;
-            this.label55.Text = "Avg Miles per Ride";
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(103, 308);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(103, 13);
-            this.label56.TabIndex = 75;
-            this.label56.Text = "Avg Rides per week";
-            // 
-            // textBox84
-            // 
-            this.textBox84.Enabled = false;
-            this.textBox84.Location = new System.Drawing.Point(212, 325);
-            this.textBox84.Name = "textBox84";
-            this.textBox84.ReadOnly = true;
-            this.textBox84.Size = new System.Drawing.Size(63, 20);
-            this.textBox84.TabIndex = 78;
-            this.textBox84.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(106, 328);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(100, 13);
-            this.label57.TabIndex = 77;
-            this.label57.Text = "Avg Miles per week";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(565, 63);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(30, 13);
-            this.label44.TabIndex = 70;
-            this.label44.Text = "June";
-            // 
-            // textBox36
-            // 
-            this.textBox36.Enabled = false;
-            this.textBox36.Location = new System.Drawing.Point(557, 128);
-            this.textBox36.Name = "textBox36";
-            this.textBox36.ReadOnly = true;
-            this.textBox36.Size = new System.Drawing.Size(63, 20);
-            this.textBox36.TabIndex = 65;
-            this.textBox36.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox37
-            // 
-            this.textBox37.Enabled = false;
-            this.textBox37.Location = new System.Drawing.Point(557, 208);
-            this.textBox37.Name = "textBox37";
-            this.textBox37.ReadOnly = true;
-            this.textBox37.Size = new System.Drawing.Size(63, 20);
-            this.textBox37.TabIndex = 69;
-            this.textBox37.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox38
-            // 
-            this.textBox38.Enabled = false;
-            this.textBox38.Location = new System.Drawing.Point(557, 188);
-            this.textBox38.Name = "textBox38";
-            this.textBox38.ReadOnly = true;
-            this.textBox38.Size = new System.Drawing.Size(63, 20);
-            this.textBox38.TabIndex = 68;
-            this.textBox38.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox39
-            // 
-            this.textBox39.Enabled = false;
-            this.textBox39.Location = new System.Drawing.Point(557, 88);
-            this.textBox39.Name = "textBox39";
-            this.textBox39.ReadOnly = true;
-            this.textBox39.Size = new System.Drawing.Size(63, 20);
-            this.textBox39.TabIndex = 63;
-            this.textBox39.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox40
-            // 
-            this.textBox40.Enabled = false;
-            this.textBox40.Location = new System.Drawing.Point(557, 168);
-            this.textBox40.Name = "textBox40";
-            this.textBox40.ReadOnly = true;
-            this.textBox40.Size = new System.Drawing.Size(63, 20);
-            this.textBox40.TabIndex = 67;
-            this.textBox40.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox41
-            // 
-            this.textBox41.Enabled = false;
-            this.textBox41.Location = new System.Drawing.Point(557, 108);
-            this.textBox41.Name = "textBox41";
-            this.textBox41.ReadOnly = true;
-            this.textBox41.Size = new System.Drawing.Size(63, 20);
-            this.textBox41.TabIndex = 64;
-            this.textBox41.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox42
-            // 
-            this.textBox42.Enabled = false;
-            this.textBox42.Location = new System.Drawing.Point(557, 148);
-            this.textBox42.Name = "textBox42";
-            this.textBox42.ReadOnly = true;
-            this.textBox42.Size = new System.Drawing.Size(63, 20);
-            this.textBox42.TabIndex = 66;
-            this.textBox42.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(496, 63);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(27, 13);
-            this.label43.TabIndex = 62;
-            this.label43.Text = "May";
-            // 
-            // textBox29
-            // 
-            this.textBox29.Enabled = false;
-            this.textBox29.Location = new System.Drawing.Point(488, 128);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.ReadOnly = true;
-            this.textBox29.Size = new System.Drawing.Size(63, 20);
-            this.textBox29.TabIndex = 57;
-            this.textBox29.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox30
-            // 
-            this.textBox30.Enabled = false;
-            this.textBox30.Location = new System.Drawing.Point(488, 208);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.ReadOnly = true;
-            this.textBox30.Size = new System.Drawing.Size(63, 20);
-            this.textBox30.TabIndex = 61;
-            this.textBox30.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox31
-            // 
-            this.textBox31.Enabled = false;
-            this.textBox31.Location = new System.Drawing.Point(488, 188);
-            this.textBox31.Name = "textBox31";
-            this.textBox31.ReadOnly = true;
-            this.textBox31.Size = new System.Drawing.Size(63, 20);
-            this.textBox31.TabIndex = 60;
-            this.textBox31.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox32
-            // 
-            this.textBox32.Enabled = false;
-            this.textBox32.Location = new System.Drawing.Point(488, 88);
-            this.textBox32.Name = "textBox32";
-            this.textBox32.ReadOnly = true;
-            this.textBox32.Size = new System.Drawing.Size(63, 20);
-            this.textBox32.TabIndex = 55;
-            this.textBox32.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox33
-            // 
-            this.textBox33.Enabled = false;
-            this.textBox33.Location = new System.Drawing.Point(488, 168);
-            this.textBox33.Name = "textBox33";
-            this.textBox33.ReadOnly = true;
-            this.textBox33.Size = new System.Drawing.Size(63, 20);
-            this.textBox33.TabIndex = 59;
-            this.textBox33.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox34
-            // 
-            this.textBox34.Enabled = false;
-            this.textBox34.Location = new System.Drawing.Point(488, 108);
-            this.textBox34.Name = "textBox34";
-            this.textBox34.ReadOnly = true;
-            this.textBox34.Size = new System.Drawing.Size(63, 20);
-            this.textBox34.TabIndex = 56;
-            this.textBox34.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox35
-            // 
-            this.textBox35.Enabled = false;
-            this.textBox35.Location = new System.Drawing.Point(488, 148);
-            this.textBox35.Name = "textBox35";
-            this.textBox35.ReadOnly = true;
-            this.textBox35.Size = new System.Drawing.Size(63, 20);
-            this.textBox35.TabIndex = 58;
-            this.textBox35.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(427, 63);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(27, 13);
-            this.label42.TabIndex = 54;
-            this.label42.Text = "April";
-            // 
-            // textBox22
-            // 
-            this.textBox22.Enabled = false;
-            this.textBox22.Location = new System.Drawing.Point(419, 128);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.ReadOnly = true;
-            this.textBox22.Size = new System.Drawing.Size(63, 20);
-            this.textBox22.TabIndex = 49;
-            this.textBox22.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox23
-            // 
-            this.textBox23.Enabled = false;
-            this.textBox23.Location = new System.Drawing.Point(419, 208);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.ReadOnly = true;
-            this.textBox23.Size = new System.Drawing.Size(63, 20);
-            this.textBox23.TabIndex = 53;
-            this.textBox23.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox24
-            // 
-            this.textBox24.Enabled = false;
-            this.textBox24.Location = new System.Drawing.Point(419, 188);
-            this.textBox24.Name = "textBox24";
-            this.textBox24.ReadOnly = true;
-            this.textBox24.Size = new System.Drawing.Size(63, 20);
-            this.textBox24.TabIndex = 52;
-            this.textBox24.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox25
-            // 
-            this.textBox25.Enabled = false;
-            this.textBox25.Location = new System.Drawing.Point(419, 88);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.ReadOnly = true;
-            this.textBox25.Size = new System.Drawing.Size(63, 20);
-            this.textBox25.TabIndex = 47;
-            this.textBox25.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox26
-            // 
-            this.textBox26.Enabled = false;
-            this.textBox26.Location = new System.Drawing.Point(419, 168);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.ReadOnly = true;
-            this.textBox26.Size = new System.Drawing.Size(63, 20);
-            this.textBox26.TabIndex = 51;
-            this.textBox26.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox27
-            // 
-            this.textBox27.Enabled = false;
-            this.textBox27.Location = new System.Drawing.Point(419, 108);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.ReadOnly = true;
-            this.textBox27.Size = new System.Drawing.Size(63, 20);
-            this.textBox27.TabIndex = 48;
-            this.textBox27.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox28
-            // 
-            this.textBox28.Enabled = false;
-            this.textBox28.Location = new System.Drawing.Point(419, 148);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.ReadOnly = true;
-            this.textBox28.Size = new System.Drawing.Size(63, 20);
-            this.textBox28.TabIndex = 50;
-            this.textBox28.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(358, 63);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(37, 13);
-            this.label41.TabIndex = 46;
-            this.label41.Text = "March";
-            // 
-            // textBox15
-            // 
-            this.textBox15.Enabled = false;
-            this.textBox15.Location = new System.Drawing.Point(350, 128);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.ReadOnly = true;
-            this.textBox15.Size = new System.Drawing.Size(63, 20);
-            this.textBox15.TabIndex = 41;
-            this.textBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox16
-            // 
-            this.textBox16.Enabled = false;
-            this.textBox16.Location = new System.Drawing.Point(350, 208);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.ReadOnly = true;
-            this.textBox16.Size = new System.Drawing.Size(63, 20);
-            this.textBox16.TabIndex = 45;
-            this.textBox16.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox17
-            // 
-            this.textBox17.Enabled = false;
-            this.textBox17.Location = new System.Drawing.Point(350, 188);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.ReadOnly = true;
-            this.textBox17.Size = new System.Drawing.Size(63, 20);
-            this.textBox17.TabIndex = 44;
-            this.textBox17.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox18
-            // 
-            this.textBox18.Enabled = false;
-            this.textBox18.Location = new System.Drawing.Point(350, 88);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.ReadOnly = true;
-            this.textBox18.Size = new System.Drawing.Size(63, 20);
-            this.textBox18.TabIndex = 39;
-            this.textBox18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox19
-            // 
-            this.textBox19.Enabled = false;
-            this.textBox19.Location = new System.Drawing.Point(350, 168);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.ReadOnly = true;
-            this.textBox19.Size = new System.Drawing.Size(63, 20);
-            this.textBox19.TabIndex = 43;
-            this.textBox19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox20
-            // 
-            this.textBox20.Enabled = false;
-            this.textBox20.Location = new System.Drawing.Point(350, 108);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.ReadOnly = true;
-            this.textBox20.Size = new System.Drawing.Size(63, 20);
-            this.textBox20.TabIndex = 40;
-            this.textBox20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox21
-            // 
-            this.textBox21.Enabled = false;
-            this.textBox21.Location = new System.Drawing.Point(350, 148);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.ReadOnly = true;
-            this.textBox21.Size = new System.Drawing.Size(63, 20);
-            this.textBox21.TabIndex = 42;
-            this.textBox21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(289, 63);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(48, 13);
-            this.label40.TabIndex = 38;
-            this.label40.Text = "February";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Enabled = false;
-            this.textBox8.Location = new System.Drawing.Point(281, 128);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(63, 20);
-            this.textBox8.TabIndex = 33;
-            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox9
-            // 
-            this.textBox9.Enabled = false;
-            this.textBox9.Location = new System.Drawing.Point(281, 208);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(63, 20);
-            this.textBox9.TabIndex = 37;
-            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox10
-            // 
-            this.textBox10.Enabled = false;
-            this.textBox10.Location = new System.Drawing.Point(281, 188);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(63, 20);
-            this.textBox10.TabIndex = 36;
-            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox11
-            // 
-            this.textBox11.Enabled = false;
-            this.textBox11.Location = new System.Drawing.Point(281, 88);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(63, 20);
-            this.textBox11.TabIndex = 31;
-            this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox12
-            // 
-            this.textBox12.Enabled = false;
-            this.textBox12.Location = new System.Drawing.Point(281, 168);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.ReadOnly = true;
-            this.textBox12.Size = new System.Drawing.Size(63, 20);
-            this.textBox12.TabIndex = 35;
-            this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox13
-            // 
-            this.textBox13.Enabled = false;
-            this.textBox13.Location = new System.Drawing.Point(281, 108);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.ReadOnly = true;
-            this.textBox13.Size = new System.Drawing.Size(63, 20);
-            this.textBox13.TabIndex = 32;
-            this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox14
-            // 
-            this.textBox14.Enabled = false;
-            this.textBox14.Location = new System.Drawing.Point(281, 148);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.ReadOnly = true;
-            this.textBox14.Size = new System.Drawing.Size(63, 20);
-            this.textBox14.TabIndex = 34;
-            this.textBox14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(220, 63);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(44, 13);
-            this.label39.TabIndex = 30;
-            this.label39.Text = "January";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(212, 128);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(63, 20);
-            this.textBox1.TabIndex = 21;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(212, 208);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(63, 20);
-            this.textBox2.TabIndex = 29;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // cbStatMonthlyLogYear
-            // 
-            this.cbStatMonthlyLogYear.BackColor = System.Drawing.Color.Silver;
-            this.cbStatMonthlyLogYear.FormattingEnabled = true;
-            this.cbStatMonthlyLogYear.Location = new System.Drawing.Point(314, 19);
-            this.cbStatMonthlyLogYear.Name = "cbStatMonthlyLogYear";
-            this.cbStatMonthlyLogYear.Size = new System.Drawing.Size(136, 21);
-            this.cbStatMonthlyLogYear.TabIndex = 15;
-            this.cbStatMonthlyLogYear.SelectedIndexChanged += new System.EventHandler(this.cbStatMonthlyLogYear_changed);
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(136, 211);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(70, 13);
-            this.label32.TabIndex = 28;
-            this.label32.Text = "Longest Ride";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(143, 91);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(63, 13);
-            this.label33.TabIndex = 16;
-            this.label33.Text = "Yearly Miles";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(212, 188);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(63, 20);
-            this.textBox3.TabIndex = 27;
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(212, 88);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(63, 20);
-            this.textBox4.TabIndex = 17;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(103, 191);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(103, 13);
-            this.label34.TabIndex = 26;
-            this.label34.Text = "High Week Milelage";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(120, 111);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(86, 13);
-            this.label35.TabIndex = 18;
-            this.label35.Text = "Number of Rides";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Enabled = false;
-            this.textBox5.Location = new System.Drawing.Point(212, 168);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(63, 20);
-            this.textBox5.TabIndex = 25;
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Enabled = false;
-            this.textBox6.Location = new System.Drawing.Point(212, 108);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(63, 20);
-            this.textBox6.TabIndex = 19;
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(110, 171);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(96, 13);
-            this.label36.TabIndex = 24;
-            this.label36.Text = "Avg Miles per Ride";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(103, 131);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(103, 13);
-            this.label37.TabIndex = 20;
-            this.label37.Text = "Avg Rides per week";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Enabled = false;
-            this.textBox7.Location = new System.Drawing.Point(212, 148);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(63, 20);
-            this.textBox7.TabIndex = 23;
-            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(106, 151);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(100, 13);
-            this.label38.TabIndex = 22;
-            this.label38.Text = "Avg Miles per week";
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(659, 164);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 126;
+            this.button2.Text = "Refresh";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
@@ -2976,6 +2988,10 @@
             this.tabPage4.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -2988,10 +3004,6 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.tabPage7.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3136,117 +3148,118 @@
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox month1R3;
+        private System.Windows.Forms.TextBox month1R7;
         private System.Windows.Forms.ComboBox cbStatMonthlyLogYear;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox month1R6;
+        private System.Windows.Forms.TextBox month1R1;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox month1R5;
+        private System.Windows.Forms.TextBox month1R2;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox month1R4;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.TextBox textBox43;
-        private System.Windows.Forms.TextBox textBox44;
-        private System.Windows.Forms.TextBox textBox45;
-        private System.Windows.Forms.TextBox textBox46;
-        private System.Windows.Forms.TextBox textBox47;
-        private System.Windows.Forms.TextBox textBox48;
-        private System.Windows.Forms.TextBox textBox49;
+        private System.Windows.Forms.TextBox month12R3;
+        private System.Windows.Forms.TextBox month12R7;
+        private System.Windows.Forms.TextBox month12R6;
+        private System.Windows.Forms.TextBox month12R1;
+        private System.Windows.Forms.TextBox month12R5;
+        private System.Windows.Forms.TextBox month12R2;
+        private System.Windows.Forms.TextBox month12R4;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.TextBox textBox50;
-        private System.Windows.Forms.TextBox textBox51;
-        private System.Windows.Forms.TextBox textBox52;
-        private System.Windows.Forms.TextBox textBox53;
-        private System.Windows.Forms.TextBox textBox54;
-        private System.Windows.Forms.TextBox textBox55;
-        private System.Windows.Forms.TextBox textBox56;
+        private System.Windows.Forms.TextBox month11R3;
+        private System.Windows.Forms.TextBox month11R7;
+        private System.Windows.Forms.TextBox month11R6;
+        private System.Windows.Forms.TextBox month11R1;
+        private System.Windows.Forms.TextBox month11R5;
+        private System.Windows.Forms.TextBox month11R2;
+        private System.Windows.Forms.TextBox month11R4;
         private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.TextBox textBox57;
-        private System.Windows.Forms.TextBox textBox58;
-        private System.Windows.Forms.TextBox textBox59;
-        private System.Windows.Forms.TextBox textBox60;
-        private System.Windows.Forms.TextBox textBox61;
-        private System.Windows.Forms.TextBox textBox62;
-        private System.Windows.Forms.TextBox textBox63;
+        private System.Windows.Forms.TextBox month10R3;
+        private System.Windows.Forms.TextBox month10R7;
+        private System.Windows.Forms.TextBox month10R6;
+        private System.Windows.Forms.TextBox month10R1;
+        private System.Windows.Forms.TextBox month10R5;
+        private System.Windows.Forms.TextBox month10R2;
+        private System.Windows.Forms.TextBox month10R4;
         private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.TextBox textBox64;
-        private System.Windows.Forms.TextBox textBox65;
-        private System.Windows.Forms.TextBox textBox66;
-        private System.Windows.Forms.TextBox textBox67;
-        private System.Windows.Forms.TextBox textBox68;
-        private System.Windows.Forms.TextBox textBox69;
-        private System.Windows.Forms.TextBox textBox70;
+        private System.Windows.Forms.TextBox month9R3;
+        private System.Windows.Forms.TextBox month9R7;
+        private System.Windows.Forms.TextBox month9R6;
+        private System.Windows.Forms.TextBox month9R1;
+        private System.Windows.Forms.TextBox month9R5;
+        private System.Windows.Forms.TextBox month9R2;
+        private System.Windows.Forms.TextBox month9R4;
         private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.TextBox textBox71;
-        private System.Windows.Forms.TextBox textBox72;
-        private System.Windows.Forms.TextBox textBox73;
-        private System.Windows.Forms.TextBox textBox74;
-        private System.Windows.Forms.TextBox textBox75;
-        private System.Windows.Forms.TextBox textBox76;
-        private System.Windows.Forms.TextBox textBox77;
+        private System.Windows.Forms.TextBox month8R3;
+        private System.Windows.Forms.TextBox month8R7;
+        private System.Windows.Forms.TextBox month8R6;
+        private System.Windows.Forms.TextBox month8R1;
+        private System.Windows.Forms.TextBox month8R5;
+        private System.Windows.Forms.TextBox month8R2;
+        private System.Windows.Forms.TextBox month8R4;
         private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.TextBox textBox78;
-        private System.Windows.Forms.TextBox textBox79;
+        private System.Windows.Forms.TextBox month7R3;
+        private System.Windows.Forms.TextBox month7R7;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.TextBox textBox80;
-        private System.Windows.Forms.TextBox textBox81;
+        private System.Windows.Forms.TextBox month7R6;
+        private System.Windows.Forms.TextBox month7R1;
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label54;
-        private System.Windows.Forms.TextBox textBox82;
-        private System.Windows.Forms.TextBox textBox83;
+        private System.Windows.Forms.TextBox month7R5;
+        private System.Windows.Forms.TextBox month7R2;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.Label label56;
-        private System.Windows.Forms.TextBox textBox84;
+        private System.Windows.Forms.TextBox month7R4;
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.TextBox textBox36;
-        private System.Windows.Forms.TextBox textBox37;
-        private System.Windows.Forms.TextBox textBox38;
-        private System.Windows.Forms.TextBox textBox39;
-        private System.Windows.Forms.TextBox textBox40;
-        private System.Windows.Forms.TextBox textBox41;
-        private System.Windows.Forms.TextBox textBox42;
+        private System.Windows.Forms.TextBox month6R3;
+        private System.Windows.Forms.TextBox month6R7;
+        private System.Windows.Forms.TextBox month6R6;
+        private System.Windows.Forms.TextBox month6R1;
+        private System.Windows.Forms.TextBox month6R5;
+        private System.Windows.Forms.TextBox month6R2;
+        private System.Windows.Forms.TextBox month6R4;
         private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.TextBox textBox29;
-        private System.Windows.Forms.TextBox textBox30;
-        private System.Windows.Forms.TextBox textBox31;
-        private System.Windows.Forms.TextBox textBox32;
-        private System.Windows.Forms.TextBox textBox33;
-        private System.Windows.Forms.TextBox textBox34;
-        private System.Windows.Forms.TextBox textBox35;
+        private System.Windows.Forms.TextBox month5R3;
+        private System.Windows.Forms.TextBox month5R7;
+        private System.Windows.Forms.TextBox month5R6;
+        private System.Windows.Forms.TextBox month5R1;
+        private System.Windows.Forms.TextBox month5R5;
+        private System.Windows.Forms.TextBox month5R2;
+        private System.Windows.Forms.TextBox month5R4;
         private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.TextBox textBox23;
-        private System.Windows.Forms.TextBox textBox24;
-        private System.Windows.Forms.TextBox textBox25;
-        private System.Windows.Forms.TextBox textBox26;
-        private System.Windows.Forms.TextBox textBox27;
-        private System.Windows.Forms.TextBox textBox28;
+        private System.Windows.Forms.TextBox month4R3;
+        private System.Windows.Forms.TextBox month4R7;
+        private System.Windows.Forms.TextBox month4R6;
+        private System.Windows.Forms.TextBox month4R1;
+        private System.Windows.Forms.TextBox month4R5;
+        private System.Windows.Forms.TextBox month4R2;
+        private System.Windows.Forms.TextBox month4R4;
         private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.TextBox textBox21;
+        private System.Windows.Forms.TextBox month3R3;
+        private System.Windows.Forms.TextBox month3R7;
+        private System.Windows.Forms.TextBox month3R6;
+        private System.Windows.Forms.TextBox month3R1;
+        private System.Windows.Forms.TextBox month3R5;
+        private System.Windows.Forms.TextBox month3R2;
+        private System.Windows.Forms.TextBox month3R4;
         private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.TextBox month2R3;
+        private System.Windows.Forms.TextBox month2R7;
+        private System.Windows.Forms.TextBox month2R6;
+        private System.Windows.Forms.TextBox month2R1;
+        private System.Windows.Forms.TextBox month2R5;
+        private System.Windows.Forms.TextBox month2R2;
+        private System.Windows.Forms.TextBox month2R4;
+        private System.Windows.Forms.Button button2;
     }
 }
 

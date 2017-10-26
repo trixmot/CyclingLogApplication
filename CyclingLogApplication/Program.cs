@@ -23,16 +23,16 @@ namespace CyclingLogApplication
             //System.Diagnostics.Process.Start("http://www.microsoft.com/web/gallery/install.aspx?appsxml=&appid=SQLExpress");
 
             //Process process = Process.Start(@"sc", " query MSSQLSERVER");
-            Process compiler = new Process();
-            compiler.StartInfo.FileName = "sc";
-            compiler.StartInfo.Arguments = "query MSSQLSERVER";
-            compiler.StartInfo.UseShellExecute = false;
-            compiler.StartInfo.RedirectStandardOutput = true;
-            compiler.Start();
+            //Process compiler = new Process();
+            //compiler.StartInfo.FileName = "sc";
+            //compiler.StartInfo.Arguments = "query MSSQLSERVER";
+            //compiler.StartInfo.UseShellExecute = false;
+            //compiler.StartInfo.RedirectStandardOutput = true;
+            //compiler.Start();
 
             //Console.WriteLine(compiler.StandardOutput.ReadToEnd());
-            Logger.Log("[DEBUG] " + compiler.StandardOutput.ReadToEnd(), 0, 0);
-            compiler.WaitForExit();
+            //Logger.Log("[DEBUG] " + compiler.StandardOutput.ReadToEnd(), 0, 0);
+            //compiler.WaitForExit();
 
             //System.Diagnostics.Process.Start(@"sc", " query MSSQLSERVER");
             //Command line:

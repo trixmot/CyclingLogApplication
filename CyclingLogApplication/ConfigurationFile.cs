@@ -64,6 +64,8 @@ namespace CyclingLogApplication
             string chartRouteSelected = nodes.Item(0).SelectSingleNode("ChartRoute").InnerText;
             string chartTypeSelected = nodes.Item(0).SelectSingleNode("ChartType").InnerText;
 
+            string lastMonthlyLogYearSelected = nodes.Item(0).SelectSingleNode("LastMonthlyLogSelected").InnerText;
+
             MainForm mainForm = new MainForm("");
             mainForm.setLogLevel(logLevel);
             mainForm.setcbStatistic1(cbStatistic1);
@@ -78,6 +80,8 @@ namespace CyclingLogApplication
             mainForm.setLastLogYearChartSelected(Convert.ToInt32(chartLogYearSelected));
             mainForm.setLastRouteChartSelected(Convert.ToInt32(chartRouteSelected));
             mainForm.setLastTypeChartSelected(Convert.ToInt32(chartTypeSelected));
+
+            mainForm.setLastMonthlyLogSelected(Convert.ToInt32(lastMonthlyLogYearSelected));
 
             //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
             Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, 1, 0);
@@ -95,6 +99,8 @@ namespace CyclingLogApplication
             Logger.Log("Configuration Read: chartLogYearSelected : " + chartLogYearSelected, 1, 0);
             Logger.Log("Configuration Read: chartRouteSelected : " + chartRouteSelected, 1, 0);
             Logger.Log("Configuration Read: chartTypeSelected : " + chartTypeSelected, 1, 0);
+
+            Logger.Log("Configuration Read: lastMonthlyLogYearSelected : " + lastMonthlyLogYearSelected, 1, 0);
 
             returnStatus = true;
 
@@ -189,6 +195,10 @@ namespace CyclingLogApplication
                     lastTimelineChartSelectedNode.InnerText = "-1";
                     rootNode.AppendChild(lastTimelineChartSelectedNode);
 
+                    XmlNode lastMonthlyLogYearSelectedNode = xmlDoc.CreateElement("LastMonthlyLogSelected");
+                    lastTimelineChartSelectedNode.InnerText = "-1";
+                    rootNode.AppendChild(lastTimelineChartSelectedNode);
+
                     xmlDoc.Save("C:\\CyclingLogApplication\\CyclingLogConfig.xml");
                 }
             }
@@ -217,6 +227,8 @@ namespace CyclingLogApplication
                 int lastRouteChartSelected = mainForm.getLastRouteChartSelected();
                 int lastTypeChartSelected = mainForm.getLastTypeChartSelected();
 
+                int lastMonthlyLogSelected = mainForm.getLastMonthlyLogSelected();
+
                 xmlDoc.SelectSingleNode("/Config/cbStatistic1").InnerText = cbStatistic1;
                 xmlDoc.SelectSingleNode("/Config/cbStatistic2").InnerText = cbStatistic2;
                 xmlDoc.SelectSingleNode("/Config/cbStatistic3").InnerText = cbStatistic3;
@@ -231,6 +243,8 @@ namespace CyclingLogApplication
                 xmlDoc.SelectSingleNode("/Config/ChartRoute").InnerText = lastRouteChartSelected.ToString();
                 xmlDoc.SelectSingleNode("/Config/ChartType").InnerText = lastTypeChartSelected.ToString();
 
+                xmlDoc.SelectSingleNode("/Config/LastMonthlyLogSelected").InnerText = lastMonthlyLogSelected.ToString();
+
                 Logger.Log("Write Config Values: cbStatistic1 written:" + cbStatistic1, 0, logSetting);
                 Logger.Log("Write Config Values: cbStatistic2 written:" + cbStatistic2, 0, logSetting);
                 Logger.Log("Write Config Values: cbStatistic3 written:" + cbStatistic3, 0, logSetting);
@@ -243,6 +257,8 @@ namespace CyclingLogApplication
                 Logger.Log("Write Config Values: lastLogYearChartSelected written:" + lastLogYearChartSelected, 0, logSetting);
                 Logger.Log("Write Config Values: lastRouteChartSelected written:" + lastRouteChartSelected, 0, logSetting);
                 Logger.Log("Write Config Values: lastTypeChartSelected written:" + lastTypeChartSelected, 0, logSetting);
+
+                Logger.Log("Write Config Values: lastMonthlyLogSelected written:" + lastMonthlyLogSelected, 0, logSetting);
 
                 xmlDoc.Save(@"C:\\CyclingLogApplication\\CyclingLogConfig.xml");
             }
