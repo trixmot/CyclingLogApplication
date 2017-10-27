@@ -22,7 +22,7 @@ namespace CyclingLogApplication
         RideDataDisplay rideDataDisplayForm;
         ChartForm chartForm;
 
-        private static string logVersion = "0.0.3";
+        private static string logVersion = "0.1.0";
         private static int logLevel = 0;
         private static string cbStatistic1 = "-1";
         private static string cbStatistic2 = "-1";
