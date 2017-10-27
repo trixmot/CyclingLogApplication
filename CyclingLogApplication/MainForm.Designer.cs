@@ -39,21 +39,30 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label30 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
             this.btDeleteAllData = new System.Windows.Forms.Button();
+            this.tbWeekCount = new System.Windows.Forms.TextBox();
             this.button11 = new System.Windows.Forms.Button();
+            this.tbTimeChange = new System.Windows.Forms.TextBox();
+            this.tbDayCount = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label59 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tbStatisticsTotalMiles = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.tbTimeChange = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.tbDayCount = new System.Windows.Forms.TextBox();
-            this.tbWeekCount = new System.Windows.Forms.TextBox();
             this.tb3Log5 = new System.Windows.Forms.TextBox();
             this.tb7Log5 = new System.Windows.Forms.TextBox();
             this.cbLogYear5 = new System.Windows.Forms.ComboBox();
@@ -104,6 +113,8 @@
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bMonthlyStatistics = new System.Windows.Forms.Button();
+            this.label63 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.month12R3 = new System.Windows.Forms.TextBox();
             this.month12R7 = new System.Windows.Forms.TextBox();
@@ -217,6 +228,7 @@
             this.label38 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label64 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.cbLogYear = new System.Windows.Forms.ComboBox();
             this.lbConfigError = new System.Windows.Forms.Label();
@@ -279,7 +291,6 @@
             this.label29 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -368,10 +379,16 @@
             // 
             this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.btDeleteAllData);
+            this.groupBox1.Controls.Add(this.tbWeekCount);
             this.groupBox1.Controls.Add(this.button11);
+            this.groupBox1.Controls.Add(this.tbTimeChange);
             this.groupBox1.Controls.Add(this.button7);
+            this.groupBox1.Controls.Add(this.tbDayCount);
+            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.button5);
+            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Location = new System.Drawing.Point(32, 33);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(720, 385);
@@ -398,6 +415,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(78, 219);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(70, 13);
+            this.label15.TabIndex = 52;
+            this.label15.Text = "Time Change";
+            // 
             // btDeleteAllData
             // 
             this.btDeleteAllData.Location = new System.Drawing.Point(299, 247);
@@ -407,6 +433,16 @@
             this.btDeleteAllData.Text = "Delete All Data";
             this.btDeleteAllData.UseVisualStyleBackColor = true;
             this.btDeleteAllData.Click += new System.EventHandler(this.btDeleteAllData_Click);
+            // 
+            // tbWeekCount
+            // 
+            this.tbWeekCount.Enabled = false;
+            this.tbWeekCount.Location = new System.Drawing.Point(154, 176);
+            this.tbWeekCount.Name = "tbWeekCount";
+            this.tbWeekCount.ReadOnly = true;
+            this.tbWeekCount.Size = new System.Drawing.Size(47, 20);
+            this.tbWeekCount.TabIndex = 47;
+            this.tbWeekCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button11
             // 
@@ -418,9 +454,47 @@
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.importFromExcelLog);
             // 
+            // tbTimeChange
+            // 
+            this.tbTimeChange.Enabled = false;
+            this.tbTimeChange.Location = new System.Drawing.Point(154, 216);
+            this.tbTimeChange.Name = "tbTimeChange";
+            this.tbTimeChange.ReadOnly = true;
+            this.tbTimeChange.Size = new System.Drawing.Size(47, 20);
+            this.tbTimeChange.TabIndex = 51;
+            this.tbTimeChange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbDayCount
+            // 
+            this.tbDayCount.Enabled = false;
+            this.tbDayCount.Location = new System.Drawing.Point(154, 196);
+            this.tbDayCount.Name = "tbDayCount";
+            this.tbDayCount.ReadOnly = true;
+            this.tbDayCount.Size = new System.Drawing.Size(47, 20);
+            this.tbDayCount.TabIndex = 48;
+            this.tbDayCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(91, 199);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(57, 13);
+            this.label14.TabIndex = 50;
+            this.label14.Text = "Day Count";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(81, 179);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(67, 13);
+            this.label13.TabIndex = 49;
+            this.label13.Text = "Week Count";
+            // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(323, 305);
+            this.button3.Location = new System.Drawing.Point(323, 347);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 5;
@@ -468,14 +542,17 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label62);
+            this.groupBox4.Controls.Add(this.label61);
+            this.groupBox4.Controls.Add(this.textBox4);
+            this.groupBox4.Controls.Add(this.label60);
+            this.groupBox4.Controls.Add(this.textBox3);
+            this.groupBox4.Controls.Add(this.label59);
+            this.groupBox4.Controls.Add(this.textBox2);
+            this.groupBox4.Controls.Add(this.label58);
+            this.groupBox4.Controls.Add(this.textBox1);
             this.groupBox4.Controls.Add(this.tbStatisticsTotalMiles);
             this.groupBox4.Controls.Add(this.label23);
-            this.groupBox4.Controls.Add(this.label15);
-            this.groupBox4.Controls.Add(this.tbTimeChange);
-            this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.label13);
-            this.groupBox4.Controls.Add(this.tbDayCount);
-            this.groupBox4.Controls.Add(this.tbWeekCount);
             this.groupBox4.Controls.Add(this.tb3Log5);
             this.groupBox4.Controls.Add(this.tb7Log5);
             this.groupBox4.Controls.Add(this.cbLogYear5);
@@ -530,10 +607,96 @@
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Location = new System.Drawing.Point(253, 39);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(284, 29);
+            this.label62.TabIndex = 63;
+            this.label62.Text = "Statistics Yearly Log Data";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(616, 291);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(63, 13);
+            this.label61.TabIndex = 62;
+            this.label61.Text = "Fastest Avg";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Enabled = false;
+            this.textBox4.Location = new System.Drawing.Point(591, 307);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(110, 20);
+            this.textBox4.TabIndex = 61;
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(501, 291);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(61, 13);
+            this.label60.TabIndex = 60;
+            this.label60.Text = "Max Speed";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Enabled = false;
+            this.textBox3.Location = new System.Drawing.Point(475, 308);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(110, 20);
+            this.textBox3.TabIndex = 59;
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Location = new System.Drawing.Point(386, 291);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(61, 13);
+            this.label59.TabIndex = 58;
+            this.label59.Text = "Total Rides";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(359, 308);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(110, 20);
+            this.textBox2.TabIndex = 57;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(265, 291);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(70, 13);
+            this.label58.TabIndex = 56;
+            this.label58.Text = "Longest Ride";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(243, 308);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(110, 20);
+            this.textBox1.TabIndex = 55;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // tbStatisticsTotalMiles
             // 
             this.tbStatisticsTotalMiles.Enabled = false;
-            this.tbStatisticsTotalMiles.Location = new System.Drawing.Point(127, 286);
+            this.tbStatisticsTotalMiles.Location = new System.Drawing.Point(127, 307);
             this.tbStatisticsTotalMiles.Name = "tbStatisticsTotalMiles";
             this.tbStatisticsTotalMiles.ReadOnly = true;
             this.tbStatisticsTotalMiles.Size = new System.Drawing.Size(110, 20);
@@ -543,68 +706,11 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(17, 289);
+            this.label23.Location = new System.Drawing.Point(151, 291);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(104, 13);
+            this.label23.Size = new System.Drawing.Size(58, 13);
             this.label23.TabIndex = 53;
-            this.label23.Text = "Total Miles - All Logs";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(12, 62);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(70, 13);
-            this.label15.TabIndex = 52;
-            this.label15.Text = "Time Change";
-            // 
-            // tbTimeChange
-            // 
-            this.tbTimeChange.Enabled = false;
-            this.tbTimeChange.Location = new System.Drawing.Point(88, 59);
-            this.tbTimeChange.Name = "tbTimeChange";
-            this.tbTimeChange.ReadOnly = true;
-            this.tbTimeChange.Size = new System.Drawing.Size(47, 20);
-            this.tbTimeChange.TabIndex = 51;
-            this.tbTimeChange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(25, 42);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(57, 13);
-            this.label14.TabIndex = 50;
-            this.label14.Text = "Day Count";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(15, 22);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(67, 13);
-            this.label13.TabIndex = 49;
-            this.label13.Text = "Week Count";
-            // 
-            // tbDayCount
-            // 
-            this.tbDayCount.Enabled = false;
-            this.tbDayCount.Location = new System.Drawing.Point(88, 39);
-            this.tbDayCount.Name = "tbDayCount";
-            this.tbDayCount.ReadOnly = true;
-            this.tbDayCount.Size = new System.Drawing.Size(47, 20);
-            this.tbDayCount.TabIndex = 48;
-            this.tbDayCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbWeekCount
-            // 
-            this.tbWeekCount.Enabled = false;
-            this.tbWeekCount.Location = new System.Drawing.Point(88, 19);
-            this.tbWeekCount.Name = "tbWeekCount";
-            this.tbWeekCount.ReadOnly = true;
-            this.tbWeekCount.Size = new System.Drawing.Size(47, 20);
-            this.tbWeekCount.TabIndex = 47;
-            this.tbWeekCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.label23.Text = "Total Miles";
             // 
             // tb3Log5
             // 
@@ -1091,7 +1197,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.bMonthlyStatistics);
+            this.panel1.Controls.Add(this.label63);
             this.panel1.Controls.Add(this.label45);
             this.panel1.Controls.Add(this.month12R3);
             this.panel1.Controls.Add(this.month12R7);
@@ -1207,6 +1314,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(761, 428);
             this.panel1.TabIndex = 0;
+            // 
+            // bMonthlyStatistics
+            // 
+            this.bMonthlyStatistics.Location = new System.Drawing.Point(14, 58);
+            this.bMonthlyStatistics.Name = "bMonthlyStatistics";
+            this.bMonthlyStatistics.Size = new System.Drawing.Size(75, 23);
+            this.bMonthlyStatistics.TabIndex = 128;
+            this.bMonthlyStatistics.Text = "Refresh";
+            this.bMonthlyStatistics.UseVisualStyleBackColor = true;
+            this.bMonthlyStatistics.Click += new System.EventHandler(this.MonthlyStatistics_Click);
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label63.Location = new System.Drawing.Point(267, 13);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(299, 29);
+            this.label63.TabIndex = 127;
+            this.label63.Text = "Statistics Monthly Log Data";
             // 
             // label45
             // 
@@ -2173,7 +2300,7 @@
             // 
             this.cbStatMonthlyLogYear.BackColor = System.Drawing.Color.Silver;
             this.cbStatMonthlyLogYear.FormattingEnabled = true;
-            this.cbStatMonthlyLogYear.Location = new System.Drawing.Point(314, 19);
+            this.cbStatMonthlyLogYear.Location = new System.Drawing.Point(14, 22);
             this.cbStatMonthlyLogYear.Name = "cbStatMonthlyLogYear";
             this.cbStatMonthlyLogYear.Size = new System.Drawing.Size(136, 21);
             this.cbStatMonthlyLogYear.TabIndex = 15;
@@ -2300,11 +2427,12 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(785, 450);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Configuration";
+            this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label64);
             this.groupBox2.Controls.Add(this.label31);
             this.groupBox2.Controls.Add(this.cbLogYear);
             this.groupBox2.Controls.Add(this.lbConfigError);
@@ -2337,6 +2465,16 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label64.Location = new System.Drawing.Point(305, 25);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(100, 29);
+            this.label64.TabIndex = 64;
+            this.label64.Text = "Settings";
             // 
             // label31
             // 
@@ -2779,10 +2917,10 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(243, 54);
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(204, 54);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(241, 24);
+            this.label21.Size = new System.Drawing.Size(313, 29);
             this.label21.TabIndex = 19;
             this.label21.Text = "Top 5 Bikes and Total Miles";
             // 
@@ -2957,16 +3095,6 @@
             this.label1.Size = new System.Drawing.Size(264, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(659, 164);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 126;
-            this.button2.Text = "Refresh";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
@@ -3259,7 +3387,18 @@
         private System.Windows.Forms.TextBox month2R5;
         private System.Windows.Forms.TextBox month2R2;
         private System.Windows.Forms.TextBox month2R4;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Button bMonthlyStatistics;
+        private System.Windows.Forms.Label label64;
     }
 }
 

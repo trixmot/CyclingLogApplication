@@ -65,10 +65,9 @@ namespace CyclingLogApplication
             tbTimeChange.Text = getDaysToNextTimeChange().ToString();
         }
 
-
         public MainForm(string emetyConstructor)
         {
-            //Empoty consturctor to prevent from running InitializeComponent():
+            //Empty consturctor to prevent from running InitializeComponent():
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -187,6 +186,8 @@ namespace CyclingLogApplication
             label2.Text = "App Version: " + getLogVersion();
             lbMaintError.Text = "";
             lbConfigError.Text = "";
+
+            runMonthlyStatistics();
         }
 
         private void closeForm(object sender, EventArgs e)
@@ -2641,7 +2642,7 @@ namespace CyclingLogApplication
         // Start Monthly Statistics Section
         //=============================================================================
 
-        private void button2_Click(object sender, EventArgs e)
+        private void runMonthlyStatistics()
         {
             if (cbStatMonthlyLogYear.SelectedItem == null)
             {
@@ -3111,5 +3112,9 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
+        private void MonthlyStatistics_Click(object sender, EventArgs e)
+        {
+            runMonthlyStatistics();
+        }
     }
 }
