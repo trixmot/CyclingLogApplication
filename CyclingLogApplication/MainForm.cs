@@ -1422,6 +1422,7 @@ namespace CyclingLogApplication
         }
 
         //NOTE reference in designer is commented out to not run on tabcontrol1:
+        // Yearly:
         private void RefreshStatisticsData(object sender, EventArgs e)
         {
             int logYearIndex = -1;
@@ -1495,6 +1496,123 @@ namespace CyclingLogApplication
             double totalMiles = getTotalMilesForAllLogs();
             totalMiles = Math.Truncate(totalMiles * 100) / 100;
             tbStatisticsTotalMiles.Text = Convert.ToString(totalMiles);
+
+            tbLongestRide.Text = Convert.ToString(getLongestRide());
+            //tbFastestAvg.Text = Convert.ToString(getFastestAvg());
+            //tbMaxSpeed.Text = Convert.ToString(getMaxSpeed());
+            tbTotalRides.Text = Convert.ToString(getTotalRides());
+        }
+
+        private double getLongestRide()
+        {
+            List<object> objectValues = new List<object>();
+            double returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetLongestRide_AllLogs", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else
+                        {
+                            returnValue = double.Parse(temp);
+                        }
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
+        private double getFastestAvg()
+        {
+            List<object> objectValues = new List<object>();
+            double returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetFastestAvg_AllLogs", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else
+                        {
+                            returnValue = double.Parse(temp);
+                        }
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
+        private double getMaxSpeed()
+        {
+            List<object> objectValues = new List<object>();
+            double returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetMaxSpeed_AllLogs", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else
+                        {
+                            returnValue = double.Parse(temp);
+                        }
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
+        private double getTotalRides()
+        {
+            List<object> objectValues = new List<object>();
+            double returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetTotalRides_AllLogs", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else
+                        {
+                            returnValue = double.Parse(temp);
+                        }
+                    }
+                }
+            }
+
+            return returnValue;
         }
 
         private void cb1LogYear_changed(object sender, EventArgs e)

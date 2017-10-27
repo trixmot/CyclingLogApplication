@@ -53,14 +53,11 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label62 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label60 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label59 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbTotalRides = new System.Windows.Forms.TextBox();
             this.label58 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbLongestRide = new System.Windows.Forms.TextBox();
             this.tbStatisticsTotalMiles = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.tb3Log5 = new System.Windows.Forms.TextBox();
@@ -543,14 +540,11 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label62);
-            this.groupBox4.Controls.Add(this.label61);
-            this.groupBox4.Controls.Add(this.textBox4);
             this.groupBox4.Controls.Add(this.label60);
-            this.groupBox4.Controls.Add(this.textBox3);
             this.groupBox4.Controls.Add(this.label59);
-            this.groupBox4.Controls.Add(this.textBox2);
+            this.groupBox4.Controls.Add(this.tbTotalRides);
             this.groupBox4.Controls.Add(this.label58);
-            this.groupBox4.Controls.Add(this.textBox1);
+            this.groupBox4.Controls.Add(this.tbLongestRide);
             this.groupBox4.Controls.Add(this.tbStatisticsTotalMiles);
             this.groupBox4.Controls.Add(this.label23);
             this.groupBox4.Controls.Add(this.tb3Log5);
@@ -617,86 +611,56 @@
             this.label62.TabIndex = 63;
             this.label62.Text = "Statistics Yearly Log Data";
             // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(616, 291);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(63, 13);
-            this.label61.TabIndex = 62;
-            this.label61.Text = "Fastest Avg";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(591, 307);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(110, 20);
-            this.textBox4.TabIndex = 61;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // label60
             // 
             this.label60.AutoSize = true;
             this.label60.Location = new System.Drawing.Point(501, 291);
             this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(61, 13);
+            this.label60.Size = new System.Drawing.Size(0, 13);
             this.label60.TabIndex = 60;
-            this.label60.Text = "Max Speed";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(475, 308);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(110, 20);
-            this.textBox3.TabIndex = 59;
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label59
             // 
             this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(386, 291);
+            this.label59.Location = new System.Drawing.Point(448, 290);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(61, 13);
             this.label59.TabIndex = 58;
             this.label59.Text = "Total Rides";
             // 
-            // textBox2
+            // tbTotalRides
             // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(359, 308);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(110, 20);
-            this.textBox2.TabIndex = 57;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbTotalRides.Enabled = false;
+            this.tbTotalRides.Location = new System.Drawing.Point(421, 307);
+            this.tbTotalRides.Name = "tbTotalRides";
+            this.tbTotalRides.ReadOnly = true;
+            this.tbTotalRides.Size = new System.Drawing.Size(110, 20);
+            this.tbTotalRides.TabIndex = 57;
+            this.tbTotalRides.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(265, 291);
+            this.label58.Location = new System.Drawing.Point(327, 290);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(70, 13);
             this.label58.TabIndex = 56;
             this.label58.Text = "Longest Ride";
             // 
-            // textBox1
+            // tbLongestRide
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(243, 308);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(110, 20);
-            this.textBox1.TabIndex = 55;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbLongestRide.Enabled = false;
+            this.tbLongestRide.Location = new System.Drawing.Point(305, 307);
+            this.tbLongestRide.Name = "tbLongestRide";
+            this.tbLongestRide.ReadOnly = true;
+            this.tbLongestRide.Size = new System.Drawing.Size(110, 20);
+            this.tbLongestRide.TabIndex = 55;
+            this.tbLongestRide.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbStatisticsTotalMiles
             // 
             this.tbStatisticsTotalMiles.Enabled = false;
-            this.tbStatisticsTotalMiles.Location = new System.Drawing.Point(127, 307);
+            this.tbStatisticsTotalMiles.Location = new System.Drawing.Point(189, 306);
             this.tbStatisticsTotalMiles.Name = "tbStatisticsTotalMiles";
             this.tbStatisticsTotalMiles.ReadOnly = true;
             this.tbStatisticsTotalMiles.Size = new System.Drawing.Size(110, 20);
@@ -706,7 +670,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(151, 291);
+            this.label23.Location = new System.Drawing.Point(213, 290);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(58, 13);
             this.label23.TabIndex = 53;
@@ -1338,7 +1302,7 @@
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(565, 240);
+            this.label45.Location = new System.Drawing.Point(583, 240);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(56, 13);
             this.label45.TabIndex = 125;
@@ -1347,7 +1311,7 @@
             // month12R3
             // 
             this.month12R3.Enabled = false;
-            this.month12R3.Location = new System.Drawing.Point(557, 305);
+            this.month12R3.Location = new System.Drawing.Point(575, 305);
             this.month12R3.Name = "month12R3";
             this.month12R3.ReadOnly = true;
             this.month12R3.Size = new System.Drawing.Size(63, 20);
@@ -1357,7 +1321,7 @@
             // month12R7
             // 
             this.month12R7.Enabled = false;
-            this.month12R7.Location = new System.Drawing.Point(557, 385);
+            this.month12R7.Location = new System.Drawing.Point(575, 385);
             this.month12R7.Name = "month12R7";
             this.month12R7.ReadOnly = true;
             this.month12R7.Size = new System.Drawing.Size(63, 20);
@@ -1367,7 +1331,7 @@
             // month12R6
             // 
             this.month12R6.Enabled = false;
-            this.month12R6.Location = new System.Drawing.Point(557, 365);
+            this.month12R6.Location = new System.Drawing.Point(575, 365);
             this.month12R6.Name = "month12R6";
             this.month12R6.ReadOnly = true;
             this.month12R6.Size = new System.Drawing.Size(63, 20);
@@ -1377,7 +1341,7 @@
             // month12R1
             // 
             this.month12R1.Enabled = false;
-            this.month12R1.Location = new System.Drawing.Point(557, 265);
+            this.month12R1.Location = new System.Drawing.Point(575, 265);
             this.month12R1.Name = "month12R1";
             this.month12R1.ReadOnly = true;
             this.month12R1.Size = new System.Drawing.Size(63, 20);
@@ -1387,7 +1351,7 @@
             // month12R5
             // 
             this.month12R5.Enabled = false;
-            this.month12R5.Location = new System.Drawing.Point(557, 345);
+            this.month12R5.Location = new System.Drawing.Point(575, 345);
             this.month12R5.Name = "month12R5";
             this.month12R5.ReadOnly = true;
             this.month12R5.Size = new System.Drawing.Size(63, 20);
@@ -1397,7 +1361,7 @@
             // month12R2
             // 
             this.month12R2.Enabled = false;
-            this.month12R2.Location = new System.Drawing.Point(557, 285);
+            this.month12R2.Location = new System.Drawing.Point(575, 285);
             this.month12R2.Name = "month12R2";
             this.month12R2.ReadOnly = true;
             this.month12R2.Size = new System.Drawing.Size(63, 20);
@@ -1407,7 +1371,7 @@
             // month12R4
             // 
             this.month12R4.Enabled = false;
-            this.month12R4.Location = new System.Drawing.Point(557, 325);
+            this.month12R4.Location = new System.Drawing.Point(575, 325);
             this.month12R4.Name = "month12R4";
             this.month12R4.ReadOnly = true;
             this.month12R4.Size = new System.Drawing.Size(63, 20);
@@ -1417,7 +1381,7 @@
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(496, 240);
+            this.label46.Location = new System.Drawing.Point(514, 240);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(56, 13);
             this.label46.TabIndex = 117;
@@ -1426,7 +1390,7 @@
             // month11R3
             // 
             this.month11R3.Enabled = false;
-            this.month11R3.Location = new System.Drawing.Point(488, 305);
+            this.month11R3.Location = new System.Drawing.Point(506, 305);
             this.month11R3.Name = "month11R3";
             this.month11R3.ReadOnly = true;
             this.month11R3.Size = new System.Drawing.Size(63, 20);
@@ -1436,7 +1400,7 @@
             // month11R7
             // 
             this.month11R7.Enabled = false;
-            this.month11R7.Location = new System.Drawing.Point(488, 385);
+            this.month11R7.Location = new System.Drawing.Point(506, 385);
             this.month11R7.Name = "month11R7";
             this.month11R7.ReadOnly = true;
             this.month11R7.Size = new System.Drawing.Size(63, 20);
@@ -1446,7 +1410,7 @@
             // month11R6
             // 
             this.month11R6.Enabled = false;
-            this.month11R6.Location = new System.Drawing.Point(488, 365);
+            this.month11R6.Location = new System.Drawing.Point(506, 365);
             this.month11R6.Name = "month11R6";
             this.month11R6.ReadOnly = true;
             this.month11R6.Size = new System.Drawing.Size(63, 20);
@@ -1456,7 +1420,7 @@
             // month11R1
             // 
             this.month11R1.Enabled = false;
-            this.month11R1.Location = new System.Drawing.Point(488, 265);
+            this.month11R1.Location = new System.Drawing.Point(506, 265);
             this.month11R1.Name = "month11R1";
             this.month11R1.ReadOnly = true;
             this.month11R1.Size = new System.Drawing.Size(63, 20);
@@ -1466,7 +1430,7 @@
             // month11R5
             // 
             this.month11R5.Enabled = false;
-            this.month11R5.Location = new System.Drawing.Point(488, 345);
+            this.month11R5.Location = new System.Drawing.Point(506, 345);
             this.month11R5.Name = "month11R5";
             this.month11R5.ReadOnly = true;
             this.month11R5.Size = new System.Drawing.Size(63, 20);
@@ -1476,7 +1440,7 @@
             // month11R2
             // 
             this.month11R2.Enabled = false;
-            this.month11R2.Location = new System.Drawing.Point(488, 285);
+            this.month11R2.Location = new System.Drawing.Point(506, 285);
             this.month11R2.Name = "month11R2";
             this.month11R2.ReadOnly = true;
             this.month11R2.Size = new System.Drawing.Size(63, 20);
@@ -1486,7 +1450,7 @@
             // month11R4
             // 
             this.month11R4.Enabled = false;
-            this.month11R4.Location = new System.Drawing.Point(488, 325);
+            this.month11R4.Location = new System.Drawing.Point(506, 325);
             this.month11R4.Name = "month11R4";
             this.month11R4.ReadOnly = true;
             this.month11R4.Size = new System.Drawing.Size(63, 20);
@@ -1496,7 +1460,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(427, 240);
+            this.label47.Location = new System.Drawing.Point(445, 240);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(45, 13);
             this.label47.TabIndex = 109;
@@ -1505,7 +1469,7 @@
             // month10R3
             // 
             this.month10R3.Enabled = false;
-            this.month10R3.Location = new System.Drawing.Point(419, 305);
+            this.month10R3.Location = new System.Drawing.Point(437, 305);
             this.month10R3.Name = "month10R3";
             this.month10R3.ReadOnly = true;
             this.month10R3.Size = new System.Drawing.Size(63, 20);
@@ -1515,7 +1479,7 @@
             // month10R7
             // 
             this.month10R7.Enabled = false;
-            this.month10R7.Location = new System.Drawing.Point(419, 385);
+            this.month10R7.Location = new System.Drawing.Point(437, 385);
             this.month10R7.Name = "month10R7";
             this.month10R7.ReadOnly = true;
             this.month10R7.Size = new System.Drawing.Size(63, 20);
@@ -1525,7 +1489,7 @@
             // month10R6
             // 
             this.month10R6.Enabled = false;
-            this.month10R6.Location = new System.Drawing.Point(419, 365);
+            this.month10R6.Location = new System.Drawing.Point(437, 365);
             this.month10R6.Name = "month10R6";
             this.month10R6.ReadOnly = true;
             this.month10R6.Size = new System.Drawing.Size(63, 20);
@@ -1535,7 +1499,7 @@
             // month10R1
             // 
             this.month10R1.Enabled = false;
-            this.month10R1.Location = new System.Drawing.Point(419, 265);
+            this.month10R1.Location = new System.Drawing.Point(437, 265);
             this.month10R1.Name = "month10R1";
             this.month10R1.ReadOnly = true;
             this.month10R1.Size = new System.Drawing.Size(63, 20);
@@ -1545,7 +1509,7 @@
             // month10R5
             // 
             this.month10R5.Enabled = false;
-            this.month10R5.Location = new System.Drawing.Point(419, 345);
+            this.month10R5.Location = new System.Drawing.Point(437, 345);
             this.month10R5.Name = "month10R5";
             this.month10R5.ReadOnly = true;
             this.month10R5.Size = new System.Drawing.Size(63, 20);
@@ -1555,7 +1519,7 @@
             // month10R2
             // 
             this.month10R2.Enabled = false;
-            this.month10R2.Location = new System.Drawing.Point(419, 285);
+            this.month10R2.Location = new System.Drawing.Point(437, 285);
             this.month10R2.Name = "month10R2";
             this.month10R2.ReadOnly = true;
             this.month10R2.Size = new System.Drawing.Size(63, 20);
@@ -1565,7 +1529,7 @@
             // month10R4
             // 
             this.month10R4.Enabled = false;
-            this.month10R4.Location = new System.Drawing.Point(419, 325);
+            this.month10R4.Location = new System.Drawing.Point(437, 325);
             this.month10R4.Name = "month10R4";
             this.month10R4.ReadOnly = true;
             this.month10R4.Size = new System.Drawing.Size(63, 20);
@@ -1575,7 +1539,7 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(358, 240);
+            this.label48.Location = new System.Drawing.Point(376, 240);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(58, 13);
             this.label48.TabIndex = 101;
@@ -1584,7 +1548,7 @@
             // month9R3
             // 
             this.month9R3.Enabled = false;
-            this.month9R3.Location = new System.Drawing.Point(350, 305);
+            this.month9R3.Location = new System.Drawing.Point(368, 305);
             this.month9R3.Name = "month9R3";
             this.month9R3.ReadOnly = true;
             this.month9R3.Size = new System.Drawing.Size(63, 20);
@@ -1594,7 +1558,7 @@
             // month9R7
             // 
             this.month9R7.Enabled = false;
-            this.month9R7.Location = new System.Drawing.Point(350, 385);
+            this.month9R7.Location = new System.Drawing.Point(368, 385);
             this.month9R7.Name = "month9R7";
             this.month9R7.ReadOnly = true;
             this.month9R7.Size = new System.Drawing.Size(63, 20);
@@ -1604,7 +1568,7 @@
             // month9R6
             // 
             this.month9R6.Enabled = false;
-            this.month9R6.Location = new System.Drawing.Point(350, 365);
+            this.month9R6.Location = new System.Drawing.Point(368, 365);
             this.month9R6.Name = "month9R6";
             this.month9R6.ReadOnly = true;
             this.month9R6.Size = new System.Drawing.Size(63, 20);
@@ -1614,7 +1578,7 @@
             // month9R1
             // 
             this.month9R1.Enabled = false;
-            this.month9R1.Location = new System.Drawing.Point(350, 265);
+            this.month9R1.Location = new System.Drawing.Point(368, 265);
             this.month9R1.Name = "month9R1";
             this.month9R1.ReadOnly = true;
             this.month9R1.Size = new System.Drawing.Size(63, 20);
@@ -1624,7 +1588,7 @@
             // month9R5
             // 
             this.month9R5.Enabled = false;
-            this.month9R5.Location = new System.Drawing.Point(350, 345);
+            this.month9R5.Location = new System.Drawing.Point(368, 345);
             this.month9R5.Name = "month9R5";
             this.month9R5.ReadOnly = true;
             this.month9R5.Size = new System.Drawing.Size(63, 20);
@@ -1634,7 +1598,7 @@
             // month9R2
             // 
             this.month9R2.Enabled = false;
-            this.month9R2.Location = new System.Drawing.Point(350, 285);
+            this.month9R2.Location = new System.Drawing.Point(368, 285);
             this.month9R2.Name = "month9R2";
             this.month9R2.ReadOnly = true;
             this.month9R2.Size = new System.Drawing.Size(63, 20);
@@ -1644,7 +1608,7 @@
             // month9R4
             // 
             this.month9R4.Enabled = false;
-            this.month9R4.Location = new System.Drawing.Point(350, 325);
+            this.month9R4.Location = new System.Drawing.Point(368, 325);
             this.month9R4.Name = "month9R4";
             this.month9R4.ReadOnly = true;
             this.month9R4.Size = new System.Drawing.Size(63, 20);
@@ -1654,7 +1618,7 @@
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(289, 240);
+            this.label49.Location = new System.Drawing.Point(307, 240);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(40, 13);
             this.label49.TabIndex = 93;
@@ -1663,7 +1627,7 @@
             // month8R3
             // 
             this.month8R3.Enabled = false;
-            this.month8R3.Location = new System.Drawing.Point(281, 305);
+            this.month8R3.Location = new System.Drawing.Point(299, 305);
             this.month8R3.Name = "month8R3";
             this.month8R3.ReadOnly = true;
             this.month8R3.Size = new System.Drawing.Size(63, 20);
@@ -1673,7 +1637,7 @@
             // month8R7
             // 
             this.month8R7.Enabled = false;
-            this.month8R7.Location = new System.Drawing.Point(281, 385);
+            this.month8R7.Location = new System.Drawing.Point(299, 385);
             this.month8R7.Name = "month8R7";
             this.month8R7.ReadOnly = true;
             this.month8R7.Size = new System.Drawing.Size(63, 20);
@@ -1683,7 +1647,7 @@
             // month8R6
             // 
             this.month8R6.Enabled = false;
-            this.month8R6.Location = new System.Drawing.Point(281, 365);
+            this.month8R6.Location = new System.Drawing.Point(299, 365);
             this.month8R6.Name = "month8R6";
             this.month8R6.ReadOnly = true;
             this.month8R6.Size = new System.Drawing.Size(63, 20);
@@ -1693,7 +1657,7 @@
             // month8R1
             // 
             this.month8R1.Enabled = false;
-            this.month8R1.Location = new System.Drawing.Point(281, 265);
+            this.month8R1.Location = new System.Drawing.Point(299, 265);
             this.month8R1.Name = "month8R1";
             this.month8R1.ReadOnly = true;
             this.month8R1.Size = new System.Drawing.Size(63, 20);
@@ -1703,7 +1667,7 @@
             // month8R5
             // 
             this.month8R5.Enabled = false;
-            this.month8R5.Location = new System.Drawing.Point(281, 345);
+            this.month8R5.Location = new System.Drawing.Point(299, 345);
             this.month8R5.Name = "month8R5";
             this.month8R5.ReadOnly = true;
             this.month8R5.Size = new System.Drawing.Size(63, 20);
@@ -1713,7 +1677,7 @@
             // month8R2
             // 
             this.month8R2.Enabled = false;
-            this.month8R2.Location = new System.Drawing.Point(281, 285);
+            this.month8R2.Location = new System.Drawing.Point(299, 285);
             this.month8R2.Name = "month8R2";
             this.month8R2.ReadOnly = true;
             this.month8R2.Size = new System.Drawing.Size(63, 20);
@@ -1723,7 +1687,7 @@
             // month8R4
             // 
             this.month8R4.Enabled = false;
-            this.month8R4.Location = new System.Drawing.Point(281, 325);
+            this.month8R4.Location = new System.Drawing.Point(299, 325);
             this.month8R4.Name = "month8R4";
             this.month8R4.ReadOnly = true;
             this.month8R4.Size = new System.Drawing.Size(63, 20);
@@ -1733,7 +1697,7 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(220, 240);
+            this.label50.Location = new System.Drawing.Point(238, 240);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(25, 13);
             this.label50.TabIndex = 85;
@@ -1742,7 +1706,7 @@
             // month7R3
             // 
             this.month7R3.Enabled = false;
-            this.month7R3.Location = new System.Drawing.Point(212, 305);
+            this.month7R3.Location = new System.Drawing.Point(230, 305);
             this.month7R3.Name = "month7R3";
             this.month7R3.ReadOnly = true;
             this.month7R3.Size = new System.Drawing.Size(63, 20);
@@ -1752,7 +1716,7 @@
             // month7R7
             // 
             this.month7R7.Enabled = false;
-            this.month7R7.Location = new System.Drawing.Point(212, 385);
+            this.month7R7.Location = new System.Drawing.Point(230, 385);
             this.month7R7.Name = "month7R7";
             this.month7R7.ReadOnly = true;
             this.month7R7.Size = new System.Drawing.Size(63, 20);
@@ -1762,7 +1726,7 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(136, 388);
+            this.label51.Location = new System.Drawing.Point(154, 388);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(70, 13);
             this.label51.TabIndex = 83;
@@ -1771,7 +1735,7 @@
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(143, 268);
+            this.label52.Location = new System.Drawing.Point(161, 268);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(63, 13);
             this.label52.TabIndex = 71;
@@ -1780,7 +1744,7 @@
             // month7R6
             // 
             this.month7R6.Enabled = false;
-            this.month7R6.Location = new System.Drawing.Point(212, 365);
+            this.month7R6.Location = new System.Drawing.Point(230, 365);
             this.month7R6.Name = "month7R6";
             this.month7R6.ReadOnly = true;
             this.month7R6.Size = new System.Drawing.Size(63, 20);
@@ -1790,7 +1754,7 @@
             // month7R1
             // 
             this.month7R1.Enabled = false;
-            this.month7R1.Location = new System.Drawing.Point(212, 265);
+            this.month7R1.Location = new System.Drawing.Point(230, 265);
             this.month7R1.Name = "month7R1";
             this.month7R1.ReadOnly = true;
             this.month7R1.Size = new System.Drawing.Size(63, 20);
@@ -1800,7 +1764,7 @@
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(103, 368);
+            this.label53.Location = new System.Drawing.Point(121, 368);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(103, 13);
             this.label53.TabIndex = 81;
@@ -1809,7 +1773,7 @@
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(120, 288);
+            this.label54.Location = new System.Drawing.Point(138, 288);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(86, 13);
             this.label54.TabIndex = 73;
@@ -1818,7 +1782,7 @@
             // month7R5
             // 
             this.month7R5.Enabled = false;
-            this.month7R5.Location = new System.Drawing.Point(212, 345);
+            this.month7R5.Location = new System.Drawing.Point(230, 345);
             this.month7R5.Name = "month7R5";
             this.month7R5.ReadOnly = true;
             this.month7R5.Size = new System.Drawing.Size(63, 20);
@@ -1828,7 +1792,7 @@
             // month7R2
             // 
             this.month7R2.Enabled = false;
-            this.month7R2.Location = new System.Drawing.Point(212, 285);
+            this.month7R2.Location = new System.Drawing.Point(230, 285);
             this.month7R2.Name = "month7R2";
             this.month7R2.ReadOnly = true;
             this.month7R2.Size = new System.Drawing.Size(63, 20);
@@ -1838,7 +1802,7 @@
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(110, 348);
+            this.label55.Location = new System.Drawing.Point(128, 348);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(96, 13);
             this.label55.TabIndex = 79;
@@ -1847,7 +1811,7 @@
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(103, 308);
+            this.label56.Location = new System.Drawing.Point(121, 308);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(103, 13);
             this.label56.TabIndex = 75;
@@ -1856,7 +1820,7 @@
             // month7R4
             // 
             this.month7R4.Enabled = false;
-            this.month7R4.Location = new System.Drawing.Point(212, 325);
+            this.month7R4.Location = new System.Drawing.Point(230, 325);
             this.month7R4.Name = "month7R4";
             this.month7R4.ReadOnly = true;
             this.month7R4.Size = new System.Drawing.Size(63, 20);
@@ -1866,7 +1830,7 @@
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(106, 328);
+            this.label57.Location = new System.Drawing.Point(124, 328);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(100, 13);
             this.label57.TabIndex = 77;
@@ -1875,7 +1839,7 @@
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(565, 63);
+            this.label44.Location = new System.Drawing.Point(583, 63);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(30, 13);
             this.label44.TabIndex = 70;
@@ -1884,7 +1848,7 @@
             // month6R3
             // 
             this.month6R3.Enabled = false;
-            this.month6R3.Location = new System.Drawing.Point(557, 128);
+            this.month6R3.Location = new System.Drawing.Point(575, 128);
             this.month6R3.Name = "month6R3";
             this.month6R3.ReadOnly = true;
             this.month6R3.Size = new System.Drawing.Size(63, 20);
@@ -1894,7 +1858,7 @@
             // month6R7
             // 
             this.month6R7.Enabled = false;
-            this.month6R7.Location = new System.Drawing.Point(557, 208);
+            this.month6R7.Location = new System.Drawing.Point(575, 208);
             this.month6R7.Name = "month6R7";
             this.month6R7.ReadOnly = true;
             this.month6R7.Size = new System.Drawing.Size(63, 20);
@@ -1904,7 +1868,7 @@
             // month6R6
             // 
             this.month6R6.Enabled = false;
-            this.month6R6.Location = new System.Drawing.Point(557, 188);
+            this.month6R6.Location = new System.Drawing.Point(575, 188);
             this.month6R6.Name = "month6R6";
             this.month6R6.ReadOnly = true;
             this.month6R6.Size = new System.Drawing.Size(63, 20);
@@ -1914,7 +1878,7 @@
             // month6R1
             // 
             this.month6R1.Enabled = false;
-            this.month6R1.Location = new System.Drawing.Point(557, 88);
+            this.month6R1.Location = new System.Drawing.Point(575, 88);
             this.month6R1.Name = "month6R1";
             this.month6R1.ReadOnly = true;
             this.month6R1.Size = new System.Drawing.Size(63, 20);
@@ -1924,7 +1888,7 @@
             // month6R5
             // 
             this.month6R5.Enabled = false;
-            this.month6R5.Location = new System.Drawing.Point(557, 168);
+            this.month6R5.Location = new System.Drawing.Point(575, 168);
             this.month6R5.Name = "month6R5";
             this.month6R5.ReadOnly = true;
             this.month6R5.Size = new System.Drawing.Size(63, 20);
@@ -1934,7 +1898,7 @@
             // month6R2
             // 
             this.month6R2.Enabled = false;
-            this.month6R2.Location = new System.Drawing.Point(557, 108);
+            this.month6R2.Location = new System.Drawing.Point(575, 108);
             this.month6R2.Name = "month6R2";
             this.month6R2.ReadOnly = true;
             this.month6R2.Size = new System.Drawing.Size(63, 20);
@@ -1944,7 +1908,7 @@
             // month6R4
             // 
             this.month6R4.Enabled = false;
-            this.month6R4.Location = new System.Drawing.Point(557, 148);
+            this.month6R4.Location = new System.Drawing.Point(575, 148);
             this.month6R4.Name = "month6R4";
             this.month6R4.ReadOnly = true;
             this.month6R4.Size = new System.Drawing.Size(63, 20);
@@ -1954,7 +1918,7 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(496, 63);
+            this.label43.Location = new System.Drawing.Point(514, 63);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(27, 13);
             this.label43.TabIndex = 62;
@@ -1963,7 +1927,7 @@
             // month5R3
             // 
             this.month5R3.Enabled = false;
-            this.month5R3.Location = new System.Drawing.Point(488, 128);
+            this.month5R3.Location = new System.Drawing.Point(506, 128);
             this.month5R3.Name = "month5R3";
             this.month5R3.ReadOnly = true;
             this.month5R3.Size = new System.Drawing.Size(63, 20);
@@ -1973,7 +1937,7 @@
             // month5R7
             // 
             this.month5R7.Enabled = false;
-            this.month5R7.Location = new System.Drawing.Point(488, 208);
+            this.month5R7.Location = new System.Drawing.Point(506, 208);
             this.month5R7.Name = "month5R7";
             this.month5R7.ReadOnly = true;
             this.month5R7.Size = new System.Drawing.Size(63, 20);
@@ -1983,7 +1947,7 @@
             // month5R6
             // 
             this.month5R6.Enabled = false;
-            this.month5R6.Location = new System.Drawing.Point(488, 188);
+            this.month5R6.Location = new System.Drawing.Point(506, 188);
             this.month5R6.Name = "month5R6";
             this.month5R6.ReadOnly = true;
             this.month5R6.Size = new System.Drawing.Size(63, 20);
@@ -1993,7 +1957,7 @@
             // month5R1
             // 
             this.month5R1.Enabled = false;
-            this.month5R1.Location = new System.Drawing.Point(488, 88);
+            this.month5R1.Location = new System.Drawing.Point(506, 88);
             this.month5R1.Name = "month5R1";
             this.month5R1.ReadOnly = true;
             this.month5R1.Size = new System.Drawing.Size(63, 20);
@@ -2003,7 +1967,7 @@
             // month5R5
             // 
             this.month5R5.Enabled = false;
-            this.month5R5.Location = new System.Drawing.Point(488, 168);
+            this.month5R5.Location = new System.Drawing.Point(506, 168);
             this.month5R5.Name = "month5R5";
             this.month5R5.ReadOnly = true;
             this.month5R5.Size = new System.Drawing.Size(63, 20);
@@ -2013,7 +1977,7 @@
             // month5R2
             // 
             this.month5R2.Enabled = false;
-            this.month5R2.Location = new System.Drawing.Point(488, 108);
+            this.month5R2.Location = new System.Drawing.Point(506, 108);
             this.month5R2.Name = "month5R2";
             this.month5R2.ReadOnly = true;
             this.month5R2.Size = new System.Drawing.Size(63, 20);
@@ -2023,7 +1987,7 @@
             // month5R4
             // 
             this.month5R4.Enabled = false;
-            this.month5R4.Location = new System.Drawing.Point(488, 148);
+            this.month5R4.Location = new System.Drawing.Point(506, 148);
             this.month5R4.Name = "month5R4";
             this.month5R4.ReadOnly = true;
             this.month5R4.Size = new System.Drawing.Size(63, 20);
@@ -2033,7 +1997,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(427, 63);
+            this.label42.Location = new System.Drawing.Point(445, 63);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(27, 13);
             this.label42.TabIndex = 54;
@@ -2042,7 +2006,7 @@
             // month4R3
             // 
             this.month4R3.Enabled = false;
-            this.month4R3.Location = new System.Drawing.Point(419, 128);
+            this.month4R3.Location = new System.Drawing.Point(437, 128);
             this.month4R3.Name = "month4R3";
             this.month4R3.ReadOnly = true;
             this.month4R3.Size = new System.Drawing.Size(63, 20);
@@ -2052,7 +2016,7 @@
             // month4R7
             // 
             this.month4R7.Enabled = false;
-            this.month4R7.Location = new System.Drawing.Point(419, 208);
+            this.month4R7.Location = new System.Drawing.Point(437, 208);
             this.month4R7.Name = "month4R7";
             this.month4R7.ReadOnly = true;
             this.month4R7.Size = new System.Drawing.Size(63, 20);
@@ -2062,7 +2026,7 @@
             // month4R6
             // 
             this.month4R6.Enabled = false;
-            this.month4R6.Location = new System.Drawing.Point(419, 188);
+            this.month4R6.Location = new System.Drawing.Point(437, 188);
             this.month4R6.Name = "month4R6";
             this.month4R6.ReadOnly = true;
             this.month4R6.Size = new System.Drawing.Size(63, 20);
@@ -2072,7 +2036,7 @@
             // month4R1
             // 
             this.month4R1.Enabled = false;
-            this.month4R1.Location = new System.Drawing.Point(419, 88);
+            this.month4R1.Location = new System.Drawing.Point(437, 88);
             this.month4R1.Name = "month4R1";
             this.month4R1.ReadOnly = true;
             this.month4R1.Size = new System.Drawing.Size(63, 20);
@@ -2082,7 +2046,7 @@
             // month4R5
             // 
             this.month4R5.Enabled = false;
-            this.month4R5.Location = new System.Drawing.Point(419, 168);
+            this.month4R5.Location = new System.Drawing.Point(437, 168);
             this.month4R5.Name = "month4R5";
             this.month4R5.ReadOnly = true;
             this.month4R5.Size = new System.Drawing.Size(63, 20);
@@ -2092,7 +2056,7 @@
             // month4R2
             // 
             this.month4R2.Enabled = false;
-            this.month4R2.Location = new System.Drawing.Point(419, 108);
+            this.month4R2.Location = new System.Drawing.Point(437, 108);
             this.month4R2.Name = "month4R2";
             this.month4R2.ReadOnly = true;
             this.month4R2.Size = new System.Drawing.Size(63, 20);
@@ -2102,7 +2066,7 @@
             // month4R4
             // 
             this.month4R4.Enabled = false;
-            this.month4R4.Location = new System.Drawing.Point(419, 148);
+            this.month4R4.Location = new System.Drawing.Point(437, 148);
             this.month4R4.Name = "month4R4";
             this.month4R4.ReadOnly = true;
             this.month4R4.Size = new System.Drawing.Size(63, 20);
@@ -2112,7 +2076,7 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(358, 63);
+            this.label41.Location = new System.Drawing.Point(376, 63);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(37, 13);
             this.label41.TabIndex = 46;
@@ -2121,7 +2085,7 @@
             // month3R3
             // 
             this.month3R3.Enabled = false;
-            this.month3R3.Location = new System.Drawing.Point(350, 128);
+            this.month3R3.Location = new System.Drawing.Point(368, 128);
             this.month3R3.Name = "month3R3";
             this.month3R3.ReadOnly = true;
             this.month3R3.Size = new System.Drawing.Size(63, 20);
@@ -2131,7 +2095,7 @@
             // month3R7
             // 
             this.month3R7.Enabled = false;
-            this.month3R7.Location = new System.Drawing.Point(350, 208);
+            this.month3R7.Location = new System.Drawing.Point(368, 208);
             this.month3R7.Name = "month3R7";
             this.month3R7.ReadOnly = true;
             this.month3R7.Size = new System.Drawing.Size(63, 20);
@@ -2141,7 +2105,7 @@
             // month3R6
             // 
             this.month3R6.Enabled = false;
-            this.month3R6.Location = new System.Drawing.Point(350, 188);
+            this.month3R6.Location = new System.Drawing.Point(368, 188);
             this.month3R6.Name = "month3R6";
             this.month3R6.ReadOnly = true;
             this.month3R6.Size = new System.Drawing.Size(63, 20);
@@ -2151,7 +2115,7 @@
             // month3R1
             // 
             this.month3R1.Enabled = false;
-            this.month3R1.Location = new System.Drawing.Point(350, 88);
+            this.month3R1.Location = new System.Drawing.Point(368, 88);
             this.month3R1.Name = "month3R1";
             this.month3R1.ReadOnly = true;
             this.month3R1.Size = new System.Drawing.Size(63, 20);
@@ -2161,7 +2125,7 @@
             // month3R5
             // 
             this.month3R5.Enabled = false;
-            this.month3R5.Location = new System.Drawing.Point(350, 168);
+            this.month3R5.Location = new System.Drawing.Point(368, 168);
             this.month3R5.Name = "month3R5";
             this.month3R5.ReadOnly = true;
             this.month3R5.Size = new System.Drawing.Size(63, 20);
@@ -2171,7 +2135,7 @@
             // month3R2
             // 
             this.month3R2.Enabled = false;
-            this.month3R2.Location = new System.Drawing.Point(350, 108);
+            this.month3R2.Location = new System.Drawing.Point(368, 108);
             this.month3R2.Name = "month3R2";
             this.month3R2.ReadOnly = true;
             this.month3R2.Size = new System.Drawing.Size(63, 20);
@@ -2181,7 +2145,7 @@
             // month3R4
             // 
             this.month3R4.Enabled = false;
-            this.month3R4.Location = new System.Drawing.Point(350, 148);
+            this.month3R4.Location = new System.Drawing.Point(368, 148);
             this.month3R4.Name = "month3R4";
             this.month3R4.ReadOnly = true;
             this.month3R4.Size = new System.Drawing.Size(63, 20);
@@ -2191,7 +2155,7 @@
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(289, 63);
+            this.label40.Location = new System.Drawing.Point(307, 63);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(48, 13);
             this.label40.TabIndex = 38;
@@ -2200,7 +2164,7 @@
             // month2R3
             // 
             this.month2R3.Enabled = false;
-            this.month2R3.Location = new System.Drawing.Point(281, 128);
+            this.month2R3.Location = new System.Drawing.Point(299, 128);
             this.month2R3.Name = "month2R3";
             this.month2R3.ReadOnly = true;
             this.month2R3.Size = new System.Drawing.Size(63, 20);
@@ -2210,7 +2174,7 @@
             // month2R7
             // 
             this.month2R7.Enabled = false;
-            this.month2R7.Location = new System.Drawing.Point(281, 208);
+            this.month2R7.Location = new System.Drawing.Point(299, 208);
             this.month2R7.Name = "month2R7";
             this.month2R7.ReadOnly = true;
             this.month2R7.Size = new System.Drawing.Size(63, 20);
@@ -2220,7 +2184,7 @@
             // month2R6
             // 
             this.month2R6.Enabled = false;
-            this.month2R6.Location = new System.Drawing.Point(281, 188);
+            this.month2R6.Location = new System.Drawing.Point(299, 188);
             this.month2R6.Name = "month2R6";
             this.month2R6.ReadOnly = true;
             this.month2R6.Size = new System.Drawing.Size(63, 20);
@@ -2230,7 +2194,7 @@
             // month2R1
             // 
             this.month2R1.Enabled = false;
-            this.month2R1.Location = new System.Drawing.Point(281, 88);
+            this.month2R1.Location = new System.Drawing.Point(299, 88);
             this.month2R1.Name = "month2R1";
             this.month2R1.ReadOnly = true;
             this.month2R1.Size = new System.Drawing.Size(63, 20);
@@ -2240,7 +2204,7 @@
             // month2R5
             // 
             this.month2R5.Enabled = false;
-            this.month2R5.Location = new System.Drawing.Point(281, 168);
+            this.month2R5.Location = new System.Drawing.Point(299, 168);
             this.month2R5.Name = "month2R5";
             this.month2R5.ReadOnly = true;
             this.month2R5.Size = new System.Drawing.Size(63, 20);
@@ -2250,7 +2214,7 @@
             // month2R2
             // 
             this.month2R2.Enabled = false;
-            this.month2R2.Location = new System.Drawing.Point(281, 108);
+            this.month2R2.Location = new System.Drawing.Point(299, 108);
             this.month2R2.Name = "month2R2";
             this.month2R2.ReadOnly = true;
             this.month2R2.Size = new System.Drawing.Size(63, 20);
@@ -2260,7 +2224,7 @@
             // month2R4
             // 
             this.month2R4.Enabled = false;
-            this.month2R4.Location = new System.Drawing.Point(281, 148);
+            this.month2R4.Location = new System.Drawing.Point(299, 148);
             this.month2R4.Name = "month2R4";
             this.month2R4.ReadOnly = true;
             this.month2R4.Size = new System.Drawing.Size(63, 20);
@@ -2270,7 +2234,7 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(220, 63);
+            this.label39.Location = new System.Drawing.Point(238, 63);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(44, 13);
             this.label39.TabIndex = 30;
@@ -2279,7 +2243,7 @@
             // month1R3
             // 
             this.month1R3.Enabled = false;
-            this.month1R3.Location = new System.Drawing.Point(212, 128);
+            this.month1R3.Location = new System.Drawing.Point(230, 128);
             this.month1R3.Name = "month1R3";
             this.month1R3.ReadOnly = true;
             this.month1R3.Size = new System.Drawing.Size(63, 20);
@@ -2289,7 +2253,7 @@
             // month1R7
             // 
             this.month1R7.Enabled = false;
-            this.month1R7.Location = new System.Drawing.Point(212, 208);
+            this.month1R7.Location = new System.Drawing.Point(230, 208);
             this.month1R7.Name = "month1R7";
             this.month1R7.ReadOnly = true;
             this.month1R7.Size = new System.Drawing.Size(63, 20);
@@ -2309,7 +2273,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(136, 211);
+            this.label32.Location = new System.Drawing.Point(154, 211);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(70, 13);
             this.label32.TabIndex = 28;
@@ -2318,7 +2282,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(143, 91);
+            this.label33.Location = new System.Drawing.Point(161, 91);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(63, 13);
             this.label33.TabIndex = 16;
@@ -2327,7 +2291,7 @@
             // month1R6
             // 
             this.month1R6.Enabled = false;
-            this.month1R6.Location = new System.Drawing.Point(212, 188);
+            this.month1R6.Location = new System.Drawing.Point(230, 188);
             this.month1R6.Name = "month1R6";
             this.month1R6.ReadOnly = true;
             this.month1R6.Size = new System.Drawing.Size(63, 20);
@@ -2337,7 +2301,7 @@
             // month1R1
             // 
             this.month1R1.Enabled = false;
-            this.month1R1.Location = new System.Drawing.Point(212, 88);
+            this.month1R1.Location = new System.Drawing.Point(230, 88);
             this.month1R1.Name = "month1R1";
             this.month1R1.ReadOnly = true;
             this.month1R1.Size = new System.Drawing.Size(63, 20);
@@ -2347,7 +2311,7 @@
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(103, 191);
+            this.label34.Location = new System.Drawing.Point(121, 191);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(103, 13);
             this.label34.TabIndex = 26;
@@ -2356,7 +2320,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(120, 111);
+            this.label35.Location = new System.Drawing.Point(138, 111);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(86, 13);
             this.label35.TabIndex = 18;
@@ -2365,7 +2329,7 @@
             // month1R5
             // 
             this.month1R5.Enabled = false;
-            this.month1R5.Location = new System.Drawing.Point(212, 168);
+            this.month1R5.Location = new System.Drawing.Point(230, 168);
             this.month1R5.Name = "month1R5";
             this.month1R5.ReadOnly = true;
             this.month1R5.Size = new System.Drawing.Size(63, 20);
@@ -2375,7 +2339,7 @@
             // month1R2
             // 
             this.month1R2.Enabled = false;
-            this.month1R2.Location = new System.Drawing.Point(212, 108);
+            this.month1R2.Location = new System.Drawing.Point(230, 108);
             this.month1R2.Name = "month1R2";
             this.month1R2.ReadOnly = true;
             this.month1R2.Size = new System.Drawing.Size(63, 20);
@@ -2385,7 +2349,7 @@
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(110, 171);
+            this.label36.Location = new System.Drawing.Point(128, 171);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(96, 13);
             this.label36.TabIndex = 24;
@@ -2394,7 +2358,7 @@
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(103, 131);
+            this.label37.Location = new System.Drawing.Point(121, 131);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(103, 13);
             this.label37.TabIndex = 20;
@@ -2403,7 +2367,7 @@
             // month1R4
             // 
             this.month1R4.Enabled = false;
-            this.month1R4.Location = new System.Drawing.Point(212, 148);
+            this.month1R4.Location = new System.Drawing.Point(230, 148);
             this.month1R4.Name = "month1R4";
             this.month1R4.ReadOnly = true;
             this.month1R4.Size = new System.Drawing.Size(63, 20);
@@ -2413,7 +2377,7 @@
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(106, 151);
+            this.label38.Location = new System.Drawing.Point(124, 151);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(100, 13);
             this.label38.TabIndex = 22;
@@ -3388,14 +3352,11 @@
         private System.Windows.Forms.TextBox month2R2;
         private System.Windows.Forms.TextBox month2R4;
         private System.Windows.Forms.Label label62;
-        private System.Windows.Forms.Label label61;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label60;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label59;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbTotalRides;
         private System.Windows.Forms.Label label58;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbLongestRide;
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.Button bMonthlyStatistics;
         private System.Windows.Forms.Label label64;
