@@ -200,8 +200,11 @@ namespace CyclingLogApplication
 
         private void btClear_Click(object sender, EventArgs e)
         {
-            cbFilterValue.SelectedIndex = 0;
+            //cbFilterValue.SelectedIndex = 0;
             cbFilterField.SelectedIndex = 0;
+            cbFilterValue.Items.Clear();
+            cbFilterValue.Items.Add("");
+            cbFilterValue.SelectedIndex = 0;
 
             SqlConnection conn = null;
 
@@ -249,6 +252,8 @@ namespace CyclingLogApplication
             if (cbFilterField.SelectedIndex == 0)
             {
                 //NONE
+                cbFilterValue.Items.Add("");
+                cbFilterValue.SelectedIndex = 0;
             }
             else if (cbFilterField.SelectedIndex == 1)
             {

@@ -1735,11 +1735,11 @@
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(161, 268);
+            this.label52.Location = new System.Drawing.Point(153, 268);
             this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(63, 13);
+            this.label52.Size = new System.Drawing.Size(71, 13);
             this.label52.TabIndex = 71;
-            this.label52.Text = "Yearly Miles";
+            this.label52.Text = "Monthly Miles";
             // 
             // month7R6
             // 
@@ -2282,11 +2282,11 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(161, 91);
+            this.label33.Location = new System.Drawing.Point(153, 91);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(63, 13);
+            this.label33.Size = new System.Drawing.Size(71, 13);
             this.label33.TabIndex = 16;
-            this.label33.Text = "Yearly Miles";
+            this.label33.Text = "Monthly Miles";
             // 
             // month1R6
             // 
