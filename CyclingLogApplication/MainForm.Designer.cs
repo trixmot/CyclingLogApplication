@@ -2428,7 +2428,6 @@
             this.groupBox2.Size = new System.Drawing.Size(720, 385);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // label64
             // 
@@ -2757,7 +2756,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(140, 20);
             this.dateTimePicker1.TabIndex = 6;
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            //this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // tbMaintID
             // 
@@ -2823,7 +2822,7 @@
             this.dgvMaint.Name = "dgvMaint";
             this.dgvMaint.Size = new System.Drawing.Size(741, 269);
             this.dgvMaint.TabIndex = 0;
-            this.dgvMaint.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaint_CellContentClick);
+            //this.dgvMaint.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaint_CellContentClick);
             // 
             // tabPage6
             // 

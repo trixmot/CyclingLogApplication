@@ -2227,20 +2227,20 @@ namespace CyclingLogApplication
             btGetMaintLog_Click(sender, e);
         }
 
-        private void dgvMaint_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+        //private void dgvMaint_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //{
 
-        }
+        //}
 
         private void tabControl1_MouseClick(object sender, MouseEventArgs e)
         {
             //btGetMaintLog_Click( sender, e);
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
+        //private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
         private void btMaintUpdate_Click(object sender, EventArgs e)
         {
@@ -2583,7 +2583,6 @@ namespace CyclingLogApplication
             //List of things to clean up:
             //Clear out all tables:
             //Delete the config file and a default new one will be created:
-
         }
 
         private void btRenameBike_Click(object sender, EventArgs e)
@@ -2710,11 +2709,6 @@ namespace CyclingLogApplication
             }
         }
 
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void cbLogYearConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
             string year = "";
@@ -2732,7 +2726,6 @@ namespace CyclingLogApplication
                         while (results.Read())
                         {
                             year = results[0].ToString();
-
                         }
                     }
                     else
@@ -3101,42 +3094,38 @@ namespace CyclingLogApplication
                     sqlConnection.Open();
                 }
 
-                //string databaseConnectionString = ConfigurationManager.ConnectionStrings["CyclingLogApplication.Properties.Settings.CyclingLogDatabaseConnectionString"].ConnectionString;
-                //using (sqlConnection)
-                //{
-                    string query = "SELECT RideDistance,WeekNumber FROM Table_Ride_Information WHERE " + LogYearID + "=[LogYearID] and " + Month + "=MONTH([Date])";
-                    using (SqlCommand command = new SqlCommand(query, sqlConnection))
+                string query = "SELECT RideDistance,WeekNumber FROM Table_Ride_Information WHERE " + LogYearID + "=[LogYearID] and " + Month + "=MONTH([Date])";
+                using (SqlCommand command = new SqlCommand(query, sqlConnection))
+                {
+                    command.CommandType = CommandType.Text;
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        command.CommandType = CommandType.Text;
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            weekNumber = (int)reader["WeekNumber"];
+                            //Check if on a different week:
+                            if (weekNumber > weekNumberTmp)
                             {
-                                weekNumber = (int)reader["WeekNumber"];
-                                //Check if on a different week:
-                                if (weekNumber > weekNumberTmp)
+                                weekNumberTmp = weekNumber;
+                                // Compare weekly total to see if max:
+                                if (weekMilesTotal > weeklyMax)
                                 {
-                                    weekNumberTmp = weekNumber;
-                                    // Compare weekly total to see if max:
-                                    if (weekMilesTotal > weeklyMax)
-                                    {
-                                        weeklyMax = weekMilesTotal;
-                                    }
+                                    weeklyMax = weekMilesTotal;
+                                }
 
-                                    // Onto a new week, so reset weekly total:
-                                    weekMilesTotal = (double)reader["RideDistance"];
-                                }
-                                else
-                                {
-                                    weekMilesTotal = weekMilesTotal + (double)reader["RideDistance"];
-                                }
+                                // Onto a new week, so reset weekly total:
+                                weekMilesTotal = (double)reader["RideDistance"];
                             }
-
-                            reader.Close();
+                            else
+                            {
+                                weekMilesTotal = weekMilesTotal + (double)reader["RideDistance"];
+                            }
                         }
-                        command.Cancel();
+
+                        reader.Close();
                     }
-                //}
+                    command.Cancel();
+                }
             }
 
             catch (Exception ex)
@@ -3234,5 +3223,9 @@ namespace CyclingLogApplication
         {
             runMonthlyStatistics();
         }
+
+        //=============================================================================
+        // Start Monthly Statistics Section
+        //=============================================================================
     }
 }

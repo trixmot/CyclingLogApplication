@@ -200,7 +200,6 @@ namespace CyclingLogApplication
 
         private void btClear_Click(object sender, EventArgs e)
         {
-            //cbFilterValue.SelectedIndex = 0;
             cbFilterField.SelectedIndex = 0;
             cbFilterValue.Items.Clear();
             cbFilterValue.Items.Add("");
