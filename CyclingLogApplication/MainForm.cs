@@ -187,6 +187,7 @@ namespace CyclingLogApplication
             lbMaintError.Text = "";
             lbConfigError.Text = "";
 
+            RefreshStatisticsData();
             runMonthlyStatistics();
         }
 
@@ -1423,7 +1424,7 @@ namespace CyclingLogApplication
 
         //NOTE reference in designer is commented out to not run on tabcontrol1:
         // Yearly:
-        private void RefreshStatisticsData(object sender, EventArgs e)
+        private void RefreshStatisticsData()
         {
             int logYearIndex = -1;
             // Get log index and pass to all the methods:

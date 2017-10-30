@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+QWTyFL/wjXAz+t/T1x3Tp1+Unn6nnSpZTGiq5XUrV4=</dsig:DigestValue>
+        <dsig:DigestValue>XAwSEXt2hfHxWIx9fbQ2Q5GbMCWeYdJm3WoA0IGXDo8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -89,7 +89,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>HU+B+yGgXgc3zdShZkM4VmvLje4DrljL16P2drgQoyM=</dsig:DigestValue>
+      <dsig:DigestValue>aRTOB2z7Y0DFRJ15k6qNVNlz6XuuI12SUX5UbgwrkKY=</dsig:DigestValue>
     </hash>
   </file>
   <file name="CyclingLogDatabase_log.ldf" size="851968" writeableType="applicationData">
@@ -98,7 +98,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>0r3tQGc8iZ9DbuG4F6TG2Mm9+9aEFoSXZ2P/Tao9WLU=</dsig:DigestValue>
+      <dsig:DigestValue>QtZmPc+KMGcbvpEoBSJLKlsgE5YedOp4DZBn3v5bGiY=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

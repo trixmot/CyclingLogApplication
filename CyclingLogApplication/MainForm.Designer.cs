@@ -497,7 +497,6 @@
             this.button3.TabIndex = 5;
             this.button3.Text = "Refresh";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.RefreshStatisticsData);
             // 
             // tabControl1
             // 
@@ -605,7 +604,7 @@
             // 
             this.label62.AutoSize = true;
             this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.Location = new System.Drawing.Point(253, 39);
+            this.label62.Location = new System.Drawing.Point(218, 39);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(284, 29);
             this.label62.TabIndex = 63;
@@ -2756,7 +2755,6 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(140, 20);
             this.dateTimePicker1.TabIndex = 6;
-            //this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // tbMaintID
             // 
@@ -2822,7 +2820,6 @@
             this.dgvMaint.Name = "dgvMaint";
             this.dgvMaint.Size = new System.Drawing.Size(741, 269);
             this.dgvMaint.TabIndex = 0;
-            //this.dgvMaint.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaint_CellContentClick);
             // 
             // tabPage6
             // 
