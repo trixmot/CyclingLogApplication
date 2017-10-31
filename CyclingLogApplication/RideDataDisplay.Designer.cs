@@ -67,6 +67,7 @@
             "NONE",
             "Bike",
             "Location",
+            "Longest",
             "RideType",
             "Route",
             "Temperature",

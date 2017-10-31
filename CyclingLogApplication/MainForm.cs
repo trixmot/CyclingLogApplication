@@ -998,7 +998,6 @@ namespace CyclingLogApplication
                         {
                             returnValue = float.Parse(temp);
                         }
-
                     }
                 }
             }
@@ -1027,7 +1026,6 @@ namespace CyclingLogApplication
                         {
                             returnValue = float.Parse(temp);
                         }
-
                     }
                 }
             }
@@ -1040,7 +1038,6 @@ namespace CyclingLogApplication
         private int getTotalRidesForSelectedLog(int logIndex)
         {
             SqlDataReader reader = null;
-
             int returnValue = 0;
 
             try
@@ -1497,10 +1494,7 @@ namespace CyclingLogApplication
             double totalMiles = getTotalMilesForAllLogs();
             totalMiles = Math.Truncate(totalMiles * 100) / 100;
             tbStatisticsTotalMiles.Text = Convert.ToString(totalMiles);
-
             tbLongestRide.Text = Convert.ToString(getLongestRide());
-            //tbFastestAvg.Text = Convert.ToString(getFastestAvg());
-            //tbMaxSpeed.Text = Convert.ToString(getMaxSpeed());
             tbTotalRides.Text = Convert.ToString(getTotalRides());
         }
 
@@ -2581,6 +2575,7 @@ namespace CyclingLogApplication
                 return;
             }
 
+            //TODO: Reset entire application:
             //List of things to clean up:
             //Clear out all tables:
             //Delete the config file and a default new one will be created:
