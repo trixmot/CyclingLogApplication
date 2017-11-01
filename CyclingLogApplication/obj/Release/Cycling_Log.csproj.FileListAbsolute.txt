@@ -28,3 +28,21 @@
 \\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\bin\Release\CyclingLogApplication.application
 \\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\obj\Release\CyclingLogApplication.exe.manifest
 \\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\obj\Release\CyclingLogApplication.application
+C:\workdir\CylingLogApplication\CyclingLogApplication\bin\Release\CyclingLogDatabase.mdf
+C:\workdir\CylingLogApplication\CyclingLogApplication\bin\Release\CyclingLogDatabase_log.ldf
+C:\workdir\CylingLogApplication\CyclingLogApplication\bin\Release\CyclingLogApplication.exe.config
+C:\workdir\CylingLogApplication\CyclingLogApplication\bin\Release\CyclingLogApplication.exe.manifest
+C:\workdir\CylingLogApplication\CyclingLogApplication\bin\Release\CyclingLogApplication.application
+C:\workdir\CylingLogApplication\CyclingLogApplication\bin\Release\CyclingLogApplication.exe
+C:\workdir\CylingLogApplication\CyclingLogApplication\bin\Release\CyclingLogApplication.pdb
+C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Release\CyclingLogApplication.ChartForm.resources
+C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Release\CyclingLogApplication.LegacyImport.resources
+C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Release\CyclingLogApplication.MainForm.resources
+C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Release\CyclingLogApplication.Properties.Resources.resources
+C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Release\CyclingLogApplication.RideDataDisplay.resources
+C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Release\CyclingLogApplication.RideDataEntry.resources
+C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Release\Cycling_Log.csproj.GenerateResource.Cache
+C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Release\CyclingLogApplication.exe.manifest
+C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Release\CyclingLogApplication.application
+C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Release\CyclingLogApplication.exe
+C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Release\CyclingLogApplication.pdb

@@ -39,9 +39,14 @@ namespace CyclingLogApplication
         private static SqlConnection sqlConnection;             // = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
         private static DatabaseConnection databaseConnection;   // = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
 
+        //Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\CyclingLogDatabase.mdf;Integrated Security=True
+        //connectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\workdir\CylingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf;Integrated Security=True"
+
 
         public MainForm()
         {
+            AppDomain.CurrentDomain.SetData("DataDirectory", Directory.GetCurrentDirectory());
+
             Text = "Single Instance!";
             mutex = new Mutex(false, "SINGLE_INSTANCE_MUTEX");
             if (!mutex.WaitOne(0, false))
