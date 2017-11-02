@@ -39,12 +39,12 @@ namespace CyclingLogApplication
         private static SqlConnection sqlConnection;             // = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
         private static DatabaseConnection databaseConnection;   // = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
 
-        //Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\CyclingLogDatabase.mdf;Integrated Security=True
         //connectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\workdir\CylingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf;Integrated Security=True"
-
+        //connectionString="Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|CyclingLogDatabase.mdf;Integrated Security=True"
 
         public MainForm()
         {
+            //Set DataDirectory for the contectionstring in the app.config:
             AppDomain.CurrentDomain.SetData("DataDirectory", Directory.GetCurrentDirectory());
 
             Text = "Single Instance!";
@@ -54,7 +54,6 @@ namespace CyclingLogApplication
                 mutex.Close();
                 mutex = null;
             }
-
 
             InitializeComponent();
             GetConnectionStrings();
@@ -141,7 +140,6 @@ namespace CyclingLogApplication
             foreach (var val in bikeList)
             {
                 cbBikeConfig.Items.Add(val);
-                rideDataEntryForm.cbBikeDataEntry.Items.Add(val);
                 cbBikeMaint.Items.Add(val);
                 Logger.Log("Data Loading: Bikes: " + val, 1, logSetting);
             }
@@ -763,8 +761,8 @@ namespace CyclingLogApplication
                     //Give a warning if no additional routed have been entered:
                     MessageBox.Show("Reminder: No Routes have been entered. Add a new Route in the Configuration tab.");
                 }
-
-                rideDataEntryForm.setLastLogYearSelected(getLastLogSelected());
+                
+                rideDataEntryForm.cbBikeDataEntrySelection.SelectedIndex = Convert.ToInt32(getLastBikeSelected());
                 rideDataEntryForm.ShowDialog();
             }
 
@@ -922,8 +920,8 @@ namespace CyclingLogApplication
                 cbBikeMaint.DataSource = null;
                 cbBikeMaint.Items.Clear();
 
-                rideDataEntryForm.cbBikeDataEntry.DataSource = null;
-                rideDataEntryForm.cbBikeDataEntry.Items.Clear();
+                rideDataEntryForm.cbBikeDataEntrySelection.DataSource = null;
+                rideDataEntryForm.cbBikeDataEntrySelection.Items.Clear();
 
                 //Clear entires:
                 tbConfigMilesNotInLog.Text = "0";
@@ -933,7 +931,7 @@ namespace CyclingLogApplication
                 {
                     cbBikeConfig.Items.Add(tempList[i]);
                     cbBikeMaint.Items.Add(tempList[i]);
-                    rideDataEntryForm.cbBikeDataEntry.Items.Add(tempList[i]);
+                    rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(tempList[i]);
                 }
 
                 //Remove the Bike from the database table:
@@ -1901,7 +1899,7 @@ namespace CyclingLogApplication
                 {
                     currentBikeList.Add(bike);
                     cbBikeConfig.Items.Add(bike);
-                    rideDataEntryForm.cbBikeDataEntry.Items.Add(bike);
+                    rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(bike);
 
                     //Add new entry to the Route Table:
                     List<object> bikeObjectValues = new List<object>();
@@ -2624,8 +2622,8 @@ namespace CyclingLogApplication
             cbBikeMaint.DataSource = null;
             cbBikeMaint.Items.Clear();
 
-            rideDataEntryForm.cbBikeDataEntry.DataSource = null;
-            rideDataEntryForm.cbBikeDataEntry.Items.Clear();
+            rideDataEntryForm.cbBikeDataEntrySelection.DataSource = null;
+            rideDataEntryForm.cbBikeDataEntrySelection.Items.Clear();
 
             for (int i = 0; i < tempList.Count; i++)
             {
@@ -2633,21 +2631,18 @@ namespace CyclingLogApplication
                 {
                     cbBikeConfig.Items.Add(newValue);
                     cbBikeMaint.Items.Add(newValue);
-                    rideDataEntryForm.cbBikeDataEntry.Items.Add(newValue);
+                    rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(newValue);
                 }
                 else
                 {
                     cbBikeConfig.Items.Add(tempList[i]);
                     cbBikeMaint.Items.Add(tempList[i]);
-                    rideDataEntryForm.cbBikeDataEntry.Items.Add(tempList[i]);
+                    rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(tempList[i]);
                 }
             }
-            cbBikeConfig.SelectedIndex = selectedIndex;
-            rideDataEntryForm.cbBikeDataEntry.SelectedIndex = selectedIndex;
 
             //Update value in database:
             SqlDataReader reader = null;
-
             float returnValue = 0;
 
             try

@@ -96,7 +96,16 @@ namespace CyclingLogApplication
             numericUpDown2.Maximum = 1;
             numericUpDown2.Minimum = 1;
             numericUpDown2.Enabled = false;
+
+            List<string> bikeList = new List<string>();
+            bikeList = mainForm.readDataNames("Table_Bikes", "Name");
+            //Load Bike values:
+            foreach (var val in bikeList)
+            {
+                cbBikeDataEntrySelection.Items.Add(val);
+            }
         }
+
         public void AddLogYearDataEntry(string item)
         {
             cbLogYearDataEntry.Items.Add(item);
@@ -119,12 +128,12 @@ namespace CyclingLogApplication
 
         public void AddBikeDataEntry(string item)
         {
-            cbBikeDataEntry.Items.Add(item);
+            cbBikeDataEntrySelection.Items.Add(item);
         }
 
         public void RemoveBikeDataEntry(string item)
         {
-            cbBikeDataEntry.Items.Remove(item);
+            cbBikeDataEntrySelection.Items.Remove(item);
         }
 
         public void setLastLogYearSelected(int index)
@@ -245,7 +254,7 @@ namespace CyclingLogApplication
                                 dtpTimeRideDataEntry.Value = Convert.ToDateTime(movingTime);
                                 nudDistanceRideDataEntry.Value = Convert.ToDecimal(rideDistance);
                                 numericUpDown1.Value = Convert.ToDecimal(avgSpeed);
-                                cbBikeDataEntry.SelectedIndex = cbBikeDataEntry.Items.IndexOf(bike);
+                                cbBikeDataEntrySelection.SelectedIndex = cbBikeDataEntrySelection.Items.IndexOf(bike);
                                 cbRideTypeDataEntry.SelectedIndex = cbRideTypeDataEntry.Items.IndexOf(rideType);
                                 numericUpDown4.Value = Convert.ToDecimal(wind);
                                 numericUpDown3.Value = Convert.ToDecimal(temp);
@@ -306,6 +315,8 @@ namespace CyclingLogApplication
 
         private void closeRideDataEntry(object sender, EventArgs e)
         {
+            MainForm mainForm = new MainForm("");
+            mainForm.setLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
             //Close();
             //this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
             //DialogResult result = MessageBox.Show("Any unsaved changes will be lost, do you want to continue?", "Exit Data Entry Form", MessageBoxButtons.YesNo);
@@ -383,7 +394,7 @@ namespace CyclingLogApplication
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (cbBikeDataEntry.SelectedIndex < 0)
+                if (cbBikeDataEntrySelection.SelectedIndex < 0)
                 {
                     lbRideDataEntryError.Text = "A Bike must be selected.";
                     lbRideDataEntryError.Show();
@@ -489,7 +500,7 @@ namespace CyclingLogApplication
                 objectValues.Add(dtpTimeRideDataEntry.Value);                           //Moving Time:
                 objectValues.Add(nudDistanceRideDataEntry.Value);                       //Ride Distance:
                 objectValues.Add(numericUpDown1.Value);                                 //Average Speed:
-                objectValues.Add(cbBikeDataEntry.SelectedItem.ToString());              //Bike:
+                objectValues.Add(cbBikeDataEntrySelection.SelectedItem.ToString());              //Bike:
                 objectValues.Add(cbRideTypeDataEntry.SelectedItem.ToString());          //Ride Type:
                 double windspeed = (double)numericUpDown4.Value;
                 objectValues.Add(numericUpDown4.Value);                                 //Wind:
@@ -648,6 +659,8 @@ namespace CyclingLogApplication
         {
             // NOTE: This line of code loads data into the 'cyclingLogDatabaseDataSet.Table_Ride_Information' table. You can move, or remove it, as needed.
             this.table_Ride_InformationTableAdapter.Fill(this.cyclingLogDatabaseDataSet.Table_Ride_Information);
+            MainForm mainForm = new MainForm("");
+            cbBikeDataEntrySelection.SelectedIndex = mainForm.getLastBikeSelected();
             // cbLogYearDataEntry.SelectedIndex = cbRouteDataEntry.FindStringExact("");
         }
 
@@ -862,7 +875,7 @@ namespace CyclingLogApplication
             dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);     //Moving Time:
             nudDistanceRideDataEntry.Value = 0;                                                                                   //Ride Distance:
             numericUpDown1.Value = 0;                                                                                   //Average Speed:
-            cbBikeDataEntry.SelectedIndex = cbBikeDataEntry.FindStringExact(""); ;                                      //Bike:
+            cbBikeDataEntrySelection.SelectedIndex = cbBikeDataEntrySelection.FindStringExact(""); ;                                      //Bike:
             cbRideTypeDataEntry.SelectedIndex = cbRideTypeDataEntry.FindStringExact(""); ;                                                  //Ride Type:
             numericUpDown4.Value = 0;                                                                                   //Wind:
             numericUpDown3.Value = 0;                                                                                   //Temp:
@@ -907,12 +920,6 @@ namespace CyclingLogApplication
             {
                 lbRideDataEntryError.Hide();
             }
-        }
-
-        private void cbBikeDataEntry_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            MainForm mainForm = new MainForm("");
-            mainForm.setLastBikeSelected(cbBikeDataEntry.SelectedIndex);
         }
 
         private void btUpdateRideDateEntry_Click(object sender, EventArgs e)
@@ -1015,5 +1022,6 @@ namespace CyclingLogApplication
         {
 
         }
+
     }
 }
