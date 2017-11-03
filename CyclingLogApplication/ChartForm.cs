@@ -170,11 +170,19 @@ namespace CyclingLogApplication
             {
                 if (cbTypeTime.SelectedIndex == 1)
                 {
+                    // Display the ProgressBar control.
+                    ProgressBar progressBar = new ProgressBar();
+                    progressBar.Show();
                     getMonthlyHighMileageWeekNumber(logIndex);
+                    progressBar.Hide();
                 } 
                 else if (cbTypeTime.SelectedIndex == 2)
                 {
+                    // Display the ProgressBar control.
+                    ProgressBar progressBar = new ProgressBar();
+                    progressBar.Show();
                     runLongestRideChartMonthly(logIndex);
+                    progressBar.Hide();
                 }
                     
                 return;
@@ -397,8 +405,7 @@ namespace CyclingLogApplication
                 chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
                 chart1.Series["Series1"].YValueMembers = "AvgSpeed";
                 chart1.Series["Series1"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            }
-            
+            }  
         }
 
         private void runLongestRideChartMonthly(int logYearIndex)
