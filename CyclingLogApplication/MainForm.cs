@@ -35,6 +35,7 @@ namespace CyclingLogApplication
         private static int lastLogYearChart = -1;
         private static int lastRouteChart = -1;
         private static int lastTypeChart = -1;
+        private static int lastTypeTimeChart = -1;
         private static int lastMonthlyLogSelected = -1;
         private static SqlConnection sqlConnection;             // = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
         private static DatabaseConnection databaseConnection;   // = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
@@ -386,6 +387,16 @@ namespace CyclingLogApplication
         public int getLastTypeChartSelected()
         {
             return lastTypeChart;
+        }
+
+        public void setLastTypeTimeChartSelected(int logIndex)
+        {
+            lastTypeTimeChart = logIndex;
+        }
+
+        public int getLastTypeTimeChartSelected()
+        {
+            return lastTypeTimeChart;
         }
 
         public List<string> GetLogYears()
@@ -1427,8 +1438,16 @@ namespace CyclingLogApplication
         private void RefreshStatisticsData()
         {
             int logYearIndex = -1;
+
             // Get log index and pass to all the methods:
-            logYearIndex = getLogYearIndex(cbLogYear1.SelectedItem.ToString());
+            if (cbLogYear1.SelectedItem == null)
+            {
+                logYearIndex = 0;
+            }
+            else
+            {
+                logYearIndex = getLogYearIndex(cbLogYear1.SelectedItem.ToString());
+            }         
 
             if (cbLogYear1.SelectedIndex > 0)
             {

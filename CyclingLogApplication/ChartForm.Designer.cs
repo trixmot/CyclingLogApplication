@@ -163,11 +163,13 @@
             this.cbTypeChartData.FormattingEnabled = true;
             this.cbTypeChartData.Items.AddRange(new object[] {
             "Average Speed",
+            "Longest",
             "Miles"});
             this.cbTypeChartData.Location = new System.Drawing.Point(22, 200);
             this.cbTypeChartData.Name = "cbTypeChartData";
             this.cbTypeChartData.Size = new System.Drawing.Size(146, 21);
             this.cbTypeChartData.TabIndex = 20;
+            this.cbTypeChartData.SelectedIndexChanged += new System.EventHandler(this.cbTypeChartData_SelectedIndexChanged);
             // 
             // groupBox2
             // 
@@ -331,7 +333,7 @@
             this.cbTypeTime.Name = "cbTypeTime";
             this.cbTypeTime.Size = new System.Drawing.Size(146, 21);
             this.cbTypeTime.TabIndex = 3;
-            this.cbTypeTime.SelectedIndexChanged += new System.EventHandler(this.cbTypeChart_SelectedIndexChanged);
+            this.cbTypeTime.SelectedIndexChanged += new System.EventHandler(this.cbTypeTimeChart_SelectedIndexChanged);
             // 
             // ChartForm
             // 

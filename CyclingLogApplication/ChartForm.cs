@@ -33,7 +33,7 @@ namespace CyclingLogApplication
 
             checkBoxRouteOption.Checked = false;
             cbRoutesChart.Enabled = false;
-            rbChartTypeLine.Checked = true;
+            rbChartTypeColumn.Checked = true;
         }
 
         private void ChartForm_Load(object sender, EventArgs e)
@@ -41,7 +41,12 @@ namespace CyclingLogApplication
             // NOTE: This line of code loads data into the 'cyclingLogDatabaseDataSet.Table_Ride_Information' table. You can move, or remove it, as needed.
             this.table_Ride_InformationTableAdapter.Fill(this.cyclingLogDatabaseDataSet.Table_Ride_Information);
 
-        }
+            MainForm mainForm = new MainForm();
+            cbLogYearChart.SelectedIndex = mainForm.getLastLogYearChartSelected();
+            cbRoutesChart.SelectedIndex = mainForm.getLastRouteChartSelected();
+            cbTypeChartData.SelectedIndex = mainForm.getLastTypeChartSelected();
+            cbTypeTime.SelectedIndex = mainForm.getLastTypeTimeChartSelected();
+    }
 
         private void chart1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -69,13 +74,6 @@ namespace CyclingLogApplication
         {
             this.Hide();
             //this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
-        }
-
-        private void cbTypeChart_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            labelChartError.Hide();
-            MainForm mainForm = new MainForm("");
-            mainForm.setLastTypeChartSelected(cbTypeTime.SelectedIndex);
         }
 
         private void cbLogYearChart_SelectedIndexChanged(object sender, EventArgs e)
@@ -155,11 +153,19 @@ namespace CyclingLogApplication
                 return;
             }
 
+            //Average Speed:
             if (cbTypeChartData.SelectedIndex == 0)
             {
                 chartDataType = "AvgSpeed";
                 averageDataType = true;
-            } else
+            }
+            //Longest:
+            else if (cbTypeChartData.SelectedIndex == 1)
+            {
+                chartDataType = "RideDistance";
+            }
+            //Miles:
+            else
             {
                 chartDataType = "RideDistance";
             }
@@ -194,11 +200,24 @@ namespace CyclingLogApplication
                 {
                     if (!checkBoxRouteOption.Checked)
                     {
-                        cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        if (cbTypeChartData.SelectedIndex == 1)
+                        {
+                            cmd = new SqlCommand("SELECT Date, MAX(RideDistance), WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        } else
+                        {
+                            cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        }
                     }
                     else
                     {
-                        cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        if (cbTypeChartData.SelectedIndex == 1)
+                        {
+                            cmd = new SqlCommand("SELECT Date, MAX(RideDistance), WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        }
+                        else
+                        {
+                            cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        }
                     }
                 }
                 //Monthly:
@@ -206,11 +225,25 @@ namespace CyclingLogApplication
                 {
                     if (!checkBoxRouteOption.Checked)
                     {
-                        cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        if (cbTypeChartData.SelectedIndex == 1)
+                        {
+                            cmd = new SqlCommand("SELECT Date, MAX(RideDistance), WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        }
+                        else
+                        {
+                            cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        }
                     }
                     else
                     {
-                        cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        if (cbTypeChartData.SelectedIndex == 1)
+                        {
+                            cmd = new SqlCommand("SELECT Date, MAX(RideDistance), WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        }
+                        else
+                        {
+                            cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        }
                     }
                 }
 
@@ -360,6 +393,55 @@ namespace CyclingLogApplication
             
         }
 
+        private float getTotalMilesMonthlyForSelectedLog(int logIndex, int month)
+        {
+            List<object> objectValues = new List<object>();
+            objectValues.Add(logIndex);
+            objectValues.Add(month);
+            float returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetTotalMiles_Monthly", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else
+                        {
+                            returnValue = float.Parse(temp);
+                        }
+
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
+        public SqlDataReader ExecuteSimpleQueryConnection(string ProcedureName, List<object> _Parameters)
+        {
+            string tmpProcedureName = "EXECUTE " + ProcedureName + " ";
+
+            for (int i = 0; i < _Parameters.Count; i++)
+            {
+                tmpProcedureName += "@" + i.ToString() + ",";
+            }
+
+            tmpProcedureName = tmpProcedureName.TrimEnd(',') + ";";
+
+            MainForm mainForm = new MainForm();
+            DatabaseConnection databaseConnection = mainForm.getsDatabaseConnectionString();
+            SqlDataReader ToReturn = databaseConnection.ExecuteQueryConnection(tmpProcedureName, _Parameters);
+
+            return ToReturn;
+        }
+
         private void checkBoxRouteOption_Click(object sender, EventArgs e)
         {
             if (checkBoxRouteOption.Checked == true)
@@ -372,5 +454,18 @@ namespace CyclingLogApplication
             }
         }
 
+        private void cbTypeTimeChart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            labelChartError.Hide();
+            MainForm mainForm = new MainForm("");
+            mainForm.setLastTypeTimeChartSelected(cbTypeTime.SelectedIndex);
+        }
+
+        private void cbTypeChartData_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            labelChartError.Hide();
+            MainForm mainForm = new MainForm("");
+            mainForm.setLastTypeChartSelected(cbTypeChartData.SelectedIndex);
+        }
     }
 }

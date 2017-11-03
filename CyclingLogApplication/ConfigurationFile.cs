@@ -63,6 +63,7 @@ namespace CyclingLogApplication
             string chartLogYearSelected = nodes.Item(0).SelectSingleNode("ChartLogYear").InnerText;
             string chartRouteSelected = nodes.Item(0).SelectSingleNode("ChartRoute").InnerText;
             string chartTypeSelected = nodes.Item(0).SelectSingleNode("ChartType").InnerText;
+            string chartTimeTypeSelected = nodes.Item(0).SelectSingleNode("ChartTimeType").InnerText;
 
             string lastMonthlyLogYearSelected = nodes.Item(0).SelectSingleNode("LastMonthlyLogSelected").InnerText;
 
@@ -80,6 +81,7 @@ namespace CyclingLogApplication
             mainForm.setLastLogYearChartSelected(Convert.ToInt32(chartLogYearSelected));
             mainForm.setLastRouteChartSelected(Convert.ToInt32(chartRouteSelected));
             mainForm.setLastTypeChartSelected(Convert.ToInt32(chartTypeSelected));
+            mainForm.setLastTypeTimeChartSelected(Convert.ToInt32(chartTimeTypeSelected));
 
             mainForm.setLastMonthlyLogSelected(Convert.ToInt32(lastMonthlyLogYearSelected));
 
@@ -99,6 +101,7 @@ namespace CyclingLogApplication
             Logger.Log("Configuration Read: chartLogYearSelected : " + chartLogYearSelected, 1, 0);
             Logger.Log("Configuration Read: chartRouteSelected : " + chartRouteSelected, 1, 0);
             Logger.Log("Configuration Read: chartTypeSelected : " + chartTypeSelected, 1, 0);
+            Logger.Log("Configuration Read: chartTimeTypeSelected : " + chartTimeTypeSelected, 1, 0);
 
             Logger.Log("Configuration Read: lastMonthlyLogYearSelected : " + lastMonthlyLogYearSelected, 1, 0);
 
@@ -191,13 +194,13 @@ namespace CyclingLogApplication
                     lastTypeChartSelectedNode.InnerText = "-1";
                     rootNode.AppendChild(lastTypeChartSelectedNode);
 
-                    XmlNode lastTimelineChartSelectedNode = xmlDoc.CreateElement("ChartTimeLine");
-                    lastTimelineChartSelectedNode.InnerText = "-1";
-                    rootNode.AppendChild(lastTimelineChartSelectedNode);
+                    XmlNode lastTypeTimeChartSelectedNode = xmlDoc.CreateElement("ChartTimeType");
+                    lastTypeTimeChartSelectedNode.InnerText = "-1";
+                    rootNode.AppendChild(lastTypeTimeChartSelectedNode);
 
                     XmlNode lastMonthlyLogYearSelectedNode = xmlDoc.CreateElement("LastMonthlyLogSelected");
-                    lastTimelineChartSelectedNode.InnerText = "-1";
-                    rootNode.AppendChild(lastTimelineChartSelectedNode);
+                    lastMonthlyLogYearSelectedNode.InnerText = "-1";
+                    rootNode.AppendChild(lastMonthlyLogYearSelectedNode);
 
                     xmlDoc.Save("C:\\CyclingLogApplication\\CyclingLogConfig.xml");
                 }
@@ -226,6 +229,7 @@ namespace CyclingLogApplication
                 int lastLogYearChartSelected = mainForm.getLastLogYearChartSelected();
                 int lastRouteChartSelected = mainForm.getLastRouteChartSelected();
                 int lastTypeChartSelected = mainForm.getLastTypeChartSelected();
+                int lastTypeTimeChartSelected = mainForm.getLastTypeTimeChartSelected();
 
                 int lastMonthlyLogSelected = mainForm.getLastMonthlyLogSelected();
 
@@ -242,6 +246,7 @@ namespace CyclingLogApplication
                 xmlDoc.SelectSingleNode("/Config/ChartLogYear").InnerText = lastLogYearChartSelected.ToString();
                 xmlDoc.SelectSingleNode("/Config/ChartRoute").InnerText = lastRouteChartSelected.ToString();
                 xmlDoc.SelectSingleNode("/Config/ChartType").InnerText = lastTypeChartSelected.ToString();
+                xmlDoc.SelectSingleNode("/Config/ChartTimeType").InnerText = lastTypeTimeChartSelected.ToString();
 
                 xmlDoc.SelectSingleNode("/Config/LastMonthlyLogSelected").InnerText = lastMonthlyLogSelected.ToString();
 
@@ -257,6 +262,7 @@ namespace CyclingLogApplication
                 Logger.Log("Write Config Values: lastLogYearChartSelected written:" + lastLogYearChartSelected, 0, logSetting);
                 Logger.Log("Write Config Values: lastRouteChartSelected written:" + lastRouteChartSelected, 0, logSetting);
                 Logger.Log("Write Config Values: lastTypeChartSelected written:" + lastTypeChartSelected, 0, logSetting);
+                Logger.Log("Write Config Values: lastTypeTimeChartSelected written:" + lastTypeTimeChartSelected, 0, logSetting);
 
                 Logger.Log("Write Config Values: lastMonthlyLogSelected written:" + lastMonthlyLogSelected, 0, logSetting);
 
