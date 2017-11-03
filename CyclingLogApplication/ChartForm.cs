@@ -91,12 +91,10 @@ namespace CyclingLogApplication
         }
 
         public void chartTest()
-        {
-            
+        {           
             MainForm mainForm = new MainForm("");
             int logSetting = mainForm.getLogLevel();
             int logIndex = 1;
-
 
             //SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
             sqlConnection.Open();
@@ -153,6 +151,14 @@ namespace CyclingLogApplication
                 return;
             }
 
+            // conn and reader declared outside try block for visibility in finally block
+            //SqlConnection conn = null;
+            SqlDataReader reader = null;
+            List<string> nameList = new List<string>();
+            MainForm mainForm = new MainForm("");
+            int logSetting = mainForm.getLogLevel();
+            int logIndex = mainForm.getLogYearIndex(cbLogYearChart.SelectedItem.ToString());
+
             //Average Speed:
             if (cbTypeChartData.SelectedIndex == 0)
             {
@@ -162,7 +168,17 @@ namespace CyclingLogApplication
             //Longest:
             else if (cbTypeChartData.SelectedIndex == 1)
             {
-                chartDataType = "RideDistance";
+                if (cbTypeTime.SelectedIndex == 1)
+                {
+                    getMonthlyHighMileageWeekNumber(logIndex);
+                } 
+                else if (cbTypeTime.SelectedIndex == 2)
+                {
+                    runLongestRideChartMonthly(logIndex);
+                }
+                    
+                return;
+                //chartDataType = "RideDistance";
             }
             //Miles:
             else
@@ -170,20 +186,12 @@ namespace CyclingLogApplication
                 chartDataType = "RideDistance";
             }
 
-            // conn and reader declared outside try block for visibility in finally block
-            //SqlConnection conn = null;
-            SqlDataReader reader = null;
-            List<string> nameList = new List<string>();
-            MainForm mainForm = new MainForm("");
-            int logSetting = mainForm.getLogLevel();
-
             try
             {
                 // instantiate and open connection
                 //conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
                 
                 SqlCommand cmd = null;
-                int logIndex = mainForm.getLogYearIndex(cbLogYearChart.SelectedItem.ToString());
 
                 //Daily:
                 if (cbTypeTime.SelectedIndex == 0)
@@ -391,6 +399,167 @@ namespace CyclingLogApplication
                 chart1.Series["Series1"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             }
             
+        }
+
+        private void runLongestRideChartMonthly(int logYearIndex)
+        {
+            //Get the logyear from the index:
+            int logYear = getLogYearForSelectedLog(logYearIndex);
+
+            string point1 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 1).ToString();
+            string point2 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 2).ToString();
+            string point3 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 3).ToString();
+            string point4 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 4).ToString();
+            string point5 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 5).ToString();
+            string point6 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 6).ToString();
+            string point7 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 7).ToString();
+            string point8 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 8).ToString();
+            string point9 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 9).ToString();
+            string point10 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 10).ToString();
+            string point11 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 11).ToString();
+            string point12 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 12).ToString();
+
+            chart1.Series[0].Points.Clear();
+
+            chart1.Series["Series1"].Points.AddXY("1/1/" + logYear, point1.ToString());
+            chart1.Series["Series1"].Points.AddXY("2/1/" + logYear, point2.ToString());
+            chart1.Series["Series1"].Points.AddXY("3/1/" + logYear, point3.ToString());
+            chart1.Series["Series1"].Points.AddXY("4/1/" + logYear, point4.ToString());
+            chart1.Series["Series1"].Points.AddXY("5/1/" + logYear, point5.ToString());
+            chart1.Series["Series1"].Points.AddXY("6/1/" + logYear, point6.ToString());
+            chart1.Series["Series1"].Points.AddXY("7/1/" + logYear, point7.ToString());
+            chart1.Series["Series1"].Points.AddXY("8/1/" + logYear, point8.ToString());
+            chart1.Series["Series1"].Points.AddXY("9/1/" + logYear, point9.ToString());
+            chart1.Series["Series1"].Points.AddXY("10/1/" + logYear, point10.ToString());
+            chart1.Series["Series1"].Points.AddXY("11/1/" + logYear, point11.ToString());
+            chart1.Series["Series1"].Points.AddXY("12/1/" + logYear, point12.ToString());
+
+            chart1.ChartAreas[0].AxisX.Interval = 1;
+        }
+
+        private int getLogYearForSelectedLog(int logIndex)
+        {
+            List<object> objectValues = new List<object>();
+            objectValues.Add(logIndex);
+            int returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("Log_Year_Get_By_Index", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else
+                        {
+                            returnValue = int.Parse(temp);
+                        }
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
+        private double getMaxHighMileageMonthlyForSelectedLog(int logIndex, int month)
+        {
+            List<object> objectValues = new List<object>();
+            objectValues.Add(logIndex);
+            objectValues.Add(month);
+            double returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetMaxHighMileage_Monthly", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else
+                        {
+                            returnValue = double.Parse(temp);
+                        }
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
+        public void getMonthlyHighMileageWeekNumber(int LogYearID)
+        {
+            List<double> rideDistanceList = new List<double>();
+            int weekNumber = 1;
+            int weekNumberTmp = 0;
+            double weeklyMaxTmp = 0;
+            double weeklyMax = 0;
+            chart1.Series[0].Points.Clear();
+
+            try
+            {
+                if (sqlConnection != null && sqlConnection.State == ConnectionState.Closed)
+                {
+                    sqlConnection.Open();
+                }
+
+                string query = "SELECT RideDistance,WeekNumber,Date FROM Table_Ride_Information WHERE " + LogYearID + "=[LogYearID]";
+                using (SqlCommand command = new SqlCommand(query, sqlConnection))
+                {
+                    command.CommandType = CommandType.Text;
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            weekNumber = (int)reader["WeekNumber"];
+                            //Check if on a different week:
+                            if (weekNumber > weekNumberTmp)
+                            {
+                                weekNumberTmp = weekNumber;
+                                chart1.Series["Series1"].Points.AddXY(reader["Date"], weeklyMax.ToString());
+
+                                // Onto a new week, so reset weekly total:
+                                weeklyMax = (double)reader["RideDistance"];
+                            }
+                            else
+                            {
+                                weeklyMaxTmp = (double)reader["RideDistance"];
+
+                                if (weeklyMaxTmp > weeklyMax)
+                                {
+                                    weeklyMax = weeklyMaxTmp;
+                                }
+                            }
+                        }
+
+                        reader.Close();
+                    }
+                    command.Cancel();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to the Log year Index from the database." + ex.Message.ToString());
+            }
+            finally
+            {
+                // close connection
+                if (sqlConnection != null)
+                {
+                    sqlConnection.Close();
+                }
+            }
+
+            chart1.ChartAreas[0].AxisX.Interval = 5;
         }
 
         private float getTotalMilesMonthlyForSelectedLog(int logIndex, int month)
