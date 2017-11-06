@@ -55,13 +55,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 23);
+            this.ClientSize = new System.Drawing.Size(436, 25);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label1);
             this.Name = "ProgressBar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Please wait while the Chart is loading";
-            this.Load += new System.EventHandler(this.ProgressBar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

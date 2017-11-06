@@ -353,7 +353,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ChartForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Charts";
             this.Load += new System.EventHandler(this.ChartForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();

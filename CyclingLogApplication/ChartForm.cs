@@ -183,7 +183,6 @@ namespace CyclingLogApplication
                 }
 
                 progressBar.Hide();
-
                 return;
                 //chartDataType = "RideDistance";
             }
@@ -654,7 +653,5 @@ namespace CyclingLogApplication
             MainForm mainForm = new MainForm("");
             mainForm.setLastTypeChartSelected(cbTypeChartData.SelectedIndex);
         }
-
-
     }
 }
