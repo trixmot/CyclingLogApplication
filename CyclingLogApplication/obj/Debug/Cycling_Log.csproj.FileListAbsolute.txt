@@ -40,6 +40,7 @@ C:\workdir\CylingLogApplication\CyclingLogApplication\bin\Debug\CyclingLogApplic
 C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.ChartForm.resources
 C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.LegacyImport.resources
 C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.MainForm.resources
+C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.ProgressBar.resources
 C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.Properties.Resources.resources
 C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.RideDataDisplay.resources
 C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.RideDataEntry.resources
@@ -48,5 +49,3 @@ C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplic
 C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.application
 C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.exe
 C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.pdb
-C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\Cycling_Log.csprojResolveAssemblyReference.cache
-C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.ProgressBar.resources
