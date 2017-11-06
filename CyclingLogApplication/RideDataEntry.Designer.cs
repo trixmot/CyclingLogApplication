@@ -711,6 +711,7 @@
             this.MaximizeBox = false;
             this.Name = "RideDataEntry";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RideDataEntry";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RideDataEntryFormClosed);
             this.Load += new System.EventHandler(this.RideDataEntryLoad);

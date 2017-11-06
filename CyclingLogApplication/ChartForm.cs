@@ -15,7 +15,7 @@ namespace CyclingLogApplication
     public partial class ChartForm : Form
     {
         private static SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-
+        BackgroundWorker bgw = new BackgroundWorker();
 
         public ChartForm(MainForm mainForm)
         {
@@ -46,7 +46,7 @@ namespace CyclingLogApplication
             cbRoutesChart.SelectedIndex = mainForm.getLastRouteChartSelected();
             cbTypeChartData.SelectedIndex = mainForm.getLastTypeChartSelected();
             cbTypeTime.SelectedIndex = mainForm.getLastTypeTimeChartSelected();
-    }
+        }
 
         private void chart1_MouseMove(object sender, MouseEventArgs e)
         {
@@ -54,14 +54,14 @@ namespace CyclingLogApplication
 
             chart1.ChartAreas[0].CursorX.Interval = 0;
             chart1.ChartAreas[0].CursorY.Interval = 0;
-            
+
             chart1.Series[0].XValueType = ChartValueType.DateTime;
 
             chart1.ChartAreas[0].CursorX.SetCursorPixelPosition(mousePoint, true);
             chart1.ChartAreas[0].CursorY.SetCursorPixelPosition(mousePoint, true);
 
             HitTestResult result = chart1.HitTest(e.X, e.Y);
-            
+
             if (result.PointIndex > -1 && result.ChartArea != null)
             {
                 double xValue = result.Series.Points[result.PointIndex].YValues[0];
@@ -91,7 +91,7 @@ namespace CyclingLogApplication
         }
 
         public void chartTest()
-        {           
+        {
             MainForm mainForm = new MainForm("");
             int logSetting = mainForm.getLogLevel();
             int logIndex = 1;
@@ -168,23 +168,22 @@ namespace CyclingLogApplication
             //Longest:
             else if (cbTypeChartData.SelectedIndex == 1)
             {
+                ProgressBar progressBar = new ProgressBar();
+                progressBar.Show();
+
+                //Weekly:
                 if (cbTypeTime.SelectedIndex == 1)
                 {
-                    // Display the ProgressBar control.
-                    ProgressBar progressBar = new ProgressBar();
-                    progressBar.Show();
-                    getMonthlyHighMileageWeekNumber(logIndex);
-                    progressBar.Hide();
-                } 
+                    getMonthlyHighMileageWeekNumber(logIndex);              
+                }
+                //Monthly:
                 else if (cbTypeTime.SelectedIndex == 2)
                 {
-                    // Display the ProgressBar control.
-                    ProgressBar progressBar = new ProgressBar();
-                    progressBar.Show();
                     runLongestRideChartMonthly(logIndex);
-                    progressBar.Hide();
                 }
-                    
+
+                progressBar.Hide();
+
                 return;
                 //chartDataType = "RideDistance";
             }
@@ -198,15 +197,17 @@ namespace CyclingLogApplication
             {
                 // instantiate and open connection
                 //conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                
+
                 SqlCommand cmd = null;
 
                 //Daily:
                 if (cbTypeTime.SelectedIndex == 0)
                 {
-                    if (!checkBoxRouteOption.Checked) {
+                    if (!checkBoxRouteOption.Checked)
+                    {
                         cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
-                    } else
+                    }
+                    else
                     {
                         cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
                     }
@@ -219,7 +220,8 @@ namespace CyclingLogApplication
                         if (cbTypeChartData.SelectedIndex == 1)
                         {
                             cmd = new SqlCommand("SELECT Date, MAX(RideDistance), WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
-                        } else
+                        }
+                        else
                         {
                             cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
                         }
@@ -276,21 +278,23 @@ namespace CyclingLogApplication
                 if (rbChartTypeBar.Checked)
                 {
                     chart1.Series["Series1"].ChartType = SeriesChartType.Bar;
-                } else if (rbChartTypeColumn.Checked)
+                }
+                else if (rbChartTypeColumn.Checked)
                 {
                     chart1.Series["Series1"].ChartType = SeriesChartType.Column;
-                } else
+                }
+                else
                 {
                     chart1.Series["Series1"].ChartType = SeriesChartType.Line;
                 }
-                
+
                 // write each record
                 while (reader.Read())
                 {
                     string date = reader[0].ToString();
                     date = Convert.ToDateTime(date).ToShortDateString();
                     double chartDataTypeValue = Convert.ToDouble(reader[1].ToString());
-                    int weekValue = Convert.ToInt32(reader[2].ToString());                
+                    int weekValue = Convert.ToInt32(reader[2].ToString());
                     //this.chart1.Series["Series1"].Points.AddXY(reader[0].ToString(), reader[1].ToString());
 
                     //Daily
@@ -306,7 +310,7 @@ namespace CyclingLogApplication
                     else if (cbTypeTime.SelectedIndex == 1)
                     {
                         if (weekCount != weekValue)
-                        {     
+                        {
                             if (averageDataType)
                             {
                                 if (total_value != 0)
@@ -314,14 +318,15 @@ namespace CyclingLogApplication
                                     avg_value = total_value / recordCount;
                                     chart1.Series["Series1"].Points.AddXY(date, avg_value.ToString());
                                 }
-                            } else
+                            }
+                            else
                             {
                                 if (total_value != 0)
                                 {
                                     chart1.Series["Series1"].Points.AddXY(date, total_value.ToString());
                                 }
                             }
-                                            
+
                             //Restart values over since starting a new week:
                             recordCount = 1;
                             total_value = chartDataTypeValue;
@@ -332,7 +337,7 @@ namespace CyclingLogApplication
                             total_value = total_value + chartDataTypeValue;
                             recordCount++;
                         }
-                    
+
                         Logger.Log("Chart Testing: Weekly values: " + total_value + "::" + date, 1, 0);
                     }
                     //Monthly:
@@ -350,29 +355,32 @@ namespace CyclingLogApplication
                                     avg_value = total_value / recordCount;
                                     chart1.Series["Series1"].Points.AddXY(date, avg_value.ToString());
                                 }
-                            } else
-                            { 
+                            }
+                            else
+                            {
                                 if (total_value != 0)
                                 {
                                     chart1.Series["Series1"].Points.AddXY(date, total_value.ToString());
                                 }
-                                
+
                             }
                             //Restart values over since starting a new week:
                             recordCount = 1;
                             total_value = chartDataTypeValue;
                             monthCount = month;
-                        } else
+                        }
+                        else
                         {
                             total_value = total_value + chartDataTypeValue;
-                            recordCount++;                          
+                            recordCount++;
                         }
 
                         Logger.Log("Chart Testing: Monthly values: " + total_value + "::" + date, 1, 0);
                     }
                     chart1.ChartAreas[0].AxisX.Interval = 1;
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Logger.LogError("[ERROR]: Exception while trying to run a chart." + ex.Message.ToString());
             }
@@ -395,17 +403,19 @@ namespace CyclingLogApplication
             if (cbTypeTime.SelectedIndex == 0)
             {
 
-            } else if (cbTypeTime.SelectedIndex == 1)
+            }
+            else if (cbTypeTime.SelectedIndex == 1)
             {
 
-            } else if (cbTypeTime.SelectedIndex == 2)
+            }
+            else if (cbTypeTime.SelectedIndex == 2)
             {
                 // Average Speed Chart
                 chart1.Series["Series1"].XValueMember = "Date";
                 chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
                 chart1.Series["Series1"].YValueMembers = "AvgSpeed";
                 chart1.Series["Series1"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            }  
+            }
         }
 
         private void runLongestRideChartMonthly(int logYearIndex)
@@ -623,7 +633,8 @@ namespace CyclingLogApplication
             if (checkBoxRouteOption.Checked == true)
             {
                 cbRoutesChart.Enabled = true;
-            } else
+            }
+            else
             {
                 cbRoutesChart.Enabled = false;
                 cbRoutesChart.SelectedIndex = -1;
@@ -643,5 +654,7 @@ namespace CyclingLogApplication
             MainForm mainForm = new MainForm("");
             mainForm.setLastTypeChartSelected(cbTypeChartData.SelectedIndex);
         }
+
+
     }
 }

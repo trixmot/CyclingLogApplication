@@ -1335,7 +1335,16 @@ namespace CyclingLogApplication
                 else
                 {
                     DateTime changeDate2 = new DateTime(2017, 11, 5);
-                    dayCount = (changeDate2 - date).TotalDays;
+
+                    if (date > changeDate2)
+                    {
+                        DateTime changeDate3 = new DateTime(2018, 3, 11);
+                        dayCount = (changeDate3 - date).TotalDays;
+                    }
+                    else
+                    {
+                        dayCount = (changeDate2 - date).TotalDays;
+                    }                                 
                 }
 
             }
@@ -1349,7 +1358,15 @@ namespace CyclingLogApplication
                 else
                 {
                     DateTime changeDate2 = new DateTime(2018, 11, 4);
-                    dayCount = (changeDate2 - date).TotalDays;
+                    if (date > changeDate2)
+                    {
+                        DateTime changeDate3 = new DateTime(2019, 3, 10);
+                        dayCount = (changeDate3 - date).TotalDays;
+                    }
+                    else
+                    {
+                        dayCount = (changeDate2 - date).TotalDays;
+                    }
                 }
             }
             else if (year == 2019)
@@ -1362,7 +1379,15 @@ namespace CyclingLogApplication
                 else
                 {
                     DateTime changeDate2 = new DateTime(2019, 11, 3);
-                    dayCount = (changeDate2 - date).TotalDays;
+                    if (date > changeDate2)
+                    {
+                        DateTime changeDate3 = new DateTime(2020, 3, 8);
+                        dayCount = (changeDate3 - date).TotalDays;
+                    }
+                    else
+                    {
+                        dayCount = (changeDate2 - date).TotalDays;
+                    }
                 }
             }
             else if (year == 2020)
@@ -1375,7 +1400,15 @@ namespace CyclingLogApplication
                 else
                 {
                     DateTime changeDate2 = new DateTime(2020, 11, 1);
-                    dayCount = (changeDate2 - date).TotalDays;
+                    if (date > changeDate2)
+                    {
+                        DateTime changeDate3 = new DateTime(2021, 3, 14);
+                        dayCount = (changeDate3 - date).TotalDays;
+                    }
+                    else
+                    {
+                        dayCount = (changeDate2 - date).TotalDays;
+                    }
                 }
             }
             else if (year == 2021)
@@ -1388,7 +1421,15 @@ namespace CyclingLogApplication
                 else
                 {
                     DateTime changeDate2 = new DateTime(2021, 11, 7);
-                    dayCount = (changeDate2 - date).TotalDays;
+                    if (date > changeDate2)
+                    {
+                        DateTime changeDate3 = new DateTime(2022, 3, 13);
+                        dayCount = (changeDate3 - date).TotalDays;
+                    }
+                    else
+                    {
+                        dayCount = (changeDate2 - date).TotalDays;
+                    }
                 }
             }
             else if (year == 2022)
@@ -1401,19 +1442,42 @@ namespace CyclingLogApplication
                 else
                 {
                     DateTime changeDate2 = new DateTime(2022, 11, 6);
-                    dayCount = (changeDate2 - date).TotalDays;
+                    if (date > changeDate2)
+                    {
+                        DateTime changeDate3 = new DateTime(2023, 3, 13);
+                        dayCount = (changeDate3 - date).TotalDays;
+                    }
+                    else
+                    {
+                        dayCount = (changeDate2 - date).TotalDays;
+                    }
                 }
             }
             else
             {
-                DateTime changeDate2 = new DateTime(Convert.ToInt32(year), 11, 6);
-                dayCount = (changeDate2 - date).TotalDays;
+                DateTime changeDate = new DateTime(Convert.ToInt32(year), 3, 13);
+                if ((changeDate - date).TotalDays > 0)
+                {
+                    dayCount = (changeDate - date).TotalDays;
+                }
+                else
+                {
+                    DateTime changeDate2 = new DateTime(Convert.ToInt32(year), 11, 6);
+                    if (date > changeDate2)
+                    {
+                        DateTime changeDate3 = new DateTime(Convert.ToInt32(year) + 1, 3, 13);
+                        dayCount = (changeDate3 - date).TotalDays;
+                    }
+                    else
+                    {
+                        dayCount = (changeDate2 - date).TotalDays;
+                    }
+                }
             }
 
             double result = Math.Ceiling(dayCount);
             return result;
         }
-
 
         private int GetCurrentWeekCount()
         {
