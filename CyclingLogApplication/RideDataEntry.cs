@@ -511,7 +511,7 @@ namespace CyclingLogApplication
 
                 if (avg_cadence.Text.Equals("") || avg_cadence.Text.Equals("--"))
                 {
-                    objectValues.Add(0);                                                //Average Cadence:
+                    objectValues.Add(0);                                                
                 }
                 else
                 {
@@ -1054,5 +1054,9 @@ namespace CyclingLogApplication
 
         }
 
+        private void chk1RideDataEntry_Click(object sender, EventArgs e)
+        {
+            dateTimePicker1_ValueChanged(sender, e);
+        }
     }
 }

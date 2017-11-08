@@ -92,6 +92,7 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.cbRideTypeDataEntry = new System.Windows.Forms.ComboBox();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
+            this.label24 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).BeginInit();
@@ -131,6 +132,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.chk1RideDataEntry);
             this.groupBox1.Controls.Add(this.numericUpDown2);
             this.groupBox1.Controls.Add(this.tbRecordID);
@@ -161,6 +163,7 @@
             this.chk1RideDataEntry.TabIndex = 44;
             this.chk1RideDataEntry.Text = "Retrieve Data From Date";
             this.chk1RideDataEntry.UseVisualStyleBackColor = true;
+            this.chk1RideDataEntry.Click += new System.EventHandler(this.chk1RideDataEntry_Click);
             // 
             // numericUpDown2
             // 
@@ -172,7 +175,7 @@
             // 
             // tbRecordID
             // 
-            this.tbRecordID.Location = new System.Drawing.Point(271, 23);
+            this.tbRecordID.Location = new System.Drawing.Point(232, 21);
             this.tbRecordID.Name = "tbRecordID";
             this.tbRecordID.Size = new System.Drawing.Size(41, 20);
             this.tbRecordID.TabIndex = 28;
@@ -180,7 +183,7 @@
             // 
             // tbWeekNumber
             // 
-            this.tbWeekNumber.Location = new System.Drawing.Point(271, 50);
+            this.tbWeekNumber.Location = new System.Drawing.Point(279, 21);
             this.tbWeekNumber.Name = "tbWeekNumber";
             this.tbWeekNumber.Size = new System.Drawing.Size(41, 20);
             this.tbWeekNumber.TabIndex = 41;
@@ -698,6 +701,15 @@
             // 
             this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(235, 67);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(73, 13);
+            this.label24.TabIndex = 45;
+            this.label24.Text = "Multiple Rides";
+            // 
             // RideDataEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -793,5 +805,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.CheckBox chk1RideDataEntry;
         public System.Windows.Forms.ComboBox cbBikeDataEntrySelection;
+        private System.Windows.Forms.Label label24;
     }
 }
