@@ -87,7 +87,7 @@ namespace CyclingLogApplication
             }
             else
             {
-                //cbLogYearDataEntry.SelectedIndex = logYearIndex;
+                //Note: the cbLogYearDataEntry is loaded from the mainForm load:
                 lbRideDataEntryError.Hide();
             }
 
@@ -523,21 +523,51 @@ namespace CyclingLogApplication
                     objectValues.Add(0);                                                //Average Heart Rate:
                 } else
                 {
-                    objectValues.Add(Convert.ToDouble(avg_heart_rate.Text));              //Average Heart Rate:
+                    objectValues.Add(Convert.ToDouble(avg_heart_rate.Text));              
                 }
                 
                 if (max_heart_rate.Text.Equals("") || max_heart_rate.Text.Equals("--"))
                 {
-                    objectValues.Add(0);                                                   //Max Heart Rate:
+                    objectValues.Add(0);                                                   
                 } else
                 {
                     objectValues.Add(Convert.ToDouble(max_heart_rate.Text));              //Max Heart Rate:
                 }
-                
-                objectValues.Add(Convert.ToDouble(calories.Text));                    //Calories:
-                objectValues.Add(Convert.ToDouble(total_ascent.Text));                //Total Ascent:
-                objectValues.Add(Convert.ToDouble(total_descent.Text));               //Total Descent:
-                objectValues.Add(Convert.ToDouble(max_speed.Text));                   //Max Speed:
+
+                if (calories.Text.Equals("") || calories.Text.Equals("--"))
+                {
+                    objectValues.Add(0);
+                }
+                else {
+                    objectValues.Add(Convert.ToDouble(calories.Text));                    //Calories:
+                }
+
+                if (total_ascent.Text.Equals("") || total_ascent.Text.Equals("--"))
+                {
+                    objectValues.Add(0);
+                }
+                else
+                {
+                    objectValues.Add(Convert.ToDouble(total_ascent.Text));                //Total Ascent:
+                }
+
+                if (total_descent.Text.Equals("") || total_descent.Text.Equals("--"))
+                {
+                    objectValues.Add(0);
+                }
+                else
+                {
+                    objectValues.Add(Convert.ToDouble(total_descent.Text));               //Total Descent:
+                }
+
+                if (max_speed.Text.Equals("") || max_speed.Text.Equals("--"))
+                {
+                    objectValues.Add(0);
+                }
+                else
+                {
+                    objectValues.Add(Convert.ToDouble(max_speed.Text));                   //Max Speed:
+                }
 
                 if (avg_power.Text.Equals("") || avg_power.Text.Equals("--"))
                 {

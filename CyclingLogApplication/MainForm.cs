@@ -22,7 +22,7 @@ namespace CyclingLogApplication
         RideDataDisplay rideDataDisplayForm;
         ChartForm chartForm;
 
-        private static string logVersion = "0.1.0";
+        private static string logVersion = "0.1.1";
         private static int logLevel = 0;
         private static string cbStatistic1 = "-1";
         private static string cbStatistic2 = "-1";
@@ -38,6 +38,7 @@ namespace CyclingLogApplication
         private static int lastTypeTimeChart = -1;
         private static int lastMonthlyLogSelected = -1;
         private static int lastLogSelectedDataEntry = -1;
+
         private static SqlConnection sqlConnection;             // = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
         private static DatabaseConnection databaseConnection;   // = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
 
@@ -71,7 +72,7 @@ namespace CyclingLogApplication
             tbTimeChange.Text = getDaysToNextTimeChange().ToString();
         }
 
-        public MainForm(string emetyConstructor)
+        public MainForm(string emptyConstructor)
         {
             //Empty consturctor to prevent from running InitializeComponent():
         }
