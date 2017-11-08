@@ -78,7 +78,7 @@ namespace CyclingLogApplication
             }
 
             //Set index for the LogYear:
-            int logYearIndex = Convert.ToInt32(mainForm.getLastLogSelected());
+            int logYearIndex = Convert.ToInt32(mainForm.getLastLogSelectedDataEntry());
 
             if (logYearIndex == -1)
             {
@@ -317,6 +317,7 @@ namespace CyclingLogApplication
         {
             MainForm mainForm = new MainForm("");
             mainForm.setLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
+            mainForm.setLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);
             //Close();
             //this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
             //DialogResult result = MessageBox.Show("Any unsaved changes will be lost, do you want to continue?", "Exit Data Entry Form", MessageBoxButtons.YesNo);

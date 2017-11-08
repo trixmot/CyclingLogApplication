@@ -66,6 +66,7 @@ namespace CyclingLogApplication
             string chartTimeTypeSelected = nodes.Item(0).SelectSingleNode("ChartTimeType").InnerText;
 
             string lastMonthlyLogYearSelected = nodes.Item(0).SelectSingleNode("LastMonthlyLogSelected").InnerText;
+            string lastLogYearSelectedDataEntry = nodes.Item(0).SelectSingleNode("LastLogSelectedDataEntry").InnerText;
 
             MainForm mainForm = new MainForm("");
             mainForm.setLogLevel(logLevel);
@@ -84,6 +85,7 @@ namespace CyclingLogApplication
             mainForm.setLastTypeTimeChartSelected(Convert.ToInt32(chartTimeTypeSelected));
 
             mainForm.setLastMonthlyLogSelected(Convert.ToInt32(lastMonthlyLogYearSelected));
+            mainForm.setLastLogSelectedDataEntry(Convert.ToInt32(lastLogYearSelectedDataEntry));
 
             //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
             Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, 1, 0);
@@ -104,6 +106,7 @@ namespace CyclingLogApplication
             Logger.Log("Configuration Read: chartTimeTypeSelected : " + chartTimeTypeSelected, 1, 0);
 
             Logger.Log("Configuration Read: lastMonthlyLogYearSelected : " + lastMonthlyLogYearSelected, 1, 0);
+            Logger.Log("Configuration Read: lastLogYearSelectedDataEntry : " + lastLogYearSelectedDataEntry, 1, 0);
 
             returnStatus = true;
 
@@ -202,6 +205,10 @@ namespace CyclingLogApplication
                     lastMonthlyLogYearSelectedNode.InnerText = "-1";
                     rootNode.AppendChild(lastMonthlyLogYearSelectedNode);
 
+                    XmlNode lastLogYearSelectedDataEntryNode = xmlDoc.CreateElement("LastLogSelectedDataEntry");
+                    lastLogYearSelectedDataEntryNode.InnerText = "-1";
+                    rootNode.AppendChild(lastLogYearSelectedDataEntryNode);
+
                     xmlDoc.Save("C:\\CyclingLogApplication\\CyclingLogConfig.xml");
                 }
             }
@@ -232,6 +239,7 @@ namespace CyclingLogApplication
                 int lastTypeTimeChartSelected = mainForm.getLastTypeTimeChartSelected();
 
                 int lastMonthlyLogSelected = mainForm.getLastMonthlyLogSelected();
+                int lastLogSelectedDataEntry = mainForm.getLastLogSelectedDataEntry();
 
                 xmlDoc.SelectSingleNode("/Config/cbStatistic1").InnerText = cbStatistic1;
                 xmlDoc.SelectSingleNode("/Config/cbStatistic2").InnerText = cbStatistic2;
@@ -249,6 +257,7 @@ namespace CyclingLogApplication
                 xmlDoc.SelectSingleNode("/Config/ChartTimeType").InnerText = lastTypeTimeChartSelected.ToString();
 
                 xmlDoc.SelectSingleNode("/Config/LastMonthlyLogSelected").InnerText = lastMonthlyLogSelected.ToString();
+                xmlDoc.SelectSingleNode("/Config/LastLogSelectedDataEntry").InnerText = lastLogSelectedDataEntry.ToString();
 
                 Logger.Log("Write Config Values: cbStatistic1 written:" + cbStatistic1, 0, logSetting);
                 Logger.Log("Write Config Values: cbStatistic2 written:" + cbStatistic2, 0, logSetting);
@@ -265,6 +274,7 @@ namespace CyclingLogApplication
                 Logger.Log("Write Config Values: lastTypeTimeChartSelected written:" + lastTypeTimeChartSelected, 0, logSetting);
 
                 Logger.Log("Write Config Values: lastMonthlyLogSelected written:" + lastMonthlyLogSelected, 0, logSetting);
+                Logger.Log("Write Config Values: lastLogSelectedDataEntry written:" + lastLogSelectedDataEntry, 0, logSetting);
 
                 xmlDoc.Save(@"C:\\CyclingLogApplication\\CyclingLogConfig.xml");
             }

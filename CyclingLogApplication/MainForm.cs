@@ -37,6 +37,7 @@ namespace CyclingLogApplication
         private static int lastTypeChart = -1;
         private static int lastTypeTimeChart = -1;
         private static int lastMonthlyLogSelected = -1;
+        private static int lastLogSelectedDataEntry = -1;
         private static SqlConnection sqlConnection;             // = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
         private static DatabaseConnection databaseConnection;   // = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
 
@@ -127,6 +128,8 @@ namespace CyclingLogApplication
                 chartForm.cbLogYearChart.Items.Add(val);
                 Logger.Log("Data Loading: Log Year: " + val, 0, logSetting);
             }
+
+            rideDataEntryForm.cbLogYearDataEntry.SelectedIndex = getLastLogSelectedDataEntry();
 
             //Load Route values:
             foreach (var val in routeList)
@@ -347,6 +350,16 @@ namespace CyclingLogApplication
         public void setLastMonthlyLogSelected(int logIndex)
         {
             lastMonthlyLogSelected = logIndex;
+        }
+
+        public int getLastLogSelectedDataEntry()
+        {
+            return lastLogSelectedDataEntry;
+        }
+
+        public void setLastLogSelectedDataEntry(int logIndex)
+        {
+            lastLogSelectedDataEntry = logIndex;
         }
 
         public void setLastLogFilterSelected(int logIndex)
