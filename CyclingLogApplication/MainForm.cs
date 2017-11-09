@@ -978,6 +978,12 @@ namespace CyclingLogApplication
             }
         }
 
+        private void cbRouteConfig_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            tbRouteConfig.Text = cbRouteConfig.SelectedItem.ToString();
+        }
+
         // private void openRideDataEntryForm(object obj)
         // {
         //     Application.Run(new RideDataEntry());
@@ -1593,7 +1599,7 @@ namespace CyclingLogApplication
             //Get total miles for all logs:
             double totalMiles = getTotalMilesForAllLogs();
             totalMiles = Math.Truncate(totalMiles * 100) / 100;
-            tbStatisticsTotalMiles.Text = Convert.ToString(totalMiles);
+            tbStatisticsTotalMiles.Text = Convert.ToString(Math.Round(totalMiles, 1));
             tbLongestRide.Text = Convert.ToString(getLongestRide());
             tbTotalRides.Text = Convert.ToString(getTotalRides());
         }
@@ -1623,7 +1629,7 @@ namespace CyclingLogApplication
                 }
             }
 
-            return returnValue;
+            return Math.Round(returnValue, 1);
         }
 
         private double getFastestAvg()
@@ -2639,6 +2645,7 @@ namespace CyclingLogApplication
             {
                 List<object> objectValues = new List<object>();
                 objectValues.Add(cbBikeConfig.SelectedItem.ToString());
+                tbBikeConfig.Text = cbBikeConfig.SelectedItem.ToString();
 
                 //ExecuteScalarFunction
                 using (var results = ExecuteSimpleQueryConnection("Bike_GetMiles", objectValues))
@@ -3316,6 +3323,8 @@ namespace CyclingLogApplication
         {
             runMonthlyStatistics();
         }
+
+        
 
         //=============================================================================
         // Start Monthly Statistics Section

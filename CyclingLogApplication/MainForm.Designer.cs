@@ -2631,6 +2631,7 @@
             this.cbRouteConfig.Name = "cbRouteConfig";
             this.cbRouteConfig.Size = new System.Drawing.Size(205, 21);
             this.cbRouteConfig.TabIndex = 5;
+            this.cbRouteConfig.SelectedIndexChanged += new System.EventHandler(this.cbRouteConfig_SelectedIndexChanged);
             // 
             // btAddRoute
             // 
