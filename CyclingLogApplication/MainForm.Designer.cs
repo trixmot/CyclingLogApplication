@@ -308,6 +308,7 @@
             // 
             // cbLogYearConfig
             // 
+            this.cbLogYearConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYearConfig.FormattingEnabled = true;
             this.cbLogYearConfig.Location = new System.Drawing.Point(116, 89);
             this.cbLogYearConfig.Name = "cbLogYearConfig";
@@ -698,6 +699,7 @@
             // cbLogYear5
             // 
             this.cbLogYear5.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYear5.FormattingEnabled = true;
             this.cbLogYear5.Location = new System.Drawing.Point(591, 101);
             this.cbLogYear5.Name = "cbLogYear5";
@@ -778,6 +780,7 @@
             // cbLogYear4
             // 
             this.cbLogYear4.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYear4.FormattingEnabled = true;
             this.cbLogYear4.Location = new System.Drawing.Point(475, 101);
             this.cbLogYear4.Name = "cbLogYear4";
@@ -858,6 +861,7 @@
             // cbLogYear3
             // 
             this.cbLogYear3.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYear3.FormattingEnabled = true;
             this.cbLogYear3.Location = new System.Drawing.Point(359, 101);
             this.cbLogYear3.Name = "cbLogYear3";
@@ -938,6 +942,7 @@
             // cbLogYear2
             // 
             this.cbLogYear2.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYear2.FormattingEnabled = true;
             this.cbLogYear2.Location = new System.Drawing.Point(243, 101);
             this.cbLogYear2.Name = "cbLogYear2";
@@ -1018,6 +1023,7 @@
             // cbLogYear1
             // 
             this.cbLogYear1.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYear1.FormattingEnabled = true;
             this.cbLogYear1.Location = new System.Drawing.Point(127, 101);
             this.cbLogYear1.Name = "cbLogYear1";
@@ -2262,6 +2268,7 @@
             // cbStatMonthlyLogYear
             // 
             this.cbStatMonthlyLogYear.BackColor = System.Drawing.Color.Silver;
+            this.cbStatMonthlyLogYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatMonthlyLogYear.FormattingEnabled = true;
             this.cbStatMonthlyLogYear.Location = new System.Drawing.Point(14, 22);
             this.cbStatMonthlyLogYear.Name = "cbStatMonthlyLogYear";
@@ -2449,6 +2456,7 @@
             // 
             // cbLogYear
             // 
+            this.cbLogYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYear.FormattingEnabled = true;
             this.cbLogYear.Items.AddRange(new object[] {
             "2010",
@@ -2581,6 +2589,7 @@
             // 
             // cbBikeConfig
             // 
+            this.cbBikeConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBikeConfig.FormattingEnabled = true;
             this.cbBikeConfig.Location = new System.Drawing.Point(486, 89);
             this.cbBikeConfig.Name = "cbBikeConfig";
@@ -2626,6 +2635,7 @@
             // 
             // cbRouteConfig
             // 
+            this.cbRouteConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRouteConfig.FormattingEnabled = true;
             this.cbRouteConfig.Location = new System.Drawing.Point(260, 138);
             this.cbRouteConfig.Name = "cbRouteConfig";
@@ -2709,6 +2719,7 @@
             // 
             // cbBikeMaint
             // 
+            this.cbBikeMaint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBikeMaint.FormattingEnabled = true;
             this.cbBikeMaint.Location = new System.Drawing.Point(175, 30);
             this.cbBikeMaint.Name = "cbBikeMaint";

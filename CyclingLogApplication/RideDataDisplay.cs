@@ -113,6 +113,13 @@ namespace CyclingLogApplication
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Location", cbFilterValue.Text);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
                 }
+                else if (cbFilterField.Text.Equals("Longest"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter();
+                    sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [LogYearID]=@logyearID ORDER BY[RideDistance] DESC", sqlConnection);
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                }
                 else if (cbFilterField.Text.Equals("Temperature"))
                 {
                     sqlDataAdapter = new SqlDataAdapter();
@@ -248,6 +255,15 @@ namespace CyclingLogApplication
             MainForm mainForm = new MainForm("");
             cbFilterValue.Items.Clear();
 
+            //NONE
+            //Bike
+            //Location
+            //Longest
+            //RideType
+            //Route
+            //Temperature
+            //WeekNumber
+
             if (cbFilterField.SelectedIndex == 0)
             {
                 //NONE
@@ -277,6 +293,12 @@ namespace CyclingLogApplication
             }
             else if (cbFilterField.SelectedIndex == 3)
             {
+                //Longest:
+                cbFilterValue.Items.Add("");
+                cbFilterValue.SelectedIndex = 0;
+            }
+            else if (cbFilterField.SelectedIndex == 4)
+            {
                 //RideType:
                 cbFilterValue.Items.Add("Recovery");
                 cbFilterValue.Items.Add("Base");
@@ -285,7 +307,7 @@ namespace CyclingLogApplication
                 cbFilterValue.Items.Add("Race");
                 cbFilterValue.SelectedIndex = 0;
             }
-            else if (cbFilterField.SelectedIndex == 4)
+            else if (cbFilterField.SelectedIndex == 5)
             {
                 //Route:
                 List<string> routeList = mainForm.readDataNames("Table_Routes", "Name");
@@ -295,7 +317,7 @@ namespace CyclingLogApplication
                 }
                 cbFilterValue.SelectedIndex = 0;
             }
-            else if (cbFilterField.SelectedIndex == 5)
+            else if (cbFilterField.SelectedIndex == 6)
             {
                 //Temperature:
                 cbFilterValue.Items.Add("Below 30");
@@ -305,7 +327,7 @@ namespace CyclingLogApplication
                 cbFilterValue.Items.Add("Above 90");
                 cbFilterValue.SelectedIndex = 0;
             }
-            else if (cbFilterField.SelectedIndex == 6)
+            else if (cbFilterField.SelectedIndex == 7)
             {
                 //WeekNumber:
                 for (int i = 1; i < 53; i++)

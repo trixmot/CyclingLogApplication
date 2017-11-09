@@ -979,8 +979,7 @@ namespace CyclingLogApplication
         }
 
         private void cbRouteConfig_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
+        {         
             tbRouteConfig.Text = cbRouteConfig.SelectedItem.ToString();
         }
 

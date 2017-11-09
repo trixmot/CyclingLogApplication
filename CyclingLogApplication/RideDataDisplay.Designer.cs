@@ -62,6 +62,7 @@
             // 
             // cbFilterField
             // 
+            this.cbFilterField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFilterField.FormattingEnabled = true;
             this.cbFilterField.Items.AddRange(new object[] {
             "NONE",
@@ -117,6 +118,7 @@
             // 
             // cbLogYearFilter
             // 
+            this.cbLogYearFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYearFilter.FormattingEnabled = true;
             this.cbLogYearFilter.Items.AddRange(new object[] {
             "All Logs"});
@@ -138,6 +140,7 @@
             // 
             // cbFilterValue
             // 
+            this.cbFilterValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFilterValue.FormattingEnabled = true;
             this.cbFilterValue.Items.AddRange(new object[] {
             "NONE",
