@@ -1342,7 +1342,6 @@ namespace CyclingLogApplication
                     DateTime changeDate2 = new DateTime(2016, 11, 6);
                     dayCount = (changeDate2 - date).TotalDays;
                 }
-
             }
             else if (year == 2017)
             {
@@ -1365,7 +1364,6 @@ namespace CyclingLogApplication
                         dayCount = (changeDate2 - date).TotalDays;
                     }                                 
                 }
-
             }
             else if (year == 2018)
             {
@@ -2213,6 +2211,7 @@ namespace CyclingLogApplication
                     cbLogYear5.Items.Add(tempList[i]);
                 }
             }
+
             cbLogYearConfig.SelectedIndex = selectedIndex;
             rideDataEntryForm.cbLogYearDataEntry.SelectedIndex = selectedIndex;
             rideDataDisplayForm.cbLogYearFilter.SelectedIndex = selectedIndex;
@@ -2225,7 +2224,6 @@ namespace CyclingLogApplication
 
             //NOTE: The Table_Ride_Information only contains the LogYearID and not the name:
         }
-
 
         //=============================================================================
         //End Statistics Section

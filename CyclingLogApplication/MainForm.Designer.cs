@@ -345,6 +345,7 @@
             // 
             // button5
             // 
+            this.button5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Location = new System.Drawing.Point(299, 147);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(130, 35);
@@ -355,6 +356,7 @@
             // 
             // button7
             // 
+            this.button7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.Location = new System.Drawing.Point(299, 102);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(130, 35);
@@ -396,15 +398,16 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.Location = new System.Drawing.Point(241, 42);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(264, 29);
+            this.label30.Size = new System.Drawing.Size(287, 28);
             this.label30.TabIndex = 12;
             this.label30.Text = "Cycling Log Application";
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(299, 196);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 35);
@@ -416,6 +419,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(78, 219);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(70, 13);
@@ -424,6 +428,7 @@
             // 
             // btDeleteAllData
             // 
+            this.btDeleteAllData.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDeleteAllData.Location = new System.Drawing.Point(299, 247);
             this.btDeleteAllData.Name = "btDeleteAllData";
             this.btDeleteAllData.Size = new System.Drawing.Size(130, 35);
@@ -434,16 +439,17 @@
             // 
             // tbWeekCount
             // 
-            this.tbWeekCount.Enabled = false;
-            this.tbWeekCount.Location = new System.Drawing.Point(154, 176);
+            this.tbWeekCount.Location = new System.Drawing.Point(159, 176);
             this.tbWeekCount.Name = "tbWeekCount";
             this.tbWeekCount.ReadOnly = true;
             this.tbWeekCount.Size = new System.Drawing.Size(47, 20);
             this.tbWeekCount.TabIndex = 47;
+            this.tbWeekCount.TabStop = false;
             this.tbWeekCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button11
             // 
+            this.button11.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button11.Location = new System.Drawing.Point(299, 299);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(130, 35);
@@ -454,27 +460,28 @@
             // 
             // tbTimeChange
             // 
-            this.tbTimeChange.Enabled = false;
-            this.tbTimeChange.Location = new System.Drawing.Point(154, 216);
+            this.tbTimeChange.Location = new System.Drawing.Point(159, 216);
             this.tbTimeChange.Name = "tbTimeChange";
             this.tbTimeChange.ReadOnly = true;
             this.tbTimeChange.Size = new System.Drawing.Size(47, 20);
             this.tbTimeChange.TabIndex = 51;
+            this.tbTimeChange.TabStop = false;
             this.tbTimeChange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbDayCount
             // 
-            this.tbDayCount.Enabled = false;
-            this.tbDayCount.Location = new System.Drawing.Point(154, 196);
+            this.tbDayCount.Location = new System.Drawing.Point(159, 196);
             this.tbDayCount.Name = "tbDayCount";
             this.tbDayCount.ReadOnly = true;
             this.tbDayCount.Size = new System.Drawing.Size(47, 20);
             this.tbDayCount.TabIndex = 48;
+            this.tbDayCount.TabStop = false;
             this.tbDayCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(91, 199);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(57, 13);
@@ -484,6 +491,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(81, 179);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(67, 13);
@@ -604,10 +612,10 @@
             // label62
             // 
             this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label62.Location = new System.Drawing.Point(218, 39);
             this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(284, 29);
+            this.label62.Size = new System.Drawing.Size(309, 28);
             this.label62.TabIndex = 63;
             this.label62.Text = "Statistics Yearly Log Data";
             // 
@@ -630,12 +638,12 @@
             // 
             // tbTotalRides
             // 
-            this.tbTotalRides.Enabled = false;
             this.tbTotalRides.Location = new System.Drawing.Point(421, 307);
             this.tbTotalRides.Name = "tbTotalRides";
             this.tbTotalRides.ReadOnly = true;
             this.tbTotalRides.Size = new System.Drawing.Size(110, 20);
             this.tbTotalRides.TabIndex = 57;
+            this.tbTotalRides.TabStop = false;
             this.tbTotalRides.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label58
@@ -649,22 +657,22 @@
             // 
             // tbLongestRide
             // 
-            this.tbLongestRide.Enabled = false;
             this.tbLongestRide.Location = new System.Drawing.Point(305, 307);
             this.tbLongestRide.Name = "tbLongestRide";
             this.tbLongestRide.ReadOnly = true;
             this.tbLongestRide.Size = new System.Drawing.Size(110, 20);
             this.tbLongestRide.TabIndex = 55;
+            this.tbLongestRide.TabStop = false;
             this.tbLongestRide.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbStatisticsTotalMiles
             // 
-            this.tbStatisticsTotalMiles.Enabled = false;
             this.tbStatisticsTotalMiles.Location = new System.Drawing.Point(189, 306);
             this.tbStatisticsTotalMiles.Name = "tbStatisticsTotalMiles";
             this.tbStatisticsTotalMiles.ReadOnly = true;
             this.tbStatisticsTotalMiles.Size = new System.Drawing.Size(110, 20);
             this.tbStatisticsTotalMiles.TabIndex = 54;
+            this.tbStatisticsTotalMiles.TabStop = false;
             this.tbStatisticsTotalMiles.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label23
@@ -678,22 +686,22 @@
             // 
             // tb3Log5
             // 
-            this.tb3Log5.Enabled = false;
             this.tb3Log5.Location = new System.Drawing.Point(591, 171);
             this.tb3Log5.Name = "tb3Log5";
             this.tb3Log5.ReadOnly = true;
             this.tb3Log5.Size = new System.Drawing.Size(110, 20);
             this.tb3Log5.TabIndex = 42;
+            this.tb3Log5.TabStop = false;
             this.tb3Log5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb7Log5
             // 
-            this.tb7Log5.Enabled = false;
             this.tb7Log5.Location = new System.Drawing.Point(591, 251);
             this.tb7Log5.Name = "tb7Log5";
             this.tb7Log5.ReadOnly = true;
             this.tb7Log5.Size = new System.Drawing.Size(110, 20);
             this.tb7Log5.TabIndex = 46;
+            this.tb7Log5.TabStop = false;
             this.tb7Log5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cbLogYear5
@@ -709,72 +717,72 @@
             // 
             // tb6Log5
             // 
-            this.tb6Log5.Enabled = false;
             this.tb6Log5.Location = new System.Drawing.Point(591, 231);
             this.tb6Log5.Name = "tb6Log5";
             this.tb6Log5.ReadOnly = true;
             this.tb6Log5.Size = new System.Drawing.Size(110, 20);
             this.tb6Log5.TabIndex = 45;
+            this.tb6Log5.TabStop = false;
             this.tb6Log5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb1Log5
             // 
-            this.tb1Log5.Enabled = false;
             this.tb1Log5.Location = new System.Drawing.Point(591, 131);
             this.tb1Log5.Name = "tb1Log5";
             this.tb1Log5.ReadOnly = true;
             this.tb1Log5.Size = new System.Drawing.Size(110, 20);
             this.tb1Log5.TabIndex = 40;
+            this.tb1Log5.TabStop = false;
             this.tb1Log5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb5Log5
             // 
-            this.tb5Log5.Enabled = false;
             this.tb5Log5.Location = new System.Drawing.Point(591, 211);
             this.tb5Log5.Name = "tb5Log5";
             this.tb5Log5.ReadOnly = true;
             this.tb5Log5.Size = new System.Drawing.Size(110, 20);
             this.tb5Log5.TabIndex = 44;
+            this.tb5Log5.TabStop = false;
             this.tb5Log5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb2Log5
             // 
-            this.tb2Log5.Enabled = false;
             this.tb2Log5.Location = new System.Drawing.Point(591, 151);
             this.tb2Log5.Name = "tb2Log5";
             this.tb2Log5.ReadOnly = true;
             this.tb2Log5.Size = new System.Drawing.Size(110, 20);
             this.tb2Log5.TabIndex = 41;
+            this.tb2Log5.TabStop = false;
             this.tb2Log5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb4Log5
             // 
-            this.tb4Log5.Enabled = false;
             this.tb4Log5.Location = new System.Drawing.Point(591, 191);
             this.tb4Log5.Name = "tb4Log5";
             this.tb4Log5.ReadOnly = true;
             this.tb4Log5.Size = new System.Drawing.Size(110, 20);
             this.tb4Log5.TabIndex = 43;
+            this.tb4Log5.TabStop = false;
             this.tb4Log5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb3Log4
             // 
-            this.tb3Log4.Enabled = false;
             this.tb3Log4.Location = new System.Drawing.Point(475, 171);
             this.tb3Log4.Name = "tb3Log4";
             this.tb3Log4.ReadOnly = true;
             this.tb3Log4.Size = new System.Drawing.Size(110, 20);
             this.tb3Log4.TabIndex = 34;
+            this.tb3Log4.TabStop = false;
             this.tb3Log4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb7Log4
             // 
-            this.tb7Log4.Enabled = false;
             this.tb7Log4.Location = new System.Drawing.Point(475, 251);
             this.tb7Log4.Name = "tb7Log4";
             this.tb7Log4.ReadOnly = true;
             this.tb7Log4.Size = new System.Drawing.Size(110, 20);
             this.tb7Log4.TabIndex = 38;
+            this.tb7Log4.TabStop = false;
             this.tb7Log4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cbLogYear4
@@ -790,72 +798,72 @@
             // 
             // tb6Log4
             // 
-            this.tb6Log4.Enabled = false;
             this.tb6Log4.Location = new System.Drawing.Point(475, 231);
             this.tb6Log4.Name = "tb6Log4";
             this.tb6Log4.ReadOnly = true;
             this.tb6Log4.Size = new System.Drawing.Size(110, 20);
             this.tb6Log4.TabIndex = 37;
+            this.tb6Log4.TabStop = false;
             this.tb6Log4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb1Log4
             // 
-            this.tb1Log4.Enabled = false;
             this.tb1Log4.Location = new System.Drawing.Point(475, 131);
             this.tb1Log4.Name = "tb1Log4";
             this.tb1Log4.ReadOnly = true;
             this.tb1Log4.Size = new System.Drawing.Size(110, 20);
             this.tb1Log4.TabIndex = 32;
+            this.tb1Log4.TabStop = false;
             this.tb1Log4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb5Log4
             // 
-            this.tb5Log4.Enabled = false;
             this.tb5Log4.Location = new System.Drawing.Point(475, 211);
             this.tb5Log4.Name = "tb5Log4";
             this.tb5Log4.ReadOnly = true;
             this.tb5Log4.Size = new System.Drawing.Size(110, 20);
             this.tb5Log4.TabIndex = 36;
+            this.tb5Log4.TabStop = false;
             this.tb5Log4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb2Log4
             // 
-            this.tb2Log4.Enabled = false;
             this.tb2Log4.Location = new System.Drawing.Point(475, 151);
             this.tb2Log4.Name = "tb2Log4";
             this.tb2Log4.ReadOnly = true;
             this.tb2Log4.Size = new System.Drawing.Size(110, 20);
             this.tb2Log4.TabIndex = 33;
+            this.tb2Log4.TabStop = false;
             this.tb2Log4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb4Log4
             // 
-            this.tb4Log4.Enabled = false;
             this.tb4Log4.Location = new System.Drawing.Point(475, 191);
             this.tb4Log4.Name = "tb4Log4";
             this.tb4Log4.ReadOnly = true;
             this.tb4Log4.Size = new System.Drawing.Size(110, 20);
             this.tb4Log4.TabIndex = 35;
+            this.tb4Log4.TabStop = false;
             this.tb4Log4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb3Log3
             // 
-            this.tb3Log3.Enabled = false;
             this.tb3Log3.Location = new System.Drawing.Point(359, 171);
             this.tb3Log3.Name = "tb3Log3";
             this.tb3Log3.ReadOnly = true;
             this.tb3Log3.Size = new System.Drawing.Size(110, 20);
             this.tb3Log3.TabIndex = 26;
+            this.tb3Log3.TabStop = false;
             this.tb3Log3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb7Log3
             // 
-            this.tb7Log3.Enabled = false;
             this.tb7Log3.Location = new System.Drawing.Point(359, 251);
             this.tb7Log3.Name = "tb7Log3";
             this.tb7Log3.ReadOnly = true;
             this.tb7Log3.Size = new System.Drawing.Size(110, 20);
             this.tb7Log3.TabIndex = 30;
+            this.tb7Log3.TabStop = false;
             this.tb7Log3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cbLogYear3
@@ -871,72 +879,72 @@
             // 
             // tb6Log3
             // 
-            this.tb6Log3.Enabled = false;
             this.tb6Log3.Location = new System.Drawing.Point(359, 231);
             this.tb6Log3.Name = "tb6Log3";
             this.tb6Log3.ReadOnly = true;
             this.tb6Log3.Size = new System.Drawing.Size(110, 20);
             this.tb6Log3.TabIndex = 29;
+            this.tb6Log3.TabStop = false;
             this.tb6Log3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb1Log3
             // 
-            this.tb1Log3.Enabled = false;
             this.tb1Log3.Location = new System.Drawing.Point(359, 131);
             this.tb1Log3.Name = "tb1Log3";
             this.tb1Log3.ReadOnly = true;
             this.tb1Log3.Size = new System.Drawing.Size(110, 20);
             this.tb1Log3.TabIndex = 24;
+            this.tb1Log3.TabStop = false;
             this.tb1Log3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb5Log3
             // 
-            this.tb5Log3.Enabled = false;
             this.tb5Log3.Location = new System.Drawing.Point(359, 211);
             this.tb5Log3.Name = "tb5Log3";
             this.tb5Log3.ReadOnly = true;
             this.tb5Log3.Size = new System.Drawing.Size(110, 20);
             this.tb5Log3.TabIndex = 28;
+            this.tb5Log3.TabStop = false;
             this.tb5Log3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb2Log3
             // 
-            this.tb2Log3.Enabled = false;
             this.tb2Log3.Location = new System.Drawing.Point(359, 151);
             this.tb2Log3.Name = "tb2Log3";
             this.tb2Log3.ReadOnly = true;
             this.tb2Log3.Size = new System.Drawing.Size(110, 20);
             this.tb2Log3.TabIndex = 25;
+            this.tb2Log3.TabStop = false;
             this.tb2Log3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb4Log3
             // 
-            this.tb4Log3.Enabled = false;
             this.tb4Log3.Location = new System.Drawing.Point(359, 191);
             this.tb4Log3.Name = "tb4Log3";
             this.tb4Log3.ReadOnly = true;
             this.tb4Log3.Size = new System.Drawing.Size(110, 20);
             this.tb4Log3.TabIndex = 27;
+            this.tb4Log3.TabStop = false;
             this.tb4Log3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb3Log2
             // 
-            this.tb3Log2.Enabled = false;
             this.tb3Log2.Location = new System.Drawing.Point(243, 171);
             this.tb3Log2.Name = "tb3Log2";
             this.tb3Log2.ReadOnly = true;
             this.tb3Log2.Size = new System.Drawing.Size(110, 20);
             this.tb3Log2.TabIndex = 18;
+            this.tb3Log2.TabStop = false;
             this.tb3Log2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb7Log2
             // 
-            this.tb7Log2.Enabled = false;
             this.tb7Log2.Location = new System.Drawing.Point(243, 251);
             this.tb7Log2.Name = "tb7Log2";
             this.tb7Log2.ReadOnly = true;
             this.tb7Log2.Size = new System.Drawing.Size(110, 20);
             this.tb7Log2.TabIndex = 22;
+            this.tb7Log2.TabStop = false;
             this.tb7Log2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cbLogYear2
@@ -952,72 +960,72 @@
             // 
             // tb6Log2
             // 
-            this.tb6Log2.Enabled = false;
             this.tb6Log2.Location = new System.Drawing.Point(243, 231);
             this.tb6Log2.Name = "tb6Log2";
             this.tb6Log2.ReadOnly = true;
             this.tb6Log2.Size = new System.Drawing.Size(110, 20);
             this.tb6Log2.TabIndex = 21;
+            this.tb6Log2.TabStop = false;
             this.tb6Log2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb1Log2
             // 
-            this.tb1Log2.Enabled = false;
             this.tb1Log2.Location = new System.Drawing.Point(243, 131);
             this.tb1Log2.Name = "tb1Log2";
             this.tb1Log2.ReadOnly = true;
             this.tb1Log2.Size = new System.Drawing.Size(110, 20);
             this.tb1Log2.TabIndex = 16;
+            this.tb1Log2.TabStop = false;
             this.tb1Log2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb5Log2
             // 
-            this.tb5Log2.Enabled = false;
             this.tb5Log2.Location = new System.Drawing.Point(243, 211);
             this.tb5Log2.Name = "tb5Log2";
             this.tb5Log2.ReadOnly = true;
             this.tb5Log2.Size = new System.Drawing.Size(110, 20);
             this.tb5Log2.TabIndex = 20;
+            this.tb5Log2.TabStop = false;
             this.tb5Log2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb2Log2
             // 
-            this.tb2Log2.Enabled = false;
             this.tb2Log2.Location = new System.Drawing.Point(243, 151);
             this.tb2Log2.Name = "tb2Log2";
             this.tb2Log2.ReadOnly = true;
             this.tb2Log2.Size = new System.Drawing.Size(110, 20);
             this.tb2Log2.TabIndex = 17;
+            this.tb2Log2.TabStop = false;
             this.tb2Log2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb4Log2
             // 
-            this.tb4Log2.Enabled = false;
             this.tb4Log2.Location = new System.Drawing.Point(243, 191);
             this.tb4Log2.Name = "tb4Log2";
             this.tb4Log2.ReadOnly = true;
             this.tb4Log2.Size = new System.Drawing.Size(110, 20);
             this.tb4Log2.TabIndex = 19;
+            this.tb4Log2.TabStop = false;
             this.tb4Log2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb3Log1
             // 
-            this.tb3Log1.Enabled = false;
             this.tb3Log1.Location = new System.Drawing.Point(127, 171);
             this.tb3Log1.Name = "tb3Log1";
             this.tb3Log1.ReadOnly = true;
             this.tb3Log1.Size = new System.Drawing.Size(110, 20);
             this.tb3Log1.TabIndex = 6;
+            this.tb3Log1.TabStop = false;
             this.tb3Log1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb7Log1
             // 
-            this.tb7Log1.Enabled = false;
             this.tb7Log1.Location = new System.Drawing.Point(127, 251);
             this.tb7Log1.Name = "tb7Log1";
             this.tb7Log1.ReadOnly = true;
             this.tb7Log1.Size = new System.Drawing.Size(110, 20);
             this.tb7Log1.TabIndex = 14;
+            this.tb7Log1.TabStop = false;
             this.tb7Log1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cbLogYear1
@@ -1051,22 +1059,22 @@
             // 
             // tb6Log1
             // 
-            this.tb6Log1.Enabled = false;
             this.tb6Log1.Location = new System.Drawing.Point(127, 231);
             this.tb6Log1.Name = "tb6Log1";
             this.tb6Log1.ReadOnly = true;
             this.tb6Log1.Size = new System.Drawing.Size(110, 20);
             this.tb6Log1.TabIndex = 12;
+            this.tb6Log1.TabStop = false;
             this.tb6Log1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb1Log1
             // 
-            this.tb1Log1.Enabled = false;
             this.tb1Log1.Location = new System.Drawing.Point(127, 131);
             this.tb1Log1.Name = "tb1Log1";
             this.tb1Log1.ReadOnly = true;
             this.tb1Log1.Size = new System.Drawing.Size(110, 20);
             this.tb1Log1.TabIndex = 2;
+            this.tb1Log1.TabStop = false;
             this.tb1Log1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label11
@@ -1089,22 +1097,22 @@
             // 
             // tb5Log1
             // 
-            this.tb5Log1.Enabled = false;
             this.tb5Log1.Location = new System.Drawing.Point(127, 211);
             this.tb5Log1.Name = "tb5Log1";
             this.tb5Log1.ReadOnly = true;
             this.tb5Log1.Size = new System.Drawing.Size(110, 20);
             this.tb5Log1.TabIndex = 10;
+            this.tb5Log1.TabStop = false;
             this.tb5Log1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tb2Log1
             // 
-            this.tb2Log1.Enabled = false;
             this.tb2Log1.Location = new System.Drawing.Point(127, 151);
             this.tb2Log1.Name = "tb2Log1";
             this.tb2Log1.ReadOnly = true;
             this.tb2Log1.Size = new System.Drawing.Size(110, 20);
             this.tb2Log1.TabIndex = 4;
+            this.tb2Log1.TabStop = false;
             this.tb2Log1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label10
@@ -1127,12 +1135,12 @@
             // 
             // tb4Log1
             // 
-            this.tb4Log1.Enabled = false;
             this.tb4Log1.Location = new System.Drawing.Point(127, 191);
             this.tb4Log1.Name = "tb4Log1";
             this.tb4Log1.ReadOnly = true;
             this.tb4Log1.Size = new System.Drawing.Size(110, 20);
             this.tb4Log1.TabIndex = 8;
+            this.tb4Log1.TabStop = false;
             this.tb4Log1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label9
@@ -1297,10 +1305,10 @@
             // label63
             // 
             this.label63.AutoSize = true;
-            this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label63.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label63.Location = new System.Drawing.Point(267, 13);
             this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(299, 29);
+            this.label63.Size = new System.Drawing.Size(325, 28);
             this.label63.TabIndex = 127;
             this.label63.Text = "Statistics Monthly Log Data";
             // 
@@ -1315,72 +1323,72 @@
             // 
             // month12R3
             // 
-            this.month12R3.Enabled = false;
             this.month12R3.Location = new System.Drawing.Point(575, 305);
             this.month12R3.Name = "month12R3";
             this.month12R3.ReadOnly = true;
             this.month12R3.Size = new System.Drawing.Size(63, 20);
             this.month12R3.TabIndex = 120;
+            this.month12R3.TabStop = false;
             this.month12R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month12R7
             // 
-            this.month12R7.Enabled = false;
             this.month12R7.Location = new System.Drawing.Point(575, 385);
             this.month12R7.Name = "month12R7";
             this.month12R7.ReadOnly = true;
             this.month12R7.Size = new System.Drawing.Size(63, 20);
             this.month12R7.TabIndex = 124;
+            this.month12R7.TabStop = false;
             this.month12R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month12R6
             // 
-            this.month12R6.Enabled = false;
             this.month12R6.Location = new System.Drawing.Point(575, 365);
             this.month12R6.Name = "month12R6";
             this.month12R6.ReadOnly = true;
             this.month12R6.Size = new System.Drawing.Size(63, 20);
             this.month12R6.TabIndex = 123;
+            this.month12R6.TabStop = false;
             this.month12R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month12R1
             // 
-            this.month12R1.Enabled = false;
             this.month12R1.Location = new System.Drawing.Point(575, 265);
             this.month12R1.Name = "month12R1";
             this.month12R1.ReadOnly = true;
             this.month12R1.Size = new System.Drawing.Size(63, 20);
             this.month12R1.TabIndex = 118;
+            this.month12R1.TabStop = false;
             this.month12R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month12R5
             // 
-            this.month12R5.Enabled = false;
             this.month12R5.Location = new System.Drawing.Point(575, 345);
             this.month12R5.Name = "month12R5";
             this.month12R5.ReadOnly = true;
             this.month12R5.Size = new System.Drawing.Size(63, 20);
             this.month12R5.TabIndex = 122;
+            this.month12R5.TabStop = false;
             this.month12R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month12R2
             // 
-            this.month12R2.Enabled = false;
             this.month12R2.Location = new System.Drawing.Point(575, 285);
             this.month12R2.Name = "month12R2";
             this.month12R2.ReadOnly = true;
             this.month12R2.Size = new System.Drawing.Size(63, 20);
             this.month12R2.TabIndex = 119;
+            this.month12R2.TabStop = false;
             this.month12R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month12R4
             // 
-            this.month12R4.Enabled = false;
             this.month12R4.Location = new System.Drawing.Point(575, 325);
             this.month12R4.Name = "month12R4";
             this.month12R4.ReadOnly = true;
             this.month12R4.Size = new System.Drawing.Size(63, 20);
             this.month12R4.TabIndex = 121;
+            this.month12R4.TabStop = false;
             this.month12R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label46
@@ -1394,72 +1402,72 @@
             // 
             // month11R3
             // 
-            this.month11R3.Enabled = false;
             this.month11R3.Location = new System.Drawing.Point(506, 305);
             this.month11R3.Name = "month11R3";
             this.month11R3.ReadOnly = true;
             this.month11R3.Size = new System.Drawing.Size(63, 20);
             this.month11R3.TabIndex = 112;
+            this.month11R3.TabStop = false;
             this.month11R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month11R7
             // 
-            this.month11R7.Enabled = false;
             this.month11R7.Location = new System.Drawing.Point(506, 385);
             this.month11R7.Name = "month11R7";
             this.month11R7.ReadOnly = true;
             this.month11R7.Size = new System.Drawing.Size(63, 20);
             this.month11R7.TabIndex = 116;
+            this.month11R7.TabStop = false;
             this.month11R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month11R6
             // 
-            this.month11R6.Enabled = false;
             this.month11R6.Location = new System.Drawing.Point(506, 365);
             this.month11R6.Name = "month11R6";
             this.month11R6.ReadOnly = true;
             this.month11R6.Size = new System.Drawing.Size(63, 20);
             this.month11R6.TabIndex = 115;
+            this.month11R6.TabStop = false;
             this.month11R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month11R1
             // 
-            this.month11R1.Enabled = false;
             this.month11R1.Location = new System.Drawing.Point(506, 265);
             this.month11R1.Name = "month11R1";
             this.month11R1.ReadOnly = true;
             this.month11R1.Size = new System.Drawing.Size(63, 20);
             this.month11R1.TabIndex = 110;
+            this.month11R1.TabStop = false;
             this.month11R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month11R5
             // 
-            this.month11R5.Enabled = false;
             this.month11R5.Location = new System.Drawing.Point(506, 345);
             this.month11R5.Name = "month11R5";
             this.month11R5.ReadOnly = true;
             this.month11R5.Size = new System.Drawing.Size(63, 20);
             this.month11R5.TabIndex = 114;
+            this.month11R5.TabStop = false;
             this.month11R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month11R2
             // 
-            this.month11R2.Enabled = false;
             this.month11R2.Location = new System.Drawing.Point(506, 285);
             this.month11R2.Name = "month11R2";
             this.month11R2.ReadOnly = true;
             this.month11R2.Size = new System.Drawing.Size(63, 20);
             this.month11R2.TabIndex = 111;
+            this.month11R2.TabStop = false;
             this.month11R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month11R4
             // 
-            this.month11R4.Enabled = false;
             this.month11R4.Location = new System.Drawing.Point(506, 325);
             this.month11R4.Name = "month11R4";
             this.month11R4.ReadOnly = true;
             this.month11R4.Size = new System.Drawing.Size(63, 20);
             this.month11R4.TabIndex = 113;
+            this.month11R4.TabStop = false;
             this.month11R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label47
@@ -1473,72 +1481,72 @@
             // 
             // month10R3
             // 
-            this.month10R3.Enabled = false;
             this.month10R3.Location = new System.Drawing.Point(437, 305);
             this.month10R3.Name = "month10R3";
             this.month10R3.ReadOnly = true;
             this.month10R3.Size = new System.Drawing.Size(63, 20);
             this.month10R3.TabIndex = 104;
+            this.month10R3.TabStop = false;
             this.month10R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month10R7
             // 
-            this.month10R7.Enabled = false;
             this.month10R7.Location = new System.Drawing.Point(437, 385);
             this.month10R7.Name = "month10R7";
             this.month10R7.ReadOnly = true;
             this.month10R7.Size = new System.Drawing.Size(63, 20);
             this.month10R7.TabIndex = 108;
+            this.month10R7.TabStop = false;
             this.month10R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month10R6
             // 
-            this.month10R6.Enabled = false;
             this.month10R6.Location = new System.Drawing.Point(437, 365);
             this.month10R6.Name = "month10R6";
             this.month10R6.ReadOnly = true;
             this.month10R6.Size = new System.Drawing.Size(63, 20);
             this.month10R6.TabIndex = 107;
+            this.month10R6.TabStop = false;
             this.month10R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month10R1
             // 
-            this.month10R1.Enabled = false;
             this.month10R1.Location = new System.Drawing.Point(437, 265);
             this.month10R1.Name = "month10R1";
             this.month10R1.ReadOnly = true;
             this.month10R1.Size = new System.Drawing.Size(63, 20);
             this.month10R1.TabIndex = 102;
+            this.month10R1.TabStop = false;
             this.month10R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month10R5
             // 
-            this.month10R5.Enabled = false;
             this.month10R5.Location = new System.Drawing.Point(437, 345);
             this.month10R5.Name = "month10R5";
             this.month10R5.ReadOnly = true;
             this.month10R5.Size = new System.Drawing.Size(63, 20);
             this.month10R5.TabIndex = 106;
+            this.month10R5.TabStop = false;
             this.month10R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month10R2
             // 
-            this.month10R2.Enabled = false;
             this.month10R2.Location = new System.Drawing.Point(437, 285);
             this.month10R2.Name = "month10R2";
             this.month10R2.ReadOnly = true;
             this.month10R2.Size = new System.Drawing.Size(63, 20);
             this.month10R2.TabIndex = 103;
+            this.month10R2.TabStop = false;
             this.month10R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month10R4
             // 
-            this.month10R4.Enabled = false;
             this.month10R4.Location = new System.Drawing.Point(437, 325);
             this.month10R4.Name = "month10R4";
             this.month10R4.ReadOnly = true;
             this.month10R4.Size = new System.Drawing.Size(63, 20);
             this.month10R4.TabIndex = 105;
+            this.month10R4.TabStop = false;
             this.month10R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label48
@@ -1552,72 +1560,72 @@
             // 
             // month9R3
             // 
-            this.month9R3.Enabled = false;
             this.month9R3.Location = new System.Drawing.Point(368, 305);
             this.month9R3.Name = "month9R3";
             this.month9R3.ReadOnly = true;
             this.month9R3.Size = new System.Drawing.Size(63, 20);
             this.month9R3.TabIndex = 96;
+            this.month9R3.TabStop = false;
             this.month9R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month9R7
             // 
-            this.month9R7.Enabled = false;
             this.month9R7.Location = new System.Drawing.Point(368, 385);
             this.month9R7.Name = "month9R7";
             this.month9R7.ReadOnly = true;
             this.month9R7.Size = new System.Drawing.Size(63, 20);
             this.month9R7.TabIndex = 100;
+            this.month9R7.TabStop = false;
             this.month9R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month9R6
             // 
-            this.month9R6.Enabled = false;
             this.month9R6.Location = new System.Drawing.Point(368, 365);
             this.month9R6.Name = "month9R6";
             this.month9R6.ReadOnly = true;
             this.month9R6.Size = new System.Drawing.Size(63, 20);
             this.month9R6.TabIndex = 99;
+            this.month9R6.TabStop = false;
             this.month9R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month9R1
             // 
-            this.month9R1.Enabled = false;
             this.month9R1.Location = new System.Drawing.Point(368, 265);
             this.month9R1.Name = "month9R1";
             this.month9R1.ReadOnly = true;
             this.month9R1.Size = new System.Drawing.Size(63, 20);
             this.month9R1.TabIndex = 94;
+            this.month9R1.TabStop = false;
             this.month9R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month9R5
             // 
-            this.month9R5.Enabled = false;
             this.month9R5.Location = new System.Drawing.Point(368, 345);
             this.month9R5.Name = "month9R5";
             this.month9R5.ReadOnly = true;
             this.month9R5.Size = new System.Drawing.Size(63, 20);
             this.month9R5.TabIndex = 98;
+            this.month9R5.TabStop = false;
             this.month9R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month9R2
             // 
-            this.month9R2.Enabled = false;
             this.month9R2.Location = new System.Drawing.Point(368, 285);
             this.month9R2.Name = "month9R2";
             this.month9R2.ReadOnly = true;
             this.month9R2.Size = new System.Drawing.Size(63, 20);
             this.month9R2.TabIndex = 95;
+            this.month9R2.TabStop = false;
             this.month9R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month9R4
             // 
-            this.month9R4.Enabled = false;
             this.month9R4.Location = new System.Drawing.Point(368, 325);
             this.month9R4.Name = "month9R4";
             this.month9R4.ReadOnly = true;
             this.month9R4.Size = new System.Drawing.Size(63, 20);
             this.month9R4.TabIndex = 97;
+            this.month9R4.TabStop = false;
             this.month9R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label49
@@ -1631,72 +1639,72 @@
             // 
             // month8R3
             // 
-            this.month8R3.Enabled = false;
             this.month8R3.Location = new System.Drawing.Point(299, 305);
             this.month8R3.Name = "month8R3";
             this.month8R3.ReadOnly = true;
             this.month8R3.Size = new System.Drawing.Size(63, 20);
             this.month8R3.TabIndex = 88;
+            this.month8R3.TabStop = false;
             this.month8R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month8R7
             // 
-            this.month8R7.Enabled = false;
             this.month8R7.Location = new System.Drawing.Point(299, 385);
             this.month8R7.Name = "month8R7";
             this.month8R7.ReadOnly = true;
             this.month8R7.Size = new System.Drawing.Size(63, 20);
             this.month8R7.TabIndex = 92;
+            this.month8R7.TabStop = false;
             this.month8R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month8R6
             // 
-            this.month8R6.Enabled = false;
             this.month8R6.Location = new System.Drawing.Point(299, 365);
             this.month8R6.Name = "month8R6";
             this.month8R6.ReadOnly = true;
             this.month8R6.Size = new System.Drawing.Size(63, 20);
             this.month8R6.TabIndex = 91;
+            this.month8R6.TabStop = false;
             this.month8R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month8R1
             // 
-            this.month8R1.Enabled = false;
             this.month8R1.Location = new System.Drawing.Point(299, 265);
             this.month8R1.Name = "month8R1";
             this.month8R1.ReadOnly = true;
             this.month8R1.Size = new System.Drawing.Size(63, 20);
             this.month8R1.TabIndex = 86;
+            this.month8R1.TabStop = false;
             this.month8R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month8R5
             // 
-            this.month8R5.Enabled = false;
             this.month8R5.Location = new System.Drawing.Point(299, 345);
             this.month8R5.Name = "month8R5";
             this.month8R5.ReadOnly = true;
             this.month8R5.Size = new System.Drawing.Size(63, 20);
             this.month8R5.TabIndex = 90;
+            this.month8R5.TabStop = false;
             this.month8R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month8R2
             // 
-            this.month8R2.Enabled = false;
             this.month8R2.Location = new System.Drawing.Point(299, 285);
             this.month8R2.Name = "month8R2";
             this.month8R2.ReadOnly = true;
             this.month8R2.Size = new System.Drawing.Size(63, 20);
             this.month8R2.TabIndex = 87;
+            this.month8R2.TabStop = false;
             this.month8R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month8R4
             // 
-            this.month8R4.Enabled = false;
             this.month8R4.Location = new System.Drawing.Point(299, 325);
             this.month8R4.Name = "month8R4";
             this.month8R4.ReadOnly = true;
             this.month8R4.Size = new System.Drawing.Size(63, 20);
             this.month8R4.TabIndex = 89;
+            this.month8R4.TabStop = false;
             this.month8R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label50
@@ -1710,22 +1718,22 @@
             // 
             // month7R3
             // 
-            this.month7R3.Enabled = false;
             this.month7R3.Location = new System.Drawing.Point(230, 305);
             this.month7R3.Name = "month7R3";
             this.month7R3.ReadOnly = true;
             this.month7R3.Size = new System.Drawing.Size(63, 20);
             this.month7R3.TabIndex = 76;
+            this.month7R3.TabStop = false;
             this.month7R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month7R7
             // 
-            this.month7R7.Enabled = false;
             this.month7R7.Location = new System.Drawing.Point(230, 385);
             this.month7R7.Name = "month7R7";
             this.month7R7.ReadOnly = true;
             this.month7R7.Size = new System.Drawing.Size(63, 20);
             this.month7R7.TabIndex = 84;
+            this.month7R7.TabStop = false;
             this.month7R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label51
@@ -1748,22 +1756,22 @@
             // 
             // month7R6
             // 
-            this.month7R6.Enabled = false;
             this.month7R6.Location = new System.Drawing.Point(230, 365);
             this.month7R6.Name = "month7R6";
             this.month7R6.ReadOnly = true;
             this.month7R6.Size = new System.Drawing.Size(63, 20);
             this.month7R6.TabIndex = 82;
+            this.month7R6.TabStop = false;
             this.month7R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month7R1
             // 
-            this.month7R1.Enabled = false;
             this.month7R1.Location = new System.Drawing.Point(230, 265);
             this.month7R1.Name = "month7R1";
             this.month7R1.ReadOnly = true;
             this.month7R1.Size = new System.Drawing.Size(63, 20);
             this.month7R1.TabIndex = 72;
+            this.month7R1.TabStop = false;
             this.month7R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label53
@@ -1786,22 +1794,22 @@
             // 
             // month7R5
             // 
-            this.month7R5.Enabled = false;
             this.month7R5.Location = new System.Drawing.Point(230, 345);
             this.month7R5.Name = "month7R5";
             this.month7R5.ReadOnly = true;
             this.month7R5.Size = new System.Drawing.Size(63, 20);
             this.month7R5.TabIndex = 80;
+            this.month7R5.TabStop = false;
             this.month7R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month7R2
             // 
-            this.month7R2.Enabled = false;
             this.month7R2.Location = new System.Drawing.Point(230, 285);
             this.month7R2.Name = "month7R2";
             this.month7R2.ReadOnly = true;
             this.month7R2.Size = new System.Drawing.Size(63, 20);
             this.month7R2.TabIndex = 74;
+            this.month7R2.TabStop = false;
             this.month7R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label55
@@ -1824,12 +1832,12 @@
             // 
             // month7R4
             // 
-            this.month7R4.Enabled = false;
             this.month7R4.Location = new System.Drawing.Point(230, 325);
             this.month7R4.Name = "month7R4";
             this.month7R4.ReadOnly = true;
             this.month7R4.Size = new System.Drawing.Size(63, 20);
             this.month7R4.TabIndex = 78;
+            this.month7R4.TabStop = false;
             this.month7R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label57
@@ -1852,72 +1860,72 @@
             // 
             // month6R3
             // 
-            this.month6R3.Enabled = false;
             this.month6R3.Location = new System.Drawing.Point(575, 128);
             this.month6R3.Name = "month6R3";
             this.month6R3.ReadOnly = true;
             this.month6R3.Size = new System.Drawing.Size(63, 20);
             this.month6R3.TabIndex = 65;
+            this.month6R3.TabStop = false;
             this.month6R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month6R7
             // 
-            this.month6R7.Enabled = false;
             this.month6R7.Location = new System.Drawing.Point(575, 208);
             this.month6R7.Name = "month6R7";
             this.month6R7.ReadOnly = true;
             this.month6R7.Size = new System.Drawing.Size(63, 20);
             this.month6R7.TabIndex = 69;
+            this.month6R7.TabStop = false;
             this.month6R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month6R6
             // 
-            this.month6R6.Enabled = false;
             this.month6R6.Location = new System.Drawing.Point(575, 188);
             this.month6R6.Name = "month6R6";
             this.month6R6.ReadOnly = true;
             this.month6R6.Size = new System.Drawing.Size(63, 20);
             this.month6R6.TabIndex = 68;
+            this.month6R6.TabStop = false;
             this.month6R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month6R1
             // 
-            this.month6R1.Enabled = false;
             this.month6R1.Location = new System.Drawing.Point(575, 88);
             this.month6R1.Name = "month6R1";
             this.month6R1.ReadOnly = true;
             this.month6R1.Size = new System.Drawing.Size(63, 20);
             this.month6R1.TabIndex = 63;
+            this.month6R1.TabStop = false;
             this.month6R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month6R5
             // 
-            this.month6R5.Enabled = false;
             this.month6R5.Location = new System.Drawing.Point(575, 168);
             this.month6R5.Name = "month6R5";
             this.month6R5.ReadOnly = true;
             this.month6R5.Size = new System.Drawing.Size(63, 20);
             this.month6R5.TabIndex = 67;
+            this.month6R5.TabStop = false;
             this.month6R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month6R2
             // 
-            this.month6R2.Enabled = false;
             this.month6R2.Location = new System.Drawing.Point(575, 108);
             this.month6R2.Name = "month6R2";
             this.month6R2.ReadOnly = true;
             this.month6R2.Size = new System.Drawing.Size(63, 20);
             this.month6R2.TabIndex = 64;
+            this.month6R2.TabStop = false;
             this.month6R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month6R4
             // 
-            this.month6R4.Enabled = false;
             this.month6R4.Location = new System.Drawing.Point(575, 148);
             this.month6R4.Name = "month6R4";
             this.month6R4.ReadOnly = true;
             this.month6R4.Size = new System.Drawing.Size(63, 20);
             this.month6R4.TabIndex = 66;
+            this.month6R4.TabStop = false;
             this.month6R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label43
@@ -1931,72 +1939,72 @@
             // 
             // month5R3
             // 
-            this.month5R3.Enabled = false;
             this.month5R3.Location = new System.Drawing.Point(506, 128);
             this.month5R3.Name = "month5R3";
             this.month5R3.ReadOnly = true;
             this.month5R3.Size = new System.Drawing.Size(63, 20);
             this.month5R3.TabIndex = 57;
+            this.month5R3.TabStop = false;
             this.month5R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month5R7
             // 
-            this.month5R7.Enabled = false;
             this.month5R7.Location = new System.Drawing.Point(506, 208);
             this.month5R7.Name = "month5R7";
             this.month5R7.ReadOnly = true;
             this.month5R7.Size = new System.Drawing.Size(63, 20);
             this.month5R7.TabIndex = 61;
+            this.month5R7.TabStop = false;
             this.month5R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month5R6
             // 
-            this.month5R6.Enabled = false;
             this.month5R6.Location = new System.Drawing.Point(506, 188);
             this.month5R6.Name = "month5R6";
             this.month5R6.ReadOnly = true;
             this.month5R6.Size = new System.Drawing.Size(63, 20);
             this.month5R6.TabIndex = 60;
+            this.month5R6.TabStop = false;
             this.month5R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month5R1
             // 
-            this.month5R1.Enabled = false;
             this.month5R1.Location = new System.Drawing.Point(506, 88);
             this.month5R1.Name = "month5R1";
             this.month5R1.ReadOnly = true;
             this.month5R1.Size = new System.Drawing.Size(63, 20);
             this.month5R1.TabIndex = 55;
+            this.month5R1.TabStop = false;
             this.month5R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month5R5
             // 
-            this.month5R5.Enabled = false;
             this.month5R5.Location = new System.Drawing.Point(506, 168);
             this.month5R5.Name = "month5R5";
             this.month5R5.ReadOnly = true;
             this.month5R5.Size = new System.Drawing.Size(63, 20);
             this.month5R5.TabIndex = 59;
+            this.month5R5.TabStop = false;
             this.month5R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month5R2
             // 
-            this.month5R2.Enabled = false;
             this.month5R2.Location = new System.Drawing.Point(506, 108);
             this.month5R2.Name = "month5R2";
             this.month5R2.ReadOnly = true;
             this.month5R2.Size = new System.Drawing.Size(63, 20);
             this.month5R2.TabIndex = 56;
+            this.month5R2.TabStop = false;
             this.month5R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month5R4
             // 
-            this.month5R4.Enabled = false;
             this.month5R4.Location = new System.Drawing.Point(506, 148);
             this.month5R4.Name = "month5R4";
             this.month5R4.ReadOnly = true;
             this.month5R4.Size = new System.Drawing.Size(63, 20);
             this.month5R4.TabIndex = 58;
+            this.month5R4.TabStop = false;
             this.month5R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label42
@@ -2010,72 +2018,72 @@
             // 
             // month4R3
             // 
-            this.month4R3.Enabled = false;
             this.month4R3.Location = new System.Drawing.Point(437, 128);
             this.month4R3.Name = "month4R3";
             this.month4R3.ReadOnly = true;
             this.month4R3.Size = new System.Drawing.Size(63, 20);
             this.month4R3.TabIndex = 49;
+            this.month4R3.TabStop = false;
             this.month4R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month4R7
             // 
-            this.month4R7.Enabled = false;
             this.month4R7.Location = new System.Drawing.Point(437, 208);
             this.month4R7.Name = "month4R7";
             this.month4R7.ReadOnly = true;
             this.month4R7.Size = new System.Drawing.Size(63, 20);
             this.month4R7.TabIndex = 53;
+            this.month4R7.TabStop = false;
             this.month4R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month4R6
             // 
-            this.month4R6.Enabled = false;
             this.month4R6.Location = new System.Drawing.Point(437, 188);
             this.month4R6.Name = "month4R6";
             this.month4R6.ReadOnly = true;
             this.month4R6.Size = new System.Drawing.Size(63, 20);
             this.month4R6.TabIndex = 52;
+            this.month4R6.TabStop = false;
             this.month4R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month4R1
             // 
-            this.month4R1.Enabled = false;
             this.month4R1.Location = new System.Drawing.Point(437, 88);
             this.month4R1.Name = "month4R1";
             this.month4R1.ReadOnly = true;
             this.month4R1.Size = new System.Drawing.Size(63, 20);
             this.month4R1.TabIndex = 47;
+            this.month4R1.TabStop = false;
             this.month4R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month4R5
             // 
-            this.month4R5.Enabled = false;
             this.month4R5.Location = new System.Drawing.Point(437, 168);
             this.month4R5.Name = "month4R5";
             this.month4R5.ReadOnly = true;
             this.month4R5.Size = new System.Drawing.Size(63, 20);
             this.month4R5.TabIndex = 51;
+            this.month4R5.TabStop = false;
             this.month4R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month4R2
             // 
-            this.month4R2.Enabled = false;
             this.month4R2.Location = new System.Drawing.Point(437, 108);
             this.month4R2.Name = "month4R2";
             this.month4R2.ReadOnly = true;
             this.month4R2.Size = new System.Drawing.Size(63, 20);
             this.month4R2.TabIndex = 48;
+            this.month4R2.TabStop = false;
             this.month4R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month4R4
             // 
-            this.month4R4.Enabled = false;
             this.month4R4.Location = new System.Drawing.Point(437, 148);
             this.month4R4.Name = "month4R4";
             this.month4R4.ReadOnly = true;
             this.month4R4.Size = new System.Drawing.Size(63, 20);
             this.month4R4.TabIndex = 50;
+            this.month4R4.TabStop = false;
             this.month4R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label41
@@ -2089,72 +2097,72 @@
             // 
             // month3R3
             // 
-            this.month3R3.Enabled = false;
             this.month3R3.Location = new System.Drawing.Point(368, 128);
             this.month3R3.Name = "month3R3";
             this.month3R3.ReadOnly = true;
             this.month3R3.Size = new System.Drawing.Size(63, 20);
             this.month3R3.TabIndex = 41;
+            this.month3R3.TabStop = false;
             this.month3R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month3R7
             // 
-            this.month3R7.Enabled = false;
             this.month3R7.Location = new System.Drawing.Point(368, 208);
             this.month3R7.Name = "month3R7";
             this.month3R7.ReadOnly = true;
             this.month3R7.Size = new System.Drawing.Size(63, 20);
             this.month3R7.TabIndex = 45;
+            this.month3R7.TabStop = false;
             this.month3R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month3R6
             // 
-            this.month3R6.Enabled = false;
             this.month3R6.Location = new System.Drawing.Point(368, 188);
             this.month3R6.Name = "month3R6";
             this.month3R6.ReadOnly = true;
             this.month3R6.Size = new System.Drawing.Size(63, 20);
             this.month3R6.TabIndex = 44;
+            this.month3R6.TabStop = false;
             this.month3R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month3R1
             // 
-            this.month3R1.Enabled = false;
             this.month3R1.Location = new System.Drawing.Point(368, 88);
             this.month3R1.Name = "month3R1";
             this.month3R1.ReadOnly = true;
             this.month3R1.Size = new System.Drawing.Size(63, 20);
             this.month3R1.TabIndex = 39;
+            this.month3R1.TabStop = false;
             this.month3R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month3R5
             // 
-            this.month3R5.Enabled = false;
             this.month3R5.Location = new System.Drawing.Point(368, 168);
             this.month3R5.Name = "month3R5";
             this.month3R5.ReadOnly = true;
             this.month3R5.Size = new System.Drawing.Size(63, 20);
             this.month3R5.TabIndex = 43;
+            this.month3R5.TabStop = false;
             this.month3R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month3R2
             // 
-            this.month3R2.Enabled = false;
             this.month3R2.Location = new System.Drawing.Point(368, 108);
             this.month3R2.Name = "month3R2";
             this.month3R2.ReadOnly = true;
             this.month3R2.Size = new System.Drawing.Size(63, 20);
             this.month3R2.TabIndex = 40;
+            this.month3R2.TabStop = false;
             this.month3R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month3R4
             // 
-            this.month3R4.Enabled = false;
             this.month3R4.Location = new System.Drawing.Point(368, 148);
             this.month3R4.Name = "month3R4";
             this.month3R4.ReadOnly = true;
             this.month3R4.Size = new System.Drawing.Size(63, 20);
             this.month3R4.TabIndex = 42;
+            this.month3R4.TabStop = false;
             this.month3R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label40
@@ -2168,72 +2176,72 @@
             // 
             // month2R3
             // 
-            this.month2R3.Enabled = false;
             this.month2R3.Location = new System.Drawing.Point(299, 128);
             this.month2R3.Name = "month2R3";
             this.month2R3.ReadOnly = true;
             this.month2R3.Size = new System.Drawing.Size(63, 20);
             this.month2R3.TabIndex = 33;
+            this.month2R3.TabStop = false;
             this.month2R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month2R7
             // 
-            this.month2R7.Enabled = false;
             this.month2R7.Location = new System.Drawing.Point(299, 208);
             this.month2R7.Name = "month2R7";
             this.month2R7.ReadOnly = true;
             this.month2R7.Size = new System.Drawing.Size(63, 20);
             this.month2R7.TabIndex = 37;
+            this.month2R7.TabStop = false;
             this.month2R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month2R6
             // 
-            this.month2R6.Enabled = false;
             this.month2R6.Location = new System.Drawing.Point(299, 188);
             this.month2R6.Name = "month2R6";
             this.month2R6.ReadOnly = true;
             this.month2R6.Size = new System.Drawing.Size(63, 20);
             this.month2R6.TabIndex = 36;
+            this.month2R6.TabStop = false;
             this.month2R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month2R1
             // 
-            this.month2R1.Enabled = false;
             this.month2R1.Location = new System.Drawing.Point(299, 88);
             this.month2R1.Name = "month2R1";
             this.month2R1.ReadOnly = true;
             this.month2R1.Size = new System.Drawing.Size(63, 20);
             this.month2R1.TabIndex = 31;
+            this.month2R1.TabStop = false;
             this.month2R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month2R5
             // 
-            this.month2R5.Enabled = false;
             this.month2R5.Location = new System.Drawing.Point(299, 168);
             this.month2R5.Name = "month2R5";
             this.month2R5.ReadOnly = true;
             this.month2R5.Size = new System.Drawing.Size(63, 20);
             this.month2R5.TabIndex = 35;
+            this.month2R5.TabStop = false;
             this.month2R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month2R2
             // 
-            this.month2R2.Enabled = false;
             this.month2R2.Location = new System.Drawing.Point(299, 108);
             this.month2R2.Name = "month2R2";
             this.month2R2.ReadOnly = true;
             this.month2R2.Size = new System.Drawing.Size(63, 20);
             this.month2R2.TabIndex = 32;
+            this.month2R2.TabStop = false;
             this.month2R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month2R4
             // 
-            this.month2R4.Enabled = false;
             this.month2R4.Location = new System.Drawing.Point(299, 148);
             this.month2R4.Name = "month2R4";
             this.month2R4.ReadOnly = true;
             this.month2R4.Size = new System.Drawing.Size(63, 20);
             this.month2R4.TabIndex = 34;
+            this.month2R4.TabStop = false;
             this.month2R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label39
@@ -2247,22 +2255,22 @@
             // 
             // month1R3
             // 
-            this.month1R3.Enabled = false;
             this.month1R3.Location = new System.Drawing.Point(230, 128);
             this.month1R3.Name = "month1R3";
             this.month1R3.ReadOnly = true;
             this.month1R3.Size = new System.Drawing.Size(63, 20);
             this.month1R3.TabIndex = 21;
+            this.month1R3.TabStop = false;
             this.month1R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month1R7
             // 
-            this.month1R7.Enabled = false;
             this.month1R7.Location = new System.Drawing.Point(230, 208);
             this.month1R7.Name = "month1R7";
             this.month1R7.ReadOnly = true;
             this.month1R7.Size = new System.Drawing.Size(63, 20);
             this.month1R7.TabIndex = 29;
+            this.month1R7.TabStop = false;
             this.month1R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cbStatMonthlyLogYear
@@ -2296,22 +2304,22 @@
             // 
             // month1R6
             // 
-            this.month1R6.Enabled = false;
             this.month1R6.Location = new System.Drawing.Point(230, 188);
             this.month1R6.Name = "month1R6";
             this.month1R6.ReadOnly = true;
             this.month1R6.Size = new System.Drawing.Size(63, 20);
             this.month1R6.TabIndex = 27;
+            this.month1R6.TabStop = false;
             this.month1R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month1R1
             // 
-            this.month1R1.Enabled = false;
             this.month1R1.Location = new System.Drawing.Point(230, 88);
             this.month1R1.Name = "month1R1";
             this.month1R1.ReadOnly = true;
             this.month1R1.Size = new System.Drawing.Size(63, 20);
             this.month1R1.TabIndex = 17;
+            this.month1R1.TabStop = false;
             this.month1R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label34
@@ -2334,22 +2342,22 @@
             // 
             // month1R5
             // 
-            this.month1R5.Enabled = false;
             this.month1R5.Location = new System.Drawing.Point(230, 168);
             this.month1R5.Name = "month1R5";
             this.month1R5.ReadOnly = true;
             this.month1R5.Size = new System.Drawing.Size(63, 20);
             this.month1R5.TabIndex = 25;
+            this.month1R5.TabStop = false;
             this.month1R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // month1R2
             // 
-            this.month1R2.Enabled = false;
             this.month1R2.Location = new System.Drawing.Point(230, 108);
             this.month1R2.Name = "month1R2";
             this.month1R2.ReadOnly = true;
             this.month1R2.Size = new System.Drawing.Size(63, 20);
             this.month1R2.TabIndex = 19;
+            this.month1R2.TabStop = false;
             this.month1R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label36
@@ -2372,12 +2380,12 @@
             // 
             // month1R4
             // 
-            this.month1R4.Enabled = false;
             this.month1R4.Location = new System.Drawing.Point(230, 148);
             this.month1R4.Name = "month1R4";
             this.month1R4.ReadOnly = true;
             this.month1R4.Size = new System.Drawing.Size(63, 20);
             this.month1R4.TabIndex = 23;
+            this.month1R4.TabStop = false;
             this.month1R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label38
@@ -2438,10 +2446,10 @@
             // label64
             // 
             this.label64.AutoSize = true;
-            this.label64.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label64.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label64.Location = new System.Drawing.Point(305, 25);
             this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(100, 29);
+            this.label64.Size = new System.Drawing.Size(107, 28);
             this.label64.TabIndex = 64;
             this.label64.Text = "Settings";
             // 
@@ -2774,6 +2782,7 @@
             this.tbMaintID.Name = "tbMaintID";
             this.tbMaintID.Size = new System.Drawing.Size(53, 20);
             this.tbMaintID.TabIndex = 12;
+            this.tbMaintID.TabStop = false;
             this.tbMaintID.Visible = false;
             // 
             // btMaintUpdate
@@ -2884,15 +2893,16 @@
             this.tbBikeMilesTotal.ReadOnly = true;
             this.tbBikeMilesTotal.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMilesTotal.TabIndex = 20;
+            this.tbBikeMilesTotal.TabStop = false;
             this.tbBikeMilesTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.Location = new System.Drawing.Point(204, 54);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(313, 29);
+            this.label21.Size = new System.Drawing.Size(327, 28);
             this.label21.TabIndex = 19;
             this.label21.Text = "Top 5 Bikes and Total Miles";
             // 
@@ -2925,52 +2935,57 @@
             // 
             // tbBikeMiles5
             // 
-            this.tbBikeMiles5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tbBikeMiles5.BackColor = System.Drawing.Color.Silver;
             this.tbBikeMiles5.Location = new System.Drawing.Point(207, 245);
             this.tbBikeMiles5.Name = "tbBikeMiles5";
             this.tbBikeMiles5.ReadOnly = true;
             this.tbBikeMiles5.Size = new System.Drawing.Size(140, 20);
             this.tbBikeMiles5.TabIndex = 14;
+            this.tbBikeMiles5.TabStop = false;
             this.tbBikeMiles5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMiles4
             // 
-            this.tbBikeMiles4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tbBikeMiles4.BackColor = System.Drawing.Color.Silver;
             this.tbBikeMiles4.Location = new System.Drawing.Point(207, 219);
             this.tbBikeMiles4.Name = "tbBikeMiles4";
             this.tbBikeMiles4.ReadOnly = true;
             this.tbBikeMiles4.Size = new System.Drawing.Size(140, 20);
             this.tbBikeMiles4.TabIndex = 13;
+            this.tbBikeMiles4.TabStop = false;
             this.tbBikeMiles4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMiles3
             // 
-            this.tbBikeMiles3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tbBikeMiles3.BackColor = System.Drawing.Color.Silver;
             this.tbBikeMiles3.Location = new System.Drawing.Point(207, 193);
             this.tbBikeMiles3.Name = "tbBikeMiles3";
             this.tbBikeMiles3.ReadOnly = true;
             this.tbBikeMiles3.Size = new System.Drawing.Size(140, 20);
             this.tbBikeMiles3.TabIndex = 12;
+            this.tbBikeMiles3.TabStop = false;
             this.tbBikeMiles3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMiles2
             // 
-            this.tbBikeMiles2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tbBikeMiles2.BackColor = System.Drawing.Color.Silver;
             this.tbBikeMiles2.Location = new System.Drawing.Point(207, 167);
             this.tbBikeMiles2.Name = "tbBikeMiles2";
             this.tbBikeMiles2.ReadOnly = true;
             this.tbBikeMiles2.Size = new System.Drawing.Size(140, 20);
             this.tbBikeMiles2.TabIndex = 11;
+            this.tbBikeMiles2.TabStop = false;
             this.tbBikeMiles2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMiles1
             // 
-            this.tbBikeMiles1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tbBikeMiles1.BackColor = System.Drawing.Color.Silver;
             this.tbBikeMiles1.Location = new System.Drawing.Point(207, 141);
             this.tbBikeMiles1.Name = "tbBikeMiles1";
             this.tbBikeMiles1.ReadOnly = true;
             this.tbBikeMiles1.Size = new System.Drawing.Size(140, 20);
             this.tbBikeMiles1.TabIndex = 10;
+            this.tbBikeMiles1.TabStop = false;
             this.tbBikeMiles1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMilesTotal5
@@ -2980,6 +2995,7 @@
             this.tbBikeMilesTotal5.ReadOnly = true;
             this.tbBikeMilesTotal5.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMilesTotal5.TabIndex = 9;
+            this.tbBikeMilesTotal5.TabStop = false;
             this.tbBikeMilesTotal5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMilesTotal4
@@ -2989,6 +3005,7 @@
             this.tbBikeMilesTotal4.ReadOnly = true;
             this.tbBikeMilesTotal4.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMilesTotal4.TabIndex = 8;
+            this.tbBikeMilesTotal4.TabStop = false;
             this.tbBikeMilesTotal4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMilesTotal3
@@ -2998,6 +3015,7 @@
             this.tbBikeMilesTotal3.ReadOnly = true;
             this.tbBikeMilesTotal3.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMilesTotal3.TabIndex = 7;
+            this.tbBikeMilesTotal3.TabStop = false;
             this.tbBikeMilesTotal3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMilesTotal2
@@ -3007,6 +3025,7 @@
             this.tbBikeMilesTotal2.ReadOnly = true;
             this.tbBikeMilesTotal2.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMilesTotal2.TabIndex = 6;
+            this.tbBikeMilesTotal2.TabStop = false;
             this.tbBikeMilesTotal2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbBikeMilesTotal1
@@ -3016,6 +3035,7 @@
             this.tbBikeMilesTotal1.ReadOnly = true;
             this.tbBikeMilesTotal1.Size = new System.Drawing.Size(100, 20);
             this.tbBikeMilesTotal1.TabIndex = 5;
+            this.tbBikeMilesTotal1.TabStop = false;
             this.tbBikeMilesTotal1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tabPage3
@@ -3043,28 +3063,30 @@
             // label29
             // 
             this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.Location = new System.Drawing.Point(308, 241);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(86, 13);
+            this.label29.Size = new System.Drawing.Size(95, 12);
             this.label29.TabIndex = 2;
             this.label29.Text = "By: John T Flynn";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(308, 207);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 13);
+            this.label2.Size = new System.Drawing.Size(87, 12);
             this.label2.TabIndex = 1;
             this.label2.Text = "Version:  xxxxx";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(228, 164);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(264, 29);
+            this.label1.Size = new System.Drawing.Size(287, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 

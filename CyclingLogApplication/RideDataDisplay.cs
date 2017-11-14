@@ -255,14 +255,14 @@ namespace CyclingLogApplication
             MainForm mainForm = new MainForm("");
             cbFilterValue.Items.Clear();
 
-            //NONE
-            //Bike
-            //Location
-            //Longest
-            //RideType
-            //Route
-            //Temperature
-            //WeekNumber
+            //NONE          - 0
+            //Bike          - 1
+            //Location      - 2
+            //Longest       - 3
+            //RideType      - 4
+            //Route         - 5
+            //Temperature   - 6
+            //WeekNumber    - 7
 
             if (cbFilterField.SelectedIndex == 0)
             {
