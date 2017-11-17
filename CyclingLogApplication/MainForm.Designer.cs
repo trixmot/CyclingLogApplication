@@ -345,7 +345,7 @@
             // 
             // button5
             // 
-            this.button5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Location = new System.Drawing.Point(299, 147);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(130, 35);
@@ -356,7 +356,7 @@
             // 
             // button7
             // 
-            this.button7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.Location = new System.Drawing.Point(299, 102);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(130, 35);
@@ -407,7 +407,7 @@
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(299, 196);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 35);
@@ -428,7 +428,7 @@
             // 
             // btDeleteAllData
             // 
-            this.btDeleteAllData.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btDeleteAllData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDeleteAllData.Location = new System.Drawing.Point(299, 247);
             this.btDeleteAllData.Name = "btDeleteAllData";
             this.btDeleteAllData.Size = new System.Drawing.Size(130, 35);
@@ -449,7 +449,7 @@
             // 
             // button11
             // 
-            this.button11.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button11.Location = new System.Drawing.Point(299, 299);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(130, 35);

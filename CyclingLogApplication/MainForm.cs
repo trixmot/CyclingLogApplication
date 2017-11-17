@@ -560,60 +560,71 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to delete the Log and all its data?", "Delete Log", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                List<string> tempList = new List<string>();
+                //List<string> tempList = new List<string>();
 
-                int selectedIndex = cbLogYearConfig.SelectedIndex;
-                int statIndex1 = cbLogYear1.SelectedIndex;
-                int statIndex2 = cbLogYear1.SelectedIndex;
-                int statIndex3 = cbLogYear1.SelectedIndex;
-                int statIndex4 = cbLogYear1.SelectedIndex;
-                int statIndex5 = cbLogYear1.SelectedIndex;
+                //int selectedIndex = cbLogYearConfig.SelectedIndex;
+                //int statIndex1 = cbLogYear1.SelectedIndex;
+                //int statIndex2 = cbLogYear1.SelectedIndex;
+                //int statIndex3 = cbLogYear1.SelectedIndex;
+                //int statIndex4 = cbLogYear1.SelectedIndex;
+                //int statIndex5 = cbLogYear1.SelectedIndex;
 
-                cbLogYearConfig.DataSource = cbLogYearConfig.Items;
+                //TODO: 
+                cbLogYearConfig.Items.Remove(cbLogYearConfig.SelectedItem);
+                rideDataEntryForm.cbLogYearDataEntry.Items.Remove(cbLogYearConfig.SelectedItem);
+                rideDataDisplayForm.cbLogYearFilter.Items.Remove(cbLogYearConfig.SelectedItem);
+                chartForm.cbLogYearChart.Items.Remove(cbLogYearConfig.SelectedItem);
+                cbLogYear1.Items.Remove(cbLogYearConfig.SelectedItem);
+                cbLogYear2.Items.Remove(cbLogYearConfig.SelectedItem);
+                cbLogYear3.Items.Remove(cbLogYearConfig.SelectedItem);
+                cbLogYear4.Items.Remove(cbLogYearConfig.SelectedItem);
+                cbLogYear5.Items.Remove(cbLogYearConfig.SelectedItem);
 
-                for (int i = 0; i < cbLogYearConfig.Items.Count; i++)
-                {
-                    tempList.Add(cbLogYearConfig.Items[i].ToString());
-                }
+                //cbLogYearConfig.DataSource = cbLogYearConfig.Items;
 
-                cbLogYearConfig.DataSource = null;
-                cbLogYearConfig.Items.Clear();
-                rideDataEntryForm.cbLogYearDataEntry.DataSource = null;
-                rideDataEntryForm.cbLogYearDataEntry.Items.Clear();
-                rideDataDisplayForm.cbLogYearFilter.DataSource = null;
-                rideDataDisplayForm.cbLogYearFilter.Items.Clear();
-                chartForm.cbLogYearChart.Items.Clear();
-                chartForm.cbLogYearChart.DataSource = null;
-                cbLogYear1.DataSource = null;
-                cbLogYear1.Items.Clear();
-                cbLogYear2.DataSource = null;
-                cbLogYear2.Items.Clear();
-                cbLogYear3.DataSource = null;
-                cbLogYear3.Items.Clear();
-                cbLogYear4.DataSource = null;
-                cbLogYear4.Items.Clear();
-                cbLogYear5.DataSource = null;
-                cbLogYear5.Items.Clear();
+                //for (int i = 0; i < cbLogYearConfig.Items.Count; i++)
+                //{
+                //    tempList.Add(cbLogYearConfig.Items[i].ToString());
+                //}
 
-                //Set first option of 'None':
-                cbLogYear1.Items.Add("--None--");
-                cbLogYear2.Items.Add("--None--");
-                cbLogYear3.Items.Add("--None--");
-                cbLogYear4.Items.Add("--None--");
-                cbLogYear5.Items.Add("--None--");
+                //cbLogYearConfig.DataSource = null;
+                //cbLogYearConfig.Items.Clear();
+                //rideDataEntryForm.cbLogYearDataEntry.DataSource = null;
+                //rideDataEntryForm.cbLogYearDataEntry.Items.Clear();
+                //rideDataDisplayForm.cbLogYearFilter.DataSource = null;
+                //rideDataDisplayForm.cbLogYearFilter.Items.Clear();
+                //chartForm.cbLogYearChart.Items.Clear();
+                //chartForm.cbLogYearChart.DataSource = null;
+                //cbLogYear1.DataSource = null;
+                //cbLogYear1.Items.Clear();
+                //cbLogYear2.DataSource = null;
+                //cbLogYear2.Items.Clear();
+                //cbLogYear3.DataSource = null;
+                //cbLogYear3.Items.Clear();
+                //cbLogYear4.DataSource = null;
+                //cbLogYear4.Items.Clear();
+                //cbLogYear5.DataSource = null;
+                //cbLogYear5.Items.Clear();
 
-                for (int i = 0; i < tempList.Count; i++)
-                {
-                    cbLogYearConfig.Items.Add(tempList[i]);
-                    rideDataEntryForm.cbLogYearDataEntry.Items.Add(tempList[i]);
-                    rideDataDisplayForm.cbLogYearFilter.Items.Add(tempList[i]);
-                    chartForm.cbLogYearChart.Items.Add(tempList[i]);
-                    cbLogYear1.Items.Add(tempList[i]);
-                    cbLogYear2.Items.Add(tempList[i]);
-                    cbLogYear3.Items.Add(tempList[i]);
-                    cbLogYear4.Items.Add(tempList[i]);
-                    cbLogYear5.Items.Add(tempList[i]);
-                }
+                ////Set first option of 'None':
+                //cbLogYear1.Items.Add("--None--");
+                //cbLogYear2.Items.Add("--None--");
+                //cbLogYear3.Items.Add("--None--");
+                //cbLogYear4.Items.Add("--None--");
+                //cbLogYear5.Items.Add("--None--");
+
+                //for (int i = 0; i < tempList.Count; i++)
+                //{
+                //    cbLogYearConfig.Items.Add(tempList[i]);
+                //    rideDataEntryForm.cbLogYearDataEntry.Items.Add(tempList[i]);
+                //    rideDataDisplayForm.cbLogYearFilter.Items.Add(tempList[i]);
+                //    chartForm.cbLogYearChart.Items.Add(tempList[i]);
+                //    cbLogYear1.Items.Add(tempList[i]);
+                //    cbLogYear2.Items.Add(tempList[i]);
+                //    cbLogYear3.Items.Add(tempList[i]);
+                //    cbLogYear4.Items.Add(tempList[i]);
+                //    cbLogYear5.Items.Add(tempList[i]);
+                //}
 
                 int logYearIndex = getLogYearIndex(cbLogYearConfig.SelectedItem.ToString());
 
@@ -837,30 +848,6 @@ namespace CyclingLogApplication
                 rideDataEntryForm.RemoveRouteDataEntry(tbRouteConfig.Text);
                 chartForm.cbRoutesChart.Items.Remove(tbRouteConfig.Text);
 
-                List<string> tempList = new List<string>();
-
-                int selectedIndex = cbRouteConfig.SelectedIndex;
-                cbRouteConfig.DataSource = cbRouteConfig.Items;
-
-                for (int i = 0; i < cbRouteConfig.Items.Count; i++)
-                {
-                    tempList.Add(cbRouteConfig.Items[i].ToString());
-                }
-
-                cbRouteConfig.DataSource = null;
-                cbRouteConfig.Items.Clear();
-                rideDataEntryForm.cbRouteDataEntry.DataSource = null;
-                rideDataEntryForm.cbRouteDataEntry.Items.Clear();
-                chartForm.cbRoutesChart.Items.Clear();
-                chartForm.cbRoutesChart.DataSource = null;
-
-                for (int i = 0; i < tempList.Count; i++)
-                {
-                    cbRouteConfig.Items.Add(tempList[i]);
-                    rideDataEntryForm.cbRouteDataEntry.Items.Add(tempList[i]);
-                    chartForm.cbRoutesChart.Items.Add(tempList[i]);
-                }
-
                 //Remove the Route from the database table:
                 List<object> objectValues = new List<object>();
                 objectValues.Add(deleteValue);
@@ -922,46 +909,46 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to delete the bike option?", "Delete Bike Option", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                string deleteValue = cbBikeConfig.SelectedItem.ToString();
+                //string deleteValue = cbBikeConfig.SelectedItem.ToString();
 
                 //Note: only removing value as an option, all records using this value are unchanged:
                 cbBikeConfig.Items.Remove(cbBikeConfig.SelectedItem);
                 cbBikeMaint.Items.Remove(cbBikeConfig.SelectedItem);
                 rideDataEntryForm.RemoveBikeDataEntry(tbBikeConfig.Text);
 
-                List<string> tempList = new List<string>();
+                //List<string> tempList = new List<string>();
 
-                int selectedIndex = cbBikeConfig.SelectedIndex;
-                cbBikeConfig.DataSource = cbBikeConfig.Items;
+                //int selectedIndex = cbBikeConfig.SelectedIndex;
+                //cbBikeConfig.DataSource = cbBikeConfig.Items;
 
-                for (int i = 0; i < cbBikeConfig.Items.Count; i++)
-                {
-                    tempList.Add(cbBikeConfig.Items[i].ToString());
-                }
+                //for (int i = 0; i < cbBikeConfig.Items.Count; i++)
+                //{
+                //    tempList.Add(cbBikeConfig.Items[i].ToString());
+                //}
 
-                cbBikeConfig.DataSource = null;
-                cbBikeConfig.Items.Clear();
+                //cbBikeConfig.DataSource = null;
+                //cbBikeConfig.Items.Clear();
 
-                cbBikeMaint.DataSource = null;
-                cbBikeMaint.Items.Clear();
+                //cbBikeMaint.DataSource = null;
+                //cbBikeMaint.Items.Clear();
 
-                rideDataEntryForm.cbBikeDataEntrySelection.DataSource = null;
-                rideDataEntryForm.cbBikeDataEntrySelection.Items.Clear();
+                //rideDataEntryForm.cbBikeDataEntrySelection.DataSource = null;
+                //rideDataEntryForm.cbBikeDataEntrySelection.Items.Clear();
 
                 //Clear entires:
                 tbConfigMilesNotInLog.Text = "0";
                 tbBikeConfig.Text = "";
 
-                for (int i = 0; i < tempList.Count; i++)
-                {
-                    cbBikeConfig.Items.Add(tempList[i]);
-                    cbBikeMaint.Items.Add(tempList[i]);
-                    rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(tempList[i]);
-                }
+                //for (int i = 0; i < tempList.Count; i++)
+                //{
+                //    cbBikeConfig.Items.Add(tempList[i]);
+                //    cbBikeMaint.Items.Add(tempList[i]);
+                //    rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(tempList[i]);
+                //}
 
                 //Remove the Bike from the database table:
                 List<object> objectValues = new List<object>();
-                objectValues.Add(deleteValue);
+                objectValues.Add(cbBikeConfig.SelectedItem.ToString());
 
                 try
                 {
