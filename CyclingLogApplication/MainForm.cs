@@ -909,12 +909,12 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to delete the bike option?", "Delete Bike Option", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                //string deleteValue = cbBikeConfig.SelectedItem.ToString();
+                string deleteValue = cbBikeConfig.SelectedItem.ToString();
 
                 //Note: only removing value as an option, all records using this value are unchanged:
                 cbBikeConfig.Items.Remove(cbBikeConfig.SelectedItem);
                 cbBikeMaint.Items.Remove(cbBikeConfig.SelectedItem);
-                rideDataEntryForm.RemoveBikeDataEntry(tbBikeConfig.Text);
+                rideDataEntryForm.RemoveBikeDataEntry(deleteValue);
 
                 //List<string> tempList = new List<string>();
 
@@ -948,7 +948,7 @@ namespace CyclingLogApplication
 
                 //Remove the Bike from the database table:
                 List<object> objectValues = new List<object>();
-                objectValues.Add(cbBikeConfig.SelectedItem.ToString());
+                objectValues.Add(deleteValue);
 
                 try
                 {
@@ -3303,15 +3303,14 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
+        //=============================================================================
+        // Start Monthly Statistics Section
+        //=============================================================================
+
         private void MonthlyStatistics_Click(object sender, EventArgs e)
         {
             runMonthlyStatistics();
         }
 
-        
-
-        //=============================================================================
-        // Start Monthly Statistics Section
-        //=============================================================================
     }
 }
