@@ -310,6 +310,9 @@ namespace CyclingLogApplication
 
         private void submitData(object sender, EventArgs e)
         {
+            lbRideDataEntryError.Text = "";
+            lbRideDataEntryError.Hide();
+
             RideInformationChange("Add", "Ride_Information_Add");
         }
 
@@ -707,6 +710,9 @@ namespace CyclingLogApplication
             string[] tempSplitList = new string[16];
             string[] summary = new string[16];
             string tempStr = "";
+
+            lbRideDataEntryError.Text = "";
+            lbRideDataEntryError.Hide();
 
             // Only the Summary line is required:
             try
