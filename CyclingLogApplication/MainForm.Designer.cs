@@ -2442,6 +2442,7 @@
             this.groupBox2.Size = new System.Drawing.Size(720, 385);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // label64
             // 
@@ -2458,9 +2459,9 @@
             this.label31.AutoSize = true;
             this.label31.Location = new System.Drawing.Point(113, 172);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(97, 13);
+            this.label31.Size = new System.Drawing.Size(83, 13);
             this.label31.TabIndex = 24;
-            this.label31.Text = "Log Year Selection";
+            this.label31.Text = "Year for the Log";
             // 
             // cbLogYear
             // 
@@ -2527,15 +2528,15 @@
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(113, 73);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(99, 13);
+            this.label24.Size = new System.Drawing.Size(81, 13);
             this.label24.TabIndex = 18;
-            this.label24.Text = "Log Entry Selection";
+            this.label24.Text = "Log Entry Label";
             // 
             // tbConfigMilesNotInLog
             // 
             this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(486, 191);
             this.tbConfigMilesNotInLog.Name = "tbConfigMilesNotInLog";
-            this.tbConfigMilesNotInLog.Size = new System.Drawing.Size(121, 20);
+            this.tbConfigMilesNotInLog.Size = new System.Drawing.Size(141, 20);
             this.tbConfigMilesNotInLog.TabIndex = 17;
             this.tbConfigMilesNotInLog.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -2582,7 +2583,7 @@
             // 
             this.tbBikeConfig.Location = new System.Drawing.Point(486, 138);
             this.tbBikeConfig.Name = "tbBikeConfig";
-            this.tbBikeConfig.Size = new System.Drawing.Size(121, 20);
+            this.tbBikeConfig.Size = new System.Drawing.Size(141, 20);
             this.tbBikeConfig.TabIndex = 11;
             // 
             // btRemoveBikeConfig
@@ -2601,7 +2602,7 @@
             this.cbBikeConfig.FormattingEnabled = true;
             this.cbBikeConfig.Location = new System.Drawing.Point(486, 89);
             this.cbBikeConfig.Name = "cbBikeConfig";
-            this.cbBikeConfig.Size = new System.Drawing.Size(121, 21);
+            this.cbBikeConfig.Size = new System.Drawing.Size(141, 21);
             this.cbBikeConfig.TabIndex = 10;
             this.cbBikeConfig.SelectedIndexChanged += new System.EventHandler(this.cbBikeConfig_SelectedIndexChanged);
             // 
@@ -2666,9 +2667,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(113, 120);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 13);
+            this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Add or Update Log Years";
+            this.label3.Text = "Add or Update Log";
             // 
             // tabPage5
             // 

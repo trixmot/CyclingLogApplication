@@ -22,7 +22,7 @@ namespace CyclingLogApplication
         RideDataDisplay rideDataDisplayForm;
         ChartForm chartForm;
 
-        private static string logVersion = "0.1.1";
+        private static string logVersion = "0.1.2";
         private static int logLevel = 0;
         private static string cbStatistic1 = "-1";
         private static string cbStatistic2 = "-1";
@@ -2138,15 +2138,16 @@ namespace CyclingLogApplication
             int statIndex4 = cbLogYear4.SelectedIndex;
             int statIndex5 = cbLogYear5.SelectedIndex;
 
-            cbLogYearConfig.DataSource = cbLogYearConfig.Items;
+            //cbLogYearConfig.DataSource = cbLogYearConfig.Items;
 
             for (int i = 0; i < cbLogYearConfig.Items.Count; i++)
             {
                 tempList.Add(cbLogYearConfig.Items[i].ToString());
             }
 
-            cbLogYearConfig.DataSource = null;
-            cbLogYearConfig.Items.Clear();
+            cbLogYearConfig.Sorted = true;
+            //cbLogYearConfig.DataSource = null;
+            //cbLogYearConfig.Items.Clear();
             rideDataEntryForm.cbLogYearDataEntry.DataSource = null;
             rideDataEntryForm.cbLogYearDataEntry.Items.Clear();
             rideDataDisplayForm.cbLogYearFilter.DataSource = null;
@@ -2175,6 +2176,7 @@ namespace CyclingLogApplication
             {
                 if (selectedIndex == i)
                 {
+                    cbLogYearConfig.Items.Remove(oldValue);
                     cbLogYearConfig.Items.Add(newValue);
                     rideDataEntryForm.cbLogYearDataEntry.Items.Add(newValue);
                     rideDataDisplayForm.cbLogYearFilter.Items.Add(newValue);
@@ -2187,7 +2189,7 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    cbLogYearConfig.Items.Add(tempList[i]);
+                    //cbLogYearConfig.Items.Add(tempList[i]);
                     rideDataEntryForm.cbLogYearDataEntry.Items.Add(tempList[i]);
                     rideDataDisplayForm.cbLogYearFilter.Items.Add(tempList[i]);
                     chartForm.cbLogYearChart.Items.Add(tempList[i]);
@@ -2199,6 +2201,7 @@ namespace CyclingLogApplication
                 }
             }
 
+            cbLogYearConfig.Sorted = true;
             cbLogYearConfig.SelectedIndex = selectedIndex;
             rideDataEntryForm.cbLogYearDataEntry.SelectedIndex = selectedIndex;
             rideDataDisplayForm.cbLogYearFilter.SelectedIndex = selectedIndex;
@@ -2697,15 +2700,16 @@ namespace CyclingLogApplication
             List<string> tempList = new List<string>();
 
             int selectedIndex = cbBikeConfig.SelectedIndex;
-            cbBikeConfig.DataSource = cbBikeConfig.Items;
+            //cbBikeConfig.DataSource = cbBikeConfig.Items;
 
             for (int i = 0; i < cbBikeConfig.Items.Count; i++)
             {
                 tempList.Add(cbBikeConfig.Items[i].ToString());
             }
 
-            cbBikeConfig.DataSource = null;
-            cbBikeConfig.Items.Clear();
+            cbBikeConfig.Sorted = true;
+            //cbBikeConfig.DataSource = null;
+            //cbBikeConfig.Items.Clear();
 
             cbBikeMaint.DataSource = null;
             cbBikeMaint.Items.Clear();
@@ -2717,18 +2721,21 @@ namespace CyclingLogApplication
             {
                 if (selectedIndex == i)
                 {
+                    cbBikeConfig.Items.Remove(oldValue);
                     cbBikeConfig.Items.Add(newValue);
                     cbBikeMaint.Items.Add(newValue);
                     rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(newValue);
                 }
                 else
                 {
-                    cbBikeConfig.Items.Add(tempList[i]);
+                    //cbBikeConfig.Items.Add(tempList[i]);
                     cbBikeMaint.Items.Add(tempList[i]);
                     rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(tempList[i]);
                 }
             }
 
+            cbBikeConfig.Sorted = true;
+            cbBikeConfig.SelectedIndex = selectedIndex;
             //Update value in database:
             SqlDataReader reader = null;
             float returnValue = 0;
@@ -2795,6 +2802,11 @@ namespace CyclingLogApplication
 
         private void cbLogYearConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbLogYearConfig.SelectedItem == null)
+            {
+                return;
+            }
+
             string year = "";
             List<object> objectValues = new List<object>();
             objectValues.Add(cbLogYearConfig.SelectedItem);
@@ -3312,5 +3324,9 @@ namespace CyclingLogApplication
             runMonthlyStatistics();
         }
 
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
