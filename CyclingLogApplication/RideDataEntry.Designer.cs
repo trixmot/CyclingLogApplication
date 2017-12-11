@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtpRideDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.chk1RideDataEntry = new System.Windows.Forms.CheckBox();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.tbRecordID = new System.Windows.Forms.TextBox();
@@ -88,11 +89,10 @@
             this.max_heart_rate = new System.Windows.Forms.TextBox();
             this.avg_heart_rate = new System.Windows.Forms.TextBox();
             this.avg_cadence = new System.Windows.Forms.TextBox();
-            this.nudDistanceRideDataEntry = new System.Windows.Forms.NumericUpDown();
+            this.numDistanceRideDataEntry = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.cbRideTypeDataEntry = new System.Windows.Forms.ComboBox();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
-            this.label24 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).BeginInit();
@@ -100,7 +100,7 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDistanceRideDataEntry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDistanceRideDataEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,6 +153,15 @@
             this.groupBox1.Size = new System.Drawing.Size(490, 165);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(235, 67);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(73, 13);
+            this.label24.TabIndex = 45;
+            this.label24.Text = "Multiple Rides";
             // 
             // chk1RideDataEntry
             // 
@@ -327,7 +336,7 @@
             this.groupBox2.Controls.Add(this.max_heart_rate);
             this.groupBox2.Controls.Add(this.avg_heart_rate);
             this.groupBox2.Controls.Add(this.avg_cadence);
-            this.groupBox2.Controls.Add(this.nudDistanceRideDataEntry);
+            this.groupBox2.Controls.Add(this.numDistanceRideDataEntry);
             this.groupBox2.Controls.Add(this.numericUpDown1);
             this.groupBox2.Controls.Add(this.cbRideTypeDataEntry);
             this.groupBox2.Location = new System.Drawing.Point(18, 183);
@@ -669,12 +678,13 @@
             this.avg_cadence.TabIndex = 7;
             this.avg_cadence.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // nudDistanceRideDataEntry
+            // numDistanceRideDataEntry
             // 
-            this.nudDistanceRideDataEntry.Location = new System.Drawing.Point(76, 74);
-            this.nudDistanceRideDataEntry.Name = "nudDistanceRideDataEntry";
-            this.nudDistanceRideDataEntry.Size = new System.Drawing.Size(126, 20);
-            this.nudDistanceRideDataEntry.TabIndex = 6;
+            this.numDistanceRideDataEntry.DecimalPlaces = 2;
+            this.numDistanceRideDataEntry.Location = new System.Drawing.Point(76, 74);
+            this.numDistanceRideDataEntry.Name = "numDistanceRideDataEntry";
+            this.numDistanceRideDataEntry.Size = new System.Drawing.Size(126, 20);
+            this.numDistanceRideDataEntry.TabIndex = 6;
             // 
             // numericUpDown1
             // 
@@ -700,15 +710,6 @@
             // table_Ride_InformationTableAdapter
             // 
             this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(235, 67);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(73, 13);
-            this.label24.TabIndex = 45;
-            this.label24.Text = "Multiple Rides";
             // 
             // RideDataEntry
             // 
@@ -736,7 +737,7 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDistanceRideDataEntry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDistanceRideDataEntry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
@@ -751,7 +752,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cbRideTypeDataEntry;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown nudDistanceRideDataEntry;
+        private System.Windows.Forms.NumericUpDown numDistanceRideDataEntry;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox total_ascent;
         private System.Windows.Forms.Label label5;

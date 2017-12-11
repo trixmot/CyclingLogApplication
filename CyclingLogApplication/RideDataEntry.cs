@@ -44,11 +44,11 @@ namespace CyclingLogApplication
             numericUpDown1.DecimalPlaces = 2;
             numericUpDown1.Increment = 0.10M;
 
-            nudDistanceRideDataEntry.Value = 0;
-            nudDistanceRideDataEntry.Maximum = 50;
-            nudDistanceRideDataEntry.Minimum = 0;
-            nudDistanceRideDataEntry.DecimalPlaces = 2;
-            nudDistanceRideDataEntry.Increment = 0.01M;
+            numDistanceRideDataEntry.Value = 0;
+            numDistanceRideDataEntry.Maximum = 200;
+            numDistanceRideDataEntry.Minimum = 0;
+            numDistanceRideDataEntry.DecimalPlaces = 2;
+            numDistanceRideDataEntry.Increment = 0.01M;
 
             //tbComments.ScrollBars = ScrollBars.Horizontal;
 
@@ -252,7 +252,7 @@ namespace CyclingLogApplication
 
                                 //Load ride data page:
                                 dtpTimeRideDataEntry.Value = Convert.ToDateTime(movingTime);
-                                nudDistanceRideDataEntry.Value = Convert.ToDecimal(rideDistance);
+                                numDistanceRideDataEntry.Value = Convert.ToDecimal(rideDistance);
                                 numericUpDown1.Value = Convert.ToDecimal(avgSpeed);
                                 cbBikeDataEntrySelection.SelectedIndex = cbBikeDataEntrySelection.Items.IndexOf(bike);
                                 cbRideTypeDataEntry.SelectedIndex = cbRideTypeDataEntry.Items.IndexOf(rideType);
@@ -502,7 +502,7 @@ namespace CyclingLogApplication
 
                 List<object> objectValues = new List<object>();
                 objectValues.Add(dtpTimeRideDataEntry.Value);                           //Moving Time:
-                objectValues.Add(nudDistanceRideDataEntry.Value);                       //Ride Distance:
+                objectValues.Add(numDistanceRideDataEntry.Value);                       //Ride Distance:
                 objectValues.Add(numericUpDown1.Value);                                 //Average Speed:
                 objectValues.Add(cbBikeDataEntrySelection.SelectedItem.ToString());              //Bike:
                 objectValues.Add(cbRideTypeDataEntry.SelectedItem.ToString());          //Ride Type:
@@ -810,7 +810,8 @@ namespace CyclingLogApplication
                     dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Int32.Parse(temp2[0]), Int32.Parse(temp2[1]), Int32.Parse(temp2[2]));                  
                 }
 
-                nudDistanceRideDataEntry.Value = System.Convert.ToDecimal(splitList[3]);                                              //4Ride Distance:
+                numDistanceRideDataEntry.Maximum = (200);
+                numDistanceRideDataEntry.Value = System.Convert.ToDecimal(splitList[3]);                                              //4Ride Distance:
 
                 //NOTE: Need to check if any of the values have double quotes and is so, also need to include the next index since they were split because of the comma ex("1,200"):
                 //==============================================================
@@ -909,14 +910,14 @@ namespace CyclingLogApplication
         private void clearDataEntryFields()
         {
             //Reset and clear values:
-            dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);     //Moving Time:
-            nudDistanceRideDataEntry.Value = 0;                                                                                   //Ride Distance:
+            dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);//Moving Time:
+            numDistanceRideDataEntry.Value = 0;                                                                         //Ride Distance:
             numericUpDown1.Value = 0;                                                                                   //Average Speed:
-            cbBikeDataEntrySelection.SelectedIndex = cbBikeDataEntrySelection.FindStringExact(""); ;                                      //Bike:
-            cbRideTypeDataEntry.SelectedIndex = cbRideTypeDataEntry.FindStringExact(""); ;                                                  //Ride Type:
+            cbBikeDataEntrySelection.SelectedIndex = cbBikeDataEntrySelection.FindStringExact(""); ;                    //Bike:
+            cbRideTypeDataEntry.SelectedIndex = cbRideTypeDataEntry.FindStringExact(""); ;                              //Ride Type:
             numericUpDown4.Value = 0;                                                                                   //Wind:
             numericUpDown3.Value = 0;                                                                                   //Temp:
-            //dtpRideDate.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0); ;   //Date:
+            //dtpRideDate.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0); ;     //Date:
             avg_cadence.Text = "";                                                                                      //Average Cadence:
             avg_heart_rate.Text = "";                                                                                   //Average Heart Rate:
             max_heart_rate.Text = "";                                                                                   //Max Heart Rate:
@@ -927,8 +928,8 @@ namespace CyclingLogApplication
             avg_power.Text = "";                                                                                        //Average Power:
             max_power.Text = "";                                                                                        //Max Power:
             cbRouteDataEntry.SelectedIndex = cbRouteDataEntry.FindStringExact(""); ;                                    //Route:
-            tbComments.Text = "";                                                                                         //Comments:
-            //cbLogYearDataEntry.SelectedIndex = cbLogYearDataEntry.FindStringExact("");                                  //LogYear index:
+            tbComments.Text = "";                                                                                       //Comments:
+            //cbLogYearDataEntry.SelectedIndex = cbLogYearDataEntry.FindStringExact("");                                //LogYear index:
             cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.FindStringExact("");
             cbEffortRideDataEntry.SelectedIndex = cbEffortRideDataEntry.FindStringExact("");
             tbWeekNumber.Text = "0";
@@ -940,6 +941,9 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Clearing all fields. Do you want to continue?", "Clear Fields", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                lbRideDataEntryError.Text = "";
+                lbRideDataEntryError.Hide();
+
                 clearDataEntryFields();
             }
         }

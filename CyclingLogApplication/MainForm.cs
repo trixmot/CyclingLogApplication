@@ -967,7 +967,10 @@ namespace CyclingLogApplication
 
         private void cbRouteConfig_SelectedIndexChanged(object sender, EventArgs e)
         {         
-            tbRouteConfig.Text = cbRouteConfig.SelectedItem.ToString();
+            if (cbRouteConfig.SelectedItem != null)
+            {
+                tbRouteConfig.Text = cbRouteConfig.SelectedItem.ToString();
+            } 
         }
 
         // private void openRideDataEntryForm(object obj)
@@ -2000,7 +2003,6 @@ namespace CyclingLogApplication
 
         private void cbRenameRoute(object sender, EventArgs e)
         {
-            //Read textbox for value
             //Read selected index and update the value for that index:
             string newValue = tbRouteConfig.Text;
             string oldValue = cbRouteConfig.SelectedItem.ToString();
@@ -2012,17 +2014,14 @@ namespace CyclingLogApplication
             runStoredProcedure(objectValues, "Route_Update");
 
             List<string> tempList = new List<string>();
-
             int selectedIndex = cbRouteConfig.SelectedIndex;
-            cbRouteConfig.DataSource = cbRouteConfig.Items;
 
             for (int i = 0; i < cbRouteConfig.Items.Count; i++)
             {
                 tempList.Add(cbRouteConfig.Items[i].ToString());
             }
 
-            cbRouteConfig.DataSource = null;
-            cbRouteConfig.Items.Clear();
+            cbRouteConfig.Sorted = true;
             rideDataEntryForm.cbRouteDataEntry.DataSource = null;
             rideDataEntryForm.cbRouteDataEntry.Items.Clear();
             chartForm.cbRoutesChart.Items.Clear();
@@ -2032,19 +2031,20 @@ namespace CyclingLogApplication
             {
                 if (selectedIndex == i)
                 {
+                    cbRouteConfig.Items.Remove(oldValue);
                     cbRouteConfig.Items.Add(newValue);
                     rideDataEntryForm.cbRouteDataEntry.Items.Add(newValue);
                     chartForm.cbRoutesChart.Items.Add(newValue);
                 }
                 else
                 {
-                    cbRouteConfig.Items.Add(tempList[i]);
                     rideDataEntryForm.cbRouteDataEntry.Items.Add(tempList[i]);
                     chartForm.cbRoutesChart.Items.Add(tempList[i]);
                 }
             }
+
+            cbRouteConfig.Sorted = true;
             cbRouteConfig.SelectedIndex = selectedIndex;
-            //rideDataEntryForm.cbRouteDataEntry.SelectedIndex = -1;
 
             //Update the route name in the database for each row:
             //Update value in database:
