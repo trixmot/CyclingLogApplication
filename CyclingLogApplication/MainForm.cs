@@ -2022,10 +2022,12 @@ namespace CyclingLogApplication
             }
 
             cbRouteConfig.Sorted = true;
-            rideDataEntryForm.cbRouteDataEntry.DataSource = null;
-            rideDataEntryForm.cbRouteDataEntry.Items.Clear();
-            chartForm.cbRoutesChart.Items.Clear();
-            chartForm.cbRoutesChart.DataSource = null;
+            chartForm.cbRoutesChart.Sorted = true;
+            rideDataEntryForm.cbRouteDataEntry.Sorted = true;
+            //rideDataEntryForm.cbRouteDataEntry.DataSource = null;
+            //rideDataEntryForm.cbRouteDataEntry.Items.Clear();
+            //chartForm.cbRoutesChart.Items.Clear();
+            //chartForm.cbRoutesChart.DataSource = null;
 
             for (int i = 0; i < tempList.Count; i++)
             {
@@ -2033,17 +2035,23 @@ namespace CyclingLogApplication
                 {
                     cbRouteConfig.Items.Remove(oldValue);
                     cbRouteConfig.Items.Add(newValue);
+
+                    rideDataEntryForm.cbRouteDataEntry.Items.Remove(oldValue);
                     rideDataEntryForm.cbRouteDataEntry.Items.Add(newValue);
+
+                    chartForm.cbRoutesChart.Items.Remove(oldValue);
                     chartForm.cbRoutesChart.Items.Add(newValue);
                 }
                 else
                 {
-                    rideDataEntryForm.cbRouteDataEntry.Items.Add(tempList[i]);
-                    chartForm.cbRoutesChart.Items.Add(tempList[i]);
+                    //rideDataEntryForm.cbRouteDataEntry.Items.Add(tempList[i]);
+                    //chartForm.cbRoutesChart.Items.Add(tempList[i]);
                 }
             }
 
             cbRouteConfig.Sorted = true;
+            chartForm.cbRoutesChart.Sorted = true;
+            rideDataEntryForm.cbRouteDataEntry.Sorted = true;
             cbRouteConfig.SelectedIndex = selectedIndex;
 
             //Update the route name in the database for each row:
@@ -2146,14 +2154,16 @@ namespace CyclingLogApplication
             }
 
             cbLogYearConfig.Sorted = true;
+            rideDataEntryForm.cbLogYearDataEntry.Sorted = true;
+            chartForm.cbLogYearChart.Sorted = true;
             //cbLogYearConfig.DataSource = null;
             //cbLogYearConfig.Items.Clear();
-            rideDataEntryForm.cbLogYearDataEntry.DataSource = null;
-            rideDataEntryForm.cbLogYearDataEntry.Items.Clear();
-            rideDataDisplayForm.cbLogYearFilter.DataSource = null;
-            rideDataDisplayForm.cbLogYearFilter.Items.Clear();
-            chartForm.cbLogYearChart.Items.Clear();
-            chartForm.cbLogYearChart.DataSource = null;
+            //rideDataEntryForm.cbLogYearDataEntry.DataSource = null;
+            //rideDataEntryForm.cbLogYearDataEntry.Items.Clear();
+            //rideDataDisplayForm.cbLogYearFilter.DataSource = null;
+            //rideDataDisplayForm.cbLogYearFilter.Items.Clear();
+            //chartForm.cbLogYearChart.Items.Clear();
+            //chartForm.cbLogYearChart.DataSource = null;
             cbLogYear1.DataSource = null;
             cbLogYear1.Items.Clear();
             cbLogYear2.DataSource = null;
@@ -2178,9 +2188,16 @@ namespace CyclingLogApplication
                 {
                     cbLogYearConfig.Items.Remove(oldValue);
                     cbLogYearConfig.Items.Add(newValue);
+
+                    rideDataEntryForm.cbLogYearDataEntry.Items.Remove(oldValue);
                     rideDataEntryForm.cbLogYearDataEntry.Items.Add(newValue);
+
+                    rideDataDisplayForm.cbLogYearFilter.Items.Remove(oldValue);
                     rideDataDisplayForm.cbLogYearFilter.Items.Add(newValue);
+
+                    chartForm.cbLogYearChart.Items.Remove(oldValue);
                     chartForm.cbLogYearChart.Items.Add(newValue);
+
                     cbLogYear1.Items.Add(newValue);
                     cbLogYear2.Items.Add(newValue);
                     cbLogYear3.Items.Add(newValue);
@@ -2190,9 +2207,9 @@ namespace CyclingLogApplication
                 else
                 {
                     //cbLogYearConfig.Items.Add(tempList[i]);
-                    rideDataEntryForm.cbLogYearDataEntry.Items.Add(tempList[i]);
-                    rideDataDisplayForm.cbLogYearFilter.Items.Add(tempList[i]);
-                    chartForm.cbLogYearChart.Items.Add(tempList[i]);
+                    //rideDataEntryForm.cbLogYearDataEntry.Items.Add(tempList[i]);
+                    //rideDataDisplayForm.cbLogYearFilter.Items.Add(tempList[i]);
+                    //chartForm.cbLogYearChart.Items.Add(tempList[i]);
                     cbLogYear1.Items.Add(tempList[i]);
                     cbLogYear2.Items.Add(tempList[i]);
                     cbLogYear3.Items.Add(tempList[i]);
@@ -2202,6 +2219,8 @@ namespace CyclingLogApplication
             }
 
             cbLogYearConfig.Sorted = true;
+            rideDataEntryForm.cbLogYearDataEntry.Sorted = true;
+            chartForm.cbLogYearChart.Sorted = true;
             cbLogYearConfig.SelectedIndex = selectedIndex;
             rideDataEntryForm.cbLogYearDataEntry.SelectedIndex = selectedIndex;
             rideDataDisplayForm.cbLogYearFilter.SelectedIndex = selectedIndex;
@@ -2708,14 +2727,16 @@ namespace CyclingLogApplication
             }
 
             cbBikeConfig.Sorted = true;
+            cbBikeMaint.Sorted = true;
+            rideDataEntryForm.cbBikeDataEntrySelection.Sorted = true;
             //cbBikeConfig.DataSource = null;
             //cbBikeConfig.Items.Clear();
 
-            cbBikeMaint.DataSource = null;
-            cbBikeMaint.Items.Clear();
+            //cbBikeMaint.DataSource = null;
+            //cbBikeMaint.Items.Clear();
 
-            rideDataEntryForm.cbBikeDataEntrySelection.DataSource = null;
-            rideDataEntryForm.cbBikeDataEntrySelection.Items.Clear();
+            //rideDataEntryForm.cbBikeDataEntrySelection.DataSource = null;
+            //rideDataEntryForm.cbBikeDataEntrySelection.Items.Clear();
 
             for (int i = 0; i < tempList.Count; i++)
             {
@@ -2723,18 +2744,24 @@ namespace CyclingLogApplication
                 {
                     cbBikeConfig.Items.Remove(oldValue);
                     cbBikeConfig.Items.Add(newValue);
+
+                    cbBikeMaint.Items.Remove(oldValue);
                     cbBikeMaint.Items.Add(newValue);
+
+                    rideDataEntryForm.cbBikeDataEntrySelection.Items.Remove(oldValue);
                     rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(newValue);
                 }
                 else
                 {
                     //cbBikeConfig.Items.Add(tempList[i]);
-                    cbBikeMaint.Items.Add(tempList[i]);
-                    rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(tempList[i]);
+                    //cbBikeMaint.Items.Add(tempList[i]);
+                    //rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(tempList[i]);
                 }
             }
 
             cbBikeConfig.Sorted = true;
+            cbBikeMaint.Sorted = true;
+            rideDataEntryForm.cbBikeDataEntrySelection.Sorted = true;
             cbBikeConfig.SelectedIndex = selectedIndex;
             //Update value in database:
             SqlDataReader reader = null;
@@ -3325,6 +3352,11 @@ namespace CyclingLogApplication
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
