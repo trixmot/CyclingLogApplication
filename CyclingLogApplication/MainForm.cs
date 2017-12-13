@@ -2334,11 +2334,6 @@ namespace CyclingLogApplication
             btGetMaintLog_Click(sender, e);
         }
 
-        //private void dgvMaint_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        //{
-
-        //}
-
         private void tabControl1_MouseClick(object sender, MouseEventArgs e)
         {
             //btGetMaintLog_Click( sender, e);
@@ -2446,6 +2441,7 @@ namespace CyclingLogApplication
                 lbMaintError.Text = "A Bike option must be selected before continuing.";
                 return;
             }
+
             List<object> objectValues = new List<object>();
             objectValues.Add(dateTimePicker1.Text);
             objectValues.Add(cbBikeMaint.SelectedItem.ToString());
@@ -2865,7 +2861,6 @@ namespace CyclingLogApplication
                 Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
             }
         }
-
 
         //=============================================================================
         //End Maintenance Section
