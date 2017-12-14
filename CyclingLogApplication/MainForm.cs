@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
 using System.Globalization;
-using System.Collections.Specialized;
+//using System.Collections.Specialized;
 using System.Threading;
 using System.Data;
 using System.Drawing;
@@ -1189,15 +1189,16 @@ namespace CyclingLogApplication
                     sqlConnection.Open();
                 }
 
-                string query = "SELECT RideDistance,WeekNumber FROM Table_Ride_Information WHERE " + logIndex + "=[LogYearID]";
+                string query = "SELECT RideDistance,WeekNumber FROM Table_Ride_Information WHERE " + logIndex + "=[LogYearID] ORDER BY [WeekNumber] ASC";
                 using (SqlCommand command = new SqlCommand(query, sqlConnection))
                 {
                     command.CommandType = CommandType.Text;
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
-                        {
+                        {                          
                             weekNumber = (int)reader["WeekNumber"];
+
                             //Check if on a different week:
                             if (weekNumber > weekNumberTmp)
                             {
@@ -2985,6 +2986,8 @@ namespace CyclingLogApplication
             //{
             //    lbRideDataEntryError.Hide();
             //}
+
+            runMonthlyStatistics();
         }
 
         //Get total of miles for the selected log:
