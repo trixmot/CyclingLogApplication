@@ -569,7 +569,7 @@ namespace CyclingLogApplication
                 //int statIndex4 = cbLogYear1.SelectedIndex;
                 //int statIndex5 = cbLogYear1.SelectedIndex;
 
-                //TODO: 
+                //TODO: Test functionality
                 cbLogYearConfig.Items.Remove(cbLogYearConfig.SelectedItem);
                 rideDataEntryForm.cbLogYearDataEntry.Items.Remove(cbLogYearConfig.SelectedItem);
                 rideDataDisplayForm.cbLogYearFilter.Items.Remove(cbLogYearConfig.SelectedItem);
@@ -685,6 +685,71 @@ namespace CyclingLogApplication
             catch (Exception ex)
             {
                 Logger.LogError("[ERROR]: Exception while trying to the Log year Index from the database." + ex.Message.ToString());
+            }
+            finally
+            {
+                // close reader
+                if (reader != null)
+                {
+                    reader.Close();
+                }
+
+                // close connection
+                if (sqlConnection != null)
+                {
+                    sqlConnection.Close();
+                }
+            }
+
+            return returnValue;
+        }
+
+        public int getLogYearByIndex(int logYearIndex)
+        {
+            SqlDataReader reader = null;
+            int returnValue = -1;
+
+            try
+            {
+                if (sqlConnection != null && sqlConnection.State == ConnectionState.Closed)
+                {
+                    sqlConnection.Open();
+                }
+
+                // 1. declare command object with parameter
+                SqlCommand cmd = new SqlCommand("SELECT Year FROM Table_Log_Year WHERE @logYearIndex=[LogyearID]", sqlConnection);
+
+                // 2. define parameters used in command object
+                SqlParameter param = new SqlParameter();
+                param.ParameterName = "@logYearIndex";
+                param.Value = logYearIndex;
+
+                // 3. add new parameter to command object
+                cmd.Parameters.Add(param);
+
+                // get data stream
+                reader = cmd.ExecuteReader();
+
+                // write each record
+                while (reader.Read())
+                {
+                    //Console.WriteLine("{0}, {1}", reader["field1"], reader["field2"]);
+                    //MessageBox.Show(String.Format("{0}", reader[0]));
+                    string temp = reader[0].ToString();
+
+                    if (temp.Equals(""))
+                    {
+                        returnValue = 0;
+                    }
+                    else
+                    {
+                        returnValue = int.Parse(temp);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to the Log year value by Index from the database." + ex.Message.ToString());
             }
             finally
             {
@@ -1123,9 +1188,20 @@ namespace CyclingLogApplication
             int rides = getTotalRidesForSelectedLog(logIndex);
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
             Calendar cal = dfi.Calendar;
-            int weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+            int weekValue = 0;
             float avgRides = 0;
 
+            //Need to determine if the current year matches the log year and if not use 52 as the weekValue:
+            int logYear = getLogYearByIndex(logIndex);
+
+            if (logYear == DateTime.Today.Year)
+            {
+                weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+            } else
+            {
+                weekValue = 52;
+            }
+            
             if (rides > 0)
             {
                 avgRides = (float)rides / weekValue;
@@ -1143,7 +1219,19 @@ namespace CyclingLogApplication
             float avgMiles = 0;
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
             Calendar cal = dfi.Calendar;
-            int weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+            int weekValue = 0;
+
+            //Need to determine if the current year matches the log year and if not use 52 as the weekValue:
+            int logYear = getLogYearByIndex(logIndex);
+
+            if (logYear == DateTime.Today.Year)
+            {
+                weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+            }
+            else
+            {
+                weekValue = 52;
+            }
 
             if (totalMiles > 0)
             {
@@ -3208,6 +3296,8 @@ namespace CyclingLogApplication
             double weekMilesTotal = 0;
             double weeklyMax = 0;
 
+            //TODO: Keep weeks from a Monday to Sunday
+
             try
             {
                 if (sqlConnection != null && sqlConnection.State == ConnectionState.Closed)
@@ -3215,7 +3305,7 @@ namespace CyclingLogApplication
                     sqlConnection.Open();
                 }
 
-                string query = "SELECT RideDistance,WeekNumber FROM Table_Ride_Information WHERE " + LogYearID + "=[LogYearID] and " + Month + "=MONTH([Date])";
+                string query = "SELECT RideDistance,WeekNumber FROM Table_Ride_Information WHERE " + LogYearID + "=[LogYearID] and " + Month + "=MONTH([Date]) ORDER BY [WeekNumber] ASC";
                 using (SqlCommand command = new SqlCommand(query, sqlConnection))
                 {
                     command.CommandType = CommandType.Text;

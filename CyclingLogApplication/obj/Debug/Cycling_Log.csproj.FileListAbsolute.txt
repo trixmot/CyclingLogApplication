@@ -49,3 +49,4 @@ C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplic
 C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.application
 C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.exe
 C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.pdb
+C:\workdir\CylingLogApplication\CyclingLogApplication\obj\Debug\Cycling_Log.csprojResolveAssemblyReference.cache
