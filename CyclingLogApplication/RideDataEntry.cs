@@ -779,6 +779,13 @@ namespace CyclingLogApplication
 
                 //Split time and enter hours-min-sec
                 string temp = splitList[2];
+
+                //Check if the moving time is not entered:
+                if (temp.Equals("--"))
+                {
+                    temp = splitList[1];
+                } 
+
                 string[] temp2 = temp.Split(':');
 
                 if (temp2.Length == 3)
@@ -851,7 +858,18 @@ namespace CyclingLogApplication
                 //==============================================================                                                                        
                 colIndex++;
                 headingIndex++;
-                numericUpDown1.Value = System.Convert.ToDecimal(splitList[colIndex]); ;                                     //8Average moving Speed:
+
+                //Check if the Average moving speed is available:
+                string avgMovingSpeed = splitList[colIndex];
+
+                if (avgMovingSpeed.Equals("--"))
+                {
+                    numericUpDown1.Value = System.Convert.ToDecimal(splitList[colIndex-1]);                                     //7Average moving Speed:
+                } else
+                {
+                    numericUpDown1.Value = System.Convert.ToDecimal(splitList[colIndex]);                                     //8Average moving Speed:
+                }
+                
                 colIndex++;
                 headingIndex++;
                 max_speed.Text = splitList[colIndex];                                                                       //9Max Speed:
@@ -874,7 +892,16 @@ namespace CyclingLogApplication
                     }
                     else if (headingList[headingIndex].Equals("Avg Temperature"))
                     {
-                        numericUpDown3.Value = decimal.Round(System.Convert.ToDecimal(splitList[index]), 2, MidpointRounding.AwayFromZero);                                     //12Temp:
+                        //Check if the avg temp is available:
+                        string avgTemp = splitList[index];
+
+                        if (avgTemp.Equals("--"))
+                        {
+                            numericUpDown3.Value = 72;    //12Temp:
+                        } else
+                        {
+                            numericUpDown3.Value = decimal.Round(System.Convert.ToDecimal(splitList[index]), 2, MidpointRounding.AwayFromZero);    //12Temp:
+                        }
                     }
                     else if (headingList[headingIndex].Equals("Calories"))
                     {
