@@ -89,7 +89,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>NhJTtmC7YR9AUKXIPgpIn6Xsf5ivvKvQN/xCDCOBqi4=</dsig:DigestValue>
+      <dsig:DigestValue>YrmTU9wa2FTtns2/TtWu3NU1TimV/CmzVJqm3jENwu8=</dsig:DigestValue>
     </hash>
   </file>
   <file name="CyclingLogDatabase_log.ldf" size="851968" writeableType="applicationData">
@@ -98,7 +98,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>8XnLTL+WBAcftTig4zh5BTvc+1Ym9NCvRAr7L7nBw8Y=</dsig:DigestValue>
+      <dsig:DigestValue>w/TU4RIgx8BVwgHHvA+P+nz4O/j92wbCa0u58GBAdac=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
