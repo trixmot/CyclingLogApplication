@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
 using System.Globalization;
-//using System.Collections.Specialized;
 using System.Threading;
 using System.Data;
 using System.Drawing;
@@ -205,14 +204,8 @@ namespace CyclingLogApplication
             if (result == DialogResult.Yes)
             {
                 chartForm.Close();
-                int logSetting = getLogLevel();
                 ConfigurationFile configurationFile = new ConfigurationFile();
                 configurationFile.writeConfigFile();
-
-                Logger.Log("**********************************************", 1, logSetting);
-                Logger.Log("Ending Log Application", 1, logSetting);
-                Logger.Log("**********************************************", 1, logSetting);
-
                 rideDataDisplayForm.Dispose();
                 chartForm.Dispose();
                 this.Dispose();
@@ -223,6 +216,9 @@ namespace CyclingLogApplication
         static void GetConnectionStrings()
         {
             string conStr = ConfigurationManager.ConnectionStrings["CyclingLogApplication.Properties.Settings.CyclingLogDatabaseConnectionString"].ConnectionString;
+            Logger.Log("**********************************************", 1, 1);
+            Logger.Log("Ending Log Application", 1, 1);
+            Logger.Log("**********************************************", 1, 1);
             Logger.Log("conStr Name: " + conStr, 1, 1);
             ConnectionStringSettingsCollection settings = ConfigurationManager.ConnectionStrings;
 
