@@ -11,6 +11,7 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Configuration;
 
+//TODO: Add table for bikes total miles
 
 namespace CyclingLogApplication
 {
