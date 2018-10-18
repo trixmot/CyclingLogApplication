@@ -98,6 +98,7 @@
       <DependentUpon>CyclingLogDatabaseDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DatabaseConnection.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LegacyImport.cs">
       <SubType>Form</SubType>
     </Compile>

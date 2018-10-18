@@ -346,7 +346,7 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(299, 147);
+            this.button5.Location = new System.Drawing.Point(299, 167);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(130, 35);
             this.button5.TabIndex = 1;
@@ -357,7 +357,7 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(299, 102);
+            this.button7.Location = new System.Drawing.Point(299, 122);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(130, 35);
             this.button7.TabIndex = 0;
@@ -408,7 +408,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(299, 196);
+            this.button1.Location = new System.Drawing.Point(299, 216);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 35);
             this.button1.TabIndex = 11;
@@ -429,7 +429,7 @@
             // btDeleteAllData
             // 
             this.btDeleteAllData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btDeleteAllData.Location = new System.Drawing.Point(299, 247);
+            this.btDeleteAllData.Location = new System.Drawing.Point(299, 267);
             this.btDeleteAllData.Name = "btDeleteAllData";
             this.btDeleteAllData.Size = new System.Drawing.Size(130, 35);
             this.btDeleteAllData.TabIndex = 3;
@@ -450,12 +450,13 @@
             // button11
             // 
             this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button11.Location = new System.Drawing.Point(299, 299);
+            this.button11.Location = new System.Drawing.Point(526, 147);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(130, 35);
             this.button11.TabIndex = 2;
             this.button11.Text = "Legacy Data Import";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Visible = false;
             this.button11.Click += new System.EventHandler(this.importFromExcelLog);
             // 
             // tbTimeChange

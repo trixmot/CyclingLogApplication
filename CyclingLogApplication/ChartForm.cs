@@ -557,7 +557,7 @@ namespace CyclingLogApplication
                             }
                         }
 
-                        reader.Close();
+                        //reader.Close();
                     }
                     command.Cancel();
                 }
