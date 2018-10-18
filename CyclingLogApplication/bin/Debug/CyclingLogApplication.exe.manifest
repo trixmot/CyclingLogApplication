@@ -49,11 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-<<<<<<< HEAD
         <dsig:DigestValue>EmwoUbGIxnTTsRSks1nMSrezrOir15m2wRqymSfa1MI=</dsig:DigestValue>
-=======
-        <dsig:DigestValue>uYQjfW4c7cAxvk5aLb0FnNbkxYW13Suz708dPQXgCkY=</dsig:DigestValue>
->>>>>>> parent of 5a28214... Added new records
       </hash>
     </dependentAssembly>
   </dependency>
@@ -93,11 +89,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-<<<<<<< HEAD
       <dsig:DigestValue>fS9AVlv4fEQlmahz/nujSsaNfwD5O+Ey+P/7OHeJIVM=</dsig:DigestValue>
-=======
-      <dsig:DigestValue>XVpEPZ0cmxa5B3mSlECVjh/mZWixL+dGsOaVH1Q+FtE=</dsig:DigestValue>
->>>>>>> parent of 5a28214... Added new records
     </hash>
   </file>
   <file name="CyclingLogDatabase_log.ldf" size="851968" writeableType="applicationData">
@@ -106,11 +98,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-<<<<<<< HEAD
       <dsig:DigestValue>6wdRhm1Tpm84iUZakRPvTGN9v2m9a5DPg7lzCXrUyDM=</dsig:DigestValue>
-=======
-      <dsig:DigestValue>fhBKvowVGsU/tyrwUclVQRCMV3QqAC5MKwMNXmwCL7g=</dsig:DigestValue>
->>>>>>> parent of 5a28214... Added new records
     </hash>
   </file>
 </asmv1:assembly>
