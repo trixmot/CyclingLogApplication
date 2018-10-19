@@ -22,7 +22,7 @@ namespace CyclingLogApplication
         RideDataDisplay rideDataDisplayForm;
         ChartForm chartForm;
 
-        private static string logVersion = "0.1.5";
+        private static string logVersion = "0.1.6";
         private static int logLevel = 0;
         private static string cbStatistic1 = "-1";
         private static string cbStatistic2 = "-1";
@@ -2794,7 +2794,7 @@ namespace CyclingLogApplication
 
         private void btDeleteAllData_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("This function will delete all data and from the Cycling Log Application and database. Are you sure you want to continue? If you have not made a backup copy of the database, select No, and make a copy and then run the function once again.", "Delete All Data From Database", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("This function will delete all data and from the Cycling Log Application's database. Are you sure you want to continue? If you have not made a backup copy of the database, select No, and make a copy and then run the function once again.", "Delete All Data From Database", MessageBoxButtons.YesNo);
             if (result == DialogResult.No)
             {
                 return;
