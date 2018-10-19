@@ -98,11 +98,13 @@ namespace CyclingLogApplication
             //List<string> yearList = new List<string>();
             List<string> routeList = new List<string>();
             List<string> bikeList = new List<string>();
+            List<string> bikeTotalsList = new List<string>();
 
             logYearList = readDataNames("Table_Log_year", "Name");
             //yearList = readDataNames("Table_Log_year", "Year");
             routeList = readDataNames("Table_Routes", "Name");
             bikeList = readDataNames("Table_Bikes", "Name");
+            bikeTotalsList = readDataNames("Table_Bike_Totals", "Name");
 
             rideDataEntryForm = new RideDataEntry(this);
             rideDataDisplayForm = new RideDataDisplay(this);
@@ -145,6 +147,7 @@ namespace CyclingLogApplication
             foreach (var val in bikeList)
             {
                 cbBikeConfig.Items.Add(val);
+                cbBikeTotalsConfig.Items.Add(val);
                 cbBikeMaint.Items.Add(val);
                 Logger.Log("Data Loading: Bikes: " + val, 1, logSetting);
             }
@@ -1949,6 +1952,7 @@ namespace CyclingLogApplication
             }
         }
 
+        //This option is currently not visable:
         public void importFromExcelLog(object sender, EventArgs e)
         {
             //window to selct the index:
