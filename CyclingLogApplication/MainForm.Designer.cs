@@ -225,6 +225,8 @@
             this.label38 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label61 = new System.Windows.Forms.Label();
+            this.cbBikeTotalsConfig = new System.Windows.Forms.ComboBox();
             this.label64 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.cbLogYear = new System.Windows.Forms.ComboBox();
@@ -288,6 +290,7 @@
             this.label29 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btRemoveBikeTotalsConfig = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -310,7 +313,7 @@
             // 
             this.cbLogYearConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYearConfig.FormattingEnabled = true;
-            this.cbLogYearConfig.Location = new System.Drawing.Point(116, 89);
+            this.cbLogYearConfig.Location = new System.Drawing.Point(26, 109);
             this.cbLogYearConfig.Name = "cbLogYearConfig";
             this.cbLogYearConfig.Size = new System.Drawing.Size(121, 21);
             this.cbLogYearConfig.TabIndex = 0;
@@ -318,7 +321,7 @@
             // 
             // btAddLogYear
             // 
-            this.btAddLogYear.Location = new System.Drawing.Point(141, 230);
+            this.btAddLogYear.Location = new System.Drawing.Point(51, 250);
             this.btAddLogYear.Name = "btAddLogYear";
             this.btAddLogYear.Size = new System.Drawing.Size(75, 23);
             this.btAddLogYear.TabIndex = 2;
@@ -328,7 +331,7 @@
             // 
             // btRemoveLogYear
             // 
-            this.btRemoveLogYear.Location = new System.Drawing.Point(141, 259);
+            this.btRemoveLogYear.Location = new System.Drawing.Point(51, 279);
             this.btRemoveLogYear.Name = "btRemoveLogYear";
             this.btRemoveLogYear.Size = new System.Drawing.Size(75, 23);
             this.btRemoveLogYear.TabIndex = 3;
@@ -338,7 +341,7 @@
             // 
             // tbLogYearConfig
             // 
-            this.tbLogYearConfig.Location = new System.Drawing.Point(116, 139);
+            this.tbLogYearConfig.Location = new System.Drawing.Point(26, 159);
             this.tbLogYearConfig.Name = "tbLogYearConfig";
             this.tbLogYearConfig.Size = new System.Drawing.Size(121, 20);
             this.tbLogYearConfig.TabIndex = 1;
@@ -2413,6 +2416,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btRemoveBikeTotalsConfig);
+            this.groupBox2.Controls.Add(this.label61);
+            this.groupBox2.Controls.Add(this.cbBikeTotalsConfig);
             this.groupBox2.Controls.Add(this.label64);
             this.groupBox2.Controls.Add(this.label31);
             this.groupBox2.Controls.Add(this.cbLogYear);
@@ -2447,6 +2453,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(557, 192);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(127, 13);
+            this.label61.TabIndex = 66;
+            this.label61.Text = "Total Miles Bike Removal";
+            // 
+            // cbBikeTotalsConfig
+            // 
+            this.cbBikeTotalsConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBikeTotalsConfig.FormattingEnabled = true;
+            this.cbBikeTotalsConfig.Location = new System.Drawing.Point(560, 209);
+            this.cbBikeTotalsConfig.Name = "cbBikeTotalsConfig";
+            this.cbBikeTotalsConfig.Size = new System.Drawing.Size(141, 21);
+            this.cbBikeTotalsConfig.TabIndex = 65;
+            // 
             // label64
             // 
             this.label64.AutoSize = true;
@@ -2460,7 +2484,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(113, 172);
+            this.label31.Location = new System.Drawing.Point(23, 192);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(83, 13);
             this.label31.TabIndex = 24;
@@ -2484,7 +2508,7 @@
             "2020",
             "2021",
             "2022"});
-            this.cbLogYear.Location = new System.Drawing.Point(116, 191);
+            this.cbLogYear.Location = new System.Drawing.Point(26, 211);
             this.cbLogYear.Name = "cbLogYear";
             this.cbLogYear.Size = new System.Drawing.Size(121, 21);
             this.cbLogYear.TabIndex = 23;
@@ -2493,7 +2517,7 @@
             // 
             this.lbConfigError.AutoSize = true;
             this.lbConfigError.ForeColor = System.Drawing.Color.Red;
-            this.lbConfigError.Location = new System.Drawing.Point(222, 336);
+            this.lbConfigError.Location = new System.Drawing.Point(140, 357);
             this.lbConfigError.Name = "lbConfigError";
             this.lbConfigError.Size = new System.Drawing.Size(41, 13);
             this.lbConfigError.TabIndex = 22;
@@ -2502,7 +2526,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(483, 172);
+            this.label27.Location = new System.Drawing.Point(393, 192);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(77, 13);
             this.label27.TabIndex = 21;
@@ -2511,7 +2535,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(483, 73);
+            this.label26.Location = new System.Drawing.Point(393, 93);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(75, 13);
             this.label26.TabIndex = 20;
@@ -2520,7 +2544,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(257, 122);
+            this.label25.Location = new System.Drawing.Point(167, 142);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(83, 13);
             this.label25.TabIndex = 19;
@@ -2529,7 +2553,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(113, 73);
+            this.label24.Location = new System.Drawing.Point(23, 93);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(81, 13);
             this.label24.TabIndex = 18;
@@ -2537,7 +2561,7 @@
             // 
             // tbConfigMilesNotInLog
             // 
-            this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(486, 191);
+            this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(396, 211);
             this.tbConfigMilesNotInLog.Name = "tbConfigMilesNotInLog";
             this.tbConfigMilesNotInLog.Size = new System.Drawing.Size(141, 20);
             this.tbConfigMilesNotInLog.TabIndex = 17;
@@ -2545,7 +2569,7 @@
             // 
             // btRenameBike
             // 
-            this.btRenameBike.Location = new System.Drawing.Point(512, 288);
+            this.btRenameBike.Location = new System.Drawing.Point(422, 308);
             this.btRenameBike.Name = "btRenameBike";
             this.btRenameBike.Size = new System.Drawing.Size(75, 23);
             this.btRenameBike.TabIndex = 14;
@@ -2555,7 +2579,7 @@
             // 
             // bRenameLogYear
             // 
-            this.bRenameLogYear.Location = new System.Drawing.Point(141, 288);
+            this.bRenameLogYear.Location = new System.Drawing.Point(51, 308);
             this.bRenameLogYear.Name = "bRenameLogYear";
             this.bRenameLogYear.Size = new System.Drawing.Size(75, 23);
             this.bRenameLogYear.TabIndex = 4;
@@ -2565,7 +2589,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(320, 288);
+            this.button6.Location = new System.Drawing.Point(230, 308);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 9;
@@ -2576,7 +2600,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(483, 122);
+            this.label5.Location = new System.Drawing.Point(393, 142);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(105, 13);
             this.label5.TabIndex = 16;
@@ -2584,14 +2608,14 @@
             // 
             // tbBikeConfig
             // 
-            this.tbBikeConfig.Location = new System.Drawing.Point(486, 138);
+            this.tbBikeConfig.Location = new System.Drawing.Point(396, 158);
             this.tbBikeConfig.Name = "tbBikeConfig";
             this.tbBikeConfig.Size = new System.Drawing.Size(141, 20);
             this.tbBikeConfig.TabIndex = 11;
             // 
             // btRemoveBikeConfig
             // 
-            this.btRemoveBikeConfig.Location = new System.Drawing.Point(512, 259);
+            this.btRemoveBikeConfig.Location = new System.Drawing.Point(422, 279);
             this.btRemoveBikeConfig.Name = "btRemoveBikeConfig";
             this.btRemoveBikeConfig.Size = new System.Drawing.Size(75, 23);
             this.btRemoveBikeConfig.TabIndex = 13;
@@ -2603,7 +2627,7 @@
             // 
             this.cbBikeConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBikeConfig.FormattingEnabled = true;
-            this.cbBikeConfig.Location = new System.Drawing.Point(486, 89);
+            this.cbBikeConfig.Location = new System.Drawing.Point(396, 109);
             this.cbBikeConfig.Name = "cbBikeConfig";
             this.cbBikeConfig.Size = new System.Drawing.Size(141, 21);
             this.cbBikeConfig.TabIndex = 10;
@@ -2611,7 +2635,7 @@
             // 
             // btAddBikeConfig
             // 
-            this.btAddBikeConfig.Location = new System.Drawing.Point(512, 230);
+            this.btAddBikeConfig.Location = new System.Drawing.Point(422, 250);
             this.btAddBikeConfig.Name = "btAddBikeConfig";
             this.btAddBikeConfig.Size = new System.Drawing.Size(75, 23);
             this.btAddBikeConfig.TabIndex = 12;
@@ -2622,7 +2646,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(257, 172);
+            this.label4.Location = new System.Drawing.Point(167, 192);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(138, 13);
             this.label4.TabIndex = 0;
@@ -2630,14 +2654,14 @@
             // 
             // tbRouteConfig
             // 
-            this.tbRouteConfig.Location = new System.Drawing.Point(260, 191);
+            this.tbRouteConfig.Location = new System.Drawing.Point(170, 211);
             this.tbRouteConfig.Name = "tbRouteConfig";
             this.tbRouteConfig.Size = new System.Drawing.Size(205, 20);
             this.tbRouteConfig.TabIndex = 6;
             // 
             // btRemoveRoute
             // 
-            this.btRemoveRoute.Location = new System.Drawing.Point(320, 259);
+            this.btRemoveRoute.Location = new System.Drawing.Point(230, 279);
             this.btRemoveRoute.Name = "btRemoveRoute";
             this.btRemoveRoute.Size = new System.Drawing.Size(75, 23);
             this.btRemoveRoute.TabIndex = 8;
@@ -2649,7 +2673,7 @@
             // 
             this.cbRouteConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRouteConfig.FormattingEnabled = true;
-            this.cbRouteConfig.Location = new System.Drawing.Point(260, 138);
+            this.cbRouteConfig.Location = new System.Drawing.Point(170, 158);
             this.cbRouteConfig.Name = "cbRouteConfig";
             this.cbRouteConfig.Size = new System.Drawing.Size(205, 21);
             this.cbRouteConfig.TabIndex = 5;
@@ -2657,7 +2681,7 @@
             // 
             // btAddRoute
             // 
-            this.btAddRoute.Location = new System.Drawing.Point(320, 230);
+            this.btAddRoute.Location = new System.Drawing.Point(230, 250);
             this.btAddRoute.Name = "btAddRoute";
             this.btAddRoute.Size = new System.Drawing.Size(75, 23);
             this.btAddRoute.TabIndex = 7;
@@ -2668,7 +2692,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(113, 120);
+            this.label3.Location = new System.Drawing.Point(23, 140);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 0;
@@ -2918,6 +2942,7 @@
             this.btBikeMilesUpdate.TabIndex = 18;
             this.btBikeMilesUpdate.Text = "Update";
             this.btBikeMilesUpdate.UseVisualStyleBackColor = true;
+            this.btBikeMilesUpdate.Click += new System.EventHandler(this.btBikeMilesUpdate_Click);
             // 
             // label22
             // 
@@ -3093,6 +3118,16 @@
             this.label1.Size = new System.Drawing.Size(287, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
+            // 
+            // btRemoveBikeTotalsConfig
+            // 
+            this.btRemoveBikeTotalsConfig.Location = new System.Drawing.Point(589, 250);
+            this.btRemoveBikeTotalsConfig.Name = "btRemoveBikeTotalsConfig";
+            this.btRemoveBikeTotalsConfig.Size = new System.Drawing.Size(75, 23);
+            this.btRemoveBikeTotalsConfig.TabIndex = 67;
+            this.btRemoveBikeTotalsConfig.Text = "Remove";
+            this.btRemoveBikeTotalsConfig.UseVisualStyleBackColor = true;
+            this.btRemoveBikeTotalsConfig.Click += new System.EventHandler(this.btRemoveBikeTotalsConfig_Click);
             // 
             // MainForm
             // 
@@ -3395,6 +3430,9 @@
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.Button bMonthlyStatistics;
         private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.ComboBox cbBikeTotalsConfig;
+        private System.Windows.Forms.Button btRemoveBikeTotalsConfig;
     }
 }
 

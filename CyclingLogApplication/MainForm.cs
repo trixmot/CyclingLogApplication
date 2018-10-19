@@ -22,7 +22,7 @@ namespace CyclingLogApplication
         RideDataDisplay rideDataDisplayForm;
         ChartForm chartForm;
 
-        private static string logVersion = "0.1.4";
+        private static string logVersion = "0.1.5";
         private static int logLevel = 0;
         private static string cbStatistic1 = "-1";
         private static string cbStatistic2 = "-1";
@@ -933,6 +933,7 @@ namespace CyclingLogApplication
         {
             string bikeString = tbBikeConfig.Text;
             string miles = tbConfigMilesNotInLog.Text;
+            Boolean updateBikeTotals = true;
 
             if (cbBikeConfig.SelectedItem != null)
             {
@@ -945,6 +946,20 @@ namespace CyclingLogApplication
                         return;
                     }
                 }
+
+                //Check to see if the string has already been entered to eliminate duplicates:
+                for (int index = 0; index < cbBikeTotalsConfig.Items.Count; index++)
+                {
+                    if (cbBikeConfig.Items.IndexOf(index).Equals(bikeString))
+                    {
+                        MessageBox.Show("Warning, the name entered already exists in the Total Miles list. If the Miles not in log entered are different then you will need to run the Update function.");
+                        updateBikeTotals = false;
+                    } 
+                }
+            } else
+            {
+                MessageBox.Show("The name entered invalid.");
+                return;
             }
 
             //Verify Miles is entered and in the correct format:
@@ -955,15 +970,25 @@ namespace CyclingLogApplication
                 return;
             }
 
-            List<object> objectValues = new List<object>();
-            objectValues.Add(bikeString);
-            objectValues.Add(miles);
-            runStoredProcedure(objectValues, "Bike_Add");
+            List<object> objectBikes = new List<object>();
+            objectBikes.Add(bikeString);
+            runStoredProcedure(objectBikes, "Bike_Add");
 
             cbBikeConfig.Items.Add(bikeString);
             cbBikeMaint.Items.Add(tbConfigMilesNotInLog.Text);
             cbBikeConfig.SelectedIndex = cbBikeConfig.Items.Count - 1;
             rideDataEntryForm.AddBikeDataEntry(bikeString);
+
+            if (updateBikeTotals)
+            {
+                List<object> objectBikesTotals = new List<object>();
+                objectBikesTotals.Add(bikeString);
+                objectBikesTotals.Add(miles);
+                runStoredProcedure(objectBikesTotals, "BikeTotals_Add");
+
+                cbBikeTotalsConfig.Items.Add(bikeString);
+                cbBikeTotalsConfig.SelectedIndex = cbBikeTotalsConfig.Items.Count - 1;
+            }
         }
 
         private void btRemoveBikeConfig_Click(object sender, EventArgs e)
@@ -2572,6 +2597,7 @@ namespace CyclingLogApplication
             }
         }
 
+        //Runs on form load:
         //private void btBikeMilesUpdate_Click(object sender, EventArgs e)
         private void btBikeMilesUpdate_click()
         {
@@ -2589,7 +2615,7 @@ namespace CyclingLogApplication
             try
             {
                 List<string> bikeList = new List<string>();
-                bikeList = readDataNames("Table_Bikes", "Name");
+                bikeList = readDataNames("Table_Bike_Totals", "Name");
                 Dictionary<string, double> bikeMilesDictionary = new Dictionary<string, double>();
 
                 for (int index = 0; index < bikeList.Count; index++)
@@ -2791,12 +2817,18 @@ namespace CyclingLogApplication
             string newValue = tbBikeConfig.Text;
             string oldValue = cbBikeConfig.SelectedItem.ToString();
 
-            List<object> objectValues = new List<object>();
-            objectValues.Add(newValue);
-            objectValues.Add(oldValue);
-            objectValues.Add(Convert.ToDouble(miles));
+            List<object> objectBikes = new List<object>();
+            objectBikes.Add(newValue);
+            objectBikes.Add(oldValue);
 
-            runStoredProcedure(objectValues, "Bike_Update");
+            runStoredProcedure(objectBikes, "Bike_Update");
+
+            List<object> objectBikeTotals = new List<object>();
+            objectBikeTotals.Add(newValue);
+            objectBikeTotals.Add(oldValue);
+            objectBikeTotals.Add(Convert.ToDouble(miles));
+
+            runStoredProcedure(objectBikes, "Bike_Totals_Update");
 
             List<string> tempList = new List<string>();
 
@@ -2809,6 +2841,7 @@ namespace CyclingLogApplication
             }
 
             cbBikeConfig.Sorted = true;
+            cbBikeTotalsConfig.Sorted = true;
             cbBikeMaint.Sorted = true;
             rideDataEntryForm.cbBikeDataEntrySelection.Sorted = true;
             //cbBikeConfig.DataSource = null;
@@ -2827,6 +2860,9 @@ namespace CyclingLogApplication
                     cbBikeConfig.Items.Remove(oldValue);
                     cbBikeConfig.Items.Add(newValue);
 
+                    cbBikeTotalsConfig.Items.Remove(oldValue);
+                    cbBikeTotalsConfig.Items.Add(newValue);
+
                     cbBikeMaint.Items.Remove(oldValue);
                     cbBikeMaint.Items.Add(newValue);
 
@@ -2842,9 +2878,11 @@ namespace CyclingLogApplication
             }
 
             cbBikeConfig.Sorted = true;
+            cbBikeTotalsConfig.Sorted = true;
             cbBikeMaint.Sorted = true;
             rideDataEntryForm.cbBikeDataEntrySelection.Sorted = true;
             cbBikeConfig.SelectedIndex = selectedIndex;
+            cbBikeTotalsConfig.SelectedIndex = selectedIndex;
             //Update value in database:
             SqlDataReader reader = null;
             float returnValue = 0;
@@ -3449,6 +3487,55 @@ namespace CyclingLogApplication
         private void button3_Click(object sender, EventArgs e)
         {
             RefreshStatisticsData();
+        }
+
+        private void btBikeMilesUpdate_Click(object sender, EventArgs e)
+        {
+            //TODO:
+        }
+
+        //Removes bike only from the totals section:
+        private void btRemoveBikeTotalsConfig_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you really want to delete the bike totals option?", "Delete Bike Option", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                string deleteValue = cbBikeTotalsConfig.SelectedItem.ToString();
+
+                //Check if the value is in the Bike list and if so, do not delete:
+                for (int index = 0; index < cbBikeConfig.Items.Count; index++)
+                {
+                    if (cbBikeConfig.Items.IndexOf(index).Equals(deleteValue))
+                    {
+                        MessageBox.Show("The Bike name was found in the Bike list and cannot be removed until it has been removed from the Bike list first.");
+                        return;
+                    }
+                }
+
+                //Note: only removing value as an option, all records using this value are unchanged:
+                cbBikeTotalsConfig.Items.Remove(cbBikeConfig.SelectedItem);
+
+                //Clear entires:
+                tbConfigMilesNotInLog.Text = "0";
+                tbBikeConfig.Text = "";
+
+                //Remove the Bike from the database table:
+                List<object> objectValues = new List<object>();
+                objectValues.Add(deleteValue);
+
+                try
+                {
+                    //ExecuteScalarFunction
+                    using (var results = ExecuteSimpleQueryConnection("Bike_Remove_Totals", objectValues))
+                    {
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError("[ERROR]: Exception while trying to Delete Bike name entry." + ex.Message.ToString());
+                }
+            }
         }
     }
 }
