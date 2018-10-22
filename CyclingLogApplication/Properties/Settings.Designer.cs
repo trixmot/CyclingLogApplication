@@ -136,8 +136,8 @@ namespace CyclingLogApplication.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|CyclingLogDat" +
-            "abase.mdf;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\workdir\\Cycling_Log\\Cyclin" +
+            "gLogApplication\\CyclingLogDatabase.mdf;Integrated Security=True")]
         public string CyclingLogDatabaseConnectionString {
             get {
                 return ((string)(this["CyclingLogDatabaseConnectionString"]));
