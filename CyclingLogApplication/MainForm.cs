@@ -48,6 +48,7 @@ namespace CyclingLogApplication
         public MainForm()
         {
             //Set DataDirectory for the contectionstring in the app.config:
+            //TODO: Directory.GetCurrentDirectory() should be where the program is running.  Need to verify the excact location within the program:
             AppDomain.CurrentDomain.SetData("DataDirectory", Directory.GetCurrentDirectory());
 
             Text = "Single Instance!";

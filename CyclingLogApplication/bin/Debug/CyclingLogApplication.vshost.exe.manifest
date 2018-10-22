@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9lgj8kgYRTo9bUlzFv1Okgfpf8X1x0040FkbPhcrtj8=</dsig:DigestValue>
+        <dsig:DigestValue>cunKQro+Di1lOQ8MDfrNOiUfPnRuqzMyoPJ7VegXXFo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -65,13 +65,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="CyclingLogApplication.exe.config" size="2682">
+  <file name="CyclingLogApplication.exe.config" size="2653">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>b24RNnCsz4270Z3TgzmbkpMq954ILO2qAzPABoqRT0g=</dsig:DigestValue>
+      <dsig:DigestValue>7q7rKG2NNsvYuoYvifVEWlrppD7OUeeefT2iFnYA3oQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="CyclingLogConfig.xml" size="413" writeableType="applicationData">
@@ -89,7 +89,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>BaGKDzo98JiWpqyQuLy3l49p1wuKZAevkeWVgdjeg4g=</dsig:DigestValue>
+      <dsig:DigestValue>aXZc2/Khi2z5JJ2Zairhvvvc1CXObPDamjRvNvNjEEM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="CyclingLogDatabase_log.ldf" size="573440" writeableType="applicationData">
@@ -98,7 +98,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>axqAq2eViydG5Ptv5XqpqPF/5oviKeHW4MZub8DfHWY=</dsig:DigestValue>
+      <dsig:DigestValue>9G/Axcm+QL5SUObzos0+LcVQtaI+pR3NAtpLFZU99Co=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
