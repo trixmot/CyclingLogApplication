@@ -191,9 +191,9 @@ namespace CyclingLogApplication
                 {
                     sqlDataAdapter = new SqlDataAdapter();
                     if (logYearID != 0)
-                    {
+                    {                   
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [LogYearID]=@logyearID ORDER BY [Date] ASC", sqlConnection);
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
-                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [LogYearID]=@logyearID ORDER BY [Date] ASC", sqlConnection);            
                     } else
                     {
                         sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information ORDER BY [Date] ASC", sqlConnection);
@@ -223,7 +223,7 @@ namespace CyclingLogApplication
             catch (Exception ex)
             {
                 
-                Logger.LogError("[ERROR]: Exception while trying to run query ride data." + ex.Message.ToString());
+                Logger.LogError("[ERROR]: Exception while trying to run query ride data: " + ex.Message.ToString());
                 MessageBox.Show("An exception error has occurred while quering ride data.  Review the log for more information.");
             }
             finally
