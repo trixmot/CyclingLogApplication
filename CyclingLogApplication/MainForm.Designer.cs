@@ -47,7 +47,7 @@
             this.tbDayCount = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btRefreshStatisticsData = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -225,6 +225,7 @@
             this.label38 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btRemoveBikeTotalsConfig = new System.Windows.Forms.Button();
             this.label61 = new System.Windows.Forms.Label();
             this.cbBikeTotalsConfig = new System.Windows.Forms.ComboBox();
             this.label64 = new System.Windows.Forms.Label();
@@ -290,7 +291,6 @@
             this.label29 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btRemoveBikeTotalsConfig = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -502,15 +502,15 @@
             this.label13.TabIndex = 49;
             this.label13.Text = "Week Count";
             // 
-            // button3
+            // btRefreshStatisticsData
             // 
-            this.button3.Location = new System.Drawing.Point(323, 347);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Refresh";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btRefreshStatisticsData.Location = new System.Drawing.Point(323, 347);
+            this.btRefreshStatisticsData.Name = "btRefreshStatisticsData";
+            this.btRefreshStatisticsData.Size = new System.Drawing.Size(75, 23);
+            this.btRefreshStatisticsData.TabIndex = 5;
+            this.btRefreshStatisticsData.Text = "Refresh";
+            this.btRefreshStatisticsData.UseVisualStyleBackColor = true;
+            this.btRefreshStatisticsData.Click += new System.EventHandler(this.btRefreshStatisticsData_Click);
             // 
             // tabControl1
             // 
@@ -593,7 +593,7 @@
             this.groupBox4.Controls.Add(this.tb5Log2);
             this.groupBox4.Controls.Add(this.tb2Log2);
             this.groupBox4.Controls.Add(this.tb4Log2);
-            this.groupBox4.Controls.Add(this.button3);
+            this.groupBox4.Controls.Add(this.btRefreshStatisticsData);
             this.groupBox4.Controls.Add(this.tb3Log1);
             this.groupBox4.Controls.Add(this.tb7Log1);
             this.groupBox4.Controls.Add(this.cbLogYear1);
@@ -2453,6 +2453,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
+            // btRemoveBikeTotalsConfig
+            // 
+            this.btRemoveBikeTotalsConfig.Location = new System.Drawing.Point(589, 250);
+            this.btRemoveBikeTotalsConfig.Name = "btRemoveBikeTotalsConfig";
+            this.btRemoveBikeTotalsConfig.Size = new System.Drawing.Size(75, 23);
+            this.btRemoveBikeTotalsConfig.TabIndex = 67;
+            this.btRemoveBikeTotalsConfig.Text = "Remove";
+            this.btRemoveBikeTotalsConfig.UseVisualStyleBackColor = true;
+            this.btRemoveBikeTotalsConfig.Click += new System.EventHandler(this.btRemoveBikeTotalsConfig_Click);
+            // 
             // label61
             // 
             this.label61.AutoSize = true;
@@ -3119,16 +3129,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
-            // btRemoveBikeTotalsConfig
-            // 
-            this.btRemoveBikeTotalsConfig.Location = new System.Drawing.Point(589, 250);
-            this.btRemoveBikeTotalsConfig.Name = "btRemoveBikeTotalsConfig";
-            this.btRemoveBikeTotalsConfig.Size = new System.Drawing.Size(75, 23);
-            this.btRemoveBikeTotalsConfig.TabIndex = 67;
-            this.btRemoveBikeTotalsConfig.Text = "Remove";
-            this.btRemoveBikeTotalsConfig.UseVisualStyleBackColor = true;
-            this.btRemoveBikeTotalsConfig.Click += new System.EventHandler(this.btRemoveBikeTotalsConfig_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3216,7 +3216,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbLogYear1;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btRefreshStatisticsData;
         private System.Windows.Forms.Button btDeleteAllData;
         private System.Windows.Forms.TextBox tb3Log5;
         private System.Windows.Forms.TextBox tb7Log5;

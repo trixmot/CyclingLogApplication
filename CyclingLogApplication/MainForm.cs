@@ -174,7 +174,7 @@ namespace CyclingLogApplication
                 return;
             }
 
-            btBikeMilesUpdate_click();
+            btBikeMilesUpdate_run();
             btGetMaintLog_Click(sender, e);
 
             //Set first option of 'None':
@@ -2603,8 +2603,7 @@ namespace CyclingLogApplication
         }
 
         //Runs on form load:
-        //private void btBikeMilesUpdate_Click(object sender, EventArgs e)
-        private void btBikeMilesUpdate_click()
+        private void btBikeMilesUpdate_run()
         {
             //Load bike names and notinlogmiles from the database:
 
@@ -3489,14 +3488,9 @@ namespace CyclingLogApplication
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            RefreshStatisticsData();
-        }
-
         private void btBikeMilesUpdate_Click(object sender, EventArgs e)
         {
-            //TODO:
+            btBikeMilesUpdate_run();
         }
 
         //Removes bike only from the totals section:
@@ -3541,6 +3535,11 @@ namespace CyclingLogApplication
                     Logger.LogError("[ERROR]: Exception while trying to Delete Bike name entry." + ex.Message.ToString());
                 }
             }
+        }
+
+        private void btRefreshStatisticsData_Click(object sender, EventArgs e)
+        {
+            RefreshStatisticsData();
         }
     }
 }
