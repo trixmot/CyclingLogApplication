@@ -2357,12 +2357,6 @@ namespace CyclingLogApplication
         //=============================================================================
         //Start Maintenance Section
         //=============================================================================
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            //ChartForm chartForm = new ChartForm(this);
-            chartForm.Show();
-            lbMaintError.Text = "";
-        }
 
         private void btGetMaintLog_Click(object sender, EventArgs e)
         {
@@ -2449,16 +2443,6 @@ namespace CyclingLogApplication
             rtbMaintComments.Text = "";
             btGetMaintLog_Click(sender, e);
         }
-
-        private void tabControl1_MouseClick(object sender, MouseEventArgs e)
-        {
-            //btGetMaintLog_Click( sender, e);
-        }
-
-        //private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        //{
-
-        //}
 
         private void btMaintUpdate_Click(object sender, EventArgs e)
         {
@@ -3250,53 +3234,6 @@ namespace CyclingLogApplication
             return (float)(avgMiles);
         }
 
-        private double getMonthlyHighMileageWeekNumber_backup(int logIndex, int month)
-        {
-            List<int> weekList = new List<int>();
-            if (month == 1)
-            {
-                weekList.Add(1);
-                weekList.Add(2);
-                weekList.Add(3);
-                weekList.Add(4);
-            }
-            else if (month == 2)
-            {
-                weekList.Add(1);
-                weekList.Add(2);
-                weekList.Add(3);
-                weekList.Add(4);
-            }
-
-            List<object> objectValues = new List<object>();
-            objectValues.Add(logIndex);
-            objectValues.Add(month);
-
-            double returnValue = 0;
-
-            //ExecuteScalarFunction
-            using (var results = ExecuteSimpleQueryConnection("GetTotalHighMileageWeek_Monthly", objectValues))
-            {
-                if (results.HasRows)
-                {
-                    while (results.Read())
-                    {
-                        string temp = results[0].ToString();
-                        if (temp.Equals(""))
-                        {
-                            returnValue = 0;
-                        }
-                        else
-                        {
-                            returnValue = double.Parse(temp);
-                        }
-                    }
-                }
-            }
-
-            return returnValue;
-        }
-
         private double getMaxHighMileageMonthlyForSelectedLog(int logIndex, int month)
         {
             List<object> objectValues = new List<object>();
@@ -3475,7 +3412,10 @@ namespace CyclingLogApplication
 
         private void MonthlyStatistics_Click(object sender, EventArgs e)
         {
+            //RefreshingForm refreshingForm = new RefreshingForm();
+            //refreshingForm.Show();
             runMonthlyStatistics();
+            //refreshingForm.Hide();
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
@@ -3540,6 +3480,13 @@ namespace CyclingLogApplication
         private void btRefreshStatisticsData_Click(object sender, EventArgs e)
         {
             RefreshStatisticsData();
+        }
+
+        private void btCharts_Click(object sender, EventArgs e)
+        {
+            //ChartForm chartForm = new ChartForm(this);
+            chartForm.Show();
+            lbMaintError.Text = "";
         }
     }
 }

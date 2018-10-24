@@ -120,6 +120,12 @@
       <DependentUpon>ProgressBar.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RefreshingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RefreshingForm.Designer.cs">
+      <DependentUpon>RefreshingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="RideDataDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RefreshingForm.resx">
+      <DependentUpon>RefreshingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RideDataDisplay.resx">
       <DependentUpon>RideDataDisplay.cs</DependentUpon>
     </EmbeddedResource>

@@ -417,7 +417,7 @@
             this.button1.TabIndex = 11;
             this.button1.Text = "Charts";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.button1.Click += new System.EventHandler(this.btCharts_Click);
             // 
             // label15
             // 
@@ -527,7 +527,12 @@
             this.tabControl1.Size = new System.Drawing.Size(793, 476);
             this.tabControl1.TabIndex = 11;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
-            this.tabControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseClick);
+            //this.tabControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseClick);
+                    //private void tabControl1_MouseClick(object sender, MouseEventArgs e)
+                        //{
+                            //TODO:
+                            //btGetMaintLog_Click( sender, e);
+                    //}
             // 
             // tabPage1
             // 
