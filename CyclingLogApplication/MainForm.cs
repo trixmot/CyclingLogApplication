@@ -21,6 +21,7 @@ namespace CyclingLogApplication
         RideDataEntry rideDataEntryForm;
         RideDataDisplay rideDataDisplayForm;
         ChartForm chartForm;
+        Boolean formloading = false;
 
         private static string logVersion = "0.1.6";
         private static int logLevel = 0;
@@ -177,6 +178,7 @@ namespace CyclingLogApplication
             btBikeMilesUpdate_run();
             btGetMaintLog_Click(sender, e);
 
+            formloading = true;
             //Set first option of 'None':
             cbStatMonthlyLogYear.Items.Add("--None--");
 
@@ -201,6 +203,8 @@ namespace CyclingLogApplication
 
             RefreshStatisticsData();
             runMonthlyStatistics();
+
+            formloading = false;
         }
 
         private void closeForm(object sender, EventArgs e)
@@ -3086,10 +3090,11 @@ namespace CyclingLogApplication
 
         private void cbStatMonthlyLogYear_changed(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm("");
-            mainForm.setLastMonthlyLogSelected(cbStatMonthlyLogYear.SelectedIndex);
+            //MainForm mainForm = new MainForm("");
+            this.setLastMonthlyLogSelected(cbStatMonthlyLogYear.SelectedIndex);
             //if (cbStatMonthlyLogYear.SelectedIndex == -1)
             //{
+            // Display form modelessly
             //    lbRideDataEntryError.Show();
             //    lbRideDataEntryError.Text = "No Log Year selected.";
             //}
@@ -3098,7 +3103,17 @@ namespace CyclingLogApplication
             //    lbRideDataEntryError.Hide();
             //}
 
-            runMonthlyStatistics();
+            if (!formloading)
+            {
+                RefreshingForm refreshingForm = new RefreshingForm();
+                // Display form modelessly
+                refreshingForm.Show();
+                //  ALlow main UI thread to properly display please wait form.
+                Application.DoEvents();
+                //this.ShowDialog();
+                runMonthlyStatistics();
+                refreshingForm.Hide();
+            }
         }
 
         //Get total of miles for the selected log:
@@ -3412,10 +3427,14 @@ namespace CyclingLogApplication
 
         private void MonthlyStatistics_Click(object sender, EventArgs e)
         {
-            //RefreshingForm refreshingForm = new RefreshingForm();
-            //refreshingForm.Show();
+            RefreshingForm refreshingForm = new RefreshingForm();
+            // Display form modelessly
+            refreshingForm.Show();
+            //  ALlow main UI thread to properly display please wait form.
+            Application.DoEvents();
+            //this.ShowDialog();
             runMonthlyStatistics();
-            //refreshingForm.Hide();
+            refreshingForm.Hide();
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
