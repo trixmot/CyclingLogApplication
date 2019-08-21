@@ -317,7 +317,7 @@
             this.cbLogYearConfig.Name = "cbLogYearConfig";
             this.cbLogYearConfig.Size = new System.Drawing.Size(121, 21);
             this.cbLogYearConfig.TabIndex = 0;
-            this.cbLogYearConfig.SelectedIndexChanged += new System.EventHandler(this.cbLogYearConfig_SelectedIndexChanged);
+            this.cbLogYearConfig.SelectedIndexChanged += new System.EventHandler(this.CbLogYearConfig_SelectedIndexChanged);
             // 
             // btAddLogYear
             // 
@@ -327,7 +327,7 @@
             this.btAddLogYear.TabIndex = 2;
             this.btAddLogYear.Text = "Add";
             this.btAddLogYear.UseVisualStyleBackColor = true;
-            this.btAddLogYear.Click += new System.EventHandler(this.btAddLogYearConfig);
+            this.btAddLogYear.Click += new System.EventHandler(this.BtAddLogYearConfig);
             // 
             // btRemoveLogYear
             // 
@@ -376,7 +376,7 @@
             this.button8.TabIndex = 9;
             this.button8.Text = "Close";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.closeForm);
+            this.button8.Click += new System.EventHandler(this.CloseForm);
             // 
             // groupBox1
             // 
@@ -417,7 +417,7 @@
             this.button1.TabIndex = 11;
             this.button1.Text = "Charts";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btCharts_Click);
+            this.button1.Click += new System.EventHandler(this.BtCharts_Click);
             // 
             // label15
             // 
@@ -438,7 +438,7 @@
             this.btDeleteAllData.TabIndex = 3;
             this.btDeleteAllData.Text = "Delete All Data";
             this.btDeleteAllData.UseVisualStyleBackColor = true;
-            this.btDeleteAllData.Click += new System.EventHandler(this.btDeleteAllData_Click);
+            this.btDeleteAllData.Click += new System.EventHandler(this.BtDeleteAllData_Click);
             // 
             // tbWeekCount
             // 
@@ -510,7 +510,7 @@
             this.btRefreshStatisticsData.TabIndex = 5;
             this.btRefreshStatisticsData.Text = "Refresh";
             this.btRefreshStatisticsData.UseVisualStyleBackColor = true;
-            this.btRefreshStatisticsData.Click += new System.EventHandler(this.btRefreshStatisticsData_Click);
+            this.btRefreshStatisticsData.Click += new System.EventHandler(this.BtRefreshStatisticsData_Click);
             // 
             // tabControl1
             // 
@@ -724,7 +724,7 @@
             this.cbLogYear5.Name = "cbLogYear5";
             this.cbLogYear5.Size = new System.Drawing.Size(110, 21);
             this.cbLogYear5.TabIndex = 4;
-            this.cbLogYear5.SelectedIndexChanged += new System.EventHandler(this.cb5LogYear_changed);
+            this.cbLogYear5.SelectedIndexChanged += new System.EventHandler(this.Cb5LogYear_changed);
             // 
             // tb6Log5
             // 
@@ -805,7 +805,7 @@
             this.cbLogYear4.Name = "cbLogYear4";
             this.cbLogYear4.Size = new System.Drawing.Size(110, 21);
             this.cbLogYear4.TabIndex = 3;
-            this.cbLogYear4.SelectedIndexChanged += new System.EventHandler(this.cb4LogYear_changed);
+            this.cbLogYear4.SelectedIndexChanged += new System.EventHandler(this.Cb4LogYear_changed);
             // 
             // tb6Log4
             // 
@@ -886,7 +886,7 @@
             this.cbLogYear3.Name = "cbLogYear3";
             this.cbLogYear3.Size = new System.Drawing.Size(110, 21);
             this.cbLogYear3.TabIndex = 2;
-            this.cbLogYear3.SelectedIndexChanged += new System.EventHandler(this.cb3LogYear_changed);
+            this.cbLogYear3.SelectedIndexChanged += new System.EventHandler(this.Cb3LogYear_changed);
             // 
             // tb6Log3
             // 
@@ -967,7 +967,7 @@
             this.cbLogYear2.Name = "cbLogYear2";
             this.cbLogYear2.Size = new System.Drawing.Size(110, 21);
             this.cbLogYear2.TabIndex = 1;
-            this.cbLogYear2.SelectedIndexChanged += new System.EventHandler(this.cb2LogYear_changed);
+            this.cbLogYear2.SelectedIndexChanged += new System.EventHandler(this.Cb2LogYear_changed);
             // 
             // tb6Log2
             // 
@@ -1048,7 +1048,7 @@
             this.cbLogYear1.Name = "cbLogYear1";
             this.cbLogYear1.Size = new System.Drawing.Size(110, 21);
             this.cbLogYear1.TabIndex = 0;
-            this.cbLogYear1.SelectedIndexChanged += new System.EventHandler(this.cb1LogYear_changed);
+            this.cbLogYear1.SelectedIndexChanged += new System.EventHandler(this.Cb1LogYear_changed);
             // 
             // label12
             // 
@@ -2293,7 +2293,7 @@
             this.cbStatMonthlyLogYear.Name = "cbStatMonthlyLogYear";
             this.cbStatMonthlyLogYear.Size = new System.Drawing.Size(136, 21);
             this.cbStatMonthlyLogYear.TabIndex = 15;
-            this.cbStatMonthlyLogYear.SelectedIndexChanged += new System.EventHandler(this.cbStatMonthlyLogYear_changed);
+            this.cbStatMonthlyLogYear.SelectedIndexChanged += new System.EventHandler(this.CbStatMonthlyLogYear_changed);
             // 
             // label32
             // 
@@ -2466,7 +2466,7 @@
             this.btRemoveBikeTotalsConfig.TabIndex = 67;
             this.btRemoveBikeTotalsConfig.Text = "Remove";
             this.btRemoveBikeTotalsConfig.UseVisualStyleBackColor = true;
-            this.btRemoveBikeTotalsConfig.Click += new System.EventHandler(this.btRemoveBikeTotalsConfig_Click);
+            this.btRemoveBikeTotalsConfig.Click += new System.EventHandler(this.BtRemoveBikeTotalsConfig_Click);
             // 
             // label61
             // 
@@ -2590,7 +2590,7 @@
             this.btRenameBike.TabIndex = 14;
             this.btRenameBike.Text = "Update";
             this.btRenameBike.UseVisualStyleBackColor = true;
-            this.btRenameBike.Click += new System.EventHandler(this.btRenameBike_Click);
+            this.btRenameBike.Click += new System.EventHandler(this.BtRenameBike_Click);
             // 
             // bRenameLogYear
             // 
@@ -2600,7 +2600,7 @@
             this.bRenameLogYear.TabIndex = 4;
             this.bRenameLogYear.Text = "Update";
             this.bRenameLogYear.UseVisualStyleBackColor = true;
-            this.bRenameLogYear.Click += new System.EventHandler(this.bRenameLogYear_Click);
+            this.bRenameLogYear.Click += new System.EventHandler(this.BRenameLogYear_Click);
             // 
             // button6
             // 
@@ -2610,7 +2610,7 @@
             this.button6.TabIndex = 9;
             this.button6.Text = "Update";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.cbRenameRoute);
+            this.button6.Click += new System.EventHandler(this.CbRenameRoute);
             // 
             // label5
             // 
@@ -2636,7 +2636,7 @@
             this.btRemoveBikeConfig.TabIndex = 13;
             this.btRemoveBikeConfig.Text = "Remove";
             this.btRemoveBikeConfig.UseVisualStyleBackColor = true;
-            this.btRemoveBikeConfig.Click += new System.EventHandler(this.btRemoveBikeConfig_Click);
+            this.btRemoveBikeConfig.Click += new System.EventHandler(this.BtRemoveBikeConfig_Click);
             // 
             // cbBikeConfig
             // 
@@ -2646,7 +2646,7 @@
             this.cbBikeConfig.Name = "cbBikeConfig";
             this.cbBikeConfig.Size = new System.Drawing.Size(141, 21);
             this.cbBikeConfig.TabIndex = 10;
-            this.cbBikeConfig.SelectedIndexChanged += new System.EventHandler(this.cbBikeConfig_SelectedIndexChanged);
+            this.cbBikeConfig.SelectedIndexChanged += new System.EventHandler(this.CbBikeConfig_SelectedIndexChanged);
             // 
             // btAddBikeConfig
             // 
@@ -2656,7 +2656,7 @@
             this.btAddBikeConfig.TabIndex = 12;
             this.btAddBikeConfig.Text = "Add";
             this.btAddBikeConfig.UseVisualStyleBackColor = true;
-            this.btAddBikeConfig.Click += new System.EventHandler(this.btAddBikeConfig_Click);
+            this.btAddBikeConfig.Click += new System.EventHandler(this.BtAddBikeConfig_Click);
             // 
             // label4
             // 
@@ -2682,7 +2682,7 @@
             this.btRemoveRoute.TabIndex = 8;
             this.btRemoveRoute.Text = "Remove";
             this.btRemoveRoute.UseVisualStyleBackColor = true;
-            this.btRemoveRoute.Click += new System.EventHandler(this.btRemoveRouteConfig);
+            this.btRemoveRoute.Click += new System.EventHandler(this.BtRemoveRouteConfig);
             // 
             // cbRouteConfig
             // 
@@ -2692,7 +2692,7 @@
             this.cbRouteConfig.Name = "cbRouteConfig";
             this.cbRouteConfig.Size = new System.Drawing.Size(205, 21);
             this.cbRouteConfig.TabIndex = 5;
-            this.cbRouteConfig.SelectedIndexChanged += new System.EventHandler(this.cbRouteConfig_SelectedIndexChanged);
+            this.cbRouteConfig.SelectedIndexChanged += new System.EventHandler(this.CbRouteConfig_SelectedIndexChanged);
             // 
             // btAddRoute
             // 
@@ -2702,7 +2702,7 @@
             this.btAddRoute.TabIndex = 7;
             this.btAddRoute.Text = "Add";
             this.btAddRoute.UseVisualStyleBackColor = true;
-            this.btAddRoute.Click += new System.EventHandler(this.btAddRoute_Click);
+            this.btAddRoute.Click += new System.EventHandler(this.BtAddRoute_Click);
             // 
             // label3
             // 
@@ -2747,7 +2747,7 @@
             this.btMaintRetrieve.TabIndex = 17;
             this.btMaintRetrieve.Text = "Retrieve";
             this.btMaintRetrieve.UseVisualStyleBackColor = true;
-            this.btMaintRetrieve.Click += new System.EventHandler(this.btMaintRetrieve_Click);
+            this.btMaintRetrieve.Click += new System.EventHandler(this.BtMaintRetrieve_Click);
             // 
             // lbMaintError
             // 
@@ -2785,7 +2785,7 @@
             this.btMaintRemove.TabIndex = 15;
             this.btMaintRemove.Text = "Remove";
             this.btMaintRemove.UseVisualStyleBackColor = true;
-            this.btMaintRemove.Click += new System.EventHandler(this.btMaintRemove_Click);
+            this.btMaintRemove.Click += new System.EventHandler(this.BtMaintRemove_Click);
             // 
             // tbMaintMiles
             // 
@@ -2836,7 +2836,7 @@
             this.btMaintUpdate.TabIndex = 11;
             this.btMaintUpdate.Text = "Update";
             this.btMaintUpdate.UseVisualStyleBackColor = true;
-            this.btMaintUpdate.Click += new System.EventHandler(this.btMaintUpdate_Click);
+            this.btMaintUpdate.Click += new System.EventHandler(this.BtMaintUpdate_Click);
             // 
             // rtbMaintComments
             // 
@@ -2854,7 +2854,7 @@
             this.btMaintAdd.TabIndex = 7;
             this.btMaintAdd.Text = "Add Entry";
             this.btMaintAdd.UseVisualStyleBackColor = true;
-            this.btMaintAdd.Click += new System.EventHandler(this.btMaintAdd_Click);
+            this.btMaintAdd.Click += new System.EventHandler(this.BtMaintAdd_Click);
             // 
             // label16
             // 
@@ -2874,7 +2874,7 @@
             this.btGetMaintLog.Text = "Refresh";
             this.btGetMaintLog.UseVisualStyleBackColor = true;
             this.btGetMaintLog.Visible = false;
-            this.btGetMaintLog.Click += new System.EventHandler(this.btGetMaintLog_Click);
+            this.btGetMaintLog.Click += new System.EventHandler(this.BtGetMaintLog_Click);
             // 
             // dgvMaint
             // 
@@ -2957,7 +2957,7 @@
             this.btBikeMilesUpdate.TabIndex = 18;
             this.btBikeMilesUpdate.Text = "Update";
             this.btBikeMilesUpdate.UseVisualStyleBackColor = true;
-            this.btBikeMilesUpdate.Click += new System.EventHandler(this.btBikeMilesUpdate_Click);
+            this.btBikeMilesUpdate.Click += new System.EventHandler(this.BtBikeMilesUpdate_Click);
             // 
             // label22
             // 

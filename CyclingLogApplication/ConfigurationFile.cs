@@ -69,23 +69,23 @@ namespace CyclingLogApplication
             string lastLogYearSelectedDataEntry = nodes.Item(0).SelectSingleNode("LastLogSelectedDataEntry").InnerText;
 
             MainForm mainForm = new MainForm("");
-            mainForm.setLogLevel(logLevel);
+            mainForm.SetLogLevel(logLevel);
             mainForm.setcbStatistic1(cbStatistic1);
             mainForm.setcbStatistic2(cbStatistic2);
             mainForm.setcbStatistic3(cbStatistic3);
-            mainForm.setcbStatistic4(cbStatistic4);
-            mainForm.setcbStatistic5(cbStatistic5);
-            mainForm.setLastLogFilterSelected(Convert.ToInt32(lastLogYearFilterSelected));
-            mainForm.setLastBikeSelected(Convert.ToInt32(lastBikeSelected));
+            mainForm.SetcbStatistic4(cbStatistic4);
+            mainForm.SetcbStatistic5(cbStatistic5);
+            mainForm.SetLastLogFilterSelected(Convert.ToInt32(lastLogYearFilterSelected));
+            mainForm.SetLastBikeSelected(Convert.ToInt32(lastBikeSelected));
             mainForm.setLastLogSelected(Convert.ToInt32(lastLogYearSelected));
 
-            mainForm.setLastLogYearChartSelected(Convert.ToInt32(chartLogYearSelected));
+            mainForm.SetLastLogYearChartSelected(Convert.ToInt32(chartLogYearSelected));
             mainForm.setLastRouteChartSelected(Convert.ToInt32(chartRouteSelected));
             mainForm.setLastTypeChartSelected(Convert.ToInt32(chartTypeSelected));
             mainForm.setLastTypeTimeChartSelected(Convert.ToInt32(chartTimeTypeSelected));
 
-            mainForm.setLastMonthlyLogSelected(Convert.ToInt32(lastMonthlyLogYearSelected));
-            mainForm.setLastLogSelectedDataEntry(Convert.ToInt32(lastLogYearSelectedDataEntry));
+            mainForm.SetLastMonthlyLogSelected(Convert.ToInt32(lastMonthlyLogYearSelected));
+            mainForm.SetLastLogSelectedDataEntry(Convert.ToInt32(lastLogYearSelectedDataEntry));
 
             //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
             Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, 1, 0);
@@ -118,7 +118,7 @@ namespace CyclingLogApplication
             string path = "C:\\CyclingLogApplication";
             string pathFile = "C:\\CyclingLogApplication\\CyclingLogConfig.xml";
             MainForm mainForm = new MainForm("");
-            int logSetting = mainForm.getLogLevel();
+            int logSetting = mainForm.GetLogLevel();
 
             try
             {
@@ -223,23 +223,23 @@ namespace CyclingLogApplication
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(@"C:\\CyclingLogApplication\\CyclingLogConfig.xml");
 
-                string cbStatistic1 = mainForm.getcbStatistic1();
-                string cbStatistic2 = mainForm.getcbStatistic2();
-                string cbStatistic3 = mainForm.getcbStatistic3();
-                string cbStatistic4 = mainForm.getcbStatistic4();
-                string cbStatistic5 = mainForm.getcbStatistic5();
+                string cbStatistic1 = mainForm.GetcbStatistic1();
+                string cbStatistic2 = mainForm.GetcbStatistic2();
+                string cbStatistic3 = mainForm.GetcbStatistic3();
+                string cbStatistic4 = mainForm.GetcbStatistic4();
+                string cbStatistic5 = mainForm.GetcbStatistic5();
 
-                int lastLogSelected = mainForm.getLastLogSelected();
-                int lastBikeSelected = mainForm.getLastBikeSelected();
-                int lastLogFilterSelected = mainForm.getLastLogFilterSelected();
+                int lastLogSelected = mainForm.GetLastLogSelected();
+                int lastBikeSelected = mainForm.GetLastBikeSelected();
+                int lastLogFilterSelected = mainForm.GetLastLogFilterSelected();
 
                 int lastLogYearChartSelected = mainForm.getLastLogYearChartSelected();
                 int lastRouteChartSelected = mainForm.getLastRouteChartSelected();
                 int lastTypeChartSelected = mainForm.getLastTypeChartSelected();
                 int lastTypeTimeChartSelected = mainForm.getLastTypeTimeChartSelected();
 
-                int lastMonthlyLogSelected = mainForm.getLastMonthlyLogSelected();
-                int lastLogSelectedDataEntry = mainForm.getLastLogSelectedDataEntry();
+                int lastMonthlyLogSelected = mainForm.GetLastMonthlyLogSelected();
+                int lastLogSelectedDataEntry = mainForm.GetLastLogSelectedDataEntry();
 
                 xmlDoc.SelectSingleNode("/Config/cbStatistic1").InnerText = cbStatistic1;
                 xmlDoc.SelectSingleNode("/Config/cbStatistic2").InnerText = cbStatistic2;

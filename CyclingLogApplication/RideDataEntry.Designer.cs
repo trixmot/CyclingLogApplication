@@ -111,7 +111,7 @@
             this.cbLogYearDataEntry.Name = "cbLogYearDataEntry";
             this.cbLogYearDataEntry.Size = new System.Drawing.Size(121, 21);
             this.cbLogYearDataEntry.TabIndex = 0;
-            this.cbLogYearDataEntry.SelectedIndexChanged += new System.EventHandler(this.cbLogYearDataEntry_SelectedIndexChanged);
+            this.cbLogYearDataEntry.SelectedIndexChanged += new System.EventHandler(this.CbLogYearDataEntry_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -128,7 +128,7 @@
             this.dtpRideDate.Name = "dtpRideDate";
             this.dtpRideDate.Size = new System.Drawing.Size(121, 20);
             this.dtpRideDate.TabIndex = 2;
-            this.dtpRideDate.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.dtpRideDate.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
             // 
             // groupBox1
             // 
@@ -172,7 +172,7 @@
             this.chk1RideDataEntry.TabIndex = 44;
             this.chk1RideDataEntry.Text = "Retrieve Data From Date";
             this.chk1RideDataEntry.UseVisualStyleBackColor = true;
-            this.chk1RideDataEntry.Click += new System.EventHandler(this.chk1RideDataEntry_Click);
+            this.chk1RideDataEntry.Click += new System.EventHandler(this.Chk1RideDataEntry_Click);
             // 
             // numericUpDown2
             // 
@@ -206,7 +206,7 @@
             this.btDeleteRideDataEntry.TabIndex = 29;
             this.btDeleteRideDataEntry.Text = "Delete";
             this.btDeleteRideDataEntry.UseVisualStyleBackColor = true;
-            this.btDeleteRideDataEntry.Click += new System.EventHandler(this.btDeleteRideDataEntry_Click);
+            this.btDeleteRideDataEntry.Click += new System.EventHandler(this.BtDeleteRideDataEntry_Click);
             // 
             // lbNoLogYearSelected
             // 
@@ -225,7 +225,7 @@
             this.btUpdateRideDateEntry.TabIndex = 27;
             this.btUpdateRideDateEntry.Text = "Update";
             this.btUpdateRideDateEntry.UseVisualStyleBackColor = true;
-            this.btUpdateRideDateEntry.Click += new System.EventHandler(this.btUpdateRideDateEntry_Click);
+            this.btUpdateRideDateEntry.Click += new System.EventHandler(this.BtUpdateRideDateEntry_Click);
             // 
             // lbRideDataEntryError
             // 
@@ -255,7 +255,7 @@
             this.button3.TabIndex = 6;
             this.button3.Text = "Clear";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.clearDataEntryFields_click);
+            this.button3.Click += new System.EventHandler(this.ClearDataEntryFields_click);
             // 
             // label18
             // 
@@ -294,7 +294,7 @@
             this.button2.TabIndex = 4;
             this.button2.Text = "Close";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.closeRideDataEntry);
+            this.button2.Click += new System.EventHandler(this.CloseRideDataEntry);
             // 
             // groupBox2
             // 
@@ -438,7 +438,7 @@
             this.dtpTimeRideDataEntry.Name = "dtpTimeRideDataEntry";
             this.dtpTimeRideDataEntry.Size = new System.Drawing.Size(126, 20);
             this.dtpTimeRideDataEntry.TabIndex = 35;
-            this.dtpTimeRideDataEntry.ValueChanged += new System.EventHandler(this.dtpTimeRideDataEntry_ValueChanged);
+            this.dtpTimeRideDataEntry.ValueChanged += new System.EventHandler(this.DtpTimeRideDataEntry_ValueChanged);
             // 
             // cbRouteDataEntry
             // 

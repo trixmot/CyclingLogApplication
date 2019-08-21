@@ -77,7 +77,7 @@ namespace CyclingLogApplication
             }
 
             //Set index for the LogYear:
-            int logYearIndex = Convert.ToInt32(mainForm.getLastLogSelectedDataEntry());
+            int logYearIndex = Convert.ToInt32(mainForm.GetLastLogSelectedDataEntry());
 
             if (logYearIndex == -1)
             {
@@ -152,7 +152,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             if (formClosing == 0 && chk1RideDataEntry.Checked)
             {
@@ -275,7 +275,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                Logger.Log("Ride data for an unselected date index was selected.", 0, mainForm.getLogLevel());
+                                Logger.Log("Ride data for an unselected date index was selected.", 0, mainForm.GetLogLevel());
                             }
                         }
                     }
@@ -284,7 +284,7 @@ namespace CyclingLogApplication
                         lbRideDataEntryError.Show();
                         lbRideDataEntryError.Text = "No ride data found for the selected date.";
                         tbRecordID.Text = "0";
-                        clearDataEntryFields();
+                        ClearDataEntryFields();
                         recordIndex = 1;
                     }
 
@@ -315,11 +315,11 @@ namespace CyclingLogApplication
             RideInformationChange("Add", "Ride_Information_Add");
         }
 
-        private void closeRideDataEntry(object sender, EventArgs e)
+        private void CloseRideDataEntry(object sender, EventArgs e)
         {
             MainForm mainForm = new MainForm("");
-            mainForm.setLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
-            mainForm.setLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);
+            mainForm.SetLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
+            mainForm.SetLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);
             //Close();
             //this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
             //DialogResult result = MessageBox.Show("Any unsaved changes will be lost, do you want to continue?", "Exit Data Entry Form", MessageBoxButtons.YesNo);
@@ -456,7 +456,7 @@ namespace CyclingLogApplication
                 //===============================
 
                 MainForm mainForm = new MainForm("");
-                int logSetting = mainForm.getLogLevel();
+                int logSetting = mainForm.GetLogLevel();
                 string recordID = tbRecordID.Text;
 
                 if (changeType.Equals("Update"))
@@ -693,7 +693,7 @@ namespace CyclingLogApplication
             // NOTE: This line of code loads data into the 'cyclingLogDatabaseDataSet.Table_Ride_Information' table. You can move, or remove it, as needed.
             this.table_Ride_InformationTableAdapter.Fill(this.cyclingLogDatabaseDataSet.Table_Ride_Information);
             MainForm mainForm = new MainForm("");
-            cbBikeDataEntrySelection.SelectedIndex = mainForm.getLastBikeSelected();
+            cbBikeDataEntrySelection.SelectedIndex = mainForm.GetLastBikeSelected();
             // cbLogYearDataEntry.SelectedIndex = cbRouteDataEntry.FindStringExact("");
         }
 
@@ -930,10 +930,12 @@ namespace CyclingLogApplication
                 Logger.LogError("[ERROR]: Exception while trying to retrive ride data. " + ex.Message.ToString());
                 MessageBox.Show("[ERROR] Exception occurred. Refer to the log for more information. ");
             }
+
+            tbRecordID.Text = "import";
         }
 
         // Used to clear the form on date changes:
-        private void clearDataEntryFields()
+        private void ClearDataEntryFields()
         {
             //Reset and clear values:
             dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);//Moving Time:
@@ -962,7 +964,7 @@ namespace CyclingLogApplication
             tbRecordID.Text = "0";
         }
 
-        private void clearDataEntryFields_click(object sender, EventArgs e)
+        private void ClearDataEntryFields_click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Clearing all fields. Do you want to continue?", "Clear Fields", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -970,11 +972,11 @@ namespace CyclingLogApplication
                 lbRideDataEntryError.Text = "";
                 lbRideDataEntryError.Hide();
 
-                clearDataEntryFields();
+                ClearDataEntryFields();
             }
         }
 
-        private void cbLogYearDataEntry_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbLogYearDataEntry_SelectedIndexChanged(object sender, EventArgs e)
         {
             MainForm mainForm = new MainForm("");
             mainForm.setLastLogSelected(cbLogYearDataEntry.SelectedIndex);
@@ -989,12 +991,12 @@ namespace CyclingLogApplication
             }
         }
 
-        private void btUpdateRideDateEntry_Click(object sender, EventArgs e)
+        private void BtUpdateRideDateEntry_Click(object sender, EventArgs e)
         {
             RideInformationChange("Update", "Ride_Information_Update");
         }
 
-        private void btDeleteRideDataEntry_Click(object sender, EventArgs e)
+        private void BtDeleteRideDataEntry_Click(object sender, EventArgs e)
         {
             //Get ride recordID:
             string rideRecordID = tbRecordID.Text;
@@ -1085,14 +1087,14 @@ namespace CyclingLogApplication
             }
         }
 
-        private void dtpTimeRideDataEntry_ValueChanged(object sender, EventArgs e)
+        private void DtpTimeRideDataEntry_ValueChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void chk1RideDataEntry_Click(object sender, EventArgs e)
+        private void Chk1RideDataEntry_Click(object sender, EventArgs e)
         {
-            dateTimePicker1_ValueChanged(sender, e);
+            DateTimePicker1_ValueChanged(sender, e);
         }
     }
 }

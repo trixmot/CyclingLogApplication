@@ -80,7 +80,7 @@ namespace CyclingLogApplication
         {
             labelChartError.Hide();
             MainForm mainForm = new MainForm("");
-            mainForm.setLastLogYearChartSelected(cbLogYearChart.SelectedIndex);
+            mainForm.SetLastLogYearChartSelected(cbLogYearChart.SelectedIndex);
         }
 
         private void cbRoutesChart_SelectedIndexChanged(object sender, EventArgs e)
@@ -93,7 +93,7 @@ namespace CyclingLogApplication
         public void chartTest()
         {
             MainForm mainForm = new MainForm("");
-            int logSetting = mainForm.getLogLevel();
+            int logSetting = mainForm.GetLogLevel();
             int logIndex = 1;
 
             //SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
@@ -156,7 +156,7 @@ namespace CyclingLogApplication
             SqlDataReader reader = null;
             List<string> nameList = new List<string>();
             MainForm mainForm = new MainForm("");
-            int logSetting = mainForm.getLogLevel();
+            int logSetting = mainForm.GetLogLevel();
             int logIndex = mainForm.getLogYearIndex(cbLogYearChart.SelectedItem.ToString());
 
             //Average Speed:

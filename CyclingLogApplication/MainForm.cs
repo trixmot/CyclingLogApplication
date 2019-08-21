@@ -62,7 +62,7 @@ namespace CyclingLogApplication
 
             InitializeComponent();
             GetConnectionStrings();
-            int logSetting = getLogLevel();
+            int logSetting = GetLogLevel();
 
             Logger.Log("**********************************************", 1, logSetting);
             Logger.Log("Staring Log Application", 1, 0);
@@ -71,7 +71,7 @@ namespace CyclingLogApplication
 
             tbWeekCount.Text = GetCurrentWeekCount().ToString();
             tbDayCount.Text = GetCurrentDayCount().ToString();
-            tbTimeChange.Text = getDaysToNextTimeChange().ToString();
+            tbTimeChange.Text = GetDaysToNextTimeChange().ToString();
         }
 
         public MainForm(string emptyConstructor)
@@ -93,7 +93,7 @@ namespace CyclingLogApplication
 
             ConfigurationFile configfile = new ConfigurationFile();
             configfile.readConfigFile();
-            int logSetting = getLogLevel();
+            int logSetting = GetLogLevel();
 
             //Get all values and load the comboboxes:
             List<string> logYearList = new List<string>();
@@ -134,7 +134,7 @@ namespace CyclingLogApplication
                 Logger.Log("Data Loading: Log Year: " + val, 0, logSetting);
             }
 
-            rideDataEntryForm.cbLogYearDataEntry.SelectedIndex = getLastLogSelectedDataEntry();
+            rideDataEntryForm.cbLogYearDataEntry.SelectedIndex = GetLastLogSelectedDataEntry();
 
             //Load Route values:
             foreach (var val in routeList)
@@ -175,8 +175,8 @@ namespace CyclingLogApplication
                 return;
             }
 
-            btBikeMilesUpdate_run();
-            btGetMaintLog_Click(sender, e);
+            BtBikeMilesUpdate_run();
+            BtGetMaintLog_Click(sender, e);
 
             formloading = true;
             //Set first option of 'None':
@@ -189,13 +189,13 @@ namespace CyclingLogApplication
             }
 
             //Load Statistic combo index values:
-            cbLogYear1.SelectedIndex = Convert.ToInt32(getcbStatistic1());
-            cbLogYear2.SelectedIndex = Convert.ToInt32(getcbStatistic2());
-            cbLogYear3.SelectedIndex = Convert.ToInt32(getcbStatistic3());
-            cbLogYear4.SelectedIndex = Convert.ToInt32(getcbStatistic4());
-            cbLogYear5.SelectedIndex = Convert.ToInt32(getcbStatistic5());
+            cbLogYear1.SelectedIndex = Convert.ToInt32(GetcbStatistic1());
+            cbLogYear2.SelectedIndex = Convert.ToInt32(GetcbStatistic2());
+            cbLogYear3.SelectedIndex = Convert.ToInt32(GetcbStatistic3());
+            cbLogYear4.SelectedIndex = Convert.ToInt32(GetcbStatistic4());
+            cbLogYear5.SelectedIndex = Convert.ToInt32(GetcbStatistic5());
 
-            cbStatMonthlyLogYear.SelectedIndex = Convert.ToInt32(getLastMonthlyLogSelected());
+            cbStatMonthlyLogYear.SelectedIndex = Convert.ToInt32(GetLastMonthlyLogSelected());
 
             label2.Text = "App Version: " + getLogVersion();
             lbMaintError.Text = "";
@@ -207,7 +207,7 @@ namespace CyclingLogApplication
             formloading = false;
         }
 
-        private void closeForm(object sender, EventArgs e)
+        private void CloseForm(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you really want to exit?", "Exit Application", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -277,32 +277,32 @@ namespace CyclingLogApplication
             return logVersion;
         }
 
-        public int getLogLevel()
+        public int GetLogLevel()
         {
             return logLevel;
         }
 
-        public void setLogLevel(int logLevelFromConfig)
+        public void SetLogLevel(int logLevelFromConfig)
         {
             logLevel = logLevelFromConfig;
         }
-        public string getcbStatistic1()
+        public string GetcbStatistic1()
         {
             return cbStatistic1;
         }
-        public string getcbStatistic2()
+        public string GetcbStatistic2()
         {
             return cbStatistic2;
         }
-        public string getcbStatistic3()
+        public string GetcbStatistic3()
         {
             return cbStatistic3;
         }
-        public string getcbStatistic4()
+        public string GetcbStatistic4()
         {
             return cbStatistic4;
         }
-        public string getcbStatistic5()
+        public string GetcbStatistic5()
         {
             return cbStatistic5;
         }
@@ -319,26 +319,26 @@ namespace CyclingLogApplication
         {
             cbStatistic3 = setcbStatistic3Config;
         }
-        public void setcbStatistic4(string setcbStatistic4Config)
+        public void SetcbStatistic4(string setcbStatistic4Config)
         {
             cbStatistic4 = setcbStatistic4Config;
         }
-        public void setcbStatistic5(string setcbStatistic5Config)
+        public void SetcbStatistic5(string setcbStatistic5Config)
         {
             cbStatistic5 = setcbStatistic5Config;
         }
 
-        public int getLastBikeSelected()
+        public int GetLastBikeSelected()
         {
             return lastBikeSelected;
         }
 
-        public void setLastBikeSelected(int bikeIndex)
+        public void SetLastBikeSelected(int bikeIndex)
         {
             lastBikeSelected = bikeIndex;
         }
 
-        public int getLastLogSelected()
+        public int GetLastLogSelected()
         {
             return lastLogSelected;
         }
@@ -348,37 +348,37 @@ namespace CyclingLogApplication
             lastLogSelected = logIndex;
         }
 
-        public int getLastMonthlyLogSelected()
+        public int GetLastMonthlyLogSelected()
         {
             return lastMonthlyLogSelected;
         }
 
-        public void setLastMonthlyLogSelected(int logIndex)
+        public void SetLastMonthlyLogSelected(int logIndex)
         {
             lastMonthlyLogSelected = logIndex;
         }
 
-        public int getLastLogSelectedDataEntry()
+        public int GetLastLogSelectedDataEntry()
         {
             return lastLogSelectedDataEntry;
         }
 
-        public void setLastLogSelectedDataEntry(int logIndex)
+        public void SetLastLogSelectedDataEntry(int logIndex)
         {
             lastLogSelectedDataEntry = logIndex;
         }
 
-        public void setLastLogFilterSelected(int logIndex)
+        public void SetLastLogFilterSelected(int logIndex)
         {
             lastLogFilterSelected = logIndex;
         }
 
-        public int getLastLogFilterSelected()
+        public int GetLastLogFilterSelected()
         {
             return lastLogFilterSelected;
         }
 
-        public void setLastLogYearChartSelected(int logIndex)
+        public void SetLastLogYearChartSelected(int logIndex)
         {
             lastLogYearChart = logIndex;
         }
@@ -458,7 +458,7 @@ namespace CyclingLogApplication
         {
             SqlDataReader reader = null;
             List<string> nameList = new List<string>();
-            int logSetting = getLogLevel();
+            int logSetting = GetLogLevel();
 
             try
             {
@@ -506,17 +506,17 @@ namespace CyclingLogApplication
             return nameList;
         }
 
-        private void btAddLogYearConfig(object sender, EventArgs e)
+        private void BtAddLogYearConfig(object sender, EventArgs e)
         {
             string logYearTitle;
 
-            if (cbLogYearConfig.SelectedItem != null)
+            if (tbLogYearConfig.Text != "")
             {
                 logYearTitle = tbLogYearConfig.Text;
                 //Check to see if the string has already been entered to eliminate duplicates:
                 for (int index = 1; index < cbLogYearConfig.Items.Count; index++)
                 {
-                    if (cbLogYearConfig.SelectedItem.ToString().Equals(logYearTitle))
+                    if (cbLogYearConfig.Items.Contains(logYearTitle))
                     {
                         MessageBox.Show("Duplicate name entered. Enter a unique name for the log.");
                         return;
@@ -536,7 +536,7 @@ namespace CyclingLogApplication
             }
 
             string logYearValue = cbLogYear.SelectedItem.ToString();
-            int logSetting = getLogLevel();
+            int logSetting = GetLogLevel();
 
             //Add new entry to the LogYear Table:
             List<object> objectValues = new List<object>();
@@ -549,6 +549,7 @@ namespace CyclingLogApplication
             rideDataEntryForm.AddLogYearDataEntry(logYearTitle);
             rideDataDisplayForm.AddLogYearFilter(logYearTitle);
             chartForm.cbLogYearChart.Items.Add(logYearTitle);
+            cbStatMonthlyLogYear.Items.Add(logYearTitle);
 
             //Update combo's on stat tab:
             cbLogYear1.Items.Add(logYearTitle);
@@ -849,7 +850,7 @@ namespace CyclingLogApplication
 
         private void openRideDataForm(object sender, EventArgs e)
         {
-            rideDataDisplayForm.setLogYearFilterIndex(getLastLogFilterSelected());
+            rideDataDisplayForm.setLogYearFilterIndex(GetLastLogFilterSelected());
             rideDataDisplayForm.ShowDialog();
         }
 
@@ -868,7 +869,7 @@ namespace CyclingLogApplication
                     MessageBox.Show("Reminder: No Routes have been entered. Add a new Route in the Configuration tab.");
                 }
                 
-                rideDataEntryForm.cbBikeDataEntrySelection.SelectedIndex = Convert.ToInt32(getLastBikeSelected());
+                rideDataEntryForm.cbBikeDataEntrySelection.SelectedIndex = Convert.ToInt32(GetLastBikeSelected());
                 rideDataEntryForm.ShowDialog();
             }
 
@@ -877,10 +878,10 @@ namespace CyclingLogApplication
             //thread.Start();
         }
 
-        private void btAddRoute_Click(object sender, EventArgs e)
+        private void BtAddRoute_Click(object sender, EventArgs e)
         {
             string routeString = tbRouteConfig.Text;
-            int logSetting = getLogLevel();
+            int logSetting = GetLogLevel();
 
             if (cbRouteConfig.SelectedItem != null)
             {
@@ -906,7 +907,7 @@ namespace CyclingLogApplication
             Logger.Log("Adding a Route entry to the Configuration:" + routeString, 0, logSetting);
         }
 
-        private void btRemoveRouteConfig(object sender, EventArgs e)
+        private void BtRemoveRouteConfig(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you really want to delete the Route option?", "Delete Route Option", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -937,7 +938,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private void btAddBikeConfig_Click(object sender, EventArgs e)
+        private void BtAddBikeConfig_Click(object sender, EventArgs e)
         {
             string bikeString = tbBikeConfig.Text;
             string miles = tbConfigMilesNotInLog.Text;
@@ -999,7 +1000,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private void btRemoveBikeConfig_Click(object sender, EventArgs e)
+        private void BtRemoveBikeConfig_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you really want to delete the bike option?", "Delete Bike Option", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -1060,7 +1061,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private void cbRouteConfig_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbRouteConfig_SelectedIndexChanged(object sender, EventArgs e)
         {         
             if (cbRouteConfig.SelectedItem != null)
             {
@@ -1213,7 +1214,7 @@ namespace CyclingLogApplication
 
         //Get average rides per week value:
         //Total rides/weeks
-        private float getAverageRidesPerWeek(int logIndex)
+        private float GetAverageRidesPerWeek(int logIndex)
         {
             int rides = getTotalRidesForSelectedLog(logIndex);
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
@@ -1243,7 +1244,7 @@ namespace CyclingLogApplication
 
         //Get average miles per week value:
         //Total miles/weeks
-        private float getAverageMilesPerWeek(int logIndex)
+        private float GetAverageMilesPerWeek(int logIndex)
         {
             float totalMiles = getTotalMilesForSelectedLog(logIndex);
             float avgMiles = 0;
@@ -1274,7 +1275,7 @@ namespace CyclingLogApplication
 
         //Get average miles per ride value:
         //Total miles/total rides
-        private float getAverageMilesPerRide(int logIndex)
+        private float GetAverageMilesPerRide(int logIndex)
         {
             float miles = getTotalMilesForSelectedLog(logIndex);
             int rides = getTotalRidesForSelectedLog(logIndex);
@@ -1292,7 +1293,7 @@ namespace CyclingLogApplication
         }
 
         //Get the highest mileage for a week value:
-        private double getHighMileageWeekNumber(int logIndex)
+        private double GetHighMileageWeekNumber(int logIndex)
         {
             List<double> rideDistanceList = new List<double>();
             int weekNumber = 1;
@@ -1366,7 +1367,7 @@ namespace CyclingLogApplication
 
         //Get the highest milelage for a day value:
         //SELECT MAX(RideDistance) FROM Table_Ride_Information;
-        private float getHighMileageDay(int logIndex)
+        private float GetHighMileageDay(int logIndex)
         {
             SqlDataReader reader = null;
             float returnValue = 0;
@@ -1422,7 +1423,7 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        private double getDaysToNextTimeChange()
+        private double GetDaysToNextTimeChange()
         {
             DateTime date = DateTime.Now;
             double year = date.Year;
@@ -1643,11 +1644,11 @@ namespace CyclingLogApplication
             {
                 tb1Log1.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log1.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
-                tb3Log1.Text = getAverageRidesPerWeek(logYearIndex).ToString();
-                tb4Log1.Text = getAverageMilesPerWeek(logYearIndex).ToString();
-                tb5Log1.Text = getAverageMilesPerRide(logYearIndex).ToString();
-                tb6Log1.Text = getHighMileageWeekNumber(logYearIndex).ToString();
-                tb7Log1.Text = getHighMileageDay(logYearIndex).ToString();
+                tb3Log1.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
+                tb4Log1.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
+                tb5Log1.Text = GetAverageMilesPerRide(logYearIndex).ToString();
+                tb6Log1.Text = GetHighMileageWeekNumber(logYearIndex).ToString();
+                tb7Log1.Text = GetHighMileageDay(logYearIndex).ToString();
             }
 
             if (cbLogYear2.SelectedIndex > 0)
@@ -1656,11 +1657,11 @@ namespace CyclingLogApplication
 
                 tb1Log2.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log2.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
-                tb3Log2.Text = getAverageRidesPerWeek(logYearIndex).ToString();
-                tb4Log2.Text = getAverageMilesPerWeek(logYearIndex).ToString();
-                tb5Log2.Text = getAverageMilesPerRide(logYearIndex).ToString();
-                tb6Log2.Text = getHighMileageWeekNumber(logYearIndex).ToString();
-                tb7Log2.Text = getHighMileageDay(logYearIndex).ToString();
+                tb3Log2.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
+                tb4Log2.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
+                tb5Log2.Text = GetAverageMilesPerRide(logYearIndex).ToString();
+                tb6Log2.Text = GetHighMileageWeekNumber(logYearIndex).ToString();
+                tb7Log2.Text = GetHighMileageDay(logYearIndex).ToString();
             }
 
             if (cbLogYear3.SelectedIndex > 0)
@@ -1669,11 +1670,11 @@ namespace CyclingLogApplication
 
                 tb1Log3.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log3.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
-                tb3Log3.Text = getAverageRidesPerWeek(logYearIndex).ToString();
-                tb4Log3.Text = getAverageMilesPerWeek(logYearIndex).ToString();
-                tb5Log3.Text = getAverageMilesPerRide(logYearIndex).ToString();
-                tb6Log3.Text = getHighMileageWeekNumber(logYearIndex).ToString();
-                tb7Log3.Text = getHighMileageDay(logYearIndex).ToString();
+                tb3Log3.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
+                tb4Log3.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
+                tb5Log3.Text = GetAverageMilesPerRide(logYearIndex).ToString();
+                tb6Log3.Text = GetHighMileageWeekNumber(logYearIndex).ToString();
+                tb7Log3.Text = GetHighMileageDay(logYearIndex).ToString();
             }
 
             if (cbLogYear4.SelectedIndex > 0)
@@ -1682,11 +1683,11 @@ namespace CyclingLogApplication
 
                 tb1Log4.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log4.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
-                tb3Log4.Text = getAverageRidesPerWeek(logYearIndex).ToString();
-                tb4Log4.Text = getAverageMilesPerWeek(logYearIndex).ToString();
-                tb5Log4.Text = getAverageMilesPerRide(logYearIndex).ToString();
-                tb6Log4.Text = getHighMileageWeekNumber(logYearIndex).ToString();
-                tb7Log4.Text = getHighMileageDay(logYearIndex).ToString();
+                tb3Log4.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
+                tb4Log4.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
+                tb5Log4.Text = GetAverageMilesPerRide(logYearIndex).ToString();
+                tb6Log4.Text = GetHighMileageWeekNumber(logYearIndex).ToString();
+                tb7Log4.Text = GetHighMileageDay(logYearIndex).ToString();
             }
 
             if (cbLogYear5.SelectedIndex > 0)
@@ -1695,11 +1696,11 @@ namespace CyclingLogApplication
 
                 tb1Log5.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log5.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
-                tb3Log5.Text = getAverageRidesPerWeek(logYearIndex).ToString();
-                tb4Log5.Text = getAverageMilesPerWeek(logYearIndex).ToString();
-                tb5Log5.Text = getAverageMilesPerRide(logYearIndex).ToString();
-                tb6Log5.Text = getHighMileageWeekNumber(logYearIndex).ToString();
-                tb7Log5.Text = getHighMileageDay(logYearIndex).ToString();
+                tb3Log5.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
+                tb4Log5.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
+                tb5Log5.Text = GetAverageMilesPerRide(logYearIndex).ToString();
+                tb6Log5.Text = GetHighMileageWeekNumber(logYearIndex).ToString();
+                tb7Log5.Text = GetHighMileageDay(logYearIndex).ToString();
             }
 
             //Get total miles for all logs:
@@ -1738,7 +1739,7 @@ namespace CyclingLogApplication
             return Math.Round(returnValue, 1);
         }
 
-        private double getFastestAvg()
+        private double GetFastestAvg()
         {
             List<object> objectValues = new List<object>();
             double returnValue = 0;
@@ -1822,7 +1823,7 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        private void cb1LogYear_changed(object sender, EventArgs e)
+        private void Cb1LogYear_changed(object sender, EventArgs e)
         {
             int logYearIndex = getLogYearIndex(cbLogYear1.SelectedItem.ToString());
             setcbStatistic1(cbLogYear1.SelectedIndex.ToString());
@@ -1831,11 +1832,11 @@ namespace CyclingLogApplication
             {
                 tb1Log1.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log1.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
-                tb3Log1.Text = getAverageRidesPerWeek(logYearIndex).ToString();
-                tb4Log1.Text = getAverageMilesPerWeek(logYearIndex).ToString();
-                tb5Log1.Text = getAverageMilesPerRide(logYearIndex).ToString();
-                tb6Log1.Text = getHighMileageWeekNumber(logYearIndex).ToString();
-                tb7Log1.Text = getHighMileageDay(logYearIndex).ToString();
+                tb3Log1.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
+                tb4Log1.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
+                tb5Log1.Text = GetAverageMilesPerRide(logYearIndex).ToString();
+                tb6Log1.Text = GetHighMileageWeekNumber(logYearIndex).ToString();
+                tb7Log1.Text = GetHighMileageDay(logYearIndex).ToString();
             }
             else
             {
@@ -1849,7 +1850,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private void cb2LogYear_changed(object sender, EventArgs e)
+        private void Cb2LogYear_changed(object sender, EventArgs e)
         {
             int logYearIndex = getLogYearIndex(cbLogYear2.SelectedItem.ToString());
             setcbStatistic2(cbLogYear2.SelectedIndex.ToString());
@@ -1858,11 +1859,11 @@ namespace CyclingLogApplication
             {
                 tb1Log2.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log2.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
-                tb3Log2.Text = getAverageRidesPerWeek(logYearIndex).ToString();
-                tb4Log2.Text = getAverageMilesPerWeek(logYearIndex).ToString();
-                tb5Log2.Text = getAverageMilesPerRide(logYearIndex).ToString();
-                tb6Log2.Text = getHighMileageWeekNumber(logYearIndex).ToString();
-                tb7Log2.Text = getHighMileageDay(logYearIndex).ToString();
+                tb3Log2.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
+                tb4Log2.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
+                tb5Log2.Text = GetAverageMilesPerRide(logYearIndex).ToString();
+                tb6Log2.Text = GetHighMileageWeekNumber(logYearIndex).ToString();
+                tb7Log2.Text = GetHighMileageDay(logYearIndex).ToString();
             }
             else
             {
@@ -1876,7 +1877,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private void cb3LogYear_changed(object sender, EventArgs e)
+        private void Cb3LogYear_changed(object sender, EventArgs e)
         {
             int logYearIndex = getLogYearIndex(cbLogYear3.SelectedItem.ToString());
             setcbStatistic3(cbLogYear3.SelectedIndex.ToString());
@@ -1885,11 +1886,11 @@ namespace CyclingLogApplication
             {
                 tb1Log3.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log3.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
-                tb3Log3.Text = getAverageRidesPerWeek(logYearIndex).ToString();
-                tb4Log3.Text = getAverageMilesPerWeek(logYearIndex).ToString();
-                tb5Log3.Text = getAverageMilesPerRide(logYearIndex).ToString();
-                tb6Log3.Text = getHighMileageWeekNumber(logYearIndex).ToString();
-                tb7Log3.Text = getHighMileageDay(logYearIndex).ToString();
+                tb3Log3.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
+                tb4Log3.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
+                tb5Log3.Text = GetAverageMilesPerRide(logYearIndex).ToString();
+                tb6Log3.Text = GetHighMileageWeekNumber(logYearIndex).ToString();
+                tb7Log3.Text = GetHighMileageDay(logYearIndex).ToString();
             }
             else
             {
@@ -1903,20 +1904,20 @@ namespace CyclingLogApplication
             }
         }
 
-        private void cb4LogYear_changed(object sender, EventArgs e)
+        private void Cb4LogYear_changed(object sender, EventArgs e)
         {
             int logYearIndex = getLogYearIndex(cbLogYear4.SelectedItem.ToString());
-            setcbStatistic4(cbLogYear4.SelectedIndex.ToString());
+            SetcbStatistic4(cbLogYear4.SelectedIndex.ToString());
 
             if (cbLogYear4.SelectedIndex > 0)
             {
                 tb1Log4.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log4.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
-                tb3Log4.Text = getAverageRidesPerWeek(logYearIndex).ToString();
-                tb4Log4.Text = getAverageMilesPerWeek(logYearIndex).ToString();
-                tb5Log4.Text = getAverageMilesPerRide(logYearIndex).ToString();
-                tb6Log4.Text = getHighMileageWeekNumber(logYearIndex).ToString();
-                tb7Log4.Text = getHighMileageDay(logYearIndex).ToString();
+                tb3Log4.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
+                tb4Log4.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
+                tb5Log4.Text = GetAverageMilesPerRide(logYearIndex).ToString();
+                tb6Log4.Text = GetHighMileageWeekNumber(logYearIndex).ToString();
+                tb7Log4.Text = GetHighMileageDay(logYearIndex).ToString();
             }
             else
             {
@@ -1930,20 +1931,20 @@ namespace CyclingLogApplication
             }
         }
 
-        private void cb5LogYear_changed(object sender, EventArgs e)
+        private void Cb5LogYear_changed(object sender, EventArgs e)
         {
             int logYearIndex = getLogYearIndex(cbLogYear5.SelectedItem.ToString());
-            setcbStatistic5(cbLogYear5.SelectedIndex.ToString());
+            SetcbStatistic5(cbLogYear5.SelectedIndex.ToString());
 
             if (cbLogYear5.SelectedIndex > 0)
             {
                 tb1Log5.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
                 tb2Log5.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
-                tb3Log5.Text = getAverageRidesPerWeek(logYearIndex).ToString();
-                tb4Log5.Text = getAverageMilesPerWeek(logYearIndex).ToString();
-                tb5Log5.Text = getAverageMilesPerRide(logYearIndex).ToString();
-                tb6Log5.Text = getHighMileageWeekNumber(logYearIndex).ToString();
-                tb7Log5.Text = getHighMileageDay(logYearIndex).ToString();
+                tb3Log5.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
+                tb4Log5.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
+                tb5Log5.Text = GetAverageMilesPerRide(logYearIndex).ToString();
+                tb6Log5.Text = GetHighMileageWeekNumber(logYearIndex).ToString();
+                tb7Log5.Text = GetHighMileageDay(logYearIndex).ToString();
             }
             else
             {
@@ -2121,7 +2122,7 @@ namespace CyclingLogApplication
             MessageBox.Show("Data Import successful.");
         }
 
-        private void cbRenameRoute(object sender, EventArgs e)
+        private void CbRenameRoute(object sender, EventArgs e)
         {
             //Read selected index and update the value for that index:
             string newValue = tbRouteConfig.Text;
@@ -2226,7 +2227,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private void bRenameLogYear_Click(object sender, EventArgs e)
+        private void BRenameLogYear_Click(object sender, EventArgs e)
         {
             string newValue = tbLogYearConfig.Text;
             string oldValue = "";
@@ -2362,7 +2363,7 @@ namespace CyclingLogApplication
         //Start Maintenance Section
         //=============================================================================
 
-        private void btGetMaintLog_Click(object sender, EventArgs e)
+        private void BtGetMaintLog_Click(object sender, EventArgs e)
         {
             lbMaintError.Text = "";
             //SqlConnection conn = null;
@@ -2401,7 +2402,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private void btMaintAdd_Click(object sender, EventArgs e)
+        private void BtMaintAdd_Click(object sender, EventArgs e)
         {
             lbMaintError.Text = "";
 
@@ -2445,10 +2446,10 @@ namespace CyclingLogApplication
             //btGetMaintLog_Click(sender, e);
             tbMaintMiles.Text = "";
             rtbMaintComments.Text = "";
-            btGetMaintLog_Click(sender, e);
+            BtGetMaintLog_Click(sender, e);
         }
 
-        private void btMaintUpdate_Click(object sender, EventArgs e)
+        private void BtMaintUpdate_Click(object sender, EventArgs e)
         {
             lbMaintError.Text = "";
 
@@ -2509,10 +2510,10 @@ namespace CyclingLogApplication
             objectValues.Add(dateTimePicker1.Value);
             objectValues.Add(tbMaintMiles.Text);
             runStoredProcedure(objectValues, "Maintenance_Update");
-            btGetMaintLog_Click(sender, e);
+            BtGetMaintLog_Click(sender, e);
         }
 
-        private void btMaintRemove_Click(object sender, EventArgs e)
+        private void BtMaintRemove_Click(object sender, EventArgs e)
         {
             if (tbMaintID.Text.Equals(""))
             {
@@ -2532,10 +2533,10 @@ namespace CyclingLogApplication
             runStoredProcedure(objectValues, "Maintenance_Remove");
             rtbMaintComments.Text = "";
             tbMaintMiles.Text = "";
-            btGetMaintLog_Click(sender, e);
+            BtGetMaintLog_Click(sender, e);
         }
 
-        private void btMaintRetrieve_Click(object sender, EventArgs e)
+        private void BtMaintRetrieve_Click(object sender, EventArgs e)
         {
             lbMaintError.Text = "";
 
@@ -2591,7 +2592,7 @@ namespace CyclingLogApplication
         }
 
         //Runs on form load:
-        private void btBikeMilesUpdate_run()
+        private void BtBikeMilesUpdate_run()
         {
             //Load bike names and notinlogmiles from the database:
 
@@ -2743,7 +2744,7 @@ namespace CyclingLogApplication
             tbBikeMilesTotal.Text = runningTotalMiles.ToString();
         }
 
-        private void cbBikeConfig_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbBikeConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
             string miles;
             //Load miles from the database:
@@ -2780,7 +2781,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private void btDeleteAllData_Click(object sender, EventArgs e)
+        private void BtDeleteAllData_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("This function will delete all data and from the Cycling Log Application's database. Are you sure you want to continue? If you have not made a backup copy of the database, select No, and make a copy and then run the function once again.", "Delete All Data From Database", MessageBoxButtons.YesNo);
             if (result == DialogResult.No)
@@ -2794,7 +2795,7 @@ namespace CyclingLogApplication
             //Delete the config file and a default new one will be created:
         }
 
-        private void btRenameBike_Click(object sender, EventArgs e)
+        private void BtRenameBike_Click(object sender, EventArgs e)
         {
             //Verify Miles is entered and in the correct format:
             int parsedValue;
@@ -2939,7 +2940,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private void cbLogYearConfig_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbLogYearConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbLogYearConfig.SelectedItem == null)
             {
@@ -3022,44 +3023,44 @@ namespace CyclingLogApplication
             month11R2.Text = getTotalRidesMonthlyForSelectedLog(logYearIndex, 11).ToString();
             month12R2.Text = getTotalRidesMonthlyForSelectedLog(logYearIndex, 12).ToString();
 
-            month1R3.Text = getAvgMonthlyRidesForSelectedLog(logYearIndex, 1).ToString();
-            month2R3.Text = getAvgMonthlyRidesForSelectedLog(logYearIndex, 2).ToString();
-            month3R3.Text = getAvgMonthlyRidesForSelectedLog(logYearIndex, 3).ToString();
-            month4R3.Text = getAvgMonthlyRidesForSelectedLog(logYearIndex, 4).ToString();
-            month5R3.Text = getAvgMonthlyRidesForSelectedLog(logYearIndex, 5).ToString();
-            month6R3.Text = getAvgMonthlyRidesForSelectedLog(logYearIndex, 6).ToString();
-            month7R3.Text = getAvgMonthlyRidesForSelectedLog(logYearIndex, 7).ToString();
-            month8R3.Text = getAvgMonthlyRidesForSelectedLog(logYearIndex, 8).ToString();
-            month9R3.Text = getAvgMonthlyRidesForSelectedLog(logYearIndex, 9).ToString();
-            month10R3.Text = getAvgMonthlyRidesForSelectedLog(logYearIndex, 10).ToString();
-            month11R3.Text = getAvgMonthlyRidesForSelectedLog(logYearIndex, 11).ToString();
-            month12R3.Text = getAvgMonthlyRidesForSelectedLog(logYearIndex, 12).ToString();
+            month1R3.Text = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 1).ToString();
+            month2R3.Text = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 2).ToString();
+            month3R3.Text = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 3).ToString();
+            month4R3.Text = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 4).ToString();
+            month5R3.Text = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 5).ToString();
+            month6R3.Text = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 6).ToString();
+            month7R3.Text = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 7).ToString();
+            month8R3.Text = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 8).ToString();
+            month9R3.Text = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 9).ToString();
+            month10R3.Text = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 10).ToString();
+            month11R3.Text = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 11).ToString();
+            month12R3.Text = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 12).ToString();
 
-            month1R4.Text = getAverageMonthlyMilesPerWeek(logYearIndex, 1).ToString();
-            month2R4.Text = getAverageMonthlyMilesPerWeek(logYearIndex, 2).ToString();
-            month3R4.Text = getAverageMonthlyMilesPerWeek(logYearIndex, 3).ToString();
-            month4R4.Text = getAverageMonthlyMilesPerWeek(logYearIndex, 4).ToString();
-            month5R4.Text = getAverageMonthlyMilesPerWeek(logYearIndex, 5).ToString();
-            month6R4.Text = getAverageMonthlyMilesPerWeek(logYearIndex, 6).ToString();
-            month7R4.Text = getAverageMonthlyMilesPerWeek(logYearIndex, 7).ToString();
-            month8R4.Text = getAverageMonthlyMilesPerWeek(logYearIndex, 8).ToString();
-            month9R4.Text = getAverageMonthlyMilesPerWeek(logYearIndex, 9).ToString();
-            month10R4.Text = getAverageMonthlyMilesPerWeek(logYearIndex, 10).ToString();
-            month11R4.Text = getAverageMonthlyMilesPerWeek(logYearIndex, 11).ToString();
-            month12R4.Text = getAverageMonthlyMilesPerWeek(logYearIndex, 12).ToString();
+            month1R4.Text = GetAverageMonthlyMilesPerWeek(logYearIndex, 1).ToString();
+            month2R4.Text = GetAverageMonthlyMilesPerWeek(logYearIndex, 2).ToString();
+            month3R4.Text = GetAverageMonthlyMilesPerWeek(logYearIndex, 3).ToString();
+            month4R4.Text = GetAverageMonthlyMilesPerWeek(logYearIndex, 4).ToString();
+            month5R4.Text = GetAverageMonthlyMilesPerWeek(logYearIndex, 5).ToString();
+            month6R4.Text = GetAverageMonthlyMilesPerWeek(logYearIndex, 6).ToString();
+            month7R4.Text = GetAverageMonthlyMilesPerWeek(logYearIndex, 7).ToString();
+            month8R4.Text = GetAverageMonthlyMilesPerWeek(logYearIndex, 8).ToString();
+            month9R4.Text = GetAverageMonthlyMilesPerWeek(logYearIndex, 9).ToString();
+            month10R4.Text = GetAverageMonthlyMilesPerWeek(logYearIndex, 10).ToString();
+            month11R4.Text = GetAverageMonthlyMilesPerWeek(logYearIndex, 11).ToString();
+            month12R4.Text = GetAverageMonthlyMilesPerWeek(logYearIndex, 12).ToString();
 
-            month1R5.Text = getAverageMonthlyMilesPerRide(logYearIndex, 1).ToString();
-            month2R5.Text = getAverageMonthlyMilesPerRide(logYearIndex, 2).ToString();
-            month3R5.Text = getAverageMonthlyMilesPerRide(logYearIndex, 3).ToString();
-            month4R5.Text = getAverageMonthlyMilesPerRide(logYearIndex, 4).ToString();
-            month5R5.Text = getAverageMonthlyMilesPerRide(logYearIndex, 5).ToString();
-            month6R5.Text = getAverageMonthlyMilesPerRide(logYearIndex, 6).ToString();
-            month7R5.Text = getAverageMonthlyMilesPerRide(logYearIndex, 7).ToString();
-            month8R5.Text = getAverageMonthlyMilesPerRide(logYearIndex, 8).ToString();
-            month9R5.Text = getAverageMonthlyMilesPerRide(logYearIndex, 9).ToString();
-            month10R5.Text = getAverageMonthlyMilesPerRide(logYearIndex, 10).ToString();
-            month11R5.Text = getAverageMonthlyMilesPerRide(logYearIndex, 11).ToString();
-            month12R5.Text = getAverageMonthlyMilesPerRide(logYearIndex, 12).ToString();
+            month1R5.Text = GetAverageMonthlyMilesPerRide(logYearIndex, 1).ToString();
+            month2R5.Text = GetAverageMonthlyMilesPerRide(logYearIndex, 2).ToString();
+            month3R5.Text = GetAverageMonthlyMilesPerRide(logYearIndex, 3).ToString();
+            month4R5.Text = GetAverageMonthlyMilesPerRide(logYearIndex, 4).ToString();
+            month5R5.Text = GetAverageMonthlyMilesPerRide(logYearIndex, 5).ToString();
+            month6R5.Text = GetAverageMonthlyMilesPerRide(logYearIndex, 6).ToString();
+            month7R5.Text = GetAverageMonthlyMilesPerRide(logYearIndex, 7).ToString();
+            month8R5.Text = GetAverageMonthlyMilesPerRide(logYearIndex, 8).ToString();
+            month9R5.Text = GetAverageMonthlyMilesPerRide(logYearIndex, 9).ToString();
+            month10R5.Text = GetAverageMonthlyMilesPerRide(logYearIndex, 10).ToString();
+            month11R5.Text = GetAverageMonthlyMilesPerRide(logYearIndex, 11).ToString();
+            month12R5.Text = GetAverageMonthlyMilesPerRide(logYearIndex, 12).ToString();
 
             month1R6.Text = getMonthlyHighMileageWeekNumber(logYearIndex, 1).ToString();
             month2R6.Text = getMonthlyHighMileageWeekNumber(logYearIndex, 2).ToString();
@@ -3088,10 +3089,10 @@ namespace CyclingLogApplication
             month12R7.Text = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 12).ToString();
         }
 
-        private void cbStatMonthlyLogYear_changed(object sender, EventArgs e)
+        private void CbStatMonthlyLogYear_changed(object sender, EventArgs e)
         {
             //MainForm mainForm = new MainForm("");
-            this.setLastMonthlyLogSelected(cbStatMonthlyLogYear.SelectedIndex);
+            this.SetLastMonthlyLogSelected(cbStatMonthlyLogYear.SelectedIndex);
             //if (cbStatMonthlyLogYear.SelectedIndex == -1)
             //{
             // Display form modelessly
@@ -3183,7 +3184,7 @@ namespace CyclingLogApplication
 
         //Get total number of rides for the selected log:
         //SELECT Count(LogYearID) FROM Table_Ride_Information;
-        private double getAvgMonthlyRidesForSelectedLog(int logIndex, int month)
+        private double GetAvgMonthlyRidesForSelectedLog(int logIndex, int month)
         {
             double avgRides = 0;
             int rides = getTotalRidesMonthlyForSelectedLog(logIndex, month);
@@ -3207,7 +3208,7 @@ namespace CyclingLogApplication
             return Math.Round(avgRides, 2);
         }
 
-        private double getAverageMonthlyMilesPerWeek(int logIndex, int month)
+        private double GetAverageMonthlyMilesPerWeek(int logIndex, int month)
         {
             double totalMiles = getTotalMilesMonthlyForSelectedLog(logIndex, month);
             double avgMiles = 0;
@@ -3232,7 +3233,7 @@ namespace CyclingLogApplication
 
         //Get average miles per ride value:
         //Total miles/total rides
-        private float getAverageMonthlyMilesPerRide(int logIndex, int month)
+        private float GetAverageMonthlyMilesPerRide(int logIndex, int month)
         {
             float miles = getTotalMilesMonthlyForSelectedLog(logIndex, month);
             int rides = getTotalRidesMonthlyForSelectedLog(logIndex, month);
@@ -3447,13 +3448,13 @@ namespace CyclingLogApplication
 
         }
 
-        private void btBikeMilesUpdate_Click(object sender, EventArgs e)
+        private void BtBikeMilesUpdate_Click(object sender, EventArgs e)
         {
-            btBikeMilesUpdate_run();
+            BtBikeMilesUpdate_run();
         }
 
         //Removes bike only from the totals section:
-        private void btRemoveBikeTotalsConfig_Click(object sender, EventArgs e)
+        private void BtRemoveBikeTotalsConfig_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you really want to delete the bike totals option?", "Delete Bike Option", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -3496,12 +3497,12 @@ namespace CyclingLogApplication
             }
         }
 
-        private void btRefreshStatisticsData_Click(object sender, EventArgs e)
+        private void BtRefreshStatisticsData_Click(object sender, EventArgs e)
         {
             RefreshStatisticsData();
         }
 
-        private void btCharts_Click(object sender, EventArgs e)
+        private void BtCharts_Click(object sender, EventArgs e)
         {
             //ChartForm chartForm = new ChartForm(this);
             chartForm.Show();
