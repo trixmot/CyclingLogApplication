@@ -337,7 +337,7 @@
             this.btRemoveLogYear.TabIndex = 3;
             this.btRemoveLogYear.Text = "Remove";
             this.btRemoveLogYear.UseVisualStyleBackColor = true;
-            this.btRemoveLogYear.Click += new System.EventHandler(this.removeLogYearConfig);
+            this.btRemoveLogYear.Click += new System.EventHandler(this.RemoveLogYearConfig);
             // 
             // tbLogYearConfig
             // 
@@ -355,7 +355,7 @@
             this.button5.TabIndex = 1;
             this.button5.Text = "View Ride Data";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.openRideDataForm);
+            this.button5.Click += new System.EventHandler(this.OpenRideDataForm);
             // 
             // button7
             // 
@@ -366,7 +366,7 @@
             this.button7.TabIndex = 0;
             this.button7.Text = "Ride Data Entry";
             this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.openRideDataEntry);
+            this.button7.Click += new System.EventHandler(this.OpenRideDataEntry);
             // 
             // button8
             // 
@@ -460,7 +460,7 @@
             this.button11.Text = "Legacy Data Import";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Visible = false;
-            this.button11.Click += new System.EventHandler(this.importFromExcelLog);
+            this.button11.Click += new System.EventHandler(this.ImportFromExcelLog);
             // 
             // tbTimeChange
             // 
@@ -526,7 +526,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(793, 476);
             this.tabControl1.TabIndex = 11;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             //this.tabControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseClick);
                     //private void tabControl1_MouseClick(object sender, MouseEventArgs e)
                         //{
@@ -2456,7 +2456,7 @@
             this.groupBox2.Size = new System.Drawing.Size(720, 385);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
             // 
             // btRemoveBikeTotalsConfig
             // 

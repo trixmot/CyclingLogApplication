@@ -70,19 +70,19 @@ namespace CyclingLogApplication
 
             MainForm mainForm = new MainForm("");
             mainForm.SetLogLevel(logLevel);
-            mainForm.setcbStatistic1(cbStatistic1);
-            mainForm.setcbStatistic2(cbStatistic2);
-            mainForm.setcbStatistic3(cbStatistic3);
+            mainForm.SetcbStatistic1(cbStatistic1);
+            mainForm.SetcbStatistic2(cbStatistic2);
+            mainForm.SetcbStatistic3(cbStatistic3);
             mainForm.SetcbStatistic4(cbStatistic4);
             mainForm.SetcbStatistic5(cbStatistic5);
             mainForm.SetLastLogFilterSelected(Convert.ToInt32(lastLogYearFilterSelected));
             mainForm.SetLastBikeSelected(Convert.ToInt32(lastBikeSelected));
-            mainForm.setLastLogSelected(Convert.ToInt32(lastLogYearSelected));
+            mainForm.SetLastLogSelected(Convert.ToInt32(lastLogYearSelected));
 
             mainForm.SetLastLogYearChartSelected(Convert.ToInt32(chartLogYearSelected));
-            mainForm.setLastRouteChartSelected(Convert.ToInt32(chartRouteSelected));
-            mainForm.setLastTypeChartSelected(Convert.ToInt32(chartTypeSelected));
-            mainForm.setLastTypeTimeChartSelected(Convert.ToInt32(chartTimeTypeSelected));
+            mainForm.SetLastRouteChartSelected(Convert.ToInt32(chartRouteSelected));
+            mainForm.SetLastTypeChartSelected(Convert.ToInt32(chartTypeSelected));
+            mainForm.SetLastTypeTimeChartSelected(Convert.ToInt32(chartTimeTypeSelected));
 
             mainForm.SetLastMonthlyLogSelected(Convert.ToInt32(lastMonthlyLogYearSelected));
             mainForm.SetLastLogSelectedDataEntry(Convert.ToInt32(lastLogYearSelectedDataEntry));
@@ -146,7 +146,7 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(logDaysNode);
 
                     XmlNode versionNode = xmlDoc.CreateElement("VERSION");
-                    versionNode.InnerText = mainForm.getLogVersion();
+                    versionNode.InnerText = mainForm.GetLogVersion();
                     rootNode.AppendChild(versionNode);
 
                     XmlNode logLevelNode = xmlDoc.CreateElement("LOGLEVEL");
@@ -233,10 +233,10 @@ namespace CyclingLogApplication
                 int lastBikeSelected = mainForm.GetLastBikeSelected();
                 int lastLogFilterSelected = mainForm.GetLastLogFilterSelected();
 
-                int lastLogYearChartSelected = mainForm.getLastLogYearChartSelected();
-                int lastRouteChartSelected = mainForm.getLastRouteChartSelected();
-                int lastTypeChartSelected = mainForm.getLastTypeChartSelected();
-                int lastTypeTimeChartSelected = mainForm.getLastTypeTimeChartSelected();
+                int lastLogYearChartSelected = mainForm.GetLastLogYearChartSelected();
+                int lastRouteChartSelected = mainForm.GetLastRouteChartSelected();
+                int lastTypeChartSelected = mainForm.GetLastTypeChartSelected();
+                int lastTypeTimeChartSelected = mainForm.GetLastTypeTimeChartSelected();
 
                 int lastMonthlyLogSelected = mainForm.GetLastMonthlyLogSelected();
                 int lastLogSelectedDataEntry = mainForm.GetLastLogSelectedDataEntry();
@@ -388,8 +388,10 @@ namespace CyclingLogApplication
 
             }
 
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.Indent = true;
+            XmlWriterSettings settings = new XmlWriterSettings
+            {
+                Indent = true
+            };
 
             XmlWriter writer = XmlWriter.Create("c:\\CyclingLogApplication\\CyclingLogConfig.xml", settings);
             writer.WriteStartDocument();

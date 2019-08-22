@@ -22,7 +22,7 @@ namespace CyclingLogApplication
             InitializeComponent();
             cbFilterField.SelectedIndex = 0;
             //MainForm mainForm = new MainForm("");
-            sqlConnection = mainForm.getsqlConnectionString();
+            sqlConnection = mainForm.GetsqlConnectionString();
         }
 
         private void CloseForm(object sender, EventArgs e)
@@ -66,15 +66,17 @@ namespace CyclingLogApplication
                 } else
                 {
                     MainForm mainForm = new MainForm();
-                    logYearID = mainForm.getLogYearIndex(cbLogYearFilter.SelectedItem.ToString());
+                    logYearID = mainForm.GetLogYearIndex(cbLogYearFilter.SelectedItem.ToString());
                     logYearIDQuery = " and [LogYearID]=@logyearID";
                 }
 
                 //WeekNumber, Bike, RideType, route
                 if (cbFilterField.Text.Equals("WeekNumber"))
                 {
-                    sqlDataAdapter = new SqlDataAdapter();
-                    sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @WeekNumber LIKE WeekNumber" + logYearIDQuery, sqlConnection);
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @WeekNumber LIKE WeekNumber" + logYearIDQuery, sqlConnection)
+                    };
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@WeekNumber", SqlDbType.BigInt, 5);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@WeekNumber", cbFilterValue.Text);
 
@@ -87,8 +89,10 @@ namespace CyclingLogApplication
                 }
                 else if (cbFilterField.Text.Equals("Bike"))
                 {
-                    sqlDataAdapter = new SqlDataAdapter();
-                    sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @Bike LIKE Bike" + logYearIDQuery, sqlConnection);
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @Bike LIKE Bike" + logYearIDQuery, sqlConnection)
+                    };
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@Bike", SqlDbType.NVarChar, 50);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Bike", cbFilterValue.Text);
 
@@ -99,8 +103,10 @@ namespace CyclingLogApplication
                 }
                 else if (cbFilterField.Text.Equals("RideType"))
                 {
-                    sqlDataAdapter = new SqlDataAdapter();
-                    sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @RideType LIKE RideType" + logYearIDQuery, sqlConnection);
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @RideType LIKE RideType" + logYearIDQuery, sqlConnection)
+                    };
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@RideType", SqlDbType.NVarChar, 50);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@RideType", cbFilterValue.Text);
 
@@ -111,8 +117,10 @@ namespace CyclingLogApplication
                 }
                 else if (cbFilterField.Text.Equals("Route"))
                 {
-                    sqlDataAdapter = new SqlDataAdapter();
-                    sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @Route LIKE Route" + logYearIDQuery, sqlConnection);
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @Route LIKE Route" + logYearIDQuery, sqlConnection)
+                    };
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Route", cbFilterValue.Text);
 
@@ -123,8 +131,10 @@ namespace CyclingLogApplication
                 }
                 else if (cbFilterField.Text.Equals("Location"))
                 {
-                    sqlDataAdapter = new SqlDataAdapter();
-                    sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @Location LIKE Location" + logYearIDQuery, sqlConnection);
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE @Location LIKE Location" + logYearIDQuery, sqlConnection)
+                    };
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Location", cbFilterValue.Text);
 
@@ -305,7 +315,7 @@ namespace CyclingLogApplication
             {
                 //Load Bike values:
                 List<string> bikeList = new List<string>();
-                bikeList = mainForm.readDataNames("Table_Bikes", "Name");
+                bikeList = mainForm.ReadDataNames("Table_Bikes", "Name");
 
                 foreach (var val in bikeList)
                 {
@@ -341,7 +351,7 @@ namespace CyclingLogApplication
             else if (cbFilterField.SelectedIndex == 5)
             {
                 //Route:
-                List<string> routeList = mainForm.readDataNames("Table_Routes", "Name");
+                List<string> routeList = mainForm.ReadDataNames("Table_Routes", "Name");
                 for (int i = 1; i < routeList.Count; i++)
                 {
                     cbFilterValue.Items.Add(routeList.ElementAt(i));

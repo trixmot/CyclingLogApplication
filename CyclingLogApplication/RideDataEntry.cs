@@ -26,8 +26,8 @@ namespace CyclingLogApplication
         {
             InitializeComponent();
             //MainForm mainForm = new MainForm("");
-            sqlConnection = mainForm.getsqlConnectionString();
-            databaseConnection = mainForm.getsDatabaseConnectionString();
+            sqlConnection = mainForm.GetsqlConnectionString();
+            databaseConnection = mainForm.GetsDatabaseConnectionString();
             
             //Hidden field to store the record id of the current displaying record that has been loaded on the page:
             tbRecordID.Hide();
@@ -96,8 +96,7 @@ namespace CyclingLogApplication
             numericUpDown2.Minimum = 1;
             numericUpDown2.Enabled = false;
 
-            List<string> bikeList = new List<string>();
-            bikeList = mainForm.readDataNames("Table_Bikes", "Name");
+            List<string> bikeList = mainForm.ReadDataNames("Table_Bikes", "Name");
             //Load Bike values:
             foreach (var val in bikeList)
             {
@@ -135,7 +134,7 @@ namespace CyclingLogApplication
             cbBikeDataEntrySelection.Items.Remove(item);
         }
 
-        public void setLastLogYearSelected(int index)
+        public void SetLastLogYearSelected(int index)
         {
             cbLogYearDataEntry.SelectedIndex = index;
         }
@@ -147,7 +146,7 @@ namespace CyclingLogApplication
             get
             {
                 CreateParams myCp = base.CreateParams;
-                myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
+                myCp.ClassStyle |= CP_NOCLOSE_BUTTON;
                 return myCp;
             }
         }
@@ -166,11 +165,11 @@ namespace CyclingLogApplication
                 formLoad = 0;
 
                 // Look up to see if there is an entry by this date:
-                getRideData(dtpRideDate.Text, 1);
+                GetRideData(dtpRideDate.Text, 1);
             }
         }
 
-        private void getRideData(string date, int recordDateIndex)
+        private void GetRideData(string date, int recordDateIndex)
         {
             if (formLoad == 1)
             {
@@ -181,9 +180,13 @@ namespace CyclingLogApplication
             objectValues.Add(date);
 
             int logID;
+            int logLevel;
 
-            MainForm mainForm = new MainForm("");
-            logID = mainForm.getLogYearIndex(cbLogYearDataEntry.SelectedItem.ToString());
+            using (MainForm mainForm = new MainForm(""))
+            {
+                logID = mainForm.GetLogYearIndex(cbLogYearDataEntry.SelectedItem.ToString());
+                logLevel = mainForm.GetLogLevel();
+            }
             objectValues.Add(Convert.ToInt32(logID));
 
             string movingTime;
@@ -275,7 +278,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                Logger.Log("Ride data for an unselected date index was selected.", 0, mainForm.GetLogLevel());
+                                Logger.Log("Ride data for an unselected date index was selected.", 0, logLevel);
                             }
                         }
                     }
@@ -307,7 +310,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private void submitData(object sender, EventArgs e)
+        private void SubmitData(object sender, EventArgs e)
         {
             lbRideDataEntryError.Text = "";
             lbRideDataEntryError.Hide();
@@ -317,19 +320,20 @@ namespace CyclingLogApplication
 
         private void CloseRideDataEntry(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm("");
-            mainForm.SetLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
-            mainForm.SetLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);
-            //Close();
-            //this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
-            //DialogResult result = MessageBox.Show("Any unsaved changes will be lost, do you want to continue?", "Exit Data Entry Form", MessageBoxButtons.YesNo);
-            //if (result == DialogResult.Yes)
-            // {
-            //Close();
-            formClosing = 1;
-            this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
-            //}
-
+            using (MainForm mainForm = new MainForm(""))
+            {
+                mainForm.SetLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
+                mainForm.SetLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);
+                //Close();
+                //this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
+                //DialogResult result = MessageBox.Show("Any unsaved changes will be lost, do you want to continue?", "Exit Data Entry Form", MessageBoxButtons.YesNo);
+                //if (result == DialogResult.Yes)
+                // {
+                //Close();
+                formClosing = 1;
+                this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
+                //}
+            }
         }
 
         //private void textBox1_Validating(object sender, CancelEventArgs e)
@@ -454,9 +458,14 @@ namespace CyclingLogApplication
                 }
 
                 //===============================
+                int logSetting;
+                int logIndex;
 
-                MainForm mainForm = new MainForm("");
-                int logSetting = mainForm.GetLogLevel();
+                using (MainForm mainForm = new MainForm(""))
+                {
+                    logSetting = mainForm.GetLogLevel();
+                    logIndex = mainForm.GetLogYearIndex(cbLogYearDataEntry.SelectedItem.ToString());
+                }
                 string recordID = tbRecordID.Text;
 
                 if (changeType.Equals("Update"))
@@ -476,7 +485,7 @@ namespace CyclingLogApplication
                 }
 
                 // Check recordID value:
-                if (!tbRecordID.Text.Equals("0") && changeType.Equals("Add"))
+                if (tbRecordID.Text.Equals("0") && changeType.Equals("Add"))
                 {
                     DialogResult result = MessageBox.Show("Detected that the current data was retrieved from a record that was already saved to the database. Do you want to continue adding the record?", "Add Ride Data", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No)
@@ -591,9 +600,6 @@ namespace CyclingLogApplication
 
                 objectValues.Add(cbRouteDataEntry.SelectedItem.ToString());                 //Route:
                 objectValues.Add(tbComments.Text);                                          //Comments:
-
-                string logYearName = cbLogYearDataEntry.SelectedItem.ToString();
-                int logIndex = mainForm.getLogYearIndex(logYearName);
                 objectValues.Add(logIndex);                                             //LogYear index:
 
                 DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
@@ -706,9 +712,9 @@ namespace CyclingLogApplication
         {
             string[] headingList = new string[16];
             string[] splitList = new string[16];
-            string[] tempSplitList = new string[16];
-            string[] summary = new string[16];
-            string tempStr = "";
+            //string[] tempSplitList = new string[16];
+            //string[] summary = new string[16];
+            string tempStr;
 
             lbRideDataEntryError.Text = "";
             lbRideDataEntryError.Hide();
@@ -721,36 +727,38 @@ namespace CyclingLogApplication
                     if (openfileDialog.ShowDialog() == DialogResult.OK)
                     {
                         string line;
-                        StreamReader file = new StreamReader(openfileDialog.FileName);
-                        int rowCount = 0;
-
-                        while ((line = file.ReadLine()) != null)
+                        using (StreamReader file = new StreamReader(openfileDialog.FileName))
                         {
-                            var tempList = line.Split(',');
+                            int rowCount = 0;
 
-                            if (rowCount == 0)
+                            while ((line = file.ReadLine()) != null)
                             {
-                                //Line 1 is the headings
-                                headingList = line.Split(',');
-                                //MessageBox.Show(headingList[0]);
+                                var tempList = line.Split(',');
+
+                                if (rowCount == 0)
+                                {
+                                    //Line 1 is the headings
+                                    headingList = line.Split(',');
+                                    //MessageBox.Show(headingList[0]);
+                                }
+                                else if (tempList[0].Equals("Summary"))
+                                {
+                                    splitList = line.Split(',');
+                                    //MessageBox.Show(summary[0]);
+                                }
+                                //else if (rowCount > 0)
+                                //{
+                                //    //splitList = line.Split(',');
+                                //    //MessageBox.Show(splitList[9]);
+                                //}
+                                //else
+                                //{
+                                //    // split item and need to add to or avg in with the previous split
+                                //    tempSplitList = line.Split(',');
+                                //    //MessageBox.Show(tempSplitList[0]);
+                                //}
+                                rowCount++;
                             }
-                            else if (tempList[0].Equals("Summary"))
-                            {
-                                splitList = line.Split(',');
-                                //MessageBox.Show(summary[0]);
-                            }
-                            //else if (rowCount > 0)
-                            //{
-                            //    //splitList = line.Split(',');
-                            //    //MessageBox.Show(splitList[9]);
-                            //}
-                            //else
-                            //{
-                            //    // split item and need to add to or avg in with the previous split
-                            //    tempSplitList = line.Split(',');
-                            //    //MessageBox.Show(tempSplitList[0]);
-                            //}
-                            rowCount++;
                         }
                     } else
                     {
@@ -978,16 +986,18 @@ namespace CyclingLogApplication
 
         private void CbLogYearDataEntry_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm("");
-            mainForm.setLastLogSelected(cbLogYearDataEntry.SelectedIndex);
-            if (cbLogYearDataEntry.SelectedIndex == -1)
+            using (MainForm mainForm = new MainForm(""))
             {
-                lbRideDataEntryError.Show();
-                lbRideDataEntryError.Text = "No Log Year selected.";
-            }
-            else
-            {
-                lbRideDataEntryError.Hide();
+                mainForm.SetLastLogSelected(cbLogYearDataEntry.SelectedIndex);
+                if (cbLogYearDataEntry.SelectedIndex == -1)
+                {
+                    lbRideDataEntryError.Show();
+                    lbRideDataEntryError.Text = "No Log Year selected.";
+                }
+                else
+                {
+                    lbRideDataEntryError.Hide();
+                }
             }
         }
 
@@ -1008,7 +1018,7 @@ namespace CyclingLogApplication
                 //SqlConnection conn = null;
                 SqlDataReader reader = null;
 
-                int returnValue = 0;
+                int returnValue;
 
                 try
                 {
@@ -1017,18 +1027,21 @@ namespace CyclingLogApplication
                     sqlConnection.Open();
 
                     // 1. declare command object with parameter
-                    SqlCommand cmd = new SqlCommand("DELETE FROM Table_Ride_Information WHERE @Id=[Id]", sqlConnection);
+                    using (SqlCommand cmd = new SqlCommand("DELETE FROM Table_Ride_Information WHERE @Id=[Id]", sqlConnection))
+                    {
+                        // 2. define parameters used in command object
+                        SqlParameter param = new SqlParameter
+                        {
+                            ParameterName = "@Id",
+                            Value = rideRecordID
+                        };
 
-                    // 2. define parameters used in command object
-                    SqlParameter param = new SqlParameter();
-                    param.ParameterName = "@Id";
-                    param.Value = rideRecordID;
+                        // 3. add new parameter to command object
+                        cmd.Parameters.Add(param);
 
-                    // 3. add new parameter to command object
-                    cmd.Parameters.Add(param);
-
-                    // get data stream
-                    reader = cmd.ExecuteReader();
+                        // get data stream
+                        reader = cmd.ExecuteReader();
+                    }
 
                     // write each record
                     while (reader.Read())
@@ -1069,7 +1082,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        private void NumericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             if (formLoad == 0)
             {
@@ -1077,12 +1090,12 @@ namespace CyclingLogApplication
                 if (Convert.ToInt32(num.Text) > num.Value)
                 {
                     //MessageBox.Show("Value decreased");
-                    getRideData(dtpRideDate.Text, Convert.ToInt16(numericUpDown2.Value));
+                    GetRideData(dtpRideDate.Text, Convert.ToInt16(numericUpDown2.Value));
                 }
                 else
                 {
                     //MessageBox.Show("Value increased");
-                    getRideData(dtpRideDate.Text, Convert.ToInt16(numericUpDown2.Value));
+                    GetRideData(dtpRideDate.Text, Convert.ToInt16(numericUpDown2.Value));
                 }
             }
         }

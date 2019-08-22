@@ -180,7 +180,7 @@
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(34, 20);
             this.numericUpDown2.TabIndex = 43;
-            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.NumericUpDown2_ValueChanged);
             // 
             // tbRecordID
             // 
@@ -274,7 +274,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Add";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.submitData);
+            this.button1.Click += new System.EventHandler(this.SubmitData);
             // 
             // tableRideInformationBindingSource
             // 

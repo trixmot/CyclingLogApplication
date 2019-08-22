@@ -72,7 +72,7 @@ namespace CyclingLogApplication
         /// </summary>
         private SqlConnection Connection { get; set; }
         private SqlDataReader dataReader = null;
-        private string ConnectionString = "";
+        private readonly string ConnectionString = "";
 
         #endregion
 
@@ -240,27 +240,29 @@ namespace CyclingLogApplication
         {
             this.OpenConnection(this.ConnectionString);
 
-            SqlCommand cmd = new SqlCommand(CommandString, this.Connection);
-            cmd.CommandTimeout = 1800; //30 min, increased to handle buildclean:
-            if (_Parameters != null)
+            using (SqlCommand cmd = new SqlCommand(CommandString, this.Connection))
             {
-                cmd.Prepare();
-                int count = 0;
-                foreach (object _o in _Parameters)
+                cmd.CommandTimeout = 1800; //30 min, increased to handle buildclean:
+                if (_Parameters != null)
                 {
-                    cmd.Parameters.Add(new SqlParameter("@" + count.ToString(), _o == null ? DBNull.Value : _o) { Value = _o == null ? DBNull.Value : _o });
-                    count++;
+                    cmd.Prepare();
+                    int count = 0;
+                    foreach (object _o in _Parameters)
+                    {
+                        cmd.Parameters.Add(new SqlParameter("@" + count.ToString(), _o == null ? DBNull.Value : _o) { Value = _o == null ? DBNull.Value : _o });
+                        count++;
+                    }
                 }
-            }
 
-            //Exception StoredException = null;
-            //bool Executed = false;
-            //int ConnectionAttempts = 0;
-            //do
-            //{
-            //    try 
-            //    {
-            this.dataReader = cmd.ExecuteReader();
+                //Exception StoredException = null;
+                //bool Executed = false;
+                //int ConnectionAttempts = 0;
+                //do
+                //{
+                //    try 
+                //    {
+                this.dataReader = cmd.ExecuteReader();
+            }
             //        Executed = true;
             //    }
             //    catch (Exception ex)
@@ -302,35 +304,38 @@ namespace CyclingLogApplication
         {
             this.OpenConnection(this.ConnectionString);
 
-            SqlCommand cmd = new SqlCommand(CommandString, this.Connection);
-            if (_Parameters != null)
+            using (SqlCommand cmd = new SqlCommand(CommandString, this.Connection))
             {
-                cmd.Prepare();
-                int count = 0;
-                foreach (object _o in _Parameters)
+                if (_Parameters != null)
                 {
-                    cmd.Parameters.Add(new SqlParameter("@" + count.ToString(), _o == null ? DBNull.Value : _o) { Value = _o == null ? DBNull.Value : _o });
-                    count++;
+                    cmd.Prepare();
+                    int count = 0;
+                    foreach (object _o in _Parameters)
+                    {
+                        cmd.Parameters.Add(new SqlParameter("@" + count.ToString(), _o == null ? DBNull.Value : _o) { Value = _o == null ? DBNull.Value : _o });
+                        count++;
+                    }
                 }
+                return cmd.ExecuteScalar();
             }
-            return cmd.ExecuteScalar();
         }
 
-        public object ExecuteScalarFunctionTest(string CommandString, List<object> _Parameters)
-        {
-           this.OpenConnection(this.ConnectionString);
+        //public object ExecuteScalarFunctionTest(string CommandString, List<object> _Parameters)
+        //{
+        //   this.OpenConnection(this.ConnectionString);
 
-            SqlCommand cmd = new SqlCommand();
+        //    using (SqlCommand cmd = new SqlCommand())
+        //    {
+        //        cmd.CommandText = CommandString;
+        //        cmd.Parameters.Add("@Id", SqlDbType.Bit);
+        //        cmd.Parameters["@Id"].Value = 3;
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.Connection = new SqlConnection(this.ConnectionString);
+        //        cmd.Connection.Open();
 
-            cmd.CommandText = CommandString;
-            cmd.Parameters.Add("@Id",SqlDbType.Bit);
-            cmd.Parameters["@Id"].Value = 3;
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Connection = new SqlConnection(this.ConnectionString);
-            cmd.Connection.Open();
-
-            return cmd.ExecuteScalar();
-        }
+        //        return cmd.ExecuteScalar();
+        //    }
+        //}
 
         /// <summary>
         /// Tests if a connection is open and valid

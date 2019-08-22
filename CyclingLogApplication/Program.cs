@@ -122,12 +122,12 @@ namespace CyclingLogApplication
                 if (namespaces.Contains("ComputerManagement10"))
                 {
                     //use katmai+ namespace
-                    wmiNamespaceToUse = wmiNamespaceToUse + "\\ComputerManagement10";
+                    wmiNamespaceToUse += "\\ComputerManagement10";
                 }
                 else if (namespaces.Contains("ComputerManagement"))
                 {
                     //use yukon namespace
-                    wmiNamespaceToUse = wmiNamespaceToUse + "\\ComputerManagement";
+                    wmiNamespaceToUse += "\\ComputerManagement";
                 }
                 else
                 {

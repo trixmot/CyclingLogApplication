@@ -22,7 +22,7 @@ namespace CyclingLogApplication
             InitializeComponent();
             labelChartError.Hide();
             //MainForm mainForm = new MainForm("");
-            sqlConnection = mainForm.getsqlConnectionString();
+            sqlConnection = mainForm.GetsqlConnectionString();
             //chart1.Series["Series1"].XValueMember = "Date";
             //chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
             //chart1.Series["Series1"].YValueMembers = "AvgSpeed";
@@ -42,10 +42,10 @@ namespace CyclingLogApplication
             this.table_Ride_InformationTableAdapter.Fill(this.cyclingLogDatabaseDataSet.Table_Ride_Information);
 
             MainForm mainForm = new MainForm();
-            cbLogYearChart.SelectedIndex = mainForm.getLastLogYearChartSelected();
-            cbRoutesChart.SelectedIndex = mainForm.getLastRouteChartSelected();
-            cbTypeChartData.SelectedIndex = mainForm.getLastTypeChartSelected();
-            cbTypeTime.SelectedIndex = mainForm.getLastTypeTimeChartSelected();
+            cbLogYearChart.SelectedIndex = mainForm.GetLastLogYearChartSelected();
+            cbRoutesChart.SelectedIndex = mainForm.GetLastRouteChartSelected();
+            cbTypeChartData.SelectedIndex = mainForm.GetLastTypeChartSelected();
+            cbTypeTime.SelectedIndex = mainForm.GetLastTypeTimeChartSelected();
         }
 
         private void chart1_MouseMove(object sender, MouseEventArgs e)
@@ -87,7 +87,7 @@ namespace CyclingLogApplication
         {
             labelChartError.Hide();
             MainForm mainForm = new MainForm("");
-            mainForm.setLastRouteChartSelected(cbRoutesChart.SelectedIndex);
+            mainForm.SetLastRouteChartSelected(cbRoutesChart.SelectedIndex);
         }
 
         public void chartTest()
@@ -157,7 +157,7 @@ namespace CyclingLogApplication
             List<string> nameList = new List<string>();
             MainForm mainForm = new MainForm("");
             int logSetting = mainForm.GetLogLevel();
-            int logIndex = mainForm.getLogYearIndex(cbLogYearChart.SelectedItem.ToString());
+            int logIndex = mainForm.GetLogYearIndex(cbLogYearChart.SelectedItem.ToString());
 
             //Average Speed:
             if (cbTypeChartData.SelectedIndex == 0)
@@ -333,7 +333,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            total_value = total_value + chartDataTypeValue;
+                            total_value += chartDataTypeValue;
                             recordCount++;
                         }
 
@@ -370,7 +370,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            total_value = total_value + chartDataTypeValue;
+                            total_value += chartDataTypeValue;
                             recordCount++;
                         }
 
@@ -621,7 +621,7 @@ namespace CyclingLogApplication
             tmpProcedureName = tmpProcedureName.TrimEnd(',') + ";";
 
             MainForm mainForm = new MainForm();
-            DatabaseConnection databaseConnection = mainForm.getsDatabaseConnectionString();
+            DatabaseConnection databaseConnection = mainForm.GetsDatabaseConnectionString();
             SqlDataReader ToReturn = databaseConnection.ExecuteQueryConnection(tmpProcedureName, _Parameters);
 
             return ToReturn;
@@ -644,14 +644,14 @@ namespace CyclingLogApplication
         {
             labelChartError.Hide();
             MainForm mainForm = new MainForm("");
-            mainForm.setLastTypeTimeChartSelected(cbTypeTime.SelectedIndex);
+            mainForm.SetLastTypeTimeChartSelected(cbTypeTime.SelectedIndex);
         }
 
         private void cbTypeChartData_SelectedIndexChanged(object sender, EventArgs e)
         {
             labelChartError.Hide();
             MainForm mainForm = new MainForm("");
-            mainForm.setLastTypeChartSelected(cbTypeChartData.SelectedIndex);
+            mainForm.SetLastTypeChartSelected(cbTypeChartData.SelectedIndex);
         }
     }
 }

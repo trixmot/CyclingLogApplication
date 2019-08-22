@@ -18,12 +18,12 @@ namespace CyclingLogApplication
     public partial class MainForm : Form
     {
         private static Mutex mutex;
-        RideDataEntry rideDataEntryForm;
-        RideDataDisplay rideDataDisplayForm;
-        ChartForm chartForm;
+        private RideDataEntry rideDataEntryForm;
+        private RideDataDisplay rideDataDisplayForm;
+        private ChartForm chartForm;
         Boolean formloading = false;
 
-        private static string logVersion = "0.1.6";
+        private static readonly string logVersion = "0.1.7";
         private static int logLevel = 0;
         private static string cbStatistic1 = "-1";
         private static string cbStatistic2 = "-1";
@@ -81,7 +81,7 @@ namespace CyclingLogApplication
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if (getMutex() != null)
+            if (GetMutex() != null)
             {
                 //Application.Run(app);
             }
@@ -96,17 +96,11 @@ namespace CyclingLogApplication
             int logSetting = GetLogLevel();
 
             //Get all values and load the comboboxes:
-            List<string> logYearList = new List<string>();
-            //List<string> yearList = new List<string>();
-            List<string> routeList = new List<string>();
-            List<string> bikeList = new List<string>();
-            List<string> bikeTotalsList = new List<string>();
-
-            logYearList = readDataNames("Table_Log_year", "Name");
+            List<string> logYearList = ReadDataNames("Table_Log_year", "Name");
             //yearList = readDataNames("Table_Log_year", "Year");
-            routeList = readDataNames("Table_Routes", "Name");
-            bikeList = readDataNames("Table_Bikes", "Name");
-            bikeTotalsList = readDataNames("Table_Bike_Totals", "Name");
+            List<string> routeList = ReadDataNames("Table_Routes", "Name");
+            List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
+            //List<string> bikeTotalsList = ReadDataNames("Table_Bike_Totals", "Name");
 
             rideDataEntryForm = new RideDataEntry(this);
             rideDataDisplayForm = new RideDataDisplay(this);
@@ -197,12 +191,12 @@ namespace CyclingLogApplication
 
             cbStatMonthlyLogYear.SelectedIndex = Convert.ToInt32(GetLastMonthlyLogSelected());
 
-            label2.Text = "App Version: " + getLogVersion();
+            label2.Text = "App Version: " + GetLogVersion();
             lbMaintError.Text = "";
             lbConfigError.Text = "";
 
             RefreshStatisticsData();
-            runMonthlyStatistics();
+            RunMonthlyStatistics();
 
             formloading = false;
         }
@@ -250,17 +244,17 @@ namespace CyclingLogApplication
             }
         }
 
-        public SqlConnection getsqlConnectionString()
+        public SqlConnection GetsqlConnectionString()
         {
             return sqlConnection;
         }
 
-        public DatabaseConnection getsDatabaseConnectionString()
+        public DatabaseConnection GetsDatabaseConnectionString()
         {
             return databaseConnection;
         }
 
-        private Mutex getMutex()
+        private Mutex GetMutex()
         {
             return mutex;
         }
@@ -272,7 +266,7 @@ namespace CyclingLogApplication
         //    base.Dispose(disposing);
         //}
 
-        public string getLogVersion()
+        public string GetLogVersion()
         {
             return logVersion;
         }
@@ -307,15 +301,15 @@ namespace CyclingLogApplication
             return cbStatistic5;
         }
 
-        public void setcbStatistic1(string setcbStatistic1Config)
+        public void SetcbStatistic1(string setcbStatistic1Config)
         {
             cbStatistic1 = setcbStatistic1Config;
         }
-        public void setcbStatistic2(string setcbStatistic2Config)
+        public void SetcbStatistic2(string setcbStatistic2Config)
         {
             cbStatistic2 = setcbStatistic2Config;
         }
-        public void setcbStatistic3(string setcbStatistic3Config)
+        public void SetcbStatistic3(string setcbStatistic3Config)
         {
             cbStatistic3 = setcbStatistic3Config;
         }
@@ -343,7 +337,7 @@ namespace CyclingLogApplication
             return lastLogSelected;
         }
 
-        public void setLastLogSelected(int logIndex)
+        public void SetLastLogSelected(int logIndex)
         {
             lastLogSelected = logIndex;
         }
@@ -383,37 +377,37 @@ namespace CyclingLogApplication
             lastLogYearChart = logIndex;
         }
 
-        public int getLastLogYearChartSelected()
+        public int GetLastLogYearChartSelected()
         {
             return lastLogYearChart;
         }
 
-        public void setLastRouteChartSelected(int logIndex)
+        public void SetLastRouteChartSelected(int logIndex)
         {
             lastRouteChart = logIndex;
         }
 
-        public int getLastRouteChartSelected()
+        public int GetLastRouteChartSelected()
         {
             return lastRouteChart;
         }
 
-        public void setLastTypeChartSelected(int logIndex)
+        public void SetLastTypeChartSelected(int logIndex)
         {
             lastTypeChart = logIndex;
         }
 
-        public int getLastTypeChartSelected()
+        public int GetLastTypeChartSelected()
         {
             return lastTypeChart;
         }
 
-        public void setLastTypeTimeChartSelected(int logIndex)
+        public void SetLastTypeTimeChartSelected(int logIndex)
         {
             lastTypeTimeChart = logIndex;
         }
 
-        public int getLastTypeTimeChartSelected()
+        public int GetLastTypeTimeChartSelected()
         {
             return lastTypeTimeChart;
         }
@@ -449,12 +443,12 @@ namespace CyclingLogApplication
             get
             {
                 CreateParams myCp = base.CreateParams;
-                myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
+                myCp.ClassStyle |= CP_NOCLOSE_BUTTON;
                 return myCp;
             }
         }
 
-        public List<string> readDataNames(string tableName, string columnName)
+        public List<string> ReadDataNames(string tableName, string columnName)
         {
             SqlDataReader reader = null;
             List<string> nameList = new List<string>();
@@ -465,18 +459,19 @@ namespace CyclingLogApplication
                 sqlConnection.Open();
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("SELECT " + columnName + " FROM " + tableName + " ORDER BY " + columnName + " ASC", sqlConnection);
+                using (SqlCommand cmd = new SqlCommand("SELECT " + columnName + " FROM " + tableName + " ORDER BY " + columnName + " ASC", sqlConnection))
+                {
+                    // 2. define parameters used in command object
+                    //SqlParameter param = new SqlParameter();
+                    //param.ParameterName = "@Id";
+                    //param.Value = inputValue;
 
-                // 2. define parameters used in command object
-                //SqlParameter param = new SqlParameter();
-                //param.ParameterName = "@Id";
-                //param.Value = inputValue;
+                    // 3. add new parameter to command object
+                    //cmd.Parameters.Add(param);
 
-                // 3. add new parameter to command object
-                //cmd.Parameters.Add(param);
-
-                // get data stream
-                reader = cmd.ExecuteReader();
+                    // get data stream
+                    reader = cmd.ExecuteReader();
+                }
 
                 // write each record
                 while (reader.Read())
@@ -542,7 +537,7 @@ namespace CyclingLogApplication
             List<object> objectValues = new List<object>();
             objectValues.Add(logYearTitle);
             objectValues.Add(Convert.ToInt32(logYearValue));
-            runStoredProcedure(objectValues, "Log_Year_Add");
+            RunStoredProcedure(objectValues, "Log_Year_Add");
 
             cbLogYearConfig.Items.Add(logYearTitle);
             cbLogYearConfig.SelectedIndex = cbLogYearConfig.Items.Count - 1;
@@ -561,7 +556,7 @@ namespace CyclingLogApplication
             Logger.Log("Adding a Log Year entry to the Configuration:" + logYearTitle, 0, logSetting);
         }
 
-        private void removeLogYearConfig(object sender, EventArgs e)
+        private void RemoveLogYearConfig(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you really want to delete the Log and all its data?", "Delete Log", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -632,20 +627,20 @@ namespace CyclingLogApplication
                 //    cbLogYear5.Items.Add(tempList[i]);
                 //}
 
-                int logYearIndex = getLogYearIndex(cbLogYearConfig.SelectedItem.ToString());
+                int logYearIndex = GetLogYearIndex(cbLogYearConfig.SelectedItem.ToString());
 
                 //Remove logyear from the Log year table:
                 List<object> objectValues = new List<object>();
                 objectValues.Add(logYearIndex);
-                runStoredProcedure(objectValues, "Log_Year_Remove");
+                RunStoredProcedure(objectValues, "Log_Year_Remove");
 
                 //Need to remove all data for this log from the database:
-                removeLogYearData(logYearIndex);
+                RemoveLogYearData(logYearIndex);
                 cbLogYearConfig.Text = "";
             }
         }
 
-        public int getLogYearIndex(string logYearName)
+        public int GetLogYearIndex(string logYearName)
         {
             SqlDataReader reader = null;
             int returnValue = -1;
@@ -658,18 +653,22 @@ namespace CyclingLogApplication
                 }
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("SELECT LogYearID FROM Table_Log_Year WHERE @logYearName=[Name]", sqlConnection);
+                using (SqlCommand cmd = new SqlCommand("SELECT LogYearID FROM Table_Log_Year WHERE @logYearName=[Name]", sqlConnection))
+                {
 
-                // 2. define parameters used in command object
-                SqlParameter param = new SqlParameter();
-                param.ParameterName = "@logYearName";
-                param.Value = logYearName;
+                    // 2. define parameters used in command object
+                    SqlParameter param = new SqlParameter
+                    {
+                        ParameterName = "@logYearName",
+                        Value = logYearName
+                    };
 
-                // 3. add new parameter to command object
-                cmd.Parameters.Add(param);
+                    // 3. add new parameter to command object
+                    cmd.Parameters.Add(param);
 
-                // get data stream
-                reader = cmd.ExecuteReader();
+                    // get data stream
+                    reader = cmd.ExecuteReader();
+                }
 
                 // write each record
                 while (reader.Read())
@@ -710,7 +709,7 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        public int getLogYearByIndex(int logYearIndex)
+        public int GetLogYearByIndex(int logYearIndex)
         {
             SqlDataReader reader = null;
             int returnValue = -1;
@@ -723,18 +722,21 @@ namespace CyclingLogApplication
                 }
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("SELECT Year FROM Table_Log_Year WHERE @logYearIndex=[LogyearID]", sqlConnection);
+                using (SqlCommand cmd = new SqlCommand("SELECT Year FROM Table_Log_Year WHERE @logYearIndex=[LogyearID]", sqlConnection))
+                {
+                    // 2. define parameters used in command object
+                    SqlParameter param = new SqlParameter
+                    {
+                        ParameterName = "@logYearIndex",
+                        Value = logYearIndex
+                    };
 
-                // 2. define parameters used in command object
-                SqlParameter param = new SqlParameter();
-                param.ParameterName = "@logYearIndex";
-                param.Value = logYearIndex;
+                    // 3. add new parameter to command object
+                    cmd.Parameters.Add(param);
 
-                // 3. add new parameter to command object
-                cmd.Parameters.Add(param);
-
-                // get data stream
-                reader = cmd.ExecuteReader();
+                    // get data stream
+                    reader = cmd.ExecuteReader();
+                }
 
                 // write each record
                 while (reader.Read())
@@ -775,7 +777,7 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        private void runStoredProcedure(List<object> objectValues, string procedureName)
+        private void RunStoredProcedure(List<object> objectValues, string procedureName)
         {
             using (var results = ExecuteSimpleQueryConnection(procedureName, objectValues))
             {
@@ -787,29 +789,32 @@ namespace CyclingLogApplication
             }
         }
 
-        private void removeLogYearData(int logIndex)
+        private void RemoveLogYearData(int logIndex)
         {
             SqlDataReader reader = null;
 
-            int returnValue = 0;
+            int returnValue;
 
             try
             {
                 sqlConnection.Open();
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("DELETE FROM Table_Ride_Information WHERE @Id=[LogYearID]", sqlConnection);
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM Table_Ride_Information WHERE @Id=[LogYearID]", sqlConnection))
+                {
+                    // 2. define parameters used in command object
+                    SqlParameter param = new SqlParameter
+                    {
+                        ParameterName = "@Id",
+                        Value = logIndex
+                    };
 
-                // 2. define parameters used in command object
-                SqlParameter param = new SqlParameter();
-                param.ParameterName = "@Id";
-                param.Value = logIndex;
+                    // 3. add new parameter to command object
+                    cmd.Parameters.Add(param);
 
-                // 3. add new parameter to command object
-                cmd.Parameters.Add(param);
-
-                // get data stream
-                reader = cmd.ExecuteReader();
+                    // get data stream
+                    reader = cmd.ExecuteReader();
+                }
 
                 // write each record
                 while (reader.Read())
@@ -848,13 +853,13 @@ namespace CyclingLogApplication
             }
         }
 
-        private void openRideDataForm(object sender, EventArgs e)
+        private void OpenRideDataForm(object sender, EventArgs e)
         {
             rideDataDisplayForm.setLogYearFilterIndex(GetLastLogFilterSelected());
             rideDataDisplayForm.ShowDialog();
         }
 
-        private void openRideDataEntry(object sender, EventArgs e)
+        private void OpenRideDataEntry(object sender, EventArgs e)
         {
             //Need to check that there is a least 1 LogYear value entered:
             if (cbLogYearConfig.Items.Count == 0)
@@ -898,7 +903,7 @@ namespace CyclingLogApplication
 
             List<object> objectValues = new List<object>();
             objectValues.Add(routeString);
-            runStoredProcedure(objectValues, "Route_Add");
+            RunStoredProcedure(objectValues, "Route_Add");
 
             cbRouteConfig.Items.Add(routeString);
             cbRouteConfig.SelectedIndex = cbRouteConfig.Items.Count - 1;
@@ -981,7 +986,7 @@ namespace CyclingLogApplication
 
             List<object> objectBikes = new List<object>();
             objectBikes.Add(bikeString);
-            runStoredProcedure(objectBikes, "Bike_Add");
+            RunStoredProcedure(objectBikes, "Bike_Add");
 
             cbBikeConfig.Items.Add(bikeString);
             cbBikeMaint.Items.Add(tbConfigMilesNotInLog.Text);
@@ -993,7 +998,7 @@ namespace CyclingLogApplication
                 List<object> objectBikesTotals = new List<object>();
                 objectBikesTotals.Add(bikeString);
                 objectBikesTotals.Add(miles);
-                runStoredProcedure(objectBikesTotals, "BikeTotals_Add");
+                RunStoredProcedure(objectBikesTotals, "BikeTotals_Add");
 
                 cbBikeTotalsConfig.Items.Add(bikeString);
                 cbBikeTotalsConfig.SelectedIndex = cbBikeTotalsConfig.Items.Count - 1;
@@ -1095,7 +1100,7 @@ namespace CyclingLogApplication
 
         //Get total of miles for the selected log:
         //SELECT SUM(RideDistance) FROM Table_Ride_Information;
-        private float getTotalMilesForSelectedLog(int logIndex)
+        private float GetTotalMilesForSelectedLog(int logIndex)
         {
             List<object> objectValues = new List<object>();
             objectValues.Add(logIndex);
@@ -1124,7 +1129,7 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        private float getTotalMilesForAllLogs()
+        private float GetTotalMilesForAllLogs()
         {
             List<object> objectValues = new List<object>();
             float returnValue = 0;
@@ -1154,7 +1159,7 @@ namespace CyclingLogApplication
 
         //Get total number of rides for the selected log:
         //SELECT Count(LogYearID) FROM Table_Ride_Information;
-        private int getTotalRidesForSelectedLog(int logIndex)
+        private int GetTotalRidesForSelectedLog(int logIndex)
         {
             SqlDataReader reader = null;
             int returnValue = 0;
@@ -1164,18 +1169,21 @@ namespace CyclingLogApplication
                 sqlConnection.Open();
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("select COUNT(RideDistance) from Table_Ride_Information WHERE @Id=[LogYearID]", sqlConnection);
+                using (SqlCommand cmd = new SqlCommand("select COUNT(RideDistance) from Table_Ride_Information WHERE @Id=[LogYearID]", sqlConnection))
+                {
+                    // 2. define parameters used in command object
+                    SqlParameter param = new SqlParameter
+                    {
+                        ParameterName = "@Id",
+                        Value = logIndex
+                    };
 
-                // 2. define parameters used in command object
-                SqlParameter param = new SqlParameter();
-                param.ParameterName = "@Id";
-                param.Value = logIndex;
+                    // 3. add new parameter to command object
+                    cmd.Parameters.Add(param);
 
-                // 3. add new parameter to command object
-                cmd.Parameters.Add(param);
-
-                // get data stream
-                reader = cmd.ExecuteReader();
+                    // get data stream
+                    reader = cmd.ExecuteReader();
+                }
 
                 // write each record
                 while (reader.Read())
@@ -1216,14 +1224,14 @@ namespace CyclingLogApplication
         //Total rides/weeks
         private float GetAverageRidesPerWeek(int logIndex)
         {
-            int rides = getTotalRidesForSelectedLog(logIndex);
+            int rides = GetTotalRidesForSelectedLog(logIndex);
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
             Calendar cal = dfi.Calendar;
-            int weekValue = 0;
+            int weekValue;
             float avgRides = 0;
 
             //Need to determine if the current year matches the log year and if not use 52 as the weekValue:
-            int logYear = getLogYearByIndex(logIndex);
+            int logYear = GetLogYearByIndex(logIndex);
 
             if (logYear == DateTime.Today.Year)
             {
@@ -1246,14 +1254,14 @@ namespace CyclingLogApplication
         //Total miles/weeks
         private float GetAverageMilesPerWeek(int logIndex)
         {
-            float totalMiles = getTotalMilesForSelectedLog(logIndex);
+            float totalMiles = GetTotalMilesForSelectedLog(logIndex);
             float avgMiles = 0;
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
             Calendar cal = dfi.Calendar;
-            int weekValue = 0;
+            int weekValue;
 
             //Need to determine if the current year matches the log year and if not use 52 as the weekValue:
-            int logYear = getLogYearByIndex(logIndex);
+            int logYear = GetLogYearByIndex(logIndex);
 
             if (logYear == DateTime.Today.Year)
             {
@@ -1277,8 +1285,8 @@ namespace CyclingLogApplication
         //Total miles/total rides
         private float GetAverageMilesPerRide(int logIndex)
         {
-            float miles = getTotalMilesForSelectedLog(logIndex);
-            int rides = getTotalRidesForSelectedLog(logIndex);
+            float miles = GetTotalMilesForSelectedLog(logIndex);
+            int rides = GetTotalRidesForSelectedLog(logIndex);
             float averageMiles = 0;
 
             if (miles > 0)
@@ -1295,8 +1303,7 @@ namespace CyclingLogApplication
         //Get the highest mileage for a week value:
         private double GetHighMileageWeekNumber(int logIndex)
         {
-            List<double> rideDistanceList = new List<double>();
-            int weekNumber = 1;
+            int weekNumber;
             int weekNumberTmp = 0;
             double weekMilesTotal = 0;
             double weeklyMax = 0;
@@ -1333,7 +1340,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                weekMilesTotal = weekMilesTotal + (double)reader["RideDistance"];
+                                weekMilesTotal += (double)reader["RideDistance"];
                             }
                         }
 
@@ -1377,18 +1384,21 @@ namespace CyclingLogApplication
                 sqlConnection.Open();
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("select MAX(RideDistance) from Table_Ride_Information WHERE @Id=[LogYearID]", sqlConnection);
+                using (SqlCommand cmd = new SqlCommand("select MAX(RideDistance) from Table_Ride_Information WHERE @Id=[LogYearID]", sqlConnection))
+                {
+                    // 2. define parameters used in command object
+                    SqlParameter param = new SqlParameter
+                    {
+                        ParameterName = "@Id",
+                        Value = logIndex
+                    };
 
-                // 2. define parameters used in command object
-                SqlParameter param = new SqlParameter();
-                param.ParameterName = "@Id";
-                param.Value = logIndex;
+                    // 3. add new parameter to command object
+                    cmd.Parameters.Add(param);
 
-                // 3. add new parameter to command object
-                cmd.Parameters.Add(param);
-
-                // get data stream
-                reader = cmd.ExecuteReader();
+                    // get data stream
+                    reader = cmd.ExecuteReader();
+                }
 
                 // write each record
                 while (reader.Read())
@@ -1427,9 +1437,9 @@ namespace CyclingLogApplication
         {
             DateTime date = DateTime.Now;
             double year = date.Year;
-            int month = date.Month;
-            int day = date.Day;
-            double dayCount = 0;
+            //int month = date.Month;
+            //int day = date.Day;
+            double dayCount;
             //DateTime changeDate = new DateTime(moment.Year, moment.Month, moment.Day);
             //Days to time change -  (DateTime.Now - DateTime(Int32 year, Int32 month, Int32 day)).TotalDays {type DateTime}
 
@@ -1628,7 +1638,7 @@ namespace CyclingLogApplication
         // Yearly:
         private void RefreshStatisticsData()
         {
-            int logYearIndex = -1;
+            int logYearIndex;
 
             // Get log index and pass to all the methods:
             if (cbLogYear1.SelectedItem == null)
@@ -1637,13 +1647,13 @@ namespace CyclingLogApplication
             }
             else
             {
-                logYearIndex = getLogYearIndex(cbLogYear1.SelectedItem.ToString());
+                logYearIndex = GetLogYearIndex(cbLogYear1.SelectedItem.ToString());
             }         
 
             if (cbLogYear1.SelectedIndex > 0)
             {
-                tb1Log1.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
-                tb2Log1.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
+                tb1Log1.Text = GetTotalMilesForSelectedLog(logYearIndex).ToString();
+                tb2Log1.Text = GetTotalRidesForSelectedLog(logYearIndex).ToString();
                 tb3Log1.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
                 tb4Log1.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
                 tb5Log1.Text = GetAverageMilesPerRide(logYearIndex).ToString();
@@ -1653,10 +1663,10 @@ namespace CyclingLogApplication
 
             if (cbLogYear2.SelectedIndex > 0)
             {
-                logYearIndex = getLogYearIndex(cbLogYear2.SelectedItem.ToString());
+                logYearIndex = GetLogYearIndex(cbLogYear2.SelectedItem.ToString());
 
-                tb1Log2.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
-                tb2Log2.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
+                tb1Log2.Text = GetTotalMilesForSelectedLog(logYearIndex).ToString();
+                tb2Log2.Text = GetTotalRidesForSelectedLog(logYearIndex).ToString();
                 tb3Log2.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
                 tb4Log2.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
                 tb5Log2.Text = GetAverageMilesPerRide(logYearIndex).ToString();
@@ -1666,10 +1676,10 @@ namespace CyclingLogApplication
 
             if (cbLogYear3.SelectedIndex > 0)
             {
-                logYearIndex = getLogYearIndex(cbLogYear3.SelectedItem.ToString());
+                logYearIndex = GetLogYearIndex(cbLogYear3.SelectedItem.ToString());
 
-                tb1Log3.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
-                tb2Log3.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
+                tb1Log3.Text = GetTotalMilesForSelectedLog(logYearIndex).ToString();
+                tb2Log3.Text = GetTotalRidesForSelectedLog(logYearIndex).ToString();
                 tb3Log3.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
                 tb4Log3.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
                 tb5Log3.Text = GetAverageMilesPerRide(logYearIndex).ToString();
@@ -1679,10 +1689,10 @@ namespace CyclingLogApplication
 
             if (cbLogYear4.SelectedIndex > 0)
             {
-                logYearIndex = getLogYearIndex(cbLogYear4.SelectedItem.ToString());
+                logYearIndex = GetLogYearIndex(cbLogYear4.SelectedItem.ToString());
 
-                tb1Log4.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
-                tb2Log4.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
+                tb1Log4.Text = GetTotalMilesForSelectedLog(logYearIndex).ToString();
+                tb2Log4.Text = GetTotalRidesForSelectedLog(logYearIndex).ToString();
                 tb3Log4.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
                 tb4Log4.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
                 tb5Log4.Text = GetAverageMilesPerRide(logYearIndex).ToString();
@@ -1692,10 +1702,10 @@ namespace CyclingLogApplication
 
             if (cbLogYear5.SelectedIndex > 0)
             {
-                logYearIndex = getLogYearIndex(cbLogYear5.SelectedItem.ToString());
+                logYearIndex = GetLogYearIndex(cbLogYear5.SelectedItem.ToString());
 
-                tb1Log5.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
-                tb2Log5.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
+                tb1Log5.Text = GetTotalMilesForSelectedLog(logYearIndex).ToString();
+                tb2Log5.Text = GetTotalRidesForSelectedLog(logYearIndex).ToString();
                 tb3Log5.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
                 tb4Log5.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
                 tb5Log5.Text = GetAverageMilesPerRide(logYearIndex).ToString();
@@ -1704,14 +1714,14 @@ namespace CyclingLogApplication
             }
 
             //Get total miles for all logs:
-            double totalMiles = getTotalMilesForAllLogs();
+            double totalMiles = GetTotalMilesForAllLogs();
             totalMiles = Math.Truncate(totalMiles * 100) / 100;
             tbStatisticsTotalMiles.Text = Convert.ToString(Math.Round(totalMiles, 1));
-            tbLongestRide.Text = Convert.ToString(getLongestRide());
-            tbTotalRides.Text = Convert.ToString(getTotalRides());
+            tbLongestRide.Text = Convert.ToString(GetLongestRide());
+            tbTotalRides.Text = Convert.ToString(GetTotalRides());
         }
 
-        private double getLongestRide()
+        private double GetLongestRide()
         {
             List<object> objectValues = new List<object>();
             double returnValue = 0;
@@ -1767,7 +1777,7 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        private double getMaxSpeed()
+        private double GetMaxSpeed()
         {
             List<object> objectValues = new List<object>();
             double returnValue = 0;
@@ -1795,7 +1805,7 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        private double getTotalRides()
+        private double GetTotalRides()
         {
             List<object> objectValues = new List<object>();
             double returnValue = 0;
@@ -1825,13 +1835,13 @@ namespace CyclingLogApplication
 
         private void Cb1LogYear_changed(object sender, EventArgs e)
         {
-            int logYearIndex = getLogYearIndex(cbLogYear1.SelectedItem.ToString());
-            setcbStatistic1(cbLogYear1.SelectedIndex.ToString());
+            int logYearIndex = GetLogYearIndex(cbLogYear1.SelectedItem.ToString());
+            SetcbStatistic1(cbLogYear1.SelectedIndex.ToString());
 
             if (cbLogYear1.SelectedIndex > 0)
             {
-                tb1Log1.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
-                tb2Log1.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
+                tb1Log1.Text = GetTotalMilesForSelectedLog(logYearIndex).ToString();
+                tb2Log1.Text = GetTotalRidesForSelectedLog(logYearIndex).ToString();
                 tb3Log1.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
                 tb4Log1.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
                 tb5Log1.Text = GetAverageMilesPerRide(logYearIndex).ToString();
@@ -1852,13 +1862,13 @@ namespace CyclingLogApplication
 
         private void Cb2LogYear_changed(object sender, EventArgs e)
         {
-            int logYearIndex = getLogYearIndex(cbLogYear2.SelectedItem.ToString());
-            setcbStatistic2(cbLogYear2.SelectedIndex.ToString());
+            int logYearIndex = GetLogYearIndex(cbLogYear2.SelectedItem.ToString());
+            SetcbStatistic2(cbLogYear2.SelectedIndex.ToString());
 
             if (cbLogYear2.SelectedIndex > 0)
             {
-                tb1Log2.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
-                tb2Log2.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
+                tb1Log2.Text = GetTotalMilesForSelectedLog(logYearIndex).ToString();
+                tb2Log2.Text = GetTotalRidesForSelectedLog(logYearIndex).ToString();
                 tb3Log2.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
                 tb4Log2.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
                 tb5Log2.Text = GetAverageMilesPerRide(logYearIndex).ToString();
@@ -1879,13 +1889,13 @@ namespace CyclingLogApplication
 
         private void Cb3LogYear_changed(object sender, EventArgs e)
         {
-            int logYearIndex = getLogYearIndex(cbLogYear3.SelectedItem.ToString());
-            setcbStatistic3(cbLogYear3.SelectedIndex.ToString());
+            int logYearIndex = GetLogYearIndex(cbLogYear3.SelectedItem.ToString());
+            SetcbStatistic3(cbLogYear3.SelectedIndex.ToString());
 
             if (cbLogYear3.SelectedIndex > 0)
             {
-                tb1Log3.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
-                tb2Log3.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
+                tb1Log3.Text = GetTotalMilesForSelectedLog(logYearIndex).ToString();
+                tb2Log3.Text = GetTotalRidesForSelectedLog(logYearIndex).ToString();
                 tb3Log3.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
                 tb4Log3.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
                 tb5Log3.Text = GetAverageMilesPerRide(logYearIndex).ToString();
@@ -1906,13 +1916,13 @@ namespace CyclingLogApplication
 
         private void Cb4LogYear_changed(object sender, EventArgs e)
         {
-            int logYearIndex = getLogYearIndex(cbLogYear4.SelectedItem.ToString());
+            int logYearIndex = GetLogYearIndex(cbLogYear4.SelectedItem.ToString());
             SetcbStatistic4(cbLogYear4.SelectedIndex.ToString());
 
             if (cbLogYear4.SelectedIndex > 0)
             {
-                tb1Log4.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
-                tb2Log4.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
+                tb1Log4.Text = GetTotalMilesForSelectedLog(logYearIndex).ToString();
+                tb2Log4.Text = GetTotalRidesForSelectedLog(logYearIndex).ToString();
                 tb3Log4.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
                 tb4Log4.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
                 tb5Log4.Text = GetAverageMilesPerRide(logYearIndex).ToString();
@@ -1933,13 +1943,13 @@ namespace CyclingLogApplication
 
         private void Cb5LogYear_changed(object sender, EventArgs e)
         {
-            int logYearIndex = getLogYearIndex(cbLogYear5.SelectedItem.ToString());
+            int logYearIndex = GetLogYearIndex(cbLogYear5.SelectedItem.ToString());
             SetcbStatistic5(cbLogYear5.SelectedIndex.ToString());
 
             if (cbLogYear5.SelectedIndex > 0)
             {
-                tb1Log5.Text = getTotalMilesForSelectedLog(logYearIndex).ToString();
-                tb2Log5.Text = getTotalRidesForSelectedLog(logYearIndex).ToString();
+                tb1Log5.Text = GetTotalMilesForSelectedLog(logYearIndex).ToString();
+                tb2Log5.Text = GetTotalRidesForSelectedLog(logYearIndex).ToString();
                 tb3Log5.Text = GetAverageRidesPerWeek(logYearIndex).ToString();
                 tb4Log5.Text = GetAverageMilesPerWeek(logYearIndex).ToString();
                 tb5Log5.Text = GetAverageMilesPerRide(logYearIndex).ToString();
@@ -1959,20 +1969,24 @@ namespace CyclingLogApplication
         }
 
         //This option is currently not visable:
-        public void importFromExcelLog(object sender, EventArgs e)
+        public void ImportFromExcelLog(object sender, EventArgs e)
         {
+            int logIndex;
+
             //window to selct the index:
-            LegacyImport legacyImport = new LegacyImport();
-            legacyImport.ShowDialog();
-
-            int logIndex = legacyImport.getLegacyIndexSelection() + 1;
-
-            if (logIndex < 1)
+            using (LegacyImport legacyImport = new LegacyImport())
             {
-                return;
+                legacyImport.ShowDialog();
+
+                logIndex = legacyImport.getLegacyIndexSelection() + 1;
+
+                if (logIndex < 1)
+                {
+                    return;
+                }
             }
 
-            string[] splitList = new string[18];
+            //string[] splitList = new string[18];
             List<object> objectValues = new List<object>();
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
             Calendar cal = dfi.Calendar;
@@ -1985,83 +1999,85 @@ namespace CyclingLogApplication
                     //Check if the file is used by another process
                     try
                     {
-                        StreamReader file = new StreamReader(openfileDialog.FileName);
-                        int rowCount = 0;
-
-                        while ((line = file.ReadLine()) != null)
+                        using (StreamReader file = new StreamReader(openfileDialog.FileName))
                         {
-                            var tempList = line.Split(',');
+                            int rowCount = 0;
 
-                            if (rowCount == 0)
+                            while ((line = file.ReadLine()) != null)
                             {
-                                //Line 1 is the headings                  
-                                //MessageBox.Show(headingList[0]);
-                            }
-                            else
-                            {
-                                //MessageBox.Show(line);
-                                objectValues.Clear();
-                                splitList = line.Split(',');
+                                var tempList = line.Split(',');
 
-                                objectValues.Add(splitList[1]);     //Moving Time:
-                                objectValues.Add(splitList[2]);     //Ride Distance:
-                                objectValues.Add(splitList[3]);     //Average Speed:
-                                objectValues.Add(splitList[4]);     //Bike:
-                                objectValues.Add(splitList[5]);     //Ride Type:                            
-                                objectValues.Add(splitList[7]);     //Wind:
-                                objectValues.Add(splitList[8]);     //Temp:
-                                objectValues.Add(splitList[0]);     //Date:
-                                objectValues.Add(splitList[9]);     //Average Cadence:
-                                objectValues.Add(splitList[10]);     //Average Heart Rate:
-                                objectValues.Add(splitList[11]);     //Max Heart Rate:
-                                objectValues.Add(splitList[15]);     //Calories:
-                                objectValues.Add(splitList[12]);     //Total Ascent:
-                                objectValues.Add(splitList[13]);     //Total Descent:
-                                objectValues.Add(splitList[16]);     //Max Speed:
-                                objectValues.Add(null);              //Average Power:
-                                objectValues.Add(null);              //Max Power:
-                                objectValues.Add(splitList[17]);     //Route:
-
-                                //string tmepValue = splitList[18];
-                                //if (splitList[18].Contains('"'))
-                                //{
-                                //   // MessageBox.Show(splitList[18] + "=" + splitList[19]);
-                                //    string tempStr = splitList[18];
-
-                                //    splitList[18] = tempStr.Replace("\"", "");
-                                //}
-                                string comment = "";
-                                if (splitList.Length > 19)
+                                if (rowCount == 0)
                                 {
-                                    //Get the total:
-                                    int arraySize = splitList.Length;
-                                    for (int index = 18; index < arraySize; index++)
+                                    //Line 1 is the headings                  
+                                    //MessageBox.Show(headingList[0]);
+                                }
+                                else
+                                {
+                                    //MessageBox.Show(line);
+                                    objectValues.Clear();
+                                    string[] splitList = line.Split(',');
+
+                                    objectValues.Add(splitList[1]);     //Moving Time:
+                                    objectValues.Add(splitList[2]);     //Ride Distance:
+                                    objectValues.Add(splitList[3]);     //Average Speed:
+                                    objectValues.Add(splitList[4]);     //Bike:
+                                    objectValues.Add(splitList[5]);     //Ride Type:                            
+                                    objectValues.Add(splitList[7]);     //Wind:
+                                    objectValues.Add(splitList[8]);     //Temp:
+                                    objectValues.Add(splitList[0]);     //Date:
+                                    objectValues.Add(splitList[9]);     //Average Cadence:
+                                    objectValues.Add(splitList[10]);     //Average Heart Rate:
+                                    objectValues.Add(splitList[11]);     //Max Heart Rate:
+                                    objectValues.Add(splitList[15]);     //Calories:
+                                    objectValues.Add(splitList[12]);     //Total Ascent:
+                                    objectValues.Add(splitList[13]);     //Total Descent:
+                                    objectValues.Add(splitList[16]);     //Max Speed:
+                                    objectValues.Add(null);              //Average Power:
+                                    objectValues.Add(null);              //Max Power:
+                                    objectValues.Add(splitList[17]);     //Route:
+
+                                    //string tmepValue = splitList[18];
+                                    //if (splitList[18].Contains('"'))
+                                    //{
+                                    //   // MessageBox.Show(splitList[18] + "=" + splitList[19]);
+                                    //    string tempStr = splitList[18];
+
+                                    //    splitList[18] = tempStr.Replace("\"", "");
+                                    //}
+                                    string comment = "";
+                                    if (splitList.Length > 19)
                                     {
-                                        comment = comment + splitList[index];
+                                        //Get the total:
+                                        int arraySize = splitList.Length;
+                                        for (int index = 18; index < arraySize; index++)
+                                        {
+                                            comment += splitList[index];
+                                        }
+                                    }
+
+                                    objectValues.Add(comment);     //Comments:
+                                    objectValues.Add(logIndex);         //LogYear index:
+
+                                    //Need to figure out the week from the ride date:
+                                    DateTime rideDate = Convert.ToDateTime(splitList[0]);
+                                    int weekValue = cal.GetWeekOfYear(rideDate, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+                                    objectValues.Add(weekValue);        //Week number:
+                                    objectValues.Add(splitList[14]);     //Location:
+                                    objectValues.Add(null);     //Windchill:
+                                    objectValues.Add(splitList[6]);     //Effort:
+
+                                    using (var results = ExecuteSimpleQueryConnection("Ride_Information_Add", objectValues))
+                                    {
+                                        //string ToReturn = "";
+                                        //if (results.HasRows)
+                                        //    while (results.Read())
+                                        //        ToReturn = results.GetString(results.GetOrdinal("field1"));
                                     }
                                 }
 
-                                objectValues.Add(comment);     //Comments:
-                                objectValues.Add(logIndex);         //LogYear index:
-
-                                //Need to figure out the week from the ride date:
-                                DateTime rideDate = Convert.ToDateTime(splitList[0]);
-                                int weekValue = cal.GetWeekOfYear(rideDate, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
-                                objectValues.Add(weekValue);        //Week number:
-                                objectValues.Add(splitList[14]);     //Location:
-                                objectValues.Add(null);     //Windchill:
-                                objectValues.Add(splitList[6]);     //Effort:
-
-                                using (var results = ExecuteSimpleQueryConnection("Ride_Information_Add", objectValues))
-                                {
-                                    //string ToReturn = "";
-                                    //if (results.HasRows)
-                                    //    while (results.Read())
-                                    //        ToReturn = results.GetString(results.GetOrdinal("field1"));
-                                }
+                                rowCount++;
                             }
-
-                            rowCount++;
                         }
                     }
                     catch (Exception ex)
@@ -2080,7 +2096,7 @@ namespace CyclingLogApplication
                 currentRouteList.Add(cbRouteConfig.GetItemText(cbRouteConfig.Items[index]));
             }
 
-            List<string> routeList = readDataNames("Table_Ride_Information", "Route");
+            List<string> routeList = ReadDataNames("Table_Ride_Information", "Route");
             foreach (var route in routeList)
             {
                 if (!currentRouteList.Contains(route))
@@ -2092,7 +2108,7 @@ namespace CyclingLogApplication
                     //Add new entry to the Route Table:
                     List<object> routeObjectValues = new List<object>();
                     routeObjectValues.Add(route);
-                    runStoredProcedure(routeObjectValues, "Route_Add");
+                    RunStoredProcedure(routeObjectValues, "Route_Add");
                 }
             }
 
@@ -2103,7 +2119,7 @@ namespace CyclingLogApplication
                 currentBikeList.Add(cbBikeConfig.GetItemText(cbBikeConfig.Items[index]));
             }
 
-            List<string> bikeList = readDataNames("Table_Ride_Information", "Bike");
+            List<string> bikeList = ReadDataNames("Table_Ride_Information", "Bike");
             foreach (var bike in bikeList)
             {
                 if (!currentBikeList.Contains(bike))
@@ -2115,7 +2131,7 @@ namespace CyclingLogApplication
                     //Add new entry to the Route Table:
                     List<object> bikeObjectValues = new List<object>();
                     bikeObjectValues.Add(bike);
-                    runStoredProcedure(bikeObjectValues, "Bike_Add");
+                    RunStoredProcedure(bikeObjectValues, "Bike_Add");
                 }
             }
 
@@ -2132,7 +2148,7 @@ namespace CyclingLogApplication
             objectValues.Add(newValue);
             objectValues.Add(oldValue);
 
-            runStoredProcedure(objectValues, "Route_Update");
+            RunStoredProcedure(objectValues, "Route_Update");
 
             List<string> tempList = new List<string>();
             int selectedIndex = cbRouteConfig.SelectedIndex;
@@ -2179,21 +2195,22 @@ namespace CyclingLogApplication
             //Update value in database:
             SqlDataReader reader = null;
 
-            float returnValue = 0;
+            float returnValue;
 
             try
             {
                 sqlConnection.Open();
 
                 // declare command object with parameter
-                SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET Route=@NewValue WHERE [Route]=@OldValue", sqlConnection);
+                using (SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET Route=@NewValue WHERE [Route]=@OldValue", sqlConnection))
+                {
+                    // setcbStatistic1 parameters
+                    cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = newValue;
+                    cmd.Parameters.Add("@OldValue", SqlDbType.NVarChar).Value = oldValue;
 
-                // setcbStatistic1 parameters
-                cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = newValue;
-                cmd.Parameters.Add("@OldValue", SqlDbType.NVarChar).Value = oldValue;
-
-                // get data stream
-                reader = cmd.ExecuteReader();
+                    // get data stream
+                    reader = cmd.ExecuteReader();
+                }
 
                 // write each record
                 while (reader.Read())
@@ -2230,7 +2247,7 @@ namespace CyclingLogApplication
         private void BRenameLogYear_Click(object sender, EventArgs e)
         {
             string newValue = tbLogYearConfig.Text;
-            string oldValue = "";
+            string oldValue;
 
             if (cbLogYearConfig.SelectedItem != null)
             {
@@ -2256,7 +2273,7 @@ namespace CyclingLogApplication
             objectValues.Add(oldValue);
             objectValues.Add(logYear);
 
-            runStoredProcedure(objectValues, "Log_Year_Update");
+            RunStoredProcedure(objectValues, "Log_Year_Update");
 
             List<string> tempList = new List<string>();
 
@@ -2376,16 +2393,18 @@ namespace CyclingLogApplication
                 sqlConnection.Open();
                 SqlDataAdapter sqlDataAdapter = null;
 
-                sqlDataAdapter = new SqlDataAdapter();
-                sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [Date],[Bike],[Miles],[Comments] FROM Table_Bike_Maintenance", sqlConnection);
+                using (sqlDataAdapter = new SqlDataAdapter())
+                {
+                    sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [Date],[Bike],[Miles],[Comments] FROM Table_Bike_Maintenance", sqlConnection);
 
-                DataTable dataTable = new DataTable();
-                sqlDataAdapter.Fill(dataTable);
-                dgvMaint.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
-                dgvMaint.EnableHeadersVisualStyles = false;
-                dgvMaint.DataSource = dataTable;
-                dgvMaint.Refresh();
-                dgvMaint.Sort(dgvMaint.Columns["Date"], ListSortDirection.Descending);
+                    DataTable dataTable = new DataTable();
+                    sqlDataAdapter.Fill(dataTable);
+                    dgvMaint.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
+                    dgvMaint.EnableHeadersVisualStyles = false;
+                    dgvMaint.DataSource = dataTable;
+                    dgvMaint.Refresh();
+                    dgvMaint.Sort(dgvMaint.Columns["Date"], ListSortDirection.Descending);
+                }
             }
             catch (Exception ex)
             {
@@ -2440,7 +2459,7 @@ namespace CyclingLogApplication
             objectValues.Add(rtbMaintComments.Text);
             objectValues.Add(dateTimePicker1.Value);
             objectValues.Add(tbMaintMiles.Text);
-            runStoredProcedure(objectValues, "Maintenance_Add");
+            RunStoredProcedure(objectValues, "Maintenance_Add");
 
             tbMaintID.Text = "";
             //btGetMaintLog_Click(sender, e);
@@ -2509,7 +2528,7 @@ namespace CyclingLogApplication
             objectValues.Add(rtbMaintComments.Text);
             objectValues.Add(dateTimePicker1.Value);
             objectValues.Add(tbMaintMiles.Text);
-            runStoredProcedure(objectValues, "Maintenance_Update");
+            RunStoredProcedure(objectValues, "Maintenance_Update");
             BtGetMaintLog_Click(sender, e);
         }
 
@@ -2530,7 +2549,7 @@ namespace CyclingLogApplication
 
             List<object> objectValues = new List<object>();
             objectValues.Add(tbMaintID.Text);
-            runStoredProcedure(objectValues, "Maintenance_Remove");
+            RunStoredProcedure(objectValues, "Maintenance_Remove");
             rtbMaintComments.Text = "";
             tbMaintMiles.Text = "";
             BtGetMaintLog_Click(sender, e);
@@ -2608,7 +2627,7 @@ namespace CyclingLogApplication
             try
             {
                 List<string> bikeList = new List<string>();
-                bikeList = readDataNames("Table_Bike_Totals", "Name");
+                bikeList = ReadDataNames("Table_Bike_Totals", "Name");
                 Dictionary<string, double> bikeMilesDictionary = new Dictionary<string, double>();
 
                 for (int index = 0; index < bikeList.Count; index++)
@@ -2814,14 +2833,14 @@ namespace CyclingLogApplication
             objectBikes.Add(newValue);
             objectBikes.Add(oldValue);
 
-            runStoredProcedure(objectBikes, "Bike_Update");
+            RunStoredProcedure(objectBikes, "Bike_Update");
 
             List<object> objectBikeTotals = new List<object>();
             objectBikeTotals.Add(newValue);
             objectBikeTotals.Add(oldValue);
             objectBikeTotals.Add(Convert.ToDouble(miles));
 
-            runStoredProcedure(objectBikes, "Bike_Totals_Update");
+            RunStoredProcedure(objectBikes, "Bike_Totals_Update");
 
             List<string> tempList = new List<string>();
 
@@ -2878,31 +2897,32 @@ namespace CyclingLogApplication
             cbBikeTotalsConfig.SelectedIndex = selectedIndex;
             //Update value in database:
             SqlDataReader reader = null;
-            float returnValue = 0;
+            float returnValue;
 
             try
             {
                 sqlConnection.Open();
 
                 // 1. declare command object with parameter
-                SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET [Bike]=@NewValue WHERE [Bike]=@OldValue", sqlConnection);
+                using (SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET [Bike]=@NewValue WHERE [Bike]=@OldValue", sqlConnection))
+                {
+                    // 2. define parameters used in command object
+                    //SqlParameter sqlparams = new SqlParameter();
+                    //sqlparams.ParameterName = "NewValue";
+                    //sqlparams.Value = newValue;
 
-                // 2. define parameters used in command object
-                //SqlParameter sqlparams = new SqlParameter();
-                //sqlparams.ParameterName = "NewValue";
-                //sqlparams.Value = newValue;
+                    //sqlparams.ParameterName = "OldValue";
+                    //sqlparams.Value = oldValue;
 
-                //sqlparams.ParameterName = "OldValue";
-                //sqlparams.Value = oldValue;
+                    // 3. add new parameter to command object
+                    //cmd.Parameters.Add(sqlparams);
 
-                // 3. add new parameter to command object
-                //cmd.Parameters.Add(sqlparams);
+                    cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = newValue;
+                    cmd.Parameters.Add("@OldValue", SqlDbType.NVarChar).Value = oldValue;
 
-                cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = newValue;
-                cmd.Parameters.Add("@OldValue", SqlDbType.NVarChar).Value = oldValue;
-
-                // get data stream
-                reader = cmd.ExecuteReader();
+                    // get data stream
+                    reader = cmd.ExecuteReader();
+                }
 
                 // write each record
                 while (reader.Read())
@@ -2988,40 +3008,40 @@ namespace CyclingLogApplication
         // Start Monthly Statistics Section
         //=============================================================================
 
-        private void runMonthlyStatistics()
+        private void RunMonthlyStatistics()
         {
             if (cbStatMonthlyLogYear.SelectedItem == null)
             {
                 return;
             }
 
-            int logYearIndex = getLogYearIndex(cbStatMonthlyLogYear.SelectedItem.ToString());
+            int logYearIndex = GetLogYearIndex(cbStatMonthlyLogYear.SelectedItem.ToString());
 
-            month1R1.Text = getTotalMilesMonthlyForSelectedLog(logYearIndex, 1).ToString();
-            month2R1.Text = getTotalMilesMonthlyForSelectedLog(logYearIndex, 2).ToString();
-            month3R1.Text = getTotalMilesMonthlyForSelectedLog(logYearIndex, 3).ToString();
-            month4R1.Text = getTotalMilesMonthlyForSelectedLog(logYearIndex, 4).ToString();
-            month5R1.Text = getTotalMilesMonthlyForSelectedLog(logYearIndex, 5).ToString();
-            month6R1.Text = getTotalMilesMonthlyForSelectedLog(logYearIndex, 6).ToString();
-            month7R1.Text = getTotalMilesMonthlyForSelectedLog(logYearIndex, 7).ToString();
-            month8R1.Text = getTotalMilesMonthlyForSelectedLog(logYearIndex, 8).ToString();
-            month9R1.Text = getTotalMilesMonthlyForSelectedLog(logYearIndex, 9).ToString();
-            month10R1.Text = getTotalMilesMonthlyForSelectedLog(logYearIndex, 10).ToString();
-            month11R1.Text = getTotalMilesMonthlyForSelectedLog(logYearIndex, 11).ToString();
-            month12R1.Text = getTotalMilesMonthlyForSelectedLog(logYearIndex, 12).ToString();
+            month1R1.Text = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 1).ToString();
+            month2R1.Text = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 2).ToString();
+            month3R1.Text = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 3).ToString();
+            month4R1.Text = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 4).ToString();
+            month5R1.Text = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 5).ToString();
+            month6R1.Text = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 6).ToString();
+            month7R1.Text = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 7).ToString();
+            month8R1.Text = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 8).ToString();
+            month9R1.Text = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 9).ToString();
+            month10R1.Text = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 10).ToString();
+            month11R1.Text = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 11).ToString();
+            month12R1.Text = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 12).ToString();
 
-            month1R2.Text = getTotalRidesMonthlyForSelectedLog(logYearIndex, 1).ToString();
-            month2R2.Text = getTotalRidesMonthlyForSelectedLog(logYearIndex, 2).ToString();
-            month3R2.Text = getTotalRidesMonthlyForSelectedLog(logYearIndex, 3).ToString();
-            month4R2.Text = getTotalRidesMonthlyForSelectedLog(logYearIndex, 4).ToString();
-            month5R2.Text = getTotalRidesMonthlyForSelectedLog(logYearIndex, 5).ToString();
-            month6R2.Text = getTotalRidesMonthlyForSelectedLog(logYearIndex, 6).ToString();
-            month7R2.Text = getTotalRidesMonthlyForSelectedLog(logYearIndex, 7).ToString();
-            month8R2.Text = getTotalRidesMonthlyForSelectedLog(logYearIndex, 8).ToString();
-            month9R2.Text = getTotalRidesMonthlyForSelectedLog(logYearIndex, 9).ToString();
-            month10R2.Text = getTotalRidesMonthlyForSelectedLog(logYearIndex, 10).ToString();
-            month11R2.Text = getTotalRidesMonthlyForSelectedLog(logYearIndex, 11).ToString();
-            month12R2.Text = getTotalRidesMonthlyForSelectedLog(logYearIndex, 12).ToString();
+            month1R2.Text = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 1).ToString();
+            month2R2.Text = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 2).ToString();
+            month3R2.Text = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 3).ToString();
+            month4R2.Text = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 4).ToString();
+            month5R2.Text = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 5).ToString();
+            month6R2.Text = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 6).ToString();
+            month7R2.Text = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 7).ToString();
+            month8R2.Text = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 8).ToString();
+            month9R2.Text = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 9).ToString();
+            month10R2.Text = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 10).ToString();
+            month11R2.Text = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 11).ToString();
+            month12R2.Text = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 12).ToString();
 
             month1R3.Text = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 1).ToString();
             month2R3.Text = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 2).ToString();
@@ -3062,31 +3082,31 @@ namespace CyclingLogApplication
             month11R5.Text = GetAverageMonthlyMilesPerRide(logYearIndex, 11).ToString();
             month12R5.Text = GetAverageMonthlyMilesPerRide(logYearIndex, 12).ToString();
 
-            month1R6.Text = getMonthlyHighMileageWeekNumber(logYearIndex, 1).ToString();
-            month2R6.Text = getMonthlyHighMileageWeekNumber(logYearIndex, 2).ToString();
-            month3R6.Text = getMonthlyHighMileageWeekNumber(logYearIndex, 3).ToString();
-            month4R6.Text = getMonthlyHighMileageWeekNumber(logYearIndex, 4).ToString();
-            month5R6.Text = getMonthlyHighMileageWeekNumber(logYearIndex, 5).ToString();
-            month6R6.Text = getMonthlyHighMileageWeekNumber(logYearIndex, 6).ToString();
-            month7R6.Text = getMonthlyHighMileageWeekNumber(logYearIndex, 7).ToString();
-            month8R6.Text = getMonthlyHighMileageWeekNumber(logYearIndex, 8).ToString();
-            month9R6.Text = getMonthlyHighMileageWeekNumber(logYearIndex, 9).ToString();
-            month10R6.Text = getMonthlyHighMileageWeekNumber(logYearIndex, 10).ToString();
-            month11R6.Text = getMonthlyHighMileageWeekNumber(logYearIndex, 11).ToString();
-            month12R6.Text = getMonthlyHighMileageWeekNumber(logYearIndex, 12).ToString();
+            month1R6.Text = GetMonthlyHighMileageWeekNumber(logYearIndex, 1).ToString();
+            month2R6.Text = GetMonthlyHighMileageWeekNumber(logYearIndex, 2).ToString();
+            month3R6.Text = GetMonthlyHighMileageWeekNumber(logYearIndex, 3).ToString();
+            month4R6.Text = GetMonthlyHighMileageWeekNumber(logYearIndex, 4).ToString();
+            month5R6.Text = GetMonthlyHighMileageWeekNumber(logYearIndex, 5).ToString();
+            month6R6.Text = GetMonthlyHighMileageWeekNumber(logYearIndex, 6).ToString();
+            month7R6.Text = GetMonthlyHighMileageWeekNumber(logYearIndex, 7).ToString();
+            month8R6.Text = GetMonthlyHighMileageWeekNumber(logYearIndex, 8).ToString();
+            month9R6.Text = GetMonthlyHighMileageWeekNumber(logYearIndex, 9).ToString();
+            month10R6.Text = GetMonthlyHighMileageWeekNumber(logYearIndex, 10).ToString();
+            month11R6.Text = GetMonthlyHighMileageWeekNumber(logYearIndex, 11).ToString();
+            month12R6.Text = GetMonthlyHighMileageWeekNumber(logYearIndex, 12).ToString();
 
-            month1R7.Text = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 1).ToString();
-            month2R7.Text = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 2).ToString();
-            month3R7.Text = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 3).ToString();
-            month4R7.Text = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 4).ToString();
-            month5R7.Text = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 5).ToString();
-            month6R7.Text = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 6).ToString();
-            month7R7.Text = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 7).ToString();
-            month8R7.Text = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 8).ToString();
-            month9R7.Text = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 9).ToString();
-            month10R7.Text = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 10).ToString();
-            month11R7.Text = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 11).ToString();
-            month12R7.Text = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 12).ToString();
+            month1R7.Text = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 1).ToString();
+            month2R7.Text = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 2).ToString();
+            month3R7.Text = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 3).ToString();
+            month4R7.Text = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 4).ToString();
+            month5R7.Text = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 5).ToString();
+            month6R7.Text = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 6).ToString();
+            month7R7.Text = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 7).ToString();
+            month8R7.Text = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 8).ToString();
+            month9R7.Text = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 9).ToString();
+            month10R7.Text = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 10).ToString();
+            month11R7.Text = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 11).ToString();
+            month12R7.Text = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 12).ToString();
         }
 
         private void CbStatMonthlyLogYear_changed(object sender, EventArgs e)
@@ -3106,20 +3126,22 @@ namespace CyclingLogApplication
 
             if (!formloading)
             {
-                RefreshingForm refreshingForm = new RefreshingForm();
-                // Display form modelessly
-                refreshingForm.Show();
-                //  ALlow main UI thread to properly display please wait form.
-                Application.DoEvents();
-                //this.ShowDialog();
-                runMonthlyStatistics();
-                refreshingForm.Hide();
+                using (RefreshingForm refreshingForm = new RefreshingForm())
+                {
+                    // Display form modelessly
+                    refreshingForm.Show();
+                    //  ALlow main UI thread to properly display please wait form.
+                    Application.DoEvents();
+                    //this.ShowDialog();
+                    RunMonthlyStatistics();
+                    refreshingForm.Hide();
+                }
             }
         }
 
         //Get total of miles for the selected log:
         //SELECT SUM(RideDistance) FROM Table_Ride_Information;
-        private float getTotalMilesMonthlyForSelectedLog(int logIndex, int month)
+        private float GetTotalMilesMonthlyForSelectedLog(int logIndex, int month)
         {
             List<object> objectValues = new List<object>();
             objectValues.Add(logIndex);
@@ -3152,7 +3174,7 @@ namespace CyclingLogApplication
 
         //Get total number of rides for the selected log:
         //SELECT Count(LogYearID) FROM Table_Ride_Information;
-        private int getTotalRidesMonthlyForSelectedLog(int logIndex, int month)
+        private int GetTotalRidesMonthlyForSelectedLog(int logIndex, int month)
         {
             List<object> objectValues = new List<object>();
             objectValues.Add(logIndex);
@@ -3186,8 +3208,8 @@ namespace CyclingLogApplication
         //SELECT Count(LogYearID) FROM Table_Ride_Information;
         private double GetAvgMonthlyRidesForSelectedLog(int logIndex, int month)
         {
-            double avgRides = 0;
-            int rides = getTotalRidesMonthlyForSelectedLog(logIndex, month);
+            double avgRides;
+            int rides = GetTotalRidesMonthlyForSelectedLog(logIndex, month);
 
             //31 days Jan-1, Mar-3, May-5, Jul-7, Aug-8, Oct-10, Dec-12 = 4.4286
             if (month == 1 || month == 3 || month == 5 || month == 8 || month == 10 || month == 12)
@@ -3210,8 +3232,8 @@ namespace CyclingLogApplication
 
         private double GetAverageMonthlyMilesPerWeek(int logIndex, int month)
         {
-            double totalMiles = getTotalMilesMonthlyForSelectedLog(logIndex, month);
-            double avgMiles = 0;
+            double totalMiles = GetTotalMilesMonthlyForSelectedLog(logIndex, month);
+            double avgMiles;
             //31 days Jan-1, Mar-3, May-5, Jul-7, Aug-8, Oct-10, Dec-12 = 4.4286
             if (month == 1 || month == 3 || month == 5 || month == 8 || month == 10 || month == 12)
             {
@@ -3235,8 +3257,8 @@ namespace CyclingLogApplication
         //Total miles/total rides
         private float GetAverageMonthlyMilesPerRide(int logIndex, int month)
         {
-            float miles = getTotalMilesMonthlyForSelectedLog(logIndex, month);
-            int rides = getTotalRidesMonthlyForSelectedLog(logIndex, month);
+            float miles = GetTotalMilesMonthlyForSelectedLog(logIndex, month);
+            int rides = GetTotalRidesMonthlyForSelectedLog(logIndex, month);
             float averageMiles = 0;
 
             if (miles > 0)
@@ -3250,7 +3272,7 @@ namespace CyclingLogApplication
             return (float)(avgMiles);
         }
 
-        private double getMaxHighMileageMonthlyForSelectedLog(int logIndex, int month)
+        private double GetMaxHighMileageMonthlyForSelectedLog(int logIndex, int month)
         {
             List<object> objectValues = new List<object>();
             objectValues.Add(logIndex);
@@ -3280,10 +3302,10 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        public double getMonthlyHighMileageWeekNumber(int LogYearID, int Month)
+        public double GetMonthlyHighMileageWeekNumber(int LogYearID, int Month)
         {
-            List<double> rideDistanceList = new List<double>();
-            int weekNumber = 1;
+            //List<double> rideDistanceList = new List<double>();
+            int weekNumber;
             int weekNumberTmp = 0;
             double weekMilesTotal = 0;
             double weeklyMax = 0;
@@ -3321,7 +3343,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                weekMilesTotal = weekMilesTotal + (double)reader["RideDistance"];
+                                weekMilesTotal += (double)reader["RideDistance"];
                             }
                         }
 
@@ -3353,7 +3375,7 @@ namespace CyclingLogApplication
             return weeklyMax;
         }
 
-        public int getTEST(int LogYearID, int Month)
+        public int GetTEST(int LogYearID)
         {
             SqlDataReader reader = null;
             int returnValue = -1;
@@ -3368,20 +3390,21 @@ namespace CyclingLogApplication
                 // 1. declare command object with parameter
                 //SqlCommand cmd = new SqlCommand("SELECT LogYearID FROM Table_Log_Year WHERE @logYearName=[Name]", sqlConnection);
                 //SqlCommand cmd = new SqlCommand("SELECT RideDistance,WeekNumber FROM Table_Ride_Information WHERE @LogYearID=[LogYearID] and @Month=MONTH([Date])", sqlConnection);
-                SqlCommand cmd = new SqlCommand("SELECT RideDistance,WeekNumber FROM Table_Ride_Information WHERE " + LogYearID + "=[LogYearID]", sqlConnection);
+                using (SqlCommand cmd = new SqlCommand("SELECT RideDistance,WeekNumber FROM Table_Ride_Information WHERE " + LogYearID + "=[LogYearID]", sqlConnection))
+                {
+                    // 2. define parameters used in command object
+                    //SqlParameter param = new SqlParameter();
+                    //param.ParameterName = "@LogYearID";
+                    //param.Value = LogYearID;
+                    //param.ParameterName = "@Month";
+                    //param.Value = Month;
 
-                // 2. define parameters used in command object
-                //SqlParameter param = new SqlParameter();
-                //param.ParameterName = "@LogYearID";
-                //param.Value = LogYearID;
-                //param.ParameterName = "@Month";
-                //param.Value = Month;
+                    // 3. add new parameter to command object
+                    //cmd.Parameters.Add(param);
 
-                // 3. add new parameter to command object
-                //cmd.Parameters.Add(param);
-
-                // get data stream
-                reader = cmd.ExecuteReader();
+                    // get data stream
+                    reader = cmd.ExecuteReader();
+                }
 
                 // write each record
                 while (reader.Read())
@@ -3428,22 +3451,24 @@ namespace CyclingLogApplication
 
         private void MonthlyStatistics_Click(object sender, EventArgs e)
         {
-            RefreshingForm refreshingForm = new RefreshingForm();
-            // Display form modelessly
-            refreshingForm.Show();
-            //  ALlow main UI thread to properly display please wait form.
-            Application.DoEvents();
-            //this.ShowDialog();
-            runMonthlyStatistics();
-            refreshingForm.Hide();
+            using (RefreshingForm refreshingForm = new RefreshingForm())
+            {
+                // Display form modelessly
+                refreshingForm.Show();
+                //  ALlow main UI thread to properly display please wait form.
+                Application.DoEvents();
+                //this.ShowDialog();
+                RunMonthlyStatistics();
+                refreshingForm.Hide();
+            }
         }
 
-        private void groupBox2_Enter(object sender, EventArgs e)
+        private void GroupBox2_Enter(object sender, EventArgs e)
         {
 
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
