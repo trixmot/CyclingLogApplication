@@ -608,7 +608,7 @@ namespace CyclingLogApplication
 
                 if (changeType.Equals("Update"))                                        //Week number:
                 {
-                    objectValues.Add(tbWeekNumber.Text);
+                    objectValues.Add(Int32.Parse(tbWeekNumber.Text));
                 }
                 else
                 {

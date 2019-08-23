@@ -23,7 +23,7 @@ namespace CyclingLogApplication
         private ChartForm chartForm;
         Boolean formloading = false;
 
-        private static readonly string logVersion = "0.1.7";
+        private static readonly string logVersion = "0.2.1";
         private static int logLevel = 0;
         private static string cbStatistic1 = "-1";
         private static string cbStatistic2 = "-1";
