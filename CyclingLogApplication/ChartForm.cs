@@ -15,7 +15,7 @@ namespace CyclingLogApplication
     public partial class ChartForm : Form
     {
         private static SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-        BackgroundWorker bgw = new BackgroundWorker();
+        //BackgroundWorker bgw = new BackgroundWorker();
 
         public ChartForm(MainForm mainForm)
         {
@@ -48,7 +48,7 @@ namespace CyclingLogApplication
             cbTypeTime.SelectedIndex = mainForm.GetLastTypeTimeChartSelected();
         }
 
-        private void chart1_MouseMove(object sender, MouseEventArgs e)
+        private void Chart1_MouseMove(object sender, MouseEventArgs e)
         {
             Point mousePoint = new Point(e.X, e.Y);
 
@@ -70,36 +70,42 @@ namespace CyclingLogApplication
             }
         }
 
-        private void btCloseChart_Click(object sender, EventArgs e)
+        private void BtCloseChart_Click(object sender, EventArgs e)
         {
             this.Hide();
             //this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
         }
 
-        private void cbLogYearChart_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbLogYearChart_SelectedIndexChanged(object sender, EventArgs e)
         {
             labelChartError.Hide();
-            MainForm mainForm = new MainForm("");
-            mainForm.SetLastLogYearChartSelected(cbLogYearChart.SelectedIndex);
+            using (MainForm mainForm = new MainForm(""))
+            {
+                mainForm.SetLastLogYearChartSelected(cbLogYearChart.SelectedIndex);
+            }
         }
 
-        private void cbRoutesChart_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbRoutesChart_SelectedIndexChanged(object sender, EventArgs e)
         {
             labelChartError.Hide();
-            MainForm mainForm = new MainForm("");
-            mainForm.SetLastRouteChartSelected(cbRoutesChart.SelectedIndex);
+            using (MainForm mainForm = new MainForm(""))
+            {
+                mainForm.SetLastRouteChartSelected(cbRoutesChart.SelectedIndex);
+            }
         }
 
-        public void chartTest()
+        public void ChartTest()
         {
-            MainForm mainForm = new MainForm("");
-            int logSetting = mainForm.GetLogLevel();
-            int logIndex = 1;
+            using (MainForm mainForm = new MainForm(""))
+            {
+                int logSetting = mainForm.GetLogLevel();
+            }
+            //int logIndex = 1;
 
             //SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
             sqlConnection.Open();
             DataSet ds = new DataSet();
-            SqlDataAdapter adapt = new SqlDataAdapter("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, sqlConnection);
+            //SqlDataAdapter adapt = new SqlDataAdapter("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, sqlConnection);
             //adapt.Fill(ds);
             chart1.DataSource = ds;
             //set the member of the chart data source used to data bind to the X-values of the series  
@@ -115,9 +121,9 @@ namespace CyclingLogApplication
             chart1.Series["Series1"].ChartType = SeriesChartType.Bar;
         }
 
-        private void btRunChart_Click(object sender, EventArgs e)
+        private void BtRunChart_Click(object sender, EventArgs e)
         {
-            string chartDataType = "";
+            string chartDataType;
             bool averageDataType = false;
 
             //Verify the required values are available before running chart:
@@ -154,10 +160,14 @@ namespace CyclingLogApplication
             // conn and reader declared outside try block for visibility in finally block
             //SqlConnection conn = null;
             SqlDataReader reader = null;
-            List<string> nameList = new List<string>();
-            MainForm mainForm = new MainForm("");
-            int logSetting = mainForm.GetLogLevel();
-            int logIndex = mainForm.GetLogYearIndex(cbLogYearChart.SelectedItem.ToString());
+            int logIndex;
+            int logSetting;
+
+            using (MainForm mainForm = new MainForm(""))
+            {
+                logSetting = mainForm.GetLogLevel();
+                logIndex = mainForm.GetLogYearIndex(cbLogYearChart.SelectedItem.ToString());
+            }
 
             //Average Speed:
             if (cbTypeChartData.SelectedIndex == 0)
@@ -168,21 +178,23 @@ namespace CyclingLogApplication
             //Longest:
             else if (cbTypeChartData.SelectedIndex == 1)
             {
-                ProgressBar progressBar = new ProgressBar();
-                progressBar.Show();
-
-                //Weekly:
-                if (cbTypeTime.SelectedIndex == 1)
+                using (ProgressBar progressBar = new ProgressBar())
                 {
-                    getMonthlyHighMileageWeekNumber(logIndex);              
-                }
-                //Monthly:
-                else if (cbTypeTime.SelectedIndex == 2)
-                {
-                    runLongestRideChartMonthly(logIndex);
-                }
+                    progressBar.Show();
 
-                progressBar.Hide();
+                    //Weekly:
+                    if (cbTypeTime.SelectedIndex == 1)
+                    {
+                        GetMonthlyHighMileageWeekNumber(logIndex);
+                    }
+                    //Monthly:
+                    else if (cbTypeTime.SelectedIndex == 2)
+                    {
+                        RunLongestRideChartMonthly(logIndex);
+                    }
+
+                    progressBar.Hide();
+                }
                 return;
                 //chartDataType = "RideDistance";
             }
@@ -192,12 +204,12 @@ namespace CyclingLogApplication
                 chartDataType = "RideDistance";
             }
 
+            SqlCommand cmd = null;
+
             try
             {
                 // instantiate and open connection
                 //conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-
-                SqlCommand cmd = null;
 
                 //Daily:
                 if (cbTypeTime.SelectedIndex == 0)
@@ -396,6 +408,8 @@ namespace CyclingLogApplication
                 {
                     sqlConnection.Close();
                 }
+
+                cmd.Dispose();
             }
 
             //---------------------
@@ -417,23 +431,23 @@ namespace CyclingLogApplication
             }
         }
 
-        private void runLongestRideChartMonthly(int logYearIndex)
+        private void RunLongestRideChartMonthly(int logYearIndex)
         {
             //Get the logyear from the index:
-            int logYear = getLogYearForSelectedLog(logYearIndex);
+            int logYear = GetLogYearForSelectedLog(logYearIndex);
 
-            string point1 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 1).ToString();
-            string point2 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 2).ToString();
-            string point3 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 3).ToString();
-            string point4 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 4).ToString();
-            string point5 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 5).ToString();
-            string point6 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 6).ToString();
-            string point7 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 7).ToString();
-            string point8 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 8).ToString();
-            string point9 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 9).ToString();
-            string point10 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 10).ToString();
-            string point11 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 11).ToString();
-            string point12 = getMaxHighMileageMonthlyForSelectedLog(logYearIndex, 12).ToString();
+            string point1 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 1).ToString();
+            string point2 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 2).ToString();
+            string point3 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 3).ToString();
+            string point4 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 4).ToString();
+            string point5 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 5).ToString();
+            string point6 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 6).ToString();
+            string point7 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 7).ToString();
+            string point8 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 8).ToString();
+            string point9 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 9).ToString();
+            string point10 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 10).ToString();
+            string point11 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 11).ToString();
+            string point12 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 12).ToString();
 
             chart1.Series[0].Points.Clear();
 
@@ -453,10 +467,12 @@ namespace CyclingLogApplication
             chart1.ChartAreas[0].AxisX.Interval = 1;
         }
 
-        private int getLogYearForSelectedLog(int logIndex)
+        private int GetLogYearForSelectedLog(int logIndex)
         {
-            List<object> objectValues = new List<object>();
-            objectValues.Add(logIndex);
+            List<object> objectValues = new List<object>
+            {
+                logIndex
+            };
             int returnValue = 0;
 
             //ExecuteScalarFunction
@@ -482,11 +498,13 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        private double getMaxHighMileageMonthlyForSelectedLog(int logIndex, int month)
+        private double GetMaxHighMileageMonthlyForSelectedLog(int logIndex, int month)
         {
-            List<object> objectValues = new List<object>();
-            objectValues.Add(logIndex);
-            objectValues.Add(month);
+            List<object> objectValues = new List<object>
+            {
+                logIndex,
+                month
+            };
             double returnValue = 0;
 
             //ExecuteScalarFunction
@@ -512,12 +530,12 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        public void getMonthlyHighMileageWeekNumber(int LogYearID)
+        public void GetMonthlyHighMileageWeekNumber(int LogYearID)
         {
-            List<double> rideDistanceList = new List<double>();
-            int weekNumber = 1;
+            //List<double> rideDistanceList = new List<double>();
+            int weekNumber;
             int weekNumberTmp = 0;
-            double weeklyMaxTmp = 0;
+            double weeklyMaxTmp;
             double weeklyMax = 0;
             chart1.Series[0].Points.Clear();
 
@@ -578,11 +596,13 @@ namespace CyclingLogApplication
             chart1.ChartAreas[0].AxisX.Interval = 5;
         }
 
-        private float getTotalMilesMonthlyForSelectedLog(int logIndex, int month)
+        private float GetTotalMilesMonthlyForSelectedLog(int logIndex, int month)
         {
-            List<object> objectValues = new List<object>();
-            objectValues.Add(logIndex);
-            objectValues.Add(month);
+            List<object> objectValues = new List<object>
+            {
+                logIndex,
+                month
+            };
             float returnValue = 0;
 
             //ExecuteScalarFunction
@@ -619,15 +639,18 @@ namespace CyclingLogApplication
             }
 
             tmpProcedureName = tmpProcedureName.TrimEnd(',') + ";";
+            DatabaseConnection databaseConnection;
 
-            MainForm mainForm = new MainForm();
-            DatabaseConnection databaseConnection = mainForm.GetsDatabaseConnectionString();
+            using (MainForm mainForm = new MainForm())
+            {
+                databaseConnection = mainForm.GetsDatabaseConnectionString();
+            }
             SqlDataReader ToReturn = databaseConnection.ExecuteQueryConnection(tmpProcedureName, _Parameters);
 
             return ToReturn;
         }
 
-        private void checkBoxRouteOption_Click(object sender, EventArgs e)
+        private void CheckBoxRouteOption_Click(object sender, EventArgs e)
         {
             if (checkBoxRouteOption.Checked == true)
             {
@@ -640,18 +663,22 @@ namespace CyclingLogApplication
             }
         }
 
-        private void cbTypeTimeChart_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbTypeTimeChart_SelectedIndexChanged(object sender, EventArgs e)
         {
             labelChartError.Hide();
-            MainForm mainForm = new MainForm("");
-            mainForm.SetLastTypeTimeChartSelected(cbTypeTime.SelectedIndex);
+            using (MainForm mainForm = new MainForm(""))
+            {
+                mainForm.SetLastTypeTimeChartSelected(cbTypeTime.SelectedIndex);
+            }
         }
 
-        private void cbTypeChartData_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbTypeChartData_SelectedIndexChanged(object sender, EventArgs e)
         {
             labelChartError.Hide();
-            MainForm mainForm = new MainForm("");
-            mainForm.SetLastTypeChartSelected(cbTypeChartData.SelectedIndex);
+            using (MainForm mainForm = new MainForm(""))
+            {
+                mainForm.SetLastTypeChartSelected(cbTypeChartData.SelectedIndex);
+            }
         }
     }
 }

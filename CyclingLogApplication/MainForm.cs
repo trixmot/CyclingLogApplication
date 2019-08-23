@@ -77,6 +77,8 @@ namespace CyclingLogApplication
         public MainForm(string emptyConstructor)
         {
             //Empty consturctor to prevent from running InitializeComponent():
+            //Curretnly not used:
+            string calledFrom = emptyConstructor;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -211,9 +213,10 @@ namespace CyclingLogApplication
                 configurationFile.writeConfigFile();
                 rideDataDisplayForm.Dispose();
                 chartForm.Dispose();
+                rideDataEntryForm.Dispose();
                 this.Dispose();
                 Application.Exit();
-            }
+    }
         }
 
         static void GetConnectionStrings()
@@ -977,8 +980,7 @@ namespace CyclingLogApplication
             }
 
             //Verify Miles is entered and in the correct format:
-            int parsedValue;
-            if (!int.TryParse(tbConfigMilesNotInLog.Text, out parsedValue))
+            if (!int.TryParse(tbConfigMilesNotInLog.Text, out _))
             {
                 lbConfigError.Text = "The miles for the Bike must be in numeric format. Enter 0 if unknown.";
                 return;
@@ -2447,8 +2449,7 @@ namespace CyclingLogApplication
             }
 
             //Check format of miles:
-            int parsedValue;
-            if (!int.TryParse(tbMaintMiles.Text, out parsedValue))
+            if (!int.TryParse(tbMaintMiles.Text, out int parsedValue))
             {
                 lbMaintError.Text = "The miles value must be in numeric format. Enter 0 if unknown.";
                 return;
@@ -2494,8 +2495,7 @@ namespace CyclingLogApplication
             }
 
             //Check format of miles:
-            int parsedValue;
-            if (!int.TryParse(tbMaintMiles.Text, out parsedValue))
+            if (!int.TryParse(tbMaintMiles.Text, out int parsedValue))
             {
                 lbMaintError.Text = "The miles value must be in numeric format. Enter 0 if unknown.";
                 return;
@@ -2817,10 +2817,9 @@ namespace CyclingLogApplication
         private void BtRenameBike_Click(object sender, EventArgs e)
         {
             //Verify Miles is entered and in the correct format:
-            int parsedValue;
             string miles = tbConfigMilesNotInLog.Text;
 
-            if (!int.TryParse(miles, out parsedValue))
+            if (!int.TryParse(miles, out int parsedValue))
             {
                 lbConfigError.Text = "The miles for the Bike must be in numeric format. Enter 0 if unknown.";
                 return;

@@ -92,7 +92,7 @@
             title1.Name = "chart";
             title1.Text = "Log Chart";
             this.chart1.Titles.Add(title1);
-            this.chart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chart1_MouseMove);
+            this.chart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Chart1_MouseMove);
             // 
             // tableRideInformationBindingSource
             // 
@@ -171,7 +171,7 @@
             this.cbTypeChartData.Name = "cbTypeChartData";
             this.cbTypeChartData.Size = new System.Drawing.Size(146, 21);
             this.cbTypeChartData.TabIndex = 20;
-            this.cbTypeChartData.SelectedIndexChanged += new System.EventHandler(this.cbTypeChartData_SelectedIndexChanged);
+            this.cbTypeChartData.SelectedIndexChanged += new System.EventHandler(this.CbTypeChartData_SelectedIndexChanged);
             // 
             // groupBox2
             // 
@@ -239,7 +239,7 @@
             this.checkBoxRouteOption.TabIndex = 14;
             this.checkBoxRouteOption.Text = "Specific Route";
             this.checkBoxRouteOption.UseVisualStyleBackColor = true;
-            this.checkBoxRouteOption.Click += new System.EventHandler(this.checkBoxRouteOption_Click);
+            this.checkBoxRouteOption.Click += new System.EventHandler(this.CheckBoxRouteOption_Click);
             // 
             // btCloseChart
             // 
@@ -249,7 +249,7 @@
             this.btCloseChart.TabIndex = 13;
             this.btCloseChart.Text = "Close";
             this.btCloseChart.UseVisualStyleBackColor = true;
-            this.btCloseChart.Click += new System.EventHandler(this.btCloseChart_Click);
+            this.btCloseChart.Click += new System.EventHandler(this.BtCloseChart_Click);
             // 
             // btRunChart
             // 
@@ -259,7 +259,7 @@
             this.btRunChart.TabIndex = 12;
             this.btRunChart.Text = "Run Chart";
             this.btRunChart.UseVisualStyleBackColor = true;
-            this.btRunChart.Click += new System.EventHandler(this.btRunChart_Click);
+            this.btRunChart.Click += new System.EventHandler(this.BtRunChart_Click);
             // 
             // tbYAxis
             // 
@@ -295,7 +295,7 @@
             this.cbRoutesChart.Name = "cbRoutesChart";
             this.cbRoutesChart.Size = new System.Drawing.Size(175, 21);
             this.cbRoutesChart.TabIndex = 8;
-            this.cbRoutesChart.SelectedIndexChanged += new System.EventHandler(this.cbRoutesChart_SelectedIndexChanged);
+            this.cbRoutesChart.SelectedIndexChanged += new System.EventHandler(this.CbRoutesChart_SelectedIndexChanged);
             // 
             // cbLogYearChart
             // 
@@ -304,7 +304,7 @@
             this.cbLogYearChart.Name = "cbLogYearChart";
             this.cbLogYearChart.Size = new System.Drawing.Size(146, 21);
             this.cbLogYearChart.TabIndex = 6;
-            this.cbLogYearChart.SelectedIndexChanged += new System.EventHandler(this.cbLogYearChart_SelectedIndexChanged);
+            this.cbLogYearChart.SelectedIndexChanged += new System.EventHandler(this.CbLogYearChart_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -335,7 +335,7 @@
             this.cbTypeTime.Name = "cbTypeTime";
             this.cbTypeTime.Size = new System.Drawing.Size(146, 21);
             this.cbTypeTime.TabIndex = 3;
-            this.cbTypeTime.SelectedIndexChanged += new System.EventHandler(this.cbTypeTimeChart_SelectedIndexChanged);
+            this.cbTypeTime.SelectedIndexChanged += new System.EventHandler(this.CbTypeTimeChart_SelectedIndexChanged);
             // 
             // backgroundWorker1
             // 
