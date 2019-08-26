@@ -299,10 +299,13 @@ namespace CyclingLogApplication
                     chart1.Series["Series1"].ChartType = SeriesChartType.Line;
                 }
 
+                string date = "";
+                Boolean recordFound = false;
+
                 // write each record
                 while (reader.Read())
                 {
-                    string date = reader[0].ToString();
+                    date = reader[0].ToString();
                     date = Convert.ToDateTime(date).ToShortDateString();
                     double chartDataTypeValue = Convert.ToDouble(reader[1].ToString());
                     int weekValue = Convert.ToInt32(reader[2].ToString());
@@ -347,6 +350,7 @@ namespace CyclingLogApplication
                         {
                             total_value += chartDataTypeValue;
                             recordCount++;
+                            recordFound = true;
                         }
 
                         Logger.Log("Chart Testing: Weekly values: " + total_value + "::" + date, 1, 0);
@@ -364,18 +368,20 @@ namespace CyclingLogApplication
                                 if (total_value != 0)
                                 {
                                     avg_value = total_value / recordCount;
-                                    chart1.Series["Series1"].Points.AddXY(date, avg_value.ToString());
+                                    chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), avg_value.ToString());
+                                    chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
                                 }
                             }
                             else
                             {
                                 if (total_value != 0)
                                 {
-                                    chart1.Series["Series1"].Points.AddXY(date, total_value.ToString());
+                                    chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), total_value.ToString());
+                                    chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
                                 }
 
                             }
-                            //Restart values over since starting a new week:
+                            //Restart values over since starting a new month:
                             recordCount = 1;
                             total_value = chartDataTypeValue;
                             monthCount = month;
@@ -384,11 +390,54 @@ namespace CyclingLogApplication
                         {
                             total_value += chartDataTypeValue;
                             recordCount++;
+                            recordFound = true;
                         }
 
                         Logger.Log("Chart Testing: Monthly values: " + total_value + "::" + date, 1, 0);
                     }
                     chart1.ChartAreas[0].AxisX.Interval = 1;
+                }
+
+                //Weekly:
+                if (recordFound && cbTypeTime.SelectedIndex == 1)
+                {
+                    if (averageDataType)
+                    {
+                        if (total_value != 0)
+                        {
+                            avg_value = total_value / recordCount;
+                            chart1.Series["Series1"].Points.AddXY(date, avg_value.ToString());
+                        }
+                    }
+                    else
+                    {
+                        if (total_value != 0)
+                        {
+                            chart1.Series["Series1"].Points.AddXY(date, total_value.ToString());
+                        }
+                    }
+                }
+                //Monthly:
+                else if (recordFound && cbTypeTime.SelectedIndex == 2)
+                {
+                    if (averageDataType)
+                    {
+                        if (total_value != 0)
+                        {
+                            avg_value = total_value / recordCount;
+                            chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), avg_value.ToString());
+                            chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                        }
+                    }
+                    else
+                    {
+                        if (total_value != 0)
+                        {
+                            chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), total_value.ToString());
+                            chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                        }
+
+                    }
                 }
             }
             catch (Exception ex)
