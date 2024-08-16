@@ -42,24 +42,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CyclingLogApplication.exe" size="275968">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CyclingLogApplication.exe" size="276480">
       <assemblyIdentity name="CyclingLogApplication" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>0Zt0PcpAg3oCt/lQ7WxcUGGMc2IGbgscZZiikmnKccw=</dsig:DigestValue>
+        <dsig:DigestValue>p9YfYKYUGGeaCgKkXGhTyD7hHltLtcBmNROlSAPXZJo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="CyclingLogApplication.exe.config" size="2653">
+  <file name="CyclingLogApplication.exe.config" size="2565">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>7q7rKG2NNsvYuoYvifVEWlrppD7OUeeefT2iFnYA3oQ=</dsig:DigestValue>
+      <dsig:DigestValue>cN6lRysBnMuCEPHkQlP3RmTuLr5WioLM0Ch9wD7pJL0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="CyclingLogConfig.xml" size="413" writeableType="applicationData">
@@ -77,7 +77,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>1wGYrb202tGYAoQe5d6oJbwE/VLjo0F5qKwSqi16uYA=</dsig:DigestValue>
+      <dsig:DigestValue>mdJTPFMDrVlKg90lldyKJocOiQSkdGvMTlo9wUk6ijQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="CyclingLogDatabase_log.ldf" size="851968" writeableType="applicationData">
@@ -86,7 +86,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>/XN7HZCAnCPTxZ82QOfDJQLkJTHM1szunb6Hg00lZVc=</dsig:DigestValue>
+      <dsig:DigestValue>ZKQckXCBEYtQ6hmqW/tpP6JPIQlFn8jlCJ8FJfgQd9Q=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

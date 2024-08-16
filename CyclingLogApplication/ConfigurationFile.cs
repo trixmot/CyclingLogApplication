@@ -14,8 +14,15 @@ namespace CyclingLogApplication
 
         public bool readConfigFile()
         {
-            string path = "C:\\CyclingLogApplication";
-            string pathFile = "C:\\CyclingLogApplication\\CyclingLogConfig.xml";
+            //This will give us the full name path of the executable file:
+            //i.e. C:\Program Files\MyApplication\MyApplication.exe
+            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            //This will strip just the working path name:
+            //C:\Program Files\MyApplication
+            string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
+
+            string path = strWorkPath + "\\settings";
+            string pathFile = path + "\\CyclingLogConfig.xml";
             bool returnStatus = false;
 
             try
@@ -39,7 +46,9 @@ namespace CyclingLogApplication
             }
 
             XmlDocument doc = new XmlDocument();
-            doc.Load(@"C:\\CyclingLogApplication\\CyclingLogConfig.xml");
+
+            doc.Load(strWorkPath + "\\settings\\CyclingLogConfig.xml");
+            //doc.Load(@"C:\\CyclingLogApplication\\CyclingLogConfig.xml");
             List<string> configList = new List<string>();
 
             //=================================
@@ -115,8 +124,15 @@ namespace CyclingLogApplication
 
         public void writeConfigFile()
         {
-            string path = "C:\\CyclingLogApplication";
-            string pathFile = "C:\\CyclingLogApplication\\CyclingLogConfig.xml";
+            //This will give us the full name path of the executable file:
+            //i.e. C:\Program Files\MyApplication\MyApplication.exe
+            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            //This will strip just the working path name:
+            //C:\Program Files\MyApplication
+            string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
+
+            string path = strWorkPath + "\\settings";
+            string pathFile = strWorkPath + "\\settings\\CyclingLogConfig.xml";
             MainForm mainForm = new MainForm("");
             int logSetting = mainForm.GetLogLevel();
 
@@ -209,7 +225,7 @@ namespace CyclingLogApplication
                     lastLogYearSelectedDataEntryNode.InnerText = "-1";
                     rootNode.AppendChild(lastLogYearSelectedDataEntryNode);
 
-                    xmlDoc.Save("C:\\CyclingLogApplication\\CyclingLogConfig.xml");
+                    xmlDoc.Save(pathFile);
                 }
             }
             catch (Exception e)
@@ -221,7 +237,7 @@ namespace CyclingLogApplication
             finally
             {
                 XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(@"C:\\CyclingLogApplication\\CyclingLogConfig.xml");
+                xmlDoc.Load(pathFile);
 
                 string cbStatistic1 = mainForm.GetcbStatistic1();
                 string cbStatistic2 = mainForm.GetcbStatistic2();
@@ -276,7 +292,7 @@ namespace CyclingLogApplication
                 Logger.Log("Write Config Values: lastMonthlyLogSelected written:" + lastMonthlyLogSelected, 0, logSetting);
                 Logger.Log("Write Config Values: lastLogSelectedDataEntry written:" + lastLogSelectedDataEntry, 0, logSetting);
 
-                xmlDoc.Save(@"C:\\CyclingLogApplication\\CyclingLogConfig.xml");
+                xmlDoc.Save(pathFile);
             }
         }
 

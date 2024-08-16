@@ -9,12 +9,20 @@ namespace CyclingLogApplication
 {
     class Logger
     {
-        private static string logPath = "c:\\CyclingLogApplication\\logs\\";
+
+        //private static string logPath = "c:\\CyclingLogApplication\\logs\\";
         private static string fileName = "";
 
         private static string getLogPath()
         {
-            return logPath;
+            //This will give us the full name path of the executable file:
+            //i.e. C:\Program Files\MyApplication\MyApplication.exe
+            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            //This will strip just the working path name:
+            //C:\Program Files\MyApplication
+            string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
+
+            return strWorkPath + "\\logs";
         }
 
         public static void setLogFilePath()
@@ -46,7 +54,7 @@ namespace CyclingLogApplication
                     directoryInfo.Create();
                 }
 
-                fileName = path + "Connector_";
+                fileName = path + "\\cycling_data_";
                 fileName += DateTime.Now.ToString("yyyy_MM_dd") + ".log";
             }
         }

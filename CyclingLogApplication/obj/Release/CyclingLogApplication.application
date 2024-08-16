@@ -4,7 +4,7 @@
   <description asmv2:publisher="CyclingLogApplication" asmv2:product="CyclingLogApplication" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.5.2" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
     <dependentAssembly dependencyType="install" codebase="CyclingLogApplication.exe.manifest" size="4838">
@@ -14,7 +14,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>chN1EACoWBq3ED4k9vnuXmh1nb+L79EdFz9p8meSrSw=</dsig:DigestValue>
+        <dsig:DigestValue>Dy2tMo9spVc2zSpkr/LU+iGtmkjMh4Q7nJsHwxx5/5E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
