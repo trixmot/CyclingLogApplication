@@ -223,6 +223,9 @@
             this.label37 = new System.Windows.Forms.Label();
             this.month1R4 = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label65 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btRemoveBikeTotalsConfig = new System.Windows.Forms.Button();
@@ -231,7 +234,6 @@
             this.label64 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.cbLogYear = new System.Windows.Forms.ComboBox();
-            this.lbConfigError = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -288,9 +290,46 @@
             this.tbBikeMilesTotal1 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.tbDistanceWeek1 = new System.Windows.Forms.TextBox();
+            this.btRefreshWeekly = new System.Windows.Forms.Button();
+            this.label66 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
+            this.lbweek1 = new System.Windows.Forms.Label();
+            this.lbweek2 = new System.Windows.Forms.Label();
+            this.lbweek3 = new System.Windows.Forms.Label();
+            this.lbweek4 = new System.Windows.Forms.Label();
+            this.lbweek5 = new System.Windows.Forms.Label();
+            this.tbLongestRideWeek1 = new System.Windows.Forms.TextBox();
+            this.tbElevGainWeek1 = new System.Windows.Forms.TextBox();
+            this.tbNumRidesWeek1 = new System.Windows.Forms.TextBox();
+            this.tbAvgSpeedWeek1 = new System.Windows.Forms.TextBox();
+            this.tbAvgSpeedWeek2 = new System.Windows.Forms.TextBox();
+            this.tbNumRidesWeek2 = new System.Windows.Forms.TextBox();
+            this.tbElevGainWeek2 = new System.Windows.Forms.TextBox();
+            this.tbLongestRideWeek2 = new System.Windows.Forms.TextBox();
+            this.tbDistanceWeek2 = new System.Windows.Forms.TextBox();
+            this.tbAvgSpeedWeek3 = new System.Windows.Forms.TextBox();
+            this.tbNumRidesWeek3 = new System.Windows.Forms.TextBox();
+            this.tbElevGainWeek3 = new System.Windows.Forms.TextBox();
+            this.tbLongestRideWeek3 = new System.Windows.Forms.TextBox();
+            this.tbDistanceWeek3 = new System.Windows.Forms.TextBox();
+            this.tbAvgSpeedWeek4 = new System.Windows.Forms.TextBox();
+            this.tbNumRidesWeek4 = new System.Windows.Forms.TextBox();
+            this.tbElevGainWeek4 = new System.Windows.Forms.TextBox();
+            this.tbLongestRideWeek4 = new System.Windows.Forms.TextBox();
+            this.tbDistanceWeek4 = new System.Windows.Forms.TextBox();
+            this.tbAvgSpeedWeek5 = new System.Windows.Forms.TextBox();
+            this.tbNumRidesWeek5 = new System.Windows.Forms.TextBox();
+            this.tbElevGainWeek5 = new System.Windows.Forms.TextBox();
+            this.tbLongestRideWeek5 = new System.Windows.Forms.TextBox();
+            this.tbDistanceWeek5 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -299,6 +338,8 @@
             this.tabPage7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -313,7 +354,7 @@
             // 
             this.cbLogYearConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYearConfig.FormattingEnabled = true;
-            this.cbLogYearConfig.Location = new System.Drawing.Point(67, 108);
+            this.cbLogYearConfig.Location = new System.Drawing.Point(69, 142);
             this.cbLogYearConfig.Name = "cbLogYearConfig";
             this.cbLogYearConfig.Size = new System.Drawing.Size(121, 21);
             this.cbLogYearConfig.TabIndex = 0;
@@ -321,7 +362,7 @@
             // 
             // btAddLogYear
             // 
-            this.btAddLogYear.Location = new System.Drawing.Point(92, 249);
+            this.btAddLogYear.Location = new System.Drawing.Point(94, 283);
             this.btAddLogYear.Name = "btAddLogYear";
             this.btAddLogYear.Size = new System.Drawing.Size(75, 23);
             this.btAddLogYear.TabIndex = 2;
@@ -331,7 +372,7 @@
             // 
             // btRemoveLogYear
             // 
-            this.btRemoveLogYear.Location = new System.Drawing.Point(92, 278);
+            this.btRemoveLogYear.Location = new System.Drawing.Point(94, 312);
             this.btRemoveLogYear.Name = "btRemoveLogYear";
             this.btRemoveLogYear.Size = new System.Drawing.Size(75, 23);
             this.btRemoveLogYear.TabIndex = 3;
@@ -341,7 +382,7 @@
             // 
             // tbLogYearConfig
             // 
-            this.tbLogYearConfig.Location = new System.Drawing.Point(67, 158);
+            this.tbLogYearConfig.Location = new System.Drawing.Point(69, 192);
             this.tbLogYearConfig.Name = "tbLogYearConfig";
             this.tbLogYearConfig.Size = new System.Drawing.Size(121, 20);
             this.tbLogYearConfig.TabIndex = 1;
@@ -370,7 +411,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(691, 514);
+            this.button8.Location = new System.Drawing.Point(789, 594);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(85, 35);
             this.button8.TabIndex = 9;
@@ -394,7 +435,7 @@
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Location = new System.Drawing.Point(32, 33);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(720, 385);
+            this.groupBox1.Size = new System.Drawing.Size(792, 454);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
@@ -517,14 +558,15 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(20, 24);
+            this.tabControl1.Location = new System.Drawing.Point(12, 32);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(793, 476);
+            this.tabControl1.Size = new System.Drawing.Size(862, 537);
             this.tabControl1.TabIndex = 11;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
@@ -534,7 +576,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(785, 450);
+            this.tabPage1.Size = new System.Drawing.Size(854, 511);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -545,7 +587,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(785, 450);
+            this.tabPage4.Size = new System.Drawing.Size(854, 511);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Statistics-Yearly";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -610,7 +652,7 @@
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Location = new System.Drawing.Point(32, 33);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(720, 385);
+            this.groupBox4.Size = new System.Drawing.Size(789, 452);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             // 
@@ -1163,7 +1205,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(785, 450);
+            this.tabPage7.Size = new System.Drawing.Size(854, 511);
             this.tabPage7.TabIndex = 5;
             this.tabPage7.Text = "Statistics-Monthly";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1173,7 +1215,7 @@
             this.groupBox6.Controls.Add(this.panel1);
             this.groupBox6.Location = new System.Drawing.Point(6, 6);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(773, 438);
+            this.groupBox6.Size = new System.Drawing.Size(806, 471);
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             // 
@@ -1292,14 +1334,14 @@
             this.panel1.Controls.Add(this.label37);
             this.panel1.Controls.Add(this.month1R4);
             this.panel1.Controls.Add(this.label38);
-            this.panel1.Location = new System.Drawing.Point(6, 10);
+            this.panel1.Location = new System.Drawing.Point(44, 19);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(761, 428);
+            this.panel1.Size = new System.Drawing.Size(770, 463);
             this.panel1.TabIndex = 0;
             // 
             // bMonthlyStatistics
             // 
-            this.bMonthlyStatistics.Location = new System.Drawing.Point(14, 58);
+            this.bMonthlyStatistics.Location = new System.Drawing.Point(45, 58);
             this.bMonthlyStatistics.Name = "bMonthlyStatistics";
             this.bMonthlyStatistics.Size = new System.Drawing.Size(75, 23);
             this.bMonthlyStatistics.TabIndex = 128;
@@ -2283,7 +2325,7 @@
             this.cbStatMonthlyLogYear.BackColor = System.Drawing.Color.Silver;
             this.cbStatMonthlyLogYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatMonthlyLogYear.FormattingEnabled = true;
-            this.cbStatMonthlyLogYear.Location = new System.Drawing.Point(14, 22);
+            this.cbStatMonthlyLogYear.Location = new System.Drawing.Point(45, 22);
             this.cbStatMonthlyLogYear.Name = "cbStatMonthlyLogYear";
             this.cbStatMonthlyLogYear.Size = new System.Drawing.Size(136, 21);
             this.cbStatMonthlyLogYear.TabIndex = 15;
@@ -2402,13 +2444,77 @@
             this.label38.TabIndex = 22;
             this.label38.Text = "Avg Miles per week";
             // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.panel2);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(854, 511);
+            this.tabPage8.TabIndex = 7;
+            this.tabPage8.Text = "Weekly";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.tbAvgSpeedWeek5);
+            this.panel2.Controls.Add(this.tbNumRidesWeek5);
+            this.panel2.Controls.Add(this.tbElevGainWeek5);
+            this.panel2.Controls.Add(this.tbLongestRideWeek5);
+            this.panel2.Controls.Add(this.tbDistanceWeek5);
+            this.panel2.Controls.Add(this.tbAvgSpeedWeek4);
+            this.panel2.Controls.Add(this.tbNumRidesWeek4);
+            this.panel2.Controls.Add(this.tbElevGainWeek4);
+            this.panel2.Controls.Add(this.tbLongestRideWeek4);
+            this.panel2.Controls.Add(this.tbDistanceWeek4);
+            this.panel2.Controls.Add(this.tbAvgSpeedWeek3);
+            this.panel2.Controls.Add(this.tbNumRidesWeek3);
+            this.panel2.Controls.Add(this.tbElevGainWeek3);
+            this.panel2.Controls.Add(this.tbLongestRideWeek3);
+            this.panel2.Controls.Add(this.tbDistanceWeek3);
+            this.panel2.Controls.Add(this.tbAvgSpeedWeek2);
+            this.panel2.Controls.Add(this.tbNumRidesWeek2);
+            this.panel2.Controls.Add(this.tbElevGainWeek2);
+            this.panel2.Controls.Add(this.tbLongestRideWeek2);
+            this.panel2.Controls.Add(this.tbDistanceWeek2);
+            this.panel2.Controls.Add(this.tbAvgSpeedWeek1);
+            this.panel2.Controls.Add(this.tbNumRidesWeek1);
+            this.panel2.Controls.Add(this.tbElevGainWeek1);
+            this.panel2.Controls.Add(this.tbLongestRideWeek1);
+            this.panel2.Controls.Add(this.lbweek5);
+            this.panel2.Controls.Add(this.lbweek4);
+            this.panel2.Controls.Add(this.lbweek3);
+            this.panel2.Controls.Add(this.lbweek2);
+            this.panel2.Controls.Add(this.lbweek1);
+            this.panel2.Controls.Add(this.label70);
+            this.panel2.Controls.Add(this.label69);
+            this.panel2.Controls.Add(this.label68);
+            this.panel2.Controls.Add(this.label67);
+            this.panel2.Controls.Add(this.label66);
+            this.panel2.Controls.Add(this.btRefreshWeekly);
+            this.panel2.Controls.Add(this.tbDistanceWeek1);
+            this.panel2.Controls.Add(this.label65);
+            this.panel2.Location = new System.Drawing.Point(27, 26);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(805, 461);
+            this.panel2.TabIndex = 129;
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label65.Location = new System.Drawing.Point(269, 26);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(206, 28);
+            this.label65.TabIndex = 128;
+            this.label65.Text = "Weekly Log Data";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(785, 450);
+            this.tabPage2.Size = new System.Drawing.Size(854, 511);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -2421,7 +2527,6 @@
             this.groupBox2.Controls.Add(this.label64);
             this.groupBox2.Controls.Add(this.label31);
             this.groupBox2.Controls.Add(this.cbLogYear);
-            this.groupBox2.Controls.Add(this.lbConfigError);
             this.groupBox2.Controls.Add(this.label27);
             this.groupBox2.Controls.Add(this.label26);
             this.groupBox2.Controls.Add(this.label25);
@@ -2445,7 +2550,7 @@
             this.groupBox2.Controls.Add(this.btRemoveLogYear);
             this.groupBox2.Controls.Add(this.cbLogYearConfig);
             this.groupBox2.Controls.Add(this.btAddLogYear);
-            this.groupBox2.Location = new System.Drawing.Point(32, 33);
+            this.groupBox2.Location = new System.Drawing.Point(57, 55);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(720, 385);
             this.groupBox2.TabIndex = 0;
@@ -2454,7 +2559,7 @@
             // 
             // btRemoveBikeTotalsConfig
             // 
-            this.btRemoveBikeTotalsConfig.Location = new System.Drawing.Point(462, 19);
+            this.btRemoveBikeTotalsConfig.Location = new System.Drawing.Point(316, 140);
             this.btRemoveBikeTotalsConfig.Name = "btRemoveBikeTotalsConfig";
             this.btRemoveBikeTotalsConfig.Size = new System.Drawing.Size(75, 23);
             this.btRemoveBikeTotalsConfig.TabIndex = 67;
@@ -2465,7 +2570,7 @@
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(557, 16);
+            this.label61.Location = new System.Drawing.Point(285, 88);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(127, 13);
             this.label61.TabIndex = 66;
@@ -2475,7 +2580,7 @@
             // 
             this.cbBikeTotalsConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBikeTotalsConfig.FormattingEnabled = true;
-            this.cbBikeTotalsConfig.Location = new System.Drawing.Point(560, 34);
+            this.cbBikeTotalsConfig.Location = new System.Drawing.Point(284, 113);
             this.cbBikeTotalsConfig.Name = "cbBikeTotalsConfig";
             this.cbBikeTotalsConfig.Size = new System.Drawing.Size(141, 21);
             this.cbBikeTotalsConfig.TabIndex = 65;
@@ -2493,7 +2598,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(64, 191);
+            this.label31.Location = new System.Drawing.Point(66, 225);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(83, 13);
             this.label31.TabIndex = 24;
@@ -2521,25 +2626,15 @@
             "2023",
             "2024",
             "2025"});
-            this.cbLogYear.Location = new System.Drawing.Point(67, 210);
+            this.cbLogYear.Location = new System.Drawing.Point(69, 244);
             this.cbLogYear.Name = "cbLogYear";
             this.cbLogYear.Size = new System.Drawing.Size(121, 21);
             this.cbLogYear.TabIndex = 23;
             // 
-            // lbConfigError
-            // 
-            this.lbConfigError.AutoSize = true;
-            this.lbConfigError.ForeColor = System.Drawing.Color.Red;
-            this.lbConfigError.Location = new System.Drawing.Point(140, 357);
-            this.lbConfigError.Name = "lbConfigError";
-            this.lbConfigError.Size = new System.Drawing.Size(41, 13);
-            this.lbConfigError.TabIndex = 22;
-            this.lbConfigError.Text = "label28";
-            // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(520, 191);
+            this.label27.Location = new System.Drawing.Point(522, 225);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(77, 13);
             this.label27.TabIndex = 21;
@@ -2548,7 +2643,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(520, 92);
+            this.label26.Location = new System.Drawing.Point(522, 126);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(75, 13);
             this.label26.TabIndex = 20;
@@ -2557,7 +2652,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(251, 142);
+            this.label25.Location = new System.Drawing.Point(253, 176);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(83, 13);
             this.label25.TabIndex = 19;
@@ -2566,7 +2661,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(64, 92);
+            this.label24.Location = new System.Drawing.Point(66, 126);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(81, 13);
             this.label24.TabIndex = 18;
@@ -2574,7 +2669,7 @@
             // 
             // tbConfigMilesNotInLog
             // 
-            this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(523, 210);
+            this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(525, 244);
             this.tbConfigMilesNotInLog.Name = "tbConfigMilesNotInLog";
             this.tbConfigMilesNotInLog.Size = new System.Drawing.Size(141, 20);
             this.tbConfigMilesNotInLog.TabIndex = 17;
@@ -2582,7 +2677,7 @@
             // 
             // btRenameBike
             // 
-            this.btRenameBike.Location = new System.Drawing.Point(549, 307);
+            this.btRenameBike.Location = new System.Drawing.Point(551, 341);
             this.btRenameBike.Name = "btRenameBike";
             this.btRenameBike.Size = new System.Drawing.Size(75, 23);
             this.btRenameBike.TabIndex = 14;
@@ -2592,7 +2687,7 @@
             // 
             // bRenameLogYear
             // 
-            this.bRenameLogYear.Location = new System.Drawing.Point(92, 307);
+            this.bRenameLogYear.Location = new System.Drawing.Point(94, 341);
             this.bRenameLogYear.Name = "bRenameLogYear";
             this.bRenameLogYear.Size = new System.Drawing.Size(75, 23);
             this.bRenameLogYear.TabIndex = 4;
@@ -2602,7 +2697,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(314, 308);
+            this.button6.Location = new System.Drawing.Point(316, 342);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 9;
@@ -2613,7 +2708,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(520, 141);
+            this.label5.Location = new System.Drawing.Point(522, 175);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(100, 13);
             this.label5.TabIndex = 16;
@@ -2621,14 +2716,14 @@
             // 
             // tbBikeConfig
             // 
-            this.tbBikeConfig.Location = new System.Drawing.Point(523, 157);
+            this.tbBikeConfig.Location = new System.Drawing.Point(525, 191);
             this.tbBikeConfig.Name = "tbBikeConfig";
             this.tbBikeConfig.Size = new System.Drawing.Size(141, 20);
             this.tbBikeConfig.TabIndex = 11;
             // 
             // btRemoveBikeConfig
             // 
-            this.btRemoveBikeConfig.Location = new System.Drawing.Point(549, 278);
+            this.btRemoveBikeConfig.Location = new System.Drawing.Point(551, 312);
             this.btRemoveBikeConfig.Name = "btRemoveBikeConfig";
             this.btRemoveBikeConfig.Size = new System.Drawing.Size(75, 23);
             this.btRemoveBikeConfig.TabIndex = 13;
@@ -2640,7 +2735,7 @@
             // 
             this.cbBikeConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBikeConfig.FormattingEnabled = true;
-            this.cbBikeConfig.Location = new System.Drawing.Point(523, 108);
+            this.cbBikeConfig.Location = new System.Drawing.Point(525, 142);
             this.cbBikeConfig.Name = "cbBikeConfig";
             this.cbBikeConfig.Size = new System.Drawing.Size(141, 21);
             this.cbBikeConfig.TabIndex = 10;
@@ -2648,7 +2743,7 @@
             // 
             // btAddBikeConfig
             // 
-            this.btAddBikeConfig.Location = new System.Drawing.Point(549, 249);
+            this.btAddBikeConfig.Location = new System.Drawing.Point(551, 283);
             this.btAddBikeConfig.Name = "btAddBikeConfig";
             this.btAddBikeConfig.Size = new System.Drawing.Size(75, 23);
             this.btAddBikeConfig.TabIndex = 12;
@@ -2659,7 +2754,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(251, 192);
+            this.label4.Location = new System.Drawing.Point(253, 226);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(138, 13);
             this.label4.TabIndex = 0;
@@ -2667,14 +2762,14 @@
             // 
             // tbRouteConfig
             // 
-            this.tbRouteConfig.Location = new System.Drawing.Point(254, 211);
+            this.tbRouteConfig.Location = new System.Drawing.Point(256, 245);
             this.tbRouteConfig.Name = "tbRouteConfig";
             this.tbRouteConfig.Size = new System.Drawing.Size(205, 20);
             this.tbRouteConfig.TabIndex = 6;
             // 
             // btRemoveRoute
             // 
-            this.btRemoveRoute.Location = new System.Drawing.Point(314, 279);
+            this.btRemoveRoute.Location = new System.Drawing.Point(316, 313);
             this.btRemoveRoute.Name = "btRemoveRoute";
             this.btRemoveRoute.Size = new System.Drawing.Size(75, 23);
             this.btRemoveRoute.TabIndex = 8;
@@ -2686,7 +2781,7 @@
             // 
             this.cbRouteConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRouteConfig.FormattingEnabled = true;
-            this.cbRouteConfig.Location = new System.Drawing.Point(254, 158);
+            this.cbRouteConfig.Location = new System.Drawing.Point(256, 192);
             this.cbRouteConfig.Name = "cbRouteConfig";
             this.cbRouteConfig.Size = new System.Drawing.Size(205, 21);
             this.cbRouteConfig.TabIndex = 5;
@@ -2694,7 +2789,7 @@
             // 
             // btAddRoute
             // 
-            this.btAddRoute.Location = new System.Drawing.Point(314, 250);
+            this.btAddRoute.Location = new System.Drawing.Point(316, 284);
             this.btAddRoute.Name = "btAddRoute";
             this.btAddRoute.Size = new System.Drawing.Size(75, 23);
             this.btAddRoute.TabIndex = 7;
@@ -2705,7 +2800,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(64, 139);
+            this.label3.Location = new System.Drawing.Point(66, 173);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 0;
@@ -2722,17 +2817,15 @@
             this.tabPage5.Controls.Add(this.label19);
             this.tabPage5.Controls.Add(this.label17);
             this.tabPage5.Controls.Add(this.dateTimePicker1);
-            this.tabPage5.Controls.Add(this.tbMaintID);
             this.tabPage5.Controls.Add(this.btMaintUpdate);
             this.tabPage5.Controls.Add(this.rtbMaintComments);
             this.tabPage5.Controls.Add(this.btMaintAdd);
             this.tabPage5.Controls.Add(this.label16);
-            this.tabPage5.Controls.Add(this.btGetMaintLog);
             this.tabPage5.Controls.Add(this.dgvMaint);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(785, 450);
+            this.tabPage5.Size = new System.Drawing.Size(854, 511);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Maintenance";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -2760,7 +2853,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(172, 14);
+            this.label18.Location = new System.Drawing.Point(244, 13);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(28, 13);
             this.label18.TabIndex = 9;
@@ -2770,7 +2863,7 @@
             // 
             this.cbBikeMaint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBikeMaint.FormattingEnabled = true;
-            this.cbBikeMaint.Location = new System.Drawing.Point(175, 30);
+            this.cbBikeMaint.Location = new System.Drawing.Point(247, 29);
             this.cbBikeMaint.Name = "cbBikeMaint";
             this.cbBikeMaint.Size = new System.Drawing.Size(121, 21);
             this.cbBikeMaint.TabIndex = 5;
@@ -2787,7 +2880,7 @@
             // 
             // tbMaintMiles
             // 
-            this.tbMaintMiles.Location = new System.Drawing.Point(310, 31);
+            this.tbMaintMiles.Location = new System.Drawing.Point(382, 30);
             this.tbMaintMiles.Name = "tbMaintMiles";
             this.tbMaintMiles.Size = new System.Drawing.Size(100, 20);
             this.tbMaintMiles.TabIndex = 14;
@@ -2795,7 +2888,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(307, 15);
+            this.label19.Location = new System.Drawing.Point(379, 14);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(31, 13);
             this.label19.TabIndex = 13;
@@ -2814,12 +2907,12 @@
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(22, 30);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(140, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(202, 20);
             this.dateTimePicker1.TabIndex = 6;
             // 
             // tbMaintID
             // 
-            this.tbMaintID.Location = new System.Drawing.Point(439, 30);
+            this.tbMaintID.Location = new System.Drawing.Point(315, 596);
             this.tbMaintID.Name = "tbMaintID";
             this.tbMaintID.Size = new System.Drawing.Size(53, 20);
             this.tbMaintID.TabIndex = 12;
@@ -2840,7 +2933,7 @@
             // 
             this.rtbMaintComments.Location = new System.Drawing.Point(22, 82);
             this.rtbMaintComments.Name = "rtbMaintComments";
-            this.rtbMaintComments.Size = new System.Drawing.Size(741, 56);
+            this.rtbMaintComments.Size = new System.Drawing.Size(804, 68);
             this.rtbMaintComments.TabIndex = 10;
             this.rtbMaintComments.Text = "";
             // 
@@ -2865,7 +2958,7 @@
             // 
             // btGetMaintLog
             // 
-            this.btGetMaintLog.Location = new System.Drawing.Point(498, 27);
+            this.btGetMaintLog.Location = new System.Drawing.Point(412, 600);
             this.btGetMaintLog.Name = "btGetMaintLog";
             this.btGetMaintLog.Size = new System.Drawing.Size(75, 23);
             this.btGetMaintLog.TabIndex = 1;
@@ -2880,7 +2973,7 @@
             this.dgvMaint.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMaint.Location = new System.Drawing.Point(22, 156);
             this.dgvMaint.Name = "dgvMaint";
-            this.dgvMaint.Size = new System.Drawing.Size(741, 269);
+            this.dgvMaint.Size = new System.Drawing.Size(804, 329);
             this.dgvMaint.TabIndex = 0;
             // 
             // tabPage6
@@ -2889,7 +2982,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(785, 450);
+            this.tabPage6.Size = new System.Drawing.Size(854, 511);
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "Bike Miles";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -2912,9 +3005,9 @@
             this.groupBox5.Controls.Add(this.tbBikeMilesTotal3);
             this.groupBox5.Controls.Add(this.tbBikeMilesTotal2);
             this.groupBox5.Controls.Add(this.tbBikeMilesTotal1);
-            this.groupBox5.Location = new System.Drawing.Point(32, 33);
+            this.groupBox5.Location = new System.Drawing.Point(45, 33);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(720, 385);
+            this.groupBox5.Size = new System.Drawing.Size(772, 439);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             // 
@@ -3086,27 +3179,37 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(785, 450);
+            this.tabPage3.Size = new System.Drawing.Size(854, 511);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "About";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.textBox1);
             this.groupBox3.Controls.Add(this.label29);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Location = new System.Drawing.Point(32, 33);
+            this.groupBox3.Location = new System.Drawing.Point(60, 56);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(720, 385);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(41, 180);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(665, 186);
+            this.textBox1.TabIndex = 7;
+            // 
             // label29
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(308, 241);
+            this.label29.Location = new System.Drawing.Point(306, 146);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(95, 12);
             this.label29.TabIndex = 2;
@@ -3116,7 +3219,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(308, 207);
+            this.label2.Location = new System.Drawing.Point(306, 112);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 12);
             this.label2.TabIndex = 1;
@@ -3126,19 +3229,381 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(228, 164);
+            this.label1.Location = new System.Drawing.Point(226, 69);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(287, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
+            // tbDistanceWeek1
+            // 
+            this.tbDistanceWeek1.Location = new System.Drawing.Point(581, 141);
+            this.tbDistanceWeek1.Name = "tbDistanceWeek1";
+            this.tbDistanceWeek1.ReadOnly = true;
+            this.tbDistanceWeek1.Size = new System.Drawing.Size(63, 20);
+            this.tbDistanceWeek1.TabIndex = 129;
+            this.tbDistanceWeek1.TabStop = false;
+            this.tbDistanceWeek1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // btRefreshWeekly
+            // 
+            this.btRefreshWeekly.Location = new System.Drawing.Point(358, 361);
+            this.btRefreshWeekly.Name = "btRefreshWeekly";
+            this.btRefreshWeekly.Size = new System.Drawing.Size(86, 35);
+            this.btRefreshWeekly.TabIndex = 130;
+            this.btRefreshWeekly.Text = "Refresh";
+            this.btRefreshWeekly.UseVisualStyleBackColor = true;
+            this.btRefreshWeekly.Click += new System.EventHandler(this.btRefreshWeekly_Click);
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label66.Location = new System.Drawing.Point(89, 144);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(58, 13);
+            this.label66.TabIndex = 131;
+            this.label66.Text = "Total Miles";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label67.Location = new System.Drawing.Point(89, 180);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(70, 13);
+            this.label67.TabIndex = 132;
+            this.label67.Text = "Longest Ride";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label68.Location = new System.Drawing.Point(91, 219);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(56, 13);
+            this.label68.TabIndex = 133;
+            this.label68.Text = "Elev. Gain";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.Location = new System.Drawing.Point(91, 255);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(59, 13);
+            this.label69.TabIndex = 134;
+            this.label69.Text = "Num Rides";
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label70.Location = new System.Drawing.Point(91, 291);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(60, 13);
+            this.label70.TabIndex = 135;
+            this.label70.Text = "Avg Speed";
+            // 
+            // lbweek1
+            // 
+            this.lbweek1.AutoSize = true;
+            this.lbweek1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbweek1.Location = new System.Drawing.Point(578, 97);
+            this.lbweek1.Name = "lbweek1";
+            this.lbweek1.Size = new System.Drawing.Size(73, 13);
+            this.lbweek1.TabIndex = 136;
+            this.lbweek1.Text = "Current Week";
+            // 
+            // lbweek2
+            // 
+            this.lbweek2.AutoSize = true;
+            this.lbweek2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbweek2.Location = new System.Drawing.Point(477, 97);
+            this.lbweek2.Name = "lbweek2";
+            this.lbweek2.Size = new System.Drawing.Size(48, 13);
+            this.lbweek2.TabIndex = 137;
+            this.lbweek2.Text = "Week -1";
+            // 
+            // lbweek3
+            // 
+            this.lbweek3.AutoSize = true;
+            this.lbweek3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbweek3.Location = new System.Drawing.Point(378, 97);
+            this.lbweek3.Name = "lbweek3";
+            this.lbweek3.Size = new System.Drawing.Size(73, 13);
+            this.lbweek3.TabIndex = 138;
+            this.lbweek3.Text = "Current Week";
+            // 
+            // lbweek4
+            // 
+            this.lbweek4.AutoSize = true;
+            this.lbweek4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbweek4.Location = new System.Drawing.Point(283, 97);
+            this.lbweek4.Name = "lbweek4";
+            this.lbweek4.Size = new System.Drawing.Size(73, 13);
+            this.lbweek4.TabIndex = 139;
+            this.lbweek4.Text = "Current Week";
+            // 
+            // lbweek5
+            // 
+            this.lbweek5.AutoSize = true;
+            this.lbweek5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbweek5.Location = new System.Drawing.Point(183, 97);
+            this.lbweek5.Name = "lbweek5";
+            this.lbweek5.Size = new System.Drawing.Size(73, 13);
+            this.lbweek5.TabIndex = 140;
+            this.lbweek5.Text = "Current Week";
+            // 
+            // tbLongestRideWeek1
+            // 
+            this.tbLongestRideWeek1.Location = new System.Drawing.Point(581, 177);
+            this.tbLongestRideWeek1.Name = "tbLongestRideWeek1";
+            this.tbLongestRideWeek1.ReadOnly = true;
+            this.tbLongestRideWeek1.Size = new System.Drawing.Size(63, 20);
+            this.tbLongestRideWeek1.TabIndex = 141;
+            this.tbLongestRideWeek1.TabStop = false;
+            this.tbLongestRideWeek1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainWeek1
+            // 
+            this.tbElevGainWeek1.Location = new System.Drawing.Point(581, 216);
+            this.tbElevGainWeek1.Name = "tbElevGainWeek1";
+            this.tbElevGainWeek1.ReadOnly = true;
+            this.tbElevGainWeek1.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainWeek1.TabIndex = 142;
+            this.tbElevGainWeek1.TabStop = false;
+            this.tbElevGainWeek1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbNumRidesWeek1
+            // 
+            this.tbNumRidesWeek1.Location = new System.Drawing.Point(581, 252);
+            this.tbNumRidesWeek1.Name = "tbNumRidesWeek1";
+            this.tbNumRidesWeek1.ReadOnly = true;
+            this.tbNumRidesWeek1.Size = new System.Drawing.Size(63, 20);
+            this.tbNumRidesWeek1.TabIndex = 143;
+            this.tbNumRidesWeek1.TabStop = false;
+            this.tbNumRidesWeek1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbAvgSpeedWeek1
+            // 
+            this.tbAvgSpeedWeek1.Location = new System.Drawing.Point(581, 288);
+            this.tbAvgSpeedWeek1.Name = "tbAvgSpeedWeek1";
+            this.tbAvgSpeedWeek1.ReadOnly = true;
+            this.tbAvgSpeedWeek1.Size = new System.Drawing.Size(63, 20);
+            this.tbAvgSpeedWeek1.TabIndex = 144;
+            this.tbAvgSpeedWeek1.TabStop = false;
+            this.tbAvgSpeedWeek1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbAvgSpeedWeek2
+            // 
+            this.tbAvgSpeedWeek2.Location = new System.Drawing.Point(480, 288);
+            this.tbAvgSpeedWeek2.Name = "tbAvgSpeedWeek2";
+            this.tbAvgSpeedWeek2.ReadOnly = true;
+            this.tbAvgSpeedWeek2.Size = new System.Drawing.Size(63, 20);
+            this.tbAvgSpeedWeek2.TabIndex = 149;
+            this.tbAvgSpeedWeek2.TabStop = false;
+            this.tbAvgSpeedWeek2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbNumRidesWeek2
+            // 
+            this.tbNumRidesWeek2.Location = new System.Drawing.Point(480, 252);
+            this.tbNumRidesWeek2.Name = "tbNumRidesWeek2";
+            this.tbNumRidesWeek2.ReadOnly = true;
+            this.tbNumRidesWeek2.Size = new System.Drawing.Size(63, 20);
+            this.tbNumRidesWeek2.TabIndex = 148;
+            this.tbNumRidesWeek2.TabStop = false;
+            this.tbNumRidesWeek2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainWeek2
+            // 
+            this.tbElevGainWeek2.Location = new System.Drawing.Point(480, 216);
+            this.tbElevGainWeek2.Name = "tbElevGainWeek2";
+            this.tbElevGainWeek2.ReadOnly = true;
+            this.tbElevGainWeek2.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainWeek2.TabIndex = 147;
+            this.tbElevGainWeek2.TabStop = false;
+            this.tbElevGainWeek2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbLongestRideWeek2
+            // 
+            this.tbLongestRideWeek2.Location = new System.Drawing.Point(480, 177);
+            this.tbLongestRideWeek2.Name = "tbLongestRideWeek2";
+            this.tbLongestRideWeek2.ReadOnly = true;
+            this.tbLongestRideWeek2.Size = new System.Drawing.Size(63, 20);
+            this.tbLongestRideWeek2.TabIndex = 146;
+            this.tbLongestRideWeek2.TabStop = false;
+            this.tbLongestRideWeek2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbDistanceWeek2
+            // 
+            this.tbDistanceWeek2.Location = new System.Drawing.Point(480, 141);
+            this.tbDistanceWeek2.Name = "tbDistanceWeek2";
+            this.tbDistanceWeek2.ReadOnly = true;
+            this.tbDistanceWeek2.Size = new System.Drawing.Size(63, 20);
+            this.tbDistanceWeek2.TabIndex = 145;
+            this.tbDistanceWeek2.TabStop = false;
+            this.tbDistanceWeek2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbAvgSpeedWeek3
+            // 
+            this.tbAvgSpeedWeek3.Location = new System.Drawing.Point(381, 288);
+            this.tbAvgSpeedWeek3.Name = "tbAvgSpeedWeek3";
+            this.tbAvgSpeedWeek3.ReadOnly = true;
+            this.tbAvgSpeedWeek3.Size = new System.Drawing.Size(63, 20);
+            this.tbAvgSpeedWeek3.TabIndex = 154;
+            this.tbAvgSpeedWeek3.TabStop = false;
+            this.tbAvgSpeedWeek3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbNumRidesWeek3
+            // 
+            this.tbNumRidesWeek3.Location = new System.Drawing.Point(381, 252);
+            this.tbNumRidesWeek3.Name = "tbNumRidesWeek3";
+            this.tbNumRidesWeek3.ReadOnly = true;
+            this.tbNumRidesWeek3.Size = new System.Drawing.Size(63, 20);
+            this.tbNumRidesWeek3.TabIndex = 153;
+            this.tbNumRidesWeek3.TabStop = false;
+            this.tbNumRidesWeek3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainWeek3
+            // 
+            this.tbElevGainWeek3.Location = new System.Drawing.Point(381, 216);
+            this.tbElevGainWeek3.Name = "tbElevGainWeek3";
+            this.tbElevGainWeek3.ReadOnly = true;
+            this.tbElevGainWeek3.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainWeek3.TabIndex = 152;
+            this.tbElevGainWeek3.TabStop = false;
+            this.tbElevGainWeek3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbLongestRideWeek3
+            // 
+            this.tbLongestRideWeek3.Location = new System.Drawing.Point(381, 177);
+            this.tbLongestRideWeek3.Name = "tbLongestRideWeek3";
+            this.tbLongestRideWeek3.ReadOnly = true;
+            this.tbLongestRideWeek3.Size = new System.Drawing.Size(63, 20);
+            this.tbLongestRideWeek3.TabIndex = 151;
+            this.tbLongestRideWeek3.TabStop = false;
+            this.tbLongestRideWeek3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbDistanceWeek3
+            // 
+            this.tbDistanceWeek3.Location = new System.Drawing.Point(381, 141);
+            this.tbDistanceWeek3.Name = "tbDistanceWeek3";
+            this.tbDistanceWeek3.ReadOnly = true;
+            this.tbDistanceWeek3.Size = new System.Drawing.Size(63, 20);
+            this.tbDistanceWeek3.TabIndex = 150;
+            this.tbDistanceWeek3.TabStop = false;
+            this.tbDistanceWeek3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbAvgSpeedWeek4
+            // 
+            this.tbAvgSpeedWeek4.Location = new System.Drawing.Point(286, 288);
+            this.tbAvgSpeedWeek4.Name = "tbAvgSpeedWeek4";
+            this.tbAvgSpeedWeek4.ReadOnly = true;
+            this.tbAvgSpeedWeek4.Size = new System.Drawing.Size(63, 20);
+            this.tbAvgSpeedWeek4.TabIndex = 159;
+            this.tbAvgSpeedWeek4.TabStop = false;
+            this.tbAvgSpeedWeek4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbNumRidesWeek4
+            // 
+            this.tbNumRidesWeek4.Location = new System.Drawing.Point(286, 252);
+            this.tbNumRidesWeek4.Name = "tbNumRidesWeek4";
+            this.tbNumRidesWeek4.ReadOnly = true;
+            this.tbNumRidesWeek4.Size = new System.Drawing.Size(63, 20);
+            this.tbNumRidesWeek4.TabIndex = 158;
+            this.tbNumRidesWeek4.TabStop = false;
+            this.tbNumRidesWeek4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainWeek4
+            // 
+            this.tbElevGainWeek4.Location = new System.Drawing.Point(286, 216);
+            this.tbElevGainWeek4.Name = "tbElevGainWeek4";
+            this.tbElevGainWeek4.ReadOnly = true;
+            this.tbElevGainWeek4.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainWeek4.TabIndex = 157;
+            this.tbElevGainWeek4.TabStop = false;
+            this.tbElevGainWeek4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbLongestRideWeek4
+            // 
+            this.tbLongestRideWeek4.Location = new System.Drawing.Point(286, 177);
+            this.tbLongestRideWeek4.Name = "tbLongestRideWeek4";
+            this.tbLongestRideWeek4.ReadOnly = true;
+            this.tbLongestRideWeek4.Size = new System.Drawing.Size(63, 20);
+            this.tbLongestRideWeek4.TabIndex = 156;
+            this.tbLongestRideWeek4.TabStop = false;
+            this.tbLongestRideWeek4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbDistanceWeek4
+            // 
+            this.tbDistanceWeek4.Location = new System.Drawing.Point(286, 141);
+            this.tbDistanceWeek4.Name = "tbDistanceWeek4";
+            this.tbDistanceWeek4.ReadOnly = true;
+            this.tbDistanceWeek4.Size = new System.Drawing.Size(63, 20);
+            this.tbDistanceWeek4.TabIndex = 155;
+            this.tbDistanceWeek4.TabStop = false;
+            this.tbDistanceWeek4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbAvgSpeedWeek5
+            // 
+            this.tbAvgSpeedWeek5.Location = new System.Drawing.Point(186, 288);
+            this.tbAvgSpeedWeek5.Name = "tbAvgSpeedWeek5";
+            this.tbAvgSpeedWeek5.ReadOnly = true;
+            this.tbAvgSpeedWeek5.Size = new System.Drawing.Size(63, 20);
+            this.tbAvgSpeedWeek5.TabIndex = 164;
+            this.tbAvgSpeedWeek5.TabStop = false;
+            this.tbAvgSpeedWeek5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbNumRidesWeek5
+            // 
+            this.tbNumRidesWeek5.Location = new System.Drawing.Point(186, 252);
+            this.tbNumRidesWeek5.Name = "tbNumRidesWeek5";
+            this.tbNumRidesWeek5.ReadOnly = true;
+            this.tbNumRidesWeek5.Size = new System.Drawing.Size(63, 20);
+            this.tbNumRidesWeek5.TabIndex = 163;
+            this.tbNumRidesWeek5.TabStop = false;
+            this.tbNumRidesWeek5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainWeek5
+            // 
+            this.tbElevGainWeek5.Location = new System.Drawing.Point(186, 216);
+            this.tbElevGainWeek5.Name = "tbElevGainWeek5";
+            this.tbElevGainWeek5.ReadOnly = true;
+            this.tbElevGainWeek5.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainWeek5.TabIndex = 162;
+            this.tbElevGainWeek5.TabStop = false;
+            this.tbElevGainWeek5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbLongestRideWeek5
+            // 
+            this.tbLongestRideWeek5.Location = new System.Drawing.Point(186, 177);
+            this.tbLongestRideWeek5.Name = "tbLongestRideWeek5";
+            this.tbLongestRideWeek5.ReadOnly = true;
+            this.tbLongestRideWeek5.Size = new System.Drawing.Size(63, 20);
+            this.tbLongestRideWeek5.TabIndex = 161;
+            this.tbLongestRideWeek5.TabStop = false;
+            this.tbLongestRideWeek5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbDistanceWeek5
+            // 
+            this.tbDistanceWeek5.Location = new System.Drawing.Point(186, 141);
+            this.tbDistanceWeek5.Name = "tbDistanceWeek5";
+            this.tbDistanceWeek5.ReadOnly = true;
+            this.tbDistanceWeek5.Size = new System.Drawing.Size(63, 20);
+            this.tbDistanceWeek5.TabIndex = 160;
+            this.tbDistanceWeek5.TabStop = false;
+            this.tbDistanceWeek5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 561);
+            this.ClientSize = new System.Drawing.Size(933, 667);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.btGetMaintLog);
+            this.Controls.Add(this.tbMaintID);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -3157,6 +3622,9 @@
             this.groupBox6.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabPage8.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -3170,6 +3638,7 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -3303,7 +3772,6 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox tbConfigMilesNotInLog;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label lbConfigError;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox tbBikeMilesTotal;
         private System.Windows.Forms.Label label30;
@@ -3436,6 +3904,46 @@
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.ComboBox cbBikeTotalsConfig;
         private System.Windows.Forms.Button btRemoveBikeTotalsConfig;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btRefreshWeekly;
+        private System.Windows.Forms.TextBox tbDistanceWeek1;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.Label lbweek5;
+        private System.Windows.Forms.Label lbweek4;
+        private System.Windows.Forms.Label lbweek3;
+        private System.Windows.Forms.Label lbweek2;
+        private System.Windows.Forms.Label lbweek1;
+        private System.Windows.Forms.TextBox tbAvgSpeedWeek5;
+        private System.Windows.Forms.TextBox tbNumRidesWeek5;
+        private System.Windows.Forms.TextBox tbElevGainWeek5;
+        private System.Windows.Forms.TextBox tbLongestRideWeek5;
+        private System.Windows.Forms.TextBox tbDistanceWeek5;
+        private System.Windows.Forms.TextBox tbAvgSpeedWeek4;
+        private System.Windows.Forms.TextBox tbNumRidesWeek4;
+        private System.Windows.Forms.TextBox tbElevGainWeek4;
+        private System.Windows.Forms.TextBox tbLongestRideWeek4;
+        private System.Windows.Forms.TextBox tbDistanceWeek4;
+        private System.Windows.Forms.TextBox tbAvgSpeedWeek3;
+        private System.Windows.Forms.TextBox tbNumRidesWeek3;
+        private System.Windows.Forms.TextBox tbElevGainWeek3;
+        private System.Windows.Forms.TextBox tbLongestRideWeek3;
+        private System.Windows.Forms.TextBox tbDistanceWeek3;
+        private System.Windows.Forms.TextBox tbAvgSpeedWeek2;
+        private System.Windows.Forms.TextBox tbNumRidesWeek2;
+        private System.Windows.Forms.TextBox tbElevGainWeek2;
+        private System.Windows.Forms.TextBox tbLongestRideWeek2;
+        private System.Windows.Forms.TextBox tbDistanceWeek2;
+        private System.Windows.Forms.TextBox tbAvgSpeedWeek1;
+        private System.Windows.Forms.TextBox tbNumRidesWeek1;
+        private System.Windows.Forms.TextBox tbElevGainWeek1;
+        private System.Windows.Forms.TextBox tbLongestRideWeek1;
     }
 }
 

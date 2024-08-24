@@ -7,10 +7,13 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+
 //using System.Text;
 //using System.Text.RegularExpressions;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace CyclingLogApplication
 {
@@ -165,11 +168,11 @@ namespace CyclingLogApplication
                 formLoad = 0;
 
                 // Look up to see if there is an entry by this date:
-                GetRideData(dtpRideDate.Text, 1);
+                //GetRideData(dtpRideDate.Value.Date, 1);
             }
         }
 
-        private void GetRideData(string date, int recordDateIndex)
+        private void GetRideData(DateTime date, int recordDateIndex)
         {
             if (formLoad == 1)
             {
@@ -219,6 +222,7 @@ namespace CyclingLogApplication
                 //ExecuteScalarFunction
                 using (var results = ExecuteSimpleQueryConnection("GetRideData", objectValues))
                 {
+                    Logger.Log("Results: " + results.FieldCount, 0, logLevel);
                     if (results.HasRows)
                     {
                         while (results.Read())
@@ -468,6 +472,8 @@ namespace CyclingLogApplication
                 }
                 string recordID = tbRecordID.Text;
 
+                //MessageBox.Show("Record ID value: " + recordID);
+
                 if (changeType.Equals("Update"))
                 {
                     if (tbRecordID.Text.Equals("0"))
@@ -485,7 +491,7 @@ namespace CyclingLogApplication
                 }
 
                 // Check recordID value:
-                if (tbRecordID.Text.Equals("0") && changeType.Equals("Add"))
+                if (!tbRecordID.Text.Equals("0") && changeType.Equals("Add"))
                 {
                     DialogResult result = MessageBox.Show("Detected that the current data was retrieved from a record that was already saved to the database. Do you want to continue adding the record?", "Add Ride Data", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No)
@@ -602,9 +608,12 @@ namespace CyclingLogApplication
                 objectValues.Add(tbComments.Text);                                          //Comments:
                 objectValues.Add(logIndex);                                             //LogYear index:
 
+                DateTime date = new DateTime();
+                DayOfWeek firstDay = DayOfWeek.Monday;
+
                 DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
                 Calendar cal = dfi.Calendar;
-                int weekValue = cal.GetWeekOfYear(dtpRideDate.Value, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
+                int weekValue = cal.GetWeekOfYear(dtpRideDate.Value, dfi.CalendarWeekRule, firstDay);
 
                 if (changeType.Equals("Update"))                                        //Week number:
                 {
@@ -712,9 +721,7 @@ namespace CyclingLogApplication
         {
             string[] headingList = new string[16];
             string[] splitList = new string[16];
-            //string[] tempSplitList = new string[16];
-            //string[] summary = new string[16];
-            string tempStr;
+            Dictionary<string, string> garminDataDictionary = new Dictionary<string, string>();
 
             lbRideDataEntryError.Text = "";
             lbRideDataEntryError.Hide();
@@ -734,29 +741,30 @@ namespace CyclingLogApplication
                             while ((line = file.ReadLine()) != null)
                             {
                                 var tempList = line.Split(',');
+                                string summaryCheck = tempList[0];
 
                                 if (rowCount == 0)
                                 {
                                     //Line 1 is the headings
                                     headingList = line.Split(',');
-                                    //MessageBox.Show(headingList[0]);
+
+                                    for (int i = 0; i < headingList.Length; i++)
+                                    {
+                                        garminDataDictionary.Add(headingList[i], "");
+                                    }
                                 }
-                                else if (tempList[0].Equals("Summary"))
+                                else if (summaryCheck.Contains("Summary"))
                                 {
-                                    splitList = line.Split(',');
-                                    //MessageBox.Show(summary[0]);
+                                    var sep = new string[] { "\",\"" };
+                                    splitList = line.Split(sep, StringSplitOptions.None);
+
+                                    for (int i = 0; i < headingList.Length; i++)
+                                    {
+                                        string dataValue = splitList[i];
+                                        dataValue = dataValue.Replace("\"", string.Empty);
+                                        garminDataDictionary[headingList[i]] = dataValue;
+                                    }
                                 }
-                                //else if (rowCount > 0)
-                                //{
-                                //    //splitList = line.Split(',');
-                                //    //MessageBox.Show(splitList[9]);
-                                //}
-                                //else
-                                //{
-                                //    // split item and need to add to or avg in with the previous split
-                                //    tempSplitList = line.Split(',');
-                                //    //MessageBox.Show(tempSplitList[0]);
-                                //}
                                 rowCount++;
                             }
                         }
@@ -766,33 +774,34 @@ namespace CyclingLogApplication
                     }
                 }
 
-                //0Data items:
-                //1Time
-                //2Moving Time
-                //3Distance
-                //4Elevation Gain
-                //5Elevation Loss
-                //6Avg Speed
-                //7Avg Moving Speed//
-                //8Max Speed
-                //9Avg HR
-                //10Max HR
+                //--------------------------------------------------
+                //0 Laps:
+                //1 Time
+                //2 Cumulative Time
+                //3 Distance
+                //4 Avg Speed
+                //5 Avg HR
+                //6 Max HR
+                //7 Total Ascent
+                //8 Total Descent
+                //9 Calories
+                //10 Avg Temperature
+                //11 Max Speed
+                //12 Moving Time
+                //13 Avg Moving Speed
                 //11Avg Bike Cadence
                 //12Max Bike Cadence
-                //13Normalized power
-                //14Avg Power
-                //15Max Power
-                //16Avg Temperature
-                //17Calories
+
+                string temp = "";
 
                 //Split time and enter hours-min-sec
-                string temp = splitList[2];
-
-                //Check if the moving time is not entered:
-                if (temp.Equals("--"))
+                if (garminDataDictionary.ContainsKey("\"Moving Time\""))
                 {
-                    temp = splitList[1];
-                } 
+                    temp = garminDataDictionary["\"Moving Time\""];
+                } else
+                {
+                    temp = garminDataDictionary["Time"];
+                }
 
                 string[] temp2 = temp.Split(':');
 
@@ -825,113 +834,48 @@ namespace CyclingLogApplication
                 }
 
                 numDistanceRideDataEntry.Maximum = (200);
-                numDistanceRideDataEntry.Value = System.Convert.ToDecimal(splitList[3]);                                              //4Ride Distance:
+                numDistanceRideDataEntry.Value = System.Convert.ToDecimal(garminDataDictionary["\"Distance\""]);                                      
 
-                //NOTE: Need to check if any of the values have double quotes and is so, also need to include the next index since they were split because of the comma ex("1,200"):
-                //==============================================================
-                //4Total Ascent:
-                int colIndex = 4;
-                int headingIndex = 4;
-                tempStr = splitList[colIndex];
-                //MessageBox.Show("value: " + tempStr[0]);
-                if (tempStr[0].Equals('"'))
+                if (garminDataDictionary.ContainsKey("\"Total Ascent\""))
                 {
-                    //MessageBox.Show("A double quote was found");
-                    tempStr = splitList[colIndex] + splitList[colIndex + 1];
-                    colIndex++;
-                    total_ascent.Text = tempStr.Replace("\"", "");
+                    total_ascent.Text = garminDataDictionary["\"Total Ascent\""];
+                }
+
+                if (garminDataDictionary.ContainsKey("\"Total Descent\""))
+                {
+                    total_ascent.Text = garminDataDictionary["\"Total Descent\""];
+                }
+
+                if (garminDataDictionary.ContainsKey("\"Avg Moving Speed\""))
+                {
+                    numericUpDown1.Value = System.Convert.ToDecimal(garminDataDictionary["\"Avg Moving Speed\""]);
                 }
                 else
                 {
-                    //MessageBox.Show("No double quote found");
-                    total_ascent.Text = splitList[colIndex];
+                    numericUpDown1.Value = System.Convert.ToDecimal(garminDataDictionary["\"Avg Speed\""]);
                 }
-                colIndex++;
-                headingIndex++;
-                //==============================================================
-                //5Total Descent:
-                tempStr = splitList[colIndex];
-                if (tempStr[0].Equals('"'))
-                {
-                    tempStr = splitList[colIndex] + splitList[colIndex + 1];
-                    colIndex++;
-                    total_descent.Text = tempStr.Replace("\"", "");
-                }
-                else
-                {
-                    total_descent.Text = splitList[colIndex];
-                }
-                colIndex++;
-                headingIndex++;
-                //==============================================================                                                                        
-                colIndex++;
-                headingIndex++;
 
-                //Check if the Average moving speed is available:
-                string avgMovingSpeed = splitList[colIndex];
+                if (garminDataDictionary.ContainsKey("\"Max Speed\""))
+                {
+                    max_speed.Text = garminDataDictionary["\"Max Speed\""];
+                }
+                    
+                if (garminDataDictionary.ContainsKey("\"Avg HR\"")){
+                    avg_heart_rate.Text = garminDataDictionary["\"Avg HR\""];
+                    max_heart_rate.Text = garminDataDictionary["\"Max HR\""];
+                }
 
-                if (avgMovingSpeed.Equals("--"))
+                if (garminDataDictionary.ContainsKey("\"Avg Bike Cadence\"")){
+                    avg_cadence.Text = garminDataDictionary["\"Avg Bike Cadence\""];
+                }
+
+                if (garminDataDictionary.ContainsKey("\"Avg Temperature\""))
                 {
-                    numericUpDown1.Value = System.Convert.ToDecimal(splitList[colIndex-1]);                                     //7Average moving Speed:
-                } else
-                {
-                    numericUpDown1.Value = System.Convert.ToDecimal(splitList[colIndex]);                                     //8Average moving Speed:
+                    numericUpDown3.Value = decimal.Round(System.Convert.ToDecimal(garminDataDictionary["\"Avg Temperature\""]), 2, MidpointRounding.AwayFromZero);
                 }
                 
-                colIndex++;
-                headingIndex++;
-                max_speed.Text = splitList[colIndex];                                                                       //9Max Speed:
-                colIndex++;
-                headingIndex++;
+                calories.Text = garminDataDictionary["\"Calories\""];
 
-                for (int index = colIndex; index < splitList.Length; index++)
-                {
-                    if (headingList[headingIndex].Equals("Avg HR"))
-                    {
-                        avg_heart_rate.Text = splitList[index];                                                              //10Average Cadence:
-                    }
-                    else if (headingList[headingIndex].Equals("Max HR"))
-                    {
-                        max_heart_rate.Text = splitList[index];                                                               //Max Heart Rate:
-                    }
-                    else if (headingList[headingIndex].Equals("Avg Bike Cadence"))
-                    {
-                        avg_cadence.Text = splitList[index];                                                                   //10Average Cadence:
-                    }
-                    else if (headingList[headingIndex].Equals("Avg Temperature"))
-                    {
-                        //Check if the avg temp is available:
-                        string avgTemp = splitList[index];
-
-                        if (avgTemp.Equals("--"))
-                        {
-                            numericUpDown3.Value = 72;    //12Temp:
-                        } else
-                        {
-                            numericUpDown3.Value = decimal.Round(System.Convert.ToDecimal(splitList[index]), 2, MidpointRounding.AwayFromZero);    //12Temp:
-                        }
-                    }
-                    else if (headingList[headingIndex].Equals("Calories"))
-                    {
-                        tempStr = splitList[index];
-                        if (tempStr[0].Equals('"'))
-                        {
-                            tempStr = splitList[index] + splitList[index + 1];
-                            index++;
-                            calories.Text = tempStr.Replace("\"", "");
-                        }
-                        else
-                        {
-                            calories.Text = splitList[index];
-                        }
-                    }
-                    //else if (headingList[headingIndex].Equals("Location"))
-                    //{
-                    //    cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.Items.IndexOf(splitList[index]);                //Location:
-                    //}
-
-                    headingIndex++;
-                }
             }
             catch (Exception ex)
             {
@@ -999,6 +943,23 @@ namespace CyclingLogApplication
                     lbRideDataEntryError.Hide();
                 }
             }
+        }
+
+        private void dtpRideDate_ValueChanged(object sender, EventArgs e)
+        {
+            //Get current date and then obtain and set week number:
+            //var rideDataSate = dtpTimeRideDataEntry.Value;
+            //DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+            CultureInfo myCI = new CultureInfo("en-US");
+            Calendar myCal = myCI.Calendar;
+
+            // Gets the DTFI properties required by GetWeekOfYear.
+            CalendarWeekRule myCWR = myCI.DateTimeFormat.CalendarWeekRule;
+            DayOfWeek myFirstDOW = myCI.DateTimeFormat.FirstDayOfWeek;
+
+            //Logger.LogError("Calendar value: " + dtpRideDate.Value.Date);
+            int weekValue = myCal.GetWeekOfYear(dtpRideDate.Value.Date, myCWR, myFirstDOW);
+            tbWeekCountRDE.Text = weekValue.ToString();
         }
 
         private void BtUpdateRideDateEntry_Click(object sender, EventArgs e)
@@ -1090,12 +1051,12 @@ namespace CyclingLogApplication
                 if (Convert.ToInt32(num.Text) > num.Value)
                 {
                     //MessageBox.Show("Value decreased");
-                    GetRideData(dtpRideDate.Text, Convert.ToInt16(numericUpDown2.Value));
+                    GetRideData(dtpRideDate.Value.Date, Convert.ToInt16(numericUpDown2.Value));
                 }
                 else
                 {
                     //MessageBox.Show("Value increased");
-                    GetRideData(dtpRideDate.Text, Convert.ToInt16(numericUpDown2.Value));
+                    GetRideData(dtpRideDate.Value.Date, Convert.ToInt16(numericUpDown2.Value));
                 }
             }
         }
@@ -1108,6 +1069,34 @@ namespace CyclingLogApplication
         private void Chk1RideDataEntry_Click(object sender, EventArgs e)
         {
             DateTimePicker1_ValueChanged(sender, e);
+
+            if (!chk1RideDataEntry.Checked)
+            {
+                tbRecordID.Text = "0";
+                lbRideDataEntryError.Text = "";
+            }
+        }
+
+        private void btRetrieve_Click(object sender, EventArgs e)
+        {
+            //Check to see if option is checked:
+            if (!chk1RideDataEntry.Checked)
+            {
+                MessageBox.Show("The Retrieve Ride Data must be checked.");
+
+                return;
+            }
+
+            if (cbLogYearDataEntry.SelectedIndex == -1)
+            {
+                MessageBox.Show("A Log Year must be selected.");
+
+                return;
+            }
+
+
+            // Look up to see if there is an entry by this date:
+            GetRideData(dtpRideDate.Value.Date, 1);
         }
     }
 }

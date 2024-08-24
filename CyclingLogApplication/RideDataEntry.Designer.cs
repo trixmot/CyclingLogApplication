@@ -34,6 +34,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtpRideDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btRetrieve = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
+            this.tbWeekCountRDE = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.chk1RideDataEntry = new System.Windows.Forms.CheckBox();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
@@ -107,16 +110,16 @@
             // cbLogYearDataEntry
             // 
             this.cbLogYearDataEntry.FormattingEnabled = true;
-            this.cbLogYearDataEntry.Location = new System.Drawing.Point(59, 62);
+            this.cbLogYearDataEntry.Location = new System.Drawing.Point(20, 64);
             this.cbLogYearDataEntry.Name = "cbLogYearDataEntry";
-            this.cbLogYearDataEntry.Size = new System.Drawing.Size(121, 21);
+            this.cbLogYearDataEntry.Size = new System.Drawing.Size(169, 21);
             this.cbLogYearDataEntry.TabIndex = 0;
             this.cbLogYearDataEntry.SelectedIndexChanged += new System.EventHandler(this.CbLogYearDataEntry_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(59, 46);
+            this.label1.Location = new System.Drawing.Point(20, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 1;
@@ -124,14 +127,17 @@
             // 
             // dtpRideDate
             // 
-            this.dtpRideDate.Location = new System.Drawing.Point(59, 104);
+            this.dtpRideDate.Location = new System.Drawing.Point(20, 106);
             this.dtpRideDate.Name = "dtpRideDate";
-            this.dtpRideDate.Size = new System.Drawing.Size(121, 20);
+            this.dtpRideDate.Size = new System.Drawing.Size(169, 20);
             this.dtpRideDate.TabIndex = 2;
-            this.dtpRideDate.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
+            this.dtpRideDate.ValueChanged += new System.EventHandler(this.dtpRideDate_ValueChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btRetrieve);
+            this.groupBox1.Controls.Add(this.label25);
+            this.groupBox1.Controls.Add(this.tbWeekCountRDE);
             this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.chk1RideDataEntry);
             this.groupBox1.Controls.Add(this.numericUpDown2);
@@ -154,10 +160,37 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
+            // btRetrieve
+            // 
+            this.btRetrieve.Location = new System.Drawing.Point(242, 132);
+            this.btRetrieve.Name = "btRetrieve";
+            this.btRetrieve.Size = new System.Drawing.Size(75, 23);
+            this.btRetrieve.TabIndex = 48;
+            this.btRetrieve.Text = "Retrieve";
+            this.btRetrieve.UseVisualStyleBackColor = true;
+            this.btRetrieve.Click += new System.EventHandler(this.btRetrieve_Click);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(131, 24);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(46, 13);
+            this.label25.TabIndex = 47;
+            this.label25.Text = "Week #";
+            // 
+            // tbWeekCountRDE
+            // 
+            this.tbWeekCountRDE.Location = new System.Drawing.Point(183, 21);
+            this.tbWeekCountRDE.Name = "tbWeekCountRDE";
+            this.tbWeekCountRDE.Size = new System.Drawing.Size(31, 20);
+            this.tbWeekCountRDE.TabIndex = 46;
+            this.tbWeekCountRDE.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(235, 67);
+            this.label24.Location = new System.Drawing.Point(244, 68);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(73, 13);
             this.label24.TabIndex = 45;
@@ -166,7 +199,7 @@
             // chk1RideDataEntry
             // 
             this.chk1RideDataEntry.AutoSize = true;
-            this.chk1RideDataEntry.Location = new System.Drawing.Point(195, 108);
+            this.chk1RideDataEntry.Location = new System.Drawing.Point(214, 109);
             this.chk1RideDataEntry.Name = "chk1RideDataEntry";
             this.chk1RideDataEntry.Size = new System.Drawing.Size(144, 17);
             this.chk1RideDataEntry.TabIndex = 44;
@@ -176,7 +209,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(195, 65);
+            this.numericUpDown2.Location = new System.Drawing.Point(204, 66);
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(34, 20);
             this.numericUpDown2.TabIndex = 43;
@@ -212,7 +245,7 @@
             // 
             this.lbNoLogYearSelected.AutoSize = true;
             this.lbNoLogYearSelected.ForeColor = System.Drawing.Color.Crimson;
-            this.lbNoLogYearSelected.Location = new System.Drawing.Point(202, 49);
+            this.lbNoLogYearSelected.Location = new System.Drawing.Point(211, 50);
             this.lbNoLogYearSelected.Name = "lbNoLogYearSelected";
             this.lbNoLogYearSelected.Size = new System.Drawing.Size(0, 13);
             this.lbNoLogYearSelected.TabIndex = 28;
@@ -231,7 +264,7 @@
             // 
             this.lbRideDataEntryError.AutoSize = true;
             this.lbRideDataEntryError.ForeColor = System.Drawing.Color.Crimson;
-            this.lbRideDataEntryError.Location = new System.Drawing.Point(73, 134);
+            this.lbRideDataEntryError.Location = new System.Drawing.Point(20, 139);
             this.lbRideDataEntryError.Name = "lbRideDataEntryError";
             this.lbRideDataEntryError.Size = new System.Drawing.Size(107, 13);
             this.lbRideDataEntryError.TabIndex = 26;
@@ -260,7 +293,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(59, 88);
+            this.label18.Location = new System.Drawing.Point(20, 90);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(59, 13);
             this.label18.TabIndex = 5;
@@ -807,5 +840,8 @@
         private System.Windows.Forms.CheckBox chk1RideDataEntry;
         public System.Windows.Forms.ComboBox cbBikeDataEntrySelection;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox tbWeekCountRDE;
+        private System.Windows.Forms.Button btRetrieve;
     }
 }

@@ -11,6 +11,7 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Configuration;
 using System.Text.RegularExpressions;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 
 
@@ -73,6 +74,8 @@ namespace CyclingLogApplication
             tbWeekCount.Text = GetCurrentWeekCount().ToString();
             tbDayCount.Text = GetCurrentDayCount().ToString();
             tbTimeChange.Text = GetDaysToNextTimeChange().ToString();
+
+            textBox1.Text = "The MIT License\r\nCopyright (c) 2024, John T Flynn\r\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation\r\nfiles (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify,\r\nmerge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom\r\nthe Software is furnished to do so, subject to the following conditions:\r\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\r\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\r\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\r\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\r\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\r\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\r\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.";
         }
 
         public MainForm(string emptyConstructor)
@@ -84,13 +87,15 @@ namespace CyclingLogApplication
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1) return;
+
             if (GetMutex() != null)
             {
                 //Application.Run(app);
             }
             else
             {
-                Logger.Log("Instance of ExtraViewToRallyConnector is already running", 1, logLevel);
+                Logger.Log("Instance of Cycling Log Application is already running", 1, logLevel);
                 System.Environment.Exit(0);
             }
 
@@ -196,7 +201,6 @@ namespace CyclingLogApplication
 
             label2.Text = "App Version: " + GetLogVersion();
             lbMaintError.Text = "";
-            lbConfigError.Text = "";
 
             RefreshStatisticsData();
             RunMonthlyStatistics();
@@ -217,7 +221,7 @@ namespace CyclingLogApplication
                 rideDataEntryForm.Dispose();
                 this.Dispose();
                 Application.Exit();
-    }
+            }
         }
 
         static void GetConnectionStrings()
@@ -877,7 +881,7 @@ namespace CyclingLogApplication
                     //Give a warning if no additional routed have been entered:
                     MessageBox.Show("Reminder: No Routes have been entered. Add a new Route in the Configuration tab.");
                 }
-                
+
                 rideDataEntryForm.cbBikeDataEntrySelection.SelectedIndex = Convert.ToInt32(GetLastBikeSelected());
                 rideDataEntryForm.ShowDialog();
             }
@@ -949,41 +953,33 @@ namespace CyclingLogApplication
 
         private void BtAddBikeConfig_Click(object sender, EventArgs e)
         {
-            lbConfigError.Text = "";
             string bikeString = tbBikeConfig.Text;
             string miles = tbConfigMilesNotInLog.Text;
             Boolean updateBikeTotals = true;
 
             //Check to see if the string has already been entered to eliminate duplicates:
-            //for (int index = 0; index < cbBikeConfig.Items.Count; index++)
-            //{
-                if (cbBikeConfig.Items.Contains(bikeString))
-                {
-                    MessageBox.Show("Duplicate name entered. Enter a unique name for the bike.");
-                    return;
-                }
-            //}
+            if (cbBikeConfig.Items.Contains(bikeString))
+            {
+                MessageBox.Show("Duplicate name entered. Enter a unique name for the bike.");
+                return;
+            }
 
             //Check to see if the string has already been entered to eliminate duplicates:
-            //for (int index = 0; index < cbBikeTotalsConfig.Items.Count; index++)
-            //{
-                if (cbBikeTotalsConfig.Items.Contains(bikeString))
-                {
-                    MessageBox.Show("The name entered already exists in the Total Miles list and can not be added.");
-                    updateBikeTotals = false;
-                } 
-            //}
+            if (cbBikeTotalsConfig.Items.Contains(bikeString))
+            {
+                MessageBox.Show("The name entered already exists in the Total Miles list and can not be added.");
+                updateBikeTotals = false;
+            }
 
             //Verify Miles is entered and in the correct format:
             if (!int.TryParse(tbConfigMilesNotInLog.Text, out _))
             {
-                lbConfigError.Text = "The miles for the Bike must be in numeric format. Enter 0 if unknown.";
+                MessageBox.Show("The miles for the Bike must be in numeric format. Enter 0 if unknown.");
                 return;
             }
 
             List<object> objectBikes = new List<object>();
             objectBikes.Add(bikeString);
-            objectBikes.Add(miles);
             RunStoredProcedure(objectBikes, "Bike_Add");
 
             cbBikeConfig.Items.Add(bikeString);
@@ -1006,6 +1002,7 @@ namespace CyclingLogApplication
         private void BtRemoveBikeConfig_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Do you really want to delete the bike option?", "Delete Bike Option", MessageBoxButtons.YesNo);
+
             if (result == DialogResult.Yes)
             {
                 string deleteValue = cbBikeConfig.SelectedItem.ToString();
@@ -1014,37 +1011,11 @@ namespace CyclingLogApplication
                 cbBikeConfig.Items.Remove(cbBikeConfig.SelectedItem);
                 cbBikeMaint.Items.Remove(cbBikeConfig.SelectedItem);
                 rideDataEntryForm.RemoveBikeDataEntry(deleteValue);
-                cbBikeTotalsConfig.Items.Remove(cbBikeConfig.SelectedItem);
-
-                //List<string> tempList = new List<string>();
-
-                //int selectedIndex = cbBikeConfig.SelectedIndex;
-                //cbBikeConfig.DataSource = cbBikeConfig.Items;
-
-                //for (int i = 0; i < cbBikeConfig.Items.Count; i++)
-                //{
-                //    tempList.Add(cbBikeConfig.Items[i].ToString());
-                //}
-
-                //cbBikeConfig.DataSource = null;
-                //cbBikeConfig.Items.Clear();
-
-                //cbBikeMaint.DataSource = null;
-                //cbBikeMaint.Items.Clear();
-
-                //rideDataEntryForm.cbBikeDataEntrySelection.DataSource = null;
-                //rideDataEntryForm.cbBikeDataEntrySelection.Items.Clear();
+                //cbBikeTotalsConfig.Items.Remove(cbBikeConfig.SelectedItem);
 
                 //Clear entires:
                 tbConfigMilesNotInLog.Text = "0";
                 tbBikeConfig.Text = "";
-
-                //for (int i = 0; i < tempList.Count; i++)
-                //{
-                //    cbBikeConfig.Items.Add(tempList[i]);
-                //    cbBikeMaint.Items.Add(tempList[i]);
-                //    rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(tempList[i]);
-                //}
 
                 //Remove the Bike from the database table:
                 List<object> objectValues = new List<object>();
@@ -1066,11 +1037,11 @@ namespace CyclingLogApplication
         }
 
         private void CbRouteConfig_SelectedIndexChanged(object sender, EventArgs e)
-        {         
+        {
             if (cbRouteConfig.SelectedItem != null)
             {
                 tbRouteConfig.Text = cbRouteConfig.SelectedItem.ToString();
-            } 
+            }
         }
 
         // private void openRideDataEntryForm(object obj)
@@ -1235,11 +1206,12 @@ namespace CyclingLogApplication
             if (logYear == DateTime.Today.Year)
             {
                 weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, dfi.FirstDayOfWeek);
-            } else
+            }
+            else
             {
                 weekValue = 52;
             }
-            
+
             if (rides > 0)
             {
                 avgRides = (float)rides / weekValue;
@@ -1321,7 +1293,7 @@ namespace CyclingLogApplication
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
-                        {                          
+                        {
                             weekNumber = (int)reader["WeekNumber"];
 
                             //Check if on a different week:
@@ -1481,7 +1453,7 @@ namespace CyclingLogApplication
                     else
                     {
                         dayCount = (changeDate2 - date).TotalDays;
-                    }                                 
+                    }
                 }
             }
             else if (year == 2018)
@@ -1674,17 +1646,17 @@ namespace CyclingLogApplication
                 }
             }
 
-          /*Year    DST Begins  DST Ends        Year    DST Begins  DST Ends
-            2014    March 9     November 2      2024    March 10    November 3
-            2015    March 8     November 1      2025    March 9     November 2
-            2016    March 13    November 6      2026    March 8     November 1
-            2017    March 12    November 5      2027    March 14    November 7
-            2018    March 11    November 4      2028    March 12    November 5
-            2019    March 10    November 3      2029    March 11    November 4
-            2020    March 8     November 1      2030    March 10    November 3
-            2021    March 14    November 7      2031    March 9     November 2
-            2022    March 13    November 6      2032    March 14    November 7
-            2023    March 12    November 5      2033    March 13    November 6 */
+            /*Year    DST Begins  DST Ends        Year    DST Begins  DST Ends
+              2014    March 9     November 2      2024    March 10    November 3
+              2015    March 8     November 1      2025    March 9     November 2
+              2016    March 13    November 6      2026    March 8     November 1
+              2017    March 12    November 5      2027    March 14    November 7
+              2018    March 11    November 4      2028    March 12    November 5
+              2019    March 10    November 3      2029    March 11    November 4
+              2020    March 8     November 1      2030    March 10    November 3
+              2021    March 14    November 7      2031    March 9     November 2
+              2022    March 13    November 6      2032    March 14    November 7
+              2023    March 12    November 5      2033    March 13    November 6 */
 
             double result = Math.Ceiling(dayCount);
             return result;
@@ -1722,7 +1694,7 @@ namespace CyclingLogApplication
             else
             {
                 logYearIndex = GetLogYearIndex(cbLogYear1.SelectedItem.ToString());
-            }         
+            }
 
             if (cbLogYear1.SelectedIndex > 0)
             {
@@ -2672,7 +2644,8 @@ namespace CyclingLogApplication
                         //lbErrorMessage.Show();
                         //lbErrorMessage.Text = "No ride data found for the selected date.";
                         //tbRecordID.Text = "0";
-                        lbMaintError.Text = "No entry found for the selected Bike and Date.";
+                        //lbMaintError.Text = "No entry found for the selected Bike and Date.";
+                        Logger.LogError("WARNING: No entry found for the selected Bike and Date.");
                     }
                 }
             }
@@ -2693,12 +2666,19 @@ namespace CyclingLogApplication
             tbBikeMiles4.Text = "";
             tbBikeMiles5.Text = "";
 
+            tbBikeMilesTotal1.Text = "";
+            tbBikeMilesTotal2.Text = "";
+            tbBikeMilesTotal3.Text = "";
+            tbBikeMilesTotal4.Text = "";
+            tbBikeMilesTotal5.Text = "";
+
             double bikeMilesAdd = 0;
             double runningTotalMiles = 0;
 
             try
             {
                 List<string> bikeList = new List<string>();
+                //Use the Total_Bike_Miles table since it will contain all bikes ever added:
                 bikeList = ReadDataNames("Table_Bike_Totals", "Name");
                 Dictionary<string, double> bikeMilesDictionary = new Dictionary<string, double>();
 
@@ -2742,12 +2722,14 @@ namespace CyclingLogApplication
                     bikeCount = bikeList.Count;
                 }
 
+                // Loop through each bike results starting with the highest value first:
                 for (int i = 1; i <= bikeCount; i++)
                 {
                     double bikeMiles = bikeMilesDictionary.Values.Max();
                     string bikeName = "";
                     double totalMiles;
 
+                    // Key == Bike name, Value == total bike miles:
                     foreach (KeyValuePair<string, double> bike in bikeMilesDictionary)
                     {
                         if (bike.Value == bikeMiles)
@@ -2781,7 +2763,8 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                lbMaintError.Text = "No entry found for the selected Bike and Date.";
+                                //lbMaintError.Text = "No entry found for the selected Bike and Date.";
+                                Logger.LogError("[WARNING: No entry found for the selected Bike and Date.");
                             }
                         }
                     }
@@ -2862,7 +2845,9 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        lbConfigError.Text = "No entry found for the selected Bike and Date.";
+                        //MessageBox.Show("\"No entry found for the selected Bike and Date.");
+                        Logger.LogError("WARNING: No entry found for the selected Bike and Date.");
+                        return;
                     }
                 }
             }
@@ -2896,7 +2881,7 @@ namespace CyclingLogApplication
 
                 if (!int.TryParse(miles, out int parsedValue))
                 {
-                    lbConfigError.Text = "The miles for the Bike must be in numeric format. Enter 0 if unknown.";
+                    MessageBox.Show("\"The miles for the Bike must be in numeric format. Enter 0 if unknown.");
                     return;
                 }
 
@@ -2906,7 +2891,6 @@ namespace CyclingLogApplication
                 List<object> objectBikes = new List<object>();
                 objectBikes.Add(newValue);
                 objectBikes.Add(oldValue);
-                objectBikes.Add(Convert.ToDouble(miles));
 
                 RunStoredProcedure(objectBikes, "Bike_Update");
 
@@ -3033,14 +3017,15 @@ namespace CyclingLogApplication
                         sqlConnection.Close();
                     }
                 }
-            } else
+            }
+            else
             {
-               MessageBox.Show("Must select a Bike from the Bike Selection list.");
-               return;
+                MessageBox.Show("Must select a Bike from the Bike Selection list.");
+                return;
             }
         }
 
-    private void CbLogYearConfig_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbLogYearConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbLogYearConfig.SelectedItem == null)
             {
@@ -3367,6 +3352,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
+
                         if (temp.Equals(""))
                         {
                             returnValue = 0;
@@ -3561,20 +3547,20 @@ namespace CyclingLogApplication
         //Removes bike only from the totals section:
         private void BtRemoveBikeTotalsConfig_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Do you really want to delete the bike totals option?. This only removes value as an option, all records using this value are unchanged.", "Delete Bike Option", MessageBoxButtons.YesNo);
+            string deleteValue = cbBikeTotalsConfig.SelectedItem.ToString();
+
+            //Check if the value is in the Bike list and if so, do not delete:
+            if (cbBikeConfig.Items.Contains(deleteValue))
+            {
+                MessageBox.Show("The Bike name was found in the Bike list and cannot be removed until it has been removed from the Bike list first.");
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("This removes the Bike from the Bike Miles (Tab) total listing. Do you want to continue.", "Delete Bike From Totals", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                string deleteValue = cbBikeTotalsConfig.SelectedItem.ToString();
-
-                //Check if the value is in the Bike list and if so, do not delete:
-                if (cbBikeConfig.Items.Contains(deleteValue))
-                {
-                    MessageBox.Show("The Bike name was found in the Bike list and cannot be removed until it has been removed from the Bike list first.");
-                    return;
-                }
-
                 //Note: only removing value as an option, all records using this value are unchanged:
-                cbBikeTotalsConfig.Items.Remove(cbBikeConfig.SelectedItem);
+                cbBikeTotalsConfig.Items.Remove(cbBikeTotalsConfig.SelectedItem);
 
                 //Clear entires:
                 tbConfigMilesNotInLog.Text = "0";
@@ -3609,6 +3595,421 @@ namespace CyclingLogApplication
             //ChartForm chartForm = new ChartForm(this);
             chartForm.Show();
             lbMaintError.Text = "";
+        }
+
+        //*******************************************
+        //WEEKLY
+        //*******************************************
+        private void RefreshRideDataWeekly()
+        {
+            int logIndex = 0;
+            int logIndexPrevious = 0;
+
+            int logYear = DateTime.Now.Year;
+            logIndex = GetLogYearIndex(logYear);
+            int logYearPrevious = logYear - 1;
+            logIndexPrevious = GetLogYearIndex(logYearPrevious);
+
+            int weekNumber = GetCurrentWeekCount();
+            //Current week plus 4 prior weeks
+
+            //Total Miles Weekly:
+            //Current week:
+            tbDistanceWeek1.Text = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+            lbweek1.Text = FirstDateOfWeekISO8601(DateTime.Now.Year, weekNumber).ToString("MM/dd/yyyy");
+            tbLongestRideWeek1.Text = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+            tbElevGainWeek1.Text = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+
+            // This first if handles when only one year log exists:
+            if (logIndex == 1)
+            {
+                //Current week -1(2):
+                if (weekNumber - 1 <= 0)
+                {
+                    tbDistanceWeek2.Text = "0";
+                    tbLongestRideWeek2.Text = "0";
+                    tbElevGainWeek2.Text = "0";
+                }
+                else
+                {
+                    tbDistanceWeek2.Text = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+                    tbLongestRideWeek2.Text = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+                    tbElevGainWeek2.Text = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+                }
+                //Current week -2(3):
+                if (weekNumber - 2 <= 0)
+                {
+                    tbDistanceWeek3.Text = "0";
+                    tbLongestRideWeek3.Text = "0";
+                    tbElevGainWeek3.Text = "0";
+                }
+                else
+                {
+                    tbDistanceWeek3.Text = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+                    tbLongestRideWeek3.Text = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+                    tbElevGainWeek3.Text = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+                }
+                //Current week -3(4):
+                if (weekNumber - 3 <= 0)
+                {
+                    tbDistanceWeek4.Text = "0";
+                    tbLongestRideWeek4.Text = "0";
+                    tbElevGainWeek4.Text = "0";
+                }
+                else
+                {
+                    tbDistanceWeek4.Text = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+                    tbLongestRideWeek4.Text = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+                    tbElevGainWeek4.Text = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+                }
+                //Current week -4(5):
+                if (weekNumber - 4 <= 0)
+                {
+                    tbDistanceWeek5.Text = "0";
+                    tbLongestRideWeek5.Text = "0";
+                    tbElevGainWeek5.Text = "0";
+                }
+                else
+                {
+                    tbDistanceWeek5.Text = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+                    tbLongestRideWeek5.Text = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+                    tbElevGainWeek5.Text = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+                }
+            }
+            else
+            {
+                //Current week -1(2):
+                if (weekNumber - 1 <= 0)
+                {
+                    tbDistanceWeek2.Text = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+                    lbweek2.Text = FirstDateOfWeekISO8601(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+                    tbLongestRideWeek2.Text = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+                    tbElevGainWeek2.Text = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+                }
+                else
+                {
+                    int weekNumber2 = weekNumber - 1;
+                    tbDistanceWeek2.Text = GetTotalMilesWeekly(logIndex, weekNumber2).ToString();
+                    lbweek2.Text = FirstDateOfWeekISO8601(DateTime.Now.Year, weekNumber2).ToString("MM/dd/yyyy");
+                    tbLongestRideWeek2.Text = GetLongestRideWeekly(logIndex, weekNumber2).ToString();
+                    tbElevGainWeek2.Text = GetTotalElevGainWeekly(logIndex, weekNumber2).ToString();
+                }
+                //Current week -2(3):
+                if (weekNumber - 2 <= 0)
+                {
+                    if (weekNumber == 1)
+                    {
+                        lbweek3.Text = FirstDateOfWeekISO8601(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
+                        tbDistanceWeek3.Text = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
+                        tbLongestRideWeek3.Text = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
+                        tbElevGainWeek3.Text = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
+                    }
+                    else if (weekNumber == 2)
+                    {
+                        lbweek3.Text = FirstDateOfWeekISO8601(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+                        tbDistanceWeek3.Text = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+                        tbLongestRideWeek3.Text = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+                        tbElevGainWeek3.Text = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+                    }
+                }
+                else
+                {
+                    int weekNumber3 = weekNumber - 2;
+                    tbDistanceWeek3.Text = GetTotalMilesWeekly(logIndex, weekNumber3).ToString();
+                    lbweek3.Text = FirstDateOfWeekISO8601(DateTime.Now.Year, weekNumber3).ToString("MM/dd/yyyy");
+                    tbLongestRideWeek3.Text = GetLongestRideWeekly(logIndex, weekNumber3).ToString();
+                    tbElevGainWeek3.Text = GetTotalElevGainWeekly(logIndex, weekNumber3).ToString();
+                }
+                //Current week -3(4):
+                if (weekNumber - 3 <= 0)
+                {
+                    if (weekNumber == 1)
+                    {
+                        lbweek4.Text = FirstDateOfWeekISO8601(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
+                        tbDistanceWeek4.Text = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
+                        tbLongestRideWeek4.Text = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
+                        tbElevGainWeek4.Text = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
+                    }
+                    else if (weekNumber == 2)
+                    {
+                        lbweek4.Text = FirstDateOfWeekISO8601(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
+                        tbDistanceWeek4.Text = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
+                        tbLongestRideWeek4.Text = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
+                        tbElevGainWeek4.Text = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
+                    }
+                    else if (weekNumber == 3)
+                    {
+                        lbweek4.Text = FirstDateOfWeekISO8601(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+                        tbDistanceWeek4.Text = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+                        tbLongestRideWeek4.Text = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+                        tbElevGainWeek4.Text = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+                    }
+                    //totalMilesWeekly = GetTotalMilesWeekly(logIndex - 1, weekNumber);
+                }
+                else
+                {
+                    int weekNumber4 = weekNumber - 3;
+                    tbDistanceWeek4.Text = GetTotalMilesWeekly(logIndex, weekNumber4).ToString();
+                    tbLongestRideWeek4.Text = GetLongestRideWeekly(logIndex, weekNumber4).ToString();
+                    lbweek4.Text = FirstDateOfWeekISO8601(DateTime.Now.Year, weekNumber4).ToString("MM/dd/yyyy");
+                    tbElevGainWeek4.Text = GetTotalElevGainWeekly(logIndex, weekNumber4).ToString();
+                }
+                //Current week -4(5):
+                if (weekNumber - 4 <= 0)
+                {
+                    if (weekNumber == 1)
+                    {
+                        lbweek5.Text = FirstDateOfWeekISO8601(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
+                        tbDistanceWeek5.Text = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
+                        tbLongestRideWeek5.Text = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
+                        tbElevGainWeek5.Text = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
+                    }
+                    else if (weekNumber == 2)
+                    {
+                        lbweek5.Text = FirstDateOfWeekISO8601(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
+                        tbDistanceWeek5.Text = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
+                        tbLongestRideWeek5.Text = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
+                        tbElevGainWeek5.Text = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
+                    }
+                    else if (weekNumber == 3)
+                    {
+                        lbweek5.Text = FirstDateOfWeekISO8601(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
+                        tbDistanceWeek5.Text = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
+                        tbLongestRideWeek5.Text = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
+                        tbElevGainWeek5.Text = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
+                    }
+                    else if (weekNumber == 4)
+                    {
+                        lbweek5.Text = FirstDateOfWeekISO8601(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+                        tbDistanceWeek5.Text = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+                        tbLongestRideWeek5.Text = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+                        tbElevGainWeek5.Text = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+                    }
+                }
+                else
+                {
+                    int weekNumber5 = weekNumber - 4;
+                    tbDistanceWeek5.Text = GetTotalMilesWeekly(logIndex, weekNumber5).ToString();
+                    lbweek5.Text = FirstDateOfWeekISO8601(DateTime.Now.Year, weekNumber5).ToString("MM/dd/yyyy");
+                    tbLongestRideWeek5.Text = GetLongestRideWeekly(logIndex, weekNumber5).ToString();
+                    tbElevGainWeek5.Text = GetTotalElevGainWeekly(logIndex, weekNumber5).ToString();
+                }
+            }
+        }
+
+        private float GetTotalMilesWeekly(int logIndex, int weekNumber)
+        {
+            List<object> objectValues = new List<object>();
+            objectValues.Add(logIndex);
+            objectValues.Add(weekNumber);
+            float returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetTotalMiles_Weekly", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else
+                        {
+                            returnValue = float.Parse(temp);
+                        }
+
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
+        private double GetLongestRideWeekly(int logIndex, int weekNumber)
+        {
+            List<object> objectValues = new List<object>();
+            objectValues.Add(logIndex);
+            objectValues.Add(weekNumber);
+            double returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetMaxHighMileage_Weekly", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else
+                        {
+                            returnValue = double.Parse(temp);
+                        }
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
+        private double GetTotalElevGainWeekly(int logIndex, int weekNumber)
+        {
+            List<object> objectValues = new List<object>();
+            objectValues.Add(logIndex);
+            objectValues.Add(weekNumber);
+            double returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetTotalElevGain_Weekly", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else
+                        {
+                            returnValue = double.Parse(temp);
+                        }
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
+        private int GetLogYearIndex(int year)
+        {
+            int logIndex = 0;
+            //Get week number
+            List<object> objectValues = new List<object>();
+            objectValues.Add(year);
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("Get_LogYear_Index", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            MessageBox.Show("Unable to obtain the Loge year Index ID");
+
+                            return 0;
+                        }
+                        else
+                        {
+                            logIndex = Int32.Parse(temp);
+                            break;
+                        }
+                    }
+                }
+                return logIndex;
+            }
+        }
+
+        private void btRefreshWeekly_Click(object sender, EventArgs e)
+        {
+            RefreshRideDataWeekly();
+        }
+
+        private int GetWeekNumber(int weekNumber)
+        {
+            //Current week -1:
+            if (weekNumber - 1 <= 0)
+            {
+                weekNumber = 52;
+            }
+            //Current week -2:
+            if (weekNumber - 2 <= 0)
+            {
+                if (weekNumber == 1)
+                {
+                    weekNumber = 51;
+                }
+                else if (weekNumber == 2)
+                {
+                    weekNumber = 52;
+                }
+            }
+            //Current week -3:
+            if (weekNumber - 3 <= 0)
+            {
+                if (weekNumber == 1)
+                {
+                    weekNumber = 50;
+                }
+                else if (weekNumber == 2)
+                {
+                    weekNumber = 51;
+                }
+                else if (weekNumber == 3)
+                {
+                    weekNumber = 52;
+                }
+            }
+            //Current week -4:
+            if (weekNumber - 4 <= 0)
+            {
+                if (weekNumber == 1)
+                {
+                    weekNumber = 49;
+                }
+                else if (weekNumber == 2)
+                {
+                    weekNumber = 50;
+                }
+                else if (weekNumber == 3)
+                {
+                    weekNumber = 51;
+                }
+                else if (weekNumber == 4)
+                {
+                    weekNumber = 52;
+                }
+            }
+
+            return weekNumber;
+        }
+
+        public static DateTime FirstDateOfWeekISO8601(int year, int weekOfYear)
+        {
+            DateTime jan1 = new DateTime(year, 1, 1);
+            int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
+
+            // Use first Thursday in January to get first week of the year as
+            // it will never be in Week 52/53
+            DateTime firstThursday = jan1.AddDays(daysOffset);
+            var cal = CultureInfo.CurrentCulture.Calendar;
+            int firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+            var weekNum = weekOfYear;
+            // As we're adding days to a date in Week 1,
+            // we need to subtract 1 in order to get the right date for week #1
+            if (firstWeek == 1)
+            {
+                weekNum -= 1;
+            }
+
+            // Using the first Thursday as starting week ensures that we are starting in the right year
+            // then we add number of weeks multiplied with days
+            var result = firstThursday.AddDays(weekNum * 7);
+
+            // Subtract 3 days from Thursday to get Monday, which is the first weekday in ISO8601
+            return result.AddDays(-3).Date;
         }
     }
 }

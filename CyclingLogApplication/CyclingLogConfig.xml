@@ -1,13 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<CONFIG>
+<Config>
   <DAYSTOKEEPLOGS>90</DAYSTOKEEPLOGS>
+  <VERSION>0.3.0</VERSION>
   <LOGLEVEL>0</LOGLEVEL>
-  <VERSION>0.1</VERSION>
-  <cbStatistic1>-1</cbStatistic1>
-  <cbStatistic2>-1</cbStatistic2>
+  <cbStatistic1>14</cbStatistic1>
+  <cbStatistic2>15</cbStatistic2>
   <cbStatistic3>-1</cbStatistic3>
   <cbStatistic4>-1</cbStatistic4>
   <cbStatistic5>-1</cbStatistic5>
-  <LastBikeSelected>-1</LastBikeSelected>
-  <LastLogSelected>-1</LastLogSelected>
-</CONFIG>
+  <LastBikeSelected>0</LastBikeSelected>
+  <LastLogSelected>14</LastLogSelected>
+  <LastLogFilterSelected>15</LastLogFilterSelected>
+  <ChartLogYear>-1</ChartLogYear>
+  <ChartRoute>-1</ChartRoute>
+  <ChartType>-1</ChartType>
+  <ChartTimeType>-1</ChartTimeType>
+  <LastMonthlyLogSelected>-1</LastMonthlyLogSelected>
+  <LastLogSelectedDataEntry>14</LastLogSelectedDataEntry>
+</Config>
