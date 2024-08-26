@@ -330,6 +330,57 @@
             this.tbElevGainWeek5 = new System.Windows.Forms.TextBox();
             this.tbLongestRideWeek5 = new System.Windows.Forms.TextBox();
             this.tbDistanceWeek5 = new System.Windows.Forms.TextBox();
+            this.tbElevGainMonthly6 = new System.Windows.Forms.TextBox();
+            this.tbElevGainMonthly5 = new System.Windows.Forms.TextBox();
+            this.tbElevGainMonthly4 = new System.Windows.Forms.TextBox();
+            this.tbElevGainMonthly3 = new System.Windows.Forms.TextBox();
+            this.tbElevGainMonthly2 = new System.Windows.Forms.TextBox();
+            this.tbElevGainMonthly1 = new System.Windows.Forms.TextBox();
+            this.label71 = new System.Windows.Forms.Label();
+            this.tbElevGainMonthly12 = new System.Windows.Forms.TextBox();
+            this.tbElevGainMonthly11 = new System.Windows.Forms.TextBox();
+            this.tbElevGainMonthly10 = new System.Windows.Forms.TextBox();
+            this.tbElevGainMonthly9 = new System.Windows.Forms.TextBox();
+            this.tbElevGainMonthly8 = new System.Windows.Forms.TextBox();
+            this.tbElevGainMonthly7 = new System.Windows.Forms.TextBox();
+            this.label72 = new System.Windows.Forms.Label();
+            this.tbElevGainYearly5 = new System.Windows.Forms.TextBox();
+            this.tbElevGainYearly4 = new System.Windows.Forms.TextBox();
+            this.tbElevGainYearly3 = new System.Windows.Forms.TextBox();
+            this.tbElevGainYearly2 = new System.Windows.Forms.TextBox();
+            this.tbElevGainYearly1 = new System.Windows.Forms.TextBox();
+            this.label73 = new System.Windows.Forms.Label();
+            this.label74 = new System.Windows.Forms.Label();
+            this.label75 = new System.Windows.Forms.Label();
+            this.tbTotalElevGain = new System.Windows.Forms.TextBox();
+            this.tbTotalTimeWeekly5 = new System.Windows.Forms.TextBox();
+            this.tbTotalTimeWeekly4 = new System.Windows.Forms.TextBox();
+            this.tbTotalTimeWeekly3 = new System.Windows.Forms.TextBox();
+            this.tbTotalTimeWeekly2 = new System.Windows.Forms.TextBox();
+            this.tbTotalTimeWeekly1 = new System.Windows.Forms.TextBox();
+            this.label76 = new System.Windows.Forms.Label();
+            this.tbTimeYearly5 = new System.Windows.Forms.TextBox();
+            this.tbTimeYearly4 = new System.Windows.Forms.TextBox();
+            this.tbTimeYearly3 = new System.Windows.Forms.TextBox();
+            this.tbTimeYearly2 = new System.Windows.Forms.TextBox();
+            this.tbTimeYearly1 = new System.Windows.Forms.TextBox();
+            this.label77 = new System.Windows.Forms.Label();
+            this.tbTimeMonthly6 = new System.Windows.Forms.TextBox();
+            this.tbTimeMonthly5 = new System.Windows.Forms.TextBox();
+            this.tbTimeMonthly4 = new System.Windows.Forms.TextBox();
+            this.tbTimeMonthly3 = new System.Windows.Forms.TextBox();
+            this.tbTimeMonthly2 = new System.Windows.Forms.TextBox();
+            this.tbTimeMonthly1 = new System.Windows.Forms.TextBox();
+            this.label78 = new System.Windows.Forms.Label();
+            this.tbTimeMonthly12 = new System.Windows.Forms.TextBox();
+            this.tbTimeMonthly11 = new System.Windows.Forms.TextBox();
+            this.tbTimeMonthly10 = new System.Windows.Forms.TextBox();
+            this.tbTimeMonthly9 = new System.Windows.Forms.TextBox();
+            this.tbTimeMonthly8 = new System.Windows.Forms.TextBox();
+            this.tbTimeMonthly7 = new System.Windows.Forms.TextBox();
+            this.label79 = new System.Windows.Forms.Label();
+            this.label80 = new System.Windows.Forms.Label();
+            this.tbTotalTime = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -390,7 +441,7 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(299, 167);
+            this.button5.Location = new System.Drawing.Point(329, 189);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(130, 35);
             this.button5.TabIndex = 1;
@@ -401,7 +452,7 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(299, 122);
+            this.button7.Location = new System.Drawing.Point(329, 144);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(130, 35);
             this.button7.TabIndex = 0;
@@ -411,7 +462,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(789, 594);
+            this.button8.Location = new System.Drawing.Point(850, 642);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(85, 35);
             this.button8.TabIndex = 9;
@@ -433,7 +484,7 @@
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Location = new System.Drawing.Point(32, 33);
+            this.groupBox1.Location = new System.Drawing.Point(59, 52);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(792, 454);
             this.groupBox1.TabIndex = 10;
@@ -452,7 +503,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(299, 216);
+            this.button1.Location = new System.Drawing.Point(329, 238);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 35);
             this.button1.TabIndex = 11;
@@ -464,7 +515,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(78, 219);
+            this.label15.Location = new System.Drawing.Point(108, 241);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(70, 13);
             this.label15.TabIndex = 52;
@@ -473,7 +524,7 @@
             // btDeleteAllData
             // 
             this.btDeleteAllData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btDeleteAllData.Location = new System.Drawing.Point(299, 267);
+            this.btDeleteAllData.Location = new System.Drawing.Point(329, 289);
             this.btDeleteAllData.Name = "btDeleteAllData";
             this.btDeleteAllData.Size = new System.Drawing.Size(130, 35);
             this.btDeleteAllData.TabIndex = 3;
@@ -483,7 +534,7 @@
             // 
             // tbWeekCount
             // 
-            this.tbWeekCount.Location = new System.Drawing.Point(159, 176);
+            this.tbWeekCount.Location = new System.Drawing.Point(189, 198);
             this.tbWeekCount.Name = "tbWeekCount";
             this.tbWeekCount.ReadOnly = true;
             this.tbWeekCount.Size = new System.Drawing.Size(47, 20);
@@ -494,7 +545,7 @@
             // button11
             // 
             this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button11.Location = new System.Drawing.Point(526, 147);
+            this.button11.Location = new System.Drawing.Point(556, 169);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(130, 35);
             this.button11.TabIndex = 2;
@@ -505,7 +556,7 @@
             // 
             // tbTimeChange
             // 
-            this.tbTimeChange.Location = new System.Drawing.Point(159, 216);
+            this.tbTimeChange.Location = new System.Drawing.Point(189, 238);
             this.tbTimeChange.Name = "tbTimeChange";
             this.tbTimeChange.ReadOnly = true;
             this.tbTimeChange.Size = new System.Drawing.Size(47, 20);
@@ -515,7 +566,7 @@
             // 
             // tbDayCount
             // 
-            this.tbDayCount.Location = new System.Drawing.Point(159, 196);
+            this.tbDayCount.Location = new System.Drawing.Point(189, 218);
             this.tbDayCount.Name = "tbDayCount";
             this.tbDayCount.ReadOnly = true;
             this.tbDayCount.Size = new System.Drawing.Size(47, 20);
@@ -527,7 +578,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(91, 199);
+            this.label14.Location = new System.Drawing.Point(121, 221);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(57, 13);
             this.label14.TabIndex = 50;
@@ -537,7 +588,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(81, 179);
+            this.label13.Location = new System.Drawing.Point(111, 201);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(67, 13);
             this.label13.TabIndex = 49;
@@ -545,7 +596,7 @@
             // 
             // btRefreshStatisticsData
             // 
-            this.btRefreshStatisticsData.Location = new System.Drawing.Point(323, 347);
+            this.btRefreshStatisticsData.Location = new System.Drawing.Point(373, 408);
             this.btRefreshStatisticsData.Name = "btRefreshStatisticsData";
             this.btRefreshStatisticsData.Size = new System.Drawing.Size(75, 23);
             this.btRefreshStatisticsData.TabIndex = 5;
@@ -566,7 +617,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 32);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(862, 537);
+            this.tabControl1.Size = new System.Drawing.Size(923, 591);
             this.tabControl1.TabIndex = 11;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
@@ -576,7 +627,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(854, 511);
+            this.tabPage1.Size = new System.Drawing.Size(915, 565);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -587,13 +638,30 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(854, 511);
+            this.tabPage4.Size = new System.Drawing.Size(915, 565);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Statistics-Yearly";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label80);
+            this.groupBox4.Controls.Add(this.tbTotalTime);
+            this.groupBox4.Controls.Add(this.tbTimeYearly5);
+            this.groupBox4.Controls.Add(this.tbTimeYearly4);
+            this.groupBox4.Controls.Add(this.tbTimeYearly3);
+            this.groupBox4.Controls.Add(this.tbTimeYearly2);
+            this.groupBox4.Controls.Add(this.tbTimeYearly1);
+            this.groupBox4.Controls.Add(this.label77);
+            this.groupBox4.Controls.Add(this.label74);
+            this.groupBox4.Controls.Add(this.label75);
+            this.groupBox4.Controls.Add(this.tbTotalElevGain);
+            this.groupBox4.Controls.Add(this.tbElevGainYearly5);
+            this.groupBox4.Controls.Add(this.tbElevGainYearly4);
+            this.groupBox4.Controls.Add(this.tbElevGainYearly3);
+            this.groupBox4.Controls.Add(this.tbElevGainYearly2);
+            this.groupBox4.Controls.Add(this.tbElevGainYearly1);
+            this.groupBox4.Controls.Add(this.label73);
             this.groupBox4.Controls.Add(this.label62);
             this.groupBox4.Controls.Add(this.label60);
             this.groupBox4.Controls.Add(this.label59);
@@ -650,9 +718,9 @@
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.tb4Log1);
             this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Location = new System.Drawing.Point(32, 33);
+            this.groupBox4.Location = new System.Drawing.Point(55, 54);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(789, 452);
+            this.groupBox4.Size = new System.Drawing.Size(798, 457);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             // 
@@ -669,7 +737,7 @@
             // label60
             // 
             this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(501, 291);
+            this.label60.Location = new System.Drawing.Point(437, 347);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(0, 13);
             this.label60.TabIndex = 60;
@@ -677,7 +745,7 @@
             // label59
             // 
             this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(448, 290);
+            this.label59.Location = new System.Drawing.Point(384, 346);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(61, 13);
             this.label59.TabIndex = 58;
@@ -685,7 +753,7 @@
             // 
             // tbTotalRides
             // 
-            this.tbTotalRides.Location = new System.Drawing.Point(421, 307);
+            this.tbTotalRides.Location = new System.Drawing.Point(357, 363);
             this.tbTotalRides.Name = "tbTotalRides";
             this.tbTotalRides.ReadOnly = true;
             this.tbTotalRides.Size = new System.Drawing.Size(110, 20);
@@ -696,7 +764,7 @@
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(327, 290);
+            this.label58.Location = new System.Drawing.Point(263, 346);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(70, 13);
             this.label58.TabIndex = 56;
@@ -704,7 +772,7 @@
             // 
             // tbLongestRide
             // 
-            this.tbLongestRide.Location = new System.Drawing.Point(305, 307);
+            this.tbLongestRide.Location = new System.Drawing.Point(241, 363);
             this.tbLongestRide.Name = "tbLongestRide";
             this.tbLongestRide.ReadOnly = true;
             this.tbLongestRide.Size = new System.Drawing.Size(110, 20);
@@ -714,7 +782,7 @@
             // 
             // tbStatisticsTotalMiles
             // 
-            this.tbStatisticsTotalMiles.Location = new System.Drawing.Point(189, 306);
+            this.tbStatisticsTotalMiles.Location = new System.Drawing.Point(125, 362);
             this.tbStatisticsTotalMiles.Name = "tbStatisticsTotalMiles";
             this.tbStatisticsTotalMiles.ReadOnly = true;
             this.tbStatisticsTotalMiles.Size = new System.Drawing.Size(110, 20);
@@ -725,7 +793,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(213, 290);
+            this.label23.Location = new System.Drawing.Point(149, 346);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(58, 13);
             this.label23.TabIndex = 53;
@@ -1205,7 +1273,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(854, 511);
+            this.tabPage7.Size = new System.Drawing.Size(915, 565);
             this.tabPage7.TabIndex = 5;
             this.tabPage7.Text = "Statistics-Monthly";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1215,12 +1283,40 @@
             this.groupBox6.Controls.Add(this.panel1);
             this.groupBox6.Location = new System.Drawing.Point(6, 6);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(806, 471);
+            this.groupBox6.Size = new System.Drawing.Size(913, 558);
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.tbTimeMonthly12);
+            this.panel1.Controls.Add(this.tbTimeMonthly11);
+            this.panel1.Controls.Add(this.tbTimeMonthly10);
+            this.panel1.Controls.Add(this.tbTimeMonthly9);
+            this.panel1.Controls.Add(this.tbTimeMonthly8);
+            this.panel1.Controls.Add(this.tbTimeMonthly7);
+            this.panel1.Controls.Add(this.label79);
+            this.panel1.Controls.Add(this.tbTimeMonthly6);
+            this.panel1.Controls.Add(this.tbTimeMonthly5);
+            this.panel1.Controls.Add(this.tbTimeMonthly4);
+            this.panel1.Controls.Add(this.tbTimeMonthly3);
+            this.panel1.Controls.Add(this.tbTimeMonthly2);
+            this.panel1.Controls.Add(this.tbTimeMonthly1);
+            this.panel1.Controls.Add(this.label78);
+            this.panel1.Controls.Add(this.tbElevGainMonthly12);
+            this.panel1.Controls.Add(this.tbElevGainMonthly11);
+            this.panel1.Controls.Add(this.tbElevGainMonthly10);
+            this.panel1.Controls.Add(this.tbElevGainMonthly9);
+            this.panel1.Controls.Add(this.tbElevGainMonthly8);
+            this.panel1.Controls.Add(this.tbElevGainMonthly7);
+            this.panel1.Controls.Add(this.label72);
+            this.panel1.Controls.Add(this.tbElevGainMonthly6);
+            this.panel1.Controls.Add(this.tbElevGainMonthly5);
+            this.panel1.Controls.Add(this.tbElevGainMonthly4);
+            this.panel1.Controls.Add(this.tbElevGainMonthly3);
+            this.panel1.Controls.Add(this.tbElevGainMonthly2);
+            this.panel1.Controls.Add(this.tbElevGainMonthly1);
+            this.panel1.Controls.Add(this.label71);
             this.panel1.Controls.Add(this.bMonthlyStatistics);
             this.panel1.Controls.Add(this.label63);
             this.panel1.Controls.Add(this.label45);
@@ -1336,7 +1432,7 @@
             this.panel1.Controls.Add(this.label38);
             this.panel1.Location = new System.Drawing.Point(44, 19);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(770, 463);
+            this.panel1.Size = new System.Drawing.Size(822, 515);
             this.panel1.TabIndex = 0;
             // 
             // bMonthlyStatistics
@@ -1362,7 +1458,7 @@
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(583, 240);
+            this.label45.Location = new System.Drawing.Point(582, 297);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(56, 13);
             this.label45.TabIndex = 125;
@@ -1370,7 +1466,7 @@
             // 
             // month12R3
             // 
-            this.month12R3.Location = new System.Drawing.Point(575, 305);
+            this.month12R3.Location = new System.Drawing.Point(574, 362);
             this.month12R3.Name = "month12R3";
             this.month12R3.ReadOnly = true;
             this.month12R3.Size = new System.Drawing.Size(63, 20);
@@ -1380,7 +1476,7 @@
             // 
             // month12R7
             // 
-            this.month12R7.Location = new System.Drawing.Point(575, 385);
+            this.month12R7.Location = new System.Drawing.Point(574, 442);
             this.month12R7.Name = "month12R7";
             this.month12R7.ReadOnly = true;
             this.month12R7.Size = new System.Drawing.Size(63, 20);
@@ -1390,7 +1486,7 @@
             // 
             // month12R6
             // 
-            this.month12R6.Location = new System.Drawing.Point(575, 365);
+            this.month12R6.Location = new System.Drawing.Point(574, 422);
             this.month12R6.Name = "month12R6";
             this.month12R6.ReadOnly = true;
             this.month12R6.Size = new System.Drawing.Size(63, 20);
@@ -1400,7 +1496,7 @@
             // 
             // month12R1
             // 
-            this.month12R1.Location = new System.Drawing.Point(575, 265);
+            this.month12R1.Location = new System.Drawing.Point(574, 322);
             this.month12R1.Name = "month12R1";
             this.month12R1.ReadOnly = true;
             this.month12R1.Size = new System.Drawing.Size(63, 20);
@@ -1410,7 +1506,7 @@
             // 
             // month12R5
             // 
-            this.month12R5.Location = new System.Drawing.Point(575, 345);
+            this.month12R5.Location = new System.Drawing.Point(574, 402);
             this.month12R5.Name = "month12R5";
             this.month12R5.ReadOnly = true;
             this.month12R5.Size = new System.Drawing.Size(63, 20);
@@ -1420,7 +1516,7 @@
             // 
             // month12R2
             // 
-            this.month12R2.Location = new System.Drawing.Point(575, 285);
+            this.month12R2.Location = new System.Drawing.Point(574, 342);
             this.month12R2.Name = "month12R2";
             this.month12R2.ReadOnly = true;
             this.month12R2.Size = new System.Drawing.Size(63, 20);
@@ -1430,7 +1526,7 @@
             // 
             // month12R4
             // 
-            this.month12R4.Location = new System.Drawing.Point(575, 325);
+            this.month12R4.Location = new System.Drawing.Point(574, 382);
             this.month12R4.Name = "month12R4";
             this.month12R4.ReadOnly = true;
             this.month12R4.Size = new System.Drawing.Size(63, 20);
@@ -1441,7 +1537,7 @@
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(514, 240);
+            this.label46.Location = new System.Drawing.Point(513, 297);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(56, 13);
             this.label46.TabIndex = 117;
@@ -1449,7 +1545,7 @@
             // 
             // month11R3
             // 
-            this.month11R3.Location = new System.Drawing.Point(506, 305);
+            this.month11R3.Location = new System.Drawing.Point(505, 362);
             this.month11R3.Name = "month11R3";
             this.month11R3.ReadOnly = true;
             this.month11R3.Size = new System.Drawing.Size(63, 20);
@@ -1459,7 +1555,7 @@
             // 
             // month11R7
             // 
-            this.month11R7.Location = new System.Drawing.Point(506, 385);
+            this.month11R7.Location = new System.Drawing.Point(505, 442);
             this.month11R7.Name = "month11R7";
             this.month11R7.ReadOnly = true;
             this.month11R7.Size = new System.Drawing.Size(63, 20);
@@ -1469,7 +1565,7 @@
             // 
             // month11R6
             // 
-            this.month11R6.Location = new System.Drawing.Point(506, 365);
+            this.month11R6.Location = new System.Drawing.Point(505, 422);
             this.month11R6.Name = "month11R6";
             this.month11R6.ReadOnly = true;
             this.month11R6.Size = new System.Drawing.Size(63, 20);
@@ -1479,7 +1575,7 @@
             // 
             // month11R1
             // 
-            this.month11R1.Location = new System.Drawing.Point(506, 265);
+            this.month11R1.Location = new System.Drawing.Point(505, 322);
             this.month11R1.Name = "month11R1";
             this.month11R1.ReadOnly = true;
             this.month11R1.Size = new System.Drawing.Size(63, 20);
@@ -1489,7 +1585,7 @@
             // 
             // month11R5
             // 
-            this.month11R5.Location = new System.Drawing.Point(506, 345);
+            this.month11R5.Location = new System.Drawing.Point(505, 402);
             this.month11R5.Name = "month11R5";
             this.month11R5.ReadOnly = true;
             this.month11R5.Size = new System.Drawing.Size(63, 20);
@@ -1499,7 +1595,7 @@
             // 
             // month11R2
             // 
-            this.month11R2.Location = new System.Drawing.Point(506, 285);
+            this.month11R2.Location = new System.Drawing.Point(505, 342);
             this.month11R2.Name = "month11R2";
             this.month11R2.ReadOnly = true;
             this.month11R2.Size = new System.Drawing.Size(63, 20);
@@ -1509,7 +1605,7 @@
             // 
             // month11R4
             // 
-            this.month11R4.Location = new System.Drawing.Point(506, 325);
+            this.month11R4.Location = new System.Drawing.Point(505, 382);
             this.month11R4.Name = "month11R4";
             this.month11R4.ReadOnly = true;
             this.month11R4.Size = new System.Drawing.Size(63, 20);
@@ -1520,7 +1616,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(445, 240);
+            this.label47.Location = new System.Drawing.Point(444, 297);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(45, 13);
             this.label47.TabIndex = 109;
@@ -1528,7 +1624,7 @@
             // 
             // month10R3
             // 
-            this.month10R3.Location = new System.Drawing.Point(437, 305);
+            this.month10R3.Location = new System.Drawing.Point(436, 362);
             this.month10R3.Name = "month10R3";
             this.month10R3.ReadOnly = true;
             this.month10R3.Size = new System.Drawing.Size(63, 20);
@@ -1538,7 +1634,7 @@
             // 
             // month10R7
             // 
-            this.month10R7.Location = new System.Drawing.Point(437, 385);
+            this.month10R7.Location = new System.Drawing.Point(436, 442);
             this.month10R7.Name = "month10R7";
             this.month10R7.ReadOnly = true;
             this.month10R7.Size = new System.Drawing.Size(63, 20);
@@ -1548,7 +1644,7 @@
             // 
             // month10R6
             // 
-            this.month10R6.Location = new System.Drawing.Point(437, 365);
+            this.month10R6.Location = new System.Drawing.Point(436, 422);
             this.month10R6.Name = "month10R6";
             this.month10R6.ReadOnly = true;
             this.month10R6.Size = new System.Drawing.Size(63, 20);
@@ -1558,7 +1654,7 @@
             // 
             // month10R1
             // 
-            this.month10R1.Location = new System.Drawing.Point(437, 265);
+            this.month10R1.Location = new System.Drawing.Point(436, 322);
             this.month10R1.Name = "month10R1";
             this.month10R1.ReadOnly = true;
             this.month10R1.Size = new System.Drawing.Size(63, 20);
@@ -1568,7 +1664,7 @@
             // 
             // month10R5
             // 
-            this.month10R5.Location = new System.Drawing.Point(437, 345);
+            this.month10R5.Location = new System.Drawing.Point(436, 402);
             this.month10R5.Name = "month10R5";
             this.month10R5.ReadOnly = true;
             this.month10R5.Size = new System.Drawing.Size(63, 20);
@@ -1578,7 +1674,7 @@
             // 
             // month10R2
             // 
-            this.month10R2.Location = new System.Drawing.Point(437, 285);
+            this.month10R2.Location = new System.Drawing.Point(436, 342);
             this.month10R2.Name = "month10R2";
             this.month10R2.ReadOnly = true;
             this.month10R2.Size = new System.Drawing.Size(63, 20);
@@ -1588,7 +1684,7 @@
             // 
             // month10R4
             // 
-            this.month10R4.Location = new System.Drawing.Point(437, 325);
+            this.month10R4.Location = new System.Drawing.Point(436, 382);
             this.month10R4.Name = "month10R4";
             this.month10R4.ReadOnly = true;
             this.month10R4.Size = new System.Drawing.Size(63, 20);
@@ -1599,7 +1695,7 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(376, 240);
+            this.label48.Location = new System.Drawing.Point(375, 297);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(58, 13);
             this.label48.TabIndex = 101;
@@ -1607,7 +1703,7 @@
             // 
             // month9R3
             // 
-            this.month9R3.Location = new System.Drawing.Point(368, 305);
+            this.month9R3.Location = new System.Drawing.Point(367, 362);
             this.month9R3.Name = "month9R3";
             this.month9R3.ReadOnly = true;
             this.month9R3.Size = new System.Drawing.Size(63, 20);
@@ -1617,7 +1713,7 @@
             // 
             // month9R7
             // 
-            this.month9R7.Location = new System.Drawing.Point(368, 385);
+            this.month9R7.Location = new System.Drawing.Point(367, 442);
             this.month9R7.Name = "month9R7";
             this.month9R7.ReadOnly = true;
             this.month9R7.Size = new System.Drawing.Size(63, 20);
@@ -1627,7 +1723,7 @@
             // 
             // month9R6
             // 
-            this.month9R6.Location = new System.Drawing.Point(368, 365);
+            this.month9R6.Location = new System.Drawing.Point(367, 422);
             this.month9R6.Name = "month9R6";
             this.month9R6.ReadOnly = true;
             this.month9R6.Size = new System.Drawing.Size(63, 20);
@@ -1637,7 +1733,7 @@
             // 
             // month9R1
             // 
-            this.month9R1.Location = new System.Drawing.Point(368, 265);
+            this.month9R1.Location = new System.Drawing.Point(367, 322);
             this.month9R1.Name = "month9R1";
             this.month9R1.ReadOnly = true;
             this.month9R1.Size = new System.Drawing.Size(63, 20);
@@ -1647,7 +1743,7 @@
             // 
             // month9R5
             // 
-            this.month9R5.Location = new System.Drawing.Point(368, 345);
+            this.month9R5.Location = new System.Drawing.Point(367, 402);
             this.month9R5.Name = "month9R5";
             this.month9R5.ReadOnly = true;
             this.month9R5.Size = new System.Drawing.Size(63, 20);
@@ -1657,7 +1753,7 @@
             // 
             // month9R2
             // 
-            this.month9R2.Location = new System.Drawing.Point(368, 285);
+            this.month9R2.Location = new System.Drawing.Point(367, 342);
             this.month9R2.Name = "month9R2";
             this.month9R2.ReadOnly = true;
             this.month9R2.Size = new System.Drawing.Size(63, 20);
@@ -1667,7 +1763,7 @@
             // 
             // month9R4
             // 
-            this.month9R4.Location = new System.Drawing.Point(368, 325);
+            this.month9R4.Location = new System.Drawing.Point(367, 382);
             this.month9R4.Name = "month9R4";
             this.month9R4.ReadOnly = true;
             this.month9R4.Size = new System.Drawing.Size(63, 20);
@@ -1678,7 +1774,7 @@
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(307, 240);
+            this.label49.Location = new System.Drawing.Point(306, 297);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(40, 13);
             this.label49.TabIndex = 93;
@@ -1686,7 +1782,7 @@
             // 
             // month8R3
             // 
-            this.month8R3.Location = new System.Drawing.Point(299, 305);
+            this.month8R3.Location = new System.Drawing.Point(298, 362);
             this.month8R3.Name = "month8R3";
             this.month8R3.ReadOnly = true;
             this.month8R3.Size = new System.Drawing.Size(63, 20);
@@ -1696,7 +1792,7 @@
             // 
             // month8R7
             // 
-            this.month8R7.Location = new System.Drawing.Point(299, 385);
+            this.month8R7.Location = new System.Drawing.Point(298, 442);
             this.month8R7.Name = "month8R7";
             this.month8R7.ReadOnly = true;
             this.month8R7.Size = new System.Drawing.Size(63, 20);
@@ -1706,7 +1802,7 @@
             // 
             // month8R6
             // 
-            this.month8R6.Location = new System.Drawing.Point(299, 365);
+            this.month8R6.Location = new System.Drawing.Point(298, 422);
             this.month8R6.Name = "month8R6";
             this.month8R6.ReadOnly = true;
             this.month8R6.Size = new System.Drawing.Size(63, 20);
@@ -1716,7 +1812,7 @@
             // 
             // month8R1
             // 
-            this.month8R1.Location = new System.Drawing.Point(299, 265);
+            this.month8R1.Location = new System.Drawing.Point(298, 322);
             this.month8R1.Name = "month8R1";
             this.month8R1.ReadOnly = true;
             this.month8R1.Size = new System.Drawing.Size(63, 20);
@@ -1726,7 +1822,7 @@
             // 
             // month8R5
             // 
-            this.month8R5.Location = new System.Drawing.Point(299, 345);
+            this.month8R5.Location = new System.Drawing.Point(298, 402);
             this.month8R5.Name = "month8R5";
             this.month8R5.ReadOnly = true;
             this.month8R5.Size = new System.Drawing.Size(63, 20);
@@ -1736,7 +1832,7 @@
             // 
             // month8R2
             // 
-            this.month8R2.Location = new System.Drawing.Point(299, 285);
+            this.month8R2.Location = new System.Drawing.Point(298, 342);
             this.month8R2.Name = "month8R2";
             this.month8R2.ReadOnly = true;
             this.month8R2.Size = new System.Drawing.Size(63, 20);
@@ -1746,7 +1842,7 @@
             // 
             // month8R4
             // 
-            this.month8R4.Location = new System.Drawing.Point(299, 325);
+            this.month8R4.Location = new System.Drawing.Point(298, 382);
             this.month8R4.Name = "month8R4";
             this.month8R4.ReadOnly = true;
             this.month8R4.Size = new System.Drawing.Size(63, 20);
@@ -1757,7 +1853,7 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(238, 240);
+            this.label50.Location = new System.Drawing.Point(237, 297);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(25, 13);
             this.label50.TabIndex = 85;
@@ -1765,7 +1861,7 @@
             // 
             // month7R3
             // 
-            this.month7R3.Location = new System.Drawing.Point(230, 305);
+            this.month7R3.Location = new System.Drawing.Point(229, 362);
             this.month7R3.Name = "month7R3";
             this.month7R3.ReadOnly = true;
             this.month7R3.Size = new System.Drawing.Size(63, 20);
@@ -1775,7 +1871,7 @@
             // 
             // month7R7
             // 
-            this.month7R7.Location = new System.Drawing.Point(230, 385);
+            this.month7R7.Location = new System.Drawing.Point(229, 442);
             this.month7R7.Name = "month7R7";
             this.month7R7.ReadOnly = true;
             this.month7R7.Size = new System.Drawing.Size(63, 20);
@@ -1786,7 +1882,7 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(154, 388);
+            this.label51.Location = new System.Drawing.Point(153, 445);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(70, 13);
             this.label51.TabIndex = 83;
@@ -1795,7 +1891,7 @@
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(153, 268);
+            this.label52.Location = new System.Drawing.Point(152, 325);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(71, 13);
             this.label52.TabIndex = 71;
@@ -1803,7 +1899,7 @@
             // 
             // month7R6
             // 
-            this.month7R6.Location = new System.Drawing.Point(230, 365);
+            this.month7R6.Location = new System.Drawing.Point(229, 422);
             this.month7R6.Name = "month7R6";
             this.month7R6.ReadOnly = true;
             this.month7R6.Size = new System.Drawing.Size(63, 20);
@@ -1813,7 +1909,7 @@
             // 
             // month7R1
             // 
-            this.month7R1.Location = new System.Drawing.Point(230, 265);
+            this.month7R1.Location = new System.Drawing.Point(229, 322);
             this.month7R1.Name = "month7R1";
             this.month7R1.ReadOnly = true;
             this.month7R1.Size = new System.Drawing.Size(63, 20);
@@ -1824,7 +1920,7 @@
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(121, 368);
+            this.label53.Location = new System.Drawing.Point(120, 425);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(103, 13);
             this.label53.TabIndex = 81;
@@ -1833,7 +1929,7 @@
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(138, 288);
+            this.label54.Location = new System.Drawing.Point(137, 345);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(86, 13);
             this.label54.TabIndex = 73;
@@ -1841,7 +1937,7 @@
             // 
             // month7R5
             // 
-            this.month7R5.Location = new System.Drawing.Point(230, 345);
+            this.month7R5.Location = new System.Drawing.Point(229, 402);
             this.month7R5.Name = "month7R5";
             this.month7R5.ReadOnly = true;
             this.month7R5.Size = new System.Drawing.Size(63, 20);
@@ -1851,7 +1947,7 @@
             // 
             // month7R2
             // 
-            this.month7R2.Location = new System.Drawing.Point(230, 285);
+            this.month7R2.Location = new System.Drawing.Point(229, 342);
             this.month7R2.Name = "month7R2";
             this.month7R2.ReadOnly = true;
             this.month7R2.Size = new System.Drawing.Size(63, 20);
@@ -1862,7 +1958,7 @@
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(128, 348);
+            this.label55.Location = new System.Drawing.Point(127, 405);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(96, 13);
             this.label55.TabIndex = 79;
@@ -1871,7 +1967,7 @@
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(121, 308);
+            this.label56.Location = new System.Drawing.Point(120, 365);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(103, 13);
             this.label56.TabIndex = 75;
@@ -1879,7 +1975,7 @@
             // 
             // month7R4
             // 
-            this.month7R4.Location = new System.Drawing.Point(230, 325);
+            this.month7R4.Location = new System.Drawing.Point(229, 382);
             this.month7R4.Name = "month7R4";
             this.month7R4.ReadOnly = true;
             this.month7R4.Size = new System.Drawing.Size(63, 20);
@@ -1890,7 +1986,7 @@
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(124, 328);
+            this.label57.Location = new System.Drawing.Point(123, 385);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(100, 13);
             this.label57.TabIndex = 77;
@@ -2449,13 +2545,19 @@
             this.tabPage8.Controls.Add(this.panel2);
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(854, 511);
+            this.tabPage8.Size = new System.Drawing.Size(915, 565);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Weekly";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.tbTotalTimeWeekly5);
+            this.panel2.Controls.Add(this.tbTotalTimeWeekly4);
+            this.panel2.Controls.Add(this.tbTotalTimeWeekly3);
+            this.panel2.Controls.Add(this.tbTotalTimeWeekly2);
+            this.panel2.Controls.Add(this.tbTotalTimeWeekly1);
+            this.panel2.Controls.Add(this.label76);
             this.panel2.Controls.Add(this.tbAvgSpeedWeek5);
             this.panel2.Controls.Add(this.tbNumRidesWeek5);
             this.panel2.Controls.Add(this.tbElevGainWeek5);
@@ -2493,7 +2595,7 @@
             this.panel2.Controls.Add(this.btRefreshWeekly);
             this.panel2.Controls.Add(this.tbDistanceWeek1);
             this.panel2.Controls.Add(this.label65);
-            this.panel2.Location = new System.Drawing.Point(27, 26);
+            this.panel2.Location = new System.Drawing.Point(49, 51);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(805, 461);
             this.panel2.TabIndex = 129;
@@ -2514,7 +2616,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(854, 511);
+            this.tabPage2.Size = new System.Drawing.Size(915, 565);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -2550,7 +2652,7 @@
             this.groupBox2.Controls.Add(this.btRemoveLogYear);
             this.groupBox2.Controls.Add(this.cbLogYearConfig);
             this.groupBox2.Controls.Add(this.btAddLogYear);
-            this.groupBox2.Location = new System.Drawing.Point(57, 55);
+            this.groupBox2.Location = new System.Drawing.Point(96, 93);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(720, 385);
             this.groupBox2.TabIndex = 0;
@@ -2825,7 +2927,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(854, 511);
+            this.tabPage5.Size = new System.Drawing.Size(915, 565);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Maintenance";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -2912,7 +3014,7 @@
             // 
             // tbMaintID
             // 
-            this.tbMaintID.Location = new System.Drawing.Point(315, 596);
+            this.tbMaintID.Location = new System.Drawing.Point(296, 657);
             this.tbMaintID.Name = "tbMaintID";
             this.tbMaintID.Size = new System.Drawing.Size(53, 20);
             this.tbMaintID.TabIndex = 12;
@@ -2931,9 +3033,9 @@
             // 
             // rtbMaintComments
             // 
-            this.rtbMaintComments.Location = new System.Drawing.Point(22, 82);
+            this.rtbMaintComments.Location = new System.Drawing.Point(57, 92);
             this.rtbMaintComments.Name = "rtbMaintComments";
-            this.rtbMaintComments.Size = new System.Drawing.Size(804, 68);
+            this.rtbMaintComments.Size = new System.Drawing.Size(798, 68);
             this.rtbMaintComments.TabIndex = 10;
             this.rtbMaintComments.Text = "";
             // 
@@ -2950,7 +3052,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(19, 66);
+            this.label16.Location = new System.Drawing.Point(54, 66);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(56, 13);
             this.label16.TabIndex = 2;
@@ -2958,7 +3060,7 @@
             // 
             // btGetMaintLog
             // 
-            this.btGetMaintLog.Location = new System.Drawing.Point(412, 600);
+            this.btGetMaintLog.Location = new System.Drawing.Point(404, 654);
             this.btGetMaintLog.Name = "btGetMaintLog";
             this.btGetMaintLog.Size = new System.Drawing.Size(75, 23);
             this.btGetMaintLog.TabIndex = 1;
@@ -2971,9 +3073,9 @@
             // 
             this.dgvMaint.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvMaint.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMaint.Location = new System.Drawing.Point(22, 156);
+            this.dgvMaint.Location = new System.Drawing.Point(57, 166);
             this.dgvMaint.Name = "dgvMaint";
-            this.dgvMaint.Size = new System.Drawing.Size(804, 329);
+            this.dgvMaint.Size = new System.Drawing.Size(798, 366);
             this.dgvMaint.TabIndex = 0;
             // 
             // tabPage6
@@ -2982,7 +3084,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(854, 511);
+            this.tabPage6.Size = new System.Drawing.Size(915, 565);
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "Bike Miles";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -3005,7 +3107,7 @@
             this.groupBox5.Controls.Add(this.tbBikeMilesTotal3);
             this.groupBox5.Controls.Add(this.tbBikeMilesTotal2);
             this.groupBox5.Controls.Add(this.tbBikeMilesTotal1);
-            this.groupBox5.Location = new System.Drawing.Point(45, 33);
+            this.groupBox5.Location = new System.Drawing.Point(67, 64);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(772, 439);
             this.groupBox5.TabIndex = 0;
@@ -3179,7 +3281,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(854, 511);
+            this.tabPage3.Size = new System.Drawing.Size(915, 565);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "About";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -3190,7 +3292,7 @@
             this.groupBox3.Controls.Add(this.label29);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Location = new System.Drawing.Point(60, 56);
+            this.groupBox3.Location = new System.Drawing.Point(106, 77);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(720, 385);
             this.groupBox3.TabIndex = 0;
@@ -3247,7 +3349,7 @@
             // 
             // btRefreshWeekly
             // 
-            this.btRefreshWeekly.Location = new System.Drawing.Point(358, 361);
+            this.btRefreshWeekly.Location = new System.Drawing.Point(365, 387);
             this.btRefreshWeekly.Name = "btRefreshWeekly";
             this.btRefreshWeekly.Size = new System.Drawing.Size(86, 35);
             this.btRefreshWeekly.TabIndex = 130;
@@ -3595,11 +3697,511 @@
             this.tbDistanceWeek5.TabStop = false;
             this.tbDistanceWeek5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // tbElevGainMonthly6
+            // 
+            this.tbElevGainMonthly6.Location = new System.Drawing.Point(574, 231);
+            this.tbElevGainMonthly6.Name = "tbElevGainMonthly6";
+            this.tbElevGainMonthly6.ReadOnly = true;
+            this.tbElevGainMonthly6.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainMonthly6.TabIndex = 135;
+            this.tbElevGainMonthly6.TabStop = false;
+            this.tbElevGainMonthly6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainMonthly5
+            // 
+            this.tbElevGainMonthly5.Location = new System.Drawing.Point(505, 231);
+            this.tbElevGainMonthly5.Name = "tbElevGainMonthly5";
+            this.tbElevGainMonthly5.ReadOnly = true;
+            this.tbElevGainMonthly5.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainMonthly5.TabIndex = 134;
+            this.tbElevGainMonthly5.TabStop = false;
+            this.tbElevGainMonthly5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainMonthly4
+            // 
+            this.tbElevGainMonthly4.Location = new System.Drawing.Point(436, 231);
+            this.tbElevGainMonthly4.Name = "tbElevGainMonthly4";
+            this.tbElevGainMonthly4.ReadOnly = true;
+            this.tbElevGainMonthly4.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainMonthly4.TabIndex = 133;
+            this.tbElevGainMonthly4.TabStop = false;
+            this.tbElevGainMonthly4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainMonthly3
+            // 
+            this.tbElevGainMonthly3.Location = new System.Drawing.Point(367, 231);
+            this.tbElevGainMonthly3.Name = "tbElevGainMonthly3";
+            this.tbElevGainMonthly3.ReadOnly = true;
+            this.tbElevGainMonthly3.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainMonthly3.TabIndex = 132;
+            this.tbElevGainMonthly3.TabStop = false;
+            this.tbElevGainMonthly3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainMonthly2
+            // 
+            this.tbElevGainMonthly2.Location = new System.Drawing.Point(298, 231);
+            this.tbElevGainMonthly2.Name = "tbElevGainMonthly2";
+            this.tbElevGainMonthly2.ReadOnly = true;
+            this.tbElevGainMonthly2.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainMonthly2.TabIndex = 131;
+            this.tbElevGainMonthly2.TabStop = false;
+            this.tbElevGainMonthly2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainMonthly1
+            // 
+            this.tbElevGainMonthly1.Location = new System.Drawing.Point(229, 231);
+            this.tbElevGainMonthly1.Name = "tbElevGainMonthly1";
+            this.tbElevGainMonthly1.ReadOnly = true;
+            this.tbElevGainMonthly1.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainMonthly1.TabIndex = 130;
+            this.tbElevGainMonthly1.TabStop = false;
+            this.tbElevGainMonthly1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(154, 234);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(53, 13);
+            this.label71.TabIndex = 129;
+            this.label71.Text = "Elev Gain";
+            // 
+            // tbElevGainMonthly12
+            // 
+            this.tbElevGainMonthly12.Location = new System.Drawing.Point(574, 464);
+            this.tbElevGainMonthly12.Name = "tbElevGainMonthly12";
+            this.tbElevGainMonthly12.ReadOnly = true;
+            this.tbElevGainMonthly12.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainMonthly12.TabIndex = 142;
+            this.tbElevGainMonthly12.TabStop = false;
+            this.tbElevGainMonthly12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainMonthly11
+            // 
+            this.tbElevGainMonthly11.Location = new System.Drawing.Point(505, 464);
+            this.tbElevGainMonthly11.Name = "tbElevGainMonthly11";
+            this.tbElevGainMonthly11.ReadOnly = true;
+            this.tbElevGainMonthly11.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainMonthly11.TabIndex = 141;
+            this.tbElevGainMonthly11.TabStop = false;
+            this.tbElevGainMonthly11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainMonthly10
+            // 
+            this.tbElevGainMonthly10.Location = new System.Drawing.Point(436, 464);
+            this.tbElevGainMonthly10.Name = "tbElevGainMonthly10";
+            this.tbElevGainMonthly10.ReadOnly = true;
+            this.tbElevGainMonthly10.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainMonthly10.TabIndex = 140;
+            this.tbElevGainMonthly10.TabStop = false;
+            this.tbElevGainMonthly10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainMonthly9
+            // 
+            this.tbElevGainMonthly9.Location = new System.Drawing.Point(367, 464);
+            this.tbElevGainMonthly9.Name = "tbElevGainMonthly9";
+            this.tbElevGainMonthly9.ReadOnly = true;
+            this.tbElevGainMonthly9.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainMonthly9.TabIndex = 139;
+            this.tbElevGainMonthly9.TabStop = false;
+            this.tbElevGainMonthly9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainMonthly8
+            // 
+            this.tbElevGainMonthly8.Location = new System.Drawing.Point(298, 464);
+            this.tbElevGainMonthly8.Name = "tbElevGainMonthly8";
+            this.tbElevGainMonthly8.ReadOnly = true;
+            this.tbElevGainMonthly8.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainMonthly8.TabIndex = 138;
+            this.tbElevGainMonthly8.TabStop = false;
+            this.tbElevGainMonthly8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainMonthly7
+            // 
+            this.tbElevGainMonthly7.Location = new System.Drawing.Point(229, 464);
+            this.tbElevGainMonthly7.Name = "tbElevGainMonthly7";
+            this.tbElevGainMonthly7.ReadOnly = true;
+            this.tbElevGainMonthly7.Size = new System.Drawing.Size(63, 20);
+            this.tbElevGainMonthly7.TabIndex = 137;
+            this.tbElevGainMonthly7.TabStop = false;
+            this.tbElevGainMonthly7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(153, 467);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(53, 13);
+            this.label72.TabIndex = 136;
+            this.label72.Text = "Elev Gain";
+            // 
+            // tbElevGainYearly5
+            // 
+            this.tbElevGainYearly5.Location = new System.Drawing.Point(591, 274);
+            this.tbElevGainYearly5.Name = "tbElevGainYearly5";
+            this.tbElevGainYearly5.ReadOnly = true;
+            this.tbElevGainYearly5.Size = new System.Drawing.Size(110, 20);
+            this.tbElevGainYearly5.TabIndex = 69;
+            this.tbElevGainYearly5.TabStop = false;
+            this.tbElevGainYearly5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainYearly4
+            // 
+            this.tbElevGainYearly4.Location = new System.Drawing.Point(475, 274);
+            this.tbElevGainYearly4.Name = "tbElevGainYearly4";
+            this.tbElevGainYearly4.ReadOnly = true;
+            this.tbElevGainYearly4.Size = new System.Drawing.Size(110, 20);
+            this.tbElevGainYearly4.TabIndex = 68;
+            this.tbElevGainYearly4.TabStop = false;
+            this.tbElevGainYearly4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainYearly3
+            // 
+            this.tbElevGainYearly3.Location = new System.Drawing.Point(359, 274);
+            this.tbElevGainYearly3.Name = "tbElevGainYearly3";
+            this.tbElevGainYearly3.ReadOnly = true;
+            this.tbElevGainYearly3.Size = new System.Drawing.Size(110, 20);
+            this.tbElevGainYearly3.TabIndex = 67;
+            this.tbElevGainYearly3.TabStop = false;
+            this.tbElevGainYearly3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainYearly2
+            // 
+            this.tbElevGainYearly2.Location = new System.Drawing.Point(243, 274);
+            this.tbElevGainYearly2.Name = "tbElevGainYearly2";
+            this.tbElevGainYearly2.ReadOnly = true;
+            this.tbElevGainYearly2.Size = new System.Drawing.Size(110, 20);
+            this.tbElevGainYearly2.TabIndex = 66;
+            this.tbElevGainYearly2.TabStop = false;
+            this.tbElevGainYearly2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbElevGainYearly1
+            // 
+            this.tbElevGainYearly1.Location = new System.Drawing.Point(127, 274);
+            this.tbElevGainYearly1.Name = "tbElevGainYearly1";
+            this.tbElevGainYearly1.ReadOnly = true;
+            this.tbElevGainYearly1.Size = new System.Drawing.Size(110, 20);
+            this.tbElevGainYearly1.TabIndex = 65;
+            this.tbElevGainYearly1.TabStop = false;
+            this.tbElevGainYearly1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Location = new System.Drawing.Point(58, 277);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(53, 13);
+            this.label73.TabIndex = 64;
+            this.label73.Text = "Elev Gain";
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Location = new System.Drawing.Point(615, 351);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(0, 13);
+            this.label74.TabIndex = 72;
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Location = new System.Drawing.Point(489, 346);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(80, 13);
+            this.label75.TabIndex = 71;
+            this.label75.Text = "Total Elev Gain";
+            // 
+            // tbTotalElevGain
+            // 
+            this.tbTotalElevGain.Location = new System.Drawing.Point(475, 363);
+            this.tbTotalElevGain.Name = "tbTotalElevGain";
+            this.tbTotalElevGain.ReadOnly = true;
+            this.tbTotalElevGain.Size = new System.Drawing.Size(110, 20);
+            this.tbTotalElevGain.TabIndex = 70;
+            this.tbTotalElevGain.TabStop = false;
+            this.tbTotalElevGain.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTotalTimeWeekly5
+            // 
+            this.tbTotalTimeWeekly5.Location = new System.Drawing.Point(186, 322);
+            this.tbTotalTimeWeekly5.Name = "tbTotalTimeWeekly5";
+            this.tbTotalTimeWeekly5.ReadOnly = true;
+            this.tbTotalTimeWeekly5.Size = new System.Drawing.Size(63, 20);
+            this.tbTotalTimeWeekly5.TabIndex = 170;
+            this.tbTotalTimeWeekly5.TabStop = false;
+            this.tbTotalTimeWeekly5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTotalTimeWeekly4
+            // 
+            this.tbTotalTimeWeekly4.Location = new System.Drawing.Point(286, 322);
+            this.tbTotalTimeWeekly4.Name = "tbTotalTimeWeekly4";
+            this.tbTotalTimeWeekly4.ReadOnly = true;
+            this.tbTotalTimeWeekly4.Size = new System.Drawing.Size(63, 20);
+            this.tbTotalTimeWeekly4.TabIndex = 169;
+            this.tbTotalTimeWeekly4.TabStop = false;
+            this.tbTotalTimeWeekly4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTotalTimeWeekly3
+            // 
+            this.tbTotalTimeWeekly3.Location = new System.Drawing.Point(381, 322);
+            this.tbTotalTimeWeekly3.Name = "tbTotalTimeWeekly3";
+            this.tbTotalTimeWeekly3.ReadOnly = true;
+            this.tbTotalTimeWeekly3.Size = new System.Drawing.Size(63, 20);
+            this.tbTotalTimeWeekly3.TabIndex = 168;
+            this.tbTotalTimeWeekly3.TabStop = false;
+            this.tbTotalTimeWeekly3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTotalTimeWeekly2
+            // 
+            this.tbTotalTimeWeekly2.Location = new System.Drawing.Point(480, 322);
+            this.tbTotalTimeWeekly2.Name = "tbTotalTimeWeekly2";
+            this.tbTotalTimeWeekly2.ReadOnly = true;
+            this.tbTotalTimeWeekly2.Size = new System.Drawing.Size(63, 20);
+            this.tbTotalTimeWeekly2.TabIndex = 167;
+            this.tbTotalTimeWeekly2.TabStop = false;
+            this.tbTotalTimeWeekly2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTotalTimeWeekly1
+            // 
+            this.tbTotalTimeWeekly1.Location = new System.Drawing.Point(581, 322);
+            this.tbTotalTimeWeekly1.Name = "tbTotalTimeWeekly1";
+            this.tbTotalTimeWeekly1.ReadOnly = true;
+            this.tbTotalTimeWeekly1.Size = new System.Drawing.Size(63, 20);
+            this.tbTotalTimeWeekly1.TabIndex = 166;
+            this.tbTotalTimeWeekly1.TabStop = false;
+            this.tbTotalTimeWeekly1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label76.Location = new System.Drawing.Point(89, 325);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(68, 13);
+            this.label76.TabIndex = 165;
+            this.label76.Text = "Moving Time";
+            // 
+            // tbTimeYearly5
+            // 
+            this.tbTimeYearly5.Location = new System.Drawing.Point(591, 300);
+            this.tbTimeYearly5.Name = "tbTimeYearly5";
+            this.tbTimeYearly5.ReadOnly = true;
+            this.tbTimeYearly5.Size = new System.Drawing.Size(110, 20);
+            this.tbTimeYearly5.TabIndex = 78;
+            this.tbTimeYearly5.TabStop = false;
+            this.tbTimeYearly5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTimeYearly4
+            // 
+            this.tbTimeYearly4.Location = new System.Drawing.Point(475, 300);
+            this.tbTimeYearly4.Name = "tbTimeYearly4";
+            this.tbTimeYearly4.ReadOnly = true;
+            this.tbTimeYearly4.Size = new System.Drawing.Size(110, 20);
+            this.tbTimeYearly4.TabIndex = 77;
+            this.tbTimeYearly4.TabStop = false;
+            this.tbTimeYearly4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTimeYearly3
+            // 
+            this.tbTimeYearly3.Location = new System.Drawing.Point(359, 300);
+            this.tbTimeYearly3.Name = "tbTimeYearly3";
+            this.tbTimeYearly3.ReadOnly = true;
+            this.tbTimeYearly3.Size = new System.Drawing.Size(110, 20);
+            this.tbTimeYearly3.TabIndex = 76;
+            this.tbTimeYearly3.TabStop = false;
+            this.tbTimeYearly3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTimeYearly2
+            // 
+            this.tbTimeYearly2.Location = new System.Drawing.Point(243, 300);
+            this.tbTimeYearly2.Name = "tbTimeYearly2";
+            this.tbTimeYearly2.ReadOnly = true;
+            this.tbTimeYearly2.Size = new System.Drawing.Size(110, 20);
+            this.tbTimeYearly2.TabIndex = 75;
+            this.tbTimeYearly2.TabStop = false;
+            this.tbTimeYearly2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTimeYearly1
+            // 
+            this.tbTimeYearly1.Location = new System.Drawing.Point(127, 300);
+            this.tbTimeYearly1.Name = "tbTimeYearly1";
+            this.tbTimeYearly1.ReadOnly = true;
+            this.tbTimeYearly1.Size = new System.Drawing.Size(110, 20);
+            this.tbTimeYearly1.TabIndex = 74;
+            this.tbTimeYearly1.TabStop = false;
+            this.tbTimeYearly1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label77
+            // 
+            this.label77.AutoSize = true;
+            this.label77.Location = new System.Drawing.Point(51, 300);
+            this.label77.Name = "label77";
+            this.label77.Size = new System.Drawing.Size(68, 13);
+            this.label77.TabIndex = 73;
+            this.label77.Text = "Moving Time";
+            // 
+            // tbTimeMonthly6
+            // 
+            this.tbTimeMonthly6.Location = new System.Drawing.Point(574, 257);
+            this.tbTimeMonthly6.Name = "tbTimeMonthly6";
+            this.tbTimeMonthly6.ReadOnly = true;
+            this.tbTimeMonthly6.Size = new System.Drawing.Size(63, 20);
+            this.tbTimeMonthly6.TabIndex = 149;
+            this.tbTimeMonthly6.TabStop = false;
+            this.tbTimeMonthly6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTimeMonthly5
+            // 
+            this.tbTimeMonthly5.Location = new System.Drawing.Point(505, 257);
+            this.tbTimeMonthly5.Name = "tbTimeMonthly5";
+            this.tbTimeMonthly5.ReadOnly = true;
+            this.tbTimeMonthly5.Size = new System.Drawing.Size(63, 20);
+            this.tbTimeMonthly5.TabIndex = 148;
+            this.tbTimeMonthly5.TabStop = false;
+            this.tbTimeMonthly5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTimeMonthly4
+            // 
+            this.tbTimeMonthly4.Location = new System.Drawing.Point(436, 257);
+            this.tbTimeMonthly4.Name = "tbTimeMonthly4";
+            this.tbTimeMonthly4.ReadOnly = true;
+            this.tbTimeMonthly4.Size = new System.Drawing.Size(63, 20);
+            this.tbTimeMonthly4.TabIndex = 147;
+            this.tbTimeMonthly4.TabStop = false;
+            this.tbTimeMonthly4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTimeMonthly3
+            // 
+            this.tbTimeMonthly3.Location = new System.Drawing.Point(367, 257);
+            this.tbTimeMonthly3.Name = "tbTimeMonthly3";
+            this.tbTimeMonthly3.ReadOnly = true;
+            this.tbTimeMonthly3.Size = new System.Drawing.Size(63, 20);
+            this.tbTimeMonthly3.TabIndex = 146;
+            this.tbTimeMonthly3.TabStop = false;
+            this.tbTimeMonthly3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTimeMonthly2
+            // 
+            this.tbTimeMonthly2.Location = new System.Drawing.Point(298, 257);
+            this.tbTimeMonthly2.Name = "tbTimeMonthly2";
+            this.tbTimeMonthly2.ReadOnly = true;
+            this.tbTimeMonthly2.Size = new System.Drawing.Size(63, 20);
+            this.tbTimeMonthly2.TabIndex = 145;
+            this.tbTimeMonthly2.TabStop = false;
+            this.tbTimeMonthly2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTimeMonthly1
+            // 
+            this.tbTimeMonthly1.Location = new System.Drawing.Point(229, 257);
+            this.tbTimeMonthly1.Name = "tbTimeMonthly1";
+            this.tbTimeMonthly1.ReadOnly = true;
+            this.tbTimeMonthly1.Size = new System.Drawing.Size(63, 20);
+            this.tbTimeMonthly1.TabIndex = 144;
+            this.tbTimeMonthly1.TabStop = false;
+            this.tbTimeMonthly1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label78
+            // 
+            this.label78.AutoSize = true;
+            this.label78.Location = new System.Drawing.Point(152, 257);
+            this.label78.Name = "label78";
+            this.label78.Size = new System.Drawing.Size(68, 13);
+            this.label78.TabIndex = 143;
+            this.label78.Text = "Moving Time";
+            // 
+            // tbTimeMonthly12
+            // 
+            this.tbTimeMonthly12.Location = new System.Drawing.Point(575, 490);
+            this.tbTimeMonthly12.Name = "tbTimeMonthly12";
+            this.tbTimeMonthly12.ReadOnly = true;
+            this.tbTimeMonthly12.Size = new System.Drawing.Size(63, 20);
+            this.tbTimeMonthly12.TabIndex = 156;
+            this.tbTimeMonthly12.TabStop = false;
+            this.tbTimeMonthly12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTimeMonthly11
+            // 
+            this.tbTimeMonthly11.Location = new System.Drawing.Point(506, 490);
+            this.tbTimeMonthly11.Name = "tbTimeMonthly11";
+            this.tbTimeMonthly11.ReadOnly = true;
+            this.tbTimeMonthly11.Size = new System.Drawing.Size(63, 20);
+            this.tbTimeMonthly11.TabIndex = 155;
+            this.tbTimeMonthly11.TabStop = false;
+            this.tbTimeMonthly11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTimeMonthly10
+            // 
+            this.tbTimeMonthly10.Location = new System.Drawing.Point(437, 490);
+            this.tbTimeMonthly10.Name = "tbTimeMonthly10";
+            this.tbTimeMonthly10.ReadOnly = true;
+            this.tbTimeMonthly10.Size = new System.Drawing.Size(63, 20);
+            this.tbTimeMonthly10.TabIndex = 154;
+            this.tbTimeMonthly10.TabStop = false;
+            this.tbTimeMonthly10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTimeMonthly9
+            // 
+            this.tbTimeMonthly9.Location = new System.Drawing.Point(368, 490);
+            this.tbTimeMonthly9.Name = "tbTimeMonthly9";
+            this.tbTimeMonthly9.ReadOnly = true;
+            this.tbTimeMonthly9.Size = new System.Drawing.Size(63, 20);
+            this.tbTimeMonthly9.TabIndex = 153;
+            this.tbTimeMonthly9.TabStop = false;
+            this.tbTimeMonthly9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTimeMonthly8
+            // 
+            this.tbTimeMonthly8.Location = new System.Drawing.Point(299, 490);
+            this.tbTimeMonthly8.Name = "tbTimeMonthly8";
+            this.tbTimeMonthly8.ReadOnly = true;
+            this.tbTimeMonthly8.Size = new System.Drawing.Size(63, 20);
+            this.tbTimeMonthly8.TabIndex = 152;
+            this.tbTimeMonthly8.TabStop = false;
+            this.tbTimeMonthly8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbTimeMonthly7
+            // 
+            this.tbTimeMonthly7.Location = new System.Drawing.Point(230, 490);
+            this.tbTimeMonthly7.Name = "tbTimeMonthly7";
+            this.tbTimeMonthly7.ReadOnly = true;
+            this.tbTimeMonthly7.Size = new System.Drawing.Size(63, 20);
+            this.tbTimeMonthly7.TabIndex = 151;
+            this.tbTimeMonthly7.TabStop = false;
+            this.tbTimeMonthly7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label79
+            // 
+            this.label79.AutoSize = true;
+            this.label79.Location = new System.Drawing.Point(152, 490);
+            this.label79.Name = "label79";
+            this.label79.Size = new System.Drawing.Size(68, 13);
+            this.label79.TabIndex = 150;
+            this.label79.Text = "Moving Time";
+            // 
+            // label80
+            // 
+            this.label80.AutoSize = true;
+            this.label80.Location = new System.Drawing.Point(615, 346);
+            this.label80.Name = "label80";
+            this.label80.Size = new System.Drawing.Size(57, 13);
+            this.label80.TabIndex = 80;
+            this.label80.Text = "Total Time";
+            // 
+            // tbTotalTime
+            // 
+            this.tbTotalTime.Location = new System.Drawing.Point(591, 363);
+            this.tbTotalTime.Name = "tbTotalTime";
+            this.tbTotalTime.ReadOnly = true;
+            this.tbTotalTime.Size = new System.Drawing.Size(110, 20);
+            this.tbTotalTime.TabIndex = 79;
+            this.tbTotalTime.TabStop = false;
+            this.tbTotalTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(933, 667);
+            this.ClientSize = new System.Drawing.Size(1001, 724);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btGetMaintLog);
@@ -3944,6 +4546,57 @@
         private System.Windows.Forms.TextBox tbNumRidesWeek1;
         private System.Windows.Forms.TextBox tbElevGainWeek1;
         private System.Windows.Forms.TextBox tbLongestRideWeek1;
+        private System.Windows.Forms.TextBox tbElevGainMonthly12;
+        private System.Windows.Forms.TextBox tbElevGainMonthly11;
+        private System.Windows.Forms.TextBox tbElevGainMonthly10;
+        private System.Windows.Forms.TextBox tbElevGainMonthly9;
+        private System.Windows.Forms.TextBox tbElevGainMonthly8;
+        private System.Windows.Forms.TextBox tbElevGainMonthly7;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.TextBox tbElevGainMonthly6;
+        private System.Windows.Forms.TextBox tbElevGainMonthly5;
+        private System.Windows.Forms.TextBox tbElevGainMonthly4;
+        private System.Windows.Forms.TextBox tbElevGainMonthly3;
+        private System.Windows.Forms.TextBox tbElevGainMonthly2;
+        private System.Windows.Forms.TextBox tbElevGainMonthly1;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.TextBox tbElevGainYearly5;
+        private System.Windows.Forms.TextBox tbElevGainYearly4;
+        private System.Windows.Forms.TextBox tbElevGainYearly3;
+        private System.Windows.Forms.TextBox tbElevGainYearly2;
+        private System.Windows.Forms.TextBox tbElevGainYearly1;
+        private System.Windows.Forms.Label label73;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.TextBox tbTotalElevGain;
+        private System.Windows.Forms.TextBox tbTotalTimeWeekly5;
+        private System.Windows.Forms.TextBox tbTotalTimeWeekly4;
+        private System.Windows.Forms.TextBox tbTotalTimeWeekly3;
+        private System.Windows.Forms.TextBox tbTotalTimeWeekly2;
+        private System.Windows.Forms.TextBox tbTotalTimeWeekly1;
+        private System.Windows.Forms.Label label76;
+        private System.Windows.Forms.TextBox tbTimeYearly5;
+        private System.Windows.Forms.TextBox tbTimeYearly4;
+        private System.Windows.Forms.TextBox tbTimeYearly3;
+        private System.Windows.Forms.TextBox tbTimeYearly2;
+        private System.Windows.Forms.TextBox tbTimeYearly1;
+        private System.Windows.Forms.Label label77;
+        private System.Windows.Forms.TextBox tbTimeMonthly12;
+        private System.Windows.Forms.TextBox tbTimeMonthly11;
+        private System.Windows.Forms.TextBox tbTimeMonthly10;
+        private System.Windows.Forms.TextBox tbTimeMonthly9;
+        private System.Windows.Forms.TextBox tbTimeMonthly8;
+        private System.Windows.Forms.TextBox tbTimeMonthly7;
+        private System.Windows.Forms.Label label79;
+        private System.Windows.Forms.TextBox tbTimeMonthly6;
+        private System.Windows.Forms.TextBox tbTimeMonthly5;
+        private System.Windows.Forms.TextBox tbTimeMonthly4;
+        private System.Windows.Forms.TextBox tbTimeMonthly3;
+        private System.Windows.Forms.TextBox tbTimeMonthly2;
+        private System.Windows.Forms.TextBox tbTimeMonthly1;
+        private System.Windows.Forms.Label label78;
+        private System.Windows.Forms.Label label80;
+        private System.Windows.Forms.TextBox tbTotalTime;
     }
 }
 

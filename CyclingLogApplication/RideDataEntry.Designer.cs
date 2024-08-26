@@ -50,8 +50,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cbBikeDataEntrySelection = new System.Windows.Forms.ComboBox();
@@ -95,16 +93,18 @@
             this.numDistanceRideDataEntry = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.cbRideTypeDataEntry = new System.Windows.Forms.ComboBox();
+            this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDistanceRideDataEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // cbLogYearDataEntry
@@ -309,16 +309,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.SubmitData);
             // 
-            // tableRideInformationBindingSource
-            // 
-            this.tableRideInformationBindingSource.DataMember = "Table_Ride_Information";
-            this.tableRideInformationBindingSource.DataSource = this.cyclingLogDatabaseDataSet;
-            // 
-            // cyclingLogDatabaseDataSet
-            // 
-            this.cyclingLogDatabaseDataSet.DataSetName = "CyclingLogDatabaseDataSet";
-            this.cyclingLogDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(400, 590);
@@ -501,6 +491,7 @@
             // 
             // numericUpDown3
             // 
+            this.numericUpDown3.DecimalPlaces = 1;
             this.numericUpDown3.Location = new System.Drawing.Point(76, 154);
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(126, 20);
@@ -508,6 +499,7 @@
             // 
             // numericUpDown4
             // 
+            this.numericUpDown4.DecimalPlaces = 1;
             this.numericUpDown4.Location = new System.Drawing.Point(76, 128);
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(126, 20);
@@ -721,6 +713,7 @@
             // 
             // numericUpDown1
             // 
+            this.numericUpDown1.DecimalPlaces = 1;
             this.numericUpDown1.Location = new System.Drawing.Point(76, 100);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(126, 20);
@@ -739,6 +732,16 @@
             this.cbRideTypeDataEntry.Name = "cbRideTypeDataEntry";
             this.cbRideTypeDataEntry.Size = new System.Drawing.Size(126, 21);
             this.cbRideTypeDataEntry.TabIndex = 1;
+            // 
+            // tableRideInformationBindingSource
+            // 
+            this.tableRideInformationBindingSource.DataMember = "Table_Ride_Information";
+            this.tableRideInformationBindingSource.DataSource = this.cyclingLogDatabaseDataSet;
+            // 
+            // cyclingLogDatabaseDataSet
+            // 
+            this.cyclingLogDatabaseDataSet.DataSetName = "CyclingLogDatabaseDataSet";
+            this.cyclingLogDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // table_Ride_InformationTableAdapter
             // 
@@ -764,14 +767,14 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDistanceRideDataEntry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
