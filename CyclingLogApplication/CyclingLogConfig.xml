@@ -2,18 +2,18 @@
   <DAYSTOKEEPLOGS>90</DAYSTOKEEPLOGS>
   <VERSION>0.3.0</VERSION>
   <LOGLEVEL>0</LOGLEVEL>
-  <cbStatistic1>14</cbStatistic1>
+  <cbStatistic1>16</cbStatistic1>
   <cbStatistic2>15</cbStatistic2>
   <cbStatistic3>-1</cbStatistic3>
   <cbStatistic4>-1</cbStatistic4>
   <cbStatistic5>-1</cbStatistic5>
-  <LastBikeSelected>0</LastBikeSelected>
-  <LastLogSelected>14</LastLogSelected>
-  <LastLogFilterSelected>15</LastLogFilterSelected>
+  <LastBikeSelected>5</LastBikeSelected>
+  <LastLogSelected>13</LastLogSelected>
+  <LastLogFilterSelected>14</LastLogFilterSelected>
   <ChartLogYear>-1</ChartLogYear>
   <ChartRoute>-1</ChartRoute>
   <ChartType>-1</ChartType>
   <ChartTimeType>-1</ChartTimeType>
   <LastMonthlyLogSelected>-1</LastMonthlyLogSelected>
-  <LastLogSelectedDataEntry>14</LastLogSelectedDataEntry>
+  <LastLogSelectedDataEntry>13</LastLogSelectedDataEntry>
 </Config>

@@ -1071,11 +1071,12 @@ namespace CyclingLogApplication
 
         //Get total of miles for the selected log:
         //SELECT SUM(RideDistance) FROM Table_Ride_Information;
-        private float GetTotalMilesForSelectedLog(int logIndex)
+        private string GetTotalMilesForSelectedLog(int logIndex)
         {
             List<object> objectValues = new List<object>();
             objectValues.Add(logIndex);
-            float returnValue = 0;
+            string returnValue = "0";
+            double miles = 0;
 
             //ExecuteScalarFunction
             using (var results = ExecuteSimpleQueryConnection("GetTotalMiles", objectValues))
@@ -1087,15 +1088,18 @@ namespace CyclingLogApplication
                         string temp = results[0].ToString();
                         if (temp.Equals(""))
                         {
-                            returnValue = 0;
+                            returnValue = "0";
                         }
                         else
                         {
-                            returnValue = float.Parse(temp);
+                            returnValue = temp;
                         }
                     }
                 }
             }
+
+            miles = double.Parse(returnValue);
+            returnValue = miles.ToString("N0");
 
             return returnValue;
         }
@@ -1289,7 +1293,7 @@ namespace CyclingLogApplication
         //Total miles/weeks
         private float GetAverageMilesPerWeek(int logIndex)
         {
-            float totalMiles = GetTotalMilesForSelectedLog(logIndex);
+            float totalMiles = float.Parse(GetTotalMilesForSelectedLog(logIndex));
             float avgMiles = 0;
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
             Calendar cal = dfi.Calendar;
@@ -1320,7 +1324,7 @@ namespace CyclingLogApplication
         //Total miles/total rides
         private float GetAverageMilesPerRide(int logIndex)
         {
-            float miles = GetTotalMilesForSelectedLog(logIndex);
+            float miles = float.Parse(GetTotalMilesForSelectedLog(logIndex));
             int rides = GetTotalRidesForSelectedLog(logIndex);
             float averageMiles = 0;
 
@@ -3121,6 +3125,38 @@ namespace CyclingLogApplication
                 MessageBox.Show("Must select a Bike from the Bike Selection list.");
                 return;
             }
+        }
+
+        public int GetLogYearIndexByName(string logName)
+        {
+            int logIndex = 0;
+            List<object> objectValues = new List<object>();
+            objectValues.Add(logName);
+
+            try
+            {
+                //ExecuteScalarFunction
+                using (var results = ExecuteSimpleQueryConnection("Get_LogYear_IndexByName", objectValues))
+                {
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            logIndex = Int32.Parse(results[0].ToString());
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to retrive Log Index." + ex.Message.ToString());
+            }
+
+            return logIndex;
         }
 
         private void CbLogYearConfig_SelectedIndexChanged(object sender, EventArgs e)

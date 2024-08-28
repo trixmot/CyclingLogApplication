@@ -441,7 +441,7 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(329, 189);
+            this.button5.Location = new System.Drawing.Point(357, 202);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(130, 35);
             this.button5.TabIndex = 1;
@@ -452,7 +452,7 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(329, 144);
+            this.button7.Location = new System.Drawing.Point(357, 157);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(130, 35);
             this.button7.TabIndex = 0;
@@ -503,7 +503,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(329, 238);
+            this.button1.Location = new System.Drawing.Point(357, 251);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 35);
             this.button1.TabIndex = 11;
@@ -515,7 +515,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(108, 241);
+            this.label15.Location = new System.Drawing.Point(136, 254);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(70, 13);
             this.label15.TabIndex = 52;
@@ -524,7 +524,7 @@
             // btDeleteAllData
             // 
             this.btDeleteAllData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btDeleteAllData.Location = new System.Drawing.Point(329, 289);
+            this.btDeleteAllData.Location = new System.Drawing.Point(357, 302);
             this.btDeleteAllData.Name = "btDeleteAllData";
             this.btDeleteAllData.Size = new System.Drawing.Size(130, 35);
             this.btDeleteAllData.TabIndex = 3;
@@ -534,7 +534,7 @@
             // 
             // tbWeekCount
             // 
-            this.tbWeekCount.Location = new System.Drawing.Point(189, 198);
+            this.tbWeekCount.Location = new System.Drawing.Point(217, 211);
             this.tbWeekCount.Name = "tbWeekCount";
             this.tbWeekCount.ReadOnly = true;
             this.tbWeekCount.Size = new System.Drawing.Size(47, 20);
@@ -545,7 +545,7 @@
             // button11
             // 
             this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button11.Location = new System.Drawing.Point(556, 169);
+            this.button11.Location = new System.Drawing.Point(584, 182);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(130, 35);
             this.button11.TabIndex = 2;
@@ -556,7 +556,7 @@
             // 
             // tbTimeChange
             // 
-            this.tbTimeChange.Location = new System.Drawing.Point(189, 238);
+            this.tbTimeChange.Location = new System.Drawing.Point(217, 251);
             this.tbTimeChange.Name = "tbTimeChange";
             this.tbTimeChange.ReadOnly = true;
             this.tbTimeChange.Size = new System.Drawing.Size(47, 20);
@@ -566,7 +566,7 @@
             // 
             // tbDayCount
             // 
-            this.tbDayCount.Location = new System.Drawing.Point(189, 218);
+            this.tbDayCount.Location = new System.Drawing.Point(217, 231);
             this.tbDayCount.Name = "tbDayCount";
             this.tbDayCount.ReadOnly = true;
             this.tbDayCount.Size = new System.Drawing.Size(47, 20);
@@ -578,7 +578,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(121, 221);
+            this.label14.Location = new System.Drawing.Point(149, 234);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(57, 13);
             this.label14.TabIndex = 50;
@@ -588,7 +588,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(111, 201);
+            this.label13.Location = new System.Drawing.Point(139, 214);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(67, 13);
             this.label13.TabIndex = 49;
@@ -2652,9 +2652,9 @@
             this.groupBox2.Controls.Add(this.btRemoveLogYear);
             this.groupBox2.Controls.Add(this.cbLogYearConfig);
             this.groupBox2.Controls.Add(this.btAddLogYear);
-            this.groupBox2.Location = new System.Drawing.Point(96, 93);
+            this.groupBox2.Location = new System.Drawing.Point(97, 73);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(720, 385);
+            this.groupBox2.Size = new System.Drawing.Size(720, 412);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
@@ -2955,7 +2955,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(244, 13);
+            this.label18.Location = new System.Drawing.Point(277, 14);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(28, 13);
             this.label18.TabIndex = 9;
@@ -2965,7 +2965,7 @@
             // 
             this.cbBikeMaint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBikeMaint.FormattingEnabled = true;
-            this.cbBikeMaint.Location = new System.Drawing.Point(247, 29);
+            this.cbBikeMaint.Location = new System.Drawing.Point(280, 30);
             this.cbBikeMaint.Name = "cbBikeMaint";
             this.cbBikeMaint.Size = new System.Drawing.Size(121, 21);
             this.cbBikeMaint.TabIndex = 5;
@@ -2982,7 +2982,7 @@
             // 
             // tbMaintMiles
             // 
-            this.tbMaintMiles.Location = new System.Drawing.Point(382, 30);
+            this.tbMaintMiles.Location = new System.Drawing.Point(415, 31);
             this.tbMaintMiles.Name = "tbMaintMiles";
             this.tbMaintMiles.Size = new System.Drawing.Size(100, 20);
             this.tbMaintMiles.TabIndex = 14;
@@ -2990,7 +2990,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(379, 14);
+            this.label19.Location = new System.Drawing.Point(412, 15);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(31, 13);
             this.label19.TabIndex = 13;
@@ -2999,7 +2999,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(19, 14);
+            this.label17.Location = new System.Drawing.Point(52, 15);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(30, 13);
             this.label17.TabIndex = 8;
@@ -3007,7 +3007,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(22, 30);
+            this.dateTimePicker1.Location = new System.Drawing.Point(55, 31);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(202, 20);
             this.dateTimePicker1.TabIndex = 6;
@@ -3107,7 +3107,7 @@
             this.groupBox5.Controls.Add(this.tbBikeMilesTotal3);
             this.groupBox5.Controls.Add(this.tbBikeMilesTotal2);
             this.groupBox5.Controls.Add(this.tbBikeMilesTotal1);
-            this.groupBox5.Location = new System.Drawing.Point(67, 64);
+            this.groupBox5.Location = new System.Drawing.Point(67, 53);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(772, 439);
             this.groupBox5.TabIndex = 0;
@@ -3292,7 +3292,7 @@
             this.groupBox3.Controls.Add(this.label29);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Location = new System.Drawing.Point(106, 77);
+            this.groupBox3.Location = new System.Drawing.Point(97, 70);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(720, 385);
             this.groupBox3.TabIndex = 0;
@@ -3410,6 +3410,7 @@
             // lbweek1
             // 
             this.lbweek1.AutoSize = true;
+            this.lbweek1.BackColor = System.Drawing.Color.Silver;
             this.lbweek1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbweek1.Location = new System.Drawing.Point(578, 97);
             this.lbweek1.Name = "lbweek1";
@@ -3420,6 +3421,7 @@
             // lbweek2
             // 
             this.lbweek2.AutoSize = true;
+            this.lbweek2.BackColor = System.Drawing.Color.Silver;
             this.lbweek2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbweek2.Location = new System.Drawing.Point(477, 97);
             this.lbweek2.Name = "lbweek2";
@@ -3430,6 +3432,7 @@
             // lbweek3
             // 
             this.lbweek3.AutoSize = true;
+            this.lbweek3.BackColor = System.Drawing.Color.Silver;
             this.lbweek3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbweek3.Location = new System.Drawing.Point(378, 97);
             this.lbweek3.Name = "lbweek3";
@@ -3440,6 +3443,7 @@
             // lbweek4
             // 
             this.lbweek4.AutoSize = true;
+            this.lbweek4.BackColor = System.Drawing.Color.Silver;
             this.lbweek4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbweek4.Location = new System.Drawing.Point(283, 97);
             this.lbweek4.Name = "lbweek4";
@@ -3450,6 +3454,7 @@
             // lbweek5
             // 
             this.lbweek5.AutoSize = true;
+            this.lbweek5.BackColor = System.Drawing.Color.Silver;
             this.lbweek5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbweek5.Location = new System.Drawing.Point(183, 97);
             this.lbweek5.Name = "lbweek5";
@@ -3983,7 +3988,7 @@
             // 
             // tbTimeYearly5
             // 
-            this.tbTimeYearly5.Location = new System.Drawing.Point(591, 300);
+            this.tbTimeYearly5.Location = new System.Drawing.Point(591, 297);
             this.tbTimeYearly5.Name = "tbTimeYearly5";
             this.tbTimeYearly5.ReadOnly = true;
             this.tbTimeYearly5.Size = new System.Drawing.Size(110, 20);
@@ -3993,7 +3998,7 @@
             // 
             // tbTimeYearly4
             // 
-            this.tbTimeYearly4.Location = new System.Drawing.Point(475, 300);
+            this.tbTimeYearly4.Location = new System.Drawing.Point(475, 297);
             this.tbTimeYearly4.Name = "tbTimeYearly4";
             this.tbTimeYearly4.ReadOnly = true;
             this.tbTimeYearly4.Size = new System.Drawing.Size(110, 20);
@@ -4003,7 +4008,7 @@
             // 
             // tbTimeYearly3
             // 
-            this.tbTimeYearly3.Location = new System.Drawing.Point(359, 300);
+            this.tbTimeYearly3.Location = new System.Drawing.Point(359, 297);
             this.tbTimeYearly3.Name = "tbTimeYearly3";
             this.tbTimeYearly3.ReadOnly = true;
             this.tbTimeYearly3.Size = new System.Drawing.Size(110, 20);
@@ -4013,7 +4018,7 @@
             // 
             // tbTimeYearly2
             // 
-            this.tbTimeYearly2.Location = new System.Drawing.Point(243, 300);
+            this.tbTimeYearly2.Location = new System.Drawing.Point(243, 297);
             this.tbTimeYearly2.Name = "tbTimeYearly2";
             this.tbTimeYearly2.ReadOnly = true;
             this.tbTimeYearly2.Size = new System.Drawing.Size(110, 20);
@@ -4023,7 +4028,7 @@
             // 
             // tbTimeYearly1
             // 
-            this.tbTimeYearly1.Location = new System.Drawing.Point(127, 300);
+            this.tbTimeYearly1.Location = new System.Drawing.Point(127, 297);
             this.tbTimeYearly1.Name = "tbTimeYearly1";
             this.tbTimeYearly1.ReadOnly = true;
             this.tbTimeYearly1.Size = new System.Drawing.Size(110, 20);
@@ -4042,7 +4047,7 @@
             // 
             // tbTimeMonthly6
             // 
-            this.tbTimeMonthly6.Location = new System.Drawing.Point(574, 257);
+            this.tbTimeMonthly6.Location = new System.Drawing.Point(574, 254);
             this.tbTimeMonthly6.Name = "tbTimeMonthly6";
             this.tbTimeMonthly6.ReadOnly = true;
             this.tbTimeMonthly6.Size = new System.Drawing.Size(63, 20);
@@ -4052,7 +4057,7 @@
             // 
             // tbTimeMonthly5
             // 
-            this.tbTimeMonthly5.Location = new System.Drawing.Point(505, 257);
+            this.tbTimeMonthly5.Location = new System.Drawing.Point(505, 254);
             this.tbTimeMonthly5.Name = "tbTimeMonthly5";
             this.tbTimeMonthly5.ReadOnly = true;
             this.tbTimeMonthly5.Size = new System.Drawing.Size(63, 20);
@@ -4062,7 +4067,7 @@
             // 
             // tbTimeMonthly4
             // 
-            this.tbTimeMonthly4.Location = new System.Drawing.Point(436, 257);
+            this.tbTimeMonthly4.Location = new System.Drawing.Point(436, 254);
             this.tbTimeMonthly4.Name = "tbTimeMonthly4";
             this.tbTimeMonthly4.ReadOnly = true;
             this.tbTimeMonthly4.Size = new System.Drawing.Size(63, 20);
@@ -4072,7 +4077,7 @@
             // 
             // tbTimeMonthly3
             // 
-            this.tbTimeMonthly3.Location = new System.Drawing.Point(367, 257);
+            this.tbTimeMonthly3.Location = new System.Drawing.Point(367, 254);
             this.tbTimeMonthly3.Name = "tbTimeMonthly3";
             this.tbTimeMonthly3.ReadOnly = true;
             this.tbTimeMonthly3.Size = new System.Drawing.Size(63, 20);
@@ -4082,7 +4087,7 @@
             // 
             // tbTimeMonthly2
             // 
-            this.tbTimeMonthly2.Location = new System.Drawing.Point(298, 257);
+            this.tbTimeMonthly2.Location = new System.Drawing.Point(298, 254);
             this.tbTimeMonthly2.Name = "tbTimeMonthly2";
             this.tbTimeMonthly2.ReadOnly = true;
             this.tbTimeMonthly2.Size = new System.Drawing.Size(63, 20);
@@ -4092,7 +4097,7 @@
             // 
             // tbTimeMonthly1
             // 
-            this.tbTimeMonthly1.Location = new System.Drawing.Point(229, 257);
+            this.tbTimeMonthly1.Location = new System.Drawing.Point(229, 254);
             this.tbTimeMonthly1.Name = "tbTimeMonthly1";
             this.tbTimeMonthly1.ReadOnly = true;
             this.tbTimeMonthly1.Size = new System.Drawing.Size(63, 20);
@@ -4111,7 +4116,7 @@
             // 
             // tbTimeMonthly12
             // 
-            this.tbTimeMonthly12.Location = new System.Drawing.Point(575, 490);
+            this.tbTimeMonthly12.Location = new System.Drawing.Point(575, 487);
             this.tbTimeMonthly12.Name = "tbTimeMonthly12";
             this.tbTimeMonthly12.ReadOnly = true;
             this.tbTimeMonthly12.Size = new System.Drawing.Size(63, 20);
@@ -4121,7 +4126,7 @@
             // 
             // tbTimeMonthly11
             // 
-            this.tbTimeMonthly11.Location = new System.Drawing.Point(506, 490);
+            this.tbTimeMonthly11.Location = new System.Drawing.Point(506, 487);
             this.tbTimeMonthly11.Name = "tbTimeMonthly11";
             this.tbTimeMonthly11.ReadOnly = true;
             this.tbTimeMonthly11.Size = new System.Drawing.Size(63, 20);
@@ -4131,7 +4136,7 @@
             // 
             // tbTimeMonthly10
             // 
-            this.tbTimeMonthly10.Location = new System.Drawing.Point(437, 490);
+            this.tbTimeMonthly10.Location = new System.Drawing.Point(437, 487);
             this.tbTimeMonthly10.Name = "tbTimeMonthly10";
             this.tbTimeMonthly10.ReadOnly = true;
             this.tbTimeMonthly10.Size = new System.Drawing.Size(63, 20);
@@ -4141,7 +4146,7 @@
             // 
             // tbTimeMonthly9
             // 
-            this.tbTimeMonthly9.Location = new System.Drawing.Point(368, 490);
+            this.tbTimeMonthly9.Location = new System.Drawing.Point(368, 487);
             this.tbTimeMonthly9.Name = "tbTimeMonthly9";
             this.tbTimeMonthly9.ReadOnly = true;
             this.tbTimeMonthly9.Size = new System.Drawing.Size(63, 20);
@@ -4151,7 +4156,7 @@
             // 
             // tbTimeMonthly8
             // 
-            this.tbTimeMonthly8.Location = new System.Drawing.Point(299, 490);
+            this.tbTimeMonthly8.Location = new System.Drawing.Point(299, 487);
             this.tbTimeMonthly8.Name = "tbTimeMonthly8";
             this.tbTimeMonthly8.ReadOnly = true;
             this.tbTimeMonthly8.Size = new System.Drawing.Size(63, 20);
@@ -4161,7 +4166,7 @@
             // 
             // tbTimeMonthly7
             // 
-            this.tbTimeMonthly7.Location = new System.Drawing.Point(230, 490);
+            this.tbTimeMonthly7.Location = new System.Drawing.Point(230, 487);
             this.tbTimeMonthly7.Name = "tbTimeMonthly7";
             this.tbTimeMonthly7.ReadOnly = true;
             this.tbTimeMonthly7.Size = new System.Drawing.Size(63, 20);

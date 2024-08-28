@@ -162,7 +162,7 @@
             // 
             // btRetrieve
             // 
-            this.btRetrieve.Location = new System.Drawing.Point(242, 132);
+            this.btRetrieve.Location = new System.Drawing.Point(241, 128);
             this.btRetrieve.Name = "btRetrieve";
             this.btRetrieve.Size = new System.Drawing.Size(75, 23);
             this.btRetrieve.TabIndex = 48;
@@ -190,7 +190,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(244, 68);
+            this.label24.Location = new System.Drawing.Point(251, 68);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(73, 13);
             this.label24.TabIndex = 45;
@@ -199,7 +199,7 @@
             // chk1RideDataEntry
             // 
             this.chk1RideDataEntry.AutoSize = true;
-            this.chk1RideDataEntry.Location = new System.Drawing.Point(214, 109);
+            this.chk1RideDataEntry.Location = new System.Drawing.Point(213, 105);
             this.chk1RideDataEntry.Name = "chk1RideDataEntry";
             this.chk1RideDataEntry.Size = new System.Drawing.Size(144, 17);
             this.chk1RideDataEntry.TabIndex = 44;
@@ -209,7 +209,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(204, 66);
+            this.numericUpDown2.Location = new System.Drawing.Point(211, 66);
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(34, 20);
             this.numericUpDown2.TabIndex = 43;
@@ -245,7 +245,7 @@
             // 
             this.lbNoLogYearSelected.AutoSize = true;
             this.lbNoLogYearSelected.ForeColor = System.Drawing.Color.Crimson;
-            this.lbNoLogYearSelected.Location = new System.Drawing.Point(211, 50);
+            this.lbNoLogYearSelected.Location = new System.Drawing.Point(210, 46);
             this.lbNoLogYearSelected.Name = "lbNoLogYearSelected";
             this.lbNoLogYearSelected.Size = new System.Drawing.Size(0, 13);
             this.lbNoLogYearSelected.TabIndex = 28;
