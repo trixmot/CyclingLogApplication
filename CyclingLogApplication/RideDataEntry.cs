@@ -1006,6 +1006,30 @@ namespace CyclingLogApplication
                 else
                 {
                     lbRideDataEntryError.Hide();
+
+                    //Get current log year:
+                    int logYear = 0;
+                    List<object> objectValuesLogID = new List<object>();
+                    string logName = cbLogYearDataEntry.SelectedItem.ToString();
+                    objectValuesLogID.Add(logName);
+
+                    using (var results = ExecuteSimpleQueryConnection("Log_Year_Get", objectValuesLogID))
+                    {
+                        if (results != null && results.HasRows)
+                        {
+                            while (results.Read())
+                            {
+                                logYear = Int32.Parse(results[0].ToString());
+                            }
+                        }
+                        else
+                        {
+                            //No matching date found
+                        }
+                    }
+
+                    //Update ride date to the year that matches the log:
+                    dtpRideDate.Value = new DateTime(logYear, 01, 01);
                 }
             }
         }

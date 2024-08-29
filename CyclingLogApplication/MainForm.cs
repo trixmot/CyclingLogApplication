@@ -1839,8 +1839,9 @@ namespace CyclingLogApplication
 
             //Get total miles for all logs:
             double totalMiles = GetTotalMilesForAllLogs();
-            totalMiles = Math.Truncate(totalMiles * 100) / 100;
-            tbStatisticsTotalMiles.Text = Convert.ToString(Math.Round(totalMiles, 1));
+            //totalMiles = Math.Truncate(totalMiles * 100) / 100;
+            totalMiles = Math.Round(totalMiles, 1);
+            tbStatisticsTotalMiles.Text = totalMiles.ToString("N0");
             tbLongestRide.Text = Convert.ToString(GetLongestRide());
             tbTotalRides.Text = Convert.ToString(GetTotalRides());
             tbTotalElevGain.Text = Convert.ToString(GetTotalElevGainForAllLogs());
@@ -2071,6 +2072,7 @@ namespace CyclingLogApplication
                 tb6Log4.Text = GetHighMileageWeekNumber(logYearIndex).ToString();
                 tb7Log4.Text = GetHighMileageDay(logYearIndex).ToString();
                 tbElevGainYearly4.Text = GetElevGain_Yearly(logYearIndex).ToString();
+                tbTimeYearly4.Text = GetTotalMovingTimeYearly(logYearIndex).ToString();
             }
             else
             {
@@ -2101,6 +2103,7 @@ namespace CyclingLogApplication
                 tb6Log5.Text = GetHighMileageWeekNumber(logYearIndex).ToString();
                 tb7Log5.Text = GetHighMileageDay(logYearIndex).ToString();
                 tbElevGainYearly5.Text = GetElevGain_Yearly(logYearIndex).ToString();
+                tbTimeYearly5.Text = GetTotalMovingTimeYearly(logYearIndex).ToString();
             }
             else
             {
