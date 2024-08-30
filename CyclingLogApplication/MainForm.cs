@@ -51,7 +51,6 @@ namespace CyclingLogApplication
         public MainForm()
         {
             //Set DataDirectory for the contectionstring in the app.config:
-            //TODO: Directory.GetCurrentDirectory() should be where the program is running.  Need to verify the excact location within the program:
             AppDomain.CurrentDomain.SetData("DataDirectory", Directory.GetCurrentDirectory());
 
             Text = "Single Instance!";
@@ -105,10 +104,8 @@ namespace CyclingLogApplication
 
             //Get all values and load the comboboxes:
             List<string> logYearList = ReadDataNames("Table_Log_year", "Name");
-            //yearList = readDataNames("Table_Log_year", "Year");
             List<string> routeList = ReadDataNames("Table_Routes", "Name");
             List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
-            //List<string> bikeTotalsList = ReadDataNames("Table_Bike_Totals", "Name");
 
             rideDataEntryForm = new RideDataEntry(this);
             rideDataDisplayForm = new RideDataDisplay(this);
@@ -445,7 +442,7 @@ namespace CyclingLogApplication
             return routeList;
         }
 
-        //Diable x close option:
+        //Disable x close option:
         private const int CP_NOCLOSE_BUTTON = 0x200;
         protected override CreateParams CreateParams
         {
@@ -1045,10 +1042,6 @@ namespace CyclingLogApplication
             }
         }
 
-        // private void openRideDataEntryForm(object obj)
-        // {
-        //     Application.Run(new RideDataEntry());
-        // }
 
         //=============================================================================
         //Start Statistics Section
@@ -1489,168 +1482,7 @@ namespace CyclingLogApplication
 
             //Check year
             //check if before or after March
-            if (year == 2016)
-            {
-                DateTime changeDate = new DateTime(2016, 3, 13);
-                if ((changeDate - date).TotalDays > 0)
-                {
-                    dayCount = (changeDate - date).TotalDays;
-                }
-                else
-                {
-                    DateTime changeDate2 = new DateTime(2016, 11, 6);
-                    dayCount = (changeDate2 - date).TotalDays;
-                }
-            }
-            else if (year == 2017)
-            {
-                DateTime changeDate = new DateTime(2017, 3, 12);
-                if ((changeDate - date).TotalDays > 0)
-                {
-                    dayCount = (changeDate - date).TotalDays;
-                }
-                else
-                {
-                    DateTime changeDate2 = new DateTime(2017, 11, 5);
-
-                    if (date > changeDate2)
-                    {
-                        DateTime changeDate3 = new DateTime(2018, 3, 11);
-                        dayCount = (changeDate3 - date).TotalDays;
-                    }
-                    else
-                    {
-                        dayCount = (changeDate2 - date).TotalDays;
-                    }
-                }
-            }
-            else if (year == 2018)
-            {
-                DateTime changeDate = new DateTime(2018, 3, 11);
-                if ((changeDate - date).TotalDays > 0)
-                {
-                    dayCount = (changeDate - date).TotalDays;
-                }
-                else
-                {
-                    DateTime changeDate2 = new DateTime(2018, 11, 4);
-                    if (date > changeDate2)
-                    {
-                        DateTime changeDate3 = new DateTime(2019, 3, 10);
-                        dayCount = (changeDate3 - date).TotalDays;
-                    }
-                    else
-                    {
-                        dayCount = (changeDate2 - date).TotalDays;
-                    }
-                }
-            }
-            else if (year == 2019)
-            {
-                DateTime changeDate = new DateTime(2019, 3, 10);
-                if ((changeDate - date).TotalDays > 0)
-                {
-                    dayCount = (changeDate - date).TotalDays;
-                }
-                else
-                {
-                    DateTime changeDate2 = new DateTime(2019, 11, 3);
-                    if (date > changeDate2)
-                    {
-                        DateTime changeDate3 = new DateTime(2020, 3, 8);
-                        dayCount = (changeDate3 - date).TotalDays;
-                    }
-                    else
-                    {
-                        dayCount = (changeDate2 - date).TotalDays;
-                    }
-                }
-            }
-            else if (year == 2020)
-            {
-                DateTime changeDate = new DateTime(2020, 3, 8);
-                if ((changeDate - date).TotalDays > 0)
-                {
-                    dayCount = (changeDate - date).TotalDays;
-                }
-                else
-                {
-                    DateTime changeDate2 = new DateTime(2020, 11, 1);
-                    if (date > changeDate2)
-                    {
-                        DateTime changeDate3 = new DateTime(2021, 3, 14);
-                        dayCount = (changeDate3 - date).TotalDays;
-                    }
-                    else
-                    {
-                        dayCount = (changeDate2 - date).TotalDays;
-                    }
-                }
-            }
-            else if (year == 2021)
-            {
-                DateTime changeDate = new DateTime(2021, 3, 14);
-                if ((changeDate - date).TotalDays > 0)
-                {
-                    dayCount = (changeDate - date).TotalDays;
-                }
-                else
-                {
-                    DateTime changeDate2 = new DateTime(2021, 11, 7);
-                    if (date > changeDate2)
-                    {
-                        DateTime changeDate3 = new DateTime(2022, 3, 13);
-                        dayCount = (changeDate3 - date).TotalDays;
-                    }
-                    else
-                    {
-                        dayCount = (changeDate2 - date).TotalDays;
-                    }
-                }
-            }
-            else if (year == 2022)
-            {
-                DateTime changeDate = new DateTime(2022, 3, 13);
-                if ((changeDate - date).TotalDays > 0)
-                {
-                    dayCount = (changeDate - date).TotalDays;
-                }
-                else
-                {
-                    DateTime changeDate2 = new DateTime(2022, 11, 6);
-                    if (date > changeDate2)
-                    {
-                        DateTime changeDate3 = new DateTime(2023, 3, 12);
-                        dayCount = (changeDate3 - date).TotalDays;
-                    }
-                    else
-                    {
-                        dayCount = (changeDate2 - date).TotalDays;
-                    }
-                }
-            }
-            else if (year == 2023)
-            {
-                DateTime changeDate = new DateTime(2023, 3, 12);
-                if ((changeDate - date).TotalDays > 0)
-                {
-                    dayCount = (changeDate - date).TotalDays;
-                }
-                else
-                {
-                    DateTime changeDate2 = new DateTime(2023, 11, 5);
-                    if (date > changeDate2)
-                    {
-                        DateTime changeDate3 = new DateTime(2024, 3, 10);
-                        dayCount = (changeDate3 - date).TotalDays;
-                    }
-                    else
-                    {
-                        dayCount = (changeDate2 - date).TotalDays;
-                    }
-                }
-            }
-            else if (year == 2024)
+            if (year == 2024)
             {
                 DateTime changeDate = new DateTime(2024, 3, 10);
                 if ((changeDate - date).TotalDays > 0)
@@ -1684,6 +1516,48 @@ namespace CyclingLogApplication
                     if (date > changeDate2)
                     {
                         DateTime changeDate3 = new DateTime(2026, 3, 8);
+                        dayCount = (changeDate3 - date).TotalDays;
+                    }
+                    else
+                    {
+                        dayCount = (changeDate2 - date).TotalDays;
+                    }
+                }
+            }
+            else if (year == 2026)
+            {
+                DateTime changeDate = new DateTime(2026, 3, 8);
+                if ((changeDate - date).TotalDays > 0)
+                {
+                    dayCount = (changeDate - date).TotalDays;
+                }
+                else
+                {
+                    DateTime changeDate2 = new DateTime(2026, 11, 1);
+                    if (date > changeDate2)
+                    {
+                        DateTime changeDate3 = new DateTime(2027, 3, 14);
+                        dayCount = (changeDate3 - date).TotalDays;
+                    }
+                    else
+                    {
+                        dayCount = (changeDate2 - date).TotalDays;
+                    }
+                }
+            }
+            else if (year == 2027)
+            {
+                DateTime changeDate = new DateTime(2027, 3, 14);
+                if ((changeDate - date).TotalDays > 0)
+                {
+                    dayCount = (changeDate - date).TotalDays;
+                }
+                else
+                {
+                    DateTime changeDate2 = new DateTime(2027, 11, 7);
+                    if (date > changeDate2)
+                    {
+                        DateTime changeDate3 = new DateTime(2028, 3, 12);
                         dayCount = (changeDate3 - date).TotalDays;
                     }
                     else
@@ -1839,7 +1713,6 @@ namespace CyclingLogApplication
 
             //Get total miles for all logs:
             double totalMiles = GetTotalMilesForAllLogs();
-            //totalMiles = Math.Truncate(totalMiles * 100) / 100;
             totalMiles = Math.Round(totalMiles, 1);
             tbStatisticsTotalMiles.Text = totalMiles.ToString("N0");
             tbLongestRide.Text = Convert.ToString(GetLongestRide());
@@ -2137,7 +2010,6 @@ namespace CyclingLogApplication
                 }
             }
 
-            //string[] splitList = new string[18];
             List<object> objectValues = new List<object>();
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
             Calendar cal = dfi.Calendar;
@@ -2188,14 +2060,6 @@ namespace CyclingLogApplication
                                     objectValues.Add(null);              //Max Power:
                                     objectValues.Add(splitList[17]);     //Route:
 
-                                    //string tmepValue = splitList[18];
-                                    //if (splitList[18].Contains('"'))
-                                    //{
-                                    //   // MessageBox.Show(splitList[18] + "=" + splitList[19]);
-                                    //    string tempStr = splitList[18];
-
-                                    //    splitList[18] = tempStr.Replace("\"", "");
-                                    //}
                                     string comment = "";
                                     if (splitList.Length > 19)
                                     {

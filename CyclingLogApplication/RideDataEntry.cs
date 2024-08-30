@@ -36,7 +36,7 @@ namespace CyclingLogApplication
 
             //Hidden field to store the record id of the current displaying record that has been loaded on the page:
             tbRecordID.Hide();
-            tbWeekNumber.Hide();
+            //tbWeekNumber.Hide();
             tbRecordID.Text = "0";
             lbRideDataEntryError.Hide();
             lbRideDataEntryError.Text = "";
@@ -296,7 +296,7 @@ namespace CyclingLogApplication
                                 cbRouteDataEntry.SelectedIndex = cbRouteDataEntry.Items.IndexOf(route);
                                 tbComments.Text = comments;
                                 tbRecordID.Text = recordID;
-                                tbWeekNumber.Text = weekNumber;
+                                //tbWeekNumber.Text = weekNumber;
                                 cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.Items.IndexOf(location);
                                 cbEffortRideDataEntry.SelectedIndex = cbEffortRideDataEntry.Items.IndexOf(effort);
                             }
@@ -948,7 +948,7 @@ namespace CyclingLogApplication
                 MessageBox.Show("[ERROR] Exception occurred. Refer to the log for more information. ");
             }
 
-            tbRecordID.Text = "import";
+            //tbRecordID.Text = "import";
         }
 
         // Used to clear the form on date changes:
@@ -977,8 +977,9 @@ namespace CyclingLogApplication
             //cbLogYearDataEntry.SelectedIndex = cbLogYearDataEntry.FindStringExact("");                                //LogYear index:
             cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.FindStringExact("");
             cbEffortRideDataEntry.SelectedIndex = cbEffortRideDataEntry.FindStringExact("");
-            tbWeekNumber.Text = "0";
+            //tbWeekNumber.Text = "0";
             tbRecordID.Text = "0";
+            chk1RideDataEntry.Checked = false;
         }
 
         private void ClearDataEntryFields_click(object sender, EventArgs e)
@@ -1029,7 +1030,16 @@ namespace CyclingLogApplication
                     }
 
                     //Update ride date to the year that matches the log:
-                    dtpRideDate.Value = new DateTime(logYear, 01, 01);
+                    //If current year, then also match current date:
+                    int currentYear = DateTime.Now.Year;
+                    if (currentYear == logYear)
+                    {
+                        dtpRideDate.Value = new DateTime(logYear, DateTime.Now.Month, DateTime.Now.Day);
+                    } else
+                    {
+                        dtpRideDate.Value = new DateTime(logYear, 01, 01);
+                    }
+                    
                 }
             }
         }

@@ -370,6 +370,7 @@ namespace CyclingLogApplication
                                     avg_value = total_value / recordCount;
                                     chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), avg_value.ToString());
                                     chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                                    chart1.Series["Series1"].IsValueShownAsLabel = true;
                                 }
                             }
                             else
@@ -378,6 +379,7 @@ namespace CyclingLogApplication
                                 {
                                     chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), total_value.ToString());
                                     chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                                    chart1.Series["Series1"].IsValueShownAsLabel = true;
                                 }
 
                             }
@@ -407,6 +409,7 @@ namespace CyclingLogApplication
                         {
                             avg_value = total_value / recordCount;
                             chart1.Series["Series1"].Points.AddXY(date, avg_value.ToString());
+                            chart1.Series["Series1"].IsValueShownAsLabel = true;
                         }
                     }
                     else
@@ -414,6 +417,7 @@ namespace CyclingLogApplication
                         if (total_value != 0)
                         {
                             chart1.Series["Series1"].Points.AddXY(date, total_value.ToString());
+                            chart1.Series["Series1"].IsValueShownAsLabel = true;
                         }
                     }
                 }
@@ -427,6 +431,7 @@ namespace CyclingLogApplication
                             avg_value = total_value / recordCount;
                             chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), avg_value.ToString());
                             chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                            chart1.Series["Series1"].IsValueShownAsLabel = true;
                         }
                     }
                     else
@@ -435,6 +440,7 @@ namespace CyclingLogApplication
                         {
                             chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), total_value.ToString());
                             chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                            chart1.Series["Series1"].IsValueShownAsLabel = true;
                         }
 
                     }

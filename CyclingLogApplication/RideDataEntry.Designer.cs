@@ -41,7 +41,6 @@
             this.chk1RideDataEntry = new System.Windows.Forms.CheckBox();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.tbRecordID = new System.Windows.Forms.TextBox();
-            this.tbWeekNumber = new System.Windows.Forms.TextBox();
             this.btDeleteRideDataEntry = new System.Windows.Forms.Button();
             this.lbNoLogYearSelected = new System.Windows.Forms.Label();
             this.btUpdateRideDateEntry = new System.Windows.Forms.Button();
@@ -142,7 +141,6 @@
             this.groupBox1.Controls.Add(this.chk1RideDataEntry);
             this.groupBox1.Controls.Add(this.numericUpDown2);
             this.groupBox1.Controls.Add(this.tbRecordID);
-            this.groupBox1.Controls.Add(this.tbWeekNumber);
             this.groupBox1.Controls.Add(this.btDeleteRideDataEntry);
             this.groupBox1.Controls.Add(this.lbNoLogYearSelected);
             this.groupBox1.Controls.Add(this.btUpdateRideDateEntry);
@@ -183,6 +181,7 @@
             // 
             this.tbWeekCountRDE.Location = new System.Drawing.Point(183, 21);
             this.tbWeekCountRDE.Name = "tbWeekCountRDE";
+            this.tbWeekCountRDE.ReadOnly = true;
             this.tbWeekCountRDE.Size = new System.Drawing.Size(31, 20);
             this.tbWeekCountRDE.TabIndex = 46;
             this.tbWeekCountRDE.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -222,14 +221,6 @@
             this.tbRecordID.Size = new System.Drawing.Size(41, 20);
             this.tbRecordID.TabIndex = 28;
             this.tbRecordID.Visible = false;
-            // 
-            // tbWeekNumber
-            // 
-            this.tbWeekNumber.Location = new System.Drawing.Point(279, 21);
-            this.tbWeekNumber.Name = "tbWeekNumber";
-            this.tbWeekNumber.Size = new System.Drawing.Size(41, 20);
-            this.tbWeekNumber.TabIndex = 41;
-            this.tbWeekNumber.Visible = false;
             // 
             // btDeleteRideDataEntry
             // 
@@ -835,7 +826,6 @@
         private System.Windows.Forms.Button btUpdateRideDateEntry;
         private System.Windows.Forms.TextBox tbRecordID;
         private System.Windows.Forms.Label lbNoLogYearSelected;
-        private System.Windows.Forms.TextBox tbWeekNumber;
         private System.Windows.Forms.Button btDeleteRideDataEntry;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ComboBox cbEffortRideDataEntry;
