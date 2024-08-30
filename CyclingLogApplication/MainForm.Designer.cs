@@ -3648,7 +3648,7 @@
             this.btRenameBike.Name = "btRenameBike";
             this.btRenameBike.Size = new System.Drawing.Size(75, 23);
             this.btRenameBike.TabIndex = 14;
-            this.btRenameBike.Text = "Update";
+            this.btRenameBike.Text = "Rename";
             this.btRenameBike.UseVisualStyleBackColor = true;
             this.btRenameBike.Click += new System.EventHandler(this.BtRenameBike_Click);
             // 
@@ -3658,7 +3658,7 @@
             this.bRenameLogYear.Name = "bRenameLogYear";
             this.bRenameLogYear.Size = new System.Drawing.Size(75, 23);
             this.bRenameLogYear.TabIndex = 4;
-            this.bRenameLogYear.Text = "Update";
+            this.bRenameLogYear.Text = "Rename";
             this.bRenameLogYear.UseVisualStyleBackColor = true;
             this.bRenameLogYear.Click += new System.EventHandler(this.BRenameLogYear_Click);
             // 
@@ -3668,18 +3668,18 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 9;
-            this.button6.Text = "Update";
+            this.button6.Text = "Rename";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.CbRenameRoute);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(522, 175);
+            this.label5.Location = new System.Drawing.Point(522, 176);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 13);
+            this.label5.Size = new System.Drawing.Size(105, 13);
             this.label5.TabIndex = 16;
-            this.label5.Text = "Add or Update Bike";
+            this.label5.Text = "Add or Rename Bike";
             // 
             // tbBikeConfig
             // 
@@ -3721,11 +3721,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(253, 226);
+            this.label4.Location = new System.Drawing.Point(253, 225);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(138, 13);
+            this.label4.Size = new System.Drawing.Size(143, 13);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Add or Update Ride Routes";
+            this.label4.Text = "Add or Rename Ride Routes";
             // 
             // tbRouteConfig
             // 
@@ -3767,11 +3767,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(66, 173);
+            this.label3.Location = new System.Drawing.Point(66, 175);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 13);
+            this.label3.Size = new System.Drawing.Size(102, 13);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Add or Update Log";
+            this.label3.Text = "Add or Rename Log";
             // 
             // tabPage5
             // 
