@@ -864,9 +864,9 @@ namespace CyclingLogApplication
                 string deleteValue = cbRouteConfig.SelectedItem.ToString();
 
                 //Note: only removing value as an option, all records using this value are unchanged:
-                cbRouteConfig.Items.Remove(cbRouteConfig.SelectedItem);
-                rideDataEntryForm.RemoveRouteDataEntry(tbRouteConfig.Text);
-                chartForm.cbRoutesChart.Items.Remove(tbRouteConfig.Text);
+                cbRouteConfig.Items.Remove(deleteValue);
+                rideDataEntryForm.RemoveRouteDataEntry(deleteValue);
+                chartForm.cbRoutesChart.Items.Remove(deleteValue);
 
                 //Remove the Route from the database table:
                 List<object> objectValues = new List<object>();
@@ -944,8 +944,8 @@ namespace CyclingLogApplication
                 string deleteValue = cbBikeConfig.SelectedItem.ToString();
 
                 //Note: only removing value as an option, all records using this value are unchanged:
-                cbBikeConfig.Items.Remove(cbBikeConfig.SelectedItem);
-                cbBikeMaint.Items.Remove(cbBikeConfig.SelectedItem);
+                cbBikeConfig.Items.Remove(deleteValue);
+                cbBikeMaint.Items.Remove(deleteValue);
                 rideDataEntryForm.RemoveBikeDataEntry(deleteValue);
                 //cbBikeTotalsConfig.Items.Remove(cbBikeConfig.SelectedItem);
 
@@ -2577,12 +2577,22 @@ namespace CyclingLogApplication
             tbBikeMiles3.Text = "";
             tbBikeMiles4.Text = "";
             tbBikeMiles5.Text = "";
+            tbBikeMiles6.Text = "";
+            tbBikeMiles7.Text = "";
+            tbBikeMiles8.Text = "";
+            tbBikeMiles9.Text = "";
+            tbBikeMiles10.Text = "";
 
             tbBikeMilesTotal1.Text = "";
             tbBikeMilesTotal2.Text = "";
             tbBikeMilesTotal3.Text = "";
             tbBikeMilesTotal4.Text = "";
             tbBikeMilesTotal5.Text = "";
+            tbBikeMilesTotal6.Text = "";
+            tbBikeMilesTotal7.Text = "";
+            tbBikeMilesTotal8.Text = "";
+            tbBikeMilesTotal9.Text = "";
+            tbBikeMilesTotal10.Text = "";
 
             double bikeMilesAdd = 0;
             double runningTotalMiles = 0;
@@ -2625,9 +2635,9 @@ namespace CyclingLogApplication
 
                 //Load textboxes with bikes with the highest values:
                 int bikeCount;
-                if (bikeList.Count >= 5)
+                if (bikeList.Count >= 10)
                 {
-                    bikeCount = 5;
+                    bikeCount = 10;
                 }
                 else
                 {
@@ -2720,6 +2730,41 @@ namespace CyclingLogApplication
                         tbBikeMilesTotal5.Text = totalMiles.ToString("N0");
                         tbBikeMiles5.Text = bikeName;
                     }
+                    else if (i == 6)
+                    {
+                        totalMiles = bikeMiles + bikeMilesAdd;
+                        runningTotalMiles += totalMiles;
+                        tbBikeMilesTotal6.Text = totalMiles.ToString("N0");
+                        tbBikeMiles6.Text = bikeName;
+                    }
+                    else if (i == 7)
+                    {
+                        totalMiles = bikeMiles + bikeMilesAdd;
+                        runningTotalMiles += totalMiles;
+                        tbBikeMilesTotal7.Text = totalMiles.ToString("N0");
+                        tbBikeMiles7.Text = bikeName;
+                    }
+                    else if (i == 8)
+                    {
+                        totalMiles = bikeMiles + bikeMilesAdd;
+                        runningTotalMiles += totalMiles;
+                        tbBikeMilesTotal8.Text = totalMiles.ToString("N0");
+                        tbBikeMiles8.Text = bikeName;
+                    }
+                    else if (i == 9)
+                    {
+                        totalMiles = bikeMiles + bikeMilesAdd;
+                        runningTotalMiles += totalMiles;
+                        tbBikeMilesTotal9.Text = totalMiles.ToString("N0");
+                        tbBikeMiles9.Text = bikeName;
+                    }
+                    else if (i == 10)
+                    {
+                        totalMiles = bikeMiles + bikeMilesAdd;
+                        runningTotalMiles += totalMiles;
+                        tbBikeMilesTotal10.Text = totalMiles.ToString("N0");
+                        tbBikeMiles10.Text = bikeName;
+                    }
                 }
             }
             catch (Exception ex)
@@ -2791,8 +2836,57 @@ namespace CyclingLogApplication
 
             //TODO: Reset entire application:
             //List of things to clean up:
-            //Clear out all tables:
+            // Clear out Table_Routes:
+            // Clear out Table_Bikes:
+            // Clear out Table_Bike_Totals:
+            // Clear out Table_Log_year:
+            // Clear out Table_Bike_Mainenace:
+            // Clear out Table_Ride_Information:
+
+
+            // DELETE FROM table_name;
+
+            // Clear out all combo boxes:
+            cbLogYear1.DataSource = null;
+            cbLogYear1.Items.Clear();
+            cbLogYear2.DataSource = null;
+            cbLogYear2.Items.Clear();
+            cbLogYear3.DataSource = null;
+            cbLogYear3.Items.Clear();
+            cbLogYear4.DataSource = null;
+            cbLogYear4.Items.Clear();
+            cbLogYear5.DataSource = null;
+            cbLogYear5.Items.Clear();
+
+            //Set first option of 'None':
+            cbLogYear1.Items.Add("--None--");
+            cbLogYear2.Items.Add("--None--");
+            cbLogYear3.Items.Add("--None--");
+            cbLogYear4.Items.Add("--None--");
+            cbLogYear5.Items.Add("--None--");
+
+            // TODO: Loop through each combo and delete items:
+
+            //cbLogYearConfig
+            //cbStatMonthlyLogYear
+            //rideDataEntryForm.cbLogYearDataEntry
+            //rideDataDisplayForm.cbLogYearFilter
+            //chartForm.cbLogYearChart
+
+            //cbRouteConfig
+            //chartForm.cbRoutesChart
+            //rideDataEntryForm.cbRouteDataEntry
+
+            //cbBikeConfig
+            //cbBikeTotalsConfig //Settings tab:
+            //cbBikeMaint
+            //rideDataEntryForm.cbBikeDataEntrySelection
+
+
+
             //Delete the config file and a default new one will be created:
+
+            MessageBox.Show("\"Close the program and reopen before entering any data.");
         }
 
         //Rename or update miles not in log:
