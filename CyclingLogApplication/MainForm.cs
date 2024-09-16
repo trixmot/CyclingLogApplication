@@ -26,7 +26,7 @@ namespace CyclingLogApplication
         private ChartForm chartForm;
         Boolean formloading = false;
 
-        private static readonly string logVersion = "0.3.0";
+        private static readonly string logVersion = "0.4.0";
         private static int logLevel = 0;
         private static string cbStatistic1 = "-1";
         private static string cbStatistic2 = "-1";
@@ -103,6 +103,9 @@ namespace CyclingLogApplication
             configfile.readConfigFile();
             int logSetting = GetLogLevel();
 
+            lbVersion.Text = "App Version: " + GetLogVersion();
+            lbMaintError.Text = "";
+
             //Get all values and load the comboboxes:
             List<string> logYearList = ReadDataNames("Table_Log_year", "Name");
             List<string> routeList = ReadDataNames("Table_Routes", "Name");
@@ -176,7 +179,7 @@ namespace CyclingLogApplication
             }
 
             BtBikeMilesUpdate_run();
-            BtGetMaintLog_Click(sender, e);
+            GetMaintLog();
 
             formloading = true;
             //Set first option of 'None':
@@ -196,9 +199,6 @@ namespace CyclingLogApplication
             cbLogYear5.SelectedIndex = Convert.ToInt32(GetcbStatistic5());
 
             cbStatMonthlyLogYear.SelectedIndex = Convert.ToInt32(GetLastMonthlyLogSelected());
-
-            label2.Text = "App Version: " + GetLogVersion();
-            lbMaintError.Text = "";
 
             RefreshStatisticsData();
             RunMonthlyStatistics();
@@ -2338,16 +2338,12 @@ namespace CyclingLogApplication
         //Start Maintenance Section
         //=============================================================================
 
-        private void BtGetMaintLog_Click(object sender, EventArgs e)
+        private void GetMaintLog()
         {
             lbMaintError.Text = "";
-            //SqlConnection conn = null;
 
             try
             {
-                //conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                //conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""c:\LogFiles\CyclingLogDatabase.mdf"";Integrated Security=True");
-
                 sqlConnection.Open();
                 SqlDataAdapter sqlDataAdapter = null;
 
@@ -2419,10 +2415,9 @@ namespace CyclingLogApplication
             RunStoredProcedure(objectValues, "Maintenance_Add");
 
             tbMaintID.Text = "";
-            //btGetMaintLog_Click(sender, e);
             tbMaintMiles.Text = "";
             rtbMaintComments.Text = "";
-            BtGetMaintLog_Click(sender, e);
+            GetMaintLog();
         }
 
         private void BtMaintUpdate_Click(object sender, EventArgs e)
@@ -2485,7 +2480,7 @@ namespace CyclingLogApplication
             objectValues.Add(dateTimePicker1.Value);
             objectValues.Add(tbMaintMiles.Text);
             RunStoredProcedure(objectValues, "Maintenance_Update");
-            BtGetMaintLog_Click(sender, e);
+            GetMaintLog();
         }
 
         private void BtMaintRemove_Click(object sender, EventArgs e)
@@ -2508,7 +2503,7 @@ namespace CyclingLogApplication
             RunStoredProcedure(objectValues, "Maintenance_Remove");
             rtbMaintComments.Text = "";
             tbMaintMiles.Text = "";
-            BtGetMaintLog_Click(sender, e);
+            GetMaintLog();
         }
 
         private void BtMaintRetrieve_Click(object sender, EventArgs e)
@@ -2842,9 +2837,10 @@ namespace CyclingLogApplication
             // Clear out Table_Log_year:
             // Clear out Table_Bike_Mainenace:
             // Clear out Table_Ride_Information:
+            List<object> objectBlank = new List<object>();
 
-
-            // DELETE FROM table_name;
+            //Update Table_Bikes Table:
+            RunStoredProcedure(objectBlank, "DeleteTable");
 
             // Clear out all combo boxes:
             cbLogYear1.DataSource = null;
@@ -2885,6 +2881,30 @@ namespace CyclingLogApplication
 
 
             //Delete the config file and a default new one will be created:
+            //This will give us the full name path of the executable file:
+            //i.e. C:\Program Files\MyApplication\MyApplication.exe
+            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            //This will strip just the working path name:
+            //C:\Program Files\MyApplication
+            string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
+
+            string path = strWorkPath + "\\settings";
+            string sourceFile = path + "\\CyclingLogConfig.xml";
+
+            // Source file to be renamed  
+            // Create a FileInfo  
+            System.IO.FileInfo fi = new System.IO.FileInfo(sourceFile);
+            // Check if file is there  
+            if (fi.Exists)
+            {
+                // Move file with a new name. Hence renamed.  
+                fi.MoveTo(path + "\\CyclingLogConfig_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".xml");
+            }
+
+            List<object> objectValues = new List<object>();
+            objectValues.Add("Miscellaneous Route");
+            RunStoredProcedure(objectValues, "Route_Add");
+            Logger.Log("Adding a Route entry to the Configuration:" + "Miscellaneous Route", 0, 0);
 
             MessageBox.Show("\"Close the program and reopen before entering any data.");
         }
@@ -4016,6 +4036,7 @@ namespace CyclingLogApplication
             tbNumRidesWeek1.Text = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
             tbAvgSpeedWeek1.Text = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
             tbTotalTimeWeekly1.Text = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+            tbAvgPace1.Text = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek1.Text).ToString();
 
             // This first if handles when only one year log exists:
             if (logIndex == 1)
@@ -4029,6 +4050,7 @@ namespace CyclingLogApplication
                     tbNumRidesWeek2.Text = "0";
                     tbAvgSpeedWeek2.Text = "0";
                     tbTotalTimeWeekly2.Text = "0";
+                    tbAvgPace2.Text = "0";
                 }
                 else
                 {
@@ -4038,6 +4060,7 @@ namespace CyclingLogApplication
                     tbNumRidesWeek2.Text = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
                     tbAvgSpeedWeek2.Text = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
                     tbTotalTimeWeekly2.Text = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+                    tbAvgPace2.Text = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek2.Text).ToString();
                 }
                 //Current week -2(3):
                 if (weekNumber - 2 <= 0)
@@ -4048,6 +4071,7 @@ namespace CyclingLogApplication
                     tbNumRidesWeek3.Text = "0";
                     tbAvgSpeedWeek3.Text = "0";
                     tbTotalTimeWeekly3.Text = "0";
+                    tbAvgPace3.Text = "0";
                 }
                 else
                 {
@@ -4057,6 +4081,7 @@ namespace CyclingLogApplication
                     tbNumRidesWeek3.Text = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
                     tbAvgSpeedWeek3.Text = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
                     tbTotalTimeWeekly3.Text = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+                    tbAvgPace3.Text = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek3.Text).ToString();
                 }
                 //Current week -3(4):
                 if (weekNumber - 3 <= 0)
@@ -4067,6 +4092,7 @@ namespace CyclingLogApplication
                     tbNumRidesWeek4.Text = "0";
                     tbAvgSpeedWeek4.Text = "0";
                     tbTotalTimeWeekly4.Text = "0";
+                    tbAvgPace4.Text = "0";
                 }
                 else
                 {
@@ -4076,6 +4102,7 @@ namespace CyclingLogApplication
                     tbNumRidesWeek4.Text = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
                     tbAvgSpeedWeek4.Text = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
                     tbTotalTimeWeekly4.Text = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+                    tbAvgPace4.Text = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek4.Text).ToString();
                 }
                 //Current week -4(5):
                 if (weekNumber - 4 <= 0)
@@ -4086,6 +4113,7 @@ namespace CyclingLogApplication
                     tbNumRidesWeek5.Text = "0";
                     tbAvgSpeedWeek5.Text = "0";
                     tbTotalTimeWeekly5.Text = "0";
+                    tbAvgPace5.Text = "0";
                 }
                 else
                 {
@@ -4095,6 +4123,7 @@ namespace CyclingLogApplication
                     tbNumRidesWeek5.Text = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
                     tbAvgSpeedWeek5.Text = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
                     tbTotalTimeWeekly5.Text = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+                    tbAvgPace5.Text = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek5.Text).ToString();
                 }
             }
             else
@@ -4109,6 +4138,7 @@ namespace CyclingLogApplication
                     tbNumRidesWeek2.Text = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
                     tbAvgSpeedWeek2.Text = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
                     tbTotalTimeWeekly2.Text = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+                    tbAvgPace2.Text = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek2.Text).ToString();
                 }
                 else
                 {
@@ -4120,6 +4150,7 @@ namespace CyclingLogApplication
                     tbNumRidesWeek2.Text = GetTotalRidesWeekly(logIndex, weekNumber2).ToString();
                     tbAvgSpeedWeek2.Text = GetAvgSpeedWeekly(logIndex, weekNumber2).ToString();
                     tbTotalTimeWeekly2.Text = GetTotalMovingTimeWeekly(logIndex, weekNumber2).ToString();
+                    tbAvgPace2.Text = GetAveragePaceWeekly(logIndex, weekNumber2, tbDistanceWeek2.Text).ToString();
                 }
                 //Current week -2(3):
                 if (weekNumber - 2 <= 0)
@@ -4133,6 +4164,7 @@ namespace CyclingLogApplication
                         tbNumRidesWeek3.Text = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
                         tbAvgSpeedWeek3.Text = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
                         tbTotalTimeWeekly3.Text = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
+                        tbAvgPace3.Text = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek3.Text).ToString();
                     }
                     else if (weekNumber == 2)
                     {
@@ -4143,6 +4175,7 @@ namespace CyclingLogApplication
                         tbNumRidesWeek3.Text = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
                         tbAvgSpeedWeek3.Text = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
                         tbTotalTimeWeekly3.Text = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+                        tbAvgPace3.Text = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek3.Text).ToString();
                     }
                 }
                 else
@@ -4155,6 +4188,7 @@ namespace CyclingLogApplication
                     tbNumRidesWeek3.Text = GetTotalRidesWeekly(logIndex, weekNumber3).ToString();
                     tbAvgSpeedWeek3.Text = GetAvgSpeedWeekly(logIndex, weekNumber3).ToString();
                     tbTotalTimeWeekly3.Text = GetTotalMovingTimeWeekly(logIndex, weekNumber3).ToString();
+                    tbAvgPace3.Text = GetAveragePaceWeekly(logIndex, weekNumber3, tbDistanceWeek3.Text).ToString();
                 }
                 //Current week -3(4):
                 if (weekNumber - 3 <= 0)
@@ -4168,6 +4202,7 @@ namespace CyclingLogApplication
                         tbNumRidesWeek4.Text = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
                         tbAvgSpeedWeek4.Text = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
                         tbTotalTimeWeekly4.Text = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
+                        tbAvgPace4.Text = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek4.Text).ToString();
                     }
                     else if (weekNumber == 2)
                     {
@@ -4178,6 +4213,7 @@ namespace CyclingLogApplication
                         tbNumRidesWeek4.Text = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
                         tbAvgSpeedWeek4.Text = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
                         tbTotalTimeWeekly4.Text = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
+                        tbAvgPace4.Text = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek4.Text).ToString();
                     }
                     else if (weekNumber == 3)
                     {
@@ -4188,6 +4224,7 @@ namespace CyclingLogApplication
                         tbNumRidesWeek4.Text = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
                         tbAvgSpeedWeek4.Text = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
                         tbTotalTimeWeekly4.Text = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+                        tbAvgPace4.Text = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek4.Text).ToString();
                     }
                 }
                 else
@@ -4200,6 +4237,7 @@ namespace CyclingLogApplication
                     tbNumRidesWeek4.Text = GetTotalRidesWeekly(logIndex, weekNumber4).ToString();
                     tbAvgSpeedWeek4.Text = GetAvgSpeedWeekly(logIndex, weekNumber4).ToString();
                     tbTotalTimeWeekly4.Text = GetTotalMovingTimeWeekly(logIndex, weekNumber4).ToString();
+                    tbAvgPace4.Text = GetAveragePaceWeekly(logIndex, weekNumber4, tbDistanceWeek4.Text).ToString();
                 }
                 //Current week -4(5):
                 if (weekNumber - 4 <= 0)
@@ -4213,6 +4251,7 @@ namespace CyclingLogApplication
                         tbNumRidesWeek5.Text = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
                         tbAvgSpeedWeek5.Text = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
                         tbTotalTimeWeekly5.Text = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
+                        tbAvgPace5.Text = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek5.Text).ToString();
                     }
                     else if (weekNumber == 2)
                     {
@@ -4223,6 +4262,7 @@ namespace CyclingLogApplication
                         tbNumRidesWeek5.Text = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
                         tbAvgSpeedWeek5.Text = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
                         tbTotalTimeWeekly5.Text = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
+                        tbAvgPace5.Text = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek5.Text).ToString();
                     }
                     else if (weekNumber == 3)
                     {
@@ -4233,6 +4273,7 @@ namespace CyclingLogApplication
                         tbNumRidesWeek5.Text = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
                         tbAvgSpeedWeek5.Text = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
                         tbTotalTimeWeekly5.Text = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
+                        tbAvgPace5.Text = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek5.Text).ToString();
                     }
                     else if (weekNumber == 4)
                     {
@@ -4243,6 +4284,7 @@ namespace CyclingLogApplication
                         tbNumRidesWeek5.Text = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
                         tbAvgSpeedWeek5.Text = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
                         tbTotalTimeWeekly5.Text = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+                        tbAvgPace5.Text = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek5.Text).ToString();
                     }
                 }
                 else
@@ -4255,6 +4297,7 @@ namespace CyclingLogApplication
                     tbNumRidesWeek5.Text = GetTotalRidesWeekly(logIndex, weekNumber5).ToString();
                     tbAvgSpeedWeek5.Text = GetAvgSpeedWeekly(logIndex, weekNumber5).ToString();
                     tbTotalTimeWeekly5.Text = GetTotalMovingTimeWeekly(logIndex, weekNumber5).ToString();
+                    tbAvgPace5.Text = GetAveragePaceWeekly(logIndex, weekNumber5, tbDistanceWeek5.Text).ToString();
                 }
             }
         }
@@ -4508,6 +4551,98 @@ namespace CyclingLogApplication
 
                 //Calculate total time:
                 returnValue = string_hours + ":" + string_min + ":" + string_sec;
+            }
+
+            return returnValue;
+        }
+
+        private string GetAveragePaceWeekly(int logIndex, int weekNumber, string totalMiles)
+        {
+
+            if (totalMiles == "0")
+            {
+                return "0";
+            }
+
+            List<object> objectValues = new List<object>();
+            objectValues.Add(logIndex);
+            objectValues.Add(weekNumber);
+            string returnValue = "0.0";
+            string[] splitValues;
+
+            int hours = 0;
+            int minutes = 0;
+            int seconds = 0;
+            int hr = 0;
+            int min = 0;
+            double avgPace = 0;
+            string[] splitAsTime;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetTotalMovingTime_Weekly", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals("") || temp.Equals("00:00:00"))
+                        {
+                            returnValue = "0:0:0";
+                        }
+                        else
+                        {
+                            splitValues = temp.Split(':');
+                            if (!temp[0].Equals("00"))
+                            {
+                                hours += Int32.Parse(splitValues[0]);
+                            }
+                            if (!temp[1].Equals("00"))
+                            {
+                                minutes += Int32.Parse(splitValues[1]);
+                            }
+                            if (!temp[2].Equals("00"))
+                            {
+                                seconds += Int32.Parse(splitValues[2]);
+                            }
+                        }
+                    }
+                }
+
+                if (seconds != 0)
+                {
+                    min = seconds / 60;
+                    seconds = seconds % 60;
+                }
+
+                minutes = minutes + min;
+
+                if (minutes != 0)
+                {
+                    hr = minutes / 60;
+                    minutes = minutes % 60;
+                }
+
+                hours = hours + hr;
+
+                //Calculate total time in minutes:
+                double secToMin = seconds / 60.0;
+                double hrsToMin = hours * 60;
+                double totalMin = minutes + secToMin + hrsToMin;
+
+                //Divide total minutes by total miles:
+                avgPace = totalMin/double.Parse(totalMiles);
+                avgPace = Math.Round(avgPace, 2);
+                splitAsTime = avgPace.ToString().Split('.');
+            }
+
+            if (splitAsTime.Length == 1)
+            {
+                returnValue = splitAsTime[0] + ":0/mile";
+            }
+            else
+            {
+                returnValue = splitAsTime[0] + ":" + splitAsTime[1] + "/mile";
             }
 
             return returnValue;

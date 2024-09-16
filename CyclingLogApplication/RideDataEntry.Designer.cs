@@ -752,7 +752,7 @@
             this.Name = "RideDataEntry";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RideDataEntry";
+            this.Text = "Ride Data Entry";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.RideDataEntryFormClosed);
             this.Load += new System.EventHandler(this.RideDataEntryLoad);
             this.groupBox1.ResumeLayout(false);

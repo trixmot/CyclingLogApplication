@@ -37,21 +37,23 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.tbDayCount = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tbTimeChange = new System.Windows.Forms.TextBox();
+            this.tbWeekCount = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.btDeleteAllData = new System.Windows.Forms.Button();
-            this.tbWeekCount = new System.Windows.Forms.TextBox();
             this.button11 = new System.Windows.Forms.Button();
-            this.tbTimeChange = new System.Windows.Forms.TextBox();
-            this.tbDayCount = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.btDeleteAllData = new System.Windows.Forms.Button();
             this.btRefreshStatisticsData = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label82 = new System.Windows.Forms.Label();
             this.label80 = new System.Windows.Forms.Label();
             this.tbTotalTime = new System.Windows.Forms.TextBox();
             this.tbTimeYearly5 = new System.Windows.Forms.TextBox();
@@ -269,7 +271,14 @@
             this.month1R4 = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tbAvgPace5 = new System.Windows.Forms.TextBox();
+            this.tbAvgPace4 = new System.Windows.Forms.TextBox();
+            this.tbAvgPace3 = new System.Windows.Forms.TextBox();
+            this.tbAvgPace2 = new System.Windows.Forms.TextBox();
+            this.tbAvgPace1 = new System.Windows.Forms.TextBox();
+            this.label81 = new System.Windows.Forms.Label();
             this.tbTotalTimeWeekly5 = new System.Windows.Forms.TextBox();
             this.tbTotalTimeWeekly4 = new System.Windows.Forms.TextBox();
             this.tbTotalTimeWeekly3 = new System.Windows.Forms.TextBox();
@@ -323,22 +332,15 @@
             this.cbLogYear = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.tbConfigMilesNotInLog = new System.Windows.Forms.TextBox();
             this.btRenameBike = new System.Windows.Forms.Button();
             this.bRenameLogYear = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.tbBikeConfig = new System.Windows.Forms.TextBox();
             this.btRemoveBikeConfig = new System.Windows.Forms.Button();
             this.cbBikeConfig = new System.Windows.Forms.ComboBox();
             this.btAddBikeConfig = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tbRouteConfig = new System.Windows.Forms.TextBox();
-            this.btRemoveRoute = new System.Windows.Forms.Button();
-            this.cbRouteConfig = new System.Windows.Forms.ComboBox();
-            this.btAddRoute = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.btMaintRetrieve = new System.Windows.Forms.Button();
@@ -357,6 +359,16 @@
             this.dgvMaint = new System.Windows.Forms.DataGridView();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tbBikeMiles10 = new System.Windows.Forms.TextBox();
+            this.tbBikeMilesTotal10 = new System.Windows.Forms.TextBox();
+            this.tbBikeMiles9 = new System.Windows.Forms.TextBox();
+            this.tbBikeMilesTotal9 = new System.Windows.Forms.TextBox();
+            this.tbBikeMiles8 = new System.Windows.Forms.TextBox();
+            this.tbBikeMilesTotal8 = new System.Windows.Forms.TextBox();
+            this.tbBikeMiles7 = new System.Windows.Forms.TextBox();
+            this.tbBikeMilesTotal7 = new System.Windows.Forms.TextBox();
+            this.tbBikeMiles6 = new System.Windows.Forms.TextBox();
+            this.tbBikeMilesTotal6 = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.tbBikeMilesTotal = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -377,22 +389,29 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbMaintID = new System.Windows.Forms.TextBox();
-            this.btGetMaintLog = new System.Windows.Forms.Button();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.tbBikeMiles6 = new System.Windows.Forms.TextBox();
-            this.tbBikeMilesTotal6 = new System.Windows.Forms.TextBox();
-            this.tbBikeMiles7 = new System.Windows.Forms.TextBox();
-            this.tbBikeMilesTotal7 = new System.Windows.Forms.TextBox();
-            this.tbBikeMiles8 = new System.Windows.Forms.TextBox();
-            this.tbBikeMilesTotal8 = new System.Windows.Forms.TextBox();
-            this.tbBikeMiles9 = new System.Windows.Forms.TextBox();
-            this.tbBikeMilesTotal9 = new System.Windows.Forms.TextBox();
-            this.tbBikeMiles10 = new System.Windows.Forms.TextBox();
-            this.tbBikeMilesTotal10 = new System.Windows.Forms.TextBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbRouteConfig = new System.Windows.Forms.TextBox();
+            this.btRemoveRoute = new System.Windows.Forms.Button();
+            this.cbRouteConfig = new System.Windows.Forms.ComboBox();
+            this.btAddRoute = new System.Windows.Forms.Button();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.label83 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -401,6 +420,7 @@
             this.groupBox6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabPage8.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -410,14 +430,22 @@
             this.groupBox5.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox7.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox14.SuspendLayout();
+            this.groupBox15.SuspendLayout();
+            this.groupBox16.SuspendLayout();
+            this.groupBox17.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbLogYearConfig
             // 
             this.cbLogYearConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYearConfig.FormattingEnabled = true;
-            this.cbLogYearConfig.Location = new System.Drawing.Point(84, 191);
+            this.cbLogYearConfig.Location = new System.Drawing.Point(22, 45);
             this.cbLogYearConfig.Name = "cbLogYearConfig";
             this.cbLogYearConfig.Size = new System.Drawing.Size(121, 21);
             this.cbLogYearConfig.TabIndex = 0;
@@ -425,7 +453,7 @@
             // 
             // btAddLogYear
             // 
-            this.btAddLogYear.Location = new System.Drawing.Point(109, 332);
+            this.btAddLogYear.Location = new System.Drawing.Point(47, 186);
             this.btAddLogYear.Name = "btAddLogYear";
             this.btAddLogYear.Size = new System.Drawing.Size(75, 23);
             this.btAddLogYear.TabIndex = 2;
@@ -435,7 +463,7 @@
             // 
             // btRemoveLogYear
             // 
-            this.btRemoveLogYear.Location = new System.Drawing.Point(109, 361);
+            this.btRemoveLogYear.Location = new System.Drawing.Point(47, 215);
             this.btRemoveLogYear.Name = "btRemoveLogYear";
             this.btRemoveLogYear.Size = new System.Drawing.Size(75, 23);
             this.btRemoveLogYear.TabIndex = 3;
@@ -445,7 +473,7 @@
             // 
             // tbLogYearConfig
             // 
-            this.tbLogYearConfig.Location = new System.Drawing.Point(84, 241);
+            this.tbLogYearConfig.Location = new System.Drawing.Point(22, 95);
             this.tbLogYearConfig.Name = "tbLogYearConfig";
             this.tbLogYearConfig.Size = new System.Drawing.Size(121, 20);
             this.tbLogYearConfig.TabIndex = 1;
@@ -453,22 +481,22 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(417, 211);
+            this.button5.Location = new System.Drawing.Point(53, 30);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(130, 35);
             this.button5.TabIndex = 1;
-            this.button5.Text = "View Ride Data";
+            this.button5.Text = "Ride Data";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.OpenRideDataForm);
             // 
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(417, 166);
+            this.button7.Location = new System.Drawing.Point(53, 31);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(130, 35);
             this.button7.TabIndex = 0;
-            this.button7.Text = "Ride Data Entry";
+            this.button7.Text = "Data Entry";
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.OpenRideDataEntry);
             // 
@@ -484,37 +512,110 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox17);
+            this.groupBox1.Controls.Add(this.groupBox16);
+            this.groupBox1.Controls.Add(this.groupBox15);
+            this.groupBox1.Controls.Add(this.groupBox14);
             this.groupBox1.Controls.Add(this.label30);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.tbWeekCount);
-            this.groupBox1.Controls.Add(this.button11);
-            this.groupBox1.Controls.Add(this.tbTimeChange);
-            this.groupBox1.Controls.Add(this.button7);
-            this.groupBox1.Controls.Add(this.tbDayCount);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Location = new System.Drawing.Point(59, 52);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(792, 454);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
+            // groupBox8
+            // 
+            this.groupBox8.BackColor = System.Drawing.Color.LightGray;
+            this.groupBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.groupBox8.Controls.Add(this.tbDayCount);
+            this.groupBox8.Controls.Add(this.label13);
+            this.groupBox8.Controls.Add(this.label14);
+            this.groupBox8.Controls.Add(this.label15);
+            this.groupBox8.Controls.Add(this.tbTimeChange);
+            this.groupBox8.Controls.Add(this.tbWeekCount);
+            this.groupBox8.Location = new System.Drawing.Point(6, 5);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(233, 197);
+            this.groupBox8.TabIndex = 53;
+            this.groupBox8.TabStop = false;
+            // 
+            // tbDayCount
+            // 
+            this.tbDayCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDayCount.Location = new System.Drawing.Point(127, 83);
+            this.tbDayCount.Name = "tbDayCount";
+            this.tbDayCount.ReadOnly = true;
+            this.tbDayCount.Size = new System.Drawing.Size(47, 26);
+            this.tbDayCount.TabIndex = 48;
+            this.tbDayCount.TabStop = false;
+            this.tbDayCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Constantia", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(12, 54);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(76, 15);
+            this.label13.TabIndex = 49;
+            this.label13.Text = "Week Count";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Constantia", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(12, 90);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(67, 15);
+            this.label14.TabIndex = 50;
+            this.label14.Text = "Day Count";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Constantia", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(12, 122);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(82, 15);
+            this.label15.TabIndex = 52;
+            this.label15.Text = "Time Change";
+            // 
+            // tbTimeChange
+            // 
+            this.tbTimeChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTimeChange.Location = new System.Drawing.Point(127, 115);
+            this.tbTimeChange.Name = "tbTimeChange";
+            this.tbTimeChange.ReadOnly = true;
+            this.tbTimeChange.Size = new System.Drawing.Size(47, 26);
+            this.tbTimeChange.TabIndex = 51;
+            this.tbTimeChange.TabStop = false;
+            this.tbTimeChange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbWeekCount
+            // 
+            this.tbWeekCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbWeekCount.Location = new System.Drawing.Point(127, 54);
+            this.tbWeekCount.Name = "tbWeekCount";
+            this.tbWeekCount.ReadOnly = true;
+            this.tbWeekCount.Size = new System.Drawing.Size(47, 26);
+            this.tbWeekCount.TabIndex = 47;
+            this.tbWeekCount.TabStop = false;
+            this.tbWeekCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(241, 42);
+            this.label30.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(204, 48);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(287, 28);
+            this.label30.Size = new System.Drawing.Size(385, 37);
             this.label30.TabIndex = 12;
             this.label30.Text = "Cycling Log Application";
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(417, 260);
+            this.button1.Location = new System.Drawing.Point(53, 31);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 35);
             this.button1.TabIndex = 11;
@@ -522,41 +623,10 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.BtCharts_Click);
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(196, 263);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(70, 13);
-            this.label15.TabIndex = 52;
-            this.label15.Text = "Time Change";
-            // 
-            // btDeleteAllData
-            // 
-            this.btDeleteAllData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btDeleteAllData.Location = new System.Drawing.Point(551, 88);
-            this.btDeleteAllData.Name = "btDeleteAllData";
-            this.btDeleteAllData.Size = new System.Drawing.Size(130, 35);
-            this.btDeleteAllData.TabIndex = 3;
-            this.btDeleteAllData.Text = "Delete All Data";
-            this.btDeleteAllData.UseVisualStyleBackColor = true;
-            this.btDeleteAllData.Click += new System.EventHandler(this.BtDeleteAllData_Click);
-            // 
-            // tbWeekCount
-            // 
-            this.tbWeekCount.Location = new System.Drawing.Point(277, 220);
-            this.tbWeekCount.Name = "tbWeekCount";
-            this.tbWeekCount.ReadOnly = true;
-            this.tbWeekCount.Size = new System.Drawing.Size(47, 20);
-            this.tbWeekCount.TabIndex = 47;
-            this.tbWeekCount.TabStop = false;
-            this.tbWeekCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // button11
             // 
             this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button11.Location = new System.Drawing.Point(329, 391);
+            this.button11.Location = new System.Drawing.Point(41, 45);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(130, 35);
             this.button11.TabIndex = 2;
@@ -565,45 +635,16 @@
             this.button11.Visible = false;
             this.button11.Click += new System.EventHandler(this.ImportFromExcelLog);
             // 
-            // tbTimeChange
+            // btDeleteAllData
             // 
-            this.tbTimeChange.Location = new System.Drawing.Point(277, 260);
-            this.tbTimeChange.Name = "tbTimeChange";
-            this.tbTimeChange.ReadOnly = true;
-            this.tbTimeChange.Size = new System.Drawing.Size(47, 20);
-            this.tbTimeChange.TabIndex = 51;
-            this.tbTimeChange.TabStop = false;
-            this.tbTimeChange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbDayCount
-            // 
-            this.tbDayCount.Location = new System.Drawing.Point(277, 240);
-            this.tbDayCount.Name = "tbDayCount";
-            this.tbDayCount.ReadOnly = true;
-            this.tbDayCount.Size = new System.Drawing.Size(47, 20);
-            this.tbDayCount.TabIndex = 48;
-            this.tbDayCount.TabStop = false;
-            this.tbDayCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(209, 243);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(57, 13);
-            this.label14.TabIndex = 50;
-            this.label14.Text = "Day Count";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(199, 223);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(67, 13);
-            this.label13.TabIndex = 49;
-            this.label13.Text = "Week Count";
+            this.btDeleteAllData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btDeleteAllData.Location = new System.Drawing.Point(25, 68);
+            this.btDeleteAllData.Name = "btDeleteAllData";
+            this.btDeleteAllData.Size = new System.Drawing.Size(130, 35);
+            this.btDeleteAllData.TabIndex = 3;
+            this.btDeleteAllData.Text = "Delete All Data";
+            this.btDeleteAllData.UseVisualStyleBackColor = true;
+            this.btDeleteAllData.Click += new System.EventHandler(this.BtDeleteAllData_Click);
             // 
             // btRefreshStatisticsData
             // 
@@ -615,17 +656,17 @@
             this.btRefreshStatisticsData.UseVisualStyleBackColor = true;
             this.btRefreshStatisticsData.Click += new System.EventHandler(this.BtRefreshStatisticsData_Click);
             // 
-            // tabControl1
+            // tabControl1  Set Tab order for Tab Pages:
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Controls.Add(this.tabPage8);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(38, 45);
+            this.tabControl1.Controls.Add(this.tabPage1);   // Main
+            this.tabControl1.Controls.Add(this.tabPage4);   // Stat - Yearly
+            this.tabControl1.Controls.Add(this.tabPage7);   // Stat - Monthly
+            this.tabControl1.Controls.Add(this.tabPage8);   // Stat - Weekly
+            this.tabControl1.Controls.Add(this.tabPage5);   // Maintenance
+            this.tabControl1.Controls.Add(this.tabPage6);   // Bike Miles
+            this.tabControl1.Controls.Add(this.tabPage2);   // Settings
+            this.tabControl1.Controls.Add(this.tabPage3);   // About
+            this.tabControl1.Location = new System.Drawing.Point(34, 30);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(923, 591);
@@ -656,6 +697,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label82);
             this.groupBox4.Controls.Add(this.label80);
             this.groupBox4.Controls.Add(this.tbTotalTime);
             this.groupBox4.Controls.Add(this.tbTimeYearly5);
@@ -734,6 +776,15 @@
             this.groupBox4.Size = new System.Drawing.Size(798, 457);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
+            // 
+            // label82
+            // 
+            this.label82.AutoSize = true;
+            this.label82.Location = new System.Drawing.Point(84, 367);
+            this.label82.Name = "label82";
+            this.label82.Size = new System.Drawing.Size(44, 13);
+            this.label82.TabIndex = 81;
+            this.label82.Text = "All Logs";
             // 
             // label80
             // 
@@ -1612,7 +1663,7 @@
             // 
             // tbTimeMonthly12
             // 
-            this.tbTimeMonthly12.Location = new System.Drawing.Point(575, 487);
+            this.tbTimeMonthly12.Location = new System.Drawing.Point(608, 487);
             this.tbTimeMonthly12.Name = "tbTimeMonthly12";
             this.tbTimeMonthly12.ReadOnly = true;
             this.tbTimeMonthly12.Size = new System.Drawing.Size(63, 20);
@@ -1622,7 +1673,7 @@
             // 
             // tbTimeMonthly11
             // 
-            this.tbTimeMonthly11.Location = new System.Drawing.Point(506, 487);
+            this.tbTimeMonthly11.Location = new System.Drawing.Point(539, 487);
             this.tbTimeMonthly11.Name = "tbTimeMonthly11";
             this.tbTimeMonthly11.ReadOnly = true;
             this.tbTimeMonthly11.Size = new System.Drawing.Size(63, 20);
@@ -1632,7 +1683,7 @@
             // 
             // tbTimeMonthly10
             // 
-            this.tbTimeMonthly10.Location = new System.Drawing.Point(437, 487);
+            this.tbTimeMonthly10.Location = new System.Drawing.Point(470, 487);
             this.tbTimeMonthly10.Name = "tbTimeMonthly10";
             this.tbTimeMonthly10.ReadOnly = true;
             this.tbTimeMonthly10.Size = new System.Drawing.Size(63, 20);
@@ -1642,7 +1693,7 @@
             // 
             // tbTimeMonthly9
             // 
-            this.tbTimeMonthly9.Location = new System.Drawing.Point(368, 487);
+            this.tbTimeMonthly9.Location = new System.Drawing.Point(401, 487);
             this.tbTimeMonthly9.Name = "tbTimeMonthly9";
             this.tbTimeMonthly9.ReadOnly = true;
             this.tbTimeMonthly9.Size = new System.Drawing.Size(63, 20);
@@ -1652,7 +1703,7 @@
             // 
             // tbTimeMonthly8
             // 
-            this.tbTimeMonthly8.Location = new System.Drawing.Point(299, 487);
+            this.tbTimeMonthly8.Location = new System.Drawing.Point(332, 487);
             this.tbTimeMonthly8.Name = "tbTimeMonthly8";
             this.tbTimeMonthly8.ReadOnly = true;
             this.tbTimeMonthly8.Size = new System.Drawing.Size(63, 20);
@@ -1662,7 +1713,7 @@
             // 
             // tbTimeMonthly7
             // 
-            this.tbTimeMonthly7.Location = new System.Drawing.Point(230, 487);
+            this.tbTimeMonthly7.Location = new System.Drawing.Point(263, 487);
             this.tbTimeMonthly7.Name = "tbTimeMonthly7";
             this.tbTimeMonthly7.ReadOnly = true;
             this.tbTimeMonthly7.Size = new System.Drawing.Size(63, 20);
@@ -1673,7 +1724,7 @@
             // label79
             // 
             this.label79.AutoSize = true;
-            this.label79.Location = new System.Drawing.Point(152, 490);
+            this.label79.Location = new System.Drawing.Point(185, 490);
             this.label79.Name = "label79";
             this.label79.Size = new System.Drawing.Size(68, 13);
             this.label79.TabIndex = 150;
@@ -1681,7 +1732,7 @@
             // 
             // tbTimeMonthly6
             // 
-            this.tbTimeMonthly6.Location = new System.Drawing.Point(574, 254);
+            this.tbTimeMonthly6.Location = new System.Drawing.Point(607, 254);
             this.tbTimeMonthly6.Name = "tbTimeMonthly6";
             this.tbTimeMonthly6.ReadOnly = true;
             this.tbTimeMonthly6.Size = new System.Drawing.Size(63, 20);
@@ -1691,7 +1742,7 @@
             // 
             // tbTimeMonthly5
             // 
-            this.tbTimeMonthly5.Location = new System.Drawing.Point(505, 254);
+            this.tbTimeMonthly5.Location = new System.Drawing.Point(538, 254);
             this.tbTimeMonthly5.Name = "tbTimeMonthly5";
             this.tbTimeMonthly5.ReadOnly = true;
             this.tbTimeMonthly5.Size = new System.Drawing.Size(63, 20);
@@ -1701,7 +1752,7 @@
             // 
             // tbTimeMonthly4
             // 
-            this.tbTimeMonthly4.Location = new System.Drawing.Point(436, 254);
+            this.tbTimeMonthly4.Location = new System.Drawing.Point(469, 254);
             this.tbTimeMonthly4.Name = "tbTimeMonthly4";
             this.tbTimeMonthly4.ReadOnly = true;
             this.tbTimeMonthly4.Size = new System.Drawing.Size(63, 20);
@@ -1711,7 +1762,7 @@
             // 
             // tbTimeMonthly3
             // 
-            this.tbTimeMonthly3.Location = new System.Drawing.Point(367, 254);
+            this.tbTimeMonthly3.Location = new System.Drawing.Point(400, 254);
             this.tbTimeMonthly3.Name = "tbTimeMonthly3";
             this.tbTimeMonthly3.ReadOnly = true;
             this.tbTimeMonthly3.Size = new System.Drawing.Size(63, 20);
@@ -1721,7 +1772,7 @@
             // 
             // tbTimeMonthly2
             // 
-            this.tbTimeMonthly2.Location = new System.Drawing.Point(298, 254);
+            this.tbTimeMonthly2.Location = new System.Drawing.Point(331, 254);
             this.tbTimeMonthly2.Name = "tbTimeMonthly2";
             this.tbTimeMonthly2.ReadOnly = true;
             this.tbTimeMonthly2.Size = new System.Drawing.Size(63, 20);
@@ -1731,7 +1782,7 @@
             // 
             // tbTimeMonthly1
             // 
-            this.tbTimeMonthly1.Location = new System.Drawing.Point(229, 254);
+            this.tbTimeMonthly1.Location = new System.Drawing.Point(262, 254);
             this.tbTimeMonthly1.Name = "tbTimeMonthly1";
             this.tbTimeMonthly1.ReadOnly = true;
             this.tbTimeMonthly1.Size = new System.Drawing.Size(63, 20);
@@ -1742,7 +1793,7 @@
             // label78
             // 
             this.label78.AutoSize = true;
-            this.label78.Location = new System.Drawing.Point(152, 257);
+            this.label78.Location = new System.Drawing.Point(185, 257);
             this.label78.Name = "label78";
             this.label78.Size = new System.Drawing.Size(68, 13);
             this.label78.TabIndex = 143;
@@ -1750,7 +1801,7 @@
             // 
             // tbElevGainMonthly12
             // 
-            this.tbElevGainMonthly12.Location = new System.Drawing.Point(574, 464);
+            this.tbElevGainMonthly12.Location = new System.Drawing.Point(607, 464);
             this.tbElevGainMonthly12.Name = "tbElevGainMonthly12";
             this.tbElevGainMonthly12.ReadOnly = true;
             this.tbElevGainMonthly12.Size = new System.Drawing.Size(63, 20);
@@ -1760,7 +1811,7 @@
             // 
             // tbElevGainMonthly11
             // 
-            this.tbElevGainMonthly11.Location = new System.Drawing.Point(505, 464);
+            this.tbElevGainMonthly11.Location = new System.Drawing.Point(538, 464);
             this.tbElevGainMonthly11.Name = "tbElevGainMonthly11";
             this.tbElevGainMonthly11.ReadOnly = true;
             this.tbElevGainMonthly11.Size = new System.Drawing.Size(63, 20);
@@ -1770,7 +1821,7 @@
             // 
             // tbElevGainMonthly10
             // 
-            this.tbElevGainMonthly10.Location = new System.Drawing.Point(436, 464);
+            this.tbElevGainMonthly10.Location = new System.Drawing.Point(469, 464);
             this.tbElevGainMonthly10.Name = "tbElevGainMonthly10";
             this.tbElevGainMonthly10.ReadOnly = true;
             this.tbElevGainMonthly10.Size = new System.Drawing.Size(63, 20);
@@ -1780,7 +1831,7 @@
             // 
             // tbElevGainMonthly9
             // 
-            this.tbElevGainMonthly9.Location = new System.Drawing.Point(367, 464);
+            this.tbElevGainMonthly9.Location = new System.Drawing.Point(400, 464);
             this.tbElevGainMonthly9.Name = "tbElevGainMonthly9";
             this.tbElevGainMonthly9.ReadOnly = true;
             this.tbElevGainMonthly9.Size = new System.Drawing.Size(63, 20);
@@ -1790,7 +1841,7 @@
             // 
             // tbElevGainMonthly8
             // 
-            this.tbElevGainMonthly8.Location = new System.Drawing.Point(298, 464);
+            this.tbElevGainMonthly8.Location = new System.Drawing.Point(331, 464);
             this.tbElevGainMonthly8.Name = "tbElevGainMonthly8";
             this.tbElevGainMonthly8.ReadOnly = true;
             this.tbElevGainMonthly8.Size = new System.Drawing.Size(63, 20);
@@ -1800,7 +1851,7 @@
             // 
             // tbElevGainMonthly7
             // 
-            this.tbElevGainMonthly7.Location = new System.Drawing.Point(229, 464);
+            this.tbElevGainMonthly7.Location = new System.Drawing.Point(262, 464);
             this.tbElevGainMonthly7.Name = "tbElevGainMonthly7";
             this.tbElevGainMonthly7.ReadOnly = true;
             this.tbElevGainMonthly7.Size = new System.Drawing.Size(63, 20);
@@ -1811,7 +1862,7 @@
             // label72
             // 
             this.label72.AutoSize = true;
-            this.label72.Location = new System.Drawing.Point(153, 467);
+            this.label72.Location = new System.Drawing.Point(186, 467);
             this.label72.Name = "label72";
             this.label72.Size = new System.Drawing.Size(53, 13);
             this.label72.TabIndex = 136;
@@ -1819,7 +1870,7 @@
             // 
             // tbElevGainMonthly6
             // 
-            this.tbElevGainMonthly6.Location = new System.Drawing.Point(574, 231);
+            this.tbElevGainMonthly6.Location = new System.Drawing.Point(607, 231);
             this.tbElevGainMonthly6.Name = "tbElevGainMonthly6";
             this.tbElevGainMonthly6.ReadOnly = true;
             this.tbElevGainMonthly6.Size = new System.Drawing.Size(63, 20);
@@ -1829,7 +1880,7 @@
             // 
             // tbElevGainMonthly5
             // 
-            this.tbElevGainMonthly5.Location = new System.Drawing.Point(505, 231);
+            this.tbElevGainMonthly5.Location = new System.Drawing.Point(538, 231);
             this.tbElevGainMonthly5.Name = "tbElevGainMonthly5";
             this.tbElevGainMonthly5.ReadOnly = true;
             this.tbElevGainMonthly5.Size = new System.Drawing.Size(63, 20);
@@ -1839,7 +1890,7 @@
             // 
             // tbElevGainMonthly4
             // 
-            this.tbElevGainMonthly4.Location = new System.Drawing.Point(436, 231);
+            this.tbElevGainMonthly4.Location = new System.Drawing.Point(469, 231);
             this.tbElevGainMonthly4.Name = "tbElevGainMonthly4";
             this.tbElevGainMonthly4.ReadOnly = true;
             this.tbElevGainMonthly4.Size = new System.Drawing.Size(63, 20);
@@ -1849,7 +1900,7 @@
             // 
             // tbElevGainMonthly3
             // 
-            this.tbElevGainMonthly3.Location = new System.Drawing.Point(367, 231);
+            this.tbElevGainMonthly3.Location = new System.Drawing.Point(400, 231);
             this.tbElevGainMonthly3.Name = "tbElevGainMonthly3";
             this.tbElevGainMonthly3.ReadOnly = true;
             this.tbElevGainMonthly3.Size = new System.Drawing.Size(63, 20);
@@ -1859,7 +1910,7 @@
             // 
             // tbElevGainMonthly2
             // 
-            this.tbElevGainMonthly2.Location = new System.Drawing.Point(298, 231);
+            this.tbElevGainMonthly2.Location = new System.Drawing.Point(331, 231);
             this.tbElevGainMonthly2.Name = "tbElevGainMonthly2";
             this.tbElevGainMonthly2.ReadOnly = true;
             this.tbElevGainMonthly2.Size = new System.Drawing.Size(63, 20);
@@ -1869,7 +1920,7 @@
             // 
             // tbElevGainMonthly1
             // 
-            this.tbElevGainMonthly1.Location = new System.Drawing.Point(229, 231);
+            this.tbElevGainMonthly1.Location = new System.Drawing.Point(262, 231);
             this.tbElevGainMonthly1.Name = "tbElevGainMonthly1";
             this.tbElevGainMonthly1.ReadOnly = true;
             this.tbElevGainMonthly1.Size = new System.Drawing.Size(63, 20);
@@ -1880,7 +1931,7 @@
             // label71
             // 
             this.label71.AutoSize = true;
-            this.label71.Location = new System.Drawing.Point(154, 234);
+            this.label71.Location = new System.Drawing.Point(187, 234);
             this.label71.Name = "label71";
             this.label71.Size = new System.Drawing.Size(53, 13);
             this.label71.TabIndex = 129;
@@ -1888,7 +1939,7 @@
             // 
             // bMonthlyStatistics
             // 
-            this.bMonthlyStatistics.Location = new System.Drawing.Point(45, 58);
+            this.bMonthlyStatistics.Location = new System.Drawing.Point(78, 58);
             this.bMonthlyStatistics.Name = "bMonthlyStatistics";
             this.bMonthlyStatistics.Size = new System.Drawing.Size(75, 23);
             this.bMonthlyStatistics.TabIndex = 128;
@@ -1909,7 +1960,7 @@
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(582, 297);
+            this.label45.Location = new System.Drawing.Point(615, 297);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(56, 13);
             this.label45.TabIndex = 125;
@@ -1917,7 +1968,7 @@
             // 
             // month12R3
             // 
-            this.month12R3.Location = new System.Drawing.Point(574, 362);
+            this.month12R3.Location = new System.Drawing.Point(607, 362);
             this.month12R3.Name = "month12R3";
             this.month12R3.ReadOnly = true;
             this.month12R3.Size = new System.Drawing.Size(63, 20);
@@ -1927,7 +1978,7 @@
             // 
             // month12R7
             // 
-            this.month12R7.Location = new System.Drawing.Point(574, 442);
+            this.month12R7.Location = new System.Drawing.Point(607, 442);
             this.month12R7.Name = "month12R7";
             this.month12R7.ReadOnly = true;
             this.month12R7.Size = new System.Drawing.Size(63, 20);
@@ -1937,7 +1988,7 @@
             // 
             // month12R6
             // 
-            this.month12R6.Location = new System.Drawing.Point(574, 422);
+            this.month12R6.Location = new System.Drawing.Point(607, 422);
             this.month12R6.Name = "month12R6";
             this.month12R6.ReadOnly = true;
             this.month12R6.Size = new System.Drawing.Size(63, 20);
@@ -1947,7 +1998,7 @@
             // 
             // month12R1
             // 
-            this.month12R1.Location = new System.Drawing.Point(574, 322);
+            this.month12R1.Location = new System.Drawing.Point(607, 322);
             this.month12R1.Name = "month12R1";
             this.month12R1.ReadOnly = true;
             this.month12R1.Size = new System.Drawing.Size(63, 20);
@@ -1957,7 +2008,7 @@
             // 
             // month12R5
             // 
-            this.month12R5.Location = new System.Drawing.Point(574, 402);
+            this.month12R5.Location = new System.Drawing.Point(607, 402);
             this.month12R5.Name = "month12R5";
             this.month12R5.ReadOnly = true;
             this.month12R5.Size = new System.Drawing.Size(63, 20);
@@ -1967,7 +2018,7 @@
             // 
             // month12R2
             // 
-            this.month12R2.Location = new System.Drawing.Point(574, 342);
+            this.month12R2.Location = new System.Drawing.Point(607, 342);
             this.month12R2.Name = "month12R2";
             this.month12R2.ReadOnly = true;
             this.month12R2.Size = new System.Drawing.Size(63, 20);
@@ -1977,7 +2028,7 @@
             // 
             // month12R4
             // 
-            this.month12R4.Location = new System.Drawing.Point(574, 382);
+            this.month12R4.Location = new System.Drawing.Point(607, 382);
             this.month12R4.Name = "month12R4";
             this.month12R4.ReadOnly = true;
             this.month12R4.Size = new System.Drawing.Size(63, 20);
@@ -1988,7 +2039,7 @@
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(513, 297);
+            this.label46.Location = new System.Drawing.Point(546, 297);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(56, 13);
             this.label46.TabIndex = 117;
@@ -1996,7 +2047,7 @@
             // 
             // month11R3
             // 
-            this.month11R3.Location = new System.Drawing.Point(505, 362);
+            this.month11R3.Location = new System.Drawing.Point(538, 362);
             this.month11R3.Name = "month11R3";
             this.month11R3.ReadOnly = true;
             this.month11R3.Size = new System.Drawing.Size(63, 20);
@@ -2006,7 +2057,7 @@
             // 
             // month11R7
             // 
-            this.month11R7.Location = new System.Drawing.Point(505, 442);
+            this.month11R7.Location = new System.Drawing.Point(538, 442);
             this.month11R7.Name = "month11R7";
             this.month11R7.ReadOnly = true;
             this.month11R7.Size = new System.Drawing.Size(63, 20);
@@ -2016,7 +2067,7 @@
             // 
             // month11R6
             // 
-            this.month11R6.Location = new System.Drawing.Point(505, 422);
+            this.month11R6.Location = new System.Drawing.Point(538, 422);
             this.month11R6.Name = "month11R6";
             this.month11R6.ReadOnly = true;
             this.month11R6.Size = new System.Drawing.Size(63, 20);
@@ -2026,7 +2077,7 @@
             // 
             // month11R1
             // 
-            this.month11R1.Location = new System.Drawing.Point(505, 322);
+            this.month11R1.Location = new System.Drawing.Point(538, 322);
             this.month11R1.Name = "month11R1";
             this.month11R1.ReadOnly = true;
             this.month11R1.Size = new System.Drawing.Size(63, 20);
@@ -2036,7 +2087,7 @@
             // 
             // month11R5
             // 
-            this.month11R5.Location = new System.Drawing.Point(505, 402);
+            this.month11R5.Location = new System.Drawing.Point(538, 402);
             this.month11R5.Name = "month11R5";
             this.month11R5.ReadOnly = true;
             this.month11R5.Size = new System.Drawing.Size(63, 20);
@@ -2046,7 +2097,7 @@
             // 
             // month11R2
             // 
-            this.month11R2.Location = new System.Drawing.Point(505, 342);
+            this.month11R2.Location = new System.Drawing.Point(538, 342);
             this.month11R2.Name = "month11R2";
             this.month11R2.ReadOnly = true;
             this.month11R2.Size = new System.Drawing.Size(63, 20);
@@ -2056,7 +2107,7 @@
             // 
             // month11R4
             // 
-            this.month11R4.Location = new System.Drawing.Point(505, 382);
+            this.month11R4.Location = new System.Drawing.Point(538, 382);
             this.month11R4.Name = "month11R4";
             this.month11R4.ReadOnly = true;
             this.month11R4.Size = new System.Drawing.Size(63, 20);
@@ -2067,7 +2118,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(444, 297);
+            this.label47.Location = new System.Drawing.Point(477, 297);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(45, 13);
             this.label47.TabIndex = 109;
@@ -2075,7 +2126,7 @@
             // 
             // month10R3
             // 
-            this.month10R3.Location = new System.Drawing.Point(436, 362);
+            this.month10R3.Location = new System.Drawing.Point(469, 362);
             this.month10R3.Name = "month10R3";
             this.month10R3.ReadOnly = true;
             this.month10R3.Size = new System.Drawing.Size(63, 20);
@@ -2085,7 +2136,7 @@
             // 
             // month10R7
             // 
-            this.month10R7.Location = new System.Drawing.Point(436, 442);
+            this.month10R7.Location = new System.Drawing.Point(469, 442);
             this.month10R7.Name = "month10R7";
             this.month10R7.ReadOnly = true;
             this.month10R7.Size = new System.Drawing.Size(63, 20);
@@ -2095,7 +2146,7 @@
             // 
             // month10R6
             // 
-            this.month10R6.Location = new System.Drawing.Point(436, 422);
+            this.month10R6.Location = new System.Drawing.Point(469, 422);
             this.month10R6.Name = "month10R6";
             this.month10R6.ReadOnly = true;
             this.month10R6.Size = new System.Drawing.Size(63, 20);
@@ -2105,7 +2156,7 @@
             // 
             // month10R1
             // 
-            this.month10R1.Location = new System.Drawing.Point(436, 322);
+            this.month10R1.Location = new System.Drawing.Point(469, 322);
             this.month10R1.Name = "month10R1";
             this.month10R1.ReadOnly = true;
             this.month10R1.Size = new System.Drawing.Size(63, 20);
@@ -2115,7 +2166,7 @@
             // 
             // month10R5
             // 
-            this.month10R5.Location = new System.Drawing.Point(436, 402);
+            this.month10R5.Location = new System.Drawing.Point(469, 402);
             this.month10R5.Name = "month10R5";
             this.month10R5.ReadOnly = true;
             this.month10R5.Size = new System.Drawing.Size(63, 20);
@@ -2125,7 +2176,7 @@
             // 
             // month10R2
             // 
-            this.month10R2.Location = new System.Drawing.Point(436, 342);
+            this.month10R2.Location = new System.Drawing.Point(469, 342);
             this.month10R2.Name = "month10R2";
             this.month10R2.ReadOnly = true;
             this.month10R2.Size = new System.Drawing.Size(63, 20);
@@ -2135,7 +2186,7 @@
             // 
             // month10R4
             // 
-            this.month10R4.Location = new System.Drawing.Point(436, 382);
+            this.month10R4.Location = new System.Drawing.Point(469, 382);
             this.month10R4.Name = "month10R4";
             this.month10R4.ReadOnly = true;
             this.month10R4.Size = new System.Drawing.Size(63, 20);
@@ -2146,7 +2197,7 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(375, 297);
+            this.label48.Location = new System.Drawing.Point(408, 297);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(58, 13);
             this.label48.TabIndex = 101;
@@ -2154,7 +2205,7 @@
             // 
             // month9R3
             // 
-            this.month9R3.Location = new System.Drawing.Point(367, 362);
+            this.month9R3.Location = new System.Drawing.Point(400, 362);
             this.month9R3.Name = "month9R3";
             this.month9R3.ReadOnly = true;
             this.month9R3.Size = new System.Drawing.Size(63, 20);
@@ -2164,7 +2215,7 @@
             // 
             // month9R7
             // 
-            this.month9R7.Location = new System.Drawing.Point(367, 442);
+            this.month9R7.Location = new System.Drawing.Point(400, 442);
             this.month9R7.Name = "month9R7";
             this.month9R7.ReadOnly = true;
             this.month9R7.Size = new System.Drawing.Size(63, 20);
@@ -2174,7 +2225,7 @@
             // 
             // month9R6
             // 
-            this.month9R6.Location = new System.Drawing.Point(367, 422);
+            this.month9R6.Location = new System.Drawing.Point(400, 422);
             this.month9R6.Name = "month9R6";
             this.month9R6.ReadOnly = true;
             this.month9R6.Size = new System.Drawing.Size(63, 20);
@@ -2184,7 +2235,7 @@
             // 
             // month9R1
             // 
-            this.month9R1.Location = new System.Drawing.Point(367, 322);
+            this.month9R1.Location = new System.Drawing.Point(400, 322);
             this.month9R1.Name = "month9R1";
             this.month9R1.ReadOnly = true;
             this.month9R1.Size = new System.Drawing.Size(63, 20);
@@ -2194,7 +2245,7 @@
             // 
             // month9R5
             // 
-            this.month9R5.Location = new System.Drawing.Point(367, 402);
+            this.month9R5.Location = new System.Drawing.Point(400, 402);
             this.month9R5.Name = "month9R5";
             this.month9R5.ReadOnly = true;
             this.month9R5.Size = new System.Drawing.Size(63, 20);
@@ -2204,7 +2255,7 @@
             // 
             // month9R2
             // 
-            this.month9R2.Location = new System.Drawing.Point(367, 342);
+            this.month9R2.Location = new System.Drawing.Point(400, 342);
             this.month9R2.Name = "month9R2";
             this.month9R2.ReadOnly = true;
             this.month9R2.Size = new System.Drawing.Size(63, 20);
@@ -2214,7 +2265,7 @@
             // 
             // month9R4
             // 
-            this.month9R4.Location = new System.Drawing.Point(367, 382);
+            this.month9R4.Location = new System.Drawing.Point(400, 382);
             this.month9R4.Name = "month9R4";
             this.month9R4.ReadOnly = true;
             this.month9R4.Size = new System.Drawing.Size(63, 20);
@@ -2225,7 +2276,7 @@
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(306, 297);
+            this.label49.Location = new System.Drawing.Point(339, 297);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(40, 13);
             this.label49.TabIndex = 93;
@@ -2233,7 +2284,7 @@
             // 
             // month8R3
             // 
-            this.month8R3.Location = new System.Drawing.Point(298, 362);
+            this.month8R3.Location = new System.Drawing.Point(331, 362);
             this.month8R3.Name = "month8R3";
             this.month8R3.ReadOnly = true;
             this.month8R3.Size = new System.Drawing.Size(63, 20);
@@ -2243,7 +2294,7 @@
             // 
             // month8R7
             // 
-            this.month8R7.Location = new System.Drawing.Point(298, 442);
+            this.month8R7.Location = new System.Drawing.Point(331, 442);
             this.month8R7.Name = "month8R7";
             this.month8R7.ReadOnly = true;
             this.month8R7.Size = new System.Drawing.Size(63, 20);
@@ -2253,7 +2304,7 @@
             // 
             // month8R6
             // 
-            this.month8R6.Location = new System.Drawing.Point(298, 422);
+            this.month8R6.Location = new System.Drawing.Point(331, 422);
             this.month8R6.Name = "month8R6";
             this.month8R6.ReadOnly = true;
             this.month8R6.Size = new System.Drawing.Size(63, 20);
@@ -2263,7 +2314,7 @@
             // 
             // month8R1
             // 
-            this.month8R1.Location = new System.Drawing.Point(298, 322);
+            this.month8R1.Location = new System.Drawing.Point(331, 322);
             this.month8R1.Name = "month8R1";
             this.month8R1.ReadOnly = true;
             this.month8R1.Size = new System.Drawing.Size(63, 20);
@@ -2273,7 +2324,7 @@
             // 
             // month8R5
             // 
-            this.month8R5.Location = new System.Drawing.Point(298, 402);
+            this.month8R5.Location = new System.Drawing.Point(331, 402);
             this.month8R5.Name = "month8R5";
             this.month8R5.ReadOnly = true;
             this.month8R5.Size = new System.Drawing.Size(63, 20);
@@ -2283,7 +2334,7 @@
             // 
             // month8R2
             // 
-            this.month8R2.Location = new System.Drawing.Point(298, 342);
+            this.month8R2.Location = new System.Drawing.Point(331, 342);
             this.month8R2.Name = "month8R2";
             this.month8R2.ReadOnly = true;
             this.month8R2.Size = new System.Drawing.Size(63, 20);
@@ -2293,7 +2344,7 @@
             // 
             // month8R4
             // 
-            this.month8R4.Location = new System.Drawing.Point(298, 382);
+            this.month8R4.Location = new System.Drawing.Point(331, 382);
             this.month8R4.Name = "month8R4";
             this.month8R4.ReadOnly = true;
             this.month8R4.Size = new System.Drawing.Size(63, 20);
@@ -2304,7 +2355,7 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(237, 297);
+            this.label50.Location = new System.Drawing.Point(270, 297);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(25, 13);
             this.label50.TabIndex = 85;
@@ -2312,7 +2363,7 @@
             // 
             // month7R3
             // 
-            this.month7R3.Location = new System.Drawing.Point(229, 362);
+            this.month7R3.Location = new System.Drawing.Point(262, 362);
             this.month7R3.Name = "month7R3";
             this.month7R3.ReadOnly = true;
             this.month7R3.Size = new System.Drawing.Size(63, 20);
@@ -2322,7 +2373,7 @@
             // 
             // month7R7
             // 
-            this.month7R7.Location = new System.Drawing.Point(229, 442);
+            this.month7R7.Location = new System.Drawing.Point(262, 442);
             this.month7R7.Name = "month7R7";
             this.month7R7.ReadOnly = true;
             this.month7R7.Size = new System.Drawing.Size(63, 20);
@@ -2333,7 +2384,7 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(153, 445);
+            this.label51.Location = new System.Drawing.Point(186, 445);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(70, 13);
             this.label51.TabIndex = 83;
@@ -2342,7 +2393,7 @@
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(152, 325);
+            this.label52.Location = new System.Drawing.Point(185, 325);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(71, 13);
             this.label52.TabIndex = 71;
@@ -2350,7 +2401,7 @@
             // 
             // month7R6
             // 
-            this.month7R6.Location = new System.Drawing.Point(229, 422);
+            this.month7R6.Location = new System.Drawing.Point(262, 422);
             this.month7R6.Name = "month7R6";
             this.month7R6.ReadOnly = true;
             this.month7R6.Size = new System.Drawing.Size(63, 20);
@@ -2360,7 +2411,7 @@
             // 
             // month7R1
             // 
-            this.month7R1.Location = new System.Drawing.Point(229, 322);
+            this.month7R1.Location = new System.Drawing.Point(262, 322);
             this.month7R1.Name = "month7R1";
             this.month7R1.ReadOnly = true;
             this.month7R1.Size = new System.Drawing.Size(63, 20);
@@ -2371,7 +2422,7 @@
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(120, 425);
+            this.label53.Location = new System.Drawing.Point(153, 425);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(103, 13);
             this.label53.TabIndex = 81;
@@ -2380,7 +2431,7 @@
             // label54
             // 
             this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(137, 345);
+            this.label54.Location = new System.Drawing.Point(170, 345);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(86, 13);
             this.label54.TabIndex = 73;
@@ -2388,7 +2439,7 @@
             // 
             // month7R5
             // 
-            this.month7R5.Location = new System.Drawing.Point(229, 402);
+            this.month7R5.Location = new System.Drawing.Point(262, 402);
             this.month7R5.Name = "month7R5";
             this.month7R5.ReadOnly = true;
             this.month7R5.Size = new System.Drawing.Size(63, 20);
@@ -2398,7 +2449,7 @@
             // 
             // month7R2
             // 
-            this.month7R2.Location = new System.Drawing.Point(229, 342);
+            this.month7R2.Location = new System.Drawing.Point(262, 342);
             this.month7R2.Name = "month7R2";
             this.month7R2.ReadOnly = true;
             this.month7R2.Size = new System.Drawing.Size(63, 20);
@@ -2409,7 +2460,7 @@
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(127, 405);
+            this.label55.Location = new System.Drawing.Point(160, 405);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(96, 13);
             this.label55.TabIndex = 79;
@@ -2418,7 +2469,7 @@
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(120, 365);
+            this.label56.Location = new System.Drawing.Point(153, 365);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(103, 13);
             this.label56.TabIndex = 75;
@@ -2426,7 +2477,7 @@
             // 
             // month7R4
             // 
-            this.month7R4.Location = new System.Drawing.Point(229, 382);
+            this.month7R4.Location = new System.Drawing.Point(262, 382);
             this.month7R4.Name = "month7R4";
             this.month7R4.ReadOnly = true;
             this.month7R4.Size = new System.Drawing.Size(63, 20);
@@ -2437,7 +2488,7 @@
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(123, 385);
+            this.label57.Location = new System.Drawing.Point(156, 385);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(100, 13);
             this.label57.TabIndex = 77;
@@ -2446,7 +2497,7 @@
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(583, 63);
+            this.label44.Location = new System.Drawing.Point(616, 63);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(30, 13);
             this.label44.TabIndex = 70;
@@ -2454,7 +2505,7 @@
             // 
             // month6R3
             // 
-            this.month6R3.Location = new System.Drawing.Point(575, 128);
+            this.month6R3.Location = new System.Drawing.Point(608, 128);
             this.month6R3.Name = "month6R3";
             this.month6R3.ReadOnly = true;
             this.month6R3.Size = new System.Drawing.Size(63, 20);
@@ -2464,7 +2515,7 @@
             // 
             // month6R7
             // 
-            this.month6R7.Location = new System.Drawing.Point(575, 208);
+            this.month6R7.Location = new System.Drawing.Point(608, 208);
             this.month6R7.Name = "month6R7";
             this.month6R7.ReadOnly = true;
             this.month6R7.Size = new System.Drawing.Size(63, 20);
@@ -2474,7 +2525,7 @@
             // 
             // month6R6
             // 
-            this.month6R6.Location = new System.Drawing.Point(575, 188);
+            this.month6R6.Location = new System.Drawing.Point(608, 188);
             this.month6R6.Name = "month6R6";
             this.month6R6.ReadOnly = true;
             this.month6R6.Size = new System.Drawing.Size(63, 20);
@@ -2484,7 +2535,7 @@
             // 
             // month6R1
             // 
-            this.month6R1.Location = new System.Drawing.Point(575, 88);
+            this.month6R1.Location = new System.Drawing.Point(608, 88);
             this.month6R1.Name = "month6R1";
             this.month6R1.ReadOnly = true;
             this.month6R1.Size = new System.Drawing.Size(63, 20);
@@ -2494,7 +2545,7 @@
             // 
             // month6R5
             // 
-            this.month6R5.Location = new System.Drawing.Point(575, 168);
+            this.month6R5.Location = new System.Drawing.Point(608, 168);
             this.month6R5.Name = "month6R5";
             this.month6R5.ReadOnly = true;
             this.month6R5.Size = new System.Drawing.Size(63, 20);
@@ -2504,7 +2555,7 @@
             // 
             // month6R2
             // 
-            this.month6R2.Location = new System.Drawing.Point(575, 108);
+            this.month6R2.Location = new System.Drawing.Point(608, 108);
             this.month6R2.Name = "month6R2";
             this.month6R2.ReadOnly = true;
             this.month6R2.Size = new System.Drawing.Size(63, 20);
@@ -2514,7 +2565,7 @@
             // 
             // month6R4
             // 
-            this.month6R4.Location = new System.Drawing.Point(575, 148);
+            this.month6R4.Location = new System.Drawing.Point(608, 148);
             this.month6R4.Name = "month6R4";
             this.month6R4.ReadOnly = true;
             this.month6R4.Size = new System.Drawing.Size(63, 20);
@@ -2525,7 +2576,7 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(514, 63);
+            this.label43.Location = new System.Drawing.Point(547, 63);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(27, 13);
             this.label43.TabIndex = 62;
@@ -2533,7 +2584,7 @@
             // 
             // month5R3
             // 
-            this.month5R3.Location = new System.Drawing.Point(506, 128);
+            this.month5R3.Location = new System.Drawing.Point(539, 128);
             this.month5R3.Name = "month5R3";
             this.month5R3.ReadOnly = true;
             this.month5R3.Size = new System.Drawing.Size(63, 20);
@@ -2543,7 +2594,7 @@
             // 
             // month5R7
             // 
-            this.month5R7.Location = new System.Drawing.Point(506, 208);
+            this.month5R7.Location = new System.Drawing.Point(539, 208);
             this.month5R7.Name = "month5R7";
             this.month5R7.ReadOnly = true;
             this.month5R7.Size = new System.Drawing.Size(63, 20);
@@ -2553,7 +2604,7 @@
             // 
             // month5R6
             // 
-            this.month5R6.Location = new System.Drawing.Point(506, 188);
+            this.month5R6.Location = new System.Drawing.Point(539, 188);
             this.month5R6.Name = "month5R6";
             this.month5R6.ReadOnly = true;
             this.month5R6.Size = new System.Drawing.Size(63, 20);
@@ -2563,7 +2614,7 @@
             // 
             // month5R1
             // 
-            this.month5R1.Location = new System.Drawing.Point(506, 88);
+            this.month5R1.Location = new System.Drawing.Point(539, 88);
             this.month5R1.Name = "month5R1";
             this.month5R1.ReadOnly = true;
             this.month5R1.Size = new System.Drawing.Size(63, 20);
@@ -2573,7 +2624,7 @@
             // 
             // month5R5
             // 
-            this.month5R5.Location = new System.Drawing.Point(506, 168);
+            this.month5R5.Location = new System.Drawing.Point(539, 168);
             this.month5R5.Name = "month5R5";
             this.month5R5.ReadOnly = true;
             this.month5R5.Size = new System.Drawing.Size(63, 20);
@@ -2583,7 +2634,7 @@
             // 
             // month5R2
             // 
-            this.month5R2.Location = new System.Drawing.Point(506, 108);
+            this.month5R2.Location = new System.Drawing.Point(539, 108);
             this.month5R2.Name = "month5R2";
             this.month5R2.ReadOnly = true;
             this.month5R2.Size = new System.Drawing.Size(63, 20);
@@ -2593,7 +2644,7 @@
             // 
             // month5R4
             // 
-            this.month5R4.Location = new System.Drawing.Point(506, 148);
+            this.month5R4.Location = new System.Drawing.Point(539, 148);
             this.month5R4.Name = "month5R4";
             this.month5R4.ReadOnly = true;
             this.month5R4.Size = new System.Drawing.Size(63, 20);
@@ -2604,7 +2655,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(445, 63);
+            this.label42.Location = new System.Drawing.Point(478, 63);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(27, 13);
             this.label42.TabIndex = 54;
@@ -2612,7 +2663,7 @@
             // 
             // month4R3
             // 
-            this.month4R3.Location = new System.Drawing.Point(437, 128);
+            this.month4R3.Location = new System.Drawing.Point(470, 128);
             this.month4R3.Name = "month4R3";
             this.month4R3.ReadOnly = true;
             this.month4R3.Size = new System.Drawing.Size(63, 20);
@@ -2622,7 +2673,7 @@
             // 
             // month4R7
             // 
-            this.month4R7.Location = new System.Drawing.Point(437, 208);
+            this.month4R7.Location = new System.Drawing.Point(470, 208);
             this.month4R7.Name = "month4R7";
             this.month4R7.ReadOnly = true;
             this.month4R7.Size = new System.Drawing.Size(63, 20);
@@ -2632,7 +2683,7 @@
             // 
             // month4R6
             // 
-            this.month4R6.Location = new System.Drawing.Point(437, 188);
+            this.month4R6.Location = new System.Drawing.Point(470, 188);
             this.month4R6.Name = "month4R6";
             this.month4R6.ReadOnly = true;
             this.month4R6.Size = new System.Drawing.Size(63, 20);
@@ -2642,7 +2693,7 @@
             // 
             // month4R1
             // 
-            this.month4R1.Location = new System.Drawing.Point(437, 88);
+            this.month4R1.Location = new System.Drawing.Point(470, 88);
             this.month4R1.Name = "month4R1";
             this.month4R1.ReadOnly = true;
             this.month4R1.Size = new System.Drawing.Size(63, 20);
@@ -2652,7 +2703,7 @@
             // 
             // month4R5
             // 
-            this.month4R5.Location = new System.Drawing.Point(437, 168);
+            this.month4R5.Location = new System.Drawing.Point(470, 168);
             this.month4R5.Name = "month4R5";
             this.month4R5.ReadOnly = true;
             this.month4R5.Size = new System.Drawing.Size(63, 20);
@@ -2662,7 +2713,7 @@
             // 
             // month4R2
             // 
-            this.month4R2.Location = new System.Drawing.Point(437, 108);
+            this.month4R2.Location = new System.Drawing.Point(470, 108);
             this.month4R2.Name = "month4R2";
             this.month4R2.ReadOnly = true;
             this.month4R2.Size = new System.Drawing.Size(63, 20);
@@ -2672,7 +2723,7 @@
             // 
             // month4R4
             // 
-            this.month4R4.Location = new System.Drawing.Point(437, 148);
+            this.month4R4.Location = new System.Drawing.Point(470, 148);
             this.month4R4.Name = "month4R4";
             this.month4R4.ReadOnly = true;
             this.month4R4.Size = new System.Drawing.Size(63, 20);
@@ -2683,7 +2734,7 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(376, 63);
+            this.label41.Location = new System.Drawing.Point(409, 63);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(37, 13);
             this.label41.TabIndex = 46;
@@ -2691,7 +2742,7 @@
             // 
             // month3R3
             // 
-            this.month3R3.Location = new System.Drawing.Point(368, 128);
+            this.month3R3.Location = new System.Drawing.Point(401, 128);
             this.month3R3.Name = "month3R3";
             this.month3R3.ReadOnly = true;
             this.month3R3.Size = new System.Drawing.Size(63, 20);
@@ -2701,7 +2752,7 @@
             // 
             // month3R7
             // 
-            this.month3R7.Location = new System.Drawing.Point(368, 208);
+            this.month3R7.Location = new System.Drawing.Point(401, 208);
             this.month3R7.Name = "month3R7";
             this.month3R7.ReadOnly = true;
             this.month3R7.Size = new System.Drawing.Size(63, 20);
@@ -2711,7 +2762,7 @@
             // 
             // month3R6
             // 
-            this.month3R6.Location = new System.Drawing.Point(368, 188);
+            this.month3R6.Location = new System.Drawing.Point(401, 188);
             this.month3R6.Name = "month3R6";
             this.month3R6.ReadOnly = true;
             this.month3R6.Size = new System.Drawing.Size(63, 20);
@@ -2721,7 +2772,7 @@
             // 
             // month3R1
             // 
-            this.month3R1.Location = new System.Drawing.Point(368, 88);
+            this.month3R1.Location = new System.Drawing.Point(401, 88);
             this.month3R1.Name = "month3R1";
             this.month3R1.ReadOnly = true;
             this.month3R1.Size = new System.Drawing.Size(63, 20);
@@ -2731,7 +2782,7 @@
             // 
             // month3R5
             // 
-            this.month3R5.Location = new System.Drawing.Point(368, 168);
+            this.month3R5.Location = new System.Drawing.Point(401, 168);
             this.month3R5.Name = "month3R5";
             this.month3R5.ReadOnly = true;
             this.month3R5.Size = new System.Drawing.Size(63, 20);
@@ -2741,7 +2792,7 @@
             // 
             // month3R2
             // 
-            this.month3R2.Location = new System.Drawing.Point(368, 108);
+            this.month3R2.Location = new System.Drawing.Point(401, 108);
             this.month3R2.Name = "month3R2";
             this.month3R2.ReadOnly = true;
             this.month3R2.Size = new System.Drawing.Size(63, 20);
@@ -2751,7 +2802,7 @@
             // 
             // month3R4
             // 
-            this.month3R4.Location = new System.Drawing.Point(368, 148);
+            this.month3R4.Location = new System.Drawing.Point(401, 148);
             this.month3R4.Name = "month3R4";
             this.month3R4.ReadOnly = true;
             this.month3R4.Size = new System.Drawing.Size(63, 20);
@@ -2762,7 +2813,7 @@
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(307, 63);
+            this.label40.Location = new System.Drawing.Point(340, 63);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(48, 13);
             this.label40.TabIndex = 38;
@@ -2770,7 +2821,7 @@
             // 
             // month2R3
             // 
-            this.month2R3.Location = new System.Drawing.Point(299, 128);
+            this.month2R3.Location = new System.Drawing.Point(332, 128);
             this.month2R3.Name = "month2R3";
             this.month2R3.ReadOnly = true;
             this.month2R3.Size = new System.Drawing.Size(63, 20);
@@ -2780,7 +2831,7 @@
             // 
             // month2R7
             // 
-            this.month2R7.Location = new System.Drawing.Point(299, 208);
+            this.month2R7.Location = new System.Drawing.Point(332, 208);
             this.month2R7.Name = "month2R7";
             this.month2R7.ReadOnly = true;
             this.month2R7.Size = new System.Drawing.Size(63, 20);
@@ -2790,7 +2841,7 @@
             // 
             // month2R6
             // 
-            this.month2R6.Location = new System.Drawing.Point(299, 188);
+            this.month2R6.Location = new System.Drawing.Point(332, 188);
             this.month2R6.Name = "month2R6";
             this.month2R6.ReadOnly = true;
             this.month2R6.Size = new System.Drawing.Size(63, 20);
@@ -2800,7 +2851,7 @@
             // 
             // month2R1
             // 
-            this.month2R1.Location = new System.Drawing.Point(299, 88);
+            this.month2R1.Location = new System.Drawing.Point(332, 88);
             this.month2R1.Name = "month2R1";
             this.month2R1.ReadOnly = true;
             this.month2R1.Size = new System.Drawing.Size(63, 20);
@@ -2810,7 +2861,7 @@
             // 
             // month2R5
             // 
-            this.month2R5.Location = new System.Drawing.Point(299, 168);
+            this.month2R5.Location = new System.Drawing.Point(332, 168);
             this.month2R5.Name = "month2R5";
             this.month2R5.ReadOnly = true;
             this.month2R5.Size = new System.Drawing.Size(63, 20);
@@ -2820,7 +2871,7 @@
             // 
             // month2R2
             // 
-            this.month2R2.Location = new System.Drawing.Point(299, 108);
+            this.month2R2.Location = new System.Drawing.Point(332, 108);
             this.month2R2.Name = "month2R2";
             this.month2R2.ReadOnly = true;
             this.month2R2.Size = new System.Drawing.Size(63, 20);
@@ -2830,7 +2881,7 @@
             // 
             // month2R4
             // 
-            this.month2R4.Location = new System.Drawing.Point(299, 148);
+            this.month2R4.Location = new System.Drawing.Point(332, 148);
             this.month2R4.Name = "month2R4";
             this.month2R4.ReadOnly = true;
             this.month2R4.Size = new System.Drawing.Size(63, 20);
@@ -2841,7 +2892,7 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(238, 63);
+            this.label39.Location = new System.Drawing.Point(271, 63);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(44, 13);
             this.label39.TabIndex = 30;
@@ -2849,7 +2900,7 @@
             // 
             // month1R3
             // 
-            this.month1R3.Location = new System.Drawing.Point(230, 128);
+            this.month1R3.Location = new System.Drawing.Point(263, 128);
             this.month1R3.Name = "month1R3";
             this.month1R3.ReadOnly = true;
             this.month1R3.Size = new System.Drawing.Size(63, 20);
@@ -2859,7 +2910,7 @@
             // 
             // month1R7
             // 
-            this.month1R7.Location = new System.Drawing.Point(230, 208);
+            this.month1R7.Location = new System.Drawing.Point(263, 208);
             this.month1R7.Name = "month1R7";
             this.month1R7.ReadOnly = true;
             this.month1R7.Size = new System.Drawing.Size(63, 20);
@@ -2881,7 +2932,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(154, 211);
+            this.label32.Location = new System.Drawing.Point(187, 211);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(70, 13);
             this.label32.TabIndex = 28;
@@ -2890,7 +2941,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(153, 91);
+            this.label33.Location = new System.Drawing.Point(186, 91);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(71, 13);
             this.label33.TabIndex = 16;
@@ -2898,7 +2949,7 @@
             // 
             // month1R6
             // 
-            this.month1R6.Location = new System.Drawing.Point(230, 188);
+            this.month1R6.Location = new System.Drawing.Point(263, 188);
             this.month1R6.Name = "month1R6";
             this.month1R6.ReadOnly = true;
             this.month1R6.Size = new System.Drawing.Size(63, 20);
@@ -2908,7 +2959,7 @@
             // 
             // month1R1
             // 
-            this.month1R1.Location = new System.Drawing.Point(230, 88);
+            this.month1R1.Location = new System.Drawing.Point(263, 88);
             this.month1R1.Name = "month1R1";
             this.month1R1.ReadOnly = true;
             this.month1R1.Size = new System.Drawing.Size(63, 20);
@@ -2919,7 +2970,7 @@
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(121, 191);
+            this.label34.Location = new System.Drawing.Point(154, 191);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(103, 13);
             this.label34.TabIndex = 26;
@@ -2928,7 +2979,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(138, 111);
+            this.label35.Location = new System.Drawing.Point(171, 111);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(86, 13);
             this.label35.TabIndex = 18;
@@ -2936,7 +2987,7 @@
             // 
             // month1R5
             // 
-            this.month1R5.Location = new System.Drawing.Point(230, 168);
+            this.month1R5.Location = new System.Drawing.Point(263, 168);
             this.month1R5.Name = "month1R5";
             this.month1R5.ReadOnly = true;
             this.month1R5.Size = new System.Drawing.Size(63, 20);
@@ -2946,7 +2997,7 @@
             // 
             // month1R2
             // 
-            this.month1R2.Location = new System.Drawing.Point(230, 108);
+            this.month1R2.Location = new System.Drawing.Point(263, 108);
             this.month1R2.Name = "month1R2";
             this.month1R2.ReadOnly = true;
             this.month1R2.Size = new System.Drawing.Size(63, 20);
@@ -2957,7 +3008,7 @@
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(128, 171);
+            this.label36.Location = new System.Drawing.Point(161, 171);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(96, 13);
             this.label36.TabIndex = 24;
@@ -2966,7 +3017,7 @@
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(121, 131);
+            this.label37.Location = new System.Drawing.Point(154, 131);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(103, 13);
             this.label37.TabIndex = 20;
@@ -2974,7 +3025,7 @@
             // 
             // month1R4
             // 
-            this.month1R4.Location = new System.Drawing.Point(230, 148);
+            this.month1R4.Location = new System.Drawing.Point(263, 148);
             this.month1R4.Name = "month1R4";
             this.month1R4.ReadOnly = true;
             this.month1R4.Size = new System.Drawing.Size(63, 20);
@@ -2985,7 +3036,7 @@
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(124, 151);
+            this.label38.Location = new System.Drawing.Point(157, 151);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(100, 13);
             this.label38.TabIndex = 22;
@@ -2998,11 +3049,26 @@
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Size = new System.Drawing.Size(915, 565);
             this.tabPage8.TabIndex = 7;
-            this.tabPage8.Text = "Weekly";
+            this.tabPage8.Text = "Statistics-Weekly";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.panel2);
+            this.groupBox7.Location = new System.Drawing.Point(56, 33);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(815, 499);
+            this.groupBox7.TabIndex = 130;
+            this.groupBox7.TabStop = false;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.tbAvgPace5);
+            this.panel2.Controls.Add(this.tbAvgPace4);
+            this.panel2.Controls.Add(this.tbAvgPace3);
+            this.panel2.Controls.Add(this.tbAvgPace2);
+            this.panel2.Controls.Add(this.tbAvgPace1);
+            this.panel2.Controls.Add(this.label81);
             this.panel2.Controls.Add(this.tbTotalTimeWeekly5);
             this.panel2.Controls.Add(this.tbTotalTimeWeekly4);
             this.panel2.Controls.Add(this.tbTotalTimeWeekly3);
@@ -3051,9 +3117,69 @@
             this.panel2.Size = new System.Drawing.Size(775, 444);
             this.panel2.TabIndex = 129;
             // 
+            // tbAvgPace5
+            // 
+            this.tbAvgPace5.Location = new System.Drawing.Point(205, 304);
+            this.tbAvgPace5.Name = "tbAvgPace5";
+            this.tbAvgPace5.ReadOnly = true;
+            this.tbAvgPace5.Size = new System.Drawing.Size(63, 20);
+            this.tbAvgPace5.TabIndex = 176;
+            this.tbAvgPace5.TabStop = false;
+            this.tbAvgPace5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbAvgPace4
+            // 
+            this.tbAvgPace4.Location = new System.Drawing.Point(305, 304);
+            this.tbAvgPace4.Name = "tbAvgPace4";
+            this.tbAvgPace4.ReadOnly = true;
+            this.tbAvgPace4.Size = new System.Drawing.Size(63, 20);
+            this.tbAvgPace4.TabIndex = 175;
+            this.tbAvgPace4.TabStop = false;
+            this.tbAvgPace4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbAvgPace3
+            // 
+            this.tbAvgPace3.Location = new System.Drawing.Point(400, 304);
+            this.tbAvgPace3.Name = "tbAvgPace3";
+            this.tbAvgPace3.ReadOnly = true;
+            this.tbAvgPace3.Size = new System.Drawing.Size(63, 20);
+            this.tbAvgPace3.TabIndex = 174;
+            this.tbAvgPace3.TabStop = false;
+            this.tbAvgPace3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbAvgPace2
+            // 
+            this.tbAvgPace2.Location = new System.Drawing.Point(499, 304);
+            this.tbAvgPace2.Name = "tbAvgPace2";
+            this.tbAvgPace2.ReadOnly = true;
+            this.tbAvgPace2.Size = new System.Drawing.Size(63, 20);
+            this.tbAvgPace2.TabIndex = 173;
+            this.tbAvgPace2.TabStop = false;
+            this.tbAvgPace2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbAvgPace1
+            // 
+            this.tbAvgPace1.Location = new System.Drawing.Point(600, 304);
+            this.tbAvgPace1.Name = "tbAvgPace1";
+            this.tbAvgPace1.ReadOnly = true;
+            this.tbAvgPace1.Size = new System.Drawing.Size(63, 20);
+            this.tbAvgPace1.TabIndex = 172;
+            this.tbAvgPace1.TabStop = false;
+            this.tbAvgPace1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label81
+            // 
+            this.label81.AutoSize = true;
+            this.label81.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label81.Location = new System.Drawing.Point(110, 307);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(54, 13);
+            this.label81.TabIndex = 171;
+            this.label81.Text = "Avg Pace";
+            // 
             // tbTotalTimeWeekly5
             // 
-            this.tbTotalTimeWeekly5.Location = new System.Drawing.Point(205, 329);
+            this.tbTotalTimeWeekly5.Location = new System.Drawing.Point(205, 278);
             this.tbTotalTimeWeekly5.Name = "tbTotalTimeWeekly5";
             this.tbTotalTimeWeekly5.ReadOnly = true;
             this.tbTotalTimeWeekly5.Size = new System.Drawing.Size(63, 20);
@@ -3063,7 +3189,7 @@
             // 
             // tbTotalTimeWeekly4
             // 
-            this.tbTotalTimeWeekly4.Location = new System.Drawing.Point(305, 329);
+            this.tbTotalTimeWeekly4.Location = new System.Drawing.Point(305, 278);
             this.tbTotalTimeWeekly4.Name = "tbTotalTimeWeekly4";
             this.tbTotalTimeWeekly4.ReadOnly = true;
             this.tbTotalTimeWeekly4.Size = new System.Drawing.Size(63, 20);
@@ -3073,7 +3199,7 @@
             // 
             // tbTotalTimeWeekly3
             // 
-            this.tbTotalTimeWeekly3.Location = new System.Drawing.Point(400, 329);
+            this.tbTotalTimeWeekly3.Location = new System.Drawing.Point(400, 278);
             this.tbTotalTimeWeekly3.Name = "tbTotalTimeWeekly3";
             this.tbTotalTimeWeekly3.ReadOnly = true;
             this.tbTotalTimeWeekly3.Size = new System.Drawing.Size(63, 20);
@@ -3083,7 +3209,7 @@
             // 
             // tbTotalTimeWeekly2
             // 
-            this.tbTotalTimeWeekly2.Location = new System.Drawing.Point(499, 329);
+            this.tbTotalTimeWeekly2.Location = new System.Drawing.Point(499, 278);
             this.tbTotalTimeWeekly2.Name = "tbTotalTimeWeekly2";
             this.tbTotalTimeWeekly2.ReadOnly = true;
             this.tbTotalTimeWeekly2.Size = new System.Drawing.Size(63, 20);
@@ -3093,7 +3219,7 @@
             // 
             // tbTotalTimeWeekly1
             // 
-            this.tbTotalTimeWeekly1.Location = new System.Drawing.Point(600, 329);
+            this.tbTotalTimeWeekly1.Location = new System.Drawing.Point(600, 278);
             this.tbTotalTimeWeekly1.Name = "tbTotalTimeWeekly1";
             this.tbTotalTimeWeekly1.ReadOnly = true;
             this.tbTotalTimeWeekly1.Size = new System.Drawing.Size(63, 20);
@@ -3105,7 +3231,7 @@
             // 
             this.label76.AutoSize = true;
             this.label76.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label76.Location = new System.Drawing.Point(108, 332);
+            this.label76.Location = new System.Drawing.Point(108, 281);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(68, 13);
             this.label76.TabIndex = 165;
@@ -3113,7 +3239,7 @@
             // 
             // tbAvgSpeedWeek5
             // 
-            this.tbAvgSpeedWeek5.Location = new System.Drawing.Point(205, 295);
+            this.tbAvgSpeedWeek5.Location = new System.Drawing.Point(205, 252);
             this.tbAvgSpeedWeek5.Name = "tbAvgSpeedWeek5";
             this.tbAvgSpeedWeek5.ReadOnly = true;
             this.tbAvgSpeedWeek5.Size = new System.Drawing.Size(63, 20);
@@ -3123,7 +3249,7 @@
             // 
             // tbNumRidesWeek5
             // 
-            this.tbNumRidesWeek5.Location = new System.Drawing.Point(205, 259);
+            this.tbNumRidesWeek5.Location = new System.Drawing.Point(205, 226);
             this.tbNumRidesWeek5.Name = "tbNumRidesWeek5";
             this.tbNumRidesWeek5.ReadOnly = true;
             this.tbNumRidesWeek5.Size = new System.Drawing.Size(63, 20);
@@ -3133,7 +3259,7 @@
             // 
             // tbElevGainWeek5
             // 
-            this.tbElevGainWeek5.Location = new System.Drawing.Point(205, 223);
+            this.tbElevGainWeek5.Location = new System.Drawing.Point(205, 200);
             this.tbElevGainWeek5.Name = "tbElevGainWeek5";
             this.tbElevGainWeek5.ReadOnly = true;
             this.tbElevGainWeek5.Size = new System.Drawing.Size(63, 20);
@@ -3143,7 +3269,7 @@
             // 
             // tbLongestRideWeek5
             // 
-            this.tbLongestRideWeek5.Location = new System.Drawing.Point(205, 184);
+            this.tbLongestRideWeek5.Location = new System.Drawing.Point(205, 174);
             this.tbLongestRideWeek5.Name = "tbLongestRideWeek5";
             this.tbLongestRideWeek5.ReadOnly = true;
             this.tbLongestRideWeek5.Size = new System.Drawing.Size(63, 20);
@@ -3163,7 +3289,7 @@
             // 
             // tbAvgSpeedWeek4
             // 
-            this.tbAvgSpeedWeek4.Location = new System.Drawing.Point(305, 295);
+            this.tbAvgSpeedWeek4.Location = new System.Drawing.Point(305, 252);
             this.tbAvgSpeedWeek4.Name = "tbAvgSpeedWeek4";
             this.tbAvgSpeedWeek4.ReadOnly = true;
             this.tbAvgSpeedWeek4.Size = new System.Drawing.Size(63, 20);
@@ -3173,7 +3299,7 @@
             // 
             // tbNumRidesWeek4
             // 
-            this.tbNumRidesWeek4.Location = new System.Drawing.Point(305, 259);
+            this.tbNumRidesWeek4.Location = new System.Drawing.Point(305, 226);
             this.tbNumRidesWeek4.Name = "tbNumRidesWeek4";
             this.tbNumRidesWeek4.ReadOnly = true;
             this.tbNumRidesWeek4.Size = new System.Drawing.Size(63, 20);
@@ -3183,7 +3309,7 @@
             // 
             // tbElevGainWeek4
             // 
-            this.tbElevGainWeek4.Location = new System.Drawing.Point(305, 223);
+            this.tbElevGainWeek4.Location = new System.Drawing.Point(305, 200);
             this.tbElevGainWeek4.Name = "tbElevGainWeek4";
             this.tbElevGainWeek4.ReadOnly = true;
             this.tbElevGainWeek4.Size = new System.Drawing.Size(63, 20);
@@ -3193,7 +3319,7 @@
             // 
             // tbLongestRideWeek4
             // 
-            this.tbLongestRideWeek4.Location = new System.Drawing.Point(305, 184);
+            this.tbLongestRideWeek4.Location = new System.Drawing.Point(305, 174);
             this.tbLongestRideWeek4.Name = "tbLongestRideWeek4";
             this.tbLongestRideWeek4.ReadOnly = true;
             this.tbLongestRideWeek4.Size = new System.Drawing.Size(63, 20);
@@ -3213,7 +3339,7 @@
             // 
             // tbAvgSpeedWeek3
             // 
-            this.tbAvgSpeedWeek3.Location = new System.Drawing.Point(400, 295);
+            this.tbAvgSpeedWeek3.Location = new System.Drawing.Point(400, 252);
             this.tbAvgSpeedWeek3.Name = "tbAvgSpeedWeek3";
             this.tbAvgSpeedWeek3.ReadOnly = true;
             this.tbAvgSpeedWeek3.Size = new System.Drawing.Size(63, 20);
@@ -3223,7 +3349,7 @@
             // 
             // tbNumRidesWeek3
             // 
-            this.tbNumRidesWeek3.Location = new System.Drawing.Point(400, 259);
+            this.tbNumRidesWeek3.Location = new System.Drawing.Point(400, 226);
             this.tbNumRidesWeek3.Name = "tbNumRidesWeek3";
             this.tbNumRidesWeek3.ReadOnly = true;
             this.tbNumRidesWeek3.Size = new System.Drawing.Size(63, 20);
@@ -3233,7 +3359,7 @@
             // 
             // tbElevGainWeek3
             // 
-            this.tbElevGainWeek3.Location = new System.Drawing.Point(400, 223);
+            this.tbElevGainWeek3.Location = new System.Drawing.Point(400, 200);
             this.tbElevGainWeek3.Name = "tbElevGainWeek3";
             this.tbElevGainWeek3.ReadOnly = true;
             this.tbElevGainWeek3.Size = new System.Drawing.Size(63, 20);
@@ -3243,7 +3369,7 @@
             // 
             // tbLongestRideWeek3
             // 
-            this.tbLongestRideWeek3.Location = new System.Drawing.Point(400, 184);
+            this.tbLongestRideWeek3.Location = new System.Drawing.Point(400, 174);
             this.tbLongestRideWeek3.Name = "tbLongestRideWeek3";
             this.tbLongestRideWeek3.ReadOnly = true;
             this.tbLongestRideWeek3.Size = new System.Drawing.Size(63, 20);
@@ -3263,7 +3389,7 @@
             // 
             // tbAvgSpeedWeek2
             // 
-            this.tbAvgSpeedWeek2.Location = new System.Drawing.Point(499, 295);
+            this.tbAvgSpeedWeek2.Location = new System.Drawing.Point(499, 252);
             this.tbAvgSpeedWeek2.Name = "tbAvgSpeedWeek2";
             this.tbAvgSpeedWeek2.ReadOnly = true;
             this.tbAvgSpeedWeek2.Size = new System.Drawing.Size(63, 20);
@@ -3273,7 +3399,7 @@
             // 
             // tbNumRidesWeek2
             // 
-            this.tbNumRidesWeek2.Location = new System.Drawing.Point(499, 259);
+            this.tbNumRidesWeek2.Location = new System.Drawing.Point(499, 226);
             this.tbNumRidesWeek2.Name = "tbNumRidesWeek2";
             this.tbNumRidesWeek2.ReadOnly = true;
             this.tbNumRidesWeek2.Size = new System.Drawing.Size(63, 20);
@@ -3283,7 +3409,7 @@
             // 
             // tbElevGainWeek2
             // 
-            this.tbElevGainWeek2.Location = new System.Drawing.Point(499, 223);
+            this.tbElevGainWeek2.Location = new System.Drawing.Point(499, 200);
             this.tbElevGainWeek2.Name = "tbElevGainWeek2";
             this.tbElevGainWeek2.ReadOnly = true;
             this.tbElevGainWeek2.Size = new System.Drawing.Size(63, 20);
@@ -3293,7 +3419,7 @@
             // 
             // tbLongestRideWeek2
             // 
-            this.tbLongestRideWeek2.Location = new System.Drawing.Point(499, 184);
+            this.tbLongestRideWeek2.Location = new System.Drawing.Point(499, 174);
             this.tbLongestRideWeek2.Name = "tbLongestRideWeek2";
             this.tbLongestRideWeek2.ReadOnly = true;
             this.tbLongestRideWeek2.Size = new System.Drawing.Size(63, 20);
@@ -3313,7 +3439,7 @@
             // 
             // tbAvgSpeedWeek1
             // 
-            this.tbAvgSpeedWeek1.Location = new System.Drawing.Point(600, 295);
+            this.tbAvgSpeedWeek1.Location = new System.Drawing.Point(600, 252);
             this.tbAvgSpeedWeek1.Name = "tbAvgSpeedWeek1";
             this.tbAvgSpeedWeek1.ReadOnly = true;
             this.tbAvgSpeedWeek1.Size = new System.Drawing.Size(63, 20);
@@ -3323,7 +3449,7 @@
             // 
             // tbNumRidesWeek1
             // 
-            this.tbNumRidesWeek1.Location = new System.Drawing.Point(600, 259);
+            this.tbNumRidesWeek1.Location = new System.Drawing.Point(600, 226);
             this.tbNumRidesWeek1.Name = "tbNumRidesWeek1";
             this.tbNumRidesWeek1.ReadOnly = true;
             this.tbNumRidesWeek1.Size = new System.Drawing.Size(63, 20);
@@ -3333,7 +3459,7 @@
             // 
             // tbElevGainWeek1
             // 
-            this.tbElevGainWeek1.Location = new System.Drawing.Point(600, 223);
+            this.tbElevGainWeek1.Location = new System.Drawing.Point(600, 200);
             this.tbElevGainWeek1.Name = "tbElevGainWeek1";
             this.tbElevGainWeek1.ReadOnly = true;
             this.tbElevGainWeek1.Size = new System.Drawing.Size(63, 20);
@@ -3343,7 +3469,7 @@
             // 
             // tbLongestRideWeek1
             // 
-            this.tbLongestRideWeek1.Location = new System.Drawing.Point(600, 184);
+            this.tbLongestRideWeek1.Location = new System.Drawing.Point(600, 174);
             this.tbLongestRideWeek1.Name = "tbLongestRideWeek1";
             this.tbLongestRideWeek1.ReadOnly = true;
             this.tbLongestRideWeek1.Size = new System.Drawing.Size(63, 20);
@@ -3391,9 +3517,9 @@
             this.lbweek2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbweek2.Location = new System.Drawing.Point(496, 104);
             this.lbweek2.Name = "lbweek2";
-            this.lbweek2.Size = new System.Drawing.Size(48, 13);
+            this.lbweek2.Size = new System.Drawing.Size(73, 13);
             this.lbweek2.TabIndex = 137;
-            this.lbweek2.Text = "Week -1";
+            this.lbweek2.Text = "Current Week";
             // 
             // lbweek1
             // 
@@ -3410,7 +3536,7 @@
             // 
             this.label70.AutoSize = true;
             this.label70.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label70.Location = new System.Drawing.Point(110, 298);
+            this.label70.Location = new System.Drawing.Point(110, 255);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(60, 13);
             this.label70.TabIndex = 135;
@@ -3420,7 +3546,7 @@
             // 
             this.label69.AutoSize = true;
             this.label69.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label69.Location = new System.Drawing.Point(110, 262);
+            this.label69.Location = new System.Drawing.Point(110, 229);
             this.label69.Name = "label69";
             this.label69.Size = new System.Drawing.Size(59, 13);
             this.label69.TabIndex = 134;
@@ -3430,7 +3556,7 @@
             // 
             this.label68.AutoSize = true;
             this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label68.Location = new System.Drawing.Point(110, 226);
+            this.label68.Location = new System.Drawing.Point(110, 203);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(56, 13);
             this.label68.TabIndex = 133;
@@ -3440,7 +3566,7 @@
             // 
             this.label67.AutoSize = true;
             this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.Location = new System.Drawing.Point(108, 187);
+            this.label67.Location = new System.Drawing.Point(108, 177);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(70, 13);
             this.label67.TabIndex = 132;
@@ -3499,46 +3625,22 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btRemoveBikeTotalsConfig);
-            this.groupBox2.Controls.Add(this.label61);
-            this.groupBox2.Controls.Add(this.cbBikeTotalsConfig);
-            this.groupBox2.Controls.Add(this.btDeleteAllData);
+            this.groupBox2.Controls.Add(this.groupBox13);
+            this.groupBox2.Controls.Add(this.groupBox9);
+            this.groupBox2.Controls.Add(this.groupBox12);
+            this.groupBox2.Controls.Add(this.groupBox11);
+            this.groupBox2.Controls.Add(this.groupBox10);
             this.groupBox2.Controls.Add(this.label64);
-            this.groupBox2.Controls.Add(this.label31);
-            this.groupBox2.Controls.Add(this.cbLogYear);
-            this.groupBox2.Controls.Add(this.label27);
-            this.groupBox2.Controls.Add(this.label26);
-            this.groupBox2.Controls.Add(this.label25);
-            this.groupBox2.Controls.Add(this.label24);
-            this.groupBox2.Controls.Add(this.tbConfigMilesNotInLog);
-            this.groupBox2.Controls.Add(this.btRenameBike);
-            this.groupBox2.Controls.Add(this.bRenameLogYear);
-            this.groupBox2.Controls.Add(this.button6);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.tbBikeConfig);
-            this.groupBox2.Controls.Add(this.btRemoveBikeConfig);
-            this.groupBox2.Controls.Add(this.cbBikeConfig);
-            this.groupBox2.Controls.Add(this.btAddBikeConfig);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.tbRouteConfig);
-            this.groupBox2.Controls.Add(this.btRemoveRoute);
-            this.groupBox2.Controls.Add(this.cbRouteConfig);
-            this.groupBox2.Controls.Add(this.btAddRoute);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.tbLogYearConfig);
-            this.groupBox2.Controls.Add(this.btRemoveLogYear);
-            this.groupBox2.Controls.Add(this.cbLogYearConfig);
-            this.groupBox2.Controls.Add(this.btAddLogYear);
-            this.groupBox2.Location = new System.Drawing.Point(71, 56);
+            this.groupBox2.Location = new System.Drawing.Point(71, 23);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(780, 451);
+            this.groupBox2.Size = new System.Drawing.Size(780, 518);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
             // 
             // btRemoveBikeTotalsConfig
             // 
-            this.btRemoveBikeTotalsConfig.Location = new System.Drawing.Point(331, 189);
+            this.btRemoveBikeTotalsConfig.Location = new System.Drawing.Point(88, 87);
             this.btRemoveBikeTotalsConfig.Name = "btRemoveBikeTotalsConfig";
             this.btRemoveBikeTotalsConfig.Size = new System.Drawing.Size(75, 23);
             this.btRemoveBikeTotalsConfig.TabIndex = 67;
@@ -3548,18 +3650,17 @@
             // 
             // label61
             // 
-            this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(300, 137);
+            this.label61.Location = new System.Drawing.Point(11, 16);
             this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(127, 13);
+            this.label61.Size = new System.Drawing.Size(215, 42);
             this.label61.TabIndex = 66;
-            this.label61.Text = "Total Miles Bike Removal";
+            this.label61.Text = "Remove Bike from Bike Miles list after it has already been removed the app";
             // 
             // cbBikeTotalsConfig
             // 
             this.cbBikeTotalsConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBikeTotalsConfig.FormattingEnabled = true;
-            this.cbBikeTotalsConfig.Location = new System.Drawing.Point(299, 162);
+            this.cbBikeTotalsConfig.Location = new System.Drawing.Point(56, 60);
             this.cbBikeTotalsConfig.Name = "cbBikeTotalsConfig";
             this.cbBikeTotalsConfig.Size = new System.Drawing.Size(141, 21);
             this.cbBikeTotalsConfig.TabIndex = 65;
@@ -3577,7 +3678,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(81, 274);
+            this.label31.Location = new System.Drawing.Point(19, 128);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(83, 13);
             this.label31.TabIndex = 24;
@@ -3605,7 +3706,7 @@
             "2023",
             "2024",
             "2025"});
-            this.cbLogYear.Location = new System.Drawing.Point(84, 293);
+            this.cbLogYear.Location = new System.Drawing.Point(22, 147);
             this.cbLogYear.Name = "cbLogYear";
             this.cbLogYear.Size = new System.Drawing.Size(121, 21);
             this.cbLogYear.TabIndex = 23;
@@ -3613,7 +3714,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(537, 274);
+            this.label27.Location = new System.Drawing.Point(19, 126);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(77, 13);
             this.label27.TabIndex = 21;
@@ -3622,25 +3723,16 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(537, 175);
+            this.label26.Location = new System.Drawing.Point(19, 27);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(75, 13);
             this.label26.TabIndex = 20;
             this.label26.Text = "Bike Selection";
             // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(268, 225);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(83, 13);
-            this.label25.TabIndex = 19;
-            this.label25.Text = "Route Selection";
-            // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(81, 175);
+            this.label24.Location = new System.Drawing.Point(19, 29);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(81, 13);
             this.label24.TabIndex = 18;
@@ -3648,7 +3740,7 @@
             // 
             // tbConfigMilesNotInLog
             // 
-            this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(540, 293);
+            this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(22, 145);
             this.tbConfigMilesNotInLog.Name = "tbConfigMilesNotInLog";
             this.tbConfigMilesNotInLog.Size = new System.Drawing.Size(141, 20);
             this.tbConfigMilesNotInLog.TabIndex = 17;
@@ -3656,7 +3748,7 @@
             // 
             // btRenameBike
             // 
-            this.btRenameBike.Location = new System.Drawing.Point(566, 390);
+            this.btRenameBike.Location = new System.Drawing.Point(48, 242);
             this.btRenameBike.Name = "btRenameBike";
             this.btRenameBike.Size = new System.Drawing.Size(75, 23);
             this.btRenameBike.TabIndex = 14;
@@ -3666,7 +3758,7 @@
             // 
             // bRenameLogYear
             // 
-            this.bRenameLogYear.Location = new System.Drawing.Point(109, 390);
+            this.bRenameLogYear.Location = new System.Drawing.Point(47, 244);
             this.bRenameLogYear.Name = "bRenameLogYear";
             this.bRenameLogYear.Size = new System.Drawing.Size(75, 23);
             this.bRenameLogYear.TabIndex = 4;
@@ -3674,20 +3766,10 @@
             this.bRenameLogYear.UseVisualStyleBackColor = true;
             this.bRenameLogYear.Click += new System.EventHandler(this.BRenameLogYear_Click);
             // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(331, 391);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 9;
-            this.button6.Text = "Rename";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.CbRenameRoute);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(537, 225);
+            this.label5.Location = new System.Drawing.Point(19, 77);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(105, 13);
             this.label5.TabIndex = 16;
@@ -3695,14 +3777,14 @@
             // 
             // tbBikeConfig
             // 
-            this.tbBikeConfig.Location = new System.Drawing.Point(540, 240);
+            this.tbBikeConfig.Location = new System.Drawing.Point(22, 92);
             this.tbBikeConfig.Name = "tbBikeConfig";
             this.tbBikeConfig.Size = new System.Drawing.Size(141, 20);
             this.tbBikeConfig.TabIndex = 11;
             // 
             // btRemoveBikeConfig
             // 
-            this.btRemoveBikeConfig.Location = new System.Drawing.Point(566, 361);
+            this.btRemoveBikeConfig.Location = new System.Drawing.Point(48, 213);
             this.btRemoveBikeConfig.Name = "btRemoveBikeConfig";
             this.btRemoveBikeConfig.Size = new System.Drawing.Size(75, 23);
             this.btRemoveBikeConfig.TabIndex = 13;
@@ -3714,7 +3796,7 @@
             // 
             this.cbBikeConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBikeConfig.FormattingEnabled = true;
-            this.cbBikeConfig.Location = new System.Drawing.Point(540, 191);
+            this.cbBikeConfig.Location = new System.Drawing.Point(22, 43);
             this.cbBikeConfig.Name = "cbBikeConfig";
             this.cbBikeConfig.Size = new System.Drawing.Size(141, 21);
             this.cbBikeConfig.TabIndex = 10;
@@ -3722,7 +3804,7 @@
             // 
             // btAddBikeConfig
             // 
-            this.btAddBikeConfig.Location = new System.Drawing.Point(566, 332);
+            this.btAddBikeConfig.Location = new System.Drawing.Point(48, 184);
             this.btAddBikeConfig.Name = "btAddBikeConfig";
             this.btAddBikeConfig.Size = new System.Drawing.Size(75, 23);
             this.btAddBikeConfig.TabIndex = 12;
@@ -3730,56 +3812,10 @@
             this.btAddBikeConfig.UseVisualStyleBackColor = true;
             this.btAddBikeConfig.Click += new System.EventHandler(this.BtAddBikeConfig_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(268, 274);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(143, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Add or Rename Ride Routes";
-            // 
-            // tbRouteConfig
-            // 
-            this.tbRouteConfig.Location = new System.Drawing.Point(271, 294);
-            this.tbRouteConfig.Name = "tbRouteConfig";
-            this.tbRouteConfig.Size = new System.Drawing.Size(205, 20);
-            this.tbRouteConfig.TabIndex = 6;
-            // 
-            // btRemoveRoute
-            // 
-            this.btRemoveRoute.Location = new System.Drawing.Point(331, 362);
-            this.btRemoveRoute.Name = "btRemoveRoute";
-            this.btRemoveRoute.Size = new System.Drawing.Size(75, 23);
-            this.btRemoveRoute.TabIndex = 8;
-            this.btRemoveRoute.Text = "Remove";
-            this.btRemoveRoute.UseVisualStyleBackColor = true;
-            this.btRemoveRoute.Click += new System.EventHandler(this.BtRemoveRouteConfig);
-            // 
-            // cbRouteConfig
-            // 
-            this.cbRouteConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbRouteConfig.FormattingEnabled = true;
-            this.cbRouteConfig.Location = new System.Drawing.Point(271, 241);
-            this.cbRouteConfig.Name = "cbRouteConfig";
-            this.cbRouteConfig.Size = new System.Drawing.Size(205, 21);
-            this.cbRouteConfig.TabIndex = 5;
-            this.cbRouteConfig.SelectedIndexChanged += new System.EventHandler(this.CbRouteConfig_SelectedIndexChanged);
-            // 
-            // btAddRoute
-            // 
-            this.btAddRoute.Location = new System.Drawing.Point(331, 333);
-            this.btAddRoute.Name = "btAddRoute";
-            this.btAddRoute.Size = new System.Drawing.Size(75, 23);
-            this.btAddRoute.TabIndex = 7;
-            this.btAddRoute.Text = "Add";
-            this.btAddRoute.UseVisualStyleBackColor = true;
-            this.btAddRoute.Click += new System.EventHandler(this.BtAddRoute_Click);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(81, 224);
+            this.label3.Location = new System.Drawing.Point(19, 78);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(102, 13);
             this.label3.TabIndex = 0;
@@ -3980,10 +4016,115 @@
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             // 
+            // tbBikeMiles10
+            // 
+            this.tbBikeMiles10.BackColor = System.Drawing.Color.Silver;
+            this.tbBikeMiles10.Location = new System.Drawing.Point(207, 375);
+            this.tbBikeMiles10.Name = "tbBikeMiles10";
+            this.tbBikeMiles10.ReadOnly = true;
+            this.tbBikeMiles10.Size = new System.Drawing.Size(140, 20);
+            this.tbBikeMiles10.TabIndex = 31;
+            this.tbBikeMiles10.TabStop = false;
+            this.tbBikeMiles10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbBikeMilesTotal10
+            // 
+            this.tbBikeMilesTotal10.Location = new System.Drawing.Point(374, 375);
+            this.tbBikeMilesTotal10.Name = "tbBikeMilesTotal10";
+            this.tbBikeMilesTotal10.ReadOnly = true;
+            this.tbBikeMilesTotal10.Size = new System.Drawing.Size(100, 20);
+            this.tbBikeMilesTotal10.TabIndex = 30;
+            this.tbBikeMilesTotal10.TabStop = false;
+            this.tbBikeMilesTotal10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbBikeMiles9
+            // 
+            this.tbBikeMiles9.BackColor = System.Drawing.Color.Silver;
+            this.tbBikeMiles9.Location = new System.Drawing.Point(207, 349);
+            this.tbBikeMiles9.Name = "tbBikeMiles9";
+            this.tbBikeMiles9.ReadOnly = true;
+            this.tbBikeMiles9.Size = new System.Drawing.Size(140, 20);
+            this.tbBikeMiles9.TabIndex = 29;
+            this.tbBikeMiles9.TabStop = false;
+            this.tbBikeMiles9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbBikeMilesTotal9
+            // 
+            this.tbBikeMilesTotal9.Location = new System.Drawing.Point(374, 349);
+            this.tbBikeMilesTotal9.Name = "tbBikeMilesTotal9";
+            this.tbBikeMilesTotal9.ReadOnly = true;
+            this.tbBikeMilesTotal9.Size = new System.Drawing.Size(100, 20);
+            this.tbBikeMilesTotal9.TabIndex = 28;
+            this.tbBikeMilesTotal9.TabStop = false;
+            this.tbBikeMilesTotal9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbBikeMiles8
+            // 
+            this.tbBikeMiles8.BackColor = System.Drawing.Color.Silver;
+            this.tbBikeMiles8.Location = new System.Drawing.Point(207, 323);
+            this.tbBikeMiles8.Name = "tbBikeMiles8";
+            this.tbBikeMiles8.ReadOnly = true;
+            this.tbBikeMiles8.Size = new System.Drawing.Size(140, 20);
+            this.tbBikeMiles8.TabIndex = 27;
+            this.tbBikeMiles8.TabStop = false;
+            this.tbBikeMiles8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbBikeMilesTotal8
+            // 
+            this.tbBikeMilesTotal8.Location = new System.Drawing.Point(374, 323);
+            this.tbBikeMilesTotal8.Name = "tbBikeMilesTotal8";
+            this.tbBikeMilesTotal8.ReadOnly = true;
+            this.tbBikeMilesTotal8.Size = new System.Drawing.Size(100, 20);
+            this.tbBikeMilesTotal8.TabIndex = 26;
+            this.tbBikeMilesTotal8.TabStop = false;
+            this.tbBikeMilesTotal8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbBikeMiles7
+            // 
+            this.tbBikeMiles7.BackColor = System.Drawing.Color.Silver;
+            this.tbBikeMiles7.Location = new System.Drawing.Point(207, 297);
+            this.tbBikeMiles7.Name = "tbBikeMiles7";
+            this.tbBikeMiles7.ReadOnly = true;
+            this.tbBikeMiles7.Size = new System.Drawing.Size(140, 20);
+            this.tbBikeMiles7.TabIndex = 25;
+            this.tbBikeMiles7.TabStop = false;
+            this.tbBikeMiles7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbBikeMilesTotal7
+            // 
+            this.tbBikeMilesTotal7.Location = new System.Drawing.Point(374, 297);
+            this.tbBikeMilesTotal7.Name = "tbBikeMilesTotal7";
+            this.tbBikeMilesTotal7.ReadOnly = true;
+            this.tbBikeMilesTotal7.Size = new System.Drawing.Size(100, 20);
+            this.tbBikeMilesTotal7.TabIndex = 24;
+            this.tbBikeMilesTotal7.TabStop = false;
+            this.tbBikeMilesTotal7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbBikeMiles6
+            // 
+            this.tbBikeMiles6.BackColor = System.Drawing.Color.Silver;
+            this.tbBikeMiles6.Location = new System.Drawing.Point(207, 271);
+            this.tbBikeMiles6.Name = "tbBikeMiles6";
+            this.tbBikeMiles6.ReadOnly = true;
+            this.tbBikeMiles6.Size = new System.Drawing.Size(140, 20);
+            this.tbBikeMiles6.TabIndex = 23;
+            this.tbBikeMiles6.TabStop = false;
+            this.tbBikeMiles6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbBikeMilesTotal6
+            // 
+            this.tbBikeMilesTotal6.Location = new System.Drawing.Point(374, 271);
+            this.tbBikeMilesTotal6.Name = "tbBikeMilesTotal6";
+            this.tbBikeMilesTotal6.ReadOnly = true;
+            this.tbBikeMilesTotal6.Size = new System.Drawing.Size(100, 20);
+            this.tbBikeMilesTotal6.TabIndex = 22;
+            this.tbBikeMilesTotal6.TabStop = false;
+            this.tbBikeMilesTotal6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(550, 304);
+            this.label28.Location = new System.Drawing.Point(550, 245);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(101, 13);
             this.label28.TabIndex = 21;
@@ -3991,10 +4132,10 @@
             // 
             // tbBikeMilesTotal
             // 
-            this.tbBikeMilesTotal.Location = new System.Drawing.Point(551, 320);
+            this.tbBikeMilesTotal.Location = new System.Drawing.Point(551, 261);
             this.tbBikeMilesTotal.Name = "tbBikeMilesTotal";
             this.tbBikeMilesTotal.ReadOnly = true;
-            this.tbBikeMilesTotal.Size = new System.Drawing.Size(100, 20);
+            this.tbBikeMilesTotal.Size = new System.Drawing.Size(110, 20);
             this.tbBikeMilesTotal.TabIndex = 20;
             this.tbBikeMilesTotal.TabStop = false;
             this.tbBikeMilesTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -4011,11 +4152,11 @@
             // 
             // btBikeMilesUpdate
             // 
-            this.btBikeMilesUpdate.Location = new System.Drawing.Point(566, 181);
+            this.btBikeMilesUpdate.Location = new System.Drawing.Point(566, 334);
             this.btBikeMilesUpdate.Name = "btBikeMilesUpdate";
             this.btBikeMilesUpdate.Size = new System.Drawing.Size(85, 35);
             this.btBikeMilesUpdate.TabIndex = 18;
-            this.btBikeMilesUpdate.Text = "Update";
+            this.btBikeMilesUpdate.Text = "Refresh";
             this.btBikeMilesUpdate.UseVisualStyleBackColor = true;
             this.btBikeMilesUpdate.Click += new System.EventHandler(this.BtBikeMilesUpdate_Click);
             // 
@@ -4155,9 +4296,12 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label83);
             this.groupBox3.Controls.Add(this.textBox1);
             this.groupBox3.Controls.Add(this.label29);
-            this.groupBox3.Controls.Add(this.label2);
+            this.groupBox3.Controls.Add(this.button11);
+            this.groupBox3.Controls.Add(this.tbMaintID);
+            this.groupBox3.Controls.Add(this.lbVersion);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Location = new System.Drawing.Point(77, 70);
             this.groupBox3.Name = "groupBox3";
@@ -4178,27 +4322,27 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(306, 146);
+            this.label29.Location = new System.Drawing.Point(309, 112);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(95, 12);
             this.label29.TabIndex = 2;
             this.label29.Text = "By: John T Flynn";
             // 
-            // label2
+            // lbVersion
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(306, 112);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 12);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Version:  xxxxx";
+            this.lbVersion.AutoSize = true;
+            this.lbVersion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVersion.Location = new System.Drawing.Point(309, 79);
+            this.lbVersion.Name = "lbVersion";
+            this.lbVersion.Size = new System.Drawing.Size(87, 12);
+            this.lbVersion.TabIndex = 1;
+            this.lbVersion.Text = "Version:  xxxxx";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(226, 69);
+            this.label1.Location = new System.Drawing.Point(229, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(287, 28);
             this.label1.TabIndex = 0;
@@ -4206,137 +4350,209 @@
             // 
             // tbMaintID
             // 
-            this.tbMaintID.Location = new System.Drawing.Point(296, 657);
+            this.tbMaintID.Location = new System.Drawing.Point(41, 108);
             this.tbMaintID.Name = "tbMaintID";
             this.tbMaintID.Size = new System.Drawing.Size(53, 20);
             this.tbMaintID.TabIndex = 12;
             this.tbMaintID.TabStop = false;
             this.tbMaintID.Visible = false;
             // 
-            // btGetMaintLog
+            // groupBox9
             // 
-            this.btGetMaintLog.Location = new System.Drawing.Point(404, 654);
-            this.btGetMaintLog.Name = "btGetMaintLog";
-            this.btGetMaintLog.Size = new System.Drawing.Size(75, 23);
-            this.btGetMaintLog.TabIndex = 1;
-            this.btGetMaintLog.Text = "Refresh";
-            this.btGetMaintLog.UseVisualStyleBackColor = true;
-            this.btGetMaintLog.Visible = false;
-            this.btGetMaintLog.Click += new System.EventHandler(this.BtGetMaintLog_Click);
+            this.groupBox9.Controls.Add(this.cbBikeTotalsConfig);
+            this.groupBox9.Controls.Add(this.btRemoveBikeTotalsConfig);
+            this.groupBox9.Controls.Add(this.label61);
+            this.groupBox9.Location = new System.Drawing.Point(247, 381);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(241, 125);
+            this.groupBox9.TabIndex = 68;
+            this.groupBox9.TabStop = false;
             // 
-            // groupBox7
+            // groupBox10
             // 
-            this.groupBox7.Controls.Add(this.panel2);
-            this.groupBox7.Location = new System.Drawing.Point(56, 33);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(815, 499);
-            this.groupBox7.TabIndex = 130;
-            this.groupBox7.TabStop = false;
+            this.groupBox10.Controls.Add(this.label31);
+            this.groupBox10.Controls.Add(this.btAddLogYear);
+            this.groupBox10.Controls.Add(this.cbLogYearConfig);
+            this.groupBox10.Controls.Add(this.btRemoveLogYear);
+            this.groupBox10.Controls.Add(this.tbLogYearConfig);
+            this.groupBox10.Controls.Add(this.cbLogYear);
+            this.groupBox10.Controls.Add(this.label3);
+            this.groupBox10.Controls.Add(this.bRenameLogYear);
+            this.groupBox10.Controls.Add(this.label24);
+            this.groupBox10.Location = new System.Drawing.Point(31, 80);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(168, 282);
+            this.groupBox10.TabIndex = 69;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "LOG";
             // 
-            // tbBikeMiles6
+            // label25
             // 
-            this.tbBikeMiles6.BackColor = System.Drawing.Color.Silver;
-            this.tbBikeMiles6.Location = new System.Drawing.Point(207, 271);
-            this.tbBikeMiles6.Name = "tbBikeMiles6";
-            this.tbBikeMiles6.ReadOnly = true;
-            this.tbBikeMiles6.Size = new System.Drawing.Size(140, 20);
-            this.tbBikeMiles6.TabIndex = 23;
-            this.tbBikeMiles6.TabStop = false;
-            this.tbBikeMiles6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(20, 30);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(83, 13);
+            this.label25.TabIndex = 19;
+            this.label25.Text = "Route Selection";
             // 
-            // tbBikeMilesTotal6
+            // button6
             // 
-            this.tbBikeMilesTotal6.Location = new System.Drawing.Point(374, 271);
-            this.tbBikeMilesTotal6.Name = "tbBikeMilesTotal6";
-            this.tbBikeMilesTotal6.ReadOnly = true;
-            this.tbBikeMilesTotal6.Size = new System.Drawing.Size(100, 20);
-            this.tbBikeMilesTotal6.TabIndex = 22;
-            this.tbBikeMilesTotal6.TabStop = false;
-            this.tbBikeMilesTotal6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.button6.Location = new System.Drawing.Point(83, 242);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 9;
+            this.button6.Text = "Rename";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.CbRenameRoute);
             // 
-            // tbBikeMiles7
+            // label4
             // 
-            this.tbBikeMiles7.BackColor = System.Drawing.Color.Silver;
-            this.tbBikeMiles7.Location = new System.Drawing.Point(207, 297);
-            this.tbBikeMiles7.Name = "tbBikeMiles7";
-            this.tbBikeMiles7.ReadOnly = true;
-            this.tbBikeMiles7.Size = new System.Drawing.Size(140, 20);
-            this.tbBikeMiles7.TabIndex = 25;
-            this.tbBikeMiles7.TabStop = false;
-            this.tbBikeMiles7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(20, 79);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(143, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Add or Rename Ride Routes";
             // 
-            // tbBikeMilesTotal7
+            // tbRouteConfig
             // 
-            this.tbBikeMilesTotal7.Location = new System.Drawing.Point(374, 297);
-            this.tbBikeMilesTotal7.Name = "tbBikeMilesTotal7";
-            this.tbBikeMilesTotal7.ReadOnly = true;
-            this.tbBikeMilesTotal7.Size = new System.Drawing.Size(100, 20);
-            this.tbBikeMilesTotal7.TabIndex = 24;
-            this.tbBikeMilesTotal7.TabStop = false;
-            this.tbBikeMilesTotal7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbRouteConfig.Location = new System.Drawing.Point(23, 99);
+            this.tbRouteConfig.Name = "tbRouteConfig";
+            this.tbRouteConfig.Size = new System.Drawing.Size(205, 20);
+            this.tbRouteConfig.TabIndex = 6;
             // 
-            // tbBikeMiles8
+            // btRemoveRoute
             // 
-            this.tbBikeMiles8.BackColor = System.Drawing.Color.Silver;
-            this.tbBikeMiles8.Location = new System.Drawing.Point(207, 323);
-            this.tbBikeMiles8.Name = "tbBikeMiles8";
-            this.tbBikeMiles8.ReadOnly = true;
-            this.tbBikeMiles8.Size = new System.Drawing.Size(140, 20);
-            this.tbBikeMiles8.TabIndex = 27;
-            this.tbBikeMiles8.TabStop = false;
-            this.tbBikeMiles8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btRemoveRoute.Location = new System.Drawing.Point(83, 213);
+            this.btRemoveRoute.Name = "btRemoveRoute";
+            this.btRemoveRoute.Size = new System.Drawing.Size(75, 23);
+            this.btRemoveRoute.TabIndex = 8;
+            this.btRemoveRoute.Text = "Remove";
+            this.btRemoveRoute.UseVisualStyleBackColor = true;
+            this.btRemoveRoute.Click += new System.EventHandler(this.BtRemoveRouteConfig);
             // 
-            // tbBikeMilesTotal8
+            // cbRouteConfig
             // 
-            this.tbBikeMilesTotal8.Location = new System.Drawing.Point(374, 323);
-            this.tbBikeMilesTotal8.Name = "tbBikeMilesTotal8";
-            this.tbBikeMilesTotal8.ReadOnly = true;
-            this.tbBikeMilesTotal8.Size = new System.Drawing.Size(100, 20);
-            this.tbBikeMilesTotal8.TabIndex = 26;
-            this.tbBikeMilesTotal8.TabStop = false;
-            this.tbBikeMilesTotal8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.cbRouteConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRouteConfig.FormattingEnabled = true;
+            this.cbRouteConfig.Location = new System.Drawing.Point(23, 46);
+            this.cbRouteConfig.Name = "cbRouteConfig";
+            this.cbRouteConfig.Size = new System.Drawing.Size(205, 21);
+            this.cbRouteConfig.TabIndex = 5;
+            this.cbRouteConfig.SelectedIndexChanged += new System.EventHandler(this.CbRouteConfig_SelectedIndexChanged);
             // 
-            // tbBikeMiles9
+            // btAddRoute
             // 
-            this.tbBikeMiles9.BackColor = System.Drawing.Color.Silver;
-            this.tbBikeMiles9.Location = new System.Drawing.Point(207, 349);
-            this.tbBikeMiles9.Name = "tbBikeMiles9";
-            this.tbBikeMiles9.ReadOnly = true;
-            this.tbBikeMiles9.Size = new System.Drawing.Size(140, 20);
-            this.tbBikeMiles9.TabIndex = 29;
-            this.tbBikeMiles9.TabStop = false;
-            this.tbBikeMiles9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btAddRoute.Location = new System.Drawing.Point(83, 184);
+            this.btAddRoute.Name = "btAddRoute";
+            this.btAddRoute.Size = new System.Drawing.Size(75, 23);
+            this.btAddRoute.TabIndex = 7;
+            this.btAddRoute.Text = "Add";
+            this.btAddRoute.UseVisualStyleBackColor = true;
+            this.btAddRoute.Click += new System.EventHandler(this.BtAddRoute_Click);
             // 
-            // tbBikeMilesTotal9
+            // groupBox11
             // 
-            this.tbBikeMilesTotal9.Location = new System.Drawing.Point(374, 349);
-            this.tbBikeMilesTotal9.Name = "tbBikeMilesTotal9";
-            this.tbBikeMilesTotal9.ReadOnly = true;
-            this.tbBikeMilesTotal9.Size = new System.Drawing.Size(100, 20);
-            this.tbBikeMilesTotal9.TabIndex = 28;
-            this.tbBikeMilesTotal9.TabStop = false;
-            this.tbBikeMilesTotal9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.groupBox11.Controls.Add(this.label25);
+            this.groupBox11.Controls.Add(this.btAddRoute);
+            this.groupBox11.Controls.Add(this.cbRouteConfig);
+            this.groupBox11.Controls.Add(this.btRemoveRoute);
+            this.groupBox11.Controls.Add(this.tbRouteConfig);
+            this.groupBox11.Controls.Add(this.label4);
+            this.groupBox11.Controls.Add(this.button6);
+            this.groupBox11.Location = new System.Drawing.Point(247, 81);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(241, 283);
+            this.groupBox11.TabIndex = 70;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "ROUTE";
             // 
-            // tbBikeMiles10
+            // groupBox12
             // 
-            this.tbBikeMiles10.BackColor = System.Drawing.Color.Silver;
-            this.tbBikeMiles10.Location = new System.Drawing.Point(207, 375);
-            this.tbBikeMiles10.Name = "tbBikeMiles10";
-            this.tbBikeMiles10.ReadOnly = true;
-            this.tbBikeMiles10.Size = new System.Drawing.Size(140, 20);
-            this.tbBikeMiles10.TabIndex = 31;
-            this.tbBikeMiles10.TabStop = false;
-            this.tbBikeMiles10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.groupBox12.Controls.Add(this.cbBikeConfig);
+            this.groupBox12.Controls.Add(this.btAddBikeConfig);
+            this.groupBox12.Controls.Add(this.btRemoveBikeConfig);
+            this.groupBox12.Controls.Add(this.tbBikeConfig);
+            this.groupBox12.Controls.Add(this.label5);
+            this.groupBox12.Controls.Add(this.btRenameBike);
+            this.groupBox12.Controls.Add(this.label27);
+            this.groupBox12.Controls.Add(this.tbConfigMilesNotInLog);
+            this.groupBox12.Controls.Add(this.label26);
+            this.groupBox12.Location = new System.Drawing.Point(544, 80);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(187, 284);
+            this.groupBox12.TabIndex = 71;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "BIKE";
             // 
-            // tbBikeMilesTotal10
+            // groupBox13
             // 
-            this.tbBikeMilesTotal10.Location = new System.Drawing.Point(374, 375);
-            this.tbBikeMilesTotal10.Name = "tbBikeMilesTotal10";
-            this.tbBikeMilesTotal10.ReadOnly = true;
-            this.tbBikeMilesTotal10.Size = new System.Drawing.Size(100, 20);
-            this.tbBikeMilesTotal10.TabIndex = 30;
-            this.tbBikeMilesTotal10.TabStop = false;
-            this.tbBikeMilesTotal10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.groupBox13.Controls.Add(this.label2);
+            this.groupBox13.Controls.Add(this.btDeleteAllData);
+            this.groupBox13.Location = new System.Drawing.Point(546, 381);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(185, 125);
+            this.groupBox13.TabIndex = 72;
+            this.groupBox13.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 39);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(161, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Delete All Data in the application";
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.button7);
+            this.groupBox14.Location = new System.Drawing.Point(469, 121);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(223, 86);
+            this.groupBox14.TabIndex = 54;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Ride Data Entry";
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.button5);
+            this.groupBox15.Location = new System.Drawing.Point(469, 213);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(223, 85);
+            this.groupBox15.TabIndex = 55;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "View Ride Data";
+            // 
+            // groupBox16
+            // 
+            this.groupBox16.Controls.Add(this.button1);
+            this.groupBox16.Location = new System.Drawing.Point(469, 304);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Size = new System.Drawing.Size(223, 86);
+            this.groupBox16.TabIndex = 56;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "View Charts";
+            // 
+            // groupBox17
+            // 
+            this.groupBox17.BackColor = System.Drawing.Color.DimGray;
+            this.groupBox17.Controls.Add(this.groupBox8);
+            this.groupBox17.Location = new System.Drawing.Point(146, 162);
+            this.groupBox17.Name = "groupBox17";
+            this.groupBox17.Size = new System.Drawing.Size(244, 208);
+            this.groupBox17.TabIndex = 57;
+            this.groupBox17.TabStop = false;
+            // 
+            // label83
+            // 
+            this.label83.AutoSize = true;
+            this.label83.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label83.Location = new System.Drawing.Point(295, 141);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(144, 12);
+            this.label83.TabIndex = 13;
+            this.label83.Text = "john_t_flynn@yahoo.com";
             // 
             // MainForm
             // 
@@ -4345,8 +4561,6 @@
             this.ClientSize = new System.Drawing.Size(1001, 724);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.btGetMaintLog);
-            this.Controls.Add(this.tbMaintID);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -4356,6 +4570,8 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
@@ -4366,6 +4582,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPage8.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -4380,9 +4597,20 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox16.ResumeLayout(false);
+            this.groupBox17.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -4401,13 +4629,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbVersion;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbRouteConfig;
-        private System.Windows.Forms.Button btRemoveRoute;
-        private System.Windows.Forms.ComboBox cbRouteConfig;
-        private System.Windows.Forms.Button btAddRoute;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.TabPage tabPage4;
@@ -4472,7 +4695,6 @@
         private System.Windows.Forms.TextBox tbWeekCount;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox tbTimeChange;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button btRenameBike;
         private System.Windows.Forms.Button bRenameLogYear;
         private System.Windows.Forms.Button button1;
@@ -4480,7 +4702,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox cbBikeMaint;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Button btGetMaintLog;
         private System.Windows.Forms.DataGridView dgvMaint;
         private System.Windows.Forms.Button btMaintAdd;
         private System.Windows.Forms.RichTextBox rtbMaintComments;
@@ -4512,7 +4733,6 @@
         private System.Windows.Forms.Button btBikeMilesUpdate;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox tbConfigMilesNotInLog;
         private System.Windows.Forms.Label label21;
@@ -4750,6 +4970,32 @@
         private System.Windows.Forms.TextBox tbBikeMilesTotal10;
         private System.Windows.Forms.TextBox tbBikeMiles9;
         private System.Windows.Forms.TextBox tbBikeMilesTotal9;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.TextBox tbAvgPace5;
+        private System.Windows.Forms.TextBox tbAvgPace4;
+        private System.Windows.Forms.TextBox tbAvgPace3;
+        private System.Windows.Forms.TextBox tbAvgPace2;
+        private System.Windows.Forms.TextBox tbAvgPace1;
+        private System.Windows.Forms.Label label81;
+        private System.Windows.Forms.Label label82;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button btAddRoute;
+        private System.Windows.Forms.ComboBox cbRouteConfig;
+        private System.Windows.Forms.Button btRemoveRoute;
+        private System.Windows.Forms.TextBox tbRouteConfig;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.GroupBox groupBox16;
+        private System.Windows.Forms.GroupBox groupBox15;
+        private System.Windows.Forms.GroupBox groupBox14;
+        private System.Windows.Forms.GroupBox groupBox17;
+        private System.Windows.Forms.Label label83;
     }
 }
 
