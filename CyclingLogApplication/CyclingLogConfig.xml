@@ -16,4 +16,5 @@
   <ChartTimeType>-1</ChartTimeType>
   <LastMonthlyLogSelected>-1</LastMonthlyLogSelected>
   <LastLogSelectedDataEntry>13</LastLogSelectedDataEntry>
+  <FIRSTDAY>Monday</FIRSTDAY>
 </Config>

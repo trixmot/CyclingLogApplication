@@ -64,6 +64,7 @@ namespace CyclingLogApplication
             string cbStatistic3 = nodes.Item(0).SelectSingleNode("cbStatistic3").InnerText;
             string cbStatistic4 = nodes.Item(0).SelectSingleNode("cbStatistic4").InnerText;
             string cbStatistic5 = nodes.Item(0).SelectSingleNode("cbStatistic5").InnerText;
+            string firstDayOfWeek = nodes.Item(0).SelectSingleNode("FIRSTDAY").InnerText;
 
             string lastLogYearSelected = nodes.Item(0).SelectSingleNode("LastLogSelected").InnerText;
             string lastBikeSelected = nodes.Item(0).SelectSingleNode("LastBikeSelected").InnerText;
@@ -79,6 +80,7 @@ namespace CyclingLogApplication
 
             MainForm mainForm = new MainForm("");
             mainForm.SetLogLevel(logLevel);
+            mainForm.SetFirstDayOfWeek(firstDayOfWeek);
             mainForm.SetcbStatistic1(cbStatistic1);
             mainForm.SetcbStatistic2(cbStatistic2);
             mainForm.SetcbStatistic3(cbStatistic3);
@@ -165,6 +167,10 @@ namespace CyclingLogApplication
                     versionNode.InnerText = mainForm.GetLogVersion();
                     rootNode.AppendChild(versionNode);
 
+                    XmlNode firstDayNode = xmlDoc.CreateElement("FIRSTDAY");
+                    firstDayNode.InnerText = mainForm.GetFirstDayOfWeek();
+                    rootNode.AppendChild(firstDayNode);
+
                     XmlNode logLevelNode = xmlDoc.CreateElement("LOGLEVEL");
                     logLevelNode.InnerText = "0";
                     rootNode.AppendChild(logLevelNode);
@@ -245,6 +251,8 @@ namespace CyclingLogApplication
                 string cbStatistic4 = mainForm.GetcbStatistic4();
                 string cbStatistic5 = mainForm.GetcbStatistic5();
 
+                string firstDay = mainForm.GetFirstDayOfWeek();
+
                 int lastLogSelected = mainForm.GetLastLogSelected();
                 int lastBikeSelected = mainForm.GetLastBikeSelected();
                 int lastLogFilterSelected = mainForm.GetLastLogFilterSelected();
@@ -256,6 +264,8 @@ namespace CyclingLogApplication
 
                 int lastMonthlyLogSelected = mainForm.GetLastMonthlyLogSelected();
                 int lastLogSelectedDataEntry = mainForm.GetLastLogSelectedDataEntry();
+
+                xmlDoc.SelectSingleNode("/Config/FIRSTDAY").InnerText = firstDay;
 
                 xmlDoc.SelectSingleNode("/Config/cbStatistic1").InnerText = cbStatistic1;
                 xmlDoc.SelectSingleNode("/Config/cbStatistic2").InnerText = cbStatistic2;
@@ -274,6 +284,8 @@ namespace CyclingLogApplication
 
                 xmlDoc.SelectSingleNode("/Config/LastMonthlyLogSelected").InnerText = lastMonthlyLogSelected.ToString();
                 xmlDoc.SelectSingleNode("/Config/LastLogSelectedDataEntry").InnerText = lastLogSelectedDataEntry.ToString();
+
+                Logger.Log("Write Config Values: FIRSTDAY written:" + firstDay, 0, logSetting);
 
                 Logger.Log("Write Config Values: cbStatistic1 written:" + cbStatistic1, 0, logSetting);
                 Logger.Log("Write Config Values: cbStatistic2 written:" + cbStatistic2, 0, logSetting);

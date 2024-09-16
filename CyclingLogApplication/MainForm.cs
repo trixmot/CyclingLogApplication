@@ -42,6 +42,7 @@ namespace CyclingLogApplication
         private static int lastTypeTimeChart = -1;
         private static int lastMonthlyLogSelected = -1;
         private static int lastLogSelectedDataEntry = -1;
+        private static string firstDayOfWeek;
 
         private static SqlConnection sqlConnection;             // = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
         private static DatabaseConnection databaseConnection;   // = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
@@ -106,6 +107,18 @@ namespace CyclingLogApplication
             lbVersion.Text = "App Version: " + GetLogVersion();
             lbMaintError.Text = "";
 
+            string firstDay = GetFirstDayOfWeek();
+            if (firstDay.Equals("Sunday"))
+            {
+                rbFirstDayMonday.Checked = false;
+                rbFirstDaySunday.Checked = true;
+            }
+            else
+            {
+                rbFirstDayMonday.Checked = true;
+                rbFirstDaySunday.Checked = false;
+            }
+            
             //Get all values and load the comboboxes:
             List<string> logYearList = ReadDataNames("Table_Log_year", "Name");
             List<string> routeList = ReadDataNames("Table_Routes", "Name");
@@ -417,6 +430,16 @@ namespace CyclingLogApplication
         public int GetLastTypeTimeChartSelected()
         {
             return lastTypeTimeChart;
+        }
+
+        public string GetFirstDayOfWeek()
+        {
+            return firstDayOfWeek;
+        }
+
+        public void SetFirstDayOfWeek(string firstdayString)
+        {
+            firstDayOfWeek = firstdayString;
         }
 
         public List<string> GetLogYears()
@@ -1546,7 +1569,23 @@ namespace CyclingLogApplication
         {
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
             Calendar cal = dfi.Calendar;
-            int weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, DayOfWeek.Monday);
+            int weekValue = 0;
+            string firstDay = GetFirstDayOfWeek();
+
+            if (firstDay == null)
+            {
+                firstDay = "Monday";
+
+            }
+
+            if (firstDay.Equals("Sunday"))
+            {
+                weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, DayOfWeek.Sunday);
+            } 
+            else
+            {
+                weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, DayOfWeek.Monday);
+            }
 
             return weekValue;
         }
@@ -2014,7 +2053,17 @@ namespace CyclingLogApplication
 
                                     //Need to figure out the week from the ride date:
                                     DateTime rideDate = Convert.ToDateTime(splitList[0]);
-                                    int weekValue = cal.GetWeekOfYear(rideDate, dfi.CalendarWeekRule, DayOfWeek.Monday);
+                                    string firstDay = GetFirstDayOfWeek();
+                                    int weekValue = 0;
+
+                                    if (firstDay.Equals("Sunday"))
+                                    {
+                                        weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, DayOfWeek.Sunday);
+                                    }
+                                    else
+                                    {
+                                        weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, DayOfWeek.Monday);
+                                    }
                                     objectValues.Add(weekValue);        //Week number:
                                     objectValues.Add(splitList[14]);     //Location:
                                     objectValues.Add(null);     //Windchill:
@@ -4743,7 +4792,7 @@ namespace CyclingLogApplication
             return weekNumber;
         }
 
-        public static DateTime GetDateFromWeekNumber(int year, int weekOfYear)
+        public DateTime GetDateFromWeekNumber(int year, int weekOfYear)
         {
             DateTime jan1 = new DateTime(year, 1, 1);
             int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
@@ -4752,7 +4801,17 @@ namespace CyclingLogApplication
             // it will never be in Week 52/53
             DateTime firstThursday = jan1.AddDays(daysOffset);
             var cal = CultureInfo.CurrentCulture.Calendar;
-            int firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+            string firstDay = GetFirstDayOfWeek();
+            int firstWeek = 0;
+
+            if (firstDay.Equals("Sunday")){
+                firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
+            }
+            else
+            {
+                firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            }
 
             var weekNum = weekOfYear;
             // As we're adding days to a date in Week 1,
@@ -4768,6 +4827,18 @@ namespace CyclingLogApplication
 
             // Subtract 3 days from Thursday to get Monday, which is the first weekday in ISO8601
             return result.AddDays(-3).Date;
+        }
+
+        private void btFirstDay_Click(object sender, EventArgs e)
+        {
+            if (rbFirstDaySunday.Checked)
+            {
+                SetFirstDayOfWeek("Sunday");
+            }
+            else
+            {
+                SetFirstDayOfWeek("Monday");
+            }
         }
     }
 }
