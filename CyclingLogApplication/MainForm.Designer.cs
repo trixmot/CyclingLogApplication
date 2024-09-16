@@ -415,6 +415,7 @@
             this.rbFirstDaySunday = new System.Windows.Forms.RadioButton();
             this.rbFirstDayMonday = new System.Windows.Forms.RadioButton();
             this.btFirstDay = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox17.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -4274,7 +4275,7 @@
             this.btRenameBike.Name = "btRenameBike";
             this.btRenameBike.Size = new System.Drawing.Size(75, 23);
             this.btRenameBike.TabIndex = 14;
-            this.btRenameBike.Text = "Rename";
+            this.btRenameBike.Text = "Update";
             this.btRenameBike.UseVisualStyleBackColor = true;
             this.btRenameBike.Click += new System.EventHandler(this.BtRenameBike_Click);
             // 
@@ -4381,7 +4382,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 9;
-            this.button6.Text = "Rename";
+            this.button6.Text = "Update";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.CbRenameRoute);
             // 
@@ -4454,7 +4455,7 @@
             this.bRenameLogYear.Name = "bRenameLogYear";
             this.bRenameLogYear.Size = new System.Drawing.Size(75, 23);
             this.bRenameLogYear.TabIndex = 4;
-            this.bRenameLogYear.Text = "Rename";
+            this.bRenameLogYear.Text = "Update";
             this.bRenameLogYear.UseVisualStyleBackColor = true;
             this.bRenameLogYear.Click += new System.EventHandler(this.BRenameLogYear_Click);
             // 
@@ -4490,6 +4491,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.label83);
             this.groupBox3.Controls.Add(this.textBox1);
             this.groupBox3.Controls.Add(this.label29);
@@ -4614,6 +4616,16 @@
             this.btFirstDay.Text = "Set";
             this.btFirstDay.UseVisualStyleBackColor = true;
             this.btFirstDay.Click += new System.EventHandler(this.btFirstDay_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(541, 123);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(108, 30);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "User\'s Guide";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
@@ -5064,6 +5076,7 @@
         private System.Windows.Forms.RadioButton rbFirstDaySunday;
         private System.Windows.Forms.Label label84;
         private System.Windows.Forms.Button btFirstDay;
+        private System.Windows.Forms.Button button2;
     }
 }
 

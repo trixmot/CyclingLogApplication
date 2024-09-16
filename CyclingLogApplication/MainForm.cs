@@ -43,6 +43,29 @@ namespace CyclingLogApplication
         private static int lastMonthlyLogSelected = -1;
         private static int lastLogSelectedDataEntry = -1;
         private static string firstDayOfWeek;
+        private static string checkedListBoxItem0 = "1";
+        private static string checkedListBoxItem1 = "1";
+        private static string checkedListBoxItem2 = "1";
+        private static string checkedListBoxItem3 = "1";
+        private static string checkedListBoxItem4 = "1";
+        private static string checkedListBoxItem5 = "1";
+        private static string checkedListBoxItem6 = "1";
+        private static string checkedListBoxItem7 = "1";
+        private static string checkedListBoxItem8 = "1";
+        private static string checkedListBoxItem9 = "1";
+        private static string checkedListBoxItem10 = "1";
+        private static string checkedListBoxItem11 = "1";
+        private static string checkedListBoxItem12 = "1";
+        private static string checkedListBoxItem13 = "1";
+        private static string checkedListBoxItem14 = "1";
+        private static string checkedListBoxItem15 = "1";
+        private static string checkedListBoxItem16 = "1";
+        private static string checkedListBoxItem17 = "1";
+        private static string checkedListBoxItem18 = "1";
+        private static string checkedListBoxItem19 = "1";
+        private static string checkedListBoxItem20 = "1";
+        private static string checkedListBoxItem21 = "1";
+        private static string checkedListBoxItem22 = "1";
 
         private static SqlConnection sqlConnection;             // = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
         private static DatabaseConnection databaseConnection;   // = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
@@ -442,6 +465,236 @@ namespace CyclingLogApplication
             firstDayOfWeek = firstdayString;
         }
 
+        public void SetCheckedListBoxItem0(string checkedItem0)
+        {
+            checkedListBoxItem0 = checkedItem0;
+        }
+
+        public void SetCheckedListBoxItem1(string checkedItem1)
+        {
+            checkedListBoxItem1 = checkedItem1;
+        }
+
+        public void SetCheckedListBoxItem2(string checkedItem2)
+        {
+            checkedListBoxItem2 = checkedItem2;
+        }
+
+        public void SetCheckedListBoxItem3(string checkedItem3)
+        {
+            checkedListBoxItem3 = checkedItem3;
+        }
+
+        public void SetCheckedListBoxItem4(string checkedItem4)
+        {
+            checkedListBoxItem4 = checkedItem4;
+        }
+
+        public void SetCheckedListBoxItem5(string checkedItem5)
+        {
+            checkedListBoxItem5 = checkedItem5;
+        }
+
+        public void SetCheckedListBoxItem6(string checkedItem6)
+        {
+            checkedListBoxItem6 = checkedItem6;
+        }
+
+        public void SetCheckedListBoxItem7(string checkedItem7)
+        {
+            checkedListBoxItem7 = checkedItem7;
+        }
+
+        public void SetCheckedListBoxItem8(string checkedItem8)
+        {
+            checkedListBoxItem8 = checkedItem8;
+        }
+
+        public void SetCheckedListBoxItem9(string checkedItem9)
+        {
+            checkedListBoxItem9 = checkedItem9;
+        }
+
+        public void SetCheckedListBoxItem10(string checkedItem10)
+        {
+            checkedListBoxItem10 = checkedItem10;
+        }
+
+        public void SetCheckedListBoxItem11(string checkedItem11)
+        {
+            checkedListBoxItem11 = checkedItem11;
+        }
+
+        public void SetCheckedListBoxItem12(string checkedItem12)
+        {
+            checkedListBoxItem12 = checkedItem12;
+        }
+
+        public void SetCheckedListBoxItem13(string checkedItem13)
+        {
+            checkedListBoxItem13 = checkedItem13;
+        }
+
+        public void SetCheckedListBoxItem14(string checkedItem14)
+        {
+            checkedListBoxItem14 = checkedItem14;
+        }
+
+        public void SetCheckedListBoxItem15(string checkedItem15)
+        {
+            checkedListBoxItem15 = checkedItem15;
+        }
+
+        public void SetCheckedListBoxItem16(string checkedItem16)
+        {
+            checkedListBoxItem16 = checkedItem16;
+        }
+
+        public void SetCheckedListBoxItem17(string checkedItem17)
+        {
+            checkedListBoxItem17 = checkedItem17;
+        }
+
+        public void SetCheckedListBoxItem18(string checkedItem18)
+        {
+            checkedListBoxItem18 = checkedItem18;
+        }
+
+        public void SetCheckedListBoxItem19(string checkedItem19)
+        {
+            checkedListBoxItem19 = checkedItem19;
+        }
+
+        public void SetCheckedListBoxItem20(string checkedItem20)
+        {
+            checkedListBoxItem20 = checkedItem20;
+        }
+
+        public void SetCheckedListBoxItem21(string checkedItem21)
+        {
+            checkedListBoxItem21 = checkedItem21;
+        }
+
+        public void SetCheckedListBoxItem22(string checkedItem22)
+        {
+            checkedListBoxItem22 = checkedItem22;
+        }
+
+        public string GetCheckedListBoxItem0()
+        {
+            return checkedListBoxItem0;
+        }
+
+        public string GetCheckedListBoxItem1()
+        {
+            return checkedListBoxItem1;
+        }
+
+        public string GetCheckedListBoxItem2()
+        {
+            return checkedListBoxItem2;
+        }
+
+        public string GetCheckedListBoxItem3()
+        {
+            return checkedListBoxItem3;
+        }
+
+        public string GetCheckedListBoxItem4()
+        {
+            return checkedListBoxItem4;
+        }
+
+        public string GetCheckedListBoxItem5()
+        {
+            return checkedListBoxItem5;
+        }
+
+        public string GetCheckedListBoxItem6()
+        {
+            return checkedListBoxItem6;
+        }
+
+        public string GetCheckedListBoxItem7()
+        {
+            return checkedListBoxItem7;
+        }
+
+        public string GetCheckedListBoxItem8()
+        {
+            return checkedListBoxItem8;
+        }
+
+        public string GetCheckedListBoxItem9()
+        {
+            return checkedListBoxItem9;
+        }
+
+        public string GetCheckedListBoxItem10()
+        {
+            return checkedListBoxItem10;
+        }
+
+        public string GetCheckedListBoxItem11()
+        {
+            return checkedListBoxItem11;
+        }
+
+        public string GetCheckedListBoxItem12()
+        {
+            return checkedListBoxItem12;
+        }
+
+        public string GetCheckedListBoxItem13()
+        {
+            return checkedListBoxItem13;
+        }
+
+        public string GetCheckedListBoxItem14()
+        {
+            return checkedListBoxItem14;
+        }
+
+        public string GetCheckedListBoxItem15()
+        {
+            return checkedListBoxItem15;
+        }
+
+        public string GetCheckedListBoxItem16()
+        {
+            return checkedListBoxItem16;
+        }
+
+        public string GetCheckedListBoxItem17()
+        {
+            return checkedListBoxItem17;
+        }
+
+        public string GetCheckedListBoxItem18()
+        {
+            return checkedListBoxItem18;
+        }
+
+        public string GetCheckedListBoxItem19()
+        {
+            return checkedListBoxItem19;
+        }
+
+        public string GetCheckedListBoxItem20()
+        {
+            return checkedListBoxItem20;
+        }
+
+        public string GetCheckedListBoxItem21()
+        {
+            return checkedListBoxItem21;
+        }
+
+        public string GetCheckedListBoxItem22()
+        {
+            return checkedListBoxItem22;
+        }
+
         public List<string> GetLogYears()
         {
             List<string> logYearsList = new List<string>();
@@ -823,6 +1076,7 @@ namespace CyclingLogApplication
         private void OpenRideDataForm(object sender, EventArgs e)
         {
             rideDataDisplayForm.setLogYearFilterIndex(GetLastLogFilterSelected());
+            rideDataDisplayForm.setCheckedValues();
             rideDataDisplayForm.ShowDialog();
         }
 
@@ -4834,11 +5088,24 @@ namespace CyclingLogApplication
             if (rbFirstDaySunday.Checked)
             {
                 SetFirstDayOfWeek("Sunday");
+                MessageBox.Show("First Day of week set to Sunday.");
             }
             else
             {
                 SetFirstDayOfWeek("Monday");
+                MessageBox.Show("First Day of week set to Monday.");
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            //This will strip just the working path name:
+            //C:\Program Files\MyApplication
+            string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
+            string pathFile = strWorkPath + "\\Cycling_Log_User's_Guide.docx";
+
+            System.Diagnostics.Process.Start(pathFile);
         }
     }
 }

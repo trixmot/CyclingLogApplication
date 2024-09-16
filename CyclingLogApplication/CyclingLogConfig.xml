@@ -2,19 +2,44 @@
   <DAYSTOKEEPLOGS>90</DAYSTOKEEPLOGS>
   <VERSION>0.3.0</VERSION>
   <LOGLEVEL>0</LOGLEVEL>
-  <cbStatistic1>16</cbStatistic1>
-  <cbStatistic2>15</cbStatistic2>
-  <cbStatistic3>-1</cbStatistic3>
-  <cbStatistic4>-1</cbStatistic4>
-  <cbStatistic5>-1</cbStatistic5>
-  <LastBikeSelected>5</LastBikeSelected>
-  <LastLogSelected>13</LastLogSelected>
-  <LastLogFilterSelected>14</LastLogFilterSelected>
-  <ChartLogYear>-1</ChartLogYear>
+  <cbStatistic1>19</cbStatistic1>
+  <cbStatistic2>18</cbStatistic2>
+  <cbStatistic3>17</cbStatistic3>
+  <cbStatistic4>16</cbStatistic4>
+  <cbStatistic5>14</cbStatistic5>
+  <LastBikeSelected>1</LastBikeSelected>
+  <LastLogSelected>18</LastLogSelected>
+  <LastLogFilterSelected>19</LastLogFilterSelected>
+  <ChartLogYear>18</ChartLogYear>
   <ChartRoute>-1</ChartRoute>
-  <ChartType>-1</ChartType>
-  <ChartTimeType>-1</ChartTimeType>
-  <LastMonthlyLogSelected>-1</LastMonthlyLogSelected>
-  <LastLogSelectedDataEntry>13</LastLogSelectedDataEntry>
+  <ChartType>2</ChartType>
+  <ChartTimeType>2</ChartTimeType>
+  <LastMonthlyLogSelected>19</LastMonthlyLogSelected>
+  <LastLogSelectedDataEntry>18</LastLogSelectedDataEntry>
   <FIRSTDAY>Monday</FIRSTDAY>
+  <CHECKEDLISTBOX0>1</CHECKEDLISTBOX0>
+  <CHECKEDLISTBOX1>1</CHECKEDLISTBOX1>
+  <CHECKEDLISTBOX2>1</CHECKEDLISTBOX2>
+  <CHECKEDLISTBOX3>1</CHECKEDLISTBOX3>
+  <CHECKEDLISTBOX4>1</CHECKEDLISTBOX4>
+  <CHECKEDLISTBOX5>1</CHECKEDLISTBOX5>
+  <CHECKEDLISTBOX6>1</CHECKEDLISTBOX6>
+  <CHECKEDLISTBOX7>1</CHECKEDLISTBOX7>
+  <CHECKEDLISTBOX8>1</CHECKEDLISTBOX8>
+  <CHECKEDLISTBOX9>1</CHECKEDLISTBOX9>
+  <CHECKEDLISTBOX10>1</CHECKEDLISTBOX10>
+  <CHECKEDLISTBOX11>1</CHECKEDLISTBOX11>
+  <CHECKEDLISTBOX12>1</CHECKEDLISTBOX12>
+  <CHECKEDLISTBOX13>1</CHECKEDLISTBOX13>
+  <CHECKEDLISTBOX14>1</CHECKEDLISTBOX14>
+  <CHECKEDLISTBOX15>1</CHECKEDLISTBOX15>
+  <CHECKEDLISTBOX16>1</CHECKEDLISTBOX16>
+  <CHECKEDLISTBOX17>1</CHECKEDLISTBOX17>
+  <CHECKEDLISTBOX18>1</CHECKEDLISTBOX18>
+  <CHECKEDLISTBOX19>1</CHECKEDLISTBOX19>
+  <CHECKEDLISTBOX20>1</CHECKEDLISTBOX20>
+  <CHECKEDLISTBOX21>1</CHECKEDLISTBOX21>
+  <CHECKEDLISTBOX22>1</CHECKEDLISTBOX22>
+
+
 </Config>

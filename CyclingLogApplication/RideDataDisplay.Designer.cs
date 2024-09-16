@@ -39,6 +39,10 @@
             this.cbLogYearFilter = new System.Windows.Forms.ComboBox();
             this.btClear = new System.Windows.Forms.Button();
             this.cbFilterValue = new System.Windows.Forms.ComboBox();
+            this.checkedListBox = new System.Windows.Forms.CheckedListBox();
+            this.btUpdateFields = new System.Windows.Forms.Button();
+            this.btSelectAll = new System.Windows.Forms.Button();
+            this.btDeselectAll = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,11 +158,77 @@
             this.cbFilterValue.Size = new System.Drawing.Size(316, 21);
             this.cbFilterValue.TabIndex = 10;
             // 
+            // checkedListBox
+            // 
+            this.checkedListBox.FormattingEnabled = true;
+            this.checkedListBox.Items.AddRange(new object[] {
+            "Week Number",
+            "ID",
+            "Date",
+            "Moving Time",
+            "Ride Distance",
+            "Avg Speed",
+            "Bike",
+            "Ride Type",
+            "Wind",
+            "Temperature",
+            "Avg Cadence",
+            "Avg Heart Rate",
+            "Max Heart Rate",
+            "Calories",
+            "Total Ascent",
+            "Total Descent",
+            "Route",
+            "Location",
+            "Comments",
+            "Effort",
+            "Max Speed",
+            "Avg Power",
+            "Max Power"});
+            this.checkedListBox.Location = new System.Drawing.Point(1033, 41);
+            this.checkedListBox.Name = "checkedListBox";
+            this.checkedListBox.Size = new System.Drawing.Size(146, 349);
+            this.checkedListBox.TabIndex = 12;
+            // 
+            // btUpdateFields
+            // 
+            this.btUpdateFields.Location = new System.Drawing.Point(1074, 497);
+            this.btUpdateFields.Name = "btUpdateFields";
+            this.btUpdateFields.Size = new System.Drawing.Size(75, 23);
+            this.btUpdateFields.TabIndex = 13;
+            this.btUpdateFields.Text = "Update";
+            this.btUpdateFields.UseVisualStyleBackColor = true;
+            this.btUpdateFields.Click += new System.EventHandler(this.btUpdateFields_Click);
+            // 
+            // btSelectAll
+            // 
+            this.btSelectAll.Location = new System.Drawing.Point(1074, 402);
+            this.btSelectAll.Name = "btSelectAll";
+            this.btSelectAll.Size = new System.Drawing.Size(75, 23);
+            this.btSelectAll.TabIndex = 14;
+            this.btSelectAll.Text = "Select All";
+            this.btSelectAll.UseVisualStyleBackColor = true;
+            this.btSelectAll.Click += new System.EventHandler(this.btSelectAll_Click);
+            // 
+            // btDeselectAll
+            // 
+            this.btDeselectAll.Location = new System.Drawing.Point(1074, 431);
+            this.btDeselectAll.Name = "btDeselectAll";
+            this.btDeselectAll.Size = new System.Drawing.Size(75, 23);
+            this.btDeselectAll.TabIndex = 15;
+            this.btDeselectAll.Text = "Deselect All";
+            this.btDeselectAll.UseVisualStyleBackColor = true;
+            this.btDeselectAll.Click += new System.EventHandler(this.btDeselectAll_Click);
+            // 
             // RideDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1031, 596);
+            this.ClientSize = new System.Drawing.Size(1191, 596);
+            this.Controls.Add(this.btDeselectAll);
+            this.Controls.Add(this.btSelectAll);
+            this.Controls.Add(this.btUpdateFields);
+            this.Controls.Add(this.checkedListBox);
             this.Controls.Add(this.cbFilterValue);
             this.Controls.Add(this.btClear);
             this.Controls.Add(this.label1);
@@ -194,5 +264,9 @@
         public System.Windows.Forms.ComboBox cbLogYearFilter;
         private System.Windows.Forms.Button btClear;
         private System.Windows.Forms.ComboBox cbFilterValue;
+        private System.Windows.Forms.CheckedListBox checkedListBox;
+        private System.Windows.Forms.Button btUpdateFields;
+        private System.Windows.Forms.Button btSelectAll;
+        private System.Windows.Forms.Button btDeselectAll;
     }
 }
