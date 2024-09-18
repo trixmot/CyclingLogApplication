@@ -184,10 +184,12 @@
             "Effort",
             "Max Speed",
             "Avg Power",
-            "Max Power"});
+            "Max Power",
+            "Comfort",
+            "Custom"});
             this.checkedListBox.Location = new System.Drawing.Point(1033, 41);
             this.checkedListBox.Name = "checkedListBox";
-            this.checkedListBox.Size = new System.Drawing.Size(146, 349);
+            this.checkedListBox.Size = new System.Drawing.Size(146, 379);
             this.checkedListBox.TabIndex = 12;
             // 
             // btUpdateFields
@@ -202,7 +204,7 @@
             // 
             // btSelectAll
             // 
-            this.btSelectAll.Location = new System.Drawing.Point(1074, 402);
+            this.btSelectAll.Location = new System.Drawing.Point(1074, 439);
             this.btSelectAll.Name = "btSelectAll";
             this.btSelectAll.Size = new System.Drawing.Size(75, 23);
             this.btSelectAll.TabIndex = 14;
@@ -212,7 +214,7 @@
             // 
             // btDeselectAll
             // 
-            this.btDeselectAll.Location = new System.Drawing.Point(1074, 431);
+            this.btDeselectAll.Location = new System.Drawing.Point(1074, 468);
             this.btDeselectAll.Name = "btDeselectAll";
             this.btDeselectAll.Size = new System.Drawing.Size(75, 23);
             this.btDeselectAll.TabIndex = 15;

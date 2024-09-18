@@ -92,6 +92,10 @@
             this.numDistanceRideDataEntry = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.cbRideTypeDataEntry = new System.Windows.Forms.ComboBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.cbComfortRideDataEntry = new System.Windows.Forms.ComboBox();
+            this.lbCustom1 = new System.Windows.Forms.Label();
+            this.tbCustom1 = new System.Windows.Forms.TextBox();
             this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
@@ -171,7 +175,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(131, 24);
+            this.label25.Location = new System.Drawing.Point(210, 33);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(46, 13);
             this.label25.TabIndex = 47;
@@ -179,7 +183,7 @@
             // 
             // tbWeekCountRDE
             // 
-            this.tbWeekCountRDE.Location = new System.Drawing.Point(183, 21);
+            this.tbWeekCountRDE.Location = new System.Drawing.Point(262, 30);
             this.tbWeekCountRDE.Name = "tbWeekCountRDE";
             this.tbWeekCountRDE.ReadOnly = true;
             this.tbWeekCountRDE.Size = new System.Drawing.Size(31, 20);
@@ -216,7 +220,7 @@
             // 
             // tbRecordID
             // 
-            this.tbRecordID.Location = new System.Drawing.Point(232, 21);
+            this.tbRecordID.Location = new System.Drawing.Point(20, 17);
             this.tbRecordID.Name = "tbRecordID";
             this.tbRecordID.Size = new System.Drawing.Size(41, 20);
             this.tbRecordID.TabIndex = 28;
@@ -302,7 +306,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(400, 590);
+            this.button2.Location = new System.Drawing.Point(400, 633);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(85, 35);
             this.button2.TabIndex = 4;
@@ -312,6 +316,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.tbCustom1);
+            this.groupBox2.Controls.Add(this.lbCustom1);
+            this.groupBox2.Controls.Add(this.label26);
+            this.groupBox2.Controls.Add(this.cbComfortRideDataEntry);
             this.groupBox2.Controls.Add(this.cbBikeDataEntrySelection);
             this.groupBox2.Controls.Add(this.label23);
             this.groupBox2.Controls.Add(this.cbEffortRideDataEntry);
@@ -355,7 +363,7 @@
             this.groupBox2.Controls.Add(this.cbRideTypeDataEntry);
             this.groupBox2.Location = new System.Drawing.Point(18, 183);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(490, 389);
+            this.groupBox2.Size = new System.Drawing.Size(490, 433);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             // 
@@ -392,7 +400,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(370, 363);
+            this.label22.Location = new System.Drawing.Point(370, 410);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(87, 13);
             this.label22.TabIndex = 40;
@@ -423,7 +431,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(17, 302);
+            this.label20.Location = new System.Drawing.Point(17, 349);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(56, 13);
             this.label20.TabIndex = 37;
@@ -431,7 +439,7 @@
             // 
             // tbComments
             // 
-            this.tbComments.Location = new System.Drawing.Point(79, 302);
+            this.tbComments.Location = new System.Drawing.Point(79, 349);
             this.tbComments.Multiline = true;
             this.tbComments.Name = "tbComments";
             this.tbComments.Size = new System.Drawing.Size(378, 42);
@@ -724,6 +732,44 @@
             this.cbRideTypeDataEntry.Size = new System.Drawing.Size(126, 21);
             this.cbRideTypeDataEntry.TabIndex = 1;
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(26, 292);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(47, 13);
+            this.label26.TabIndex = 45;
+            this.label26.Text = "Comfort*";
+            // 
+            // cbComfortRideDataEntry
+            // 
+            this.cbComfortRideDataEntry.FormattingEnabled = true;
+            this.cbComfortRideDataEntry.Items.AddRange(new object[] {
+            "Weak / Tight",
+            "Average",
+            "Strong"});
+            this.cbComfortRideDataEntry.Location = new System.Drawing.Point(76, 289);
+            this.cbComfortRideDataEntry.Name = "cbComfortRideDataEntry";
+            this.cbComfortRideDataEntry.Size = new System.Drawing.Size(126, 21);
+            this.cbComfortRideDataEntry.TabIndex = 44;
+            // 
+            // lbCustom1
+            // 
+            this.lbCustom1.AutoSize = true;
+            this.lbCustom1.Location = new System.Drawing.Point(289, 292);
+            this.lbCustom1.Name = "lbCustom1";
+            this.lbCustom1.Size = new System.Drawing.Size(42, 13);
+            this.lbCustom1.TabIndex = 47;
+            this.lbCustom1.Text = "Custom";
+            // 
+            // tbCustom1
+            // 
+            this.tbCustom1.Location = new System.Drawing.Point(342, 289);
+            this.tbCustom1.Name = "tbCustom1";
+            this.tbCustom1.Size = new System.Drawing.Size(125, 20);
+            this.tbCustom1.TabIndex = 48;
+            this.tbCustom1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // tableRideInformationBindingSource
             // 
             this.tableRideInformationBindingSource.DataMember = "Table_Ride_Information";
@@ -742,7 +788,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 644);
+            this.ClientSize = new System.Drawing.Size(526, 706);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button2);
@@ -836,5 +882,9 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox tbWeekCountRDE;
         private System.Windows.Forms.Button btRetrieve;
+        private System.Windows.Forms.Label lbCustom1;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.ComboBox cbComfortRideDataEntry;
+        private System.Windows.Forms.TextBox tbCustom1;
     }
 }

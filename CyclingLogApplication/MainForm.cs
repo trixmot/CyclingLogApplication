@@ -13,6 +13,7 @@ using System.Configuration;
 using System.Text.RegularExpressions;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Xml.Linq;
+using System.Diagnostics;
 
 
 
@@ -20,7 +21,7 @@ namespace CyclingLogApplication
 {
     public partial class MainForm : Form
     {
-        private static Mutex mutex;
+        private static Mutex mutex = null;
         private RideDataEntry rideDataEntryForm;
         private RideDataDisplay rideDataDisplayForm;
         private ChartForm chartForm;
@@ -66,6 +67,8 @@ namespace CyclingLogApplication
         private static string checkedListBoxItem20 = "1";
         private static string checkedListBoxItem21 = "1";
         private static string checkedListBoxItem22 = "1";
+        private static string checkedListBoxItem23 = "1";
+        private static string checkedListBoxItem24 = "0";
 
         private static SqlConnection sqlConnection;             // = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
         private static DatabaseConnection databaseConnection;   // = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
@@ -73,18 +76,48 @@ namespace CyclingLogApplication
         //connectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\workdir\Cycling_Log\CyclingLogApplication\CyclingLogDatabase.mdf;Integrated Security=True"
         //connectionString="Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|CyclingLogDatabase.mdf;Integrated Security=True"
 
+        //[STAThread]
+        //public static void Main()
+        //{
+        //    const string appName = "Cycling Log";
+        //    bool createdNew;
+
+        //    mutex = new Mutex(true, appName, out createdNew);
+
+        //    if (!createdNew)
+        //    {
+        //        //app is already running! Exiting the application
+        //        return;
+        //    }
+
+        //    Application.EnableVisualStyles();
+        //    Application.SetCompatibleTextRenderingDefault(false);
+        //    Application.Run(new MainForm());
+        //}
+
         public MainForm()
         {
+            //if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1) return;
+            //const string appName = "Cycling Log";
+            //bool createdNew;
+
+            //mutex = new Mutex(true, appName, out createdNew);
+
+            //if (!createdNew)
+            //{
+            //    //app is already running! Exiting the application
+            //    return;
+            //}
             //Set DataDirectory for the contectionstring in the app.config:
             AppDomain.CurrentDomain.SetData("DataDirectory", Directory.GetCurrentDirectory());
 
-            Text = "Single Instance!";
-            mutex = new Mutex(false, "SINGLE_INSTANCE_MUTEX");
-            if (!mutex.WaitOne(0, false))
-            {
-                mutex.Close();
-                mutex = null;
-            }
+            //Text = "Single Instance!";
+            //mutex = new Mutex(false, "SINGLE_INSTANCE_MUTEX");
+            //if (!mutex.WaitOne(0, false))
+            //{
+            //    mutex.Close();
+            //    mutex = null;
+            //}
 
             InitializeComponent();
             GetConnectionStrings();
@@ -104,6 +137,19 @@ namespace CyclingLogApplication
 
         public MainForm(string emptyConstructor)
         {
+            if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1)
+            {
+                foreach (Process proc in Process.GetProcesses())
+                {
+                    if (proc.ProcessName.Equals(Process.GetCurrentProcess().ProcessName) && proc.Id != Process.GetCurrentProcess().Id)
+                    {
+                        proc.Kill();
+                        //break;
+                    }
+                }
+                this.Dispose();
+                Application.Exit();
+            }
             //Empty consturctor to prevent from running InitializeComponent():
             //Curretnly not used:
             string calledFrom = emptyConstructor;
@@ -111,17 +157,17 @@ namespace CyclingLogApplication
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1) return;
+            //if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1) return;
 
-            if (GetMutex() != null)
-            {
-                //Application.Run(app);
-            }
-            else
-            {
-                Logger.Log("Instance of Cycling Log Application is already running", 1, logLevel);
-                System.Environment.Exit(0);
-            }
+            //if (GetMutex() != null)
+            //{
+            //    //Application.Run(app);
+            //}
+            //else
+            //{
+            //    Logger.Log("Instance of Cycling Log Application is already running", 1, logLevel);
+            //    System.Environment.Exit(0);
+            //}
 
             ConfigurationFile configfile = new ConfigurationFile();
             configfile.readConfigFile();
@@ -188,7 +234,6 @@ namespace CyclingLogApplication
             foreach (var val in bikeList)
             {
                 cbBikeConfig.Items.Add(val);
-                cbBikeTotalsConfig.Items.Add(val);
                 cbBikeMaint.Items.Add(val);
                 Logger.Log("Data Loading: Bikes: " + val, 1, logSetting);
             }
@@ -580,6 +625,16 @@ namespace CyclingLogApplication
             checkedListBoxItem22 = checkedItem22;
         }
 
+        public void SetCheckedListBoxItem23(string checkedItem23)
+        {
+            checkedListBoxItem23 = checkedItem23;
+        }
+
+        public void SetCheckedListBoxItem24(string checkedItem24)
+        {
+            checkedListBoxItem24 = checkedItem24;
+        }
+
         public string GetCheckedListBoxItem0()
         {
             return checkedListBoxItem0;
@@ -693,6 +748,16 @@ namespace CyclingLogApplication
         public string GetCheckedListBoxItem22()
         {
             return checkedListBoxItem22;
+        }
+
+        public string GetCheckedListBoxItem23()
+        {
+            return checkedListBoxItem23;
+        }
+
+        public string GetCheckedListBoxItem24()
+        {
+            return checkedListBoxItem24;
         }
 
         public List<string> GetLogYears()
@@ -1177,13 +1242,6 @@ namespace CyclingLogApplication
                 return;
             }
 
-            //Check to see if the string has already been entered to eliminate duplicates:
-            if (cbBikeTotalsConfig.Items.Contains(bikeString))
-            {
-                MessageBox.Show("The name entered already exists in the Total Miles list and can not be added.");
-                updateBikeTotals = false;
-            }
-
             //Verify Miles is entered and in the correct format:
             if (!int.TryParse(tbConfigMilesNotInLog.Text, out _))
             {
@@ -1206,9 +1264,6 @@ namespace CyclingLogApplication
                 objectBikesTotals.Add(bikeString);
                 objectBikesTotals.Add(miles);
                 RunStoredProcedure(objectBikesTotals, "Bike_Totals_Add");
-
-                cbBikeTotalsConfig.Items.Add(bikeString);
-                cbBikeTotalsConfig.SelectedIndex = cbBikeTotalsConfig.Items.Count - 1;
             }
         }
 
@@ -1224,7 +1279,6 @@ namespace CyclingLogApplication
                 cbBikeConfig.Items.Remove(deleteValue);
                 cbBikeMaint.Items.Remove(deleteValue);
                 rideDataEntryForm.RemoveBikeDataEntry(deleteValue);
-                //cbBikeTotalsConfig.Items.Remove(cbBikeConfig.SelectedItem);
 
                 //Clear entires:
                 tbConfigMilesNotInLog.Text = "0";
@@ -1238,6 +1292,27 @@ namespace CyclingLogApplication
                 {
                     //ExecuteScalarFunction
                     using (var results = ExecuteSimpleQueryConnection("Bike_Remove", objectValues))
+                    {
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError("[ERROR]: Exception while trying to Delete Bike name entry." + ex.Message.ToString());
+                }
+
+                //Clear entires:
+                tbConfigMilesNotInLog.Text = "0";
+                tbBikeConfig.Text = "";
+
+                //Remove the Bike from the database table:
+                List<object> objectValues2 = new List<object>();
+                objectValues.Add(deleteValue);
+
+                try
+                {
+                    //ExecuteScalarFunction
+                    using (var results = ExecuteSimpleQueryConnection("Bike_Remove_Totals", objectValues2))
                     {
 
                     }
@@ -3177,7 +3252,6 @@ namespace CyclingLogApplication
             //rideDataEntryForm.cbRouteDataEntry
 
             //cbBikeConfig
-            //cbBikeTotalsConfig //Settings tab:
             //cbBikeMaint
             //rideDataEntryForm.cbBikeDataEntrySelection
 
@@ -3258,9 +3332,6 @@ namespace CyclingLogApplication
                         cbBikeConfig.Items.Remove(oldValue);
                         cbBikeConfig.Items.Add(newValue);
 
-                        cbBikeTotalsConfig.Items.Remove(oldValue);
-                        cbBikeTotalsConfig.Items.Add(newValue);
-
                         cbBikeMaint.Items.Remove(oldValue);
                         cbBikeMaint.Items.Add(newValue);
 
@@ -3271,12 +3342,10 @@ namespace CyclingLogApplication
 
 
                 cbBikeConfig.Sorted = true;
-                cbBikeTotalsConfig.Sorted = true; //Settings tab:
                 cbBikeMaint.Sorted = true;
                 rideDataEntryForm.cbBikeDataEntrySelection.Sorted = true;
 
                 cbBikeConfig.SelectedIndex = selectedIndex;
-                cbBikeTotalsConfig.SelectedIndex = selectedIndex;
                 //Update value in all database rows:
                 SqlDataReader reader = null;
 
@@ -3876,16 +3945,17 @@ namespace CyclingLogApplication
 
         private void MonthlyStatistics_Click(object sender, EventArgs e)
         {
-            using (RefreshingForm refreshingForm = new RefreshingForm())
-            {
-                // Display form modelessly
-                refreshingForm.Show();
-                //  ALlow main UI thread to properly display please wait form.
-                Application.DoEvents();
-                //this.ShowDialog();
-                RunMonthlyStatistics();
-                refreshingForm.Hide();
-            }
+            RunMonthlyStatistics();
+            //using (RefreshingForm refreshingForm = new RefreshingForm())
+            //{
+            //    // Display form modelessly
+            //    refreshingForm.Show();
+            //    //  ALlow main UI thread to properly display please wait form.
+            //    Application.DoEvents();
+            //    //this.ShowDialog();
+            //    RunMonthlyStatistics();
+            //    refreshingForm.Hide();
+            //}
         }
 
         private void GroupBox2_Enter(object sender, EventArgs e)
@@ -3901,47 +3971,6 @@ namespace CyclingLogApplication
         private void BtBikeMilesUpdate_Click(object sender, EventArgs e)
         {
             BtBikeMilesUpdate_run();
-        }
-
-        //Removes bike only from the totals section:
-        private void BtRemoveBikeTotalsConfig_Click(object sender, EventArgs e)
-        {
-            string deleteValue = cbBikeTotalsConfig.SelectedItem.ToString();
-
-            //Check if the value is in the Bike list and if so, do not delete:
-            if (cbBikeConfig.Items.Contains(deleteValue))
-            {
-                MessageBox.Show("The Bike name was found in the Bike list and cannot be removed until it has been removed from the Bike list first.");
-                return;
-            }
-
-            DialogResult result = MessageBox.Show("This removes the Bike from the Bike Miles (Tab) total listing. Do you want to continue.", "Delete Bike From Totals", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                //Note: only removing value as an option, all records using this value are unchanged:
-                cbBikeTotalsConfig.Items.Remove(cbBikeTotalsConfig.SelectedItem);
-
-                //Clear entires:
-                tbConfigMilesNotInLog.Text = "0";
-                tbBikeConfig.Text = "";
-
-                //Remove the Bike from the database table:
-                List<object> objectValues = new List<object>();
-                objectValues.Add(deleteValue);
-
-                try
-                {
-                    //ExecuteScalarFunction
-                    using (var results = ExecuteSimpleQueryConnection("Bike_Remove_Totals", objectValues))
-                    {
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogError("[ERROR]: Exception while trying to Delete Bike name entry." + ex.Message.ToString());
-                }
-            }
         }
 
         private void BtRefreshStatisticsData_Click(object sender, EventArgs e)
@@ -5106,6 +5135,25 @@ namespace CyclingLogApplication
             string pathFile = strWorkPath + "\\Cycling_Log_User's_Guide.docx";
 
             System.Diagnostics.Process.Start(pathFile);
+        }
+
+        public void refreshData()
+        {
+            // Run Refresh for all data fields:
+            RefreshStatisticsData();
+            RunMonthlyStatistics();
+            RefreshRideDataWeekly();
+            BtBikeMilesUpdate_run();
+            //using (RefreshingForm refreshingForm = new RefreshingForm())
+            //{
+            //    // Display form modelessly
+            //    refreshingForm.Show();
+            //    //  ALlow main UI thread to properly display please wait form.
+            //    Application.DoEvents();
+            //    //this.ShowDialog();
+            //    RunMonthlyStatistics();
+            //    refreshingForm.Hide();
+            //}
         }
     }
 }

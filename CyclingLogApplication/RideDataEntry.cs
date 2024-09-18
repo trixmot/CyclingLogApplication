@@ -234,6 +234,8 @@ namespace CyclingLogApplication
             string recordID;
             string weekNumber;
             string effort;
+            string comfort;
+            string custom;
 
             int recordIndex = 0;
 
@@ -275,6 +277,8 @@ namespace CyclingLogApplication
                                 recordID = results[19].ToString();
                                 weekNumber = results[20].ToString();
                                 effort = results[21].ToString();
+                                comfort = results[22].ToString();
+                                custom = results[23].ToString();
 
                                 //Load ride data page:
                                 dtpTimeRideDataEntry.Value = Convert.ToDateTime(movingTime);
@@ -299,6 +303,8 @@ namespace CyclingLogApplication
                                 //tbWeekNumber.Text = weekNumber;
                                 cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.Items.IndexOf(location);
                                 cbEffortRideDataEntry.SelectedIndex = cbEffortRideDataEntry.Items.IndexOf(effort);
+                                cbComfortRideDataEntry.SelectedIndex = cbComfortRideDataEntry.Items.IndexOf(comfort);
+                                tbCustom1.Text = custom;
                             }
                             else
                             {
@@ -349,12 +355,15 @@ namespace CyclingLogApplication
             {
                 mainForm.SetLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
                 mainForm.SetLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);
+                MainForm mainForm2 = new MainForm();
+                mainForm2.refreshData();
                 //Close();
                 //this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
                 //DialogResult result = MessageBox.Show("Any unsaved changes will be lost, do you want to continue?", "Exit Data Entry Form", MessageBoxButtons.YesNo);
                 //if (result == DialogResult.Yes)
                 // {
                 //Close();
+                
                 formClosing = 1;
                 this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
                 //}
@@ -447,6 +456,12 @@ namespace CyclingLogApplication
                 if (cbEffortRideDataEntry.SelectedIndex < 0)
                 {
                     lbRideDataEntryError.Text = "An Effort option must be selected.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (cbComfortRideDataEntry.SelectedIndex < 0)
+                {
+                    lbRideDataEntryError.Text = "An Comfort option must be selected.";
                     lbRideDataEntryError.Show();
                     return;
                 }
@@ -684,6 +699,8 @@ namespace CyclingLogApplication
                 }
 
                 objectValues.Add(cbEffortRideDataEntry.SelectedItem.ToString());         //Effort:
+                objectValues.Add(cbComfortRideDataEntry.SelectedItem.ToString());         //Comfort:
+                objectValues.Add(tbCustom1);                                                //Custom1
 
                 if (changeType.Equals("Update"))
                 {
@@ -980,6 +997,8 @@ namespace CyclingLogApplication
             //tbWeekNumber.Text = "0";
             tbRecordID.Text = "0";
             chk1RideDataEntry.Checked = false;
+            cbComfortRideDataEntry.SelectedIndex = cbComfortRideDataEntry.FindStringExact("");
+            tbCustom1.Text = "";
         }
 
         private void ClearDataEntryFields_click(object sender, EventArgs e)

@@ -267,6 +267,24 @@ namespace CyclingLogApplication
             {
                 checkedListBox.SetItemCheckState(22, CheckState.Unchecked);
             }
+
+            if (mainForm.GetCheckedListBoxItem23().Equals("1"))
+            {
+                checkedListBox.SetItemCheckState(23, CheckState.Checked);
+            }
+            else
+            {
+                checkedListBox.SetItemCheckState(23, CheckState.Unchecked);
+            }
+
+            if (mainForm.GetCheckedListBoxItem24().Equals("1"))
+            {
+                checkedListBox.SetItemCheckState(24, CheckState.Checked);
+            }
+            else
+            {
+                checkedListBox.SetItemCheckState(24, CheckState.Unchecked);
+            }
         }
 
         private void bFilter_Click(object sender, EventArgs e)
@@ -538,6 +556,30 @@ namespace CyclingLogApplication
                 else
                 {
                     fieldString = fieldString + ",[MaxPower]";
+                }
+            }
+
+            if (checkedListBox.GetItemChecked(23))
+            {
+                if (fieldString.Equals(""))
+                {
+                    fieldString = fieldString + "[Comfort]";
+                }
+                else
+                {
+                    fieldString = fieldString + ",[Comfort]";
+                }
+            }
+
+            if (checkedListBox.GetItemChecked(24))
+            {
+                if (fieldString.Equals(""))
+                {
+                    fieldString = fieldString + "[Custom]";
+                }
+                else
+                {
+                    fieldString = fieldString + ",[Custom]";
                 }
             }
 
@@ -1085,6 +1127,26 @@ namespace CyclingLogApplication
             {
                 mainForm.SetCheckedListBoxItem22("0");
             }
+
+            if (checkedListBox.GetItemChecked(23))
+            {
+                mainForm.SetCheckedListBoxItem23("1");
+            }
+            else
+            {
+                mainForm.SetCheckedListBoxItem23("0");
+            }
+
+            if (checkedListBox.GetItemChecked(24))
+            {
+                mainForm.SetCheckedListBoxItem24("1");
+            }
+            else
+            {
+                mainForm.SetCheckedListBoxItem24("0");
+            }
+
+            MessageBox.Show("The Display field options have been updated.");
         }
 
         private void btSelectAll_Click(object sender, EventArgs e)
@@ -1112,6 +1174,8 @@ namespace CyclingLogApplication
             checkedListBox.SetItemCheckState(20, CheckState.Checked);
             checkedListBox.SetItemCheckState(21, CheckState.Checked);
             checkedListBox.SetItemCheckState(22, CheckState.Checked);
+            checkedListBox.SetItemCheckState(23, CheckState.Checked);
+            checkedListBox.SetItemCheckState(24, CheckState.Checked);
         }
 
         private void btDeselectAll_Click(object sender, EventArgs e)
@@ -1139,6 +1203,8 @@ namespace CyclingLogApplication
             checkedListBox.SetItemCheckState(20, CheckState.Unchecked);
             checkedListBox.SetItemCheckState(21, CheckState.Unchecked);
             checkedListBox.SetItemCheckState(22, CheckState.Unchecked);
+            checkedListBox.SetItemCheckState(23, CheckState.Unchecked);
+            checkedListBox.SetItemCheckState(24, CheckState.Unchecked);
         }
     }
 }

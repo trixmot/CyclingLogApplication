@@ -89,6 +89,7 @@ namespace CyclingLogApplication
             string checkListBoxItem20 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX20").InnerText;
             string checkListBoxItem21 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX21").InnerText;
             string checkListBoxItem22 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX22").InnerText;
+            string checkListBoxItem23 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX23").InnerText;
 
             string lastLogYearSelected = nodes.Item(0).SelectSingleNode("LastLogSelected").InnerText;
             string lastBikeSelected = nodes.Item(0).SelectSingleNode("LastBikeSelected").InnerText;
@@ -144,7 +145,8 @@ namespace CyclingLogApplication
             mainForm.SetCheckedListBoxItem19(checkListBoxItem19);
             mainForm.SetCheckedListBoxItem20(checkListBoxItem20);
             mainForm.SetCheckedListBoxItem21(checkListBoxItem21);
-            //mainForm.SetCheckedListBoxItem22(checkListBoxItem22);
+            mainForm.SetCheckedListBoxItem22(checkListBoxItem22);
+            mainForm.SetCheckedListBoxItem23(checkListBoxItem23);
 
 
             //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
@@ -312,6 +314,10 @@ namespace CyclingLogApplication
                     checkedItemNode22.InnerText = "0";
                     rootNode.AppendChild(checkedItemNode22);
 
+                    XmlNode checkedItemNode23 = xmlDoc.CreateElement("CHECKEDLISTBOX23");
+                    checkedItemNode23.InnerText = "0";
+                    rootNode.AppendChild(checkedItemNode23);
+
                     XmlNode logLevelNode = xmlDoc.CreateElement("LOGLEVEL");
                     logLevelNode.InnerText = "0";
                     rootNode.AppendChild(logLevelNode);
@@ -417,6 +423,7 @@ namespace CyclingLogApplication
                 string checkedItem20 = mainForm.GetCheckedListBoxItem20();
                 string checkedItem21 = mainForm.GetCheckedListBoxItem21();
                 string checkedItem22 = mainForm.GetCheckedListBoxItem22();
+                string checkedItem23= mainForm.GetCheckedListBoxItem23();
 
                 int lastLogSelected = mainForm.GetLastLogSelected();
                 int lastBikeSelected = mainForm.GetLastBikeSelected();
@@ -455,6 +462,7 @@ namespace CyclingLogApplication
                 xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX20").InnerText = checkedItem20;
                 xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX21").InnerText = checkedItem21;
                 xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX22").InnerText = checkedItem22;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX23").InnerText = checkedItem23;
 
                 xmlDoc.SelectSingleNode("/Config/cbStatistic1").InnerText = cbStatistic1;
                 xmlDoc.SelectSingleNode("/Config/cbStatistic2").InnerText = cbStatistic2;
