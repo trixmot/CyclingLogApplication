@@ -90,3 +90,5 @@ D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplic
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.application
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.exe
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.pdb
+D:\workdir\github\cycling_log\CyclingLogApplication\bin\Release\DGV Printer.dll
+D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\Cycling_.74E77107.Up2Date

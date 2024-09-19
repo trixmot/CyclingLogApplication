@@ -43,6 +43,7 @@
             this.btUpdateFields = new System.Windows.Forms.Button();
             this.btSelectAll = new System.Windows.Forms.Button();
             this.btDeselectAll = new System.Windows.Forms.Button();
+            this.btPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,12 +52,12 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(23, 54);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(993, 492);
+            this.dataGridView1.Size = new System.Drawing.Size(993, 583);
             this.dataGridView1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(944, 561);
+            this.button1.Location = new System.Drawing.Point(1074, 634);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -187,14 +188,14 @@
             "Max Power",
             "Comfort",
             "Custom"});
-            this.checkedListBox.Location = new System.Drawing.Point(1033, 41);
+            this.checkedListBox.Location = new System.Drawing.Point(1033, 54);
             this.checkedListBox.Name = "checkedListBox";
             this.checkedListBox.Size = new System.Drawing.Size(146, 379);
             this.checkedListBox.TabIndex = 12;
             // 
             // btUpdateFields
             // 
-            this.btUpdateFields.Location = new System.Drawing.Point(1074, 497);
+            this.btUpdateFields.Location = new System.Drawing.Point(1074, 516);
             this.btUpdateFields.Name = "btUpdateFields";
             this.btUpdateFields.Size = new System.Drawing.Size(75, 23);
             this.btUpdateFields.TabIndex = 13;
@@ -204,7 +205,7 @@
             // 
             // btSelectAll
             // 
-            this.btSelectAll.Location = new System.Drawing.Point(1074, 439);
+            this.btSelectAll.Location = new System.Drawing.Point(1074, 458);
             this.btSelectAll.Name = "btSelectAll";
             this.btSelectAll.Size = new System.Drawing.Size(75, 23);
             this.btSelectAll.TabIndex = 14;
@@ -214,7 +215,7 @@
             // 
             // btDeselectAll
             // 
-            this.btDeselectAll.Location = new System.Drawing.Point(1074, 468);
+            this.btDeselectAll.Location = new System.Drawing.Point(1074, 487);
             this.btDeselectAll.Name = "btDeselectAll";
             this.btDeselectAll.Size = new System.Drawing.Size(75, 23);
             this.btDeselectAll.TabIndex = 15;
@@ -222,11 +223,22 @@
             this.btDeselectAll.UseVisualStyleBackColor = true;
             this.btDeselectAll.Click += new System.EventHandler(this.btDeselectAll_Click);
             // 
+            // btPrint
+            // 
+            this.btPrint.Location = new System.Drawing.Point(941, 24);
+            this.btPrint.Name = "btPrint";
+            this.btPrint.Size = new System.Drawing.Size(75, 23);
+            this.btPrint.TabIndex = 16;
+            this.btPrint.Text = "Print";
+            this.btPrint.UseVisualStyleBackColor = true;
+            this.btPrint.Click += new System.EventHandler(this.btPrint_Click);
+            // 
             // RideDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1191, 596);
+            this.ClientSize = new System.Drawing.Size(1191, 679);
+            this.Controls.Add(this.btPrint);
             this.Controls.Add(this.btDeselectAll);
             this.Controls.Add(this.btSelectAll);
             this.Controls.Add(this.btUpdateFields);
@@ -270,5 +282,6 @@
         private System.Windows.Forms.Button btUpdateFields;
         private System.Windows.Forms.Button btSelectAll;
         private System.Windows.Forms.Button btDeselectAll;
+        private System.Windows.Forms.Button btPrint;
     }
 }

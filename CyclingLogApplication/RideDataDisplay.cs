@@ -8,6 +8,11 @@ using System.Linq;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Drawing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using System.Drawing.Printing;
+using DGVPrinterHelper;
+using static DGVPrinterHelper.DGVPrinter;
 
 namespace CyclingLogApplication
 {
@@ -16,13 +21,14 @@ namespace CyclingLogApplication
         static int logYearFilterIndex = -1;
         private SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
 
-
         public RideDataDisplay(MainForm mainForm)
         {
             InitializeComponent();
             cbFilterField.SelectedIndex = 0;
             //MainForm mainForm = new MainForm("");
             sqlConnection = mainForm.GetsqlConnectionString();
+            
+            
         }
 
         private void CloseForm(object sender, EventArgs e)
@@ -54,6 +60,20 @@ namespace CyclingLogApplication
         public int getLogYearFilterIndex()
         {
             return logYearFilterIndex;
+        }
+
+        public void setCustomValues()
+        {
+            MainForm mainForm = new MainForm();
+            string customValue = mainForm.GetCustomField1();
+            if (customValue.Equals(""))
+            {
+                this.checkedListBox.Items[24] = "Custom";
+            }
+            else
+            {
+                this.checkedListBox.Items[24] = customValue;
+            }
         }
 
         public void setCheckedValues()
@@ -289,6 +309,9 @@ namespace CyclingLogApplication
 
         private void bFilter_Click(object sender, EventArgs e)
         {
+            MainForm mainForm = new MainForm();
+            bool customDataField1 = false;
+
             string fieldString = "";
             if (checkedListBox.GetItemChecked(0))
             {
@@ -531,7 +554,7 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    fieldString = fieldString + ",[MaxSpeedId]";
+                    fieldString = fieldString + ",[MaxSpeed]";
                 }
             }
 
@@ -573,6 +596,8 @@ namespace CyclingLogApplication
 
             if (checkedListBox.GetItemChecked(24))
             {
+                customDataField1 = true;
+
                 if (fieldString.Equals(""))
                 {
                     fieldString = fieldString + "[Custom]";
@@ -597,7 +622,7 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    MainForm mainForm = new MainForm();
+                    
                     //logYearID = mainForm.GetLogYearIndex(cbLogYearFilter.SelectedItem.ToString());
 
                     logYearID = mainForm.GetLogYearIndexByName(cbLogYearFilter.SelectedItem.ToString());
@@ -756,8 +781,22 @@ namespace CyclingLogApplication
                 dataTable.Columns["Item"].AutoIncrementSeed = 1;
                 //Set the Increment value.
                 dataTable.Columns["Item"].AutoIncrementStep = 1;
-
                 sqlDataAdapter.Fill(dataTable);
+
+                string customValue1 = mainForm.GetCustomField1();
+                
+                if (customDataField1)
+                {
+                    if (customValue1.Equals(""))
+                    {
+                        dataTable.Columns["Custom"].ColumnName = "Custom";
+                    }
+                    else
+                    {
+                        dataTable.Columns["Custom"].ColumnName = customValue1;
+                    }
+                }                
+                
                 dataGridView1.DataSource = dataTable;
                 dataGridView1.Columns["AvgSpeed"].DefaultCellStyle.Format = "0.00";
                 dataGridView1.Columns["RideDistance"].DefaultCellStyle.Format = "0.0";
@@ -1206,5 +1245,31 @@ namespace CyclingLogApplication
             checkedListBox.SetItemCheckState(23, CheckState.Unchecked);
             checkedListBox.SetItemCheckState(24, CheckState.Unchecked);
         }
+
+        private void btPrint_Click(object sender, EventArgs e)
+        {
+            DGVPrinter printer = new DGVPrinter();
+            printer.Title = "Cycling Log Report";
+            //printer.SubTitle = "An Easy to Use DataGridView Printing Object";
+            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit |
+                StringFormatFlags.NoClip;
+            printer.PageNumbers = true;
+            printer.PageNumberInHeader = false;
+            //printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.Porportional;
+            printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.CellWidth;
+            printer.HeaderCellAlignment = StringAlignment.Near;
+            //printer.Footer = "";
+            printer.FooterSpacing = 15;
+            printer.PageNumberFormat.Alignment = StringAlignment.Center;
+
+            if (DialogResult.OK == printer.DisplayPrintDialog()) {  // you may replace 
+
+
+                // print without redisplaying the printdialog 
+                printer.PrintNoDisplay(dataGridView1);
+                //printer.PrintPreviewDataGridView(dataGridView1);
+            }
+        }
+
     }
 }

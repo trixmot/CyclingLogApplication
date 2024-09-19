@@ -44,6 +44,7 @@ namespace CyclingLogApplication
         private static int lastMonthlyLogSelected = -1;
         private static int lastLogSelectedDataEntry = -1;
         private static string firstDayOfWeek;
+        private static string customField1;
         private static string checkedListBoxItem0 = "1";
         private static string checkedListBoxItem1 = "1";
         private static string checkedListBoxItem2 = "1";
@@ -505,9 +506,19 @@ namespace CyclingLogApplication
             return firstDayOfWeek;
         }
 
+        public string GetCustomField1()
+        {
+            return customField1;
+        }
+
         public void SetFirstDayOfWeek(string firstdayString)
         {
             firstDayOfWeek = firstdayString;
+        }
+
+        public void SetCustomField1(string customDataField1)
+        {
+            customField1 = customDataField1;
         }
 
         public void SetCheckedListBoxItem0(string checkedItem0)
@@ -1140,6 +1151,7 @@ namespace CyclingLogApplication
 
         private void OpenRideDataForm(object sender, EventArgs e)
         {
+            rideDataDisplayForm.setCustomValues();
             rideDataDisplayForm.setLogYearFilterIndex(GetLastLogFilterSelected());
             rideDataDisplayForm.setCheckedValues();
             rideDataDisplayForm.ShowDialog();
@@ -1150,14 +1162,14 @@ namespace CyclingLogApplication
             //Need to check that there is a least 1 LogYear value entered:
             if (cbLogYearConfig.Items.Count == 0)
             {
-                MessageBox.Show("You must add at least 1 log Entry before entering data.  Add a new Log Year entry in the Configuration tab.");
+                MessageBox.Show("You must add at least 1 log Entry before entering data.  Add a new Log Year entry in the Settings tab.");
             }
             else
             {
                 if (cbRouteConfig.Items.Count == 0)
                 {
                     //Give a warning if no additional routed have been entered:
-                    MessageBox.Show("Reminder: No Routes have been entered. Add a new Route in the Configuration tab.");
+                    MessageBox.Show("Reminder: No Routes have been entered. Add a new Route in the Settings tab.");
                 }
 
                 rideDataEntryForm.cbBikeDataEntrySelection.SelectedIndex = Convert.ToInt32(GetLastBikeSelected());
@@ -1440,6 +1452,62 @@ namespace CyclingLogApplication
                         else
                         {
                             returnValue = float.Parse(temp);
+                        }
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
+        private int GetMostElevationAllLogs()
+        {
+            List<object> objectValues = new List<object>();
+            int returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetMostElevation_AllLogs", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else
+                        {
+                            returnValue = int.Parse(temp);
+                        }
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
+        private string GetLongestRideTimeAllLogs()
+        {
+            List<object> objectValues = new List<object>();
+            string returnValue = "0";
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetLongestTime_AllLogs", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            returnValue = "0";
+                        }
+                        else
+                        {
+                            returnValue = temp;
                         }
                     }
                 }
@@ -2025,6 +2093,8 @@ namespace CyclingLogApplication
             tbTotalRides.Text = Convert.ToString(GetTotalRides());
             tbTotalElevGain.Text = Convert.ToString(GetTotalElevGainForAllLogs());
             tbTotalTime.Text = Convert.ToString(GetTotalMovingTimeAllLogs());
+            tbMostElevationAll.Text = GetMostElevationAllLogs().ToString("N0");
+            tbLongestTimeAll.Text = GetLongestRideTimeAllLogs();
         }
 
         private double GetLongestRide()
@@ -5154,6 +5224,17 @@ namespace CyclingLogApplication
             //    RunMonthlyStatistics();
             //    refreshingForm.Hide();
             //}
+        }
+
+        private void btRefreshData_Click(object sender, EventArgs e)
+        {
+            refreshData();
+            MessageBox.Show("All data fields have been updated.");
+        }
+
+        private void btCustomDataField1_Click(object sender, EventArgs e)
+        {
+            SetCustomField1(tbCustomDataField1.Text);
         }
     }
 }

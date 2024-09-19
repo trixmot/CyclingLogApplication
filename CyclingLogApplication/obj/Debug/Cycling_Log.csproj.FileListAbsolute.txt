@@ -115,3 +115,5 @@ D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplicat
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.application
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.exe
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.pdb
+D:\workdir\github\cycling_log\CyclingLogApplication\bin\Debug\DGV Printer.dll
+D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\Cycling_.74E77107.Up2Date

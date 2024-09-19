@@ -355,8 +355,8 @@ namespace CyclingLogApplication
             {
                 mainForm.SetLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
                 mainForm.SetLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);
-                MainForm mainForm2 = new MainForm();
-                mainForm2.refreshData();
+                //MainForm mainForm2 = new MainForm();
+                //mainForm2.refreshData();
                 //Close();
                 //this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
                 //DialogResult result = MessageBox.Show("Any unsaved changes will be lost, do you want to continue?", "Exit Data Entry Form", MessageBoxButtons.YesNo);
@@ -541,7 +541,7 @@ namespace CyclingLogApplication
 
                         return;
                     }
-                    DialogResult result = MessageBox.Show("Updating the ride in the database. Do you want to continue?", "Update Data", MessageBoxButtons.YesNo);
+                    DialogResult result = MessageBox.Show("Updating the ride in the log. Do you want to continue?", "Update Data", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No)
                     {
                         return;
@@ -563,7 +563,7 @@ namespace CyclingLogApplication
                 {
                     if (changeType.Equals("Add"))
                     {
-                        DialogResult result = MessageBox.Show("Adding the ride to the database. Do you want to continue?", "Add Data", MessageBoxButtons.YesNo);
+                        DialogResult result = MessageBox.Show("Adding the ride to the log. Do you want to continue?", "Add Data", MessageBoxButtons.YesNo);
                         if (result == DialogResult.No)
                         {
                             return;
@@ -700,7 +700,7 @@ namespace CyclingLogApplication
 
                 objectValues.Add(cbEffortRideDataEntry.SelectedItem.ToString());         //Effort:
                 objectValues.Add(cbComfortRideDataEntry.SelectedItem.ToString());         //Comfort:
-                objectValues.Add(tbCustom1);                                                //Custom1
+                objectValues.Add(tbCustom1.Text);                                                //Custom1
 
                 if (changeType.Equals("Update"))
                 {

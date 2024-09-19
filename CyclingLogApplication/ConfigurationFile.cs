@@ -65,6 +65,7 @@ namespace CyclingLogApplication
             string cbStatistic4 = nodes.Item(0).SelectSingleNode("cbStatistic4").InnerText;
             string cbStatistic5 = nodes.Item(0).SelectSingleNode("cbStatistic5").InnerText;
             string firstDayOfWeek = nodes.Item(0).SelectSingleNode("FIRSTDAY").InnerText;
+            string customDataField1 = nodes.Item(0).SelectSingleNode("CUSTOMFIELD1").InnerText;
 
             string checkListBoxItem0 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX0").InnerText;
             string checkListBoxItem1 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX1").InnerText;
@@ -106,6 +107,7 @@ namespace CyclingLogApplication
             MainForm mainForm = new MainForm("");
             mainForm.SetLogLevel(logLevel);
             mainForm.SetFirstDayOfWeek(firstDayOfWeek);
+            mainForm.SetCustomField1(customDataField1);
             mainForm.SetcbStatistic1(cbStatistic1);
             mainForm.SetcbStatistic2(cbStatistic2);
             mainForm.SetcbStatistic3(cbStatistic3);
@@ -221,6 +223,10 @@ namespace CyclingLogApplication
                     XmlNode firstDayNode = xmlDoc.CreateElement("FIRSTDAY");
                     firstDayNode.InnerText = mainForm.GetFirstDayOfWeek();
                     rootNode.AppendChild(firstDayNode);
+
+                    XmlNode customField1Node = xmlDoc.CreateElement("CUSTOMFIELD1");
+                    customField1Node.InnerText = mainForm.GetCustomField1();
+                    rootNode.AppendChild(customField1Node);
 
                     XmlNode checkedItemNode0 = xmlDoc.CreateElement("CHECKEDLISTBOX0");
                     checkedItemNode0.InnerText = "1";
@@ -399,6 +405,7 @@ namespace CyclingLogApplication
                 string cbStatistic5 = mainForm.GetcbStatistic5();
 
                 string firstDay = mainForm.GetFirstDayOfWeek();
+                string customField1 = mainForm.GetCustomField1();
 
                 string checkedItem0 = mainForm.GetCheckedListBoxItem0();
                 string checkedItem1 = mainForm.GetCheckedListBoxItem1();
@@ -438,6 +445,7 @@ namespace CyclingLogApplication
                 int lastLogSelectedDataEntry = mainForm.GetLastLogSelectedDataEntry();
 
                 xmlDoc.SelectSingleNode("/Config/FIRSTDAY").InnerText = firstDay;
+                xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD1").InnerText = customField1;
 
                 xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX0").InnerText = checkedItem0;
                 xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX1").InnerText = checkedItem1;
@@ -483,6 +491,7 @@ namespace CyclingLogApplication
                 xmlDoc.SelectSingleNode("/Config/LastLogSelectedDataEntry").InnerText = lastLogSelectedDataEntry.ToString();
 
                 Logger.Log("Write Config Values: FIRSTDAY written:" + firstDay, 0, logSetting);
+                Logger.Log("Write Config Values: CUSTOMFIELD1 written:" + customField1, 0, logSetting);
 
                 Logger.Log("Write Config Values: cbStatistic1 written:" + cbStatistic1, 0, logSetting);
                 Logger.Log("Write Config Values: cbStatistic2 written:" + cbStatistic2, 0, logSetting);
