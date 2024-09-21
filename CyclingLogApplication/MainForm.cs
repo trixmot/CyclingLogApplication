@@ -45,6 +45,7 @@ namespace CyclingLogApplication
         private static int lastLogSelectedDataEntry = -1;
         private static string firstDayOfWeek;
         private static string customField1;
+        private static string customField2;
         private static string checkedListBoxItem0 = "1";
         private static string checkedListBoxItem1 = "1";
         private static string checkedListBoxItem2 = "1";
@@ -69,7 +70,9 @@ namespace CyclingLogApplication
         private static string checkedListBoxItem21 = "1";
         private static string checkedListBoxItem22 = "1";
         private static string checkedListBoxItem23 = "1";
-        private static string checkedListBoxItem24 = "0";
+        private static string checkedListBoxItem24 = "1";
+        private static string checkedListBoxItem25 = "0";
+        private static string checkedListBoxItem26 = "0";
 
         private static SqlConnection sqlConnection;             // = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
         private static DatabaseConnection databaseConnection;   // = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
@@ -511,6 +514,11 @@ namespace CyclingLogApplication
             return customField1;
         }
 
+        public string GetCustomField2()
+        {
+            return customField2;
+        }
+
         public void SetFirstDayOfWeek(string firstdayString)
         {
             firstDayOfWeek = firstdayString;
@@ -519,6 +527,11 @@ namespace CyclingLogApplication
         public void SetCustomField1(string customDataField1)
         {
             customField1 = customDataField1;
+        }
+
+        public void SetCustomField2(string customDataField2)
+        {
+            customField2 = customDataField2;
         }
 
         public void SetCheckedListBoxItem0(string checkedItem0)
@@ -646,6 +659,16 @@ namespace CyclingLogApplication
             checkedListBoxItem24 = checkedItem24;
         }
 
+        public void SetCheckedListBoxItem25(string checkedItem25)
+        {
+            checkedListBoxItem25 = checkedItem25;
+        }
+
+        public void SetCheckedListBoxItem26(string checkedItem26)
+        {
+            checkedListBoxItem26 = checkedItem26;
+        }
+
         public string GetCheckedListBoxItem0()
         {
             return checkedListBoxItem0;
@@ -769,6 +792,16 @@ namespace CyclingLogApplication
         public string GetCheckedListBoxItem24()
         {
             return checkedListBoxItem24;
+        }
+
+        public string GetCheckedListBoxItem25()
+        {
+            return checkedListBoxItem25;
+        }
+
+        public string GetCheckedListBoxItem26()
+        {
+            return checkedListBoxItem26;
         }
 
         public List<string> GetLogYears()

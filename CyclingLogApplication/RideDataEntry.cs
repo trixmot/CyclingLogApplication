@@ -220,6 +220,7 @@ namespace CyclingLogApplication
             string wind;
             string temp;
             string avgCadence;
+            string maxCadence;
             string avgHeartRate;
             string maxHeartRate;
             string caloriesField;
@@ -235,7 +236,8 @@ namespace CyclingLogApplication
             string weekNumber;
             string effort;
             string comfort;
-            string custom;
+            string custom1;
+            string custom2;
 
             int recordIndex = 0;
 
@@ -263,22 +265,24 @@ namespace CyclingLogApplication
                                 wind = results[5].ToString();
                                 temp = results[6].ToString();
                                 avgCadence = results[7].ToString();
-                                avgHeartRate = results[8].ToString();
-                                maxHeartRate = results[9].ToString();
-                                caloriesField = results[10].ToString();
-                                totalAscent = results[11].ToString();
-                                totalDescent = results[12].ToString();
-                                maxSpeed = results[13].ToString();
-                                avgPower = results[14].ToString();
-                                maxPower = results[15].ToString();
-                                route = results[16].ToString();
-                                comments = results[17].ToString();
-                                location = results[18].ToString();
-                                recordID = results[19].ToString();
-                                weekNumber = results[20].ToString();
-                                effort = results[21].ToString();
-                                comfort = results[22].ToString();
-                                custom = results[23].ToString();
+                                maxCadence = results[8].ToString();
+                                avgHeartRate = results[9].ToString();
+                                maxHeartRate = results[10].ToString();
+                                caloriesField = results[11].ToString();
+                                totalAscent = results[12].ToString();
+                                totalDescent = results[13].ToString();
+                                maxSpeed = results[14].ToString();
+                                avgPower = results[15].ToString();
+                                maxPower = results[16].ToString();
+                                route = results[17].ToString();
+                                comments = results[18].ToString();
+                                location = results[19].ToString();
+                                recordID = results[20].ToString();
+                                weekNumber = results[21].ToString();
+                                effort = results[22].ToString();
+                                comfort = results[23].ToString();
+                                custom1 = results[24].ToString();
+                                custom2 = results[25].ToString();
 
                                 //Load ride data page:
                                 dtpTimeRideDataEntry.Value = Convert.ToDateTime(movingTime);
@@ -289,6 +293,7 @@ namespace CyclingLogApplication
                                 numericUpDown4.Value = Convert.ToDecimal(wind);
                                 numericUpDown3.Value = Convert.ToDecimal(temp);
                                 avg_cadence.Text = avgCadence;
+                                tbMaxCadence.Text = maxCadence;
                                 avg_heart_rate.Text = avgHeartRate;
                                 max_heart_rate.Text = maxHeartRate;
                                 calories.Text = caloriesField;
@@ -304,7 +309,8 @@ namespace CyclingLogApplication
                                 cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.Items.IndexOf(location);
                                 cbEffortRideDataEntry.SelectedIndex = cbEffortRideDataEntry.Items.IndexOf(effort);
                                 cbComfortRideDataEntry.SelectedIndex = cbComfortRideDataEntry.Items.IndexOf(comfort);
-                                tbCustom1.Text = custom;
+                                tbCustom1.Text = custom1;
+                                tbCustom2.Text = custom2;
                             }
                             else
                             {
@@ -593,6 +599,15 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(avg_cadence.Text));
                 }
 
+                if (tbMaxCadence.Text.Equals("") || tbMaxCadence.Text.Equals("--"))       //Max Cadence:
+                {
+                    objectValues.Add(0);
+                }
+                else
+                {
+                    objectValues.Add(float.Parse(avg_cadence.Text));
+                }
+
                 if (avg_heart_rate.Text.Equals("") || avg_heart_rate.Text.Equals("--")) //Average Heart Rate:
                 {
                     objectValues.Add(0);
@@ -700,7 +715,9 @@ namespace CyclingLogApplication
 
                 objectValues.Add(cbEffortRideDataEntry.SelectedItem.ToString());         //Effort:
                 objectValues.Add(cbComfortRideDataEntry.SelectedItem.ToString());         //Comfort:
+                objectValues.Add(tbMaxCadence.Text);                                    //MaxCandence:
                 objectValues.Add(tbCustom1.Text);                                                //Custom1
+                objectValues.Add(tbCustom2.Text);                                                //Custom2
 
                 if (changeType.Equals("Update"))
                 {
@@ -793,6 +810,9 @@ namespace CyclingLogApplication
             avg_power.Text = "";                                                                                        //Average Power:
             max_power.Text = "";
             tbComments.Text = "";
+            tbMaxCadence.Text = "";
+            tbCustom1.Text = "";
+            tbCustom2.Text = "";
 
             string[] headingList = new string[16];
             string[] splitList = new string[16];
@@ -951,6 +971,11 @@ namespace CyclingLogApplication
                     avg_cadence.Text = garminDataDictionary["\"Avg Bike Cadence\""];
                 }
 
+                if (garminDataDictionary.ContainsKey("\"Max Bike Cadence\""))
+                {
+                    tbMaxCadence.Text = garminDataDictionary["\"Max Bike Cadence\""];
+                }
+
                 if (garminDataDictionary.ContainsKey("\"Avg Temperature\""))
                 {
                     numericUpDown3.Value = decimal.Round(System.Convert.ToDecimal(garminDataDictionary["\"Avg Temperature\""]), 2, MidpointRounding.AwayFromZero);
@@ -999,6 +1024,8 @@ namespace CyclingLogApplication
             chk1RideDataEntry.Checked = false;
             cbComfortRideDataEntry.SelectedIndex = cbComfortRideDataEntry.FindStringExact("");
             tbCustom1.Text = "";
+            tbCustom2.Text = "";
+            tbMaxCadence.Text = "";
         }
 
         private void ClearDataEntryFields_click(object sender, EventArgs e)

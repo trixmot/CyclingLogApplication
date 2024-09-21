@@ -65,14 +65,25 @@ namespace CyclingLogApplication
         public void setCustomValues()
         {
             MainForm mainForm = new MainForm();
-            string customValue = mainForm.GetCustomField1();
-            if (customValue.Equals(""))
+            string customValue1 = mainForm.GetCustomField1();
+            string customValue2 = mainForm.GetCustomField2();
+
+            if (customValue1.Equals(""))
             {
-                this.checkedListBox.Items[24] = "Custom";
+                this.checkedListBox.Items[25] = "Custom1";
             }
             else
             {
-                this.checkedListBox.Items[24] = customValue;
+                this.checkedListBox.Items[25] = customValue1;
+            }
+
+            if (customValue2.Equals(""))
+            {
+                this.checkedListBox.Items[26] = "Custom2";
+            }
+            else
+            {
+                this.checkedListBox.Items[26] = customValue2;
             }
         }
 
@@ -305,12 +316,31 @@ namespace CyclingLogApplication
             {
                 checkedListBox.SetItemCheckState(24, CheckState.Unchecked);
             }
+
+            if (mainForm.GetCheckedListBoxItem25().Equals("1"))
+            {
+                checkedListBox.SetItemCheckState(25, CheckState.Checked);
+            }
+            else
+            {
+                checkedListBox.SetItemCheckState(25, CheckState.Unchecked);
+            }
+
+            if (mainForm.GetCheckedListBoxItem26().Equals("1"))
+            {
+                checkedListBox.SetItemCheckState(26, CheckState.Checked);
+            }
+            else
+            {
+                checkedListBox.SetItemCheckState(26, CheckState.Unchecked);
+            }
         }
 
         private void bFilter_Click(object sender, EventArgs e)
         {
             MainForm mainForm = new MainForm();
             bool customDataField1 = false;
+            bool customDataField2 = false;
 
             string fieldString = "";
             if (checkedListBox.GetItemChecked(0))
@@ -442,6 +472,19 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
+                    fieldString = fieldString + "[MaxCadence]";
+                }
+                else
+                {
+                    fieldString = fieldString + ",[MaxCadence]";
+                }
+            }
+
+
+            if (checkedListBox.GetItemChecked(12))
+            {
+                if (fieldString.Equals(""))
+                {
                     fieldString = fieldString + "[AvgHeartRate]";
                 }
                 else
@@ -450,7 +493,7 @@ namespace CyclingLogApplication
                 }
             }
 
-            if (checkedListBox.GetItemChecked(12))
+            if (checkedListBox.GetItemChecked(13))
             {
                 if (fieldString.Equals(""))
                 {
@@ -462,7 +505,7 @@ namespace CyclingLogApplication
                 }
             }
 
-            if (checkedListBox.GetItemChecked(13))
+            if (checkedListBox.GetItemChecked(14))
             {
                 if (fieldString.Equals(""))
                 {
@@ -474,7 +517,7 @@ namespace CyclingLogApplication
                 }
             }
 
-            if (checkedListBox.GetItemChecked(14))
+            if (checkedListBox.GetItemChecked(15))
             {
                 if (fieldString.Equals(""))
                 {
@@ -486,7 +529,7 @@ namespace CyclingLogApplication
                 }
             }
 
-            if (checkedListBox.GetItemChecked(15))
+            if (checkedListBox.GetItemChecked(16))
             {
                 if (fieldString.Equals(""))
                 {
@@ -498,7 +541,7 @@ namespace CyclingLogApplication
                 }
             }
 
-            if (checkedListBox.GetItemChecked(16))
+            if (checkedListBox.GetItemChecked(17))
             {
                 if (fieldString.Equals(""))
                 {
@@ -510,7 +553,7 @@ namespace CyclingLogApplication
                 }
             }
 
-            if (checkedListBox.GetItemChecked(17))
+            if (checkedListBox.GetItemChecked(18))
             {
                 if (fieldString.Equals(""))
                 {
@@ -522,7 +565,7 @@ namespace CyclingLogApplication
                 }
             }
 
-            if (checkedListBox.GetItemChecked(18))
+            if (checkedListBox.GetItemChecked(19))
             {
                 if (fieldString.Equals(""))
                 {
@@ -534,7 +577,7 @@ namespace CyclingLogApplication
                 }
             }
 
-            if (checkedListBox.GetItemChecked(19))
+            if (checkedListBox.GetItemChecked(20))
             {
                 if (fieldString.Equals(""))
                 {
@@ -546,7 +589,7 @@ namespace CyclingLogApplication
                 }
             }
 
-            if (checkedListBox.GetItemChecked(20))
+            if (checkedListBox.GetItemChecked(21))
             {
                 if (fieldString.Equals(""))
                 {
@@ -558,7 +601,7 @@ namespace CyclingLogApplication
                 }
             }
 
-            if (checkedListBox.GetItemChecked(21))
+            if (checkedListBox.GetItemChecked(22))
             {
                 if (fieldString.Equals(""))
                 {
@@ -570,7 +613,7 @@ namespace CyclingLogApplication
                 }
             }
 
-            if (checkedListBox.GetItemChecked(22))
+            if (checkedListBox.GetItemChecked(23))
             {
                 if (fieldString.Equals(""))
                 {
@@ -582,7 +625,7 @@ namespace CyclingLogApplication
                 }
             }
 
-            if (checkedListBox.GetItemChecked(23))
+            if (checkedListBox.GetItemChecked(24))
             {
                 if (fieldString.Equals(""))
                 {
@@ -594,17 +637,31 @@ namespace CyclingLogApplication
                 }
             }
 
-            if (checkedListBox.GetItemChecked(24))
+            if (checkedListBox.GetItemChecked(25))
             {
                 customDataField1 = true;
 
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[Custom]";
+                    fieldString = fieldString + "[Custom1]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[Custom]";
+                    fieldString = fieldString + ",[Custom1]";
+                }
+            }
+
+            if (checkedListBox.GetItemChecked(26))
+            {
+                customDataField2 = true;
+
+                if (fieldString.Equals(""))
+                {
+                    fieldString = fieldString + "[Custom2]";
+                }
+                else
+                {
+                    fieldString = fieldString + ",[Custom2]";
                 }
             }
 
@@ -784,19 +841,32 @@ namespace CyclingLogApplication
                 sqlDataAdapter.Fill(dataTable);
 
                 string customValue1 = mainForm.GetCustomField1();
-                
+                string customValue2 = mainForm.GetCustomField2();
+
                 if (customDataField1)
                 {
                     if (customValue1.Equals(""))
                     {
-                        dataTable.Columns["Custom"].ColumnName = "Custom";
+                        dataTable.Columns["Custom1"].ColumnName = "Custom1";
                     }
                     else
                     {
-                        dataTable.Columns["Custom"].ColumnName = customValue1;
+                        dataTable.Columns["Custom1"].ColumnName = customValue1;
                     }
-                }                
-                
+                }
+
+                if (customDataField2)
+                {
+                    if (customValue2.Equals(""))
+                    {
+                        dataTable.Columns["Custom2"].ColumnName = "Custom2";
+                    }
+                    else
+                    {
+                        dataTable.Columns["Custom2"].ColumnName = customValue2;
+                    }
+                }
+
                 dataGridView1.DataSource = dataTable;
                 dataGridView1.Columns["AvgSpeed"].DefaultCellStyle.Format = "0.00";
                 dataGridView1.Columns["RideDistance"].DefaultCellStyle.Format = "0.0";
@@ -1185,6 +1255,24 @@ namespace CyclingLogApplication
                 mainForm.SetCheckedListBoxItem24("0");
             }
 
+            if (checkedListBox.GetItemChecked(25))
+            {
+                mainForm.SetCheckedListBoxItem25("1");
+            }
+            else
+            {
+                mainForm.SetCheckedListBoxItem25("0");
+            }
+
+            if (checkedListBox.GetItemChecked(26))
+            {
+                mainForm.SetCheckedListBoxItem26("1");
+            }
+            else
+            {
+                mainForm.SetCheckedListBoxItem26("0");
+            }
+
             MessageBox.Show("The Display field options have been updated.");
         }
 
@@ -1215,6 +1303,8 @@ namespace CyclingLogApplication
             checkedListBox.SetItemCheckState(22, CheckState.Checked);
             checkedListBox.SetItemCheckState(23, CheckState.Checked);
             checkedListBox.SetItemCheckState(24, CheckState.Checked);
+            checkedListBox.SetItemCheckState(25, CheckState.Checked);
+            checkedListBox.SetItemCheckState(26, CheckState.Checked);
         }
 
         private void btDeselectAll_Click(object sender, EventArgs e)
@@ -1244,6 +1334,8 @@ namespace CyclingLogApplication
             checkedListBox.SetItemCheckState(22, CheckState.Unchecked);
             checkedListBox.SetItemCheckState(23, CheckState.Unchecked);
             checkedListBox.SetItemCheckState(24, CheckState.Unchecked);
+            checkedListBox.SetItemCheckState(25, CheckState.Unchecked);
+            checkedListBox.SetItemCheckState(26, CheckState.Unchecked);
         }
 
         private void btPrint_Click(object sender, EventArgs e)

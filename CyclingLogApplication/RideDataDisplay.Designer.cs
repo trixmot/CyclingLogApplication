@@ -174,6 +174,7 @@
             "Wind",
             "Temperature",
             "Avg Cadence",
+            "Max Cadence",
             "Avg Heart Rate",
             "Max Heart Rate",
             "Calories",
@@ -187,15 +188,16 @@
             "Avg Power",
             "Max Power",
             "Comfort",
-            "Custom"});
+            "Custom1",
+            "Custom2"});
             this.checkedListBox.Location = new System.Drawing.Point(1033, 54);
             this.checkedListBox.Name = "checkedListBox";
-            this.checkedListBox.Size = new System.Drawing.Size(146, 379);
+            this.checkedListBox.Size = new System.Drawing.Size(146, 409);
             this.checkedListBox.TabIndex = 12;
             // 
             // btUpdateFields
             // 
-            this.btUpdateFields.Location = new System.Drawing.Point(1074, 516);
+            this.btUpdateFields.Location = new System.Drawing.Point(1074, 536);
             this.btUpdateFields.Name = "btUpdateFields";
             this.btUpdateFields.Size = new System.Drawing.Size(75, 23);
             this.btUpdateFields.TabIndex = 13;
@@ -205,7 +207,7 @@
             // 
             // btSelectAll
             // 
-            this.btSelectAll.Location = new System.Drawing.Point(1074, 458);
+            this.btSelectAll.Location = new System.Drawing.Point(1074, 478);
             this.btSelectAll.Name = "btSelectAll";
             this.btSelectAll.Size = new System.Drawing.Size(75, 23);
             this.btSelectAll.TabIndex = 14;
@@ -215,7 +217,7 @@
             // 
             // btDeselectAll
             // 
-            this.btDeselectAll.Location = new System.Drawing.Point(1074, 487);
+            this.btDeselectAll.Location = new System.Drawing.Point(1074, 507);
             this.btDeselectAll.Name = "btDeselectAll";
             this.btDeselectAll.Size = new System.Drawing.Size(75, 23);
             this.btDeselectAll.TabIndex = 15;
