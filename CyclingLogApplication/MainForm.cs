@@ -288,6 +288,7 @@ namespace CyclingLogApplication
             RefreshStatisticsData();
             RunMonthlyStatistics();
             RefreshRideDataWeekly();
+            refreshRoutes();
 
             formloading = false;
         }
@@ -1240,6 +1241,8 @@ namespace CyclingLogApplication
             cbRouteConfig.SelectedIndex = cbRouteConfig.Items.Count - 1;
             rideDataEntryForm.AddRouteDataEntry(routeString);
             chartForm.cbRoutesChart.Items.Add(routeString);
+
+            refreshRoutes();
             Logger.Log("Adding a Route entry to the Configuration:" + routeString, 0, logSetting);
         }
 
@@ -1266,6 +1269,8 @@ namespace CyclingLogApplication
                     {
 
                     }
+
+                    refreshRoutes();
                 }
                 catch (Exception ex)
                 {
@@ -2654,6 +2659,8 @@ namespace CyclingLogApplication
                 {
                     sqlConnection.Close();
                 }
+
+                refreshRoutes();
             }
         }
 
@@ -5114,6 +5121,37 @@ namespace CyclingLogApplication
             }
         }
 
+        private int GetRouteCount(string routeName)
+        {
+            int count = 0;
+            //Get week number
+            List<object> objectValues = new List<object>();
+            objectValues.Add(routeName);
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetRouteCount", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            MessageBox.Show("Unable to find Route by name.");
+
+                            return 0;
+                        }
+                        else
+                        {
+                            count = Int32.Parse(temp);
+                            break;
+                        }
+                    }
+                }
+                return count;
+            }
+        }
+
         private void btRefreshWeekly_Click(object sender, EventArgs e)
         {
             RefreshRideDataWeekly();
@@ -5268,6 +5306,86 @@ namespace CyclingLogApplication
         private void btCustomDataField1_Click(object sender, EventArgs e)
         {
             SetCustomField1(tbCustomDataField1.Text);
+            SetCustomField2(tbCustomDataField2.Text);
+        }
+
+        private void refreshRoutes()
+        {
+            int count = 0;
+
+            try
+            {
+                List<string> routeList = ReadDataNames("Table_Routes", "Name");
+
+                dataGridViewRoutes.ColumnCount = 2;
+                dataGridViewRoutes.Name = "Route Listing And Counts";
+                dataGridViewRoutes.Columns[0].Name = "Count";
+                dataGridViewRoutes.Columns[1].Name = "Route Name";
+                dataGridViewRoutes.ColumnHeadersDefaultCellStyle.BackColor = Color.Brown;
+                dataGridViewRoutes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dataGridViewRoutes.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridViewRoutes.ReadOnly = true;
+                dataGridViewRoutes.EnableHeadersVisualStyles = false;
+
+                // Resize the master DataGridView columns to fit the newly loaded data.
+                dataGridViewRoutes.AutoResizeColumns();
+                dataGridViewRoutes.AllowUserToOrderColumns = true;
+                // Configure the details DataGridView so that its columns automatically adjust their widths when the data changes.
+                dataGridViewRoutes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridViewRoutes.AllowUserToAddRows = false;
+
+                for (int i = 0; i < routeList.Count; i++)
+                {
+                    count = GetRouteCount(routeList[i]);
+                    this.dataGridViewRoutes.Rows.Add(count, routeList[i]);
+                }
+
+                tbTotalRoutes.Text = routeList.Count.ToString();
+            }
+            catch (Exception ex)
+            {
+
+                Logger.LogError("[ERROR]: Exception while trying to run query Routes: " + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred while quering Routes.  Review the log for more information.");
+            }
+        }
+
+        private void btRefreshRoutes_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+
+            try
+            {
+                List<string> routeList = ReadDataNames("Table_Routes", "Name");
+
+                dataGridViewRoutes.ColumnCount = 2;
+                dataGridViewRoutes.Name = "Route Counts";
+                dataGridViewRoutes.Columns[0].Name = "Count";
+                dataGridViewRoutes.Columns[1].Name = "Route Name";
+                dataGridViewRoutes.ColumnHeadersDefaultCellStyle.BackColor = Color.Brown;
+                dataGridViewRoutes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dataGridViewRoutes.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridViewRoutes.ReadOnly = true;
+                dataGridViewRoutes.EnableHeadersVisualStyles = false;
+
+                // Resize the master DataGridView columns to fit the newly loaded data.
+                dataGridViewRoutes.AutoResizeColumns();
+                dataGridViewRoutes.AllowUserToOrderColumns = true;
+                // Configure the details DataGridView so that its columns automatically adjust their widths when the data changes.
+                dataGridViewRoutes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+                for (int i = 0; i < routeList.Count; i++)
+                {
+                    count = GetRouteCount(routeList[i]);
+                    this.dataGridViewRoutes.Rows.Add(count, routeList[i]);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Logger.LogError("[ERROR]: Exception while trying to run query Routes: " + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred while quering Routes.  Review the log for more information.");
+            }
         }
     }
 }
