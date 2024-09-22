@@ -263,7 +263,6 @@ namespace CyclingLogApplication
                 return;
             }
 
-            BtBikeMilesUpdate_run();
             GetMaintLog();
 
             formloading = true;
@@ -289,6 +288,7 @@ namespace CyclingLogApplication
             RunMonthlyStatistics();
             RefreshRideDataWeekly();
             refreshRoutes();
+            refreshBikes();
 
             formloading = false;
         }
@@ -3050,214 +3050,6 @@ namespace CyclingLogApplication
             }
         }
 
-        //Runs on form load:
-        private void BtBikeMilesUpdate_run()
-        {
-            //Load bike names and notinlogmiles from the database:
-
-            tbBikeMiles1.Text = "";
-            tbBikeMiles2.Text = "";
-            tbBikeMiles3.Text = "";
-            tbBikeMiles4.Text = "";
-            tbBikeMiles5.Text = "";
-            tbBikeMiles6.Text = "";
-            tbBikeMiles7.Text = "";
-            tbBikeMiles8.Text = "";
-            tbBikeMiles9.Text = "";
-            tbBikeMiles10.Text = "";
-
-            tbBikeMilesTotal1.Text = "";
-            tbBikeMilesTotal2.Text = "";
-            tbBikeMilesTotal3.Text = "";
-            tbBikeMilesTotal4.Text = "";
-            tbBikeMilesTotal5.Text = "";
-            tbBikeMilesTotal6.Text = "";
-            tbBikeMilesTotal7.Text = "";
-            tbBikeMilesTotal8.Text = "";
-            tbBikeMilesTotal9.Text = "";
-            tbBikeMilesTotal10.Text = "";
-
-            double bikeMilesAdd = 0;
-            double runningTotalMiles = 0;
-
-            try
-            {
-                List<string> bikeList = new List<string>();
-                //Use the Total_Bike_Miles table since it will contain all bikes ever added:
-                bikeList = ReadDataNames("Table_Bike_Totals", "Name");
-                Dictionary<string, double> bikeMilesDictionary = new Dictionary<string, double>();
-
-                for (int index = 0; index < bikeList.Count; index++)
-                {
-                    List<object> objectValues = new List<object>();
-                    objectValues.Add(bikeList[index]);
-                    double returnValue = 0;
-
-                    //ExecuteScalarFunction
-                    using (var results = ExecuteSimpleQueryConnection("GetTotalMiles_AllLogs_ForABike", objectValues))
-                    {
-                        if (results.HasRows)
-                        {
-                            while (results.Read())
-                            {
-                                //MessageBox.Show(String.Format("{0}", results[0]));
-                                string temp = results[0].ToString();
-                                if (temp.Equals(""))
-                                {
-                                    returnValue = 0;
-                                }
-                                else
-                                {
-                                    returnValue = Convert.ToDouble(temp);
-                                }
-                            }
-                        }
-                    }
-                    bikeMilesDictionary.Add(bikeList[index], returnValue);
-                }
-
-                //Load textboxes with bikes with the highest values:
-                int bikeCount;
-                if (bikeList.Count >= 10)
-                {
-                    bikeCount = 10;
-                }
-                else
-                {
-                    bikeCount = bikeList.Count;
-                }
-
-                // Loop through each bike results starting with the highest value first:
-                for (int i = 1; i <= bikeCount; i++)
-                {
-                    double bikeMiles = bikeMilesDictionary.Values.Max();
-                    string bikeName = "";
-                    double totalMiles;
-
-                    // Key == Bike name, Value == total bike miles:
-                    foreach (KeyValuePair<string, double> bike in bikeMilesDictionary)
-                    {
-                        if (bike.Value == bikeMiles)
-                        {
-                            bikeName = bike.Key;
-                            break;
-                        }
-                    }
-
-                    bikeMilesDictionary.Remove(bikeName);
-
-                    try
-                    {
-                        List<object> objectValues = new List<object>();
-                        objectValues.Add(bikeName);
-
-                        //ExecuteScalarFunction
-                        using (var results = ExecuteSimpleQueryConnection("Bike_GetMiles", objectValues))
-                        {
-                            if (results.HasRows)
-                            {
-                                while (results.Read())
-                                {
-                                    string mileNotInLog = results[0].ToString();
-                                    if (mileNotInLog.Equals(""))
-                                    {
-                                        mileNotInLog = "0";
-                                    }
-                                    bikeMilesAdd = Convert.ToDouble(mileNotInLog);
-                                }
-                            }
-                            else
-                            {
-                                //lbMaintError.Text = "No entry found for the selected Bike and Date.";
-                                Logger.LogError("[WARNING: No entry found for the selected Bike and Date.");
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
-                    }
-
-                    if (i == 1)
-                    {
-                        totalMiles = bikeMiles + bikeMilesAdd;
-                        runningTotalMiles += totalMiles;
-                        tbBikeMilesTotal1.Text = totalMiles.ToString("N0");
-                        tbBikeMiles1.Text = bikeName;
-                    }
-                    else if (i == 2)
-                    {
-                        totalMiles = bikeMiles + bikeMilesAdd;
-                        runningTotalMiles += totalMiles;
-                        tbBikeMilesTotal2.Text = totalMiles.ToString("N0");
-                        tbBikeMiles2.Text = bikeName;
-                    }
-                    else if (i == 3)
-                    {
-                        totalMiles = bikeMiles + bikeMilesAdd;
-                        runningTotalMiles += totalMiles;
-                        tbBikeMilesTotal3.Text = totalMiles.ToString("N0");
-                        tbBikeMiles3.Text = bikeName;
-                    }
-                    else if (i == 4)
-                    {
-                        totalMiles = bikeMiles + bikeMilesAdd;
-                        runningTotalMiles += totalMiles;
-                        tbBikeMilesTotal4.Text = totalMiles.ToString("N0");
-                        tbBikeMiles4.Text = bikeName;
-                    }
-                    else if (i == 5)
-                    {
-                        totalMiles = bikeMiles + bikeMilesAdd;
-                        runningTotalMiles += totalMiles;
-                        tbBikeMilesTotal5.Text = totalMiles.ToString("N0");
-                        tbBikeMiles5.Text = bikeName;
-                    }
-                    else if (i == 6)
-                    {
-                        totalMiles = bikeMiles + bikeMilesAdd;
-                        runningTotalMiles += totalMiles;
-                        tbBikeMilesTotal6.Text = totalMiles.ToString("N0");
-                        tbBikeMiles6.Text = bikeName;
-                    }
-                    else if (i == 7)
-                    {
-                        totalMiles = bikeMiles + bikeMilesAdd;
-                        runningTotalMiles += totalMiles;
-                        tbBikeMilesTotal7.Text = totalMiles.ToString("N0");
-                        tbBikeMiles7.Text = bikeName;
-                    }
-                    else if (i == 8)
-                    {
-                        totalMiles = bikeMiles + bikeMilesAdd;
-                        runningTotalMiles += totalMiles;
-                        tbBikeMilesTotal8.Text = totalMiles.ToString("N0");
-                        tbBikeMiles8.Text = bikeName;
-                    }
-                    else if (i == 9)
-                    {
-                        totalMiles = bikeMiles + bikeMilesAdd;
-                        runningTotalMiles += totalMiles;
-                        tbBikeMilesTotal9.Text = totalMiles.ToString("N0");
-                        tbBikeMiles9.Text = bikeName;
-                    }
-                    else if (i == 10)
-                    {
-                        totalMiles = bikeMiles + bikeMilesAdd;
-                        runningTotalMiles += totalMiles;
-                        tbBikeMilesTotal10.Text = totalMiles.ToString("N0");
-                        tbBikeMiles10.Text = bikeName;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError("[ERROR]: Exception while trying to retrive Bike names." + ex.Message.ToString());
-            }
-
-            tbBikeMilesTotal.Text = runningTotalMiles.ToString("N0");
-        }
-
         private void CbBikeConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
             string miles;
@@ -4080,7 +3872,7 @@ namespace CyclingLogApplication
 
         private void BtBikeMilesUpdate_Click(object sender, EventArgs e)
         {
-            BtBikeMilesUpdate_run();
+            
         }
 
         private void BtRefreshStatisticsData_Click(object sender, EventArgs e)
@@ -5124,7 +4916,6 @@ namespace CyclingLogApplication
         private int GetRouteCount(string routeName)
         {
             int count = 0;
-            //Get week number
             List<object> objectValues = new List<object>();
             objectValues.Add(routeName);
             //ExecuteScalarFunction
@@ -5138,6 +4929,36 @@ namespace CyclingLogApplication
                         if (temp.Equals(""))
                         {
                             MessageBox.Show("Unable to find Route by name.");
+
+                            return 0;
+                        }
+                        else
+                        {
+                            count = Int32.Parse(temp);
+                            break;
+                        }
+                    }
+                }
+                return count;
+            }
+        }
+
+        private int GetBikeCount(string routeName)
+        {
+            int count = 0;
+            List<object> objectValues = new List<object>();
+            objectValues.Add(routeName);
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetBikeCount", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            MessageBox.Show("Unable to find Bike by name.");
 
                             return 0;
                         }
@@ -5284,7 +5105,8 @@ namespace CyclingLogApplication
             RefreshStatisticsData();
             RunMonthlyStatistics();
             RefreshRideDataWeekly();
-            BtBikeMilesUpdate_run();
+            refreshBikes();
+
             //using (RefreshingForm refreshingForm = new RefreshingForm())
             //{
             //    // Display form modelessly
@@ -5321,7 +5143,7 @@ namespace CyclingLogApplication
                 dataGridViewRoutes.Name = "Route Listing And Counts";
                 dataGridViewRoutes.Columns[0].Name = "Count";
                 dataGridViewRoutes.Columns[1].Name = "Route Name";
-                dataGridViewRoutes.ColumnHeadersDefaultCellStyle.BackColor = Color.Brown;
+                dataGridViewRoutes.ColumnHeadersDefaultCellStyle.BackColor = Color.DimGray;
                 dataGridViewRoutes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
                 dataGridViewRoutes.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dataGridViewRoutes.ReadOnly = true;
@@ -5333,6 +5155,14 @@ namespace CyclingLogApplication
                 // Configure the details DataGridView so that its columns automatically adjust their widths when the data changes.
                 dataGridViewRoutes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 dataGridViewRoutes.AllowUserToAddRows = false;
+                dataGridViewRoutes.Columns["Count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                //dataGridViewRoutes.DefaultCellStyle.SelectionBackColor = Color.LightGray;
+                //dataGridViewRoutes.DefaultCellStyle.SelectionForeColor = Color.White;
+                dataGridViewRoutes.RowHeadersDefaultCellStyle.BackColor = Color.LightGray;
+                //dataGridViewRoutes.RowHeadersVisible = false;
+                dataGridViewRoutes.AllowUserToResizeRows = false;
+                dataGridViewRoutes.AllowUserToResizeColumns = false;
+                dataGridViewRoutes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 
                 for (int i = 0; i < routeList.Count; i++)
                 {
@@ -5350,42 +5180,120 @@ namespace CyclingLogApplication
             }
         }
 
-        private void btRefreshRoutes_Click(object sender, EventArgs e)
+        private void refreshBikes()
         {
             int count = 0;
+            double miles = 0;
+            double milesNotInLog = 0;
+            double totalMiles = 0;
 
             try
             {
-                List<string> routeList = ReadDataNames("Table_Routes", "Name");
+                List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
 
-                dataGridViewRoutes.ColumnCount = 2;
-                dataGridViewRoutes.Name = "Route Counts";
-                dataGridViewRoutes.Columns[0].Name = "Count";
-                dataGridViewRoutes.Columns[1].Name = "Route Name";
-                dataGridViewRoutes.ColumnHeadersDefaultCellStyle.BackColor = Color.Brown;
-                dataGridViewRoutes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-                dataGridViewRoutes.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dataGridViewRoutes.ReadOnly = true;
-                dataGridViewRoutes.EnableHeadersVisualStyles = false;
+                dataGridViewBikes.ColumnCount = 4;
+                dataGridViewBikes.Name = "Bike Listing And Miles";
+                dataGridViewBikes.Columns[0].Name = "Bike Name";
+                dataGridViewBikes.Columns[1].Name = "Rides";
+                dataGridViewBikes.Columns[2].Name = "Miles";
+                dataGridViewBikes.Columns[3].Name = "Miles Not In Log";
+                dataGridViewBikes.ColumnHeadersDefaultCellStyle.BackColor = Color.DimGray;
+                dataGridViewBikes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dataGridViewBikes.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dataGridViewBikes.ReadOnly = true;
+                dataGridViewBikes.EnableHeadersVisualStyles = false;
+                dataGridViewBikes.Columns["Rides"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewBikes.Columns["Miles"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewBikes.Columns["Miles Not In Log"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 // Resize the master DataGridView columns to fit the newly loaded data.
-                dataGridViewRoutes.AutoResizeColumns();
-                dataGridViewRoutes.AllowUserToOrderColumns = true;
+                dataGridViewBikes.AutoResizeColumns();
+                dataGridViewBikes.AllowUserToOrderColumns = true;
                 // Configure the details DataGridView so that its columns automatically adjust their widths when the data changes.
-                dataGridViewRoutes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridViewBikes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridViewBikes.Columns["Rides"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewBikes.Columns["Miles"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewBikes.Columns["Miles Not In Log"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewBikes.AllowUserToAddRows = false;
+                dataGridViewBikes.RowHeadersDefaultCellStyle.BackColor = Color.LightGray;
+                dataGridViewBikes.AllowUserToResizeRows = false;
+                dataGridViewBikes.AllowUserToResizeColumns = false;
+                dataGridViewBikes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 
-                for (int i = 0; i < routeList.Count; i++)
+                for (int i = 0; i < bikeList.Count; i++)
                 {
-                    count = GetRouteCount(routeList[i]);
-                    this.dataGridViewRoutes.Rows.Add(count, routeList[i]);
+                    try
+                    {
+                        List<object> objectValues = new List<object>();
+                        objectValues.Add(bikeList[i]);
+
+                        //ExecuteScalarFunction
+                        using (var results = ExecuteSimpleQueryConnection("GetTotalMiles_AllLogs_ForABike", objectValues))
+                        {
+                            if (results.HasRows)
+                            {
+                                while (results.Read())
+                                {
+                                    //MessageBox.Show(String.Format("{0}", results[0]));
+                                    string temp = results[0].ToString();
+                                    if (temp.Equals(""))
+                                    {
+                                        miles = 0;
+                                    }
+                                    else
+                                    {
+                                        miles = Convert.ToDouble(temp);
+                                    }
+                                }
+                                totalMiles += miles;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
+                    }
+
+                    try
+                    {
+                        List<object> objectValues = new List<object>();
+                        objectValues.Add(bikeList[i]);
+
+                        //ExecuteScalarFunction
+                        using (var results = ExecuteSimpleQueryConnection("Bike_GetMiles", objectValues))
+                        {
+                            if (results.HasRows)
+                            {
+                                while (results.Read())
+                                {
+                                    milesNotInLog = Convert.ToInt32(results[0]);
+                                }
+                            }
+                            else
+                            {
+                                //lbMaintError.Text = "No entry found for the selected Bike and Date.";
+                                Logger.LogError("[WARNING: No entry found for the selected Bike and Date.");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
+                    }
+
+                    count = GetBikeCount(bikeList[i]);
+                    this.dataGridViewBikes.Rows.Add(bikeList[i], count, miles, milesNotInLog);
                 }
+
+                tbBikeMilesTotal.Text = totalMiles.ToString();
             }
             catch (Exception ex)
             {
 
-                Logger.LogError("[ERROR]: Exception while trying to run query Routes: " + ex.Message.ToString());
-                MessageBox.Show("An exception error has occurred while quering Routes.  Review the log for more information.");
+                Logger.LogError("[ERROR]: Exception while trying to run query Bikes: " + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred while quering Bikes.  Review the log for more information.");
             }
         }
+
     }
 }
