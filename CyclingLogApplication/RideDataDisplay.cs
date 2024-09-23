@@ -877,13 +877,15 @@ namespace CyclingLogApplication
                 // Configure the details DataGridView so that its columns automatically adjust their widths when the data changes.
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 dataGridView1.AllowUserToAddRows = false;
-                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.DimGray;
-                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
+                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
                 dataGridView1.ReadOnly = true;
                 dataGridView1.EnableHeadersVisualStyles = false;
                 dataGridView1.AllowUserToResizeRows = false;
                 dataGridView1.AllowUserToResizeColumns = false;
                 dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+                dataGridView1.ColumnHeadersHeight = 30;
+                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             }
             catch (Exception ex)
             {

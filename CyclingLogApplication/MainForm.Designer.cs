@@ -880,8 +880,8 @@
             this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage9);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(34, 30);
             this.tabControl1.Name = "tabControl1";
@@ -3839,16 +3839,16 @@
             this.groupBox5.Controls.Add(this.dataGridViewBikes);
             this.groupBox5.Controls.Add(this.groupBox12);
             this.groupBox5.Controls.Add(this.label21);
-            this.groupBox5.Location = new System.Drawing.Point(67, 44);
+            this.groupBox5.Location = new System.Drawing.Point(67, 38);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(772, 478);
+            this.groupBox5.Size = new System.Drawing.Size(772, 484);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             // 
             // dataGridViewBikes
             // 
             this.dataGridViewBikes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewBikes.Location = new System.Drawing.Point(31, 89);
+            this.dataGridViewBikes.Location = new System.Drawing.Point(31, 79);
             this.dataGridViewBikes.Name = "dataGridViewBikes";
             this.dataGridViewBikes.Size = new System.Drawing.Size(457, 355);
             this.dataGridViewBikes.TabIndex = 33;
@@ -3866,7 +3866,7 @@
             this.groupBox12.Controls.Add(this.label27);
             this.groupBox12.Controls.Add(this.tbConfigMilesNotInLog);
             this.groupBox12.Controls.Add(this.label26);
-            this.groupBox12.Location = new System.Drawing.Point(535, 89);
+            this.groupBox12.Location = new System.Drawing.Point(534, 79);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(187, 358);
             this.groupBox12.TabIndex = 71;
@@ -3977,10 +3977,10 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(347, 16);
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(208, 36);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(77, 28);
+            this.label21.Size = new System.Drawing.Size(55, 24);
             this.label21.TabIndex = 19;
             this.label21.Text = "Bikes";
             // 

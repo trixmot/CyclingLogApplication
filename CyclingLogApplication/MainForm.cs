@@ -1315,6 +1315,8 @@ namespace CyclingLogApplication
                 objectBikesTotals.Add(miles);
                 RunStoredProcedure(objectBikesTotals, "Bike_Totals_Add");
             }
+
+            refreshBikes();
         }
 
         private void BtRemoveBikeConfig_Click(object sender, EventArgs e)
@@ -1366,6 +1368,8 @@ namespace CyclingLogApplication
                     {
 
                     }
+
+                    refreshBikes();
                 }
                 catch (Exception ex)
                 {
@@ -2846,6 +2850,10 @@ namespace CyclingLogApplication
                     dgvMaint.DataSource = dataTable;
                     dgvMaint.Refresh();
                     dgvMaint.Sort(dgvMaint.Columns["Date"], ListSortDirection.Descending);
+                    dgvMaint.AllowUserToResizeRows = false;
+                    dgvMaint.AllowUserToResizeColumns = false;
+                    dgvMaint.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+                    dgvMaint.AllowUserToAddRows = false;
                 }
             }
             catch (Exception ex)
@@ -3270,6 +3278,8 @@ namespace CyclingLogApplication
                     while (reader.Read())
                     {
                     }
+
+                    refreshBikes();
                 }
                 catch (Exception ex)
                 {
@@ -5143,8 +5153,10 @@ namespace CyclingLogApplication
                 dataGridViewRoutes.Name = "Route Listing And Counts";
                 dataGridViewRoutes.Columns[0].Name = "Count";
                 dataGridViewRoutes.Columns[1].Name = "Route Name";
-                dataGridViewRoutes.ColumnHeadersDefaultCellStyle.BackColor = Color.DimGray;
-                dataGridViewRoutes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dataGridViewRoutes.Columns[0].ValueType = typeof(int);
+                dataGridViewRoutes.Columns[1].ValueType = typeof(string);
+                dataGridViewRoutes.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
+                dataGridViewRoutes.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
                 dataGridViewRoutes.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dataGridViewRoutes.ReadOnly = true;
                 dataGridViewRoutes.EnableHeadersVisualStyles = false;
@@ -5163,6 +5175,8 @@ namespace CyclingLogApplication
                 dataGridViewRoutes.AllowUserToResizeRows = false;
                 dataGridViewRoutes.AllowUserToResizeColumns = false;
                 dataGridViewRoutes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+                dataGridViewRoutes.ColumnHeadersHeight = 40;
+                dataGridViewRoutes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
                 for (int i = 0; i < routeList.Count; i++)
                 {
@@ -5170,7 +5184,7 @@ namespace CyclingLogApplication
                     this.dataGridViewRoutes.Rows.Add(count, routeList[i]);
                 }
 
-                tbTotalRoutes.Text = routeList.Count.ToString();
+                tbTotalRoutes.Text = routeList.Count.ToString("N0");
             }
             catch (Exception ex)
             {
@@ -5197,8 +5211,12 @@ namespace CyclingLogApplication
                 dataGridViewBikes.Columns[1].Name = "Rides";
                 dataGridViewBikes.Columns[2].Name = "Miles";
                 dataGridViewBikes.Columns[3].Name = "Miles Not In Log";
-                dataGridViewBikes.ColumnHeadersDefaultCellStyle.BackColor = Color.DimGray;
-                dataGridViewBikes.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dataGridViewBikes.Columns[0].ValueType = typeof(string);
+                dataGridViewBikes.Columns[0].ValueType = typeof(int);
+                dataGridViewBikes.Columns[0].ValueType = typeof(double);
+                dataGridViewBikes.Columns[0].ValueType = typeof(double);
+                dataGridViewBikes.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
+                dataGridViewBikes.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
                 dataGridViewBikes.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dataGridViewBikes.ReadOnly = true;
                 dataGridViewBikes.EnableHeadersVisualStyles = false;
@@ -5219,6 +5237,8 @@ namespace CyclingLogApplication
                 dataGridViewBikes.AllowUserToResizeRows = false;
                 dataGridViewBikes.AllowUserToResizeColumns = false;
                 dataGridViewBikes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+                dataGridViewBikes.ColumnHeadersHeight = 40;
+                dataGridViewBikes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
                 for (int i = 0; i < bikeList.Count; i++)
                 {
@@ -5285,7 +5305,7 @@ namespace CyclingLogApplication
                     this.dataGridViewBikes.Rows.Add(bikeList[i], count, miles, milesNotInLog);
                 }
 
-                tbBikeMilesTotal.Text = totalMiles.ToString();
+                tbBikeMilesTotal.Text = totalMiles.ToString("N0");
             }
             catch (Exception ex)
             {
