@@ -27,10 +27,10 @@ namespace CyclingLogApplication
         private DatabaseConnection databaseConnection;// = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
 
         //MainForm mainForm;
-        public RideDataEntry(MainForm mainForm)
+        public RideDataEntry()
         {
             InitializeComponent();
-            //MainForm mainForm = new MainForm("");
+            MainForm mainForm = new MainForm();
             sqlConnection = mainForm.GetsqlConnectionString();
             databaseConnection = mainForm.GetsDatabaseConnectionString();
 
@@ -69,13 +69,13 @@ namespace CyclingLogApplication
             //cbRideTypeDataEntry.Items.Add("Speed");
             //cbRideTypeDataEntry.Items.Add("Race");
 
-            List<string> routeList = mainForm.GetRoutes();
+            List<string> routeList = MainForm.GetRoutes();
             for (int i = 0; i < routeList.Count; i++)
             {
                 cbRouteDataEntry.Items.Add(routeList.ElementAt(i));
             }
 
-            List<string> logYearList = mainForm.GetLogYears();
+            List<string> logYearList = MainForm.GetLogYears();
             for (int i = 0; i < logYearList.Count; i++)
             {
                 cbLogYearDataEntry.Items.Add(logYearList.ElementAt(i));
@@ -101,27 +101,36 @@ namespace CyclingLogApplication
             numericUpDown2.Minimum = 1;
             numericUpDown2.Enabled = false;
 
-            string customField1 = mainForm.GetCustomField1();
-            string customField2 = mainForm.GetCustomField2();
+            ConfigurationFile configurationFile = new ConfigurationFile();
+            configurationFile.readConfigFile();
+            string customField1 = MainForm.GetCustomField1();
+            string customField2 = MainForm.GetCustomField2();
 
             if (customField1.Equals(""))
             {
-                lbCustom1.Text = "Custom1";
+                //lbCustom1.Text = "Custom1";
+                lbCustom1.Visible = false;
+                tbCustom1.Visible = false;
             }
             else
             {
-                lbCustom1.Text = mainForm.GetCustomField1();
+                lbCustom1.Text = MainForm.GetCustomField1();
+                lbCustom1.Visible = true;
+                tbCustom1.Visible = true;
             }
 
             if (customField2.Equals(""))
             {
-                lbCustom2.Text = "Custom2";
+                //lbCustom2.Text = "Custom2";
+                lbCustom2.Visible = false;
+                tbCustom2.Visible = false;
             }
             else
             {
-                lbCustom2.Text = mainForm.GetCustomField2();
+                lbCustom2.Text = MainForm.GetCustomField2();
+                lbCustom2.Visible = true;
+                tbCustom2.Visible = true;
             }
-
 
             List<string> bikeList = mainForm.ReadDataNames("Table_Bikes", "Name");
             //Load Bike values:

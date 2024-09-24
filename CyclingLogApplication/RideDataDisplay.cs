@@ -21,14 +21,20 @@ namespace CyclingLogApplication
         static int logYearFilterIndex = -1;
         private SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
 
-        public RideDataDisplay(MainForm mainForm)
+        public RideDataDisplay()
         {
             InitializeComponent();
             cbFilterField.SelectedIndex = 0;
-            //MainForm mainForm = new MainForm("");
+            MainForm mainForm = new MainForm();
             sqlConnection = mainForm.GetsqlConnectionString();
-            
-            
+
+            MainForm mainform = new MainForm();
+            List<string> logList = mainform.ReadDataNames("Table_Log_year", "Name");
+
+            for (int i = 0; i < logList.Count; i++)
+            {
+                cbLogYearFilter.Items.Add(logList[i]);
+            }
         }
 
         private void CloseForm(object sender, EventArgs e)
@@ -54,7 +60,14 @@ namespace CyclingLogApplication
 
         public void setLogYearFilterIndex(int index)
         {
-            cbLogYearFilter.SelectedIndex = index;
+            try
+            {
+                cbLogYearFilter.SelectedIndex = index;
+            }
+            catch
+            {
+                cbLogYearFilter.SelectedIndex = 0;
+            }
         }
 
         public int getLogYearFilterIndex()
@@ -65,8 +78,8 @@ namespace CyclingLogApplication
         public void setCustomValues()
         {
             MainForm mainForm = new MainForm();
-            string customValue1 = mainForm.GetCustomField1();
-            string customValue2 = mainForm.GetCustomField2();
+            string customValue1 = MainForm.GetCustomField1();
+            string customValue2 = MainForm.GetCustomField2();
 
             if (customValue1.Equals(""))
             {
@@ -840,8 +853,8 @@ namespace CyclingLogApplication
                 dataTable.Columns["Item"].AutoIncrementStep = 1;
                 sqlDataAdapter.Fill(dataTable);
 
-                string customValue1 = mainForm.GetCustomField1();
-                string customValue2 = mainForm.GetCustomField2();
+                string customValue1 = MainForm.GetCustomField1();
+                string customValue2 = MainForm.GetCustomField2();
 
                 if (customDataField1)
                 {

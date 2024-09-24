@@ -22,9 +22,9 @@ namespace CyclingLogApplication
     public partial class MainForm : Form
     {
         private static Mutex mutex = null;
-        private RideDataEntry rideDataEntryForm;
-        private RideDataDisplay rideDataDisplayForm;
-        private ChartForm chartForm;
+        //private RideDataEntry rideDataEntryForm;
+        //private RideDataDisplay rideDataDisplayForm;
+        //private ChartForm chartForm;
         Boolean formloading = false;
 
         private static readonly string logVersion = "0.9.0";
@@ -44,8 +44,8 @@ namespace CyclingLogApplication
         private static int lastMonthlyLogSelected = -1;
         private static int lastLogSelectedDataEntry = -1;
         private static string firstDayOfWeek;
-        private static string customField1;
-        private static string customField2;
+        public static string customField1;
+        public static string customField2;
         private static string checkedListBoxItem0 = "1";
         private static string checkedListBoxItem1 = "1";
         private static string checkedListBoxItem2 = "1";
@@ -175,6 +175,7 @@ namespace CyclingLogApplication
 
             try
             {
+                RideDataEntry rideDataEntryForm = new RideDataEntry();
                 ConfigurationFile configfile = new ConfigurationFile();
                 configfile.readConfigFile();
                 int logSetting = GetLogLevel();
@@ -199,9 +200,8 @@ namespace CyclingLogApplication
                 List<string> routeList = ReadDataNames("Table_Routes", "Name");
                 List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
 
-                rideDataEntryForm = new RideDataEntry(this);
-                rideDataDisplayForm = new RideDataDisplay(this);
-                chartForm = new ChartForm(this);
+                RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
+                ChartForm chartForm = new ChartForm(this);
 
                 //Set first option of 'None':
                 cbLogYear1.Items.Add("--None--");
@@ -298,7 +298,7 @@ namespace CyclingLogApplication
 
                 tbCustomDataField1.Text = GetCustomField1();
                 tbCustomDataField2.Text = GetCustomField2();
-                tabControl1.SelectedTab = tabControl1.TabPages["Main"];
+                //tabControl1.SelectedTab = tabControl1.TabPages["Main"];
                 formloading = false;
 
             }
@@ -314,7 +314,10 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to exit?", "Exit Application", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
+                ChartForm chartForm = new ChartForm(this);
                 chartForm.Close();
+                RideDataEntry rideDataEntryForm = new RideDataEntry();
                 ConfigurationFile configurationFile = new ConfigurationFile();
                 configurationFile.writeConfigFile();
                 rideDataDisplayForm.Dispose();
@@ -486,7 +489,7 @@ namespace CyclingLogApplication
             lastLogYearChart = logIndex;
         }
 
-        public int GetLastLogYearChartSelected()
+        public static int GetLastLogYearChartSelected()
         {
             return lastLogYearChart;
         }
@@ -496,7 +499,7 @@ namespace CyclingLogApplication
             lastRouteChart = logIndex;
         }
 
-        public int GetLastRouteChartSelected()
+        public static int GetLastRouteChartSelected()
         {
             return lastRouteChart;
         }
@@ -506,7 +509,7 @@ namespace CyclingLogApplication
             lastTypeChart = logIndex;
         }
 
-        public int GetLastTypeChartSelected()
+        public static int GetLastTypeChartSelected()
         {
             return lastTypeChart;
         }
@@ -516,7 +519,7 @@ namespace CyclingLogApplication
             lastTypeTimeChart = logIndex;
         }
 
-        public int GetLastTypeTimeChartSelected()
+        public static int GetLastTypeTimeChartSelected()
         {
             return lastTypeTimeChart;
         }
@@ -526,12 +529,12 @@ namespace CyclingLogApplication
             return firstDayOfWeek;
         }
 
-        public string GetCustomField1()
+        public static string GetCustomField1()
         {
             return customField1;
         }
 
-        public string GetCustomField2()
+        public static string GetCustomField2()
         {
             return customField2;
         }
@@ -821,25 +824,27 @@ namespace CyclingLogApplication
             return checkedListBoxItem26;
         }
 
-        public List<string> GetLogYears()
+        public static List<string> GetLogYears()
         {
-            List<string> logYearsList = new List<string>();
+            MainForm mainform = new MainForm();
+            List<string> logYearsList = mainform.ReadDataNames("Table_Log_year", "Name");
 
-            for (int i = 0; i < cbLogYearConfig.Items.Count; i++)
+            for (int i = 0; i < mainform.cbLogYearConfig.Items.Count; i++)
             {
-                logYearsList.Add(cbLogYearConfig.GetItemText(cbLogYearConfig.Items[i]));
+                logYearsList.Add(logYearsList[i]);
             }
 
             return logYearsList;
         }
 
-        public List<string> GetRoutes()
+        public static List<string> GetRoutes()
         {
-            List<string> routeList = new List<string>();
+            MainForm mainform = new MainForm();
+            List<string> routeList = mainform.ReadDataNames("Table_Routes", "Name");
 
-            for (int i = 0; i < cbRouteConfig.Items.Count; i++)
+            for (int i = 0; i < mainform.cbRouteConfig.Items.Count; i++)
             {
-                routeList.Add(cbRouteConfig.GetItemText(cbRouteConfig.Items[i]));
+                routeList.Add(routeList[i]);
             }
 
             return routeList;
@@ -913,6 +918,7 @@ namespace CyclingLogApplication
         private void BtAddLogYearConfig(object sender, EventArgs e)
         {
             string logYearTitle;
+            RideDataEntry rideDataEntryForm = new RideDataEntry();
 
             if (tbLogYearConfig.Text != "")
             {
@@ -947,7 +953,8 @@ namespace CyclingLogApplication
             objectValues.Add(logYearTitle);
             objectValues.Add(Convert.ToInt32(logYearValue));
             RunStoredProcedure(objectValues, "Log_Year_Add");
-
+            RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
+            ChartForm chartForm = new ChartForm(this);
             cbLogYearConfig.Items.Add(logYearTitle);
             cbLogYearConfig.SelectedIndex = cbLogYearConfig.Items.Count - 1;
             rideDataEntryForm.AddLogYearDataEntry(logYearTitle);
@@ -972,9 +979,11 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to delete the Log and all its data?", "Delete Log", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                RideDataEntry rideDataEntryForm = new RideDataEntry();
                 string logName = cbLogYearConfig.SelectedItem.ToString();
                 int logYearIndex = GetLogYearIndex(logName);
-
+                RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
+                ChartForm chartForm = new ChartForm(this);
                 int chartIndexCount = chartForm.cbLogYearChart.Items.Count;
                 SetLastLogYearChartSelected(chartIndexCount - 2);
 
@@ -1205,6 +1214,8 @@ namespace CyclingLogApplication
 
         private void OpenRideDataForm(object sender, EventArgs e)
         {
+            RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
+
             rideDataDisplayForm.setCustomValues();
             rideDataDisplayForm.setLogYearFilterIndex(GetLastLogFilterSelected());
             rideDataDisplayForm.setCheckedValues();
@@ -1225,7 +1236,7 @@ namespace CyclingLogApplication
                     //Give a warning if no additional routed have been entered:
                     MessageBox.Show("Reminder: No Routes have been entered. Add a new Route in the Settings tab.");
                 }
-
+                RideDataEntry rideDataEntryForm = new RideDataEntry();
                 rideDataEntryForm.cbBikeDataEntrySelection.SelectedIndex = Convert.ToInt32(GetLastBikeSelected());
                 rideDataEntryForm.ShowDialog();
             }
@@ -1259,7 +1270,9 @@ namespace CyclingLogApplication
 
             cbRouteConfig.Items.Add(routeString);
             cbRouteConfig.SelectedIndex = cbRouteConfig.Items.Count - 1;
+            RideDataEntry rideDataEntryForm = new RideDataEntry();
             rideDataEntryForm.AddRouteDataEntry(routeString);
+            ChartForm chartForm = new ChartForm(this);
             chartForm.cbRoutesChart.Items.Add(routeString);
 
             refreshRoutes();
@@ -1275,9 +1288,12 @@ namespace CyclingLogApplication
             objectValues.Add(routeString);
             RunStoredProcedure(objectValues, "Route_Add");
 
+            RideDataEntry rideDataEntryForm = new RideDataEntry();
             cbRouteConfig.Items.Add(routeString);
             cbRouteConfig.SelectedIndex = cbRouteConfig.Items.Count - 1;
             rideDataEntryForm.AddRouteDataEntry(routeString);
+
+            ChartForm chartForm = new ChartForm(this);
             chartForm.cbRoutesChart.Items.Add(routeString);
 
             refreshRoutes();
@@ -1290,10 +1306,12 @@ namespace CyclingLogApplication
             if (result == DialogResult.Yes)
             {
                 string deleteValue = cbRouteConfig.SelectedItem.ToString();
-
+                RideDataEntry rideDataEntryForm = new RideDataEntry();
                 //Note: only removing value as an option, all records using this value are unchanged:
                 cbRouteConfig.Items.Remove(deleteValue);
                 rideDataEntryForm.RemoveRouteDataEntry(deleteValue);
+
+                ChartForm chartForm = new ChartForm(this);
                 chartForm.cbRoutesChart.Items.Remove(deleteValue);
 
                 //Remove the Route from the database table:
@@ -1322,6 +1340,7 @@ namespace CyclingLogApplication
             string bikeString = tbBikeConfig.Text;
             string miles = tbConfigMilesNotInLog.Text;
             Boolean updateBikeTotals = true;
+            RideDataEntry rideDataEntryForm = new RideDataEntry();
 
             //Check to see if the string has already been entered to eliminate duplicates:
             if (cbBikeConfig.Items.Contains(bikeString))
@@ -1364,6 +1383,7 @@ namespace CyclingLogApplication
             if (result == DialogResult.Yes)
             {
                 string deleteValue = cbBikeConfig.SelectedItem.ToString();
+                RideDataEntry rideDataEntryForm = new RideDataEntry();
 
                 //Note: only removing value as an option, all records using this value are unchanged:
                 cbBikeConfig.Items.Remove(deleteValue);
@@ -2584,6 +2604,7 @@ namespace CyclingLogApplication
                 {
                     currentRouteList.Add(route);
                     cbRouteConfig.Items.Add(route);
+                    RideDataEntry rideDataEntryForm = new RideDataEntry();
                     rideDataEntryForm.cbRouteDataEntry.Items.Add(route);
 
                     //Add new entry to the Route Table:
@@ -2607,6 +2628,7 @@ namespace CyclingLogApplication
                 {
                     currentBikeList.Add(bike);
                     cbBikeConfig.Items.Add(bike);
+                    RideDataEntry rideDataEntryForm = new RideDataEntry();
                     rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(bike);
 
                     //Add new entry to the Route Table:
@@ -2621,6 +2643,7 @@ namespace CyclingLogApplication
 
         private void CbRenameRoute(object sender, EventArgs e)
         {
+            RideDataEntry rideDataEntryForm = new RideDataEntry();
             //Read selected index and update the value for that index:
             string newValue = tbRouteConfig.Text;
             string oldValue = cbRouteConfig.SelectedItem.ToString();
@@ -2649,6 +2672,8 @@ namespace CyclingLogApplication
             {
                 tempList.Add(cbRouteConfig.Items[i].ToString());
             }
+
+            ChartForm chartForm = new ChartForm(this);
 
             for (int i = 0; i < tempList.Count; i++)
             {
@@ -2761,6 +2786,9 @@ namespace CyclingLogApplication
                 RunStoredProcedure(objectValues, "Log_Year_Update");
 
                 List<string> tempList = new List<string>();
+                RideDataEntry rideDataEntryForm = new RideDataEntry();
+                RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
+                ChartForm chartForm = new ChartForm(this);
 
                 int statIndex1 = cbLogYear1.SelectedIndex;
                 int statIndex2 = cbLogYear2.SelectedIndex;
@@ -3245,7 +3273,7 @@ namespace CyclingLogApplication
             SetLastLogYearChartSelected(-1);
             SetLastMonthlyLogSelected(-1);
 
-            MessageBox.Show("\"Close the program and reopen before entering any data.");
+            MessageBox.Show("Close the program and reopen before entering any data.");
         }
 
         //Rename or update miles not in log:
@@ -3253,6 +3281,7 @@ namespace CyclingLogApplication
         {
             if (cbBikeConfig.SelectedItem != null)
             {
+                RideDataEntry rideDataEntryForm = new RideDataEntry();
                 //Verify Miles is entered and in the correct format:
                 string miles = tbConfigMilesNotInLog.Text;
 
@@ -3944,7 +3973,7 @@ namespace CyclingLogApplication
 
         private void BtCharts_Click(object sender, EventArgs e)
         {
-            //ChartForm chartForm = new ChartForm(this);
+            ChartForm chartForm = new ChartForm(this);
             chartForm.Show();
             lbMaintError.Text = "";
         }
@@ -5514,6 +5543,8 @@ namespace CyclingLogApplication
         {
             SetCustomField1(tbCustomDataField1.Text);
             SetCustomField2(tbCustomDataField2.Text);
+            ConfigurationFile configurationFile = new ConfigurationFile();
+            configurationFile.writeConfigFile();
         }
 
         private void refreshRoutes()

@@ -108,7 +108,7 @@ namespace CyclingLogApplication
             string lastMonthlyLogYearSelected = nodes.Item(0).SelectSingleNode("LastMonthlyLogSelected").InnerText;
             string lastLogYearSelectedDataEntry = nodes.Item(0).SelectSingleNode("LastLogSelectedDataEntry").InnerText;
 
-            MainForm mainForm = new MainForm("");
+            MainForm mainForm = new MainForm();
             mainForm.SetLogLevel(logLevel);
             mainForm.SetFirstDayOfWeek(firstDayOfWeek);
             mainForm.SetCustomField1(customDataField1);
@@ -235,11 +235,11 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(firstDayNode);
 
                     XmlNode customField1Node = xmlDoc.CreateElement("CUSTOMFIELD1");
-                    customField1Node.InnerText = mainForm.GetCustomField1();
+                    customField1Node.InnerText = MainForm.GetCustomField1();
                     rootNode.AppendChild(customField1Node);
 
                     XmlNode customField2Node = xmlDoc.CreateElement("CUSTOMFIELD2");
-                    customField2Node.InnerText = mainForm.GetCustomField2();
+                    customField2Node.InnerText = MainForm.GetCustomField2();
                     rootNode.AppendChild(customField2Node);
 
                     XmlNode checkedItemNode0 = xmlDoc.CreateElement("CHECKEDLISTBOX0");
@@ -431,8 +431,8 @@ namespace CyclingLogApplication
                 string cbStatistic5 = mainForm.GetcbStatistic5();
 
                 string firstDay = mainForm.GetFirstDayOfWeek();
-                string customField1 = mainForm.GetCustomField1();
-                string customField2 = mainForm.GetCustomField2();
+                string customField1 = MainForm.GetCustomField1();
+                string customField2 = MainForm.GetCustomField2();
 
                 string checkedItem0 = mainForm.GetCheckedListBoxItem0();
                 string checkedItem1 = mainForm.GetCheckedListBoxItem1();
@@ -466,10 +466,10 @@ namespace CyclingLogApplication
                 int lastBikeSelected = mainForm.GetLastBikeSelected();
                 int lastLogFilterSelected = mainForm.GetLastLogFilterSelected();
 
-                int lastLogYearChartSelected = mainForm.GetLastLogYearChartSelected();
-                int lastRouteChartSelected = mainForm.GetLastRouteChartSelected();
-                int lastTypeChartSelected = mainForm.GetLastTypeChartSelected();
-                int lastTypeTimeChartSelected = mainForm.GetLastTypeTimeChartSelected();
+                int lastLogYearChartSelected = MainForm.GetLastLogYearChartSelected();
+                int lastRouteChartSelected = MainForm.GetLastRouteChartSelected();
+                int lastTypeChartSelected = MainForm.GetLastTypeChartSelected();
+                int lastTypeTimeChartSelected = MainForm.GetLastTypeTimeChartSelected();
 
                 int lastMonthlyLogSelected = mainForm.GetLastMonthlyLogSelected();
                 int lastLogSelectedDataEntry = mainForm.GetLastLogSelectedDataEntry();

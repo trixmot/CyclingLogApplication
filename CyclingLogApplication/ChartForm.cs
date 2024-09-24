@@ -34,6 +34,21 @@ namespace CyclingLogApplication
             checkBoxRouteOption.Checked = false;
             cbRoutesChart.Enabled = false;
             rbChartTypeColumn.Checked = true;
+
+            MainForm mainform = new MainForm();
+            List<string> logList = mainform.ReadDataNames("Table_Log_year", "Name");
+
+            for (int i = 0; i < logList.Count; i++)
+            {
+                cbLogYearChart.Items.Add(logList[i]);
+            }
+
+            List<string> routeList = mainform.ReadDataNames("Table_Routes", "Name");
+
+            for (int i = 0; i < routeList.Count; i++)
+            {
+                cbRoutesChart.Items.Add(routeList[i]);
+            }
         }
 
         private void ChartForm_Load(object sender, EventArgs e)
@@ -42,10 +57,21 @@ namespace CyclingLogApplication
             this.table_Ride_InformationTableAdapter.Fill(this.cyclingLogDatabaseDataSet.Table_Ride_Information);
 
             MainForm mainForm = new MainForm();
-            cbLogYearChart.SelectedIndex = mainForm.GetLastLogYearChartSelected();
-            cbRoutesChart.SelectedIndex = mainForm.GetLastRouteChartSelected();
-            cbTypeChartData.SelectedIndex = mainForm.GetLastTypeChartSelected();
-            cbTypeTime.SelectedIndex = mainForm.GetLastTypeTimeChartSelected();
+            try
+            {
+                cbLogYearChart.SelectedIndex = MainForm.GetLastLogYearChartSelected();
+                cbRoutesChart.SelectedIndex = MainForm.GetLastRouteChartSelected();
+                cbTypeChartData.SelectedIndex = MainForm.GetLastTypeChartSelected();
+                cbTypeTime.SelectedIndex = MainForm.GetLastTypeTimeChartSelected();
+            }
+            catch
+            {
+                cbLogYearChart.SelectedIndex = -1;
+                cbRoutesChart.SelectedIndex = -1;
+                cbTypeChartData.SelectedIndex = -1;
+                cbTypeTime.SelectedIndex = -1;
+            }
+            
         }
 
         private void Chart1_MouseMove(object sender, MouseEventArgs e)
