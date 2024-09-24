@@ -96,13 +96,13 @@
             this.cbComfortRideDataEntry = new System.Windows.Forms.ComboBox();
             this.lbCustom1 = new System.Windows.Forms.Label();
             this.tbCustom1 = new System.Windows.Forms.TextBox();
-            this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
-            this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
             this.label27 = new System.Windows.Forms.Label();
             this.tbMaxCadence = new System.Windows.Forms.TextBox();
             this.tbCustom2 = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
+            this.lbCustom2 = new System.Windows.Forms.Label();
+            this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
+            this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -321,7 +321,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tbCustom2);
-            this.groupBox2.Controls.Add(this.label28);
+            this.groupBox2.Controls.Add(this.lbCustom2);
             this.groupBox2.Controls.Add(this.label27);
             this.groupBox2.Controls.Add(this.tbMaxCadence);
             this.groupBox2.Controls.Add(this.tbCustom1);
@@ -763,11 +763,13 @@
             // lbCustom1
             // 
             this.lbCustom1.AutoSize = true;
+            this.lbCustom1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbCustom1.Location = new System.Drawing.Point(285, 292);
             this.lbCustom1.Name = "lbCustom1";
             this.lbCustom1.Size = new System.Drawing.Size(48, 13);
             this.lbCustom1.TabIndex = 47;
             this.lbCustom1.Text = "Custom1";
+            this.lbCustom1.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // tbCustom1
             // 
@@ -776,20 +778,6 @@
             this.tbCustom1.Size = new System.Drawing.Size(125, 20);
             this.tbCustom1.TabIndex = 48;
             this.tbCustom1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tableRideInformationBindingSource
-            // 
-            this.tableRideInformationBindingSource.DataMember = "Table_Ride_Information";
-            this.tableRideInformationBindingSource.DataSource = this.cyclingLogDatabaseDataSet;
-            // 
-            // cyclingLogDatabaseDataSet
-            // 
-            this.cyclingLogDatabaseDataSet.DataSetName = "CyclingLogDatabaseDataSet";
-            this.cyclingLogDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // table_Ride_InformationTableAdapter
-            // 
-            this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
             // 
             // label27
             // 
@@ -816,14 +804,30 @@
             this.tbCustom2.TabIndex = 52;
             this.tbCustom2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label28
+            // lbCustom2
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(284, 319);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(48, 13);
-            this.label28.TabIndex = 51;
-            this.label28.Text = "Custom2";
+            this.lbCustom2.AutoSize = true;
+            this.lbCustom2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbCustom2.Location = new System.Drawing.Point(284, 319);
+            this.lbCustom2.Name = "lbCustom2";
+            this.lbCustom2.Size = new System.Drawing.Size(48, 13);
+            this.lbCustom2.TabIndex = 51;
+            this.lbCustom2.Text = "Custom2";
+            this.lbCustom2.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // tableRideInformationBindingSource
+            // 
+            this.tableRideInformationBindingSource.DataMember = "Table_Ride_Information";
+            this.tableRideInformationBindingSource.DataSource = this.cyclingLogDatabaseDataSet;
+            // 
+            // cyclingLogDatabaseDataSet
+            // 
+            this.cyclingLogDatabaseDataSet.DataSetName = "CyclingLogDatabaseDataSet";
+            this.cyclingLogDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // table_Ride_InformationTableAdapter
+            // 
+            this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
             // 
             // RideDataEntry
             // 
@@ -930,7 +934,7 @@
         private System.Windows.Forms.ComboBox cbComfortRideDataEntry;
         private System.Windows.Forms.TextBox tbCustom1;
         private System.Windows.Forms.TextBox tbCustom2;
-        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label lbCustom2;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.TextBox tbMaxCadence;
     }

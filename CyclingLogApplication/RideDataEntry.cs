@@ -100,6 +100,9 @@ namespace CyclingLogApplication
             numericUpDown2.Maximum = 1;
             numericUpDown2.Minimum = 1;
             numericUpDown2.Enabled = false;
+            lbCustom1.Text = mainForm.GetCustomField1();
+            lbCustom2.Text = mainForm.GetCustomField2();
+
 
             List<string> bikeList = mainForm.ReadDataNames("Table_Bikes", "Name");
             //Load Bike values:
@@ -715,7 +718,6 @@ namespace CyclingLogApplication
 
                 objectValues.Add(cbEffortRideDataEntry.SelectedItem.ToString());         //Effort:
                 objectValues.Add(cbComfortRideDataEntry.SelectedItem.ToString());         //Comfort:
-                objectValues.Add(tbMaxCadence.Text);                                    //MaxCandence:
                 objectValues.Add(tbCustom1.Text);                                                //Custom1
                 objectValues.Add(tbCustom2.Text);                                                //Custom2
 
