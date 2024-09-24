@@ -173,127 +173,140 @@ namespace CyclingLogApplication
             //    System.Environment.Exit(0);
             //}
 
-            ConfigurationFile configfile = new ConfigurationFile();
-            configfile.readConfigFile();
-            int logSetting = GetLogLevel();
-
-            lbVersion.Text = "App Version: " + GetLogVersion();
-            lbMaintError.Text = "";
-
-            string firstDay = GetFirstDayOfWeek();
-            if (firstDay.Equals("Sunday"))
+            try
             {
-                rbFirstDayMonday.Checked = false;
-                rbFirstDaySunday.Checked = true;
+                ConfigurationFile configfile = new ConfigurationFile();
+                configfile.readConfigFile();
+                int logSetting = GetLogLevel();
+
+                lbVersion.Text = "App Version: " + GetLogVersion();
+                lbMaintError.Text = "";
+
+                string firstDay = GetFirstDayOfWeek();
+                if (firstDay.Equals("Sunday"))
+                {
+                    rbFirstDayMonday.Checked = false;
+                    rbFirstDaySunday.Checked = true;
+                }
+                else
+                {
+                    rbFirstDayMonday.Checked = true;
+                    rbFirstDaySunday.Checked = false;
+                }
+
+                //Get all values and load the comboboxes:
+                List<string> logYearList = ReadDataNames("Table_Log_year", "Name");
+                List<string> routeList = ReadDataNames("Table_Routes", "Name");
+                List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
+
+                rideDataEntryForm = new RideDataEntry(this);
+                rideDataDisplayForm = new RideDataDisplay(this);
+                chartForm = new ChartForm(this);
+
+                //Set first option of 'None':
+                cbLogYear1.Items.Add("--None--");
+                cbLogYear2.Items.Add("--None--");
+                cbLogYear3.Items.Add("--None--");
+                cbLogYear4.Items.Add("--None--");
+                cbLogYear5.Items.Add("--None--");
+
+                //Load LogYear values:
+                foreach (string val in logYearList)
+                {
+                    cbLogYearConfig.Items.Add(val);
+                    rideDataEntryForm.cbLogYearDataEntry.Items.Add(val);
+                    cbLogYear1.Items.Add(val);
+                    cbLogYear2.Items.Add(val);
+                    cbLogYear3.Items.Add(val);
+                    cbLogYear4.Items.Add(val);
+                    cbLogYear5.Items.Add(val);
+                    rideDataDisplayForm.cbLogYearFilter.Items.Add(val);
+                    chartForm.cbLogYearChart.Items.Add(val);
+                    Logger.Log("Data Loading: Log Year: " + val, 0, logSetting);
+                }
+
+                if (GetLastLogSelectedDataEntry() != 0)
+                {
+                    rideDataEntryForm.cbLogYearDataEntry.SelectedIndex = GetLastLogSelectedDataEntry();
+                }
+
+                //Load Route values:
+                foreach (var val in routeList)
+                {
+                    cbRouteConfig.Items.Add(val);
+                    rideDataEntryForm.cbRouteDataEntry.Items.Add(val);
+                    chartForm.cbRoutesChart.Items.Add(val);
+                    Logger.Log("Data Loading: Route: " + val, 1, logSetting);
+                }
+
+                //Load Bike values:
+                foreach (var val in bikeList)
+                {
+                    cbBikeConfig.Items.Add(val);
+                    cbBikeMaint.Items.Add(val);
+                    Logger.Log("Data Loading: Bikes: " + val, 1, logSetting);
+                }
+
+                if (logYearList.Count == 0)
+                {
+                    MessageBox.Show("No Yearly Logs have been added to the database. Please add an entry before continuing.");
+                    tabControl1.SelectedTab = tabControl1.TabPages["Settings"];
+                    return;
+                }
+
+                if (routeList.Count == 0)
+                {
+                    MessageBox.Show("No Routes have been created yet.");
+                    tabControl1.SelectedTab = tabControl1.TabPages["Routes"];
+                    return;
+                }
+
+                if (bikeList.Count == 0)
+                {
+                    MessageBox.Show("No Bikes have been added yet. Please add an entry for a Bike.");
+                    tabControl1.SelectedTab = tabControl1.TabPages["Bikes"];
+                    return;
+                }
+
+                GetMaintLog();
+
+                formloading = true;
+                //Set first option of 'None':
+                cbStatMonthlyLogYear.Items.Add("--None--");
+
+
+                //Load LogYear Monthly values:
+                foreach (string val in logYearList)
+                {
+                    cbStatMonthlyLogYear.Items.Add(val);
+                }
+
+                //Load Statistic combo index values:
+                cbLogYear1.SelectedIndex = Convert.ToInt32(GetcbStatistic1());
+                cbLogYear2.SelectedIndex = Convert.ToInt32(GetcbStatistic2());
+                cbLogYear3.SelectedIndex = Convert.ToInt32(GetcbStatistic3());
+                cbLogYear4.SelectedIndex = Convert.ToInt32(GetcbStatistic4());
+                cbLogYear5.SelectedIndex = Convert.ToInt32(GetcbStatistic5());
+
+                cbStatMonthlyLogYear.SelectedIndex = Convert.ToInt32(GetLastMonthlyLogSelected());
+
+                RefreshStatisticsData();
+                RunMonthlyStatistics();
+                refreshWeekly();
+                refreshRoutes();
+                refreshBikes();
+
+                tbCustomDataField1.Text = GetCustomField1();
+                tbCustomDataField2.Text = GetCustomField2();
+                tabControl1.SelectedTab = tabControl1.TabPages["Main"];
+                formloading = false;
+
             }
-            else
+            catch (Exception ex)
             {
-                rbFirstDayMonday.Checked = true;
-                rbFirstDaySunday.Checked = false;
-            }
-            
-            //Get all values and load the comboboxes:
-            List<string> logYearList = ReadDataNames("Table_Log_year", "Name");
-            List<string> routeList = ReadDataNames("Table_Routes", "Name");
-            List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
-
-            rideDataEntryForm = new RideDataEntry(this);
-            rideDataDisplayForm = new RideDataDisplay(this);
-            chartForm = new ChartForm(this);
-
-            //Set first option of 'None':
-            cbLogYear1.Items.Add("--None--");
-            cbLogYear2.Items.Add("--None--");
-            cbLogYear3.Items.Add("--None--");
-            cbLogYear4.Items.Add("--None--");
-            cbLogYear5.Items.Add("--None--");
-
-            //Load LogYear values:
-            foreach (string val in logYearList)
-            {
-                cbLogYearConfig.Items.Add(val);
-                rideDataEntryForm.cbLogYearDataEntry.Items.Add(val);
-                cbLogYear1.Items.Add(val);
-                cbLogYear2.Items.Add(val);
-                cbLogYear3.Items.Add(val);
-                cbLogYear4.Items.Add(val);
-                cbLogYear5.Items.Add(val);
-                rideDataDisplayForm.cbLogYearFilter.Items.Add(val);
-                chartForm.cbLogYearChart.Items.Add(val);
-                Logger.Log("Data Loading: Log Year: " + val, 0, logSetting);
+                Logger.LogError("[ERROR]: Exception while trying to load form." + ex.Message.ToString());
             }
 
-            rideDataEntryForm.cbLogYearDataEntry.SelectedIndex = GetLastLogSelectedDataEntry();
-
-            //Load Route values:
-            foreach (var val in routeList)
-            {
-                cbRouteConfig.Items.Add(val);
-                rideDataEntryForm.cbRouteDataEntry.Items.Add(val);
-                chartForm.cbRoutesChart.Items.Add(val);
-                Logger.Log("Data Loading: Route: " + val, 1, logSetting);
-            }
-
-            //Load Bike values:
-            foreach (var val in bikeList)
-            {
-                cbBikeConfig.Items.Add(val);
-                cbBikeMaint.Items.Add(val);
-                Logger.Log("Data Loading: Bikes: " + val, 1, logSetting);
-            }
-
-            if (logYearList.Count == 0)
-            {
-                MessageBox.Show("No Yearly Logs have been added to the database. Please add an entry before continuing.");
-                tabControl1.SelectedIndex = 2;
-                return;
-            }
-
-            if (routeList.Count == 0)
-            {
-                MessageBox.Show("No Routes have been created yet.");
-                tabControl1.SelectedIndex = 2;
-                return;
-            }
-
-            if (bikeList.Count == 0)
-            {
-                MessageBox.Show("No Bikes have been added yet. Please add an entry for a Bike.");
-                tabControl1.SelectedIndex = 2;
-                return;
-            }
-
-            GetMaintLog();
-
-            formloading = true;
-            //Set first option of 'None':
-            cbStatMonthlyLogYear.Items.Add("--None--");
-
-            //Load LogYear Monthly values:
-            foreach (string val in logYearList)
-            {
-                cbStatMonthlyLogYear.Items.Add(val);
-            }
-
-            //Load Statistic combo index values:
-            cbLogYear1.SelectedIndex = Convert.ToInt32(GetcbStatistic1());
-            cbLogYear2.SelectedIndex = Convert.ToInt32(GetcbStatistic2());
-            cbLogYear3.SelectedIndex = Convert.ToInt32(GetcbStatistic3());
-            cbLogYear4.SelectedIndex = Convert.ToInt32(GetcbStatistic4());
-            cbLogYear5.SelectedIndex = Convert.ToInt32(GetcbStatistic5());
-
-            cbStatMonthlyLogYear.SelectedIndex = Convert.ToInt32(GetLastMonthlyLogSelected());
-
-            RefreshStatisticsData();
-            RunMonthlyStatistics();
-            refreshWeekly();
-            refreshRoutes();
-            refreshBikes();
-
-            tbCustomDataField1.Text = GetCustomField1();
-            tbCustomDataField2.Text = GetCustomField2();
-
-            formloading = false;
         }
 
         private void CloseForm(object sender, EventArgs e)
@@ -949,6 +962,8 @@ namespace CyclingLogApplication
             cbLogYear4.Items.Add(logYearTitle);
             cbLogYear5.Items.Add(logYearTitle);
 
+            refreshWeekly();
+
             Logger.Log("Adding a Log Year entry to the Configuration:" + logYearTitle, 0, logSetting);
         }
 
@@ -961,7 +976,7 @@ namespace CyclingLogApplication
                 int logYearIndex = GetLogYearIndex(logName);
 
                 int chartIndexCount = chartForm.cbLogYearChart.Items.Count;
-                SetLastLogYearChartSelected(chartIndexCount -2);
+                SetLastLogYearChartSelected(chartIndexCount - 2);
 
                 cbLogYearConfig.Items.Remove(logName);
                 rideDataEntryForm.cbLogYearDataEntry.Items.Remove(logName);
@@ -1124,16 +1139,18 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        private void RunStoredProcedure(List<object> objectValues, string procedureName)
+        private int RunStoredProcedure(List<object> objectValues, string procedureName)
         {
+            int ToReturn = -1;
+
             using (var results = ExecuteSimpleQueryConnection(procedureName, objectValues))
             {
-                int ToReturn = -1;
-
                 if (results.HasRows)
                     while (results.Read())
                         ToReturn = (int)results[0];
             }
+
+            return ToReturn;
         }
 
         private void RemoveLogYearData(int logIndex)
@@ -1235,6 +1252,24 @@ namespace CyclingLogApplication
                     }
                 }
             }
+
+            List<object> objectValues = new List<object>();
+            objectValues.Add(routeString);
+            RunStoredProcedure(objectValues, "Route_Add");
+
+            cbRouteConfig.Items.Add(routeString);
+            cbRouteConfig.SelectedIndex = cbRouteConfig.Items.Count - 1;
+            rideDataEntryForm.AddRouteDataEntry(routeString);
+            chartForm.cbRoutesChart.Items.Add(routeString);
+
+            refreshRoutes();
+            Logger.Log("Adding a Route entry to the Configuration:" + routeString, 0, logSetting);
+        }
+
+        private void addDefautRoute()
+        {
+            string routeString = "Miscellaneous Route";
+            int logSetting = GetLogLevel();
 
             List<object> objectValues = new List<object>();
             objectValues.Add(routeString);
@@ -2023,7 +2058,7 @@ namespace CyclingLogApplication
             if (firstDay.Equals("Sunday"))
             {
                 weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, DayOfWeek.Sunday);
-            } 
+            }
             else
             {
                 weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, DayOfWeek.Monday);
@@ -3077,7 +3112,8 @@ namespace CyclingLogApplication
 
                     objectValues.Add(tbBikeConfig.Text);
 
-                } else
+                }
+                else
                 {
                     objectValues.Add(cbBikeConfig.SelectedItem.ToString());
                     tbBikeConfig.Text = cbBikeConfig.SelectedItem.ToString();
@@ -3191,13 +3227,23 @@ namespace CyclingLogApplication
                 fi.MoveTo(path + "\\CyclingLogConfig_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".xml");
             }
 
-            List<object> objectValues = new List<object>();
-            objectValues.Add("Miscellaneous Route");
-            RunStoredProcedure(objectValues, "Route_Add");
-            Logger.Log("Adding a Route entry to the Configuration:" + "Miscellaneous Route", 0, 0);
+            addDefautRoute();
+            Logger.Log("Adding a Route entry to the Configuration:" + "Miscellaneous Route:", 0, 0);
 
-            SetCustomField1("custom1");
-            SetCustomField2("custom2");
+            SetCustomField1("");
+            SetCustomField2("");
+
+            SetLastLogSelectedDataEntry(0);
+            SetcbStatistic1("0");
+            SetcbStatistic2("0");
+            SetcbStatistic3("0");
+            SetcbStatistic4("0");
+            SetcbStatistic5("0");
+            SetLastLogFilterSelected(-1);
+            SetLastBikeSelected(-1);
+            SetLastLogSelected(-1);
+            SetLastLogYearChartSelected(-1);
+            SetLastMonthlyLogSelected(-1);
 
             MessageBox.Show("\"Close the program and reopen before entering any data.");
         }
@@ -3888,7 +3934,7 @@ namespace CyclingLogApplication
 
         private void BtBikeMilesUpdate_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void BtRefreshStatisticsData_Click(object sender, EventArgs e)
@@ -4092,7 +4138,7 @@ namespace CyclingLogApplication
                     hr = minutes / 60;
                     minutes = minutes % 60;
                 }
-                
+
                 hours = hours + hr;
                 string string_hours;
                 string string_min;
@@ -5093,7 +5139,7 @@ namespace CyclingLogApplication
                     hr = minutes / 60;
                     minutes = minutes % 60;
                 }
- 
+
                 hours = hours + hr;
                 string string_hours;
                 string string_min;
@@ -5111,7 +5157,8 @@ namespace CyclingLogApplication
                 if (minutes < 10)
                 {
                     string_min = "0" + minutes.ToString();
-                } else
+                }
+                else
                 {
                     string_min = minutes.ToString();
                 }
@@ -5206,7 +5253,7 @@ namespace CyclingLogApplication
                 double totalMin = minutes + secToMin + hrsToMin;
 
                 //Divide total minutes by total miles:
-                avgPace = totalMin/double.Parse(totalMiles);
+                avgPace = totalMin / double.Parse(totalMiles);
                 avgPace = Math.Round(avgPace, 2);
                 splitAsTime = avgPace.ToString().Split('.');
             }
@@ -5386,7 +5433,8 @@ namespace CyclingLogApplication
             string firstDay = GetFirstDayOfWeek();
             int firstWeek = 0;
 
-            if (firstDay.Equals("Sunday")){
+            if (firstDay.Equals("Sunday"))
+            {
                 firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Sunday);
             }
             else
@@ -5442,6 +5490,7 @@ namespace CyclingLogApplication
             RunMonthlyStatistics();
             refreshWeekly();
             refreshBikes();
+            refreshRoutes();
 
             //using (RefreshingForm refreshingForm = new RefreshingForm())
             //{
@@ -5531,6 +5580,8 @@ namespace CyclingLogApplication
             {
                 List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
 
+                dataGridViewBikes.DataSource = null;
+                dataGridViewBikes.Rows.Clear();
                 dataGridViewBikes.ColumnCount = 4;
                 dataGridViewBikes.Name = "Bike Listing And Miles";
                 dataGridViewBikes.Columns[0].Name = "Bike Name";
@@ -5964,12 +6015,9 @@ namespace CyclingLogApplication
                     tbAvgPace5 = GetAveragePaceWeekly(logIndex, weekNumber5, tbDistanceWeek5).ToString();
                 }
             }
-            int count = 0;
 
             try
             {
-                List<string> routeList = ReadDataNames("Table_Routes", "Name");
-
                 dataGridViewWeekly.DataSource = null;
                 dataGridViewWeekly.Rows.Clear();
                 dataGridViewWeekly.ColumnCount = 5;
@@ -5985,7 +6033,7 @@ namespace CyclingLogApplication
                 dataGridViewWeekly.Columns[1].ValueType = typeof(double);
                 dataGridViewWeekly.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
                 dataGridViewWeekly.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
-               
+
                 //dataGridViewWeekly.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells; 
                 //dataGridViewWeekly.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
                 //dataGridViewWeekly.Columns[0].FillWeight = 20;
@@ -6022,7 +6070,7 @@ namespace CyclingLogApplication
                 //dataGridViewRoutes.DefaultCellStyle.SelectionForeColor = Color.White;
                 dataGridViewWeekly.RowHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 //dataGridViewRoutes.RowHeadersVisible = false;
-                
+
                 dataGridViewWeekly.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
                 dataGridViewWeekly.ColumnHeadersHeight = 40;
                 dataGridViewWeekly.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;

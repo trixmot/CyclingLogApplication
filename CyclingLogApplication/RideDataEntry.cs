@@ -100,8 +100,27 @@ namespace CyclingLogApplication
             numericUpDown2.Maximum = 1;
             numericUpDown2.Minimum = 1;
             numericUpDown2.Enabled = false;
-            lbCustom1.Text = mainForm.GetCustomField1();
-            lbCustom2.Text = mainForm.GetCustomField2();
+
+            string customField1 = mainForm.GetCustomField1();
+            string customField2 = mainForm.GetCustomField2();
+
+            if (customField1.Equals(""))
+            {
+                lbCustom1.Text = "Custom1";
+            }
+            else
+            {
+                lbCustom1.Text = mainForm.GetCustomField1();
+            }
+
+            if (customField2.Equals(""))
+            {
+                lbCustom2.Text = "Custom2";
+            }
+            else
+            {
+                lbCustom2.Text = mainForm.GetCustomField2();
+            }
 
 
             List<string> bikeList = mainForm.ReadDataNames("Table_Bikes", "Name");
