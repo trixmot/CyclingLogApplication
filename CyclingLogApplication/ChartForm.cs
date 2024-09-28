@@ -22,7 +22,7 @@ namespace CyclingLogApplication
             InitializeComponent();
             labelChartError.Hide();
             //MainForm mainForm = new MainForm("");
-            sqlConnection = mainForm.GetsqlConnectionString();
+            sqlConnection = MainForm.GetsqlConnectionString();
             //chart1.Series["Series1"].XValueMember = "Date";
             //chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
             //chart1.Series["Series1"].YValueMembers = "AvgSpeed";
@@ -36,14 +36,14 @@ namespace CyclingLogApplication
             rbChartTypeColumn.Checked = true;
 
             MainForm mainform = new MainForm();
-            List<string> logList = mainform.ReadDataNames("Table_Log_year", "Name");
+            List<string> logList = MainForm.ReadDataNames("Table_Log_year", "Name");
 
             for (int i = 0; i < logList.Count; i++)
             {
                 cbLogYearChart.Items.Add(logList[i]);
             }
 
-            List<string> routeList = mainform.ReadDataNames("Table_Routes", "Name");
+            List<string> routeList = MainForm.ReadDataNames("Table_Routes", "Name");
 
             for (int i = 0; i < routeList.Count; i++)
             {
@@ -107,7 +107,7 @@ namespace CyclingLogApplication
             labelChartError.Hide();
             using (MainForm mainForm = new MainForm(""))
             {
-                mainForm.SetLastLogYearChartSelected(cbLogYearChart.SelectedIndex);
+                MainForm.SetLastLogYearChartSelected(cbLogYearChart.SelectedIndex);
             }
         }
 
@@ -116,7 +116,7 @@ namespace CyclingLogApplication
             labelChartError.Hide();
             using (MainForm mainForm = new MainForm(""))
             {
-                mainForm.SetLastRouteChartSelected(cbRoutesChart.SelectedIndex);
+                MainForm.SetLastRouteChartSelected(cbRoutesChart.SelectedIndex);
             }
         }
 
@@ -124,7 +124,7 @@ namespace CyclingLogApplication
         {
             using (MainForm mainForm = new MainForm(""))
             {
-                int logSetting = mainForm.GetLogLevel();
+                int logSetting = MainForm.GetLogLevel();
             }
             //int logIndex = 1;
 
@@ -191,8 +191,8 @@ namespace CyclingLogApplication
 
             using (MainForm mainForm = new MainForm(""))
             {
-                logSetting = mainForm.GetLogLevel();
-                logIndex = mainForm.GetLogYearIndex(cbLogYearChart.SelectedItem.ToString());
+                logSetting = MainForm.GetLogLevel();
+                logIndex = MainForm.GetLogYearIndex(cbLogYearChart.SelectedItem.ToString());
             }
 
             //Average Speed:
@@ -724,7 +724,7 @@ namespace CyclingLogApplication
 
             using (MainForm mainForm = new MainForm())
             {
-                databaseConnection = mainForm.GetsDatabaseConnectionString();
+                databaseConnection = MainForm.GetsDatabaseConnectionString();
             }
             SqlDataReader ToReturn = databaseConnection.ExecuteQueryConnection(tmpProcedureName, _Parameters);
 
@@ -749,7 +749,7 @@ namespace CyclingLogApplication
             labelChartError.Hide();
             using (MainForm mainForm = new MainForm(""))
             {
-                mainForm.SetLastTypeTimeChartSelected(cbTypeTime.SelectedIndex);
+                MainForm.SetLastTypeTimeChartSelected(cbTypeTime.SelectedIndex);
             }
         }
 
@@ -758,7 +758,7 @@ namespace CyclingLogApplication
             labelChartError.Hide();
             using (MainForm mainForm = new MainForm(""))
             {
-                mainForm.SetLastTypeChartSelected(cbTypeChartData.SelectedIndex);
+                MainForm.SetLastTypeChartSelected(cbTypeChartData.SelectedIndex);
             }
         }
     }

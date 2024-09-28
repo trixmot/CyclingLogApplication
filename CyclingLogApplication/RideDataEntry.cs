@@ -31,8 +31,8 @@ namespace CyclingLogApplication
         {
             InitializeComponent();
             MainForm mainForm = new MainForm();
-            sqlConnection = mainForm.GetsqlConnectionString();
-            databaseConnection = mainForm.GetsDatabaseConnectionString();
+            sqlConnection = MainForm.GetsqlConnectionString();
+            databaseConnection = MainForm.GetsDatabaseConnectionString();
 
             //Hidden field to store the record id of the current displaying record that has been loaded on the page:
             tbRecordID.Hide();
@@ -81,8 +81,10 @@ namespace CyclingLogApplication
                 cbLogYearDataEntry.Items.Add(logYearList.ElementAt(i));
             }
 
+            cbLogYearDataEntry.SelectedIndex = MainForm.GetLastLogSelectedDataEntry();
+
             //Set index for the LogYear:
-            int logYearIndex = Convert.ToInt32(mainForm.GetLastLogSelectedDataEntry());
+            int logYearIndex = Convert.ToInt32(MainForm.GetLastLogSelectedDataEntry());
 
             if (logYearIndex == -1)
             {
@@ -102,7 +104,7 @@ namespace CyclingLogApplication
             numericUpDown2.Enabled = false;
 
             ConfigurationFile configurationFile = new ConfigurationFile();
-            configurationFile.readConfigFile();
+            ConfigurationFile.ReadConfigFile();
             string customField1 = MainForm.GetCustomField1();
             string customField2 = MainForm.GetCustomField2();
 
@@ -132,7 +134,7 @@ namespace CyclingLogApplication
                 tbCustom2.Visible = true;
             }
 
-            List<string> bikeList = mainForm.ReadDataNames("Table_Bikes", "Name");
+            List<string> bikeList = MainForm.ReadDataNames("Table_Bikes", "Name");
             //Load Bike values:
             foreach (var val in bikeList)
             {
@@ -191,7 +193,7 @@ namespace CyclingLogApplication
 
         private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            if (formClosing == 0 && chk1RideDataEntry.Checked)
+            if (formClosing == 0)
             {
                 if (cbLogYearDataEntry.SelectedIndex == -1)
                 {
@@ -214,13 +216,17 @@ namespace CyclingLogApplication
                 return;
             }
 
-            List<object> objectValues = new List<object>();
-            objectValues.Add(date);
+            List<object> objectValues = new List<object>
+            {
+                date
+            };
             //int logLevel;
 
             int logID = 0;
-            List<object> objectValuesLogID = new List<object>();
-            objectValuesLogID.Add(dtpRideDate.Value.Year);
+            List<object> objectValuesLogID = new List<object>
+            {
+                dtpRideDate.Value.Year
+            };
 
             using (var results = ExecuteSimpleQueryConnection("Get_LogYear_Index", objectValuesLogID))
             {
@@ -302,7 +308,8 @@ namespace CyclingLogApplication
                                 caloriesField = results[11].ToString();
                                 totalAscent = results[12].ToString();
                                 totalDescent = results[13].ToString();
-                                maxSpeed = results[14].ToString();
+                                double maxSpeedDouble = double.Parse(results[14].ToString());
+                                maxSpeed = (Math.Round(maxSpeedDouble, 1)).ToString();
                                 avgPower = results[15].ToString();
                                 maxPower = results[16].ToString();
                                 route = results[17].ToString();
@@ -390,8 +397,8 @@ namespace CyclingLogApplication
         {
             using (MainForm mainForm = new MainForm(""))
             {
-                mainForm.SetLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
-                mainForm.SetLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);
+                MainForm.SetLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
+                MainForm.SetLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);
                 //MainForm mainForm2 = new MainForm();
                 //mainForm2.refreshData();
                 //Close();
@@ -541,8 +548,8 @@ namespace CyclingLogApplication
 
                 using (MainForm mainForm = new MainForm(""))
                 {
-                    logSetting = mainForm.GetLogLevel();
-                    logIndex = mainForm.GetLogYearIndex(cbLogYearDataEntry.SelectedItem.ToString());
+                    logSetting = MainForm.GetLogLevel();
+                    logIndex = MainForm.GetLogYearIndex(cbLogYearDataEntry.SelectedItem.ToString());
                 }
 
                 //TODO: Run check to see if a record exists for this date:
@@ -588,7 +595,7 @@ namespace CyclingLogApplication
                 // Check recordID value:
                 if (!entryID.Equals("0") && changeType.Equals("Add"))
                 {
-                    DialogResult result = MessageBox.Show("Detected that the current data was retrieved from a record that was already saved to the database. Do you want to continue adding the record?", "Add Ride Data", MessageBoxButtons.YesNo);
+                    DialogResult result = MessageBox.Show("Detected that the current date was retrieved from a record that was already saved to the database. Do you want to continue adding the record?", "Add Ride Data", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No)
                     {
                         Logger.Log("Detected that the current data was retrieved from a record that was already saved to the database. RecordID" + recordID, 0, logSetting);
@@ -818,7 +825,7 @@ namespace CyclingLogApplication
             // NOTE: This line of code loads data into the 'cyclingLogDatabaseDataSet.Table_Ride_Information' table. You can move, or remove it, as needed.
             this.table_Ride_InformationTableAdapter.Fill(this.cyclingLogDatabaseDataSet.Table_Ride_Information);
             MainForm mainForm = new MainForm("");
-            cbBikeDataEntrySelection.SelectedIndex = mainForm.GetLastBikeSelected();
+            cbBikeDataEntrySelection.SelectedIndex = MainForm.GetLastBikeSelected();
             // cbLogYearDataEntry.SelectedIndex = cbRouteDataEntry.FindStringExact("");
         }
 
@@ -1051,7 +1058,6 @@ namespace CyclingLogApplication
             cbEffortRideDataEntry.SelectedIndex = cbEffortRideDataEntry.FindStringExact("");
             //tbWeekNumber.Text = "0";
             tbRecordID.Text = "0";
-            chk1RideDataEntry.Checked = false;
             cbComfortRideDataEntry.SelectedIndex = cbComfortRideDataEntry.FindStringExact("");
             tbCustom1.Text = "";
             tbCustom2.Text = "";
@@ -1074,7 +1080,7 @@ namespace CyclingLogApplication
         {
             using (MainForm mainForm = new MainForm(""))
             {
-                mainForm.SetLastLogSelected(cbLogYearDataEntry.SelectedIndex);
+                MainForm.SetLastLogSelected(cbLogYearDataEntry.SelectedIndex);
                 if (cbLogYearDataEntry.SelectedIndex == -1)
                 {
                     lbRideDataEntryError.Show();
@@ -1120,7 +1126,7 @@ namespace CyclingLogApplication
             }
         }
 
-        private void dtpRideDate_ValueChanged(object sender, EventArgs e)
+        private void DtpRideDate_ValueChanged(object sender, EventArgs e)
         {
             //Get current date and then obtain and set week number:
             //var rideDataSate = dtpTimeRideDataEntry.Value;
@@ -1159,8 +1165,10 @@ namespace CyclingLogApplication
                 try
                 {
 
-                    List<object> objectValuesRideDate = new List<object>();
-                    objectValuesRideDate.Add(rideRecordID);
+                    List<object> objectValuesRideDate = new List<object>
+                    {
+                        rideRecordID
+                    };
 
                     using (var results = ExecuteSimpleQueryConnection("DeleteRideByID", objectValuesRideDate))
                     {
@@ -1214,6 +1222,12 @@ namespace CyclingLogApplication
                     //        returnValue = int.Parse(temp);
                     //    }
                     //}
+
+                    if (numericUpDown2.Enabled == true)
+                    {
+                        // Run to update the form with the current existing data:
+                        Retrieve_run();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -1228,10 +1242,7 @@ namespace CyclingLogApplication
                    // }
 
                     // close connection
-                    if (sqlConnection != null)
-                    {
-                        sqlConnection.Close();
-                    }
+                    sqlConnection?.Close();
                 }
             }
         }
@@ -1259,27 +1270,14 @@ namespace CyclingLogApplication
 
         }
 
-        private void Chk1RideDataEntry_Click(object sender, EventArgs e)
+        private void BtRetrieve_Click(object sender, EventArgs e)
         {
-            DateTimePicker1_ValueChanged(sender, e);
-
-            if (!chk1RideDataEntry.Checked)
-            {
-                tbRecordID.Text = "0";
-                lbRideDataEntryError.Text = "";
-            }
+            formLoad = 0;
+            Retrieve_run();
         }
 
-        private void btRetrieve_Click(object sender, EventArgs e)
+        private void Retrieve_run()
         {
-            //Check to see if option is checked:
-            if (!chk1RideDataEntry.Checked)
-            {
-                MessageBox.Show("The Retrieve Ride Data must be checked.");
-
-                return;
-            }
-
             if (cbLogYearDataEntry.SelectedIndex == -1)
             {
                 MessageBox.Show("A Log Year must be selected.");
@@ -1287,13 +1285,14 @@ namespace CyclingLogApplication
                 return;
             }
 
-
             // Look up to see if there is an entry by this date:
             GetRideData(dtpRideDate.Value.Date, 1);
 
             int logID = 0;
-            List<object> objectValuesLogID = new List<object>();
-            objectValuesLogID.Add(dtpRideDate.Value.Year);
+            List<object> objectValuesLogID = new List<object>
+            {
+                dtpRideDate.Value.Year
+            };
 
             using (var results = ExecuteSimpleQueryConnection("Get_LogYear_Index", objectValuesLogID))
             {
@@ -1310,9 +1309,11 @@ namespace CyclingLogApplication
                 }
             }
 
-            List<object> objectValuesRideDate = new List<object>();
-            objectValuesRideDate.Add(dtpRideDate.Value);
-            objectValuesRideDate.Add(logID);
+            List<object> objectValuesRideDate = new List<object>
+            {
+                dtpRideDate.Value,
+                logID
+            };
             int resultsCount = 0;
             using (var results = ExecuteSimpleQueryConnection("CheckRideDateCount", objectValuesRideDate))
             {
@@ -1325,7 +1326,7 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    //No matching date found
+                    MessageBox.Show("No data found for the selected date.");
                 }
             }
 
@@ -1334,7 +1335,7 @@ namespace CyclingLogApplication
                 //Alert user that multiple dates were found:
                 MessageBox.Show("Multiple Rides were found for the selected date. Use the 'Multiple Rides' selecter to select the desired ride.");
             }
-            
+
         }
     }
 }

@@ -12,7 +12,7 @@ namespace CyclingLogApplication
     class ConfigurationFile
     {
 
-        public bool readConfigFile()
+        public static bool ReadConfigFile()
         {
             //This will give us the full name path of the executable file:
             //i.e. C:\Program Files\MyApplication\MyApplication.exe
@@ -33,9 +33,15 @@ namespace CyclingLogApplication
                     System.IO.Directory.CreateDirectory(path);
                 }
 
+                // Determine whether the directory and file exists.
+                if (!Directory.Exists(strWorkPath + "\\database"))
+                {
+                    System.IO.Directory.CreateDirectory(strWorkPath + "\\database");
+                }
+
                 if (!Directory.Exists(path) || !File.Exists(pathFile))
                 {
-                    writeConfigFile();
+                    WriteConfigFile();
                 }
             }
             catch (Exception e)
@@ -49,7 +55,7 @@ namespace CyclingLogApplication
 
             doc.Load(strWorkPath + "\\settings\\CyclingLogConfig.xml");
             //doc.Load(@"C:\\CyclingLogApplication\\CyclingLogConfig.xml");
-            List<string> configList = new List<string>();
+            //List<string> configList = new List<string>();
 
             //=================================
             // Read from config file
@@ -109,54 +115,54 @@ namespace CyclingLogApplication
             string lastLogYearSelectedDataEntry = nodes.Item(0).SelectSingleNode("LastLogSelectedDataEntry").InnerText;
 
             MainForm mainForm = new MainForm();
-            mainForm.SetLogLevel(logLevel);
-            mainForm.SetFirstDayOfWeek(firstDayOfWeek);
-            mainForm.SetCustomField1(customDataField1);
-            mainForm.SetCustomField2(customDataField2);
-            mainForm.SetcbStatistic1(cbStatistic1);
-            mainForm.SetcbStatistic2(cbStatistic2);
-            mainForm.SetcbStatistic3(cbStatistic3);
-            mainForm.SetcbStatistic4(cbStatistic4);
-            mainForm.SetcbStatistic5(cbStatistic5);
-            mainForm.SetLastLogFilterSelected(Convert.ToInt32(lastLogYearFilterSelected));
-            mainForm.SetLastBikeSelected(Convert.ToInt32(lastBikeSelected));
-            mainForm.SetLastLogSelected(Convert.ToInt32(lastLogYearSelected));
+            MainForm.SetLogLevel(logLevel);
+            MainForm.SetFirstDayOfWeek(firstDayOfWeek);
+            MainForm.SetCustomField1(customDataField1);
+            MainForm.SetCustomField2(customDataField2);
+            MainForm.SetcbStatistic1(cbStatistic1);
+            MainForm.SetcbStatistic2(cbStatistic2);
+            MainForm.SetcbStatistic3(cbStatistic3);
+            MainForm.SetcbStatistic4(cbStatistic4);
+            MainForm.SetcbStatistic5(cbStatistic5);
+            MainForm.SetLastLogFilterSelected(Convert.ToInt32(lastLogYearFilterSelected));
+            MainForm.SetLastBikeSelected(Convert.ToInt32(lastBikeSelected));
+            MainForm.SetLastLogSelected(Convert.ToInt32(lastLogYearSelected));
 
-            mainForm.SetLastLogYearChartSelected(Convert.ToInt32(chartLogYearSelected));
-            mainForm.SetLastRouteChartSelected(Convert.ToInt32(chartRouteSelected));
-            mainForm.SetLastTypeChartSelected(Convert.ToInt32(chartTypeSelected));
-            mainForm.SetLastTypeTimeChartSelected(Convert.ToInt32(chartTimeTypeSelected));
+            MainForm.SetLastLogYearChartSelected(Convert.ToInt32(chartLogYearSelected));
+            MainForm.SetLastRouteChartSelected(Convert.ToInt32(chartRouteSelected));
+            MainForm.SetLastTypeChartSelected(Convert.ToInt32(chartTypeSelected));
+            MainForm.SetLastTypeTimeChartSelected(Convert.ToInt32(chartTimeTypeSelected));
 
-            mainForm.SetLastMonthlyLogSelected(Convert.ToInt32(lastMonthlyLogYearSelected));
-            mainForm.SetLastLogSelectedDataEntry(Convert.ToInt32(lastLogYearSelectedDataEntry));
+            MainForm.SetLastMonthlyLogSelected(Convert.ToInt32(lastMonthlyLogYearSelected));
+            MainForm.SetLastLogSelectedDataEntry(Convert.ToInt32(lastLogYearSelectedDataEntry));
 
-            mainForm.SetCheckedListBoxItem0(checkListBoxItem0);
-            mainForm.SetCheckedListBoxItem1(checkListBoxItem1);
-            mainForm.SetCheckedListBoxItem2(checkListBoxItem2);
-            mainForm.SetCheckedListBoxItem3(checkListBoxItem3);
-            mainForm.SetCheckedListBoxItem4(checkListBoxItem4);
-            mainForm.SetCheckedListBoxItem5(checkListBoxItem5);
-            mainForm.SetCheckedListBoxItem6(checkListBoxItem6);
-            mainForm.SetCheckedListBoxItem7(checkListBoxItem7);
-            mainForm.SetCheckedListBoxItem8(checkListBoxItem8);
-            mainForm.SetCheckedListBoxItem9(checkListBoxItem9);
-            mainForm.SetCheckedListBoxItem10(checkListBoxItem10);
-            mainForm.SetCheckedListBoxItem11(checkListBoxItem11);
-            mainForm.SetCheckedListBoxItem12(checkListBoxItem12);
-            mainForm.SetCheckedListBoxItem13(checkListBoxItem13);
-            mainForm.SetCheckedListBoxItem14(checkListBoxItem14);
-            mainForm.SetCheckedListBoxItem15(checkListBoxItem15);
-            mainForm.SetCheckedListBoxItem16(checkListBoxItem16);
-            mainForm.SetCheckedListBoxItem17(checkListBoxItem17);
-            mainForm.SetCheckedListBoxItem18(checkListBoxItem18);
-            mainForm.SetCheckedListBoxItem19(checkListBoxItem19);
-            mainForm.SetCheckedListBoxItem20(checkListBoxItem20);
-            mainForm.SetCheckedListBoxItem21(checkListBoxItem21);
-            mainForm.SetCheckedListBoxItem22(checkListBoxItem22);
-            mainForm.SetCheckedListBoxItem23(checkListBoxItem23);
-            mainForm.SetCheckedListBoxItem24(checkListBoxItem24);
-            mainForm.SetCheckedListBoxItem25(checkListBoxItem25);
-            mainForm.SetCheckedListBoxItem25(checkListBoxItem26);
+            MainForm.SetCheckedListBoxItem0(checkListBoxItem0);
+            MainForm.SetCheckedListBoxItem1(checkListBoxItem1);
+            MainForm.SetCheckedListBoxItem2(checkListBoxItem2);
+            MainForm.SetCheckedListBoxItem3(checkListBoxItem3);
+            MainForm.SetCheckedListBoxItem4(checkListBoxItem4);
+            MainForm.SetCheckedListBoxItem5(checkListBoxItem5);
+            MainForm.SetCheckedListBoxItem6(checkListBoxItem6);
+            MainForm.SetCheckedListBoxItem7(checkListBoxItem7);
+            MainForm.SetCheckedListBoxItem8(checkListBoxItem8);
+            MainForm.SetCheckedListBoxItem9(checkListBoxItem9);
+            MainForm.SetCheckedListBoxItem10(checkListBoxItem10);
+            MainForm.SetCheckedListBoxItem11(checkListBoxItem11);
+            MainForm.SetCheckedListBoxItem12(checkListBoxItem12);
+            MainForm.SetCheckedListBoxItem13(checkListBoxItem13);
+            MainForm.SetCheckedListBoxItem14(checkListBoxItem14);
+            MainForm.SetCheckedListBoxItem15(checkListBoxItem15);
+            MainForm.SetCheckedListBoxItem16(checkListBoxItem16);
+            MainForm.SetCheckedListBoxItem17(checkListBoxItem17);
+            MainForm.SetCheckedListBoxItem18(checkListBoxItem18);
+            MainForm.SetCheckedListBoxItem19(checkListBoxItem19);
+            MainForm.SetCheckedListBoxItem20(checkListBoxItem20);
+            MainForm.SetCheckedListBoxItem21(checkListBoxItem21);
+            MainForm.SetCheckedListBoxItem22(checkListBoxItem22);
+            MainForm.SetCheckedListBoxItem23(checkListBoxItem23);
+            MainForm.SetCheckedListBoxItem24(checkListBoxItem24);
+            MainForm.SetCheckedListBoxItem25(checkListBoxItem25);
+            MainForm.SetCheckedListBoxItem25(checkListBoxItem26);
 
             //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
             Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, 1, 0);
@@ -187,7 +193,7 @@ namespace CyclingLogApplication
             return returnStatus;
         }
 
-        public void writeConfigFile()
+        public static void WriteConfigFile()
         {
             //This will give us the full name path of the executable file:
             //i.e. C:\Program Files\MyApplication\MyApplication.exe
@@ -199,7 +205,7 @@ namespace CyclingLogApplication
             string path = strWorkPath + "\\settings";
             string pathFile = strWorkPath + "\\settings\\CyclingLogConfig.xml";
             MainForm mainForm = new MainForm("");
-            int logSetting = mainForm.GetLogLevel();
+            int logSetting = MainForm.GetLogLevel();
 
             try
             {
@@ -227,11 +233,11 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(logDaysNode);
 
                     XmlNode versionNode = xmlDoc.CreateElement("VERSION");
-                    versionNode.InnerText = mainForm.GetLogVersion();
+                    versionNode.InnerText = MainForm.GetLogVersion();
                     rootNode.AppendChild(versionNode);
 
                     XmlNode firstDayNode = xmlDoc.CreateElement("FIRSTDAY");
-                    firstDayNode.InnerText = mainForm.GetFirstDayOfWeek();
+                    firstDayNode.InnerText = MainForm.GetFirstDayOfWeek();
                     rootNode.AppendChild(firstDayNode);
 
                     XmlNode customField1Node = xmlDoc.CreateElement("CUSTOMFIELD1");
@@ -424,55 +430,55 @@ namespace CyclingLogApplication
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(pathFile);
 
-                string cbStatistic1 = mainForm.GetcbStatistic1();
-                string cbStatistic2 = mainForm.GetcbStatistic2();
-                string cbStatistic3 = mainForm.GetcbStatistic3();
-                string cbStatistic4 = mainForm.GetcbStatistic4();
-                string cbStatistic5 = mainForm.GetcbStatistic5();
+                string cbStatistic1 = MainForm.GetcbStatistic1();
+                string cbStatistic2 = MainForm.GetcbStatistic2();
+                string cbStatistic3 = MainForm.GetcbStatistic3();
+                string cbStatistic4 = MainForm.GetcbStatistic4();
+                string cbStatistic5 = MainForm.GetcbStatistic5();
 
-                string firstDay = mainForm.GetFirstDayOfWeek();
+                string firstDay = MainForm.GetFirstDayOfWeek();
                 string customField1 = MainForm.GetCustomField1();
                 string customField2 = MainForm.GetCustomField2();
 
-                string checkedItem0 = mainForm.GetCheckedListBoxItem0();
-                string checkedItem1 = mainForm.GetCheckedListBoxItem1();
-                string checkedItem2 = mainForm.GetCheckedListBoxItem2();
-                string checkedItem3 = mainForm.GetCheckedListBoxItem3();
-                string checkedItem4 = mainForm.GetCheckedListBoxItem4();
-                string checkedItem5 = mainForm.GetCheckedListBoxItem5();
-                string checkedItem6 = mainForm.GetCheckedListBoxItem6();
-                string checkedItem7 = mainForm.GetCheckedListBoxItem7();
-                string checkedItem8 = mainForm.GetCheckedListBoxItem8();
-                string checkedItem9 = mainForm.GetCheckedListBoxItem9();
-                string checkedItem10 = mainForm.GetCheckedListBoxItem10();
-                string checkedItem11 = mainForm.GetCheckedListBoxItem11();
-                string checkedItem12 = mainForm.GetCheckedListBoxItem12();
-                string checkedItem13 = mainForm.GetCheckedListBoxItem13();
-                string checkedItem14 = mainForm.GetCheckedListBoxItem14();
-                string checkedItem15 = mainForm.GetCheckedListBoxItem15();
-                string checkedItem16 = mainForm.GetCheckedListBoxItem16();
-                string checkedItem17 = mainForm.GetCheckedListBoxItem17();
-                string checkedItem18 = mainForm.GetCheckedListBoxItem18();
-                string checkedItem19 = mainForm.GetCheckedListBoxItem19();
-                string checkedItem20 = mainForm.GetCheckedListBoxItem20();
-                string checkedItem21 = mainForm.GetCheckedListBoxItem21();
-                string checkedItem22 = mainForm.GetCheckedListBoxItem22();
-                string checkedItem23 = mainForm.GetCheckedListBoxItem23();
-                string checkedItem24 = mainForm.GetCheckedListBoxItem24();
-                string checkedItem25 = mainForm.GetCheckedListBoxItem25();
-                string checkedItem26 = mainForm.GetCheckedListBoxItem26();
+                string checkedItem0 = MainForm.GetCheckedListBoxItem0();
+                string checkedItem1 = MainForm.GetCheckedListBoxItem1();
+                string checkedItem2 = MainForm.GetCheckedListBoxItem2();
+                string checkedItem3 = MainForm.GetCheckedListBoxItem3();
+                string checkedItem4 = MainForm.GetCheckedListBoxItem4();
+                string checkedItem5 = MainForm.GetCheckedListBoxItem5();
+                string checkedItem6 = MainForm.GetCheckedListBoxItem6();
+                string checkedItem7 = MainForm.GetCheckedListBoxItem7();
+                string checkedItem8 = MainForm.GetCheckedListBoxItem8();
+                string checkedItem9 = MainForm.GetCheckedListBoxItem9();
+                string checkedItem10 = MainForm.GetCheckedListBoxItem10();
+                string checkedItem11 = MainForm.GetCheckedListBoxItem11();
+                string checkedItem12 = MainForm.GetCheckedListBoxItem12();
+                string checkedItem13 = MainForm.GetCheckedListBoxItem13();
+                string checkedItem14 = MainForm.GetCheckedListBoxItem14();
+                string checkedItem15 = MainForm.GetCheckedListBoxItem15();
+                string checkedItem16 = MainForm.GetCheckedListBoxItem16();
+                string checkedItem17 = MainForm.GetCheckedListBoxItem17();
+                string checkedItem18 = MainForm.GetCheckedListBoxItem18();
+                string checkedItem19 = MainForm.GetCheckedListBoxItem19();
+                string checkedItem20 = MainForm.GetCheckedListBoxItem20();
+                string checkedItem21 = MainForm.GetCheckedListBoxItem21();
+                string checkedItem22 = MainForm.GetCheckedListBoxItem22();
+                string checkedItem23 = MainForm.GetCheckedListBoxItem23();
+                string checkedItem24 = MainForm.GetCheckedListBoxItem24();
+                string checkedItem25 = MainForm.GetCheckedListBoxItem25();
+                string checkedItem26 = MainForm.GetCheckedListBoxItem26();
 
-                int lastLogSelected = mainForm.GetLastLogSelected();
-                int lastBikeSelected = mainForm.GetLastBikeSelected();
-                int lastLogFilterSelected = mainForm.GetLastLogFilterSelected();
+                int lastLogSelected = MainForm.GetLastLogSelected();
+                int lastBikeSelected = MainForm.GetLastBikeSelected();
+                int lastLogFilterSelected = MainForm.GetLastLogFilterSelected();
 
                 int lastLogYearChartSelected = MainForm.GetLastLogYearChartSelected();
                 int lastRouteChartSelected = MainForm.GetLastRouteChartSelected();
                 int lastTypeChartSelected = MainForm.GetLastTypeChartSelected();
                 int lastTypeTimeChartSelected = MainForm.GetLastTypeTimeChartSelected();
 
-                int lastMonthlyLogSelected = mainForm.GetLastMonthlyLogSelected();
-                int lastLogSelectedDataEntry = mainForm.GetLastLogSelectedDataEntry();
+                int lastMonthlyLogSelected = MainForm.GetLastMonthlyLogSelected();
+                int lastLogSelectedDataEntry = MainForm.GetLastLogSelectedDataEntry();
 
                 xmlDoc.SelectSingleNode("/Config/FIRSTDAY").InnerText = firstDay;
                 xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD1").InnerText = customField1;
@@ -555,7 +561,7 @@ namespace CyclingLogApplication
         //
         //******************************************************************
 
-        public void ReadConfigFile_backup()
+        public static void ReadConfigFile_backup()
         {
             XmlReader reader = XmlReader.Create("c:\\CyclingLogApplication\\CyclingLogConfig.xml");
 
@@ -630,7 +636,7 @@ namespace CyclingLogApplication
         }
 
 
-        public void WriteConfigFile_backup()
+        public static void WriteConfigFile_backup()
         {
             string path = @"c:\CyclingLogApplication";
 

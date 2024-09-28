@@ -280,6 +280,7 @@
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridViewWeekly = new System.Windows.Forms.DataGridView();
             this.label65 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.btMaintRetrieve = new System.Windows.Forms.Button();
@@ -312,6 +313,20 @@
             this.tbConfigMilesNotInLog = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.groupBox21 = new System.Windows.Forms.GroupBox();
+            this.label86 = new System.Windows.Forms.Label();
+            this.dataGridViewRoutes = new System.Windows.Forms.DataGridView();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.tbTotalRoutes = new System.Windows.Forms.TextBox();
+            this.label87 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.btAddRoute = new System.Windows.Forms.Button();
+            this.cbRouteConfig = new System.Windows.Forms.ComboBox();
+            this.btRemoveRoute = new System.Windows.Forms.Button();
+            this.tbRouteConfig = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
@@ -333,20 +348,6 @@
             this.bRenameLogYear = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.label64 = new System.Windows.Forms.Label();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.groupBox21 = new System.Windows.Forms.GroupBox();
-            this.label86 = new System.Windows.Forms.Label();
-            this.dataGridViewRoutes = new System.Windows.Forms.DataGridView();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.tbTotalRoutes = new System.Windows.Forms.TextBox();
-            this.label87 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.btAddRoute = new System.Windows.Forms.Button();
-            this.cbRouteConfig = new System.Windows.Forms.ComboBox();
-            this.btRemoveRoute = new System.Windows.Forms.Button();
-            this.tbRouteConfig = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -356,7 +357,8 @@
             this.tbMaintID = new System.Windows.Forms.TextBox();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridViewWeekly = new System.Windows.Forms.DataGridView();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -374,25 +376,25 @@
             this.tabPage8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWeekly)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaint)).BeginInit();
             this.tabPage6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBikes)).BeginInit();
             this.groupBox12.SuspendLayout();
+            this.tabPage9.SuspendLayout();
+            this.groupBox21.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRoutes)).BeginInit();
+            this.groupBox11.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox18.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox10.SuspendLayout();
-            this.tabPage9.SuspendLayout();
-            this.groupBox21.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRoutes)).BeginInit();
-            this.groupBox11.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWeekly)).BeginInit();
             this.SuspendLayout();
             // 
             // cbLogYearConfig
@@ -776,7 +778,7 @@
             this.btRefreshData.TabIndex = 1;
             this.btRefreshData.Text = "Refresh Data";
             this.btRefreshData.UseVisualStyleBackColor = true;
-            this.btRefreshData.Click += new System.EventHandler(this.btRefreshData_Click);
+            this.btRefreshData.Click += new System.EventHandler(this.BtRefreshData_Click);
             // 
             // label30
             // 
@@ -3097,6 +3099,14 @@
             this.panel2.Size = new System.Drawing.Size(775, 444);
             this.panel2.TabIndex = 129;
             // 
+            // dataGridViewWeekly
+            // 
+            this.dataGridViewWeekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewWeekly.Location = new System.Drawing.Point(76, 72);
+            this.dataGridViewWeekly.Name = "dataGridViewWeekly";
+            this.dataGridViewWeekly.Size = new System.Drawing.Size(624, 333);
+            this.dataGridViewWeekly.TabIndex = 177;
+            // 
             // label65
             // 
             this.label65.AutoSize = true;
@@ -3273,18 +3283,18 @@
             this.groupBox5.Controls.Add(this.dataGridViewBikes);
             this.groupBox5.Controls.Add(this.groupBox12);
             this.groupBox5.Controls.Add(this.label21);
-            this.groupBox5.Location = new System.Drawing.Point(67, 38);
+            this.groupBox5.Location = new System.Drawing.Point(65, 34);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(772, 484);
+            this.groupBox5.Size = new System.Drawing.Size(783, 484);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             // 
             // dataGridViewBikes
             // 
             this.dataGridViewBikes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewBikes.Location = new System.Drawing.Point(31, 79);
+            this.dataGridViewBikes.Location = new System.Drawing.Point(30, 69);
             this.dataGridViewBikes.Name = "dataGridViewBikes";
-            this.dataGridViewBikes.Size = new System.Drawing.Size(457, 355);
+            this.dataGridViewBikes.Size = new System.Drawing.Size(467, 355);
             this.dataGridViewBikes.TabIndex = 33;
             // 
             // groupBox12
@@ -3300,7 +3310,7 @@
             this.groupBox12.Controls.Add(this.label27);
             this.groupBox12.Controls.Add(this.tbConfigMilesNotInLog);
             this.groupBox12.Controls.Add(this.label26);
-            this.groupBox12.Location = new System.Drawing.Point(534, 79);
+            this.groupBox12.Location = new System.Drawing.Point(550, 69);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(187, 358);
             this.groupBox12.TabIndex = 71;
@@ -3411,11 +3421,151 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(208, 36);
+            this.label21.Location = new System.Drawing.Point(208, 29);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(77, 28);
             this.label21.TabIndex = 19;
             this.label21.Text = "Bikes";
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Controls.Add(this.groupBox21);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(915, 565);
+            this.tabPage9.TabIndex = 7;
+            this.tabPage9.Text = "Routes";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // groupBox21
+            // 
+            this.groupBox21.Controls.Add(this.label86);
+            this.groupBox21.Controls.Add(this.dataGridViewRoutes);
+            this.groupBox21.Controls.Add(this.groupBox11);
+            this.groupBox21.Location = new System.Drawing.Point(59, 33);
+            this.groupBox21.Name = "groupBox21";
+            this.groupBox21.Size = new System.Drawing.Size(801, 490);
+            this.groupBox21.TabIndex = 0;
+            this.groupBox21.TabStop = false;
+            // 
+            // label86
+            // 
+            this.label86.AutoSize = true;
+            this.label86.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label86.Location = new System.Drawing.Point(197, 30);
+            this.label86.Name = "label86";
+            this.label86.Size = new System.Drawing.Size(92, 28);
+            this.label86.TabIndex = 73;
+            this.label86.Text = "Routes";
+            // 
+            // dataGridViewRoutes
+            // 
+            this.dataGridViewRoutes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRoutes.Location = new System.Drawing.Point(31, 67);
+            this.dataGridViewRoutes.Name = "dataGridViewRoutes";
+            this.dataGridViewRoutes.Size = new System.Drawing.Size(449, 384);
+            this.dataGridViewRoutes.TabIndex = 71;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.tbTotalRoutes);
+            this.groupBox11.Controls.Add(this.label87);
+            this.groupBox11.Controls.Add(this.label25);
+            this.groupBox11.Controls.Add(this.btAddRoute);
+            this.groupBox11.Controls.Add(this.cbRouteConfig);
+            this.groupBox11.Controls.Add(this.btRemoveRoute);
+            this.groupBox11.Controls.Add(this.tbRouteConfig);
+            this.groupBox11.Controls.Add(this.label4);
+            this.groupBox11.Controls.Add(this.button6);
+            this.groupBox11.Location = new System.Drawing.Point(522, 67);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(241, 384);
+            this.groupBox11.TabIndex = 70;
+            this.groupBox11.TabStop = false;
+            // 
+            // tbTotalRoutes
+            // 
+            this.tbTotalRoutes.Location = new System.Drawing.Point(104, 34);
+            this.tbTotalRoutes.Name = "tbTotalRoutes";
+            this.tbTotalRoutes.ReadOnly = true;
+            this.tbTotalRoutes.Size = new System.Drawing.Size(59, 20);
+            this.tbTotalRoutes.TabIndex = 21;
+            this.tbTotalRoutes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label87
+            // 
+            this.label87.AutoSize = true;
+            this.label87.Location = new System.Drawing.Point(20, 34);
+            this.label87.Name = "label87";
+            this.label87.Size = new System.Drawing.Size(68, 13);
+            this.label87.TabIndex = 20;
+            this.label87.Text = "Total Routes";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(20, 88);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(83, 13);
+            this.label25.TabIndex = 19;
+            this.label25.Text = "Route Selection";
+            // 
+            // btAddRoute
+            // 
+            this.btAddRoute.Location = new System.Drawing.Point(88, 243);
+            this.btAddRoute.Name = "btAddRoute";
+            this.btAddRoute.Size = new System.Drawing.Size(75, 23);
+            this.btAddRoute.TabIndex = 7;
+            this.btAddRoute.Text = "Add";
+            this.btAddRoute.UseVisualStyleBackColor = true;
+            this.btAddRoute.Click += new System.EventHandler(this.BtAddRoute_Click);
+            // 
+            // cbRouteConfig
+            // 
+            this.cbRouteConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRouteConfig.FormattingEnabled = true;
+            this.cbRouteConfig.Location = new System.Drawing.Point(23, 104);
+            this.cbRouteConfig.Name = "cbRouteConfig";
+            this.cbRouteConfig.Size = new System.Drawing.Size(205, 21);
+            this.cbRouteConfig.TabIndex = 5;
+            this.cbRouteConfig.SelectedIndexChanged += new System.EventHandler(this.CbRouteConfig_SelectedIndexChanged);
+            // 
+            // btRemoveRoute
+            // 
+            this.btRemoveRoute.Location = new System.Drawing.Point(88, 272);
+            this.btRemoveRoute.Name = "btRemoveRoute";
+            this.btRemoveRoute.Size = new System.Drawing.Size(75, 23);
+            this.btRemoveRoute.TabIndex = 8;
+            this.btRemoveRoute.Text = "Remove";
+            this.btRemoveRoute.UseVisualStyleBackColor = true;
+            this.btRemoveRoute.Click += new System.EventHandler(this.BtRemoveRouteConfig);
+            // 
+            // tbRouteConfig
+            // 
+            this.tbRouteConfig.Location = new System.Drawing.Point(23, 157);
+            this.tbRouteConfig.Name = "tbRouteConfig";
+            this.tbRouteConfig.Size = new System.Drawing.Size(205, 20);
+            this.tbRouteConfig.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(20, 137);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(143, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Add or Rename Ride Routes";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(88, 301);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 9;
+            this.button6.Text = "Update";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.CbRenameRoute);
             // 
             // tabPage2
             // 
@@ -3430,6 +3580,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.groupBox18);
             this.groupBox2.Controls.Add(this.groupBox13);
             this.groupBox2.Controls.Add(this.groupBox9);
@@ -3462,7 +3614,7 @@
             this.btFirstDay.TabIndex = 28;
             this.btFirstDay.Text = "Set";
             this.btFirstDay.UseVisualStyleBackColor = true;
-            this.btFirstDay.Click += new System.EventHandler(this.btFirstDay_Click);
+            this.btFirstDay.Click += new System.EventHandler(this.BtFirstDay_Click);
             // 
             // rbFirstDayMonday
             // 
@@ -3554,7 +3706,7 @@
             this.btCustomDataField1.TabIndex = 27;
             this.btCustomDataField1.Text = "Update";
             this.btCustomDataField1.UseVisualStyleBackColor = true;
-            this.btCustomDataField1.Click += new System.EventHandler(this.btCustomDataField1_Click);
+            this.btCustomDataField1.Click += new System.EventHandler(this.BtCustomDataField1_Click);
             // 
             // tbCustomDataField1
             // 
@@ -3594,24 +3746,6 @@
             // 
             this.cbLogYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYear.FormattingEnabled = true;
-            this.cbLogYear.Items.AddRange(new object[] {
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022",
-            "2022",
-            "2023",
-            "2024",
-            "2025"});
             this.cbLogYear.Location = new System.Drawing.Point(22, 167);
             this.cbLogYear.Name = "cbLogYear";
             this.cbLogYear.Size = new System.Drawing.Size(108, 21);
@@ -3655,146 +3789,6 @@
             this.label64.TabIndex = 64;
             this.label64.Text = "Settings";
             // 
-            // tabPage9
-            // 
-            this.tabPage9.Controls.Add(this.groupBox21);
-            this.tabPage9.Location = new System.Drawing.Point(4, 22);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(915, 565);
-            this.tabPage9.TabIndex = 7;
-            this.tabPage9.Text = "Routes";
-            this.tabPage9.UseVisualStyleBackColor = true;
-            // 
-            // groupBox21
-            // 
-            this.groupBox21.Controls.Add(this.label86);
-            this.groupBox21.Controls.Add(this.dataGridViewRoutes);
-            this.groupBox21.Controls.Add(this.groupBox11);
-            this.groupBox21.Location = new System.Drawing.Point(59, 33);
-            this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(801, 490);
-            this.groupBox21.TabIndex = 0;
-            this.groupBox21.TabStop = false;
-            // 
-            // label86
-            // 
-            this.label86.AutoSize = true;
-            this.label86.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label86.Location = new System.Drawing.Point(197, 30);
-            this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(92, 28);
-            this.label86.TabIndex = 73;
-            this.label86.Text = "Routes";
-            // 
-            // dataGridViewRoutes
-            // 
-            this.dataGridViewRoutes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewRoutes.Location = new System.Drawing.Point(31, 67);
-            this.dataGridViewRoutes.Name = "dataGridViewRoutes";
-            this.dataGridViewRoutes.Size = new System.Drawing.Size(422, 384);
-            this.dataGridViewRoutes.TabIndex = 71;
-            // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.tbTotalRoutes);
-            this.groupBox11.Controls.Add(this.label87);
-            this.groupBox11.Controls.Add(this.label25);
-            this.groupBox11.Controls.Add(this.btAddRoute);
-            this.groupBox11.Controls.Add(this.cbRouteConfig);
-            this.groupBox11.Controls.Add(this.btRemoveRoute);
-            this.groupBox11.Controls.Add(this.tbRouteConfig);
-            this.groupBox11.Controls.Add(this.label4);
-            this.groupBox11.Controls.Add(this.button6);
-            this.groupBox11.Location = new System.Drawing.Point(503, 67);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(241, 384);
-            this.groupBox11.TabIndex = 70;
-            this.groupBox11.TabStop = false;
-            // 
-            // tbTotalRoutes
-            // 
-            this.tbTotalRoutes.Location = new System.Drawing.Point(104, 34);
-            this.tbTotalRoutes.Name = "tbTotalRoutes";
-            this.tbTotalRoutes.ReadOnly = true;
-            this.tbTotalRoutes.Size = new System.Drawing.Size(59, 20);
-            this.tbTotalRoutes.TabIndex = 21;
-            this.tbTotalRoutes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label87
-            // 
-            this.label87.AutoSize = true;
-            this.label87.Location = new System.Drawing.Point(20, 34);
-            this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(68, 13);
-            this.label87.TabIndex = 20;
-            this.label87.Text = "Total Routes";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(20, 88);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(83, 13);
-            this.label25.TabIndex = 19;
-            this.label25.Text = "Route Selection";
-            // 
-            // btAddRoute
-            // 
-            this.btAddRoute.Location = new System.Drawing.Point(88, 243);
-            this.btAddRoute.Name = "btAddRoute";
-            this.btAddRoute.Size = new System.Drawing.Size(75, 23);
-            this.btAddRoute.TabIndex = 7;
-            this.btAddRoute.Text = "Add";
-            this.btAddRoute.UseVisualStyleBackColor = true;
-            this.btAddRoute.Click += new System.EventHandler(this.BtAddRoute_Click);
-            // 
-            // cbRouteConfig
-            // 
-            this.cbRouteConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbRouteConfig.FormattingEnabled = true;
-            this.cbRouteConfig.Location = new System.Drawing.Point(23, 104);
-            this.cbRouteConfig.Name = "cbRouteConfig";
-            this.cbRouteConfig.Size = new System.Drawing.Size(205, 21);
-            this.cbRouteConfig.TabIndex = 5;
-            this.cbRouteConfig.SelectedIndexChanged += new System.EventHandler(this.CbRouteConfig_SelectedIndexChanged);
-            // 
-            // btRemoveRoute
-            // 
-            this.btRemoveRoute.Location = new System.Drawing.Point(88, 272);
-            this.btRemoveRoute.Name = "btRemoveRoute";
-            this.btRemoveRoute.Size = new System.Drawing.Size(75, 23);
-            this.btRemoveRoute.TabIndex = 8;
-            this.btRemoveRoute.Text = "Remove";
-            this.btRemoveRoute.UseVisualStyleBackColor = true;
-            this.btRemoveRoute.Click += new System.EventHandler(this.BtRemoveRouteConfig);
-            // 
-            // tbRouteConfig
-            // 
-            this.tbRouteConfig.Location = new System.Drawing.Point(23, 157);
-            this.tbRouteConfig.Name = "tbRouteConfig";
-            this.tbRouteConfig.Size = new System.Drawing.Size(205, 20);
-            this.tbRouteConfig.TabIndex = 6;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 137);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(143, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Add or Rename Ride Routes";
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(88, 301);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 9;
-            this.button6.Text = "Update";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.CbRenameRoute);
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.groupBox3);
@@ -3830,7 +3824,7 @@
             this.button2.TabIndex = 14;
             this.button2.Text = "User\'s Guide";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // label83
             // 
@@ -3890,13 +3884,25 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
-            // dataGridViewWeekly
+            // button3
             // 
-            this.dataGridViewWeekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewWeekly.Location = new System.Drawing.Point(76, 72);
-            this.dataGridViewWeekly.Name = "dataGridViewWeekly";
-            this.dataGridViewWeekly.Size = new System.Drawing.Size(624, 333);
-            this.dataGridViewWeekly.TabIndex = 177;
+            this.button3.Location = new System.Drawing.Point(592, 304);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 74;
+            this.button3.Text = "Backup";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(592, 342);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 75;
+            this.button4.Text = "Restore";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // MainForm
             // 
@@ -3935,6 +3941,7 @@
             this.groupBox7.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWeekly)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaint)).EndInit();
@@ -3944,6 +3951,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBikes)).EndInit();
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
+            this.tabPage9.ResumeLayout(false);
+            this.groupBox21.ResumeLayout(false);
+            this.groupBox21.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRoutes)).EndInit();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -3955,16 +3968,9 @@
             this.groupBox9.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
-            this.tabPage9.ResumeLayout(false);
-            this.groupBox21.ResumeLayout(false);
-            this.groupBox21.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRoutes)).EndInit();
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWeekly)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -4205,7 +4211,6 @@
         private System.Windows.Forms.TextBox tbLongestRide;
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.Label label64;
-        private System.Windows.Forms.Button btRemoveBikeTotalsConfig;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.Label label65;
@@ -4299,6 +4304,8 @@
         private System.Windows.Forms.TextBox tbTotalRoutes;
         private System.Windows.Forms.DataGridView dataGridViewBikes;
         private System.Windows.Forms.DataGridView dataGridViewWeekly;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 

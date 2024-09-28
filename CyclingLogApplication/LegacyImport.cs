@@ -20,26 +20,26 @@ namespace CyclingLogApplication
             InitializeComponent();
         }
 
-        private void cancel_Click(object sender, EventArgs e)
+        private void Cancel_Click(object sender, EventArgs e)
         {
-            setLegacyIndexSelection(-1);
+            SetLegacyIndexSelection(-1);
             //Close();
             this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
         }
 
-        public int getLegacyIndexSelection()
+        public static int GetLegacyIndexSelection()
         {
             return legacyImportIndex;
         }
 
-        public void setLegacyIndexSelection(int index)
+        public static void SetLegacyIndexSelection(int index)
         {
             legacyImportIndex = index;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            setLegacyIndexSelection(cbLegacyIndexSelection.SelectedIndex);
+            SetLegacyIndexSelection(cbLegacyIndexSelection.SelectedIndex);
             this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
         }
     }
