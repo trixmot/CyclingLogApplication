@@ -71,6 +71,7 @@ namespace CyclingLogApplication
             string cbStatistic4 = nodes.Item(0).SelectSingleNode("cbStatistic4").InnerText;
             string cbStatistic5 = nodes.Item(0).SelectSingleNode("cbStatistic5").InnerText;
             string firstDayOfWeek = nodes.Item(0).SelectSingleNode("FIRSTDAY").InnerText;
+            string license = nodes.Item(0).SelectSingleNode("LICENSE").InnerText;
             string customDataField1 = nodes.Item(0).SelectSingleNode("CUSTOMFIELD1").InnerText;
             string customDataField2 = nodes.Item(0).SelectSingleNode("CUSTOMFIELD2").InnerText;
 
@@ -114,8 +115,9 @@ namespace CyclingLogApplication
             string lastMonthlyLogYearSelected = nodes.Item(0).SelectSingleNode("LastMonthlyLogSelected").InnerText;
             string lastLogYearSelectedDataEntry = nodes.Item(0).SelectSingleNode("LastLogSelectedDataEntry").InnerText;
 
-            MainForm mainForm = new MainForm();
+            //MainForm mainForm = new MainForm();
             MainForm.SetLogLevel(logLevel);
+            MainForm.SetLicenseAgreement(license);
             MainForm.SetFirstDayOfWeek(firstDayOfWeek);
             MainForm.SetCustomField1(customDataField1);
             MainForm.SetCustomField2(customDataField2);
@@ -185,6 +187,7 @@ namespace CyclingLogApplication
             Logger.Log("Configuration Read: lastMonthlyLogYearSelected : " + lastMonthlyLogYearSelected, 1, 0);
             Logger.Log("Configuration Read: lastLogYearSelectedDataEntry : " + lastLogYearSelectedDataEntry, 1, 0);
 
+            Logger.Log("Configuration Read: license : " + license, 1, 0);
             Logger.Log("Configuration Read: custom1 : " + customDataField1, 1, 0);
             Logger.Log("Configuration Read: custom2 : " + customDataField2, 1, 0);
 
@@ -204,7 +207,7 @@ namespace CyclingLogApplication
 
             string path = strWorkPath + "\\settings";
             string pathFile = strWorkPath + "\\settings\\CyclingLogConfig.xml";
-            MainForm mainForm = new MainForm("");
+            //MainForm mainForm = new MainForm("");
             int logSetting = MainForm.GetLogLevel();
 
             try
@@ -222,7 +225,7 @@ namespace CyclingLogApplication
                 {
                     //Write in the nodes:
                     XmlDocument xmlDoc = new XmlDocument();
-                    XmlNode rootNode = xmlDoc.CreateElement("Config");
+                    XmlElement rootNode = xmlDoc.CreateElement("Config");
                     xmlDoc.AppendChild(rootNode);
                     //XmlNode commentNode1 = xmlDoc.CreateComment("This file was created by the ExtraViewToRallyConnector application. Do not modify.");
                     //rootNode.AppendChild(commentNode1);
@@ -239,6 +242,10 @@ namespace CyclingLogApplication
                     XmlNode firstDayNode = xmlDoc.CreateElement("FIRSTDAY");
                     firstDayNode.InnerText = MainForm.GetFirstDayOfWeek();
                     rootNode.AppendChild(firstDayNode);
+
+                    XmlNode licesneNode = xmlDoc.CreateElement("LICENSE");
+                    licesneNode.InnerText = MainForm.GetLicenseAgreement().ToString();
+                    rootNode.AppendChild(licesneNode);
 
                     XmlNode customField1Node = xmlDoc.CreateElement("CUSTOMFIELD1");
                     customField1Node.InnerText = MainForm.GetCustomField1();
@@ -437,6 +444,7 @@ namespace CyclingLogApplication
                 string cbStatistic5 = MainForm.GetcbStatistic5();
 
                 string firstDay = MainForm.GetFirstDayOfWeek();
+                string license = MainForm.GetLicenseAgreement();
                 string customField1 = MainForm.GetCustomField1();
                 string customField2 = MainForm.GetCustomField2();
 
@@ -481,6 +489,7 @@ namespace CyclingLogApplication
                 int lastLogSelectedDataEntry = MainForm.GetLastLogSelectedDataEntry();
 
                 xmlDoc.SelectSingleNode("/Config/FIRSTDAY").InnerText = firstDay;
+                xmlDoc.SelectSingleNode("/Config/LICENSE").InnerText = license;
                 xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD1").InnerText = customField1;
                 xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD2").InnerText = customField2;
 
@@ -531,6 +540,7 @@ namespace CyclingLogApplication
                 xmlDoc.SelectSingleNode("/Config/LastLogSelectedDataEntry").InnerText = lastLogSelectedDataEntry.ToString();
 
                 Logger.Log("Write Config Values: FIRSTDAY written:" + firstDay, 0, logSetting);
+                Logger.Log("Write Config Values: LICENSE written:" + license, 0, logSetting);
                 Logger.Log("Write Config Values: CUSTOMFIELD1 written:" + customField1, 0, logSetting);
                 Logger.Log("Write Config Values: CUSTOMFIELD2 written:" + customField2, 0, logSetting);
 

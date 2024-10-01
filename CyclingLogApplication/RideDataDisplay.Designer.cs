@@ -52,14 +52,14 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(23, 54);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(993, 583);
+            this.dataGridView1.Size = new System.Drawing.Size(1079, 583);
             this.dataGridView1.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1074, 634);
+            this.button1.Location = new System.Drawing.Point(1156, 629);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(82, 33);
             this.button1.TabIndex = 1;
             this.button1.Text = "Close";
             this.button1.UseVisualStyleBackColor = true;
@@ -82,7 +82,7 @@
             this.cbFilterField.Name = "cbFilterField";
             this.cbFilterField.Size = new System.Drawing.Size(121, 21);
             this.cbFilterField.TabIndex = 2;
-            this.cbFilterField.SelectedIndexChanged += new System.EventHandler(this.cbFilterFieldChanged);
+            this.cbFilterField.SelectedIndexChanged += new System.EventHandler(this.CbFilterFieldChanged);
             // 
             // Field
             // 
@@ -104,13 +104,13 @@
             // 
             // bFilter
             // 
-            this.bFilter.Location = new System.Drawing.Point(694, 24);
+            this.bFilter.Location = new System.Drawing.Point(1001, 25);
             this.bFilter.Name = "bFilter";
             this.bFilter.Size = new System.Drawing.Size(75, 23);
             this.bFilter.TabIndex = 6;
             this.bFilter.Text = "Run";
             this.bFilter.UseVisualStyleBackColor = true;
-            this.bFilter.Click += new System.EventHandler(this.bFilter_Click);
+            this.bFilter.Click += new System.EventHandler(this.BFilter_Click);
             // 
             // label1
             // 
@@ -131,7 +131,7 @@
             this.cbLogYearFilter.Name = "cbLogYearFilter";
             this.cbLogYearFilter.Size = new System.Drawing.Size(131, 21);
             this.cbLogYearFilter.TabIndex = 7;
-            this.cbLogYearFilter.SelectedIndexChanged += new System.EventHandler(this.cbLogYearFilter_SelectedIndexChanged);
+            this.cbLogYearFilter.SelectedIndexChanged += new System.EventHandler(this.CbLogYearFilter_SelectedIndexChanged);
             // 
             // btClear
             // 
@@ -141,7 +141,7 @@
             this.btClear.TabIndex = 9;
             this.btClear.Text = "Clear";
             this.btClear.UseVisualStyleBackColor = true;
-            this.btClear.Click += new System.EventHandler(this.btClear_Click);
+            this.btClear.Click += new System.EventHandler(this.BtClear_Click);
             // 
             // cbFilterValue
             // 
@@ -190,56 +190,56 @@
             "Comfort",
             "Custom1",
             "Custom2"});
-            this.checkedListBox.Location = new System.Drawing.Point(1033, 54);
+            this.checkedListBox.Location = new System.Drawing.Point(1124, 54);
             this.checkedListBox.Name = "checkedListBox";
             this.checkedListBox.Size = new System.Drawing.Size(146, 409);
             this.checkedListBox.TabIndex = 12;
             // 
             // btUpdateFields
             // 
-            this.btUpdateFields.Location = new System.Drawing.Point(1074, 536);
+            this.btUpdateFields.Location = new System.Drawing.Point(1163, 541);
             this.btUpdateFields.Name = "btUpdateFields";
             this.btUpdateFields.Size = new System.Drawing.Size(75, 23);
             this.btUpdateFields.TabIndex = 13;
             this.btUpdateFields.Text = "Update";
             this.btUpdateFields.UseVisualStyleBackColor = true;
-            this.btUpdateFields.Click += new System.EventHandler(this.btUpdateFields_Click);
+            this.btUpdateFields.Click += new System.EventHandler(this.BtUpdateFields_Click);
             // 
             // btSelectAll
             // 
-            this.btSelectAll.Location = new System.Drawing.Point(1074, 478);
+            this.btSelectAll.Location = new System.Drawing.Point(1163, 483);
             this.btSelectAll.Name = "btSelectAll";
             this.btSelectAll.Size = new System.Drawing.Size(75, 23);
             this.btSelectAll.TabIndex = 14;
             this.btSelectAll.Text = "Select All";
             this.btSelectAll.UseVisualStyleBackColor = true;
-            this.btSelectAll.Click += new System.EventHandler(this.btSelectAll_Click);
+            this.btSelectAll.Click += new System.EventHandler(this.BtSelectAll_Click);
             // 
             // btDeselectAll
             // 
-            this.btDeselectAll.Location = new System.Drawing.Point(1074, 507);
+            this.btDeselectAll.Location = new System.Drawing.Point(1163, 512);
             this.btDeselectAll.Name = "btDeselectAll";
             this.btDeselectAll.Size = new System.Drawing.Size(75, 23);
             this.btDeselectAll.TabIndex = 15;
             this.btDeselectAll.Text = "Deselect All";
             this.btDeselectAll.UseVisualStyleBackColor = true;
-            this.btDeselectAll.Click += new System.EventHandler(this.btDeselectAll_Click);
+            this.btDeselectAll.Click += new System.EventHandler(this.BtDeselectAll_Click);
             // 
             // btPrint
             // 
-            this.btPrint.Location = new System.Drawing.Point(941, 24);
+            this.btPrint.Location = new System.Drawing.Point(694, 25);
             this.btPrint.Name = "btPrint";
             this.btPrint.Size = new System.Drawing.Size(75, 23);
             this.btPrint.TabIndex = 16;
             this.btPrint.Text = "Print";
             this.btPrint.UseVisualStyleBackColor = true;
-            this.btPrint.Click += new System.EventHandler(this.btPrint_Click);
+            this.btPrint.Click += new System.EventHandler(this.BtPrint_Click);
             // 
             // RideDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1191, 679);
+            this.ClientSize = new System.Drawing.Size(1291, 679);
             this.Controls.Add(this.btPrint);
             this.Controls.Add(this.btDeselectAll);
             this.Controls.Add(this.btSelectAll);

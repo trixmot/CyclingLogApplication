@@ -18,23 +18,25 @@ namespace CyclingLogApplication
 {
     public partial class RideDataDisplay : Form
     {
-        static int logYearFilterIndex = -1;
-        private SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+        //private static int logYearFilterIndex;
+        private readonly SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
 
         public RideDataDisplay()
         {
             InitializeComponent();
             cbFilterField.SelectedIndex = 0;
-            MainForm mainForm = new MainForm();
+            //MainForm mainForm = new MainForm();
             sqlConnection = MainForm.GetsqlConnectionString();
 
-            MainForm mainform = new MainForm();
+            //MainForm mainform = new MainForm();
             List<string> logList = MainForm.ReadDataNames("Table_Log_year", "Name");
 
             for (int i = 0; i < logList.Count; i++)
             {
                 cbLogYearFilter.Items.Add(logList[i]);
             }
+
+            sqlConnection.Close();
         }
 
         private void CloseForm(object sender, EventArgs e)
@@ -44,6 +46,8 @@ namespace CyclingLogApplication
             cbFilterValue.Items.Add("");
             cbFilterValue.SelectedIndex = 0;
             dataGridView1.DataSource = null;
+
+            sqlConnection.Close();
 
             this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
         }
@@ -58,7 +62,7 @@ namespace CyclingLogApplication
             cbLogYearFilter.Items.Remove(item);
         }
 
-        public void setLogYearFilterIndex(int index)
+        public void SetLogYearFilterIndex(int index)
         {
             try
             {
@@ -70,14 +74,14 @@ namespace CyclingLogApplication
             }
         }
 
-        public int getLogYearFilterIndex()
-        {
-            return logYearFilterIndex;
-        }
+        //public static int GetLogYearFilterIndex()
+        //{
+        //    return logYearFilterIndex;
+        //}
 
-        public void setCustomValues()
+        public void SetCustomValues()
         {
-            MainForm mainForm = new MainForm();
+            //MainForm mainForm = new MainForm();
             string customValue1 = MainForm.GetCustomField1();
             string customValue2 = MainForm.GetCustomField2();
 
@@ -100,9 +104,9 @@ namespace CyclingLogApplication
             }
         }
 
-        public void setCheckedValues()
+        public void SetCheckedValues()
         {
-            MainForm mainForm = new MainForm();
+            //MainForm mainForm = new MainForm();
 
             // Set CheckedListBox values:
             if (MainForm.GetCheckedListBoxItem0().Equals("1"))
@@ -349,27 +353,27 @@ namespace CyclingLogApplication
             }
         }
 
-        private void bFilter_Click(object sender, EventArgs e)
+        private void BFilter_Click(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm();
+            //MainForm mainForm = new MainForm();
             bool customDataField1 = false;
             bool customDataField2 = false;
 
             string fieldString = "";
             if (checkedListBox.GetItemChecked(0))
             {
-                fieldString = fieldString + "[WeekNumber]";
+                fieldString += "[WeekNumber]";
             }
 
             if (checkedListBox.GetItemChecked(1))
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[Id]";
+                    fieldString += "[Id]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[Id]";
+                    fieldString += ",[Id]";
                 }
             }
 
@@ -377,11 +381,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[Date]";
+                    fieldString += "[Date]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[Date]";
+                    fieldString += ",[Date]";
                 }
             }
 
@@ -389,11 +393,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[MovingTime]";
+                    fieldString += "[MovingTime]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[MovingTime]";
+                    fieldString += ",[MovingTime]";
                 }
             }
 
@@ -401,11 +405,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[RideDistance]";
+                    fieldString += "[RideDistance]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[RideDistance]";
+                    fieldString += ",[RideDistance]";
                 }
             }
 
@@ -413,11 +417,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[AvgSpeed]";
+                    fieldString += "[AvgSpeed]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[AvgSpeed]";
+                    fieldString += ",[AvgSpeed]";
                 }
             }
 
@@ -425,11 +429,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[Bike]";
+                    fieldString += "[Bike]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[Bike]";
+                    fieldString += ",[Bike]";
                 }
             }
 
@@ -437,11 +441,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[RideType]";
+                    fieldString += "[RideType]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[RideType]";
+                    fieldString += ",[RideType]";
                 }
             }
 
@@ -449,11 +453,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[Wind]";
+                    fieldString += "[Wind]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[Wind]";
+                    fieldString += ",[Wind]";
                 }
             }
 
@@ -461,11 +465,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[Temperature]";
+                    fieldString += "[Temperature]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[Temperature]";
+                    fieldString += ",[Temperature]";
                 }
             }
 
@@ -473,11 +477,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[AvgCadence]";
+                    fieldString += "[AvgCadence]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[AvgCadence]";
+                    fieldString += ",[AvgCadence]";
                 }
             }
 
@@ -485,11 +489,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[MaxCadence]";
+                    fieldString += "[MaxCadence]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[MaxCadence]";
+                    fieldString += ",[MaxCadence]";
                 }
             }
 
@@ -498,11 +502,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[AvgHeartRate]";
+                    fieldString += "[AvgHeartRate]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[AvgHeartRate]";
+                    fieldString += ",[AvgHeartRate]";
                 }
             }
 
@@ -510,11 +514,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[MaxHeartRate]";
+                    fieldString += "[MaxHeartRate]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[MaxHeartRate]";
+                    fieldString += ",[MaxHeartRate]";
                 }
             }
 
@@ -522,11 +526,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[Calories]";
+                    fieldString += "[Calories]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[Calories]";
+                    fieldString += ",[Calories]";
                 }
             }
 
@@ -534,11 +538,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[TotalAscent]";
+                    fieldString += "[TotalAscent]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[TotalAscent]";
+                    fieldString += ",[TotalAscent]";
                 }
             }
 
@@ -546,11 +550,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[TotalDescent]";
+                    fieldString += "[TotalDescent]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[TotalDescent]";
+                    fieldString += ",[TotalDescent]";
                 }
             }
 
@@ -558,11 +562,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[Route]";
+                    fieldString += "[Route]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[Route]";
+                    fieldString += ",[Route]";
                 }
             }
 
@@ -570,11 +574,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[Location]";
+                    fieldString += "[Location]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[Location]";
+                    fieldString += ",[Location]";
                 }
             }
 
@@ -582,11 +586,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[Comments]";
+                    fieldString += "[Comments]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[Comments]";
+                    fieldString += ",[Comments]";
                 }
             }
 
@@ -594,11 +598,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[Effort]";
+                    fieldString += "[Effort]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[Effort]";
+                    fieldString += ",[Effort]";
                 }
             }
 
@@ -606,11 +610,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[MaxSpeed]";
+                    fieldString += "[MaxSpeed]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[MaxSpeed]";
+                    fieldString += ",[MaxSpeed]";
                 }
             }
 
@@ -618,11 +622,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[AveragePower]";
+                    fieldString += "[AveragePower]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[AveragePower]";
+                    fieldString += ",[AveragePower]";
                 }
             }
 
@@ -630,11 +634,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[MaxPower]";
+                    fieldString += "[MaxPower]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[MaxPower]";
+                    fieldString += ",[MaxPower]";
                 }
             }
 
@@ -642,11 +646,11 @@ namespace CyclingLogApplication
             {
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[Comfort]";
+                    fieldString += "[Comfort]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[Comfort]";
+                    fieldString += ",[Comfort]";
                 }
             }
 
@@ -656,11 +660,11 @@ namespace CyclingLogApplication
 
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[Custom1]";
+                    fieldString += "[Custom1]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[Custom1]";
+                    fieldString += ",[Custom1]";
                 }
             }
 
@@ -670,11 +674,11 @@ namespace CyclingLogApplication
 
                 if (fieldString.Equals(""))
                 {
-                    fieldString = fieldString + "[Custom2]";
+                    fieldString += "[Custom2]";
                 }
                 else
                 {
-                    fieldString = fieldString + ",[Custom2]";
+                    fieldString += ",[Custom2]";
                 }
             }
 
@@ -899,6 +903,7 @@ namespace CyclingLogApplication
                 dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
                 dataGridView1.ColumnHeadersHeight = 30;
                 dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
             }
             catch (Exception ex)
             {
@@ -909,14 +914,11 @@ namespace CyclingLogApplication
             finally
             {
                 // close connection
-                if (sqlConnection != null)
-                {
-                    sqlConnection.Close();
-                }
+                sqlConnection?.Close();
             }
         }
 
-        private void btClear_Click(object sender, EventArgs e)
+        private void BtClear_Click(object sender, EventArgs e)
         {
             cbFilterField.SelectedIndex = 0;
             cbFilterValue.Items.Clear();
@@ -948,22 +950,19 @@ namespace CyclingLogApplication
             finally
             {
                 // close connection
-                if (conn != null)
-                {
-                    conn.Close();
-                }
+                conn?.Close();
             }
         }
 
-        private void cbLogYearFilter_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbLogYearFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm("");
+            //MainForm mainForm = new MainForm("");
             MainForm.SetLastLogFilterSelected(cbLogYearFilter.SelectedIndex);
         }
 
-        private void cbFilterFieldChanged(object sender, EventArgs e)
+        private void CbFilterFieldChanged(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm("");
+            //MainForm mainForm = new MainForm("");
             cbFilterValue.Items.Clear();
 
             //NONE          - 0
@@ -984,7 +983,9 @@ namespace CyclingLogApplication
             else if (cbFilterField.SelectedIndex == 1)
             {
                 //Load Bike values:
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
                 List<string> bikeList = new List<string>();
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
                 bikeList = MainForm.ReadDataNames("Table_Bikes", "Name");
 
                 foreach (var val in bikeList)
@@ -1049,9 +1050,9 @@ namespace CyclingLogApplication
             }
         }
 
-        private void btUpdateFields_Click(object sender, EventArgs e)
+        private void BtUpdateFields_Click(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm();
+            //MainForm mainForm = new MainForm();
 
             if (checkedListBox.GetItemChecked(0))
             {
@@ -1299,7 +1300,7 @@ namespace CyclingLogApplication
             MessageBox.Show("The Display field options have been updated.");
         }
 
-        private void btSelectAll_Click(object sender, EventArgs e)
+        private void BtSelectAll_Click(object sender, EventArgs e)
         {
             checkedListBox.SetItemCheckState(0, CheckState.Checked);
             checkedListBox.SetItemCheckState(1, CheckState.Checked);
@@ -1330,7 +1331,7 @@ namespace CyclingLogApplication
             checkedListBox.SetItemCheckState(26, CheckState.Checked);
         }
 
-        private void btDeselectAll_Click(object sender, EventArgs e)
+        private void BtDeselectAll_Click(object sender, EventArgs e)
         {
             checkedListBox.SetItemCheckState(0, CheckState.Unchecked);
             checkedListBox.SetItemCheckState(1, CheckState.Unchecked);
@@ -1361,20 +1362,22 @@ namespace CyclingLogApplication
             checkedListBox.SetItemCheckState(26, CheckState.Unchecked);
         }
 
-        private void btPrint_Click(object sender, EventArgs e)
+        private void BtPrint_Click(object sender, EventArgs e)
         {
-            DGVPrinter printer = new DGVPrinter();
-            printer.Title = "Cycling Log Report";
-            //printer.SubTitle = "An Easy to Use DataGridView Printing Object";
-            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit |
-                StringFormatFlags.NoClip;
-            printer.PageNumbers = true;
-            printer.PageNumberInHeader = false;
-            //printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.Porportional;
-            printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.CellWidth;
-            printer.HeaderCellAlignment = StringAlignment.Near;
-            //printer.Footer = "";
-            printer.FooterSpacing = 15;
+            DGVPrinter printer = new DGVPrinter
+            {
+                Title = "Cycling Log Report",
+                //printer.SubTitle = "An Easy to Use DataGridView Printing Object";
+                SubTitleFormatFlags = StringFormatFlags.LineLimit |
+                StringFormatFlags.NoClip,
+                PageNumbers = true,
+                PageNumberInHeader = false,
+                //printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.Porportional;
+                ColumnWidth = DGVPrinter.ColumnWidthSetting.CellWidth,
+                HeaderCellAlignment = StringAlignment.Near,
+                //printer.Footer = "";
+                FooterSpacing = 15
+            };
             printer.PageNumberFormat.Alignment = StringAlignment.Center;
 
             if (DialogResult.OK == printer.DisplayPrintDialog()) {  // you may replace 

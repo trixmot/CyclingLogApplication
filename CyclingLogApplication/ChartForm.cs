@@ -17,7 +17,7 @@ namespace CyclingLogApplication
         private static SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
         //BackgroundWorker bgw = new BackgroundWorker();
 
-        public ChartForm(MainForm mainForm)
+        public ChartForm()
         {
             InitializeComponent();
             labelChartError.Hide();
@@ -35,7 +35,7 @@ namespace CyclingLogApplication
             cbRoutesChart.Enabled = false;
             rbChartTypeColumn.Checked = true;
 
-            MainForm mainform = new MainForm();
+            //MainForm mainform = new MainForm();
             List<string> logList = MainForm.ReadDataNames("Table_Log_year", "Name");
 
             for (int i = 0; i < logList.Count; i++)
@@ -56,7 +56,7 @@ namespace CyclingLogApplication
             // NOTE: This line of code loads data into the 'cyclingLogDatabaseDataSet.Table_Ride_Information' table. You can move, or remove it, as needed.
             this.table_Ride_InformationTableAdapter.Fill(this.cyclingLogDatabaseDataSet.Table_Ride_Information);
 
-            MainForm mainForm = new MainForm();
+            //MainForm mainForm = new MainForm();
             try
             {
                 cbLogYearChart.SelectedIndex = MainForm.GetLastLogYearChartSelected();
@@ -200,6 +200,7 @@ namespace CyclingLogApplication
             {
                 chartDataType = "AvgSpeed";
                 averageDataType = true;
+                lbYAxis.Text = "AvgSpeed";
             }
             //Longest:
             else if (cbTypeChartData.SelectedIndex == 1)
@@ -221,6 +222,9 @@ namespace CyclingLogApplication
 
                     progressBar.Hide();
                 }
+
+                lbYAxis.Text = "Miles";
+
                 return;
                 //chartDataType = "RideDistance";
             }
@@ -228,6 +232,7 @@ namespace CyclingLogApplication
             else
             {
                 chartDataType = "RideDistance";
+                lbYAxis.Text = "Miles";
             }
 
             SqlCommand cmd = null;
@@ -248,6 +253,8 @@ namespace CyclingLogApplication
                     {
                         cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
                     }
+
+                    lbXAxis.Text = "Day";
                 }
                 //Weekly:
                 else if (cbTypeTime.SelectedIndex == 1)
@@ -274,6 +281,8 @@ namespace CyclingLogApplication
                             cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
                         }
                     }
+
+                    lbXAxis.Text = "Week";
                 }
                 //Monthly:
                 else if (cbTypeTime.SelectedIndex == 2)
@@ -300,6 +309,8 @@ namespace CyclingLogApplication
                             cmd = new SqlCommand("SELECT Date, " + chartDataType + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
                         }
                     }
+
+                    lbXAxis.Text = "Month";
                 }
 
                 sqlConnection.Open();
@@ -479,16 +490,10 @@ namespace CyclingLogApplication
             finally
             {
                 // close reader
-                if (reader != null)
-                {
-                    reader.Close();
-                }
+                reader?.Close();
 
                 // close connection
-                if (sqlConnection != null)
-                {
-                    sqlConnection.Close();
-                }
+                sqlConnection?.Close();
 
                 cmd.Dispose();
             }
@@ -548,7 +553,7 @@ namespace CyclingLogApplication
             chart1.ChartAreas[0].AxisX.Interval = 1;
         }
 
-        private int GetLogYearForSelectedLog(int logIndex)
+        private static int GetLogYearForSelectedLog(int logIndex)
         {
             List<object> objectValues = new List<object>
             {
@@ -579,7 +584,7 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        private double GetMaxHighMileageMonthlyForSelectedLog(int logIndex, int month)
+        private static double GetMaxHighMileageMonthlyForSelectedLog(int logIndex, int month)
         {
             List<object> objectValues = new List<object>
             {
@@ -668,16 +673,13 @@ namespace CyclingLogApplication
             finally
             {
                 // close connection
-                if (sqlConnection != null)
-                {
-                    sqlConnection.Close();
-                }
+                sqlConnection?.Close();
             }
 
             chart1.ChartAreas[0].AxisX.Interval = 5;
         }
 
-        private float GetTotalMilesMonthlyForSelectedLog(int logIndex, int month)
+        private static float GetTotalMilesMonthlyForSelectedLog(int logIndex, int month)
         {
             List<object> objectValues = new List<object>
             {
@@ -710,7 +712,7 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        public SqlDataReader ExecuteSimpleQueryConnection(string ProcedureName, List<object> _Parameters)
+        public static SqlDataReader ExecuteSimpleQueryConnection(string ProcedureName, List<object> _Parameters)
         {
             string tmpProcedureName = "EXECUTE " + ProcedureName + " ";
 

@@ -928,15 +928,15 @@ namespace CyclingLogApplication
                 string temp = "";
 
                 //Split time and enter hours-min-sec
-                if (garminDataDictionary.ContainsKey("\"Moving Time\""))
+                if (garminDataDictionary.TryGetValue("\"Moving Time\"", out string value))
                 {
-                    temp = garminDataDictionary["\"Moving Time\""];
+                    temp = value;
                 }
                 else
                 {
-                    if (garminDataDictionary.ContainsKey("\"Time\""))
+                    if (garminDataDictionary.TryGetValue("\"Time\"", out value))
                     {
-                        temp = garminDataDictionary["\"Time\""];
+                        temp = value;
                     }
                 }
 
@@ -973,49 +973,49 @@ namespace CyclingLogApplication
                 numDistanceRideDataEntry.Maximum = (200);
                 numDistanceRideDataEntry.Value = System.Convert.ToDecimal(garminDataDictionary["\"Distance\""]);
 
-                if (garminDataDictionary.ContainsKey("\"Total Ascent\""))
+                if (garminDataDictionary.TryGetValue("\"Total Ascent\"", out value))
                 {
-                    total_ascent.Text = garminDataDictionary["\"Total Ascent\""];
+                    total_ascent.Text = value;
                 }
 
-                if (garminDataDictionary.ContainsKey("\"Total Descent\""))
+                if (garminDataDictionary.TryGetValue("\"Total Descent\"", out value))
                 {
-                    total_descent.Text = garminDataDictionary["\"Total Descent\""];
+                    total_descent.Text = value;
                 }
 
-                if (garminDataDictionary.ContainsKey("\"Avg Moving Speed\""))
+                if (garminDataDictionary.TryGetValue("\"Avg Moving Speed\"", out value))
                 {
-                    numericUpDown1.Value = System.Convert.ToDecimal(garminDataDictionary["\"Avg Moving Speed\""]);
+                    numericUpDown1.Value = System.Convert.ToDecimal(value);
                 }
                 else
                 {
                     numericUpDown1.Value = System.Convert.ToDecimal(garminDataDictionary["\"Avg Speed\""]);
                 }
 
-                if (garminDataDictionary.ContainsKey("\"Max Speed\""))
+                if (garminDataDictionary.TryGetValue("\"Max Speed\"", out value))
                 {
-                    max_speed.Text = garminDataDictionary["\"Max Speed\""];
+                    max_speed.Text = value;
                 }
 
-                if (garminDataDictionary.ContainsKey("\"Avg HR\""))
+                if (garminDataDictionary.TryGetValue("\"Avg HR\"", out value))
                 {
-                    avg_heart_rate.Text = garminDataDictionary["\"Avg HR\""];
+                    avg_heart_rate.Text = value;
                     max_heart_rate.Text = garminDataDictionary["\"Max HR\""];
                 }
 
-                if (garminDataDictionary.ContainsKey("\"Avg Bike Cadence\""))
+                if (garminDataDictionary.TryGetValue("\"Avg Bike Cadence\"", out value))
                 {
-                    avg_cadence.Text = garminDataDictionary["\"Avg Bike Cadence\""];
+                    avg_cadence.Text = value;
                 }
 
-                if (garminDataDictionary.ContainsKey("\"Max Bike Cadence\""))
+                if (garminDataDictionary.TryGetValue("\"Max Bike Cadence\"", out value))
                 {
-                    tbMaxCadence.Text = garminDataDictionary["\"Max Bike Cadence\""];
+                    tbMaxCadence.Text = value;
                 }
 
-                if (garminDataDictionary.ContainsKey("\"Avg Temperature\""))
+                if (garminDataDictionary.TryGetValue("\"Avg Temperature\"", out value))
                 {
-                    numericUpDown3.Value = decimal.Round(System.Convert.ToDecimal(garminDataDictionary["\"Avg Temperature\""]), 2, MidpointRounding.AwayFromZero);
+                    numericUpDown3.Value = decimal.Round(System.Convert.ToDecimal(value), 2, MidpointRounding.AwayFromZero);
                 }
 
                 calories.Text = garminDataDictionary["\"Calories\""];

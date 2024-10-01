@@ -94,6 +94,7 @@ namespace CyclingLogApplication
         {
             CloseDataReader();
             CloseConnection();
+            //Dispose();
         }
         #endregion
 
@@ -145,10 +146,7 @@ namespace CyclingLogApplication
             try { this.CloseDataReader(); }
             catch { }
             try {
-                if (this.Connection != null)
-                {
-                    this.Connection.Close();
-                }
+                this.Connection?.Close();
             }
             catch { }
             try { SqlConnection.ClearPool(this.Connection); }
@@ -245,9 +243,10 @@ namespace CyclingLogApplication
         {
             this.OpenConnection(this.ConnectionString);
 
-            using (SqlCommand cmd = new SqlCommand(CommandString, this.Connection))
+            SqlCommand sqlCommand = new SqlCommand(CommandString, Connection);
+            using (SqlCommand cmd = sqlCommand)
             {
-                cmd.CommandTimeout = 1800; //30 min, increased to handle buildclean:
+                cmd.CommandTimeout = 400;
                 if (_Parameters != null)
                 {
                     cmd.Prepare();

@@ -329,6 +329,8 @@
             this.button6 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.btFirstDay = new System.Windows.Forms.Button();
             this.rbFirstDayMonday = new System.Windows.Forms.RadioButton();
@@ -357,8 +359,7 @@
             this.tbMaintID = new System.Windows.Forms.TextBox();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -395,6 +396,7 @@
             this.groupBox10.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox20.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbLogYearConfig
@@ -3580,8 +3582,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.groupBox20);
             this.groupBox2.Controls.Add(this.groupBox18);
             this.groupBox2.Controls.Add(this.groupBox13);
             this.groupBox2.Controls.Add(this.groupBox9);
@@ -3593,6 +3594,26 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(74, 58);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 75;
+            this.button4.Text = "Restore";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(74, 29);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 74;
+            this.button3.Text = "Backup";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // groupBox18
             // 
@@ -3645,7 +3666,7 @@
             this.groupBox13.Controls.Add(this.btDeleteAllData);
             this.groupBox13.Location = new System.Drawing.Point(254, 243);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(218, 109);
+            this.groupBox13.Size = new System.Drawing.Size(218, 119);
             this.groupBox13.TabIndex = 72;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Delete All Data";
@@ -3884,25 +3905,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
-            // button3
+            // groupBox20
             // 
-            this.button3.Location = new System.Drawing.Point(592, 304);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 74;
-            this.button3.Text = "Backup";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(592, 342);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 75;
-            this.button4.Text = "Restore";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            this.groupBox20.Controls.Add(this.button3);
+            this.groupBox20.Controls.Add(this.button4);
+            this.groupBox20.Location = new System.Drawing.Point(506, 256);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(241, 106);
+            this.groupBox20.TabIndex = 76;
+            this.groupBox20.TabStop = false;
+            this.groupBox20.Text = "Backup Database";
             // 
             // MainForm
             // 
@@ -3917,7 +3929,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cycling Log";
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Load += new System.EventHandler(MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox19.ResumeLayout(false);
@@ -3971,6 +3983,7 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox20.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -4304,8 +4317,9 @@
         private System.Windows.Forms.TextBox tbTotalRoutes;
         private System.Windows.Forms.DataGridView dataGridViewBikes;
         private System.Windows.Forms.DataGridView dataGridViewWeekly;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.GroupBox groupBox20;
     }
 }
 
