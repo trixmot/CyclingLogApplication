@@ -1337,5 +1337,17 @@ namespace CyclingLogApplication
             }
 
         }
+
+        //private void tbCustom1_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (!tbCustom1.Text.Equals(""))
+        //    {
+        //        tbCustom2.Visible = true;
+        //    }
+        //    else
+        //    {
+        //        tbCustom2.Visible = false;
+        //    }
+        //}
     }
 }

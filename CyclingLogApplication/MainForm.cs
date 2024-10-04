@@ -2240,6 +2240,7 @@ namespace CyclingLogApplication
             tbTotalTime.Text = Convert.ToString(GetTotalMovingTimeAllLogs());
             tbMostElevationAll.Text = GetMostElevationAllLogs().ToString("N0");
             tbLongestTimeAll.Text = GetLongestRideTimeAllLogs();
+            tbHighWeekAll.Text = GetMonthlyHighMileageWeekNumberAll().ToString();
         }
 
         private static double GetLongestRide()
@@ -3887,6 +3888,87 @@ namespace CyclingLogApplication
             {
                 weeklyMax = weekMilesTotal;
             }
+
+            return weeklyMax;
+        }
+
+        public static double GetMonthlyHighMileageWeekNumberAll()
+        {
+            int weekNumber;
+            int weekNumberTmp = 0;
+            double weekMilesTotal = 0;
+            double weeklyMax = 0;
+
+            //TODO: Loop through each log year:
+            //Get list of log year index's:
+            
+
+            try
+            {
+                List<string> logYearList = ReadDataNames("Table_Log_year", "LogYearID");
+
+                for (int i = 0; i < logYearList.Count; i++)
+                {
+                    if (sqlConnection != null && sqlConnection.State == ConnectionState.Closed)
+                    {
+                        sqlConnection.Open();
+                    }
+
+                    string query = "SELECT RideDistance,WeekNumber FROM Table_Ride_Information WHERE " + logYearList[i] + "=[LogYearID] ORDER BY [WeekNumber] ASC";
+                    using (SqlCommand command = new SqlCommand(query, sqlConnection))
+                    {
+                        command.CommandType = CommandType.Text;
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                weekNumber = (int)reader["WeekNumber"];
+
+                                //Check if on a different week:
+                                if (weekNumber > weekNumberTmp)
+                                {
+                                    weekNumberTmp = weekNumber;
+                                    // Compare weekly total to see if max:
+                                    if (weekMilesTotal > weeklyMax)
+                                    {
+                                        weeklyMax = weekMilesTotal;
+                                    }
+
+                                    // Onto a new week, so reset weekly total:
+                                    weekMilesTotal = (double)reader["RideDistance"];
+                                }
+                                else
+                                {
+                                    weekMilesTotal += (double)reader["RideDistance"];
+                                }
+                            }
+
+                            //reader.Close();
+                        }
+                        command.Cancel();
+                    }
+
+                    // Check last weekly total to see if max:
+                    if (weekMilesTotal > weeklyMax)
+                    {
+                        weeklyMax = weekMilesTotal;
+                    }
+                    weekMilesTotal = 0;
+                    weekNumberTmp = 1;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to the Log year Index from the database." + ex.Message.ToString());
+            }
+            finally
+            {
+                // close connection
+                sqlConnection?.Close();
+            }
+
+           
 
             return weeklyMax;
         }

@@ -205,9 +205,9 @@ namespace CyclingLogApplication
             //Longest:
             else if (cbTypeChartData.SelectedIndex == 1)
             {
-                using (ProgressBar progressBar = new ProgressBar())
-                {
-                    progressBar.Show();
+                //using (ProgressBar progressBar = new ProgressBar())
+                //{
+                //    progressBar.Show();
 
                     //Weekly:
                     if (cbTypeTime.SelectedIndex == 1)
@@ -220,8 +220,8 @@ namespace CyclingLogApplication
                         RunLongestRideChartMonthly(logIndex);
                     }
 
-                    progressBar.Hide();
-                }
+                  //  progressBar.Hide();
+                //}
 
                 lbYAxis.Text = "Miles";
 
