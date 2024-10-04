@@ -3046,7 +3046,7 @@ namespace CyclingLogApplication
             }
 
             //Check format of miles:
-            if (!int.TryParse(tbMaintMiles.Text, out _))
+            if (!double.TryParse(tbMaintMiles.Text, out _))
             {
                 lbMaintError.Text = "The miles value must be in numeric format. Enter 0 if unknown.";
                 return;
@@ -3056,14 +3056,6 @@ namespace CyclingLogApplication
             {
                 //MessageBox.Show("All the selections are not set.");
                 lbMaintError.Text = "All the selections are not set.";
-                return;
-            }
-
-            //Check format of miles:
-            //int parsedValue;
-            if (!int.TryParse(tbMaintMiles.Text, out _))
-            {
-                lbMaintError.Text = "The miles value must be in numeric format.";
                 return;
             }
 
@@ -3120,6 +3112,55 @@ namespace CyclingLogApplication
             List<object> objectValues = new List<object>();
             objectValues.Add(dateTimePicker1.Value);
             objectValues.Add(cbBikeMaint.SelectedItem.ToString());
+
+            string comments;
+            string mainID;
+            string miles;
+
+            try
+            {
+                //ExecuteScalarFunction
+                using (var results = ExecuteSimpleQueryConnection("Maintenance_Get", objectValues))
+                {
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            //MessageBox.Show(String.Format("{0}", results[0]));
+                            //lbErrorMessage.Hide();
+                            comments = results[0].ToString();
+                            mainID = results[1].ToString();
+                            miles = results[2].ToString();
+
+                            //Load maintenance data page:
+                            rtbMaintComments.Text = comments;
+                            tbMaintID.Text = mainID;
+                            tbMaintMiles.Text = miles;
+                        }
+                    }
+                    else
+                    {
+                        //lbErrorMessage.Show();
+                        //lbErrorMessage.Text = "No ride data found for the selected date.";
+                        //tbRecordID.Text = "0";
+                        //lbMaintError.Text = "No entry found for the selected Bike and Date.";
+                        Logger.LogError("WARNING: No entry found for the selected Bike and Date.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
+            }
+        }
+
+        private void BtMaintRetrieve_Run(string date, string bike)
+        {
+            lbMaintError.Text = "";
+
+            List<object> objectValues = new List<object>();
+            objectValues.Add(date);
+            objectValues.Add(bike);
 
             string comments;
             string mainID;
@@ -5920,6 +5961,34 @@ namespace CyclingLogApplication
         private void button4_Click(object sender, EventArgs e)
         {
             Restore();
+        }
+
+        private void dgvMaint_Click(object sender, EventArgs e)
+        {
+            int rowindex = dgvMaint.CurrentCell.RowIndex;
+            int columnindex = dgvMaint.CurrentCell.ColumnIndex;
+
+            string date = dgvMaint.Rows[rowindex].Cells[0].Value.ToString();
+            string bike = dgvMaint.Rows[rowindex].Cells[1].Value.ToString();
+            string miles = dgvMaint.Rows[rowindex].Cells[2].Value.ToString();
+            int bikeIndex = -1; 
+
+            BtMaintRetrieve_Run(date, bike);
+
+            List<string> routeList = ReadDataNames("Table_Bikes", "Name");
+
+            for (int i = 0; i < routeList.Count; i++)
+            {
+                if (routeList[i].Equals(bike))
+                {
+                    bikeIndex = i;
+                    break;
+                }
+            }
+
+            dateTimePicker1.Value = DateTime.Parse(dgvMaint.Rows[rowindex].Cells[0].Value.ToString());
+            cbBikeMaint.SelectedIndex = bikeIndex;
+            tbMaintMiles.Text = miles;
         }
     }
 }

@@ -3274,6 +3274,7 @@
             this.dgvMaint.Name = "dgvMaint";
             this.dgvMaint.Size = new System.Drawing.Size(798, 366);
             this.dgvMaint.TabIndex = 0;
+            this.dgvMaint.Click += new System.EventHandler(this.dgvMaint_Click);
             // 
             // tabPage6
             // 
