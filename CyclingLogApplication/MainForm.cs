@@ -3118,7 +3118,7 @@ namespace CyclingLogApplication
             }
 
             List<object> objectValues = new List<object>();
-            objectValues.Add(dateTimePicker1.Text);
+            objectValues.Add(dateTimePicker1.Value);
             objectValues.Add(cbBikeMaint.SelectedItem.ToString());
 
             string comments;
