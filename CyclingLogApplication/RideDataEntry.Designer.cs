@@ -121,7 +121,7 @@
             this.cbLogYearDataEntry.FormattingEnabled = true;
             this.cbLogYearDataEntry.Location = new System.Drawing.Point(20, 38);
             this.cbLogYearDataEntry.Name = "cbLogYearDataEntry";
-            this.cbLogYearDataEntry.Size = new System.Drawing.Size(169, 21);
+            this.cbLogYearDataEntry.Size = new System.Drawing.Size(182, 21);
             this.cbLogYearDataEntry.TabIndex = 0;
             this.cbLogYearDataEntry.SelectedIndexChanged += new System.EventHandler(this.CbLogYearDataEntry_SelectedIndexChanged);
             // 
@@ -138,7 +138,7 @@
             // 
             this.dtpRideDate.Location = new System.Drawing.Point(20, 80);
             this.dtpRideDate.Name = "dtpRideDate";
-            this.dtpRideDate.Size = new System.Drawing.Size(169, 20);
+            this.dtpRideDate.Size = new System.Drawing.Size(182, 20);
             this.dtpRideDate.TabIndex = 2;
             this.dtpRideDate.ValueChanged += new System.EventHandler(this.DtpRideDate_ValueChanged);
             // 
@@ -169,16 +169,16 @@
             this.groupBox3.Controls.Add(this.btRetrieve);
             this.groupBox3.Controls.Add(this.label24);
             this.groupBox3.Controls.Add(this.numericUpDown2);
-            this.groupBox3.Location = new System.Drawing.Point(211, 22);
+            this.groupBox3.Location = new System.Drawing.Point(218, 22);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(165, 130);
+            this.groupBox3.Size = new System.Drawing.Size(158, 130);
             this.groupBox3.TabIndex = 48;
             this.groupBox3.TabStop = false;
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(21, 26);
+            this.label28.Location = new System.Drawing.Point(18, 19);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(125, 13);
             this.label28.TabIndex = 49;
@@ -462,7 +462,7 @@
             this.cbBikeDataEntrySelection.FormattingEnabled = true;
             this.cbBikeDataEntrySelection.Location = new System.Drawing.Point(76, 49);
             this.cbBikeDataEntrySelection.Name = "cbBikeDataEntrySelection";
-            this.cbBikeDataEntrySelection.Size = new System.Drawing.Size(176, 21);
+            this.cbBikeDataEntrySelection.Size = new System.Drawing.Size(159, 21);
             this.cbBikeDataEntrySelection.TabIndex = 43;
             // 
             // label23

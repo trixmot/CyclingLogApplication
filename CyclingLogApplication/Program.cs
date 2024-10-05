@@ -41,7 +41,16 @@ namespace CyclingLogApplication
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
+            Logger.Log("**********************************************", 1, 0);
+            Logger.Log("Starting Log Application", 1, 0);
+            Logger.Log("**********************************************", 1, 0);
+
             Application.Run(new MainForm());
+
+            Logger.Log("**********************************************", 1, 0);
+            Logger.Log("Ending Log Application", 1, 0);
+            Logger.Log("**********************************************", 1, 0);
         }
 
         /// <summary>

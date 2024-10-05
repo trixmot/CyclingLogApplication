@@ -30,7 +30,7 @@ namespace CyclingLogApplication
         public RideDataEntry()
         {
             InitializeComponent();
-            MainForm mainForm = new MainForm();
+            //MainForm mainForm = new MainForm();
             sqlConnection = MainForm.GetsqlConnectionString();
             databaseConnection = MainForm.GetsDatabaseConnectionString();
 
@@ -104,7 +104,7 @@ namespace CyclingLogApplication
             numericUpDown2.Enabled = false;
 
             ConfigurationFile configurationFile = new ConfigurationFile();
-            ConfigurationFile.ReadConfigFile();
+            ConfigurationFile.ReadConfigFile(false);
             string customField1 = MainForm.GetCustomField1();
             string customField2 = MainForm.GetCustomField2();
 
@@ -227,6 +227,10 @@ namespace CyclingLogApplication
             {
                 dtpRideDate.Value.Year
             };
+            dtpRideDate.Format = DateTimePickerFormat.Custom;
+            // Display the date as "Mon 27 Feb 2012".  
+            dtpRideDate.CustomFormat = "ddd dd MMM yyyy";
+            //dtpRideDate.MaximumSize(20);
 
             using (var results = ExecuteSimpleQueryConnection("Get_LogYear_Index", objectValuesLogID))
             {

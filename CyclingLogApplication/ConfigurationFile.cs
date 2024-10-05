@@ -6,14 +6,26 @@ using System.Windows.Forms;
 //using System.Text;
 //using System.Threading.Tasks;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace CyclingLogApplication
 {
     class ConfigurationFile
     {
 
-        public static bool ReadConfigFile()
+        private static int logsRead;
+
+        public static bool ReadConfigFile(Boolean logBool)
         {
+            //int LogValue = GetLogsRead();
+            //Boolean logBool = false;
+
+            //if (LogValue == 0)
+            //{
+            //    SetLogsRead(1);
+            //    logBool = true;
+            //}
+            
             //This will give us the full name path of the executable file:
             //i.e. C:\Program Files\MyApplication\MyApplication.exe
             string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -166,34 +178,47 @@ namespace CyclingLogApplication
             MainForm.SetCheckedListBoxItem25(checkListBoxItem25);
             MainForm.SetCheckedListBoxItem25(checkListBoxItem26);
 
-            //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
-            Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, 1, 0);
-            Logger.Log("Configuration Read: LOGLEVEL : " + logLevel, 1, 0);
-            Logger.Log("Configuration Read: VERSION : " + verison, 1, 0);
-            Logger.Log("Configuration Read: cbStatistic1 : " + cbStatistic1, 1, 0);
-            Logger.Log("Configuration Read: cbStatistic2 : " + cbStatistic2, 1, 0);
-            Logger.Log("Configuration Read: cbStatistic3 : " + cbStatistic3, 1, 0);
-            Logger.Log("Configuration Read: cbStatistic4 : " + cbStatistic4, 1, 0);
-            Logger.Log("Configuration Read: cbStatistic5 : " + cbStatistic5, 1, 0);
-            Logger.Log("Configuration Read: lastLogYearFilterSelected : " + lastLogYearFilterSelected, 1, 0);
-            Logger.Log("Configuration Read: lastLogYearSelected : " + lastLogYearSelected, 1, 0);
-            Logger.Log("Configuration Read: lastBikeSelected : " + lastBikeSelected, 1, 0);
+            if (logBool)
+            {
+                //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
+                Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, 1, 0);
+                Logger.Log("Configuration Read: LOGLEVEL : " + logLevel, 1, 0);
+                Logger.Log("Configuration Read: VERSION : " + verison, 1, 0);
+                Logger.Log("Configuration Read: cbStatistic1 : " + cbStatistic1, 1, 0);
+                Logger.Log("Configuration Read: cbStatistic2 : " + cbStatistic2, 1, 0);
+                Logger.Log("Configuration Read: cbStatistic3 : " + cbStatistic3, 1, 0);
+                Logger.Log("Configuration Read: cbStatistic4 : " + cbStatistic4, 1, 0);
+                Logger.Log("Configuration Read: cbStatistic5 : " + cbStatistic5, 1, 0);
+                Logger.Log("Configuration Read: lastLogYearFilterSelected : " + lastLogYearFilterSelected, 1, 0);
+                Logger.Log("Configuration Read: lastLogYearSelected : " + lastLogYearSelected, 1, 0);
+                Logger.Log("Configuration Read: lastBikeSelected : " + lastBikeSelected, 1, 0);
 
-            Logger.Log("Configuration Read: chartLogYearSelected : " + chartLogYearSelected, 1, 0);
-            Logger.Log("Configuration Read: chartRouteSelected : " + chartRouteSelected, 1, 0);
-            Logger.Log("Configuration Read: chartTypeSelected : " + chartTypeSelected, 1, 0);
-            Logger.Log("Configuration Read: chartTimeTypeSelected : " + chartTimeTypeSelected, 1, 0);
+                Logger.Log("Configuration Read: chartLogYearSelected : " + chartLogYearSelected, 1, 0);
+                Logger.Log("Configuration Read: chartRouteSelected : " + chartRouteSelected, 1, 0);
+                Logger.Log("Configuration Read: chartTypeSelected : " + chartTypeSelected, 1, 0);
+                Logger.Log("Configuration Read: chartTimeTypeSelected : " + chartTimeTypeSelected, 1, 0);
 
-            Logger.Log("Configuration Read: lastMonthlyLogYearSelected : " + lastMonthlyLogYearSelected, 1, 0);
-            Logger.Log("Configuration Read: lastLogYearSelectedDataEntry : " + lastLogYearSelectedDataEntry, 1, 0);
+                Logger.Log("Configuration Read: lastMonthlyLogYearSelected : " + lastMonthlyLogYearSelected, 1, 0);
+                Logger.Log("Configuration Read: lastLogYearSelectedDataEntry : " + lastLogYearSelectedDataEntry, 1, 0);
 
-            Logger.Log("Configuration Read: license : " + license, 1, 0);
-            Logger.Log("Configuration Read: custom1 : " + customDataField1, 1, 0);
-            Logger.Log("Configuration Read: custom2 : " + customDataField2, 1, 0);
+                Logger.Log("Configuration Read: license : " + license, 1, 0);
+                Logger.Log("Configuration Read: custom1 : " + customDataField1, 1, 0);
+                Logger.Log("Configuration Read: custom2 : " + customDataField2, 1, 0);
+            }
 
-            returnStatus = true;
+            returnStatus = true;           
 
             return returnStatus;
+        }
+
+        public static void SetLogsRead(int logReadValue)
+        {
+            logsRead = logReadValue;
+        }
+
+        public static int GetLogsRead()
+        {
+            return logsRead;
         }
 
         public static void WriteConfigFile()

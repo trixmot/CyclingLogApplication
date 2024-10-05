@@ -126,11 +126,6 @@ namespace CyclingLogApplication
             GetConnectionStrings();
             int logSetting = GetLogLevel();
 
-            Logger.Log("**********************************************", 1, logSetting);
-            Logger.Log("Starting Log Application", 1, 0);
-
-            Logger.Log("**********************************************", 1, logSetting);
-
             tbWeekCount.Text = GetCurrentWeekCount().ToString();
             tbDayCount.Text = GetCurrentDayCount().ToString();
             tbTimeChange.Text = GetDaysToNextTimeChange().ToString();
@@ -155,8 +150,8 @@ namespace CyclingLogApplication
             }
             //Empty consturctor to prevent from running InitializeComponent():
             //Curretnly not used:
-            string calledFrom = emptyConstructor;
-            Logger.Log("Called From Constructor" + calledFrom, 1, 1);
+            //string calledFrom = emptyConstructor;
+            //Logger.Log("Called From Constructor" + calledFrom, 1, 1);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -177,7 +172,7 @@ namespace CyclingLogApplication
             {
                 RideDataEntry rideDataEntryForm = new RideDataEntry();
                 ConfigurationFile configfile = new ConfigurationFile();
-                ConfigurationFile.ReadConfigFile();
+                ConfigurationFile.ReadConfigFile(true);
 
                 if (GetLicenseAgreement().Equals("0"))
                 {
@@ -336,15 +331,15 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to exit?", "Exit Application", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
-                ChartForm chartForm = new ChartForm();
-                chartForm.Close();
-                RideDataEntry rideDataEntryForm = new RideDataEntry();
-                ConfigurationFile.WriteConfigFile();
-                rideDataDisplayForm.Dispose();
-                chartForm.Dispose();
-                rideDataEntryForm.Dispose();
-                this.Dispose();
+                //RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
+                //ChartForm chartForm = new ChartForm();
+                //chartForm.Close();
+                //RideDataEntry rideDataEntryForm = new RideDataEntry();
+                //ConfigurationFile.WriteConfigFile();
+                //rideDataDisplayForm.Dispose();
+                //chartForm.Dispose();
+                //rideDataEntryForm.Dispose();
+                //this.Dispose();
                 Application.Exit();
             }
         }
@@ -352,10 +347,7 @@ namespace CyclingLogApplication
         static void GetConnectionStrings()
         {
             string conStr = ConfigurationManager.ConnectionStrings["CyclingLogApplication.Properties.Settings.CyclingLogDatabaseConnectionString"].ConnectionString;
-            Logger.Log("**********************************************", 1, 1);
-            Logger.Log("Ending Log Application", 1, 1);
-            Logger.Log("**********************************************", 1, 1);
-            Logger.Log("conStr Name: " + conStr, 1, 1);
+            //Logger.Log("conStr Name: " + conStr, 1, 1);
             ConnectionStringSettingsCollection settings = ConfigurationManager.ConnectionStrings;
 
             if (settings != null)
@@ -364,9 +356,9 @@ namespace CyclingLogApplication
                 {
                     if (cs.Name.Equals("CyclingLogApplication.Properties.Settings.CyclingLogDatabaseConnectionString"))
                     {
-                        Logger.Log("ConnectionStringSettingsCollection Name: " + cs.Name, 1, 1);
-                        Logger.Log("ConnectionStringSettingsCollection ProviderName: " + cs.ProviderName, 1, 1);
-                        Logger.Log("ConnectionStringSettingsCollection ConnectionString: " + cs.ConnectionString, 1, 1);
+                        //Logger.Log("ConnectionStringSettingsCollection Name: " + cs.Name, 1, 1);
+                        //Logger.Log("ConnectionStringSettingsCollection ProviderName: " + cs.ProviderName, 1, 1);
+                        //Logger.Log("ConnectionStringSettingsCollection ConnectionString: " + cs.ConnectionString, 1, 1);
 
                         sqlConnection = new SqlConnection(cs.ConnectionString);
                         databaseConnection = new DatabaseConnection(cs.ConnectionString);
@@ -922,7 +914,7 @@ namespace CyclingLogApplication
                 {
                     string returnValue = reader[0].ToString();
                     nameList.Add(returnValue);
-                    Logger.Log("Reading data from the database: columnName:" + returnValue, 0, logSetting);
+                    //Logger.Log("Reading data from the database: columnName:" + returnValue, 0, logSetting);
                 }
             }
             finally
