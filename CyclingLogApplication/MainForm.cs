@@ -232,7 +232,7 @@ namespace CyclingLogApplication
                     cbLogYear5.Items.Add(val);
                     rideDataDisplayForm.cbLogYearFilter.Items.Add(val);
                     chartForm.cbLogYearChart.Items.Add(val);
-                    Logger.Log("Data Loading: Log Year: " + val, 0, logSetting);
+                    Logger.Log("Data Loading: Log Year: " + val, logSetting, 1);
                 }
 
                 if (GetLastLogSelectedDataEntry() != 0)
@@ -246,7 +246,7 @@ namespace CyclingLogApplication
                     cbRouteConfig.Items.Add(val);
                     rideDataEntryForm.cbRouteDataEntry.Items.Add(val);
                     chartForm.cbRoutesChart.Items.Add(val);
-                    Logger.Log("Data Loading: Route: " + val, 1, logSetting);
+                    Logger.Log("Data Loading: Route: " + val, logSetting, 1);
                 }
 
                 //Load Bike values:
@@ -254,7 +254,7 @@ namespace CyclingLogApplication
                 {
                     cbBikeConfig.Items.Add(val);
                     cbBikeMaint.Items.Add(val);
-                    Logger.Log("Data Loading: Bikes: " + val, 1, logSetting);
+                    Logger.Log("Data Loading: Bikes: " + val, logSetting, 1);
                 }
 
                 if (logYearList.Count == 0)
@@ -335,7 +335,7 @@ namespace CyclingLogApplication
                 //ChartForm chartForm = new ChartForm();
                 //chartForm.Close();
                 //RideDataEntry rideDataEntryForm = new RideDataEntry();
-                //ConfigurationFile.WriteConfigFile();
+                ConfigurationFile.WriteConfigFile();
                 //rideDataDisplayForm.Dispose();
                 //chartForm.Dispose();
                 //rideDataEntryForm.Dispose();
@@ -914,7 +914,7 @@ namespace CyclingLogApplication
                 {
                     string returnValue = reader[0].ToString();
                     nameList.Add(returnValue);
-                    //Logger.Log("Reading data from the database: columnName:" + returnValue, 0, logSetting);
+                    Logger.Log("Reading data from the database: columnName:" + returnValue, logSetting, 1);
                 }
             }
             finally
@@ -986,7 +986,7 @@ namespace CyclingLogApplication
 
             RefreshWeekly();
 
-            Logger.Log("Adding a Log Year entry to the Configuration:" + logYearTitle, 0, logSetting);
+            Logger.Log("Adding a Log Year entry to the Configuration:" + logYearTitle, logSetting, 0);
         }
 
         private void RemoveLogYearConfig(object sender, EventArgs e)
@@ -1269,7 +1269,7 @@ namespace CyclingLogApplication
             chartForm.cbRoutesChart.Items.Add(routeString);
 
             RefreshRoutes();
-            Logger.Log("Adding a Route entry to the Configuration:" + routeString, 0, logSetting);
+            Logger.Log("Adding a Route entry to the Configuration:" + routeString, logSetting, 0);
         }
 
         private void AddDefautRoute()
@@ -1292,7 +1292,7 @@ namespace CyclingLogApplication
             chartForm.cbRoutesChart.Items.Add(routeString);
 
             RefreshRoutes();
-            Logger.Log("Adding a Route entry to the Configuration:" + routeString, 0, logSetting);
+            Logger.Log("Adding a Route entry to the Configuration:" + routeString, logSetting, 0);
         }
 
         private void BtRemoveRouteConfig(object sender, EventArgs e)

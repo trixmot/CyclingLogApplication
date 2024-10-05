@@ -59,31 +59,40 @@ namespace CyclingLogApplication
             }
         }
 
-        public static void Log(string logMessage, int logLevel, int logLevelSetting)
+        public static void Log(string logMessage, int logLevel, int logTypeSetting)
         {
             string logType = "";
 
-            if (logLevel == 0)
-            {
-                logType = "VERB";
-            }
-            else if (logLevel == 1)
+            if (logTypeSetting == 0)
             {
                 logType = "INFO";
             }
+            else
+            {
+                logType = "VERB";
+            }
 
-            //0=verbose:
-            //1=info:
-            //2=error only
-            // logLevel-logLevelSetting
-            // 0-0 yes
-            // 0-1 no
-            // 0-2 no
-            // 1-0 yes
-            // 1-1 yes
-            // 1-2 no
+            // *logLevel* (USER SET)
+            //0 = info:
+            //1 = verbose:
 
-            if (logLevel == logLevelSetting || logLevel > logLevelSetting)
+            //Log Message Type (Set in the log message)
+            //0 = info type
+            //1 = verbose type
+
+            //0-0   Only info messages
+            //0-1   no logging
+            //1-0   Info and verbose messages
+            //1-1   Info and verbose messages
+
+            if (logLevel == 0 && logTypeSetting == 0)
+            {
+                setLogFilePath();
+                using (StreamWriter w = File.AppendText(fileName))
+                {
+                    w.WriteLine("[{1}] : {2} : {0}", logMessage, DateTime.Now.ToLongTimeString(), logType);
+                }
+            } else if (logLevel == 1)
             {
                 setLogFilePath();
                 using (StreamWriter w = File.AppendText(fileName))
@@ -91,6 +100,8 @@ namespace CyclingLogApplication
                     w.WriteLine("[{1}] : {2} : {0}", logMessage, DateTime.Now.ToLongTimeString(), logType);
                 }
             }
+
+
         }
 
         public static void LogError(string logMessage)

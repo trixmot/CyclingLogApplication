@@ -585,7 +585,7 @@ namespace CyclingLogApplication
                     if (tbRecordID.Text.Equals("0"))
                     {
                         MessageBox.Show("The current ride can not be updated since it was not loaded from the database.");
-                        Logger.Log("The current ride can not be updated since it was not loaded from the database." + recordID, 0, logSetting);
+                        Logger.Log("The current ride can not be updated since it was not loaded from the database." + recordID, logSetting, 0);
 
                         return;
                     }
@@ -602,7 +602,7 @@ namespace CyclingLogApplication
                     DialogResult result = MessageBox.Show("Detected that the current date was retrieved from a record that was already saved to the database. Do you want to continue adding the record?", "Add Ride Data", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No)
                     {
-                        Logger.Log("Detected that the current data was retrieved from a record that was already saved to the database. RecordID" + recordID, 0, logSetting);
+                        Logger.Log("Detected that the current data was retrieved from a record that was already saved to the database. RecordID" + recordID, logSetting, 0);
 
                         return;
                     }

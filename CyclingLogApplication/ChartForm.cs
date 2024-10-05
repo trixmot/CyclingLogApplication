@@ -354,7 +354,7 @@ namespace CyclingLogApplication
                         if (!date.Equals(""))
                         {
                             chart1.Series["Series1"].Points.AddXY(date, chartDataTypeValue.ToString());
-                            Logger.Log("Chart Testing: Daily values: " + chartDataTypeValue + "::" + date, 1, 0);
+                            Logger.Log("Chart Testing: Daily values: " + chartDataTypeValue + "::" + date, logSetting, 1);
                         }
                     }
                     //Weekly:
@@ -390,7 +390,7 @@ namespace CyclingLogApplication
                             recordFound = true;
                         }
 
-                        Logger.Log("Chart Testing: Weekly values: " + total_value + "::" + date, 1, 0);
+                        Logger.Log("Chart Testing: Weekly values: " + total_value + "::" + date, logSetting, 1);
                     }
                     //Monthly:
                     else if (cbTypeTime.SelectedIndex == 2)
@@ -432,7 +432,7 @@ namespace CyclingLogApplication
                             recordFound = true;
                         }
 
-                        Logger.Log("Chart Testing: Monthly values: " + total_value + "::" + date, 1, 0);
+                        Logger.Log("Chart Testing: Monthly values: " + total_value + "::" + date, logSetting, 1);
                     }
                     chart1.ChartAreas[0].AxisX.Interval = 1;
                 }

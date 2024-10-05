@@ -16,16 +16,7 @@ namespace CyclingLogApplication
         private static int logsRead;
 
         public static bool ReadConfigFile(Boolean logBool)
-        {
-            //int LogValue = GetLogsRead();
-            //Boolean logBool = false;
-
-            //if (LogValue == 0)
-            //{
-            //    SetLogsRead(1);
-            //    logBool = true;
-            //}
-            
+        {            
             //This will give us the full name path of the executable file:
             //i.e. C:\Program Files\MyApplication\MyApplication.exe
             string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -74,7 +65,7 @@ namespace CyclingLogApplication
             //=================================
             XmlNodeList nodes = doc.DocumentElement.SelectNodes("/Config");
             string daysToKeepLogs = nodes.Item(0).SelectSingleNode("DAYSTOKEEPLOGS").InnerText;
-            string verison = nodes.Item(0).SelectSingleNode("VERSION").InnerText;
+            //string verison = nodes.Item(0).SelectSingleNode("VERSION").InnerText;
             int logLevel = Convert.ToInt32(nodes.Item(0).SelectSingleNode("LOGLEVEL").InnerText);
 
             string cbStatistic1 = nodes.Item(0).SelectSingleNode("cbStatistic1").InnerText;
@@ -128,8 +119,9 @@ namespace CyclingLogApplication
             string lastLogYearSelectedDataEntry = nodes.Item(0).SelectSingleNode("LastLogSelectedDataEntry").InnerText;
 
             //MainForm mainForm = new MainForm();
-            MainForm.SetLogLevel(logLevel);
+            //MainForm.SetLogLevel(logLevel);
             MainForm.SetLicenseAgreement(license);
+            MainForm.SetLogLevel(logLevel);
             MainForm.SetFirstDayOfWeek(firstDayOfWeek);
             MainForm.SetCustomField1(customDataField1);
             MainForm.SetCustomField2(customDataField2);
@@ -181,29 +173,29 @@ namespace CyclingLogApplication
             if (logBool)
             {
                 //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
-                Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, 1, 0);
-                Logger.Log("Configuration Read: LOGLEVEL : " + logLevel, 1, 0);
-                Logger.Log("Configuration Read: VERSION : " + verison, 1, 0);
-                Logger.Log("Configuration Read: cbStatistic1 : " + cbStatistic1, 1, 0);
-                Logger.Log("Configuration Read: cbStatistic2 : " + cbStatistic2, 1, 0);
-                Logger.Log("Configuration Read: cbStatistic3 : " + cbStatistic3, 1, 0);
-                Logger.Log("Configuration Read: cbStatistic4 : " + cbStatistic4, 1, 0);
-                Logger.Log("Configuration Read: cbStatistic5 : " + cbStatistic5, 1, 0);
-                Logger.Log("Configuration Read: lastLogYearFilterSelected : " + lastLogYearFilterSelected, 1, 0);
-                Logger.Log("Configuration Read: lastLogYearSelected : " + lastLogYearSelected, 1, 0);
-                Logger.Log("Configuration Read: lastBikeSelected : " + lastBikeSelected, 1, 0);
+                Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, 0, 0);
+                Logger.Log("Configuration Read: LOGLEVEL : " + logLevel, 0, 0);
+                //Logger.Log("Configuration Read: VERSION : " + verison, 0, 0);
+                Logger.Log("Configuration Read: cbStatistic1 : " + cbStatistic1, 0, 0);
+                Logger.Log("Configuration Read: cbStatistic2 : " + cbStatistic2, 0, 0);
+                Logger.Log("Configuration Read: cbStatistic3 : " + cbStatistic3, 0, 0);
+                Logger.Log("Configuration Read: cbStatistic4 : " + cbStatistic4, 0, 0);
+                Logger.Log("Configuration Read: cbStatistic5 : " + cbStatistic5, 0, 0);
+                Logger.Log("Configuration Read: lastLogYearFilterSelected : " + lastLogYearFilterSelected, 0, 0);
+                Logger.Log("Configuration Read: lastLogYearSelected : " + lastLogYearSelected, 0, 0);
+                Logger.Log("Configuration Read: lastBikeSelected : " + lastBikeSelected, 0, 0);
 
-                Logger.Log("Configuration Read: chartLogYearSelected : " + chartLogYearSelected, 1, 0);
-                Logger.Log("Configuration Read: chartRouteSelected : " + chartRouteSelected, 1, 0);
-                Logger.Log("Configuration Read: chartTypeSelected : " + chartTypeSelected, 1, 0);
-                Logger.Log("Configuration Read: chartTimeTypeSelected : " + chartTimeTypeSelected, 1, 0);
+                Logger.Log("Configuration Read: chartLogYearSelected : " + chartLogYearSelected, 0, 0);
+                Logger.Log("Configuration Read: chartRouteSelected : " + chartRouteSelected, 0, 0);
+                Logger.Log("Configuration Read: chartTypeSelected : " + chartTypeSelected, 0, 0);
+                Logger.Log("Configuration Read: chartTimeTypeSelected : " + chartTimeTypeSelected, 0, 0);
 
-                Logger.Log("Configuration Read: lastMonthlyLogYearSelected : " + lastMonthlyLogYearSelected, 1, 0);
-                Logger.Log("Configuration Read: lastLogYearSelectedDataEntry : " + lastLogYearSelectedDataEntry, 1, 0);
+                Logger.Log("Configuration Read: lastMonthlyLogYearSelected : " + lastMonthlyLogYearSelected, 0, 0);
+                Logger.Log("Configuration Read: lastLogYearSelectedDataEntry : " + lastLogYearSelectedDataEntry, 0, 0);
 
-                Logger.Log("Configuration Read: license : " + license, 1, 0);
-                Logger.Log("Configuration Read: custom1 : " + customDataField1, 1, 0);
-                Logger.Log("Configuration Read: custom2 : " + customDataField2, 1, 0);
+                Logger.Log("Configuration Read: license : " + license, 0, 0);
+                Logger.Log("Configuration Read: custom1 : " + customDataField1, 0, 0);
+                Logger.Log("Configuration Read: custom2 : " + customDataField2, 0, 0);
             }
 
             returnStatus = true;           
@@ -468,6 +460,7 @@ namespace CyclingLogApplication
                 string cbStatistic4 = MainForm.GetcbStatistic4();
                 string cbStatistic5 = MainForm.GetcbStatistic5();
 
+                string version = MainForm.GetLogVersion();
                 string firstDay = MainForm.GetFirstDayOfWeek();
                 string license = MainForm.GetLicenseAgreement();
                 string customField1 = MainForm.GetCustomField1();
@@ -513,6 +506,7 @@ namespace CyclingLogApplication
                 int lastMonthlyLogSelected = MainForm.GetLastMonthlyLogSelected();
                 int lastLogSelectedDataEntry = MainForm.GetLastLogSelectedDataEntry();
 
+                xmlDoc.SelectSingleNode("/Config/VERSION").InnerText = version;
                 xmlDoc.SelectSingleNode("/Config/FIRSTDAY").InnerText = firstDay;
                 xmlDoc.SelectSingleNode("/Config/LICENSE").InnerText = license;
                 xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD1").InnerText = customField1;
@@ -564,27 +558,28 @@ namespace CyclingLogApplication
                 xmlDoc.SelectSingleNode("/Config/LastMonthlyLogSelected").InnerText = lastMonthlyLogSelected.ToString();
                 xmlDoc.SelectSingleNode("/Config/LastLogSelectedDataEntry").InnerText = lastLogSelectedDataEntry.ToString();
 
-                Logger.Log("Write Config Values: FIRSTDAY written:" + firstDay, 0, logSetting);
-                Logger.Log("Write Config Values: LICENSE written:" + license, 0, logSetting);
-                Logger.Log("Write Config Values: CUSTOMFIELD1 written:" + customField1, 0, logSetting);
-                Logger.Log("Write Config Values: CUSTOMFIELD2 written:" + customField2, 0, logSetting);
+                Logger.Log("Write Config Values: VERSION written:" + version, logSetting, 0);
+                Logger.Log("Write Config Values: FIRSTDAY written:" + firstDay, logSetting, 0);
+                Logger.Log("Write Config Values: LICENSE written:" + license, logSetting, 0);
+                Logger.Log("Write Config Values: CUSTOMFIELD1 written:" + customField1, logSetting, 0);
+                Logger.Log("Write Config Values: CUSTOMFIELD2 written:" + customField2, logSetting, 0);
 
-                Logger.Log("Write Config Values: cbStatistic1 written:" + cbStatistic1, 0, logSetting);
-                Logger.Log("Write Config Values: cbStatistic2 written:" + cbStatistic2, 0, logSetting);
-                Logger.Log("Write Config Values: cbStatistic3 written:" + cbStatistic3, 0, logSetting);
-                Logger.Log("Write Config Values: cbStatistic4 written:" + cbStatistic4, 0, logSetting);
-                Logger.Log("Write Config Values: cbStatistic5 written:" + cbStatistic5, 0, logSetting);
-                Logger.Log("Write Config Values: lastLogSelected written:" + lastLogSelected, 0, logSetting);
-                Logger.Log("Write Config Values: lastBikeSelected written:" + lastBikeSelected, 0, logSetting);
-                Logger.Log("Write Config Values: lastLogFilterSelected written:" + lastLogFilterSelected, 0, logSetting);
+                Logger.Log("Write Config Values: cbStatistic1 written:" + cbStatistic1, logSetting, 0);
+                Logger.Log("Write Config Values: cbStatistic2 written:" + cbStatistic2, logSetting, 0);
+                Logger.Log("Write Config Values: cbStatistic3 written:" + cbStatistic3, logSetting, 0);
+                Logger.Log("Write Config Values: cbStatistic4 written:" + cbStatistic4, logSetting, 0);
+                Logger.Log("Write Config Values: cbStatistic5 written:" + cbStatistic5, logSetting, 0);
+                Logger.Log("Write Config Values: lastLogSelected written:" + lastLogSelected, logSetting, 0);
+                Logger.Log("Write Config Values: lastBikeSelected written:" + lastBikeSelected, logSetting, 0);
+                Logger.Log("Write Config Values: lastLogFilterSelected written:" + lastLogFilterSelected, logSetting, 0);
 
-                Logger.Log("Write Config Values: lastLogYearChartSelected written:" + lastLogYearChartSelected, 0, logSetting);
-                Logger.Log("Write Config Values: lastRouteChartSelected written:" + lastRouteChartSelected, 0, logSetting);
-                Logger.Log("Write Config Values: lastTypeChartSelected written:" + lastTypeChartSelected, 0, logSetting);
-                Logger.Log("Write Config Values: lastTypeTimeChartSelected written:" + lastTypeTimeChartSelected, 0, logSetting);
+                Logger.Log("Write Config Values: lastLogYearChartSelected written:" + lastLogYearChartSelected, logSetting, 0);
+                Logger.Log("Write Config Values: lastRouteChartSelected written:" + lastRouteChartSelected, logSetting, 0);
+                Logger.Log("Write Config Values: lastTypeChartSelected written:" + lastTypeChartSelected, logSetting, 0);
+                Logger.Log("Write Config Values: lastTypeTimeChartSelected written:" + lastTypeTimeChartSelected, logSetting, 0);
 
-                Logger.Log("Write Config Values: lastMonthlyLogSelected written:" + lastMonthlyLogSelected, 0, logSetting);
-                Logger.Log("Write Config Values: lastLogSelectedDataEntry written:" + lastLogSelectedDataEntry, 0, logSetting);
+                Logger.Log("Write Config Values: lastMonthlyLogSelected written:" + lastMonthlyLogSelected, logSetting, 0);
+                Logger.Log("Write Config Values: lastLogSelectedDataEntry written:" + lastLogSelectedDataEntry, logSetting, 0);
 
                 xmlDoc.Save(pathFile);
             }
