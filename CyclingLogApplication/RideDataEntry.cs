@@ -18,25 +18,26 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using static DGVPrinterHelper.DGVPrinter;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace CyclingLogApplication
 {
     public partial class RideDataEntry : Form
     {
-        private static string setCommand;
         private static Dictionary<string, string> sqlParameters;
         private static int formLoad = 1;
         private static int formClosing = 0;
         private SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
         private DatabaseConnection databaseConnection;// = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
 
-        //MainForm mainForm;
+
         public RideDataEntry()
         {
             InitializeComponent();
-            //MainForm mainForm = new MainForm();
             sqlConnection = MainForm.GetsqlConnectionString();
             databaseConnection = MainForm.GetsDatabaseConnectionString();
+
+            grDisplayUpdate.Visible = false;
 
             //Hidden field to store the record id of the current displaying record that has been loaded on the page:
             tbRecordID.Hide();
@@ -188,7 +189,6 @@ namespace CyclingLogApplication
             cbLogYearDataEntry.SelectedIndex = index;
         }
 
-        //logyear date route bike time distance avg_speed wind temp type location effort comfort
         public void SettbWeekCountRDE(string weekNumber)
         {
             tbWeekCountRDE.Text = weekNumber;
@@ -224,7 +224,101 @@ namespace CyclingLogApplication
             cbBikeDataEntrySelection.SelectedIndex = bikeIndex;
         }
 
-        //avg_cadence tbMaxCadence avg_heart_rate max_heart_rate total_ascent total_descent max_speed avg_power max_power custom1 custom2 comments
+        public void SetAvgSpeed(decimal avgSpeed)
+        {
+            numericUpDown1.Value = avgSpeed;
+        }
+
+        public void SetWind(decimal windIndex)
+        {
+            numericUpDown4.Value = windIndex;
+        }
+
+        public void SetTemp(decimal temp)
+        {
+            numericUpDown3.Value = temp;
+        }
+
+        public void SetType(int bikeIndex)
+        {
+            cbRideTypeDataEntry.SelectedIndex = bikeIndex;
+        }
+
+        public void SetLocation(int bikeIndex)
+        {
+            cbLocationDataEntry.SelectedIndex = bikeIndex;
+        }
+
+        public void SetEffort(int bikeIndex)
+        {
+            cbEffortRideDataEntry.SelectedIndex = bikeIndex;
+        }
+
+        public void SetComfort(int bikeIndex)
+        {
+            cbComfortRideDataEntry.SelectedIndex = bikeIndex;
+        }
+
+       
+        public void SetAvgCadence(string avgCadence)
+        {
+            avg_cadence.Text = avgCadence;
+        }
+
+        public void SetMaxCadence(string maxCadence)
+        {
+            tbMaxCadence.Text = maxCadence;
+        }
+
+        public void SetAvgHeartRate(string avgHeartRate)
+        {
+            avg_heart_rate.Text = avgHeartRate;
+        }
+
+        public void SetMaxHeartRate(string maxHeartRate)
+        {
+            max_heart_rate.Text = maxHeartRate;
+        }
+
+        public void SetTotalAscent(string totalAscent)
+        {
+            total_ascent.Text = totalAscent;
+        }
+
+        public void SetTotalDescent(string totalDescent)
+        {
+            total_descent.Text = totalDescent;
+        }
+
+        public void SetMaxSpeed(string maxSpeed)
+        {
+            max_speed.Text = maxSpeed;
+        }
+
+        public void SetAvgPower(string avgPower)
+        {
+            avg_power.Text = avgPower;
+        }
+
+        public void SetMaxPower(string maxPower)
+        {
+            max_power.Text = maxPower;
+        }
+
+        public void SetCustom1(string custom1)
+        {
+            tbCustom1.Text = custom1;
+        }
+
+        public void SetCustom2(string custom2)
+        {
+            tbCustom2.Text = custom2;
+        }
+
+        public void SetComments(string comments)
+        {
+            tbComments.Text = comments;
+        }
 
         //Diable x close option:
         private const int CP_NOCLOSE_BUTTON = 0x200;
@@ -1389,16 +1483,6 @@ namespace CyclingLogApplication
 
         }
 
-        public void SetSetCommand(string setCommandString)
-        {
-            setCommand = setCommandString;
-        }
-
-        public string GetSetCommand()
-        {
-            return setCommand;
-        }
-
         public void SetSqlParameters(Dictionary<string, string> sqlParametersDict)
         {
             sqlParameters = sqlParametersDict;
@@ -1444,7 +1528,7 @@ namespace CyclingLogApplication
             SqlDataReader reader = null;
             //int idValue = 1550;
 
-            string setCommand = GetSetCommand();
+            string setCommand = "";
 
             Dictionary<string, string> sqlParametersDictionary = GetSqlParameters();
 
@@ -1501,5 +1585,228 @@ namespace CyclingLogApplication
         //        tbCustom2.Visible = false;
         //    }
         //}
+
+        public void RideDisplayDataQuery(string id, string date, int logNameIndex)
+        {
+            groupBox3.Visible = false;
+            button1.Visible = false;
+            btUpdateRideDateEntry.Visible = false;
+            button4.Visible = false;
+            btDeleteRideDataEntry.Visible = false;
+            button3.Visible = false;
+            button2.Visible = false;
+            grDisplayUpdate.Visible = true;
+
+            List<object> objectValues = new List<object>
+            {
+                id
+            };
+
+            string movingTime;
+            string rideDistance;
+            string avgSpeed;
+            string bike;
+            string rideType;
+            string wind;
+            string temp;
+            string avgCadence;
+            string maxCadence;
+            string avgHeartRate;
+            string maxHeartRate;
+            string calories;
+            string totalAscent;
+            string totalDescent;
+            string maxSpeed;
+            string avgPower;
+            string maxPower;
+            string route;
+            string comments;
+            string location;
+            string recordID;
+            string weekNumber;
+            string effort;
+            string comfort;
+            string custom1;
+            string custom2;
+            int routeIndex = -1;
+            int bikeIndex = -1;
+            int rideTypeIndex = -1;
+            int locationIndex = -1;
+            int effortIndex = -1;
+            int comfortIndex = -1;
+
+            try
+            {
+                //ExecuteScalarFunction
+                using (var results = ExecuteSimpleQueryConnection("GetRideDataByID", objectValues))
+                {
+                    //Logger.Log("Results: " + results.FieldCount, 0, logLevel);
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            movingTime = results[0].ToString();
+                            rideDistance = results[1].ToString();
+                            avgSpeed = results[2].ToString();
+                            bike = results[3].ToString();
+                            rideType = results[4].ToString();
+                            wind = results[5].ToString();
+                            temp = results[6].ToString();
+                            avgCadence = results[7].ToString();
+                            maxCadence = results[8].ToString();
+                            avgHeartRate = results[9].ToString();
+                            maxHeartRate = results[10].ToString();
+                            calories = results[11].ToString();
+                            totalAscent = results[12].ToString();
+                            totalDescent = results[13].ToString();
+                            double maxSpeedDouble = double.Parse(results[14].ToString());
+                            maxSpeed = (Math.Round(maxSpeedDouble, 1)).ToString();
+                            avgPower = results[15].ToString();
+                            maxPower = results[16].ToString();
+                            route = results[17].ToString();
+                            comments = results[18].ToString();
+                            location = results[19].ToString();
+                            recordID = results[20].ToString();
+                            weekNumber = results[21].ToString();
+                            effort = results[22].ToString();
+                            comfort = results[23].ToString();
+                            custom1 = results[24].ToString();
+                            custom2 = results[25].ToString();
+
+                            MainForm mainform = new MainForm();
+                            List<string> routeList = MainForm.ReadDataNames("Table_Routes", "Name");
+
+                            for (int i = 0; i < routeList.Count; i++)
+                            {
+                                if (routeList[i].Equals(route))
+                                {
+                                    routeIndex = i;
+                                    break;
+                                }
+                            }
+
+                            List<string> bikeList = MainForm.ReadDataNames("Table_Bikes", "Name");
+
+                            for (int i = 0; i < bikeList.Count; i++)
+                            {
+                                if (bikeList[i].Equals(bike))
+                                {
+                                    bikeIndex = i;
+                                    break;
+                                }
+                            }
+
+                            if (rideType.Equals("Recovery"))
+                            {
+                                rideTypeIndex = 0;
+                            }
+                            else if (rideType.Equals("Base"))
+                            {
+                                rideTypeIndex = 1;
+                            }
+                            else if (rideType.Equals("Distance"))
+                            {
+                                rideTypeIndex = 2;
+                            }
+                            else if (rideType.Equals("Speed"))
+                            {
+                                rideTypeIndex = 3;
+                            }
+                            else if (rideType.Equals("Race"))
+                            {
+                                rideTypeIndex = 4;
+                            }
+
+                            if (location.Equals("Road"))
+                            {
+                                locationIndex = 0;
+                            }
+                            else if (location.Equals("Rollers"))
+                            {
+                                locationIndex = 1;
+                            }
+                            else if (location.Equals("Trail"))
+                            {
+                                locationIndex = 2;
+                            }
+                            else if (location.Equals("Trainer"))
+                            {
+                                locationIndex = 3;
+                            }
+
+                            if (effort.Equals("Easy/Spin"))
+                            {
+                                effortIndex = 0;
+                            }
+                            else if (effort.Equals("Moderate"))
+                            {
+                                effortIndex = 1;
+                            }
+                            else if (effort.Equals("Hard"))
+                            {
+                                effortIndex = 2;
+                            }
+                            else if (effort.Equals("Race"))
+                            {
+                                effortIndex = 3;
+                            }
+
+                            if (comfort.Equals("Week / Tight"))
+                            {
+                                comfortIndex = 0;
+                            }
+                            else if (comfort.Equals("Average"))
+                            {
+                                comfortIndex = 1;
+                            }
+                            else if (comfort.Equals("Strong"))
+                            {
+                                comfortIndex = 2;
+                            }
+
+                            //Populate fields in the entry form:
+                            SetcbLogYearDataEntryIndex(logNameIndex - 1);
+                            SetDate(DateTime.Parse(date));
+                            SettbWeekCountRDE(weekNumber);
+
+                            SetRoute(routeIndex);
+                            SetBike(bikeIndex);
+                            SetTime(DateTime.Parse(movingTime));
+                            SetDistance(decimal.Parse(rideDistance));
+                            SetAvgSpeed(decimal.Parse(avgSpeed));
+                            SetWind(Convert.ToDecimal(wind));
+                            SetTemp(Convert.ToDecimal(temp));
+                            SetType(rideTypeIndex);
+                            SetLocation(locationIndex);
+                            SetEffort(effortIndex);
+                            SetComfort(comfortIndex);
+                            SetCalories(calories);
+                            SetAvgCadence(avgCadence);
+                            SetMaxCadence(maxCadence);
+                            SetAvgHeartRate(avgHeartRate);
+                            SetMaxHeartRate(maxHeartRate);
+                            SetTotalAscent(totalAscent);
+                            SetTotalDescent(totalDescent);
+                            SetMaxSpeed(maxSpeed);
+                            SetAvgPower(avgPower);
+                            SetCustom1(custom1);
+                            SetCustom2(custom2);
+                            SetComments(comments);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to retrive ride data." + ex.Message.ToString());
+            }
+
+        }
+
+        private void btCancelDisplayUpdate_Click(object sender, EventArgs e)
+        {
+            formClosing = 1;
+            this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
+        }
     }
 }

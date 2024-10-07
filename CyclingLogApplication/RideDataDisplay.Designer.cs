@@ -166,8 +166,6 @@
             this.checkedListBox.FormattingEnabled = true;
             this.checkedListBox.Items.AddRange(new object[] {
             "Week Number",
-            "ID",
-            "Date",
             "Moving Time",
             "Ride Distance",
             "Avg Speed",
@@ -194,7 +192,7 @@
             "Custom2"});
             this.checkedListBox.Location = new System.Drawing.Point(1124, 54);
             this.checkedListBox.Name = "checkedListBox";
-            this.checkedListBox.Size = new System.Drawing.Size(146, 409);
+            this.checkedListBox.Size = new System.Drawing.Size(146, 379);
             this.checkedListBox.TabIndex = 12;
             // 
             // btUpdateFields

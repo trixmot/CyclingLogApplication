@@ -105,6 +105,8 @@
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
             this.btUpdateEntry = new System.Windows.Forms.Button();
+            this.grDisplayUpdate = new System.Windows.Forms.GroupBox();
+            this.btCancelDisplayUpdate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -115,6 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).BeginInit();
+            this.grDisplayUpdate.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbLogYearDataEntry
@@ -145,6 +148,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.grDisplayUpdate);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.tbWeekCountRDE);
@@ -839,7 +843,7 @@
             // 
             // btUpdateEntry
             // 
-            this.btUpdateEntry.Location = new System.Drawing.Point(310, 636);
+            this.btUpdateEntry.Location = new System.Drawing.Point(28, 19);
             this.btUpdateEntry.Name = "btUpdateEntry";
             this.btUpdateEntry.Size = new System.Drawing.Size(84, 32);
             this.btUpdateEntry.TabIndex = 41;
@@ -847,12 +851,31 @@
             this.btUpdateEntry.UseVisualStyleBackColor = true;
             this.btUpdateEntry.Click += new System.EventHandler(this.btUpdateEntry_Click);
             // 
+            // grDisplayUpdate
+            // 
+            this.grDisplayUpdate.Controls.Add(this.btCancelDisplayUpdate);
+            this.grDisplayUpdate.Controls.Add(this.btUpdateEntry);
+            this.grDisplayUpdate.Location = new System.Drawing.Point(292, 22);
+            this.grDisplayUpdate.Name = "grDisplayUpdate";
+            this.grDisplayUpdate.Size = new System.Drawing.Size(141, 136);
+            this.grDisplayUpdate.TabIndex = 42;
+            this.grDisplayUpdate.TabStop = false;
+            // 
+            // btCancelDisplayUpdate
+            // 
+            this.btCancelDisplayUpdate.Location = new System.Drawing.Point(27, 72);
+            this.btCancelDisplayUpdate.Name = "btCancelDisplayUpdate";
+            this.btCancelDisplayUpdate.Size = new System.Drawing.Size(85, 35);
+            this.btCancelDisplayUpdate.TabIndex = 42;
+            this.btCancelDisplayUpdate.Text = "Cancel";
+            this.btCancelDisplayUpdate.UseVisualStyleBackColor = true;
+            this.btCancelDisplayUpdate.Click += new System.EventHandler(this.btCancelDisplayUpdate_Click);
+            // 
             // RideDataEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(526, 706);
-            this.Controls.Add(this.btUpdateEntry);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button2);
@@ -881,6 +904,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).EndInit();
+            this.grDisplayUpdate.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -962,5 +986,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Button btUpdateEntry;
+        private System.Windows.Forms.GroupBox grDisplayUpdate;
+        private System.Windows.Forms.Button btCancelDisplayUpdate;
     }
 }
