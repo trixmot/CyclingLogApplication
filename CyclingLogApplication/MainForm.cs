@@ -1170,7 +1170,7 @@ namespace CyclingLogApplication
                 sqlConnection.Open();
 
                 // 1. declare command object with parameter
-                using (SqlCommand cmd = new SqlCommand("DELETE FROM Table_Ride_Information WHERE @Id=[LogYearID]", sqlConnection))
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM Table_Ride_Information WHERE @LogYearID=[LogYearID]", sqlConnection))
                 {
                     // 2. define parameters used in command object
                     SqlParameter param = new SqlParameter

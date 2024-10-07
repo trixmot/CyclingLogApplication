@@ -16,11 +16,15 @@ using System.Security.Cryptography;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using static DGVPrinterHelper.DGVPrinter;
+using System.Xml.Linq;
 
 namespace CyclingLogApplication
 {
     public partial class RideDataEntry : Form
     {
+        private static string setCommand;
+        private static Dictionary<string, string> sqlParameters;
         private static int formLoad = 1;
         private static int formClosing = 0;
         private SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
@@ -178,6 +182,49 @@ namespace CyclingLogApplication
         {
             cbLogYearDataEntry.SelectedIndex = index;
         }
+
+        public void SetcbLogYearDataEntryIndex(int index)
+        {
+            cbLogYearDataEntry.SelectedIndex = index;
+        }
+
+        //logyear date route bike time distance avg_speed wind temp type location effort comfort
+        public void SettbWeekCountRDE(string weekNumber)
+        {
+            tbWeekCountRDE.Text = weekNumber;
+        }
+
+        public void SetDate(DateTime date)
+        {
+            dtpRideDate.Value = date;
+        }
+
+        public void SetTime(DateTime time)
+        {
+            dtpTimeRideDataEntry.Value = time;
+        }
+
+        public void SetDistance(decimal distance)
+        {
+            numDistanceRideDataEntry.Value = distance;
+        }
+
+        public void SetCalories(string caloriesValue)
+        {
+            calories.Text = caloriesValue;
+        }
+
+        public void SetRoute(int routeIndex)
+        {
+            cbRouteDataEntry.SelectedIndex=routeIndex;
+        }
+
+        public void SetBike(int bikeIndex)
+        {
+            cbBikeDataEntrySelection.SelectedIndex = bikeIndex;
+        }
+
+        //avg_cadence tbMaxCadence avg_heart_rate max_heart_rate total_ascent total_descent max_speed avg_power max_power custom1 custom2 comments
 
         //Diable x close option:
         private const int CP_NOCLOSE_BUTTON = 0x200;
@@ -1340,6 +1387,107 @@ namespace CyclingLogApplication
                 MessageBox.Show("Multiple Rides were found for the selected date. Use the 'Multiple Rides' selecter to select the desired ride.");
             }
 
+        }
+
+        public void SetSetCommand(string setCommandString)
+        {
+            setCommand = setCommandString;
+        }
+
+        public string GetSetCommand()
+        {
+            return setCommand;
+        }
+
+        public void SetSqlParameters(Dictionary<string, string> sqlParametersDict)
+        {
+            sqlParameters = sqlParametersDict;
+        }
+
+        public Dictionary<string, string> GetSqlParameters() {
+            return sqlParameters; 
+        }
+
+        public void UpdateRideInformation()
+        {
+            //Need list of fields to update:
+         //   @MovingTime time,
+         //   @RideDistance float,
+         //   @AvgSpeed float,
+         //   @Bike nvarchar(25),
+	        //@RideType nvarchar(25),
+	        //@Wind float,
+         //   @Temperature float,
+         //   @Date date,
+	        //@AvgCadence float,
+         //   @MaxCadence float,
+         //   @AvgHeartRate float,
+         //   @MaxHeartRate float,
+         //   @Calories float,
+         //   @TotalAscent float,
+         //   @TotalDescent float,
+         //   @MaxSpeed float,
+         //   @AveragePower float,
+         //   @MaxPower float,
+         //   @Route nvarchar(50),
+	        //@Comments nvarchar(200),
+	        //@LogYearIndex bigint,
+         //   @WeekNumber bigint,
+	        //@Location nvarchar(25),
+	        //@Windchill float,
+         //   @Effort nvarchar(25),
+	        //@Comfort nvarchar(25),
+	        //@Custom1 nvarchar(25),
+	        //@Custom2 nvarchar(25),
+	        //@Id bigint
+
+            SqlDataReader reader = null;
+            //int idValue = 1550;
+
+            string setCommand = GetSetCommand();
+
+            Dictionary<string, string> sqlParametersDictionary = GetSqlParameters();
+
+            try
+            {
+                sqlConnection.Open();
+
+                // 1. declare command object with parameter
+                using (SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET " + setCommand + " WHERE Id=@idValue", sqlConnection))
+                {
+                    // 2. define parameters used in command object
+                    SqlParameter param = new SqlParameter();
+                    // 3. add new parameter to command object
+                    for (int i = 0; i < sqlParametersDictionary.Count; i++)
+                    {
+                        cmd.Parameters.AddWithValue(sqlParametersDictionary.ElementAt(i).Key, sqlParametersDictionary.ElementAt(i).Value);
+                    }
+                    //cmd.Parameters.AddWithValue("@calories", "12345");
+                    //cmd.Parameters.AddWithValue("@idValue", "1550");
+                    // get data stream
+                    reader = cmd.ExecuteReader();
+                }
+
+                // write each record
+                while (reader.Read())
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying update ride data entry." + ex.Message.ToString());
+            }
+            finally
+            {
+                reader?.Close();
+                sqlConnection?.Close();
+            }
+        }
+
+        private void btUpdateEntry_Click(object sender, EventArgs e)
+        {
+            UpdateRideInformation();
         }
 
         //private void tbCustom1_TextChanged(object sender, EventArgs e)

@@ -104,6 +104,7 @@
             this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
+            this.btUpdateEntry = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -836,11 +837,22 @@
             // 
             this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
             // 
+            // btUpdateEntry
+            // 
+            this.btUpdateEntry.Location = new System.Drawing.Point(310, 636);
+            this.btUpdateEntry.Name = "btUpdateEntry";
+            this.btUpdateEntry.Size = new System.Drawing.Size(84, 32);
+            this.btUpdateEntry.TabIndex = 41;
+            this.btUpdateEntry.Text = "Update";
+            this.btUpdateEntry.UseVisualStyleBackColor = true;
+            this.btUpdateEntry.Click += new System.EventHandler(this.btUpdateEntry_Click);
+            // 
             // RideDataEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(526, 706);
+            this.Controls.Add(this.btUpdateEntry);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button2);
@@ -949,5 +961,6 @@
         private System.Windows.Forms.TextBox tbMaxCadence;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Button btUpdateEntry;
     }
 }

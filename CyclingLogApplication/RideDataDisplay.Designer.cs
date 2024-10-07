@@ -44,6 +44,7 @@
             this.btSelectAll = new System.Windows.Forms.Button();
             this.btDeselectAll = new System.Windows.Forms.Button();
             this.btPrint = new System.Windows.Forms.Button();
+            this.cbUpdateValues = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,6 +55,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1079, 583);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
             // button1
             // 
@@ -235,11 +237,23 @@
             this.btPrint.UseVisualStyleBackColor = true;
             this.btPrint.Click += new System.EventHandler(this.BtPrint_Click);
             // 
+            // cbUpdateValues
+            // 
+            this.cbUpdateValues.AutoSize = true;
+            this.cbUpdateValues.Location = new System.Drawing.Point(869, 27);
+            this.cbUpdateValues.Name = "cbUpdateValues";
+            this.cbUpdateValues.Size = new System.Drawing.Size(96, 17);
+            this.cbUpdateValues.TabIndex = 17;
+            this.cbUpdateValues.Text = "Update Values";
+            this.cbUpdateValues.UseVisualStyleBackColor = true;
+            this.cbUpdateValues.CheckedChanged += new System.EventHandler(this.cbUpdateValues_CheckedChanged);
+            // 
             // RideDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1291, 679);
+            this.Controls.Add(this.cbUpdateValues);
             this.Controls.Add(this.btPrint);
             this.Controls.Add(this.btDeselectAll);
             this.Controls.Add(this.btSelectAll);
@@ -285,5 +299,6 @@
         private System.Windows.Forms.Button btSelectAll;
         private System.Windows.Forms.Button btDeselectAll;
         private System.Windows.Forms.Button btPrint;
+        private System.Windows.Forms.CheckBox cbUpdateValues;
     }
 }

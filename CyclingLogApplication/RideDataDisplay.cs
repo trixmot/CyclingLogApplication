@@ -13,6 +13,8 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.Drawing.Printing;
 using DGVPrinterHelper;
 using static DGVPrinterHelper.DGVPrinter;
+using System.IO;
+using System.Xml.Linq;
 
 namespace CyclingLogApplication
 {
@@ -1389,5 +1391,378 @@ namespace CyclingLogApplication
             }
         }
 
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            //if (!cbUpdateValues.Checked)
+            //{
+            //    return;
+            //}
+
+            string setCommand = "";
+
+            //Create a new dictionary of strings for the parameters to use in the sql command:
+            Dictionary<string, string> sqlPrameters = new Dictionary<string, string>();
+
+            int rowindex = dataGridView1.CurrentCell.RowIndex;
+            int columnindex = dataGridView1.CurrentCell.ColumnIndex;
+
+            RideDataEntry rideDataEntryForm = new RideDataEntry();
+            //rideDataEntryForm.cbBikeDataEntrySelection.SelectedIndex = Convert.ToInt32(GetLastBikeSelected());
+
+            //int logIndex = -1;
+            int bikeIndex = -1;
+            int routeIndex = -1;
+            int logNameIndex = cbLogYearFilter.SelectedIndex;
+
+
+            string weekNumber = "";
+            string id = "";
+            string date = "";
+            string movingTime = "";
+            string rideDistance = "";
+            string avgSpeed = "";
+            string bike = "";
+            string rideType = "";
+            string wind = "";
+            string temp = "";
+            string avgCadence = "";
+            string maxCadence = "";
+            string avgHeartRate = "";
+            string maxHeartRate = "";
+            string calories = "";
+            string totalAscent = "";
+            string totalDescent = "";
+            string route = "";
+            string location = "";
+            string comments = "";
+            string effort = "";
+            string maxSpeed = "";
+            string avgPower = "";
+            string maxPower = "";
+            string comfort = "";
+            string custom1 = "";
+            string custom2 = "";
+
+
+            int index;
+
+            if (checkedListBox.GetItemChecked(0))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["WeekNumber"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                weekNumber = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "WeekNumber=@weekNumber,";
+                sqlPrameters.Add("@weekNumber", weekNumber);
+            }
+
+            if (checkedListBox.GetItemChecked(1))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["Id"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                id = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "Id=@id ";
+                sqlPrameters.Add("@id", id);
+            }
+
+            if (checkedListBox.GetItemChecked(2))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["Date"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                date = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "Date=@date,";
+                sqlPrameters.Add("@date", date);
+            }
+
+            if (checkedListBox.GetItemChecked(3))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["MovingTime"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                movingTime = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "MovingTime=@movingTime,";
+                sqlPrameters.Add("@movingTime", movingTime);
+            }
+
+            if (checkedListBox.GetItemChecked(4))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["RideDistance"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                rideDistance = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "RideDistance=@rideDistance,";
+                sqlPrameters.Add("@rideDistance", rideDistance);
+            }
+
+            if (checkedListBox.GetItemChecked(5))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["AvgSpeed"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                avgSpeed = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "AvgSpeed=@avgSpeed,";
+                sqlPrameters.Add("@avgSpeed", avgSpeed);
+            }
+
+            if (checkedListBox.GetItemChecked(6))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["Bike"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                bike = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "Bike=@bike,";
+                sqlPrameters.Add("@bike", bike);
+            }
+
+            if (checkedListBox.GetItemChecked(7))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["RideType"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                rideType = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "RideType=@rideType,";
+                sqlPrameters.Add("@rideType", rideType);
+            }
+
+            if (checkedListBox.GetItemChecked(8))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["Wind"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                wind = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "Wind=@wind,";
+                sqlPrameters.Add("@wind", wind);
+            }
+
+            if (checkedListBox.GetItemChecked(9))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["Temp"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                temp = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "Temp=@temp,";
+                sqlPrameters.Add("@temp", temp);
+            }
+
+            if (checkedListBox.GetItemChecked(10))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["AvgCadence"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                avgCadence = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "AvgCadence=@avgCadence,";
+                sqlPrameters.Add("@avgCadence", avgCadence);
+            }
+
+            if (checkedListBox.GetItemChecked(11))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["MaxCadence"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                maxCadence = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "MaxCadence=@maxCadence,";
+                sqlPrameters.Add("@maxCadence", maxCadence);
+            }
+
+            if (checkedListBox.GetItemChecked(12))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["AvgHeartRate"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                avgHeartRate = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "AvgHeartRate=@avgHeartRate,";
+                sqlPrameters.Add("@avgHeartRate", avgHeartRate);
+            }
+
+            if (checkedListBox.GetItemChecked(13))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["MaxHeartRate"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                maxHeartRate = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "MaxHeartRate=@maxHeartRate,";
+                sqlPrameters.Add("@maxHeartRate", maxHeartRate);
+            }
+
+            if (checkedListBox.GetItemChecked(14))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["Calories"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                calories = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "Calories=@calories,";
+                sqlPrameters.Add("@calories", calories);
+            }
+
+            if (checkedListBox.GetItemChecked(15))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["TotalAscent"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                totalAscent = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "TotalAscent=@totalAscent,";
+                sqlPrameters.Add("@totalAscent", totalAscent);
+            }
+
+            if (checkedListBox.GetItemChecked(16))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["TotalDescent"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                totalDescent = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "TotalDescent=@totalDescent,";
+                sqlPrameters.Add("@totalDescent", totalDescent);
+            }
+
+            if (checkedListBox.GetItemChecked(17))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["Route"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                route = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "Route=@route,";
+                sqlPrameters.Add("@route", route);
+            }
+
+            if (checkedListBox.GetItemChecked(18))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["Location"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                location = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "Location=@location,";
+                sqlPrameters.Add("@location", location);
+            }
+
+            if (checkedListBox.GetItemChecked(19))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["Comments"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                comments = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "Comments=@comments,";
+                sqlPrameters.Add("@comments", comments);
+            }
+
+            if (checkedListBox.GetItemChecked(20))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["Effort"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                effort = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "Effort=@effort,";
+                sqlPrameters.Add("@effort", effort);
+            }
+
+            if (checkedListBox.GetItemChecked(21))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["MaxSpeed"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                maxSpeed = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "MaxSpeed=@maxSpeed,";
+                sqlPrameters.Add("@maxSpeed", maxSpeed);
+            }
+
+            if (checkedListBox.GetItemChecked(22))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["AvgPower"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                avgPower = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "AvgPower=@avgPower,";
+                sqlPrameters.Add("@avgPower", avgPower);
+            }
+
+            if (checkedListBox.GetItemChecked(23))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["MaxPower"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                maxPower = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "MaxPower=@maxPower,";
+                sqlPrameters.Add("@maxPower", maxPower);
+            }
+
+            if (checkedListBox.GetItemChecked(24))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["Comfort"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                comfort = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "Comfort=@comfort,";
+                sqlPrameters.Add("@comfort", comfort);
+            }
+
+            if (checkedListBox.GetItemChecked(25))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["Custom1"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                custom1 = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "Custom1=@custom1,";
+                sqlPrameters.Add("@custom1", custom1);
+            }
+
+            if (checkedListBox.GetItemChecked(26))
+            {
+                var dataGridViewColumn = dataGridView1.Columns["Custom2"];
+                index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+                custom2 = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+                setCommand += "Custom2=@custom2,";
+                sqlPrameters.Add("@custom2", custom2);
+            }
+
+            rideDataEntryForm.SetSqlParameters(sqlPrameters);
+            setCommand = setCommand.TrimEnd(',');
+            rideDataEntryForm.SetSetCommand(setCommand);
+
+            List<string> bikeList = MainForm.ReadDataNames("Table_Bikes", "Name");
+
+            for (int i = 0; i < bikeList.Count; i++)
+            {
+                if (bikeList[i].Equals(bike))
+                {
+                    bikeIndex = i;
+                    break;
+                }
+            }
+
+            List<string> routeList = MainForm.ReadDataNames("Table_Routes", "Name");
+
+            for (int i = 0; i < routeList.Count; i++)
+            {
+                if (routeList[i].Equals(bike))
+                {
+                    routeIndex = i;
+                    break;
+                }
+            }
+
+            //Populate fields in the entry form:
+            rideDataEntryForm.SetcbLogYearDataEntryIndex(logNameIndex - 1);
+            rideDataEntryForm.SettbWeekCountRDE(weekNumber);
+            rideDataEntryForm.SetDate(DateTime.Parse(date));
+            rideDataEntryForm.SetTime(DateTime.Parse(movingTime));
+            rideDataEntryForm.SetDistance(decimal.Parse(rideDistance));
+            rideDataEntryForm.SetRoute(routeIndex);
+            rideDataEntryForm.SetBike(bikeIndex);
+            rideDataEntryForm.SetCalories(calories);
+
+            rideDataEntryForm.ShowDialog();
+        }
+
+        private void cbUpdateValues_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbUpdateValues.Checked)
+            {
+                checkedListBox.SetItemCheckState(0, CheckState.Checked);
+                checkedListBox.SetItemCheckState(1, CheckState.Checked);
+                checkedListBox.SetItemCheckState(2, CheckState.Checked);
+                checkedListBox.SetItemCheckState(3, CheckState.Checked);
+                checkedListBox.SetItemCheckState(4, CheckState.Checked);
+                checkedListBox.SetItemCheckState(5, CheckState.Checked);
+                checkedListBox.SetItemCheckState(6, CheckState.Checked);
+                checkedListBox.SetItemCheckState(7, CheckState.Checked);
+                checkedListBox.SetItemCheckState(8, CheckState.Checked);
+                checkedListBox.SetItemCheckState(9, CheckState.Checked);
+                checkedListBox.SetItemCheckState(10, CheckState.Checked);
+                checkedListBox.SetItemCheckState(11, CheckState.Checked);
+                checkedListBox.SetItemCheckState(12, CheckState.Checked);
+                checkedListBox.SetItemCheckState(13, CheckState.Checked);
+                checkedListBox.SetItemCheckState(14, CheckState.Checked);
+                checkedListBox.SetItemCheckState(15, CheckState.Checked);
+                checkedListBox.SetItemCheckState(16, CheckState.Checked);
+                checkedListBox.SetItemCheckState(17, CheckState.Checked);
+                checkedListBox.SetItemCheckState(18, CheckState.Checked);
+                checkedListBox.SetItemCheckState(19, CheckState.Checked);
+                checkedListBox.SetItemCheckState(20, CheckState.Checked);
+                checkedListBox.SetItemCheckState(21, CheckState.Checked);
+                checkedListBox.SetItemCheckState(22, CheckState.Checked);
+                checkedListBox.SetItemCheckState(23, CheckState.Checked);
+                checkedListBox.SetItemCheckState(24, CheckState.Checked);
+                checkedListBox.SetItemCheckState(25, CheckState.Checked);
+                checkedListBox.SetItemCheckState(26, CheckState.Checked);
+            }
+        }
+
+
+       
     }
 }
