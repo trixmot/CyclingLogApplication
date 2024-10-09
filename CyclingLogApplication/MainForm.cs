@@ -1235,6 +1235,7 @@ namespace CyclingLogApplication
 
             rideDataDisplayForm.SetCustomValues();
             rideDataDisplayForm.SetLogYearFilterIndex(GetLastLogFilterSelected());
+            //Check/Uncheck options:
             rideDataDisplayForm.SetCheckedValues();
             rideDataDisplayForm.ShowDialog();
         }

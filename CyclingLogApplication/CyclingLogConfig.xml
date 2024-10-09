@@ -1,13 +1,13 @@
 <Config>
   <DAYSTOKEEPLOGS>90</DAYSTOKEEPLOGS>
-  <VERSION>0.3.0</VERSION>
-  <LOGLEVEL>0</LOGLEVEL>
+  <VERSION>0.9.0</VERSION>
+  <LOGLEVEL>1</LOGLEVEL>
   <cbStatistic1>19</cbStatistic1>
   <cbStatistic2>18</cbStatistic2>
   <cbStatistic3>17</cbStatistic3>
   <cbStatistic4>16</cbStatistic4>
   <cbStatistic5>14</cbStatistic5>
-  <LastBikeSelected>1</LastBikeSelected>
+  <LastBikeSelected>0</LastBikeSelected>
   <LastLogSelected>18</LastLogSelected>
   <LastLogFilterSelected>19</LastLogFilterSelected>
   <ChartLogYear>18</ChartLogYear>
@@ -18,8 +18,11 @@
   <LastLogSelectedDataEntry>18</LastLogSelectedDataEntry>
   <FIRSTDAY>Monday</FIRSTDAY>
   <LICENSE>1</LICENSE>
-  <CUSTOMFIELD1>test1</CUSTOMFIELD1>
-  <CUSTOMFIELD2>test 2</CUSTOMFIELD2>
+  <IDCOLUMN>1</IDCOLUMN>
+  <CUSTOMFIELD1>
+  </CUSTOMFIELD1>
+  <CUSTOMFIELD2>
+  </CUSTOMFIELD2>
   <CHECKEDLISTBOX0>0</CHECKEDLISTBOX0>
   <CHECKEDLISTBOX1>0</CHECKEDLISTBOX1>
   <CHECKEDLISTBOX2>1</CHECKEDLISTBOX2>
@@ -45,6 +48,4 @@
   <CHECKEDLISTBOX22>0</CHECKEDLISTBOX22>
   <CHECKEDLISTBOX23>0</CHECKEDLISTBOX23>
   <CHECKEDLISTBOX24>0</CHECKEDLISTBOX24>
-  <CHECKEDLISTBOX25>0</CHECKEDLISTBOX25>
-  <CHECKEDLISTBOX26>0</CHECKEDLISTBOX26>
 </Config>

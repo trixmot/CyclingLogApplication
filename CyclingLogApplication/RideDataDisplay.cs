@@ -112,6 +112,7 @@ namespace CyclingLogApplication
         public void SetCheckedValues()
         {
             //MainForm mainForm = new MainForm();
+            //checkedListBox.Items.Clear();
 
             // Set CheckedListBox values:
             if (MainForm.GetCheckedListBoxItem0().Equals("1"))

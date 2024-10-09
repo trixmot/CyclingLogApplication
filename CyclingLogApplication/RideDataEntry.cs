@@ -153,6 +153,7 @@ namespace CyclingLogApplication
             }
 
             lbRideDataEntryError.Text = "";
+            btRideDisplayUpdate.Visible = false;
         }
 
         public void SetDateValue(DateTime dateValue)
@@ -795,11 +796,12 @@ namespace CyclingLogApplication
                     logIndex = MainForm.GetLogYearIndex(cbLogYearDataEntry.SelectedItem.ToString());
                 }
 
-                //TODO: Run check to see if a record exists for this date:
+                // Run check to see if a record exists for this date:
                 List<object> objectValuesRideDate = new List<object>();
                 objectValuesRideDate.Add(dtpRideDate.Value);
                 objectValuesRideDate.Add(logIndex);
                 string entryID = "0";
+
                 using (var results = ExecuteSimpleQueryConnection("CheckRideDate", objectValuesRideDate))
                 {
                     if (results.HasRows)
@@ -838,10 +840,10 @@ namespace CyclingLogApplication
                 // Check recordID value:
                 if (!entryID.Equals("0") && changeType.Equals("Add"))
                 {
-                    DialogResult result = MessageBox.Show("Detected that the current date was retrieved from a record that was already saved to the database. Do you want to continue adding the record?", "Add Ride Data", MessageBoxButtons.YesNo);
+                    DialogResult result = MessageBox.Show("Detected that the selected date already has an entry saved to the database. Do you want to continue adding this entry?", "Add Ride Data", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No)
                     {
-                        Logger.Log("Detected that the current data was retrieved from a record that was already saved to the database. RecordID" + recordID, logSetting, 0);
+                        Logger.Log("Detected that the selected date already has an entry saved to the database. RecordID" + recordID, logSetting, 0);
 
                         return;
                     }
@@ -1002,6 +1004,10 @@ namespace CyclingLogApplication
                 if (changeType.Equals("Update"))
                 {
                     objectValues.Add(entryID);                                         //Record ID:
+                }
+                else if (changeType.Equals("DisplayUpdate"))
+                {
+                    objectValues.Add(GetID().ToString());
                 }
 
                 using (var results = ExecuteSimpleQueryConnection(procedureName, objectValues))
@@ -1702,14 +1708,13 @@ namespace CyclingLogApplication
             SetLogYearID(logYearID);
 
             //Hide items not used from this location:
-            groupBox3.Enabled = false;
-            button1.Enabled = false;
-            btUpdateRideDateEntry.Enabled = true;
-            button4.Enabled = false;
-            btDeleteRideDataEntry.Enabled = false;
-            button3.Enabled = false;
-            //btRIdeDataEntryClose.Enabled = false;
-            //grDisplayUpdate.Enabled = true;
+            groupBoxRetrieveDate.Visible = false;
+            btAddDataEntry.Visible = false;
+            btUpdateRideDateEntry.Visible = false;
+            btImportDataEntry.Visible = false;
+            btDeleteRideDataEntry.Visible = false;
+            btClearDataEntry.Visible = false;
+            btRideDisplayUpdate.Visible = true;
 
             List<object> objectValues = new List<object>
             {
@@ -2492,6 +2497,11 @@ namespace CyclingLogApplication
             {
                 Logger.LogError("[ERROR]: Exception while trying to update ride display information." + ex.Message.ToString());
             }
+        }
+
+        private void btRideDisplayUpdate_Click(object sender, EventArgs e)
+        {
+            RideInformationChange("DisplayUpdate", "Ride_Information_Update");
         }
     }
 }

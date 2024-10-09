@@ -446,6 +446,7 @@
             // 
             // button5
             // 
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Location = new System.Drawing.Point(53, 30);
             this.button5.Name = "button5";
@@ -457,6 +458,7 @@
             // 
             // button7
             // 
+            this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.Location = new System.Drawing.Point(53, 31);
             this.button7.Name = "button7";
@@ -468,6 +470,7 @@
             // 
             // button8
             // 
+            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button8.Location = new System.Drawing.Point(872, 654);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(85, 35);
@@ -780,6 +783,7 @@
             // 
             // button1
             // 
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(53, 31);
             this.button1.Name = "button1";
@@ -812,6 +816,7 @@
             // 
             // btRefreshData
             // 
+            this.btRefreshData.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btRefreshData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btRefreshData.Location = new System.Drawing.Point(53, 72);
             this.btRefreshData.Name = "btRefreshData";
