@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtpRideDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label29 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label28 = new System.Windows.Forms.Label();
             this.btRetrieve = new System.Windows.Forms.Button();
@@ -41,6 +42,7 @@
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label25 = new System.Windows.Forms.Label();
             this.tbWeekCountRDE = new System.Windows.Forms.TextBox();
+            this.tbRecordID = new System.Windows.Forms.TextBox();
             this.btDeleteRideDataEntry = new System.Windows.Forms.Button();
             this.btUpdateRideDateEntry = new System.Windows.Forms.Button();
             this.lbRideDataEntryError = new System.Windows.Forms.Label();
@@ -48,10 +50,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.tbRecordID = new System.Windows.Forms.TextBox();
             this.lbNoLogYearSelected = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btRIdeDataEntryClose = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbBikeDataEntrySelection = new System.Windows.Forms.ComboBox();
             this.tbCustom2 = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.tbMaxCadence = new System.Windows.Forms.TextBox();
@@ -60,7 +62,6 @@
             this.lbCustom1 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.cbComfortRideDataEntry = new System.Windows.Forms.ComboBox();
-            this.cbBikeDataEntrySelection = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.cbEffortRideDataEntry = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -104,9 +105,6 @@
             this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
-            this.btUpdateEntry = new System.Windows.Forms.Button();
-            this.grDisplayUpdate = new System.Windows.Forms.GroupBox();
-            this.btCancelDisplayUpdate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -117,7 +115,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).BeginInit();
-            this.grDisplayUpdate.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbLogYearDataEntry
@@ -148,10 +145,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.grDisplayUpdate);
+            this.groupBox1.Controls.Add(this.label29);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.tbWeekCountRDE);
+            this.groupBox1.Controls.Add(this.tbRecordID);
             this.groupBox1.Controls.Add(this.btDeleteRideDataEntry);
             this.groupBox1.Controls.Add(this.btUpdateRideDateEntry);
             this.groupBox1.Controls.Add(this.lbRideDataEntryError);
@@ -167,6 +165,15 @@
             this.groupBox1.Size = new System.Drawing.Size(490, 165);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(133, 120);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(18, 13);
+            this.label29.TabIndex = 49;
+            this.label29.Text = "ID";
             // 
             // groupBox3
             // 
@@ -233,6 +240,14 @@
             this.tbWeekCountRDE.Size = new System.Drawing.Size(31, 20);
             this.tbWeekCountRDE.TabIndex = 46;
             this.tbWeekCountRDE.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbRecordID
+            // 
+            this.tbRecordID.Enabled = false;
+            this.tbRecordID.Location = new System.Drawing.Point(161, 115);
+            this.tbRecordID.Name = "tbRecordID";
+            this.tbRecordID.Size = new System.Drawing.Size(41, 20);
+            this.tbRecordID.TabIndex = 28;
             // 
             // btDeleteRideDataEntry
             // 
@@ -303,14 +318,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.SubmitData);
             // 
-            // tbRecordID
-            // 
-            this.tbRecordID.Location = new System.Drawing.Point(229, 644);
-            this.tbRecordID.Name = "tbRecordID";
-            this.tbRecordID.Size = new System.Drawing.Size(41, 20);
-            this.tbRecordID.TabIndex = 28;
-            this.tbRecordID.Visible = false;
-            // 
             // lbNoLogYearSelected
             // 
             this.lbNoLogYearSelected.AutoSize = true;
@@ -320,18 +327,19 @@
             this.lbNoLogYearSelected.Size = new System.Drawing.Size(0, 13);
             this.lbNoLogYearSelected.TabIndex = 28;
             // 
-            // button2
+            // btRIdeDataEntryClose
             // 
-            this.button2.Location = new System.Drawing.Point(400, 633);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(85, 35);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Close";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.CloseRideDataEntry);
+            this.btRIdeDataEntryClose.Location = new System.Drawing.Point(400, 633);
+            this.btRIdeDataEntryClose.Name = "btRIdeDataEntryClose";
+            this.btRIdeDataEntryClose.Size = new System.Drawing.Size(85, 35);
+            this.btRIdeDataEntryClose.TabIndex = 4;
+            this.btRIdeDataEntryClose.Text = "Close";
+            this.btRIdeDataEntryClose.UseVisualStyleBackColor = true;
+            this.btRIdeDataEntryClose.Click += new System.EventHandler(this.CloseRideDataEntry);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbBikeDataEntrySelection);
             this.groupBox2.Controls.Add(this.tbCustom2);
             this.groupBox2.Controls.Add(this.label27);
             this.groupBox2.Controls.Add(this.tbMaxCadence);
@@ -340,7 +348,6 @@
             this.groupBox2.Controls.Add(this.lbCustom1);
             this.groupBox2.Controls.Add(this.label26);
             this.groupBox2.Controls.Add(this.cbComfortRideDataEntry);
-            this.groupBox2.Controls.Add(this.cbBikeDataEntrySelection);
             this.groupBox2.Controls.Add(this.label23);
             this.groupBox2.Controls.Add(this.cbEffortRideDataEntry);
             this.groupBox2.Controls.Add(this.label21);
@@ -385,6 +392,14 @@
             this.groupBox2.Size = new System.Drawing.Size(490, 433);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
+            // 
+            // cbBikeDataEntrySelection
+            // 
+            this.cbBikeDataEntrySelection.FormattingEnabled = true;
+            this.cbBikeDataEntrySelection.Location = new System.Drawing.Point(76, 49);
+            this.cbBikeDataEntrySelection.Name = "cbBikeDataEntrySelection";
+            this.cbBikeDataEntrySelection.Size = new System.Drawing.Size(176, 21);
+            this.cbBikeDataEntrySelection.TabIndex = 53;
             // 
             // tbCustom2
             // 
@@ -454,21 +469,13 @@
             // 
             this.cbComfortRideDataEntry.FormattingEnabled = true;
             this.cbComfortRideDataEntry.Items.AddRange(new object[] {
-            "Weak / Tight",
+            "Weak/Tight",
             "Average",
             "Strong"});
             this.cbComfortRideDataEntry.Location = new System.Drawing.Point(76, 289);
             this.cbComfortRideDataEntry.Name = "cbComfortRideDataEntry";
             this.cbComfortRideDataEntry.Size = new System.Drawing.Size(126, 21);
             this.cbComfortRideDataEntry.TabIndex = 44;
-            // 
-            // cbBikeDataEntrySelection
-            // 
-            this.cbBikeDataEntrySelection.FormattingEnabled = true;
-            this.cbBikeDataEntrySelection.Location = new System.Drawing.Point(76, 49);
-            this.cbBikeDataEntrySelection.Name = "cbBikeDataEntrySelection";
-            this.cbBikeDataEntrySelection.Size = new System.Drawing.Size(159, 21);
-            this.cbBikeDataEntrySelection.TabIndex = 43;
             // 
             // label23
             // 
@@ -841,36 +848,6 @@
             // 
             this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
             // 
-            // btUpdateEntry
-            // 
-            this.btUpdateEntry.Location = new System.Drawing.Point(28, 19);
-            this.btUpdateEntry.Name = "btUpdateEntry";
-            this.btUpdateEntry.Size = new System.Drawing.Size(84, 32);
-            this.btUpdateEntry.TabIndex = 41;
-            this.btUpdateEntry.Text = "Update";
-            this.btUpdateEntry.UseVisualStyleBackColor = true;
-            this.btUpdateEntry.Click += new System.EventHandler(this.btUpdateEntry_Click);
-            // 
-            // grDisplayUpdate
-            // 
-            this.grDisplayUpdate.Controls.Add(this.btCancelDisplayUpdate);
-            this.grDisplayUpdate.Controls.Add(this.btUpdateEntry);
-            this.grDisplayUpdate.Location = new System.Drawing.Point(292, 22);
-            this.grDisplayUpdate.Name = "grDisplayUpdate";
-            this.grDisplayUpdate.Size = new System.Drawing.Size(141, 136);
-            this.grDisplayUpdate.TabIndex = 42;
-            this.grDisplayUpdate.TabStop = false;
-            // 
-            // btCancelDisplayUpdate
-            // 
-            this.btCancelDisplayUpdate.Location = new System.Drawing.Point(27, 72);
-            this.btCancelDisplayUpdate.Name = "btCancelDisplayUpdate";
-            this.btCancelDisplayUpdate.Size = new System.Drawing.Size(85, 35);
-            this.btCancelDisplayUpdate.TabIndex = 42;
-            this.btCancelDisplayUpdate.Text = "Cancel";
-            this.btCancelDisplayUpdate.UseVisualStyleBackColor = true;
-            this.btCancelDisplayUpdate.Click += new System.EventHandler(this.btCancelDisplayUpdate_Click);
-            // 
             // RideDataEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -878,9 +855,8 @@
             this.ClientSize = new System.Drawing.Size(526, 706);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btRIdeDataEntryClose);
             this.Controls.Add(this.label22);
-            this.Controls.Add(this.tbRecordID);
             this.Controls.Add(this.lbNoLogYearSelected);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -904,7 +880,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).EndInit();
-            this.grDisplayUpdate.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -915,7 +890,7 @@
         private System.Windows.Forms.DateTimePicker dtpRideDate;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btRIdeDataEntryClose;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox cbRideTypeDataEntry;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
@@ -970,7 +945,6 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ComboBox cbEffortRideDataEntry;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
-        public System.Windows.Forms.ComboBox cbBikeDataEntrySelection;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox tbWeekCountRDE;
@@ -985,8 +959,7 @@
         private System.Windows.Forms.TextBox tbMaxCadence;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Button btUpdateEntry;
-        private System.Windows.Forms.GroupBox grDisplayUpdate;
-        private System.Windows.Forms.Button btCancelDisplayUpdate;
+        public System.Windows.Forms.ComboBox cbBikeDataEntrySelection;
+        private System.Windows.Forms.Label label29;
     }
 }

@@ -15,6 +15,7 @@ using DGVPrinterHelper;
 using static DGVPrinterHelper.DGVPrinter;
 using System.IO;
 using System.Xml.Linq;
+using System.Threading;
 
 namespace CyclingLogApplication
 {
@@ -363,7 +364,8 @@ namespace CyclingLogApplication
 
         private void BFilter_Click(object sender, EventArgs e)
         {
-            //MainForm mainForm = new MainForm();
+            runRideDisplayClear();
+
             bool customDataField1 = false;
             bool customDataField2 = false;
 
@@ -921,8 +923,8 @@ namespace CyclingLogApplication
                 dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
                 dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
 
-                Boolean hideID = true;
-                if (hideID)
+                string idColumnValue = MainForm.GetIDColumnValue();
+                if (idColumnValue.Equals("0"))
                 {
                     dataGridView1.Columns["Id"].Visible = false;
                 }
@@ -945,6 +947,11 @@ namespace CyclingLogApplication
         }
 
         private void BtClear_Click(object sender, EventArgs e)
+        {
+            runRideDisplayClear();
+        }
+
+        private void runRideDisplayClear()
         {
             cbFilterField.SelectedIndex = 0;
             cbFilterValue.Items.Clear();
@@ -1422,7 +1429,8 @@ namespace CyclingLogApplication
 
             string id;
             string date;
-            RideDataEntry rideDataEntryForm = new RideDataEntry();
+
+            RideDataEntry rideDataEntry = new RideDataEntry();
 
             int rowindex = dataGridView1.CurrentCell.RowIndex;
             //int columnindex = dataGridView1.CurrentCell.ColumnIndex;
@@ -1436,10 +1444,9 @@ namespace CyclingLogApplication
             date = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
 
             int logNameIndex = cbLogYearFilter.SelectedIndex;
+            rideDataEntry.RideDisplayDataQuery(id, date, logNameIndex-1);
 
-            rideDataEntryForm.RideDisplayDataQuery(id, date, logNameIndex);
-
-            rideDataEntryForm.ShowDialog();
+            rideDataEntry.ShowDialog();
         }
 
 
@@ -1785,38 +1792,38 @@ namespace CyclingLogApplication
         //    rideDataEntryForm.ShowDialog();
         //}
 
-        private void cbUpdateValues_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbUpdateValues.Checked)
-            {
-                checkedListBox.SetItemCheckState(0, CheckState.Checked);
-                checkedListBox.SetItemCheckState(1, CheckState.Checked);
-                checkedListBox.SetItemCheckState(2, CheckState.Checked);
-                checkedListBox.SetItemCheckState(3, CheckState.Checked);
-                checkedListBox.SetItemCheckState(4, CheckState.Checked);
-                checkedListBox.SetItemCheckState(5, CheckState.Checked);
-                checkedListBox.SetItemCheckState(6, CheckState.Checked);
-                checkedListBox.SetItemCheckState(7, CheckState.Checked);
-                checkedListBox.SetItemCheckState(8, CheckState.Checked);
-                checkedListBox.SetItemCheckState(9, CheckState.Checked);
-                checkedListBox.SetItemCheckState(10, CheckState.Checked);
-                checkedListBox.SetItemCheckState(11, CheckState.Checked);
-                checkedListBox.SetItemCheckState(12, CheckState.Checked);
-                checkedListBox.SetItemCheckState(13, CheckState.Checked);
-                checkedListBox.SetItemCheckState(14, CheckState.Checked);
-                checkedListBox.SetItemCheckState(15, CheckState.Checked);
-                checkedListBox.SetItemCheckState(16, CheckState.Checked);
-                checkedListBox.SetItemCheckState(17, CheckState.Checked);
-                checkedListBox.SetItemCheckState(18, CheckState.Checked);
-                checkedListBox.SetItemCheckState(19, CheckState.Checked);
-                checkedListBox.SetItemCheckState(20, CheckState.Checked);
-                checkedListBox.SetItemCheckState(21, CheckState.Checked);
-                checkedListBox.SetItemCheckState(22, CheckState.Checked);
-                checkedListBox.SetItemCheckState(23, CheckState.Checked);
-                checkedListBox.SetItemCheckState(24, CheckState.Checked);
-                //checkedListBox.SetItemCheckState(25, CheckState.Checked);
-                //checkedListBox.SetItemCheckState(26, CheckState.Checked);
-            }
-        }
+        //private void cbUpdateValues_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (cbUpdateValues.Checked)
+        //    {
+        //        checkedListBox.SetItemCheckState(0, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(1, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(2, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(3, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(4, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(5, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(6, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(7, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(8, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(9, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(10, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(11, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(12, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(13, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(14, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(15, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(16, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(17, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(18, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(19, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(20, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(21, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(22, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(23, CheckState.Checked);
+        //        checkedListBox.SetItemCheckState(24, CheckState.Checked);
+        //        //checkedListBox.SetItemCheckState(25, CheckState.Checked);
+        //        //checkedListBox.SetItemCheckState(26, CheckState.Checked);
+        //    }
+        //}
     }
 }

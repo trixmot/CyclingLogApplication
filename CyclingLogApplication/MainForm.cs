@@ -41,6 +41,7 @@ namespace CyclingLogApplication
         private static int lastTypeTimeChart = -1;
         private static int lastMonthlyLogSelected = -1;
         private static int lastLogSelectedDataEntry = -1;
+        private static string idColumn = "0";
         private static string firstDayOfWeek;
         private static string license;
         public static string customField1;
@@ -203,6 +204,18 @@ namespace CyclingLogApplication
                 {
                     rbFirstDayMonday.Checked = true;
                     rbFirstDaySunday.Checked = false;
+                }
+
+                string idColumn = GetIDColumnValue();
+                if (idColumn.Equals("0"))
+                {
+                    rbShowIDColumn.Checked = false;
+                    rbHideIDColumn.Checked = true;
+                }
+                else
+                {
+                    rbShowIDColumn.Checked = true;
+                    rbHideIDColumn.Checked = false;
                 }
 
                 //Get all values and load the comboboxes:
@@ -395,6 +408,16 @@ namespace CyclingLogApplication
         {
             return logVersion;
         }
+
+        public static string GetIDColumnValue()
+        {
+            return idColumn;
+        }
+
+        public static void SetIDColumn(string idColumnValue)
+        { 
+            idColumn = idColumnValue; 
+        }    
 
         public static int GetLogLevel()
         {
@@ -701,15 +724,15 @@ namespace CyclingLogApplication
             checkedListBoxItem24 = checkedItem24;
         }
 
-        public static void SetCheckedListBoxItem25(string checkedItem25)
-        {
-            checkedListBoxItem25 = checkedItem25;
-        }
+        //public static void SetCheckedListBoxItem25(string checkedItem25)
+        //{
+        //    checkedListBoxItem25 = checkedItem25;
+        //}
 
-        public static void SetCheckedListBoxItem26(string checkedItem26)
-        {
-            checkedListBoxItem26 = checkedItem26;
-        }
+        //public static void SetCheckedListBoxItem26(string checkedItem26)
+        //{
+        //    checkedListBoxItem26 = checkedItem26;
+        //}
 
         public static string GetCheckedListBoxItem0()
         {
@@ -836,15 +859,15 @@ namespace CyclingLogApplication
             return checkedListBoxItem24;
         }
 
-        public static string GetCheckedListBoxItem25()
-        {
-            return checkedListBoxItem25;
-        }
+        //public static string GetCheckedListBoxItem25()
+        //{
+        //    return checkedListBoxItem25;
+        //}
 
-        public static string GetCheckedListBoxItem26()
-        {
-            return checkedListBoxItem26;
-        }
+        //public static string GetCheckedListBoxItem26()
+        //{
+        //    return checkedListBoxItem26;
+        //}
 
         public static List<string> GetLogYears()
         {
@@ -1161,6 +1184,7 @@ namespace CyclingLogApplication
             return ToReturn;
         }
 
+        //Remove all records that match the LogYearID:
         private static void RemoveLogYearData(int logIndex)
         {
             SqlDataReader reader = null;
@@ -5981,6 +6005,20 @@ namespace CyclingLogApplication
             dateTimePicker1.Value = DateTime.Parse(dgvMaint.Rows[rowindex].Cells[0].Value.ToString());
             cbBikeMaint.SelectedIndex = bikeIndex;
             tbMaintMiles.Text = miles;
+        }
+
+        private void btHideShowIDColumn_Click(object sender, EventArgs e)
+        {
+            if (rbShowIDColumn.Checked)
+            {
+                SetIDColumn("1");
+                MessageBox.Show("Setting to show the ID Column.");
+            }
+            else
+            {
+                SetIDColumn("0");
+                MessageBox.Show("Setting to hide the ID Column.");
+            }
         }
     }
 }

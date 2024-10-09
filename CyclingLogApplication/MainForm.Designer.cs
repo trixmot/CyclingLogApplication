@@ -38,6 +38,8 @@
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.tbHighWeekAll = new System.Windows.Forms.TextBox();
             this.label82 = new System.Windows.Forms.Label();
             this.tbLongestTimeAll = new System.Windows.Forms.TextBox();
             this.label61 = new System.Windows.Forms.Label();
@@ -54,6 +56,7 @@
             this.label75 = new System.Windows.Forms.Label();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.tbDayCount = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tbTimeChange = new System.Windows.Forms.TextBox();
@@ -329,6 +332,10 @@
             this.button6 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox22 = new System.Windows.Forms.GroupBox();
+            this.btHideShowIDColumn = new System.Windows.Forms.Button();
+            this.rbHideIDColumn = new System.Windows.Forms.RadioButton();
+            this.rbShowIDColumn = new System.Windows.Forms.RadioButton();
             this.groupBox20 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -360,9 +367,6 @@
             this.tbMaintID = new System.Windows.Forms.TextBox();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.tbHighWeekAll = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -393,6 +397,7 @@
             this.groupBox11.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox22.SuspendLayout();
             this.groupBox20.SuspendLayout();
             this.groupBox18.SuspendLayout();
             this.groupBox13.SuspendLayout();
@@ -511,6 +516,25 @@
             this.groupBox19.TabIndex = 82;
             this.groupBox19.TabStop = false;
             this.groupBox19.Text = "Statistics-All";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(30, 238);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(61, 13);
+            this.label20.TabIndex = 86;
+            this.label20.Text = "High Week";
+            // 
+            // tbHighWeekAll
+            // 
+            this.tbHighWeekAll.Location = new System.Drawing.Point(97, 235);
+            this.tbHighWeekAll.Name = "tbHighWeekAll";
+            this.tbHighWeekAll.ReadOnly = true;
+            this.tbHighWeekAll.Size = new System.Drawing.Size(97, 20);
+            this.tbHighWeekAll.TabIndex = 85;
+            this.tbHighWeekAll.TabStop = false;
+            this.tbHighWeekAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label82
             // 
@@ -671,6 +695,15 @@
             this.groupBox8.Size = new System.Drawing.Size(203, 197);
             this.groupBox8.TabIndex = 53;
             this.groupBox8.TabStop = false;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(38, 23);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(116, 13);
+            this.label22.TabIndex = 54;
+            this.label22.Text = "Week And Day Counts";
             // 
             // tbDayCount
             // 
@@ -3589,6 +3622,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.groupBox22);
             this.groupBox2.Controls.Add(this.groupBox20);
             this.groupBox2.Controls.Add(this.groupBox18);
             this.groupBox2.Controls.Add(this.groupBox13);
@@ -3601,6 +3635,50 @@
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Enter += new System.EventHandler(this.GroupBox2_Enter);
+            // 
+            // groupBox22
+            // 
+            this.groupBox22.Controls.Add(this.btHideShowIDColumn);
+            this.groupBox22.Controls.Add(this.rbHideIDColumn);
+            this.groupBox22.Controls.Add(this.rbShowIDColumn);
+            this.groupBox22.Location = new System.Drawing.Point(256, 339);
+            this.groupBox22.Name = "groupBox22";
+            this.groupBox22.Size = new System.Drawing.Size(216, 100);
+            this.groupBox22.TabIndex = 77;
+            this.groupBox22.TabStop = false;
+            this.groupBox22.Text = "Ride Display ID Column";
+            // 
+            // btHideShowIDColumn
+            // 
+            this.btHideShowIDColumn.Location = new System.Drawing.Point(121, 48);
+            this.btHideShowIDColumn.Name = "btHideShowIDColumn";
+            this.btHideShowIDColumn.Size = new System.Drawing.Size(75, 23);
+            this.btHideShowIDColumn.TabIndex = 29;
+            this.btHideShowIDColumn.Text = "Set";
+            this.btHideShowIDColumn.UseVisualStyleBackColor = true;
+            this.btHideShowIDColumn.Click += new System.EventHandler(this.btHideShowIDColumn_Click);
+            // 
+            // rbHideIDColumn
+            // 
+            this.rbHideIDColumn.AutoSize = true;
+            this.rbHideIDColumn.Location = new System.Drawing.Point(30, 61);
+            this.rbHideIDColumn.Name = "rbHideIDColumn";
+            this.rbHideIDColumn.Size = new System.Drawing.Size(47, 17);
+            this.rbHideIDColumn.TabIndex = 1;
+            this.rbHideIDColumn.TabStop = true;
+            this.rbHideIDColumn.Text = "Hide";
+            this.rbHideIDColumn.UseVisualStyleBackColor = true;
+            // 
+            // rbShowIDColumn
+            // 
+            this.rbShowIDColumn.AutoSize = true;
+            this.rbShowIDColumn.Location = new System.Drawing.Point(30, 38);
+            this.rbShowIDColumn.Name = "rbShowIDColumn";
+            this.rbShowIDColumn.Size = new System.Drawing.Size(52, 17);
+            this.rbShowIDColumn.TabIndex = 0;
+            this.rbShowIDColumn.TabStop = true;
+            this.rbShowIDColumn.Text = "Show";
+            this.rbShowIDColumn.UseVisualStyleBackColor = true;
             // 
             // groupBox20
             // 
@@ -3640,14 +3718,14 @@
             this.groupBox18.Controls.Add(this.rbFirstDaySunday);
             this.groupBox18.Location = new System.Drawing.Point(254, 80);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(218, 141);
+            this.groupBox18.Size = new System.Drawing.Size(218, 101);
             this.groupBox18.TabIndex = 73;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "First Day Of Week";
             // 
             // btFirstDay
             // 
-            this.btFirstDay.Location = new System.Drawing.Point(127, 62);
+            this.btFirstDay.Location = new System.Drawing.Point(127, 44);
             this.btFirstDay.Name = "btFirstDay";
             this.btFirstDay.Size = new System.Drawing.Size(75, 23);
             this.btFirstDay.TabIndex = 28;
@@ -3658,7 +3736,7 @@
             // rbFirstDayMonday
             // 
             this.rbFirstDayMonday.AutoSize = true;
-            this.rbFirstDayMonday.Location = new System.Drawing.Point(32, 78);
+            this.rbFirstDayMonday.Location = new System.Drawing.Point(32, 60);
             this.rbFirstDayMonday.Name = "rbFirstDayMonday";
             this.rbFirstDayMonday.Size = new System.Drawing.Size(63, 17);
             this.rbFirstDayMonday.TabIndex = 27;
@@ -3669,7 +3747,7 @@
             // rbFirstDaySunday
             // 
             this.rbFirstDaySunday.AutoSize = true;
-            this.rbFirstDaySunday.Location = new System.Drawing.Point(32, 46);
+            this.rbFirstDaySunday.Location = new System.Drawing.Point(32, 37);
             this.rbFirstDaySunday.Name = "rbFirstDaySunday";
             this.rbFirstDaySunday.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.rbFirstDaySunday.Size = new System.Drawing.Size(61, 17);
@@ -3682,7 +3760,7 @@
             // 
             this.groupBox13.Controls.Add(this.label2);
             this.groupBox13.Controls.Add(this.btDeleteAllData);
-            this.groupBox13.Location = new System.Drawing.Point(254, 243);
+            this.groupBox13.Location = new System.Drawing.Point(254, 204);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(218, 119);
             this.groupBox13.TabIndex = 72;
@@ -3923,34 +4001,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(30, 238);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(61, 13);
-            this.label20.TabIndex = 86;
-            this.label20.Text = "High Week";
-            // 
-            // tbHighWeekAll
-            // 
-            this.tbHighWeekAll.Location = new System.Drawing.Point(97, 235);
-            this.tbHighWeekAll.Name = "tbHighWeekAll";
-            this.tbHighWeekAll.ReadOnly = true;
-            this.tbHighWeekAll.Size = new System.Drawing.Size(97, 20);
-            this.tbHighWeekAll.TabIndex = 85;
-            this.tbHighWeekAll.TabStop = false;
-            this.tbHighWeekAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(38, 23);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(116, 13);
-            this.label22.TabIndex = 54;
-            this.label22.Text = "Week And Day Counts";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4007,6 +4057,8 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox22.ResumeLayout(false);
+            this.groupBox22.PerformLayout();
             this.groupBox20.ResumeLayout(false);
             this.groupBox18.ResumeLayout(false);
             this.groupBox18.PerformLayout();
@@ -4358,6 +4410,10 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox tbHighWeekAll;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.GroupBox groupBox22;
+        private System.Windows.Forms.Button btHideShowIDColumn;
+        private System.Windows.Forms.RadioButton rbHideIDColumn;
+        private System.Windows.Forms.RadioButton rbShowIDColumn;
     }
 }
 

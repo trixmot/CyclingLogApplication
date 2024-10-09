@@ -244,7 +244,6 @@
             this.cbUpdateValues.TabIndex = 17;
             this.cbUpdateValues.Text = "Update Values";
             this.cbUpdateValues.UseVisualStyleBackColor = true;
-            this.cbUpdateValues.CheckedChanged += new System.EventHandler(this.cbUpdateValues_CheckedChanged);
             // 
             // RideDataDisplay
             // 
