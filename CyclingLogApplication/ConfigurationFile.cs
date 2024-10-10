@@ -107,6 +107,7 @@ namespace CyclingLogApplication
             string checkListBoxItemNAME22 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME22").InnerText;
             string checkListBoxItemNAME23 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME23").InnerText;
             string checkListBoxItemNAME24 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME24").InnerText;
+            string checkListBoxItemNAME25 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME25").InnerText;
 
             string checkListBoxItemCHECK0 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK0").InnerText;
             string checkListBoxItemCHECK1 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK1").InnerText;
@@ -133,6 +134,7 @@ namespace CyclingLogApplication
             string checkListBoxItemCHECK22 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK22").InnerText;
             string checkListBoxItemCHECK23 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK23").InnerText;
             string checkListBoxItemCHECK24 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK24").InnerText;
+            string checkListBoxItemCHECK25 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK25").InnerText;
 
             fieldCheckDictionary.Add(checkListBoxItemNAME0, checkListBoxItemCHECK0);
             fieldCheckDictionary.Add(checkListBoxItemNAME1, checkListBoxItemCHECK1);
@@ -159,8 +161,9 @@ namespace CyclingLogApplication
             fieldCheckDictionary.Add(checkListBoxItemNAME22, checkListBoxItemCHECK22);
             fieldCheckDictionary.Add(checkListBoxItemNAME23, checkListBoxItemCHECK23);
             fieldCheckDictionary.Add(checkListBoxItemNAME24, checkListBoxItemCHECK24);
+            fieldCheckDictionary.Add(checkListBoxItemNAME25, checkListBoxItemCHECK25);
 
-            int heightCLB = 379;
+            int heightCLB = 394;
             int numberRemoved = 0;
             //Check value of custom1:
             if (customDataField1.Equals(""))
@@ -176,10 +179,10 @@ namespace CyclingLogApplication
 
             if (numberRemoved == 1)
             {
-                heightCLB = 364;
+                heightCLB = 379;
             } else if (numberRemoved == 2)
             {
-                heightCLB = 349;
+                heightCLB = 364;
             }
             //Set checkedListbox height:
             MainForm.SetHeightCLB(heightCLB);
@@ -425,6 +428,10 @@ namespace CyclingLogApplication
                     XmlNode checkedItemNode24 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME24");
                     checkedItemNode24.InnerText = "Custom2";
                     rootNode.AppendChild(checkedItemNode24);
+
+                    XmlNode checkedItemNode25 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME25");
+                    checkedItemNode25.InnerText = "Wind Chill";
+                    rootNode.AppendChild(checkedItemNode25);
                     //**********************************************************************
                     XmlNode checkedItemNodeCHECK0 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK0");
                     checkedItemNodeCHECK0.InnerText = "True";
@@ -525,6 +532,10 @@ namespace CyclingLogApplication
                     XmlNode checkedItemNodeCHECK24 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK24");
                     checkedItemNodeCHECK24.InnerText = "False";
                     rootNode.AppendChild(checkedItemNodeCHECK24);
+
+                    XmlNode checkedItemNodeCHECK25 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK25");
+                    checkedItemNodeCHECK25.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK25);
                     //**********************************************************************
 
                     XmlNode logLevelNode = xmlDoc.CreateElement("LOGLEVEL");
@@ -629,31 +640,32 @@ namespace CyclingLogApplication
                     xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD1").InnerText = customField1;
                     xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD2").InnerText = customField2;
 
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK0").InnerText = fieldDictionary.Values.ElementAt(0); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK1").InnerText = fieldDictionary.Values.ElementAt(1); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK2").InnerText = fieldDictionary.Values.ElementAt(2); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK3").InnerText = fieldDictionary.Values.ElementAt(3); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK4").InnerText = fieldDictionary.Values.ElementAt(4); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK5").InnerText = fieldDictionary.Values.ElementAt(5); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK6").InnerText = fieldDictionary.Values.ElementAt(6); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK7").InnerText = fieldDictionary.Values.ElementAt(7); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK8").InnerText = fieldDictionary.Values.ElementAt(8); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK9").InnerText = fieldDictionary.Values.ElementAt(9); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK10").InnerText = fieldDictionary.Values.ElementAt(10); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK11").InnerText = fieldDictionary.Values.ElementAt(11); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK12").InnerText = fieldDictionary.Values.ElementAt(12); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK13").InnerText = fieldDictionary.Values.ElementAt(13); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK14").InnerText = fieldDictionary.Values.ElementAt(14); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK15").InnerText = fieldDictionary.Values.ElementAt(15); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK16").InnerText = fieldDictionary.Values.ElementAt(16); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK17").InnerText = fieldDictionary.Values.ElementAt(17); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK18").InnerText = fieldDictionary.Values.ElementAt(18); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK19").InnerText = fieldDictionary.Values.ElementAt(19); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK20").InnerText = fieldDictionary.Values.ElementAt(20); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK21").InnerText = fieldDictionary.Values.ElementAt(21); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK22").InnerText = fieldDictionary.Values.ElementAt(22); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK23").InnerText = fieldDictionary.Values.ElementAt(23); ;
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK24").InnerText = fieldDictionary.Values.ElementAt(24); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK0").InnerText = fieldDictionary.Values.ElementAt(0);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK1").InnerText = fieldDictionary.Values.ElementAt(1);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK2").InnerText = fieldDictionary.Values.ElementAt(2);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK3").InnerText = fieldDictionary.Values.ElementAt(3);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK4").InnerText = fieldDictionary.Values.ElementAt(4);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK5").InnerText = fieldDictionary.Values.ElementAt(5);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK6").InnerText = fieldDictionary.Values.ElementAt(6);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK7").InnerText = fieldDictionary.Values.ElementAt(7);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK8").InnerText = fieldDictionary.Values.ElementAt(8);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK9").InnerText = fieldDictionary.Values.ElementAt(9);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK10").InnerText = fieldDictionary.Values.ElementAt(10);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK11").InnerText = fieldDictionary.Values.ElementAt(11);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK12").InnerText = fieldDictionary.Values.ElementAt(12);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK13").InnerText = fieldDictionary.Values.ElementAt(13);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK14").InnerText = fieldDictionary.Values.ElementAt(14);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK15").InnerText = fieldDictionary.Values.ElementAt(15);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK16").InnerText = fieldDictionary.Values.ElementAt(16);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK17").InnerText = fieldDictionary.Values.ElementAt(17);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK18").InnerText = fieldDictionary.Values.ElementAt(18);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK19").InnerText = fieldDictionary.Values.ElementAt(19);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK20").InnerText = fieldDictionary.Values.ElementAt(20);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK21").InnerText = fieldDictionary.Values.ElementAt(21);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK22").InnerText = fieldDictionary.Values.ElementAt(22);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK23").InnerText = fieldDictionary.Values.ElementAt(23);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK24").InnerText = fieldDictionary.Values.ElementAt(24);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK25").InnerText = fieldDictionary.Values.ElementAt(25);
 
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME0").InnerText = fieldDictionary.Keys.ElementAt(0);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME1").InnerText = fieldDictionary.Keys.ElementAt(1);
@@ -669,7 +681,7 @@ namespace CyclingLogApplication
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME11").InnerText = fieldDictionary.Keys.ElementAt(11);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME12").InnerText = fieldDictionary.Keys.ElementAt(12);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME13").InnerText = fieldDictionary.Keys.ElementAt(13);
-                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME14").InnerText = fieldDictionary.Keys.ElementAt(14); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME14").InnerText = fieldDictionary.Keys.ElementAt(14);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME15").InnerText = fieldDictionary.Keys.ElementAt(15);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME16").InnerText = fieldDictionary.Keys.ElementAt(16);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME17").InnerText = fieldDictionary.Keys.ElementAt(17);
@@ -680,6 +692,7 @@ namespace CyclingLogApplication
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME22").InnerText = fieldDictionary.Keys.ElementAt(22);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME23").InnerText = fieldDictionary.Keys.ElementAt(23);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME24").InnerText = fieldDictionary.Keys.ElementAt(24);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME25").InnerText = fieldDictionary.Keys.ElementAt(25);
 
                     xmlDoc.SelectSingleNode("/Config/cbStatistic1").InnerText = cbStatistic1;
                     xmlDoc.SelectSingleNode("/Config/cbStatistic2").InnerText = cbStatistic2;

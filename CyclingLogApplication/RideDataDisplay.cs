@@ -203,8 +203,12 @@ namespace CyclingLogApplication
                     else if (fieldName.Equals("Max Power"))
                     {
                         fieldName = "MaxPower";
-                    } 
-                    
+                    }
+                    else if (fieldName.Equals("Wind Chill"))
+                    {
+                        fieldName = "Windchill";
+                    }
+
                     fieldString += ",[" + fieldName + "]";
                     
                 }

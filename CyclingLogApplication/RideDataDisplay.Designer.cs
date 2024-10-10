@@ -170,7 +170,7 @@
             this.checkedListBox.FormattingEnabled = true;
             this.checkedListBox.Location = new System.Drawing.Point(1124, 54);
             this.checkedListBox.Name = "checkedListBox";
-            this.checkedListBox.Size = new System.Drawing.Size(146, 349);
+            this.checkedListBox.Size = new System.Drawing.Size(146, 364);
             this.checkedListBox.TabIndex = 12;
             // 
             // btSelectAll

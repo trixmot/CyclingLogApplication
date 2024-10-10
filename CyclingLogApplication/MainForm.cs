@@ -4867,7 +4867,7 @@ namespace CyclingLogApplication
             string customOLD1 = tbCustomDataField1_OLD.Text;
             string customOLD2 = tbCustomDataField2_OLD.Text;
 
-            int heightCLB = 379;
+            int heightCLB = 394;
             int numberRemoved = 0;
 
             Boolean changesMade = false;
@@ -4938,11 +4938,11 @@ namespace CyclingLogApplication
 
             if (numberRemoved == 1)
             {
-                heightCLB = 364;
+                heightCLB = 379;
             }
             else if (numberRemoved == 2)
             {
-                heightCLB = 349;
+                heightCLB = 364;
             }
 
             SetHeightCLB(heightCLB);
