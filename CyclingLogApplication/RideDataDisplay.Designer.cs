@@ -40,12 +40,16 @@
             this.btClear = new System.Windows.Forms.Button();
             this.cbFilterValue = new System.Windows.Forms.ComboBox();
             this.checkedListBox = new System.Windows.Forms.CheckedListBox();
-            this.btUpdateFields = new System.Windows.Forms.Button();
             this.btSelectAll = new System.Windows.Forms.Button();
             this.btDeselectAll = new System.Windows.Forms.Button();
             this.btPrint = new System.Windows.Forms.Button();
             this.cbUpdateValues = new System.Windows.Forms.CheckBox();
+            this.UpPictureBox = new System.Windows.Forms.PictureBox();
+            this.DownPictureBox = new System.Windows.Forms.PictureBox();
+            this.btSaveMoves = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UpPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DownPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -59,7 +63,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1156, 629);
+            this.button1.Location = new System.Drawing.Point(1163, 634);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(82, 33);
             this.button1.TabIndex = 1;
@@ -164,50 +168,14 @@
             // checkedListBox
             // 
             this.checkedListBox.FormattingEnabled = true;
-            this.checkedListBox.Items.AddRange(new object[] {
-            "Week Number",
-            "Moving Time",
-            "Ride Distance",
-            "Avg Speed",
-            "Bike",
-            "Ride Type",
-            "Wind",
-            "Temperature",
-            "Avg Cadence",
-            "Max Cadence",
-            "Avg Heart Rate",
-            "Max Heart Rate",
-            "Calories",
-            "Total Ascent",
-            "Total Descent",
-            "Route",
-            "Location",
-            "Comments",
-            "Effort",
-            "Max Speed",
-            "Avg Power",
-            "Max Power",
-            "Comfort",
-            "Custom1",
-            "Custom2"});
             this.checkedListBox.Location = new System.Drawing.Point(1124, 54);
             this.checkedListBox.Name = "checkedListBox";
             this.checkedListBox.Size = new System.Drawing.Size(146, 379);
             this.checkedListBox.TabIndex = 12;
             // 
-            // btUpdateFields
-            // 
-            this.btUpdateFields.Location = new System.Drawing.Point(1163, 541);
-            this.btUpdateFields.Name = "btUpdateFields";
-            this.btUpdateFields.Size = new System.Drawing.Size(75, 23);
-            this.btUpdateFields.TabIndex = 13;
-            this.btUpdateFields.Text = "Update";
-            this.btUpdateFields.UseVisualStyleBackColor = true;
-            this.btUpdateFields.Click += new System.EventHandler(this.BtUpdateFields_Click);
-            // 
             // btSelectAll
             // 
-            this.btSelectAll.Location = new System.Drawing.Point(1163, 483);
+            this.btSelectAll.Location = new System.Drawing.Point(1163, 472);
             this.btSelectAll.Name = "btSelectAll";
             this.btSelectAll.Size = new System.Drawing.Size(75, 23);
             this.btSelectAll.TabIndex = 14;
@@ -217,7 +185,7 @@
             // 
             // btDeselectAll
             // 
-            this.btDeselectAll.Location = new System.Drawing.Point(1163, 512);
+            this.btDeselectAll.Location = new System.Drawing.Point(1163, 501);
             this.btDeselectAll.Name = "btDeselectAll";
             this.btDeselectAll.Size = new System.Drawing.Size(75, 23);
             this.btDeselectAll.TabIndex = 15;
@@ -245,16 +213,50 @@
             this.cbUpdateValues.Text = "Update Values";
             this.cbUpdateValues.UseVisualStyleBackColor = true;
             // 
+            // UpPictureBox
+            // 
+            this.UpPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("UpPictureBox.Image")));
+            this.UpPictureBox.Location = new System.Drawing.Point(1276, 189);
+            this.UpPictureBox.Name = "UpPictureBox";
+            this.UpPictureBox.Size = new System.Drawing.Size(40, 40);
+            this.UpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.UpPictureBox.TabIndex = 18;
+            this.UpPictureBox.TabStop = false;
+            this.UpPictureBox.Click += new System.EventHandler(this.UpPictureBox_Click);
+            // 
+            // DownPictureBox
+            // 
+            this.DownPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("DownPictureBox.Image")));
+            this.DownPictureBox.Location = new System.Drawing.Point(1276, 257);
+            this.DownPictureBox.Name = "DownPictureBox";
+            this.DownPictureBox.Size = new System.Drawing.Size(40, 40);
+            this.DownPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.DownPictureBox.TabIndex = 19;
+            this.DownPictureBox.TabStop = false;
+            this.DownPictureBox.Click += new System.EventHandler(this.DownPictureBox_Click);
+            // 
+            // btSaveMoves
+            // 
+            this.btSaveMoves.Location = new System.Drawing.Point(1163, 530);
+            this.btSaveMoves.Name = "btSaveMoves";
+            this.btSaveMoves.Size = new System.Drawing.Size(75, 23);
+            this.btSaveMoves.TabIndex = 20;
+            this.btSaveMoves.Text = "Save";
+            this.btSaveMoves.UseVisualStyleBackColor = true;
+            this.btSaveMoves.Click += new System.EventHandler(this.btSaveMoves_Click);
+            // 
             // RideDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1291, 679);
+            this.ClientSize = new System.Drawing.Size(1329, 679);
+            this.Controls.Add(this.btSaveMoves);
+            this.Controls.Add(this.DownPictureBox);
+            this.Controls.Add(this.UpPictureBox);
             this.Controls.Add(this.cbUpdateValues);
             this.Controls.Add(this.btPrint);
             this.Controls.Add(this.btDeselectAll);
             this.Controls.Add(this.btSelectAll);
-            this.Controls.Add(this.btUpdateFields);
             this.Controls.Add(this.checkedListBox);
             this.Controls.Add(this.cbFilterValue);
             this.Controls.Add(this.btClear);
@@ -274,6 +276,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ride Data Information";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UpPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DownPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,10 +296,12 @@
         private System.Windows.Forms.Button btClear;
         private System.Windows.Forms.ComboBox cbFilterValue;
         private System.Windows.Forms.CheckedListBox checkedListBox;
-        private System.Windows.Forms.Button btUpdateFields;
         private System.Windows.Forms.Button btSelectAll;
         private System.Windows.Forms.Button btDeselectAll;
         private System.Windows.Forms.Button btPrint;
         private System.Windows.Forms.CheckBox cbUpdateValues;
+        private System.Windows.Forms.PictureBox UpPictureBox;
+        private System.Windows.Forms.PictureBox DownPictureBox;
+        private System.Windows.Forms.Button btSaveMoves;
     }
 }

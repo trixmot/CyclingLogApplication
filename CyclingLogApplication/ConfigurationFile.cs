@@ -7,6 +7,7 @@ using System.Windows.Forms;
 //using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Linq;
 
 namespace CyclingLogApplication
 {
@@ -58,7 +59,7 @@ namespace CyclingLogApplication
 
             doc.Load(strWorkPath + "\\settings\\CyclingLogConfig.xml");
             //doc.Load(@"C:\\CyclingLogApplication\\CyclingLogConfig.xml");
-            //List<string> configList = new List<string>();
+
 
             //=================================
             // Read from config file
@@ -79,33 +80,87 @@ namespace CyclingLogApplication
             string customDataField1 = nodes.Item(0).SelectSingleNode("CUSTOMFIELD1").InnerText;
             string customDataField2 = nodes.Item(0).SelectSingleNode("CUSTOMFIELD2").InnerText;
 
-            string checkListBoxItem0 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX0").InnerText;
-            string checkListBoxItem1 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX1").InnerText;
-            string checkListBoxItem2 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX2").InnerText;
-            string checkListBoxItem3 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX3").InnerText;
-            string checkListBoxItem4 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX4").InnerText;
-            string checkListBoxItem5 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX5").InnerText;
-            string checkListBoxItem6 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX6").InnerText;
-            string checkListBoxItem7 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX7").InnerText;
-            string checkListBoxItem8 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX8").InnerText;
-            string checkListBoxItem9 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX9").InnerText;
-            string checkListBoxItem10 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX10").InnerText;
-            string checkListBoxItem11 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX11").InnerText;
-            string checkListBoxItem12 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX12").InnerText;
-            string checkListBoxItem13 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX13").InnerText;
-            string checkListBoxItem14 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX14").InnerText;
-            string checkListBoxItem15 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX15").InnerText;
-            string checkListBoxItem16 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX16").InnerText;
-            string checkListBoxItem17 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX17").InnerText;
-            string checkListBoxItem18 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX18").InnerText;
-            string checkListBoxItem19 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX19").InnerText;
-            string checkListBoxItem20 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX20").InnerText;
-            string checkListBoxItem21 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX21").InnerText;
-            string checkListBoxItem22 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX22").InnerText;
-            string checkListBoxItem23 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX23").InnerText;
-            string checkListBoxItem24 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX24").InnerText;
-            //string checkListBoxItem25 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX25").InnerText;
-            //string checkListBoxItem26 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOX26").InnerText;
+            Dictionary<string, string> fieldCheckDictionary = new Dictionary<string, string>();  
+
+            string checkListBoxItemNAME0 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME0").InnerText;
+            string checkListBoxItemNAME1 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME1").InnerText;
+            string checkListBoxItemNAME2 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME2").InnerText;
+            string checkListBoxItemNAME3 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME3").InnerText;
+            string checkListBoxItemNAME4 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME4").InnerText;
+            string checkListBoxItemNAME5 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME5").InnerText;
+            string checkListBoxItemNAME6 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME6").InnerText;
+            string checkListBoxItemNAME7 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME7").InnerText;
+            string checkListBoxItemNAME8 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME8").InnerText;
+            string checkListBoxItemNAME9 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME9").InnerText;
+            string checkListBoxItemNAME10 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME10").InnerText;
+            string checkListBoxItemNAME11 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME11").InnerText;
+            string checkListBoxItemNAME12 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME12").InnerText;
+            string checkListBoxItemNAME13 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME13").InnerText;
+            string checkListBoxItemNAME14 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME14").InnerText;
+            string checkListBoxItemNAME15 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME15").InnerText;
+            string checkListBoxItemNAME16 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME16").InnerText;
+            string checkListBoxItemNAME17 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME17").InnerText;
+            string checkListBoxItemNAME18 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME18").InnerText;
+            string checkListBoxItemNAME19 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME19").InnerText;
+            string checkListBoxItemNAME20 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME20").InnerText;
+            string checkListBoxItemNAME21 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME21").InnerText;
+            string checkListBoxItemNAME22 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME22").InnerText;
+            string checkListBoxItemNAME23 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME23").InnerText;
+            string checkListBoxItemNAME24 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME24").InnerText;
+
+            string checkListBoxItemCHECK0 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK0").InnerText;
+            string checkListBoxItemCHECK1 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK1").InnerText;
+            string checkListBoxItemCHECK2 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK2").InnerText;
+            string checkListBoxItemCHECK3 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK3").InnerText;
+            string checkListBoxItemCHECK4 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK4").InnerText;
+            string checkListBoxItemCHECK5 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK5").InnerText;
+            string checkListBoxItemCHECK6 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK6").InnerText;
+            string checkListBoxItemCHECK7 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK7").InnerText;
+            string checkListBoxItemCHECK8 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK8").InnerText;
+            string checkListBoxItemCHECK9 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK9").InnerText;
+            string checkListBoxItemCHECK10 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK10").InnerText;
+            string checkListBoxItemCHECK11 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK11").InnerText;
+            string checkListBoxItemCHECK12 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK12").InnerText;
+            string checkListBoxItemCHECK13 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK13").InnerText;
+            string checkListBoxItemCHECK14 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK14").InnerText;
+            string checkListBoxItemCHECK15 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK15").InnerText;
+            string checkListBoxItemCHECK16 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK16").InnerText;
+            string checkListBoxItemCHECK17 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK17").InnerText;
+            string checkListBoxItemCHECK18 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK18").InnerText;
+            string checkListBoxItemCHECK19 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK19").InnerText;
+            string checkListBoxItemCHECK20 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK20").InnerText;
+            string checkListBoxItemCHECK21 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK21").InnerText;
+            string checkListBoxItemCHECK22 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK22").InnerText;
+            string checkListBoxItemCHECK23 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK23").InnerText;
+            string checkListBoxItemCHECK24 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK24").InnerText;
+
+            fieldCheckDictionary.Add(checkListBoxItemNAME0, checkListBoxItemCHECK0);
+            fieldCheckDictionary.Add(checkListBoxItemNAME1, checkListBoxItemCHECK1);
+            fieldCheckDictionary.Add(checkListBoxItemNAME2, checkListBoxItemCHECK2);
+            fieldCheckDictionary.Add(checkListBoxItemNAME3, checkListBoxItemCHECK3);
+            fieldCheckDictionary.Add(checkListBoxItemNAME4, checkListBoxItemCHECK4);
+            fieldCheckDictionary.Add(checkListBoxItemNAME5, checkListBoxItemCHECK5);
+            fieldCheckDictionary.Add(checkListBoxItemNAME6, checkListBoxItemCHECK6);
+            fieldCheckDictionary.Add(checkListBoxItemNAME7, checkListBoxItemCHECK7);
+            fieldCheckDictionary.Add(checkListBoxItemNAME8, checkListBoxItemCHECK8);
+            fieldCheckDictionary.Add(checkListBoxItemNAME9, checkListBoxItemCHECK9);
+            fieldCheckDictionary.Add(checkListBoxItemNAME10, checkListBoxItemCHECK10);
+            fieldCheckDictionary.Add(checkListBoxItemNAME11, checkListBoxItemCHECK11);
+            fieldCheckDictionary.Add(checkListBoxItemNAME12, checkListBoxItemCHECK12);
+            fieldCheckDictionary.Add(checkListBoxItemNAME13, checkListBoxItemCHECK13);
+            fieldCheckDictionary.Add(checkListBoxItemNAME14, checkListBoxItemCHECK14);
+            fieldCheckDictionary.Add(checkListBoxItemNAME15, checkListBoxItemCHECK15);
+            fieldCheckDictionary.Add(checkListBoxItemNAME16, checkListBoxItemCHECK16);
+            fieldCheckDictionary.Add(checkListBoxItemNAME17, checkListBoxItemCHECK17);
+            fieldCheckDictionary.Add(checkListBoxItemNAME18, checkListBoxItemCHECK18);
+            fieldCheckDictionary.Add(checkListBoxItemNAME19, checkListBoxItemCHECK19);
+            fieldCheckDictionary.Add(checkListBoxItemNAME20, checkListBoxItemCHECK20);
+            fieldCheckDictionary.Add(checkListBoxItemNAME21, checkListBoxItemCHECK21);
+            fieldCheckDictionary.Add(checkListBoxItemNAME22, checkListBoxItemCHECK22);
+            fieldCheckDictionary.Add(checkListBoxItemNAME23, checkListBoxItemCHECK23);
+            fieldCheckDictionary.Add(checkListBoxItemNAME24, checkListBoxItemCHECK24);
+
+            MainForm.SetFieldDictionary(fieldCheckDictionary);
 
             string lastLogYearSelected = nodes.Item(0).SelectSingleNode("LastLogSelected").InnerText;
             string lastBikeSelected = nodes.Item(0).SelectSingleNode("LastBikeSelected").InnerText;
@@ -119,8 +174,6 @@ namespace CyclingLogApplication
             string lastMonthlyLogYearSelected = nodes.Item(0).SelectSingleNode("LastMonthlyLogSelected").InnerText;
             string lastLogYearSelectedDataEntry = nodes.Item(0).SelectSingleNode("LastLogSelectedDataEntry").InnerText;
 
-            //MainForm mainForm = new MainForm();
-            //MainForm.SetLogLevel(logLevel);
             MainForm.SetLicenseAgreement(license);
             MainForm.SetIDColumn(idColumnValue);
             MainForm.SetLogLevel(logLevel);
@@ -143,34 +196,6 @@ namespace CyclingLogApplication
 
             MainForm.SetLastMonthlyLogSelected(Convert.ToInt32(lastMonthlyLogYearSelected));
             MainForm.SetLastLogSelectedDataEntry(Convert.ToInt32(lastLogYearSelectedDataEntry));
-
-            MainForm.SetCheckedListBoxItem0(checkListBoxItem0);
-            MainForm.SetCheckedListBoxItem1(checkListBoxItem1);
-            MainForm.SetCheckedListBoxItem2(checkListBoxItem2);
-            MainForm.SetCheckedListBoxItem3(checkListBoxItem3);
-            MainForm.SetCheckedListBoxItem4(checkListBoxItem4);
-            MainForm.SetCheckedListBoxItem5(checkListBoxItem5);
-            MainForm.SetCheckedListBoxItem6(checkListBoxItem6);
-            MainForm.SetCheckedListBoxItem7(checkListBoxItem7);
-            MainForm.SetCheckedListBoxItem8(checkListBoxItem8);
-            MainForm.SetCheckedListBoxItem9(checkListBoxItem9);
-            MainForm.SetCheckedListBoxItem10(checkListBoxItem10);
-            MainForm.SetCheckedListBoxItem11(checkListBoxItem11);
-            MainForm.SetCheckedListBoxItem12(checkListBoxItem12);
-            MainForm.SetCheckedListBoxItem13(checkListBoxItem13);
-            MainForm.SetCheckedListBoxItem14(checkListBoxItem14);
-            MainForm.SetCheckedListBoxItem15(checkListBoxItem15);
-            MainForm.SetCheckedListBoxItem16(checkListBoxItem16);
-            MainForm.SetCheckedListBoxItem17(checkListBoxItem17);
-            MainForm.SetCheckedListBoxItem18(checkListBoxItem18);
-            MainForm.SetCheckedListBoxItem19(checkListBoxItem19);
-            MainForm.SetCheckedListBoxItem20(checkListBoxItem20);
-            MainForm.SetCheckedListBoxItem21(checkListBoxItem21);
-            MainForm.SetCheckedListBoxItem22(checkListBoxItem22);
-            MainForm.SetCheckedListBoxItem23(checkListBoxItem23);
-            MainForm.SetCheckedListBoxItem24(checkListBoxItem24);
-            //MainForm.SetCheckedListBoxItem25(checkListBoxItem25);
-            //MainForm.SetCheckedListBoxItem25(checkListBoxItem26);
 
             if (logBool)
             {
@@ -247,10 +272,7 @@ namespace CyclingLogApplication
                     XmlDocument xmlDoc = new XmlDocument();
                     XmlElement rootNode = xmlDoc.CreateElement("Config");
                     xmlDoc.AppendChild(rootNode);
-                    //XmlNode commentNode1 = xmlDoc.CreateComment("This file was created by the ExtraViewToRallyConnector application. Do not modify.");
-                    //rootNode.AppendChild(commentNode1);
-                    //XmlNode commentNode2 = xmlDoc.CreateComment("The Time stamp value is used to compare Last modified times of records for updating.");
-                    //rootNode.AppendChild(commentNode2);
+
                     XmlNode logDaysNode = xmlDoc.CreateElement("DAYSTOKEEPLOGS");
                     logDaysNode.InnerText = "90";
                     rootNode.AppendChild(logDaysNode);
@@ -264,11 +286,11 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(idNode);
 
                     XmlNode firstDayNode = xmlDoc.CreateElement("FIRSTDAY");
-                    firstDayNode.InnerText = MainForm.GetFirstDayOfWeek();
+                    firstDayNode.InnerText = "Monday";
                     rootNode.AppendChild(firstDayNode);
 
                     XmlNode licesneNode = xmlDoc.CreateElement("LICENSE");
-                    licesneNode.InnerText = MainForm.GetLicenseAgreement().ToString();
+                    licesneNode.InnerText = "False";
                     rootNode.AppendChild(licesneNode);
 
                     XmlNode customField1Node = xmlDoc.CreateElement("CUSTOMFIELD1");
@@ -279,113 +301,207 @@ namespace CyclingLogApplication
                     customField2Node.InnerText = MainForm.GetCustomField2();
                     rootNode.AppendChild(customField2Node);
 
-                    XmlNode checkedItemNode0 = xmlDoc.CreateElement("CHECKEDLISTBOX0");
-                    checkedItemNode0.InnerText = "1";
+                    //**********************************************************************
+                    XmlNode checkedItemNode0 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME0");
+                    checkedItemNode0.InnerText = "Week Number";
                     rootNode.AppendChild(checkedItemNode0);
 
-                    XmlNode checkedItemNode1 = xmlDoc.CreateElement("CHECKEDLISTBOX1");
-                    checkedItemNode1.InnerText = "0";
+                    XmlNode checkedItemNode1 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME1");
+                    checkedItemNode1.InnerText = "Moving Time";
                     rootNode.AppendChild(checkedItemNode1);
 
-                    XmlNode checkedItemNode2 = xmlDoc.CreateElement("CHECKEDLISTBOX2");
-                    checkedItemNode2.InnerText = "1";
+                    XmlNode checkedItemNode2 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME2");
+                    checkedItemNode2.InnerText = "Ride Distance";
                     rootNode.AppendChild(checkedItemNode2);
 
-                    XmlNode checkedItemNode3 = xmlDoc.CreateElement("CHECKEDLISTBOX3");
-                    checkedItemNode3.InnerText = "1";
+                    XmlNode checkedItemNode3 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME3");
+                    checkedItemNode3.InnerText = "Avg Speed";
                     rootNode.AppendChild(checkedItemNode3);
 
-                    XmlNode checkedItemNode4 = xmlDoc.CreateElement("CHECKEDLISTBOX4");
-                    checkedItemNode4.InnerText = "1";
+                    XmlNode checkedItemNode4 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME4");
+                    checkedItemNode4.InnerText = "Bike";
                     rootNode.AppendChild(checkedItemNode4);
 
-                    XmlNode checkedItemNode5= xmlDoc.CreateElement("CHECKEDLISTBOX5");
-                    checkedItemNode5.InnerText = "1";
+                    XmlNode checkedItemNode5= xmlDoc.CreateElement("CHECKEDLISTBOXNAME5");
+                    checkedItemNode5.InnerText = "Ride Type";
                     rootNode.AppendChild(checkedItemNode5);
 
-                    XmlNode checkedItemNode6 = xmlDoc.CreateElement("CHECKEDLISTBOX6");
-                    checkedItemNode6.InnerText = "1";
+                    XmlNode checkedItemNode6 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME6");
+                    checkedItemNode6.InnerText = "Wind";
                     rootNode.AppendChild(checkedItemNode6);
 
-                    XmlNode checkedItemNode7 = xmlDoc.CreateElement("CHECKEDLISTBOX7");
-                    checkedItemNode7.InnerText = "1";
+                    XmlNode checkedItemNode7 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME7");
+                    checkedItemNode7.InnerText = "Temperature";
                     rootNode.AppendChild(checkedItemNode7);
 
-                    XmlNode checkedItemNode8 = xmlDoc.CreateElement("CHECKEDLISTBOX8");
-                    checkedItemNode8.InnerText = "1";
+                    XmlNode checkedItemNode8 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME8");
+                    checkedItemNode8.InnerText = "Avg Cadence";
                     rootNode.AppendChild(checkedItemNode8);
 
-                    XmlNode checkedItemNode9 = xmlDoc.CreateElement("CHECKEDLISTBOX9");
-                    checkedItemNode9.InnerText = "1";
+                    XmlNode checkedItemNode9 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME9");
+                    checkedItemNode9.InnerText = "Max Cadence";
                     rootNode.AppendChild(checkedItemNode9);
 
-                    XmlNode checkedItemNode10 = xmlDoc.CreateElement("CHECKEDLISTBOX10");
-                    checkedItemNode10.InnerText = "1";
+                    XmlNode checkedItemNode10 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME10");
+                    checkedItemNode10.InnerText = "Avg Heart Rate";
                     rootNode.AppendChild(checkedItemNode10);
 
-                    XmlNode checkedItemNode11 = xmlDoc.CreateElement("CHECKEDLISTBOX11");
-                    checkedItemNode11.InnerText = "1";
+                    XmlNode checkedItemNode11 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME11");
+                    checkedItemNode11.InnerText = "Max Heart Rate";
                     rootNode.AppendChild(checkedItemNode11);
 
-                    XmlNode checkedItemNode12 = xmlDoc.CreateElement("CHECKEDLISTBOX12");
-                    checkedItemNode12.InnerText = "1";
+                    XmlNode checkedItemNode12 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME12");
+                    checkedItemNode12.InnerText = "Calories";
                     rootNode.AppendChild(checkedItemNode12);
 
-                    XmlNode checkedItemNode13 = xmlDoc.CreateElement("CHECKEDLISTBOX13");
-                    checkedItemNode13.InnerText = "1";
+                    XmlNode checkedItemNode13 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME13");
+                    checkedItemNode13.InnerText = "Total Ascent";
                     rootNode.AppendChild(checkedItemNode13);
 
-                    XmlNode checkedItemNode14 = xmlDoc.CreateElement("CHECKEDLISTBOX14");
-                    checkedItemNode14.InnerText = "1";
+                    XmlNode checkedItemNode14 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME14");
+                    checkedItemNode14.InnerText = "Total Descent";
                     rootNode.AppendChild(checkedItemNode14);
 
-                    XmlNode checkedItemNode15 = xmlDoc.CreateElement("CHECKEDLISTBOX15");
-                    checkedItemNode15.InnerText = "1";
+                    XmlNode checkedItemNode15 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME15");
+                    checkedItemNode15.InnerText = "Route";
                     rootNode.AppendChild(checkedItemNode15);
 
-                    XmlNode checkedItemNode16 = xmlDoc.CreateElement("CHECKEDLISTBOX16");
-                    checkedItemNode16.InnerText = "1";
+                    XmlNode checkedItemNode16 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME16");
+                    checkedItemNode16.InnerText = "Location";
                     rootNode.AppendChild(checkedItemNode16);
 
-                    XmlNode checkedItemNode17 = xmlDoc.CreateElement("CHECKEDLISTBOX17");
-                    checkedItemNode17.InnerText = "1";
+                    XmlNode checkedItemNode17 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME17");
+                    checkedItemNode17.InnerText = "Comments";
                     rootNode.AppendChild(checkedItemNode17);
 
-                    XmlNode checkedItemNode18 = xmlDoc.CreateElement("CHECKEDLISTBOX18");
-                    checkedItemNode18.InnerText = "1";
+                    XmlNode checkedItemNode18 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME18");
+                    checkedItemNode18.InnerText = "Effort";
                     rootNode.AppendChild(checkedItemNode18);
 
-                    XmlNode checkedItemNode19 = xmlDoc.CreateElement("CHECKEDLISTBOX19");
-                    checkedItemNode19.InnerText = "0";
+                    XmlNode checkedItemNode19 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME19");
+                    checkedItemNode19.InnerText = "Max Speed";
                     rootNode.AppendChild(checkedItemNode19);
 
-                    XmlNode checkedItemNode20 = xmlDoc.CreateElement("CHECKEDLISTBOX20");
-                    checkedItemNode20.InnerText = "0";
+                    XmlNode checkedItemNode20 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME20");
+                    checkedItemNode20.InnerText = "Avg Power";
                     rootNode.AppendChild(checkedItemNode20);
 
-                    XmlNode checkedItemNode21 = xmlDoc.CreateElement("CHECKEDLISTBOX21");
-                    checkedItemNode21.InnerText = "0";
+                    XmlNode checkedItemNode21 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME21");
+                    checkedItemNode21.InnerText = "Max Power";
                     rootNode.AppendChild(checkedItemNode21);
 
-                    XmlNode checkedItemNode22 = xmlDoc.CreateElement("CHECKEDLISTBOX22");
-                    checkedItemNode22.InnerText = "0";
+                    XmlNode checkedItemNode22 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME22");
+                    checkedItemNode22.InnerText = "Comfort";
                     rootNode.AppendChild(checkedItemNode22);
 
-                    XmlNode checkedItemNode23 = xmlDoc.CreateElement("CHECKEDLISTBOX23");
-                    checkedItemNode23.InnerText = "1";
+                    XmlNode checkedItemNode23 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME23");
+                    checkedItemNode23.InnerText = "Custom1";
                     rootNode.AppendChild(checkedItemNode23);
 
-                    XmlNode checkedItemNode24 = xmlDoc.CreateElement("CHECKEDLISTBOX24");
-                    checkedItemNode24.InnerText = "0";
+                    XmlNode checkedItemNode24 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME24");
+                    checkedItemNode24.InnerText = "Custom2";
                     rootNode.AppendChild(checkedItemNode24);
+                    //**********************************************************************
+                    XmlNode checkedItemNodeCHECK0 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK0");
+                    checkedItemNodeCHECK0.InnerText = "True";
+                    rootNode.AppendChild(checkedItemNodeCHECK0);
 
-                    //XmlNode checkedItemNode25 = xmlDoc.CreateElement("CHECKEDLISTBOX25");
-                    //checkedItemNode25.InnerText = "0";
-                    //rootNode.AppendChild(checkedItemNode25);
+                    XmlNode checkedItemNodeCHECK1 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK1");
+                    checkedItemNodeCHECK1.InnerText = "True";
+                    rootNode.AppendChild(checkedItemNodeCHECK1);
 
-                    //XmlNode checkedItemNode26 = xmlDoc.CreateElement("CHECKEDLISTBOX26");
-                    //checkedItemNode26.InnerText = "0";
-                    //rootNode.AppendChild(checkedItemNode26);
+                    XmlNode checkedItemNodeCHECK2 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK2");
+                    checkedItemNodeCHECK2.InnerText = "True";
+                    rootNode.AppendChild(checkedItemNodeCHECK2);
+
+                    XmlNode checkedItemNodeCHECK3 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK3");
+                    checkedItemNodeCHECK3.InnerText = "True";
+                    rootNode.AppendChild(checkedItemNodeCHECK3);
+
+                    XmlNode checkedItemNodeCHECK4 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK4");
+                    checkedItemNodeCHECK4.InnerText = "True";
+                    rootNode.AppendChild(checkedItemNodeCHECK4);
+
+                    XmlNode checkedItemNodeCHECK5 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK5");
+                    checkedItemNodeCHECK5.InnerText = "True";
+                    rootNode.AppendChild(checkedItemNodeCHECK5);
+
+                    XmlNode checkedItemNodeCHECK6 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK6");
+                    checkedItemNodeCHECK6.InnerText = "True";
+                    rootNode.AppendChild(checkedItemNodeCHECK6);
+
+                    XmlNode checkedItemNodeCHECK7 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK7");
+                    checkedItemNodeCHECK7.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK7);
+
+                    XmlNode checkedItemNodeCHECK8 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK8");
+                    checkedItemNodeCHECK8.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK8);
+
+                    XmlNode checkedItemNodeCHECK9 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK9");
+                    checkedItemNodeCHECK9.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK9);
+
+                    XmlNode checkedItemNodeCHECK10 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK10");
+                    checkedItemNodeCHECK10.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK10);
+
+                    XmlNode checkedItemNodeCHECK11 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK11");
+                    checkedItemNodeCHECK11.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK11);
+
+                    XmlNode checkedItemNodeCHECK12 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK12");
+                    checkedItemNodeCHECK12.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK12);
+
+                    XmlNode checkedItemNodeCHECK13 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK13");
+                    checkedItemNodeCHECK13.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK13);
+
+                    XmlNode checkedItemNodeCHECK14 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK14");
+                    checkedItemNodeCHECK14.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK14);
+
+                    XmlNode checkedItemNodeCHECK15 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK15");
+                    checkedItemNodeCHECK15.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK15);
+
+                    XmlNode checkedItemNodeCHECK16 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK16");
+                    checkedItemNodeCHECK16.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK16);
+
+                    XmlNode checkedItemNodeCHECK17 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK17");
+                    checkedItemNodeCHECK17.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK17);
+
+                    XmlNode checkedItemNodeCHECK18 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK18");
+                    checkedItemNodeCHECK18.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK18);
+
+                    XmlNode checkedItemNodeCHECK19 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK19");
+                    checkedItemNodeCHECK19.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK19);
+
+                    XmlNode checkedItemNodeCHECK20 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK20");
+                    checkedItemNodeCHECK20.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK20);
+
+                    XmlNode checkedItemNodeCHECK21 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK21");
+                    checkedItemNodeCHECK21.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK21);
+
+                    XmlNode checkedItemNodeCHECK22 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK22");
+                    checkedItemNodeCHECK22.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK22);
+
+                    XmlNode checkedItemNodeCHECK23 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK23");
+                    checkedItemNodeCHECK23.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK23);
+
+                    XmlNode checkedItemNodeCHECK24 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK24");
+                    checkedItemNodeCHECK24.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK24);
+                    //**********************************************************************
 
                     XmlNode logLevelNode = xmlDoc.CreateElement("LOGLEVEL");
                     logLevelNode.InnerText = "0";
@@ -447,6 +563,8 @@ namespace CyclingLogApplication
                     lastLogYearSelectedDataEntryNode.InnerText = "-1";
                     rootNode.AppendChild(lastLogYearSelectedDataEntryNode);
 
+                    MainForm.SetLicenseAgreement("False");
+
                     xmlDoc.Save(pathFile);
                 }
             }
@@ -474,33 +592,7 @@ namespace CyclingLogApplication
                 string customField1 = MainForm.GetCustomField1();
                 string customField2 = MainForm.GetCustomField2();
 
-                string checkedItem0 = MainForm.GetCheckedListBoxItem0();
-                string checkedItem1 = MainForm.GetCheckedListBoxItem1();
-                string checkedItem2 = MainForm.GetCheckedListBoxItem2();
-                string checkedItem3 = MainForm.GetCheckedListBoxItem3();
-                string checkedItem4 = MainForm.GetCheckedListBoxItem4();
-                string checkedItem5 = MainForm.GetCheckedListBoxItem5();
-                string checkedItem6 = MainForm.GetCheckedListBoxItem6();
-                string checkedItem7 = MainForm.GetCheckedListBoxItem7();
-                string checkedItem8 = MainForm.GetCheckedListBoxItem8();
-                string checkedItem9 = MainForm.GetCheckedListBoxItem9();
-                string checkedItem10 = MainForm.GetCheckedListBoxItem10();
-                string checkedItem11 = MainForm.GetCheckedListBoxItem11();
-                string checkedItem12 = MainForm.GetCheckedListBoxItem12();
-                string checkedItem13 = MainForm.GetCheckedListBoxItem13();
-                string checkedItem14 = MainForm.GetCheckedListBoxItem14();
-                string checkedItem15 = MainForm.GetCheckedListBoxItem15();
-                string checkedItem16 = MainForm.GetCheckedListBoxItem16();
-                string checkedItem17 = MainForm.GetCheckedListBoxItem17();
-                string checkedItem18 = MainForm.GetCheckedListBoxItem18();
-                string checkedItem19 = MainForm.GetCheckedListBoxItem19();
-                string checkedItem20 = MainForm.GetCheckedListBoxItem20();
-                string checkedItem21 = MainForm.GetCheckedListBoxItem21();
-                string checkedItem22 = MainForm.GetCheckedListBoxItem22();
-                string checkedItem23 = MainForm.GetCheckedListBoxItem23();
-                string checkedItem24 = MainForm.GetCheckedListBoxItem24();
-                //string checkedItem25 = MainForm.GetCheckedListBoxItem25();
-                //string checkedItem26 = MainForm.GetCheckedListBoxItem26();
+                Dictionary<string, string> fieldDictionary = MainForm.GetFieldsDictionary();
 
                 int lastLogSelected = MainForm.GetLastLogSelected();
                 int lastBikeSelected = MainForm.GetLastBikeSelected();
@@ -521,33 +613,57 @@ namespace CyclingLogApplication
                 xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD1").InnerText = customField1;
                 xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD2").InnerText = customField2;
 
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX0").InnerText = checkedItem0;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX1").InnerText = checkedItem1;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX2").InnerText = checkedItem2;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX3").InnerText = checkedItem3;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX4").InnerText = checkedItem4;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX5").InnerText = checkedItem5;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX6").InnerText = checkedItem6;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX7").InnerText = checkedItem7;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX8").InnerText = checkedItem8;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX9").InnerText = checkedItem9;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX10").InnerText = checkedItem10;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX11").InnerText = checkedItem11;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX12").InnerText = checkedItem12;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX13").InnerText = checkedItem13;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX14").InnerText = checkedItem14;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX15").InnerText = checkedItem15;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX16").InnerText = checkedItem16;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX17").InnerText = checkedItem17;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX18").InnerText = checkedItem18;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX19").InnerText = checkedItem19;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX20").InnerText = checkedItem20;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX21").InnerText = checkedItem21;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX22").InnerText = checkedItem22;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX23").InnerText = checkedItem23;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX24").InnerText = checkedItem24;
-                //xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX25").InnerText = checkedItem25;
-                //xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOX26").InnerText = checkedItem26;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK0").InnerText = fieldDictionary.Values.ElementAt(0); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK1").InnerText = fieldDictionary.Values.ElementAt(1); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK2").InnerText = fieldDictionary.Values.ElementAt(2); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK3").InnerText = fieldDictionary.Values.ElementAt(3); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK4").InnerText = fieldDictionary.Values.ElementAt(4); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK5").InnerText = fieldDictionary.Values.ElementAt(5); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK6").InnerText = fieldDictionary.Values.ElementAt(6); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK7").InnerText = fieldDictionary.Values.ElementAt(7); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK8").InnerText = fieldDictionary.Values.ElementAt(8); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK9").InnerText = fieldDictionary.Values.ElementAt(9); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK10").InnerText = fieldDictionary.Values.ElementAt(10); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK11").InnerText = fieldDictionary.Values.ElementAt(11); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK12").InnerText = fieldDictionary.Values.ElementAt(12); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK13").InnerText = fieldDictionary.Values.ElementAt(13); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK14").InnerText = fieldDictionary.Values.ElementAt(14); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK15").InnerText = fieldDictionary.Values.ElementAt(15); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK16").InnerText = fieldDictionary.Values.ElementAt(16); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK17").InnerText = fieldDictionary.Values.ElementAt(17); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK18").InnerText = fieldDictionary.Values.ElementAt(18); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK19").InnerText = fieldDictionary.Values.ElementAt(19); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK20").InnerText = fieldDictionary.Values.ElementAt(20); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK21").InnerText = fieldDictionary.Values.ElementAt(21); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK22").InnerText = fieldDictionary.Values.ElementAt(22); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK23").InnerText = fieldDictionary.Values.ElementAt(23); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK24").InnerText = fieldDictionary.Values.ElementAt(24); ;
+
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME0").InnerText = fieldDictionary.Keys.ElementAt(0);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME1").InnerText = fieldDictionary.Keys.ElementAt(1);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME2").InnerText = fieldDictionary.Keys.ElementAt(2);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME3").InnerText = fieldDictionary.Keys.ElementAt(3);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME4").InnerText = fieldDictionary.Keys.ElementAt(4);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME5").InnerText = fieldDictionary.Keys.ElementAt(5);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME6").InnerText = fieldDictionary.Keys.ElementAt(6);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME7").InnerText = fieldDictionary.Keys.ElementAt(7);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME8").InnerText = fieldDictionary.Keys.ElementAt(8);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME9").InnerText = fieldDictionary.Keys.ElementAt(9);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME10").InnerText = fieldDictionary.Keys.ElementAt(10);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME11").InnerText = fieldDictionary.Keys.ElementAt(11);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME12").InnerText = fieldDictionary.Keys.ElementAt(12);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME13").InnerText = fieldDictionary.Keys.ElementAt(13);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME14").InnerText = fieldDictionary.Keys.ElementAt(14); ;
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME15").InnerText = fieldDictionary.Keys.ElementAt(15);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME16").InnerText = fieldDictionary.Keys.ElementAt(16);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME17").InnerText = fieldDictionary.Keys.ElementAt(17);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME18").InnerText = fieldDictionary.Keys.ElementAt(18);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME19").InnerText = fieldDictionary.Keys.ElementAt(19);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME20").InnerText = fieldDictionary.Keys.ElementAt(20);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME21").InnerText = fieldDictionary.Keys.ElementAt(21);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME22").InnerText = fieldDictionary.Keys.ElementAt(22);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME23").InnerText = fieldDictionary.Keys.ElementAt(23);
+                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME24").InnerText = fieldDictionary.Keys.ElementAt(24);
 
                 xmlDoc.SelectSingleNode("/Config/cbStatistic1").InnerText = cbStatistic1;
                 xmlDoc.SelectSingleNode("/Config/cbStatistic2").InnerText = cbStatistic2;

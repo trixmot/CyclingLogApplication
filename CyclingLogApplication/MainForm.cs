@@ -46,33 +46,11 @@ namespace CyclingLogApplication
         private static string license;
         public static string customField1;
         public static string customField2;
-        private static string checkedListBoxItem0 = "1";
-        private static string checkedListBoxItem1 = "1";
-        private static string checkedListBoxItem2 = "1";
-        private static string checkedListBoxItem3 = "1";
-        private static string checkedListBoxItem4 = "1";
-        private static string checkedListBoxItem5 = "1";
-        private static string checkedListBoxItem6 = "1";
-        private static string checkedListBoxItem7 = "1";
-        private static string checkedListBoxItem8 = "1";
-        private static string checkedListBoxItem9 = "1";
-        private static string checkedListBoxItem10 = "1";
-        private static string checkedListBoxItem11 = "1";
-        private static string checkedListBoxItem12 = "1";
-        private static string checkedListBoxItem13 = "1";
-        private static string checkedListBoxItem14 = "1";
-        private static string checkedListBoxItem15 = "1";
-        private static string checkedListBoxItem16 = "1";
-        private static string checkedListBoxItem17 = "1";
-        private static string checkedListBoxItem18 = "1";
-        private static string checkedListBoxItem19 = "1";
-        private static string checkedListBoxItem20 = "1";
-        private static string checkedListBoxItem21 = "1";
-        private static string checkedListBoxItem22 = "1";
-        private static string checkedListBoxItem23 = "1";
-        private static string checkedListBoxItem24 = "1";
-        private static string checkedListBoxItem25 = "0";
-        private static string checkedListBoxItem26 = "0";
+        public static string customField1_OLD;
+        public static string customField2_OLD;
+
+        private static Dictionary<string, string> fieldNameDict = new Dictionary<string, string>();
+        private static List<string> fieldNamesList = new List<string>();
 
         private static SqlConnection sqlConnection;             // = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=False");
         private static DatabaseConnection databaseConnection;   // = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=False");
@@ -173,9 +151,9 @@ namespace CyclingLogApplication
             {
                 RideDataEntry rideDataEntryForm = new RideDataEntry();
                 ConfigurationFile configfile = new ConfigurationFile();
-                ConfigurationFile.ReadConfigFile(true);
+                //ConfigurationFile.ReadConfigFile(true);
 
-                if (GetLicenseAgreement().Equals("0"))
+                if (GetLicenseAgreement().Equals("False"))
                 {
                     DialogResult result = MessageBox.Show("Do you agree with the License Agreement?\n\nThe MIT License Copyright (c) 2024, John T Flynn Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the Software), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.", "License Agreement", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No)
@@ -184,7 +162,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        SetLicenseAgreement("1");
+                        SetLicenseAgreement("True");
                         ConfigurationFile.WriteConfigFile();
                     }
                 }
@@ -334,7 +312,7 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to load form." + ex.Message.ToString());
+                Logger.LogError("[ERROR]: Exception while trying to load form. " + ex.Message.ToString());
             }
 
         }
@@ -584,6 +562,35 @@ namespace CyclingLogApplication
             return customField2;
         }
 
+        public static void SetFieldDictionary(Dictionary<string, string> fieldNames)
+        {
+            //Clear out current values:
+            fieldNameDict.Clear();
+
+            for (int i = 0; i < fieldNames.Count; i++)
+            {
+                fieldNameDict.Add(fieldNames.Keys.ElementAt(i), fieldNames.Values.ElementAt(i));
+            }
+        }
+
+        public static void SetFieldNameList(List<string> fieldNames)
+        {
+            for (int i = 0; i < fieldNames.Count; i++)
+            {
+                fieldNamesList.Add(fieldNames.ElementAt(i));
+            }
+        }
+
+        public static Dictionary<string, string> GetFieldsDictionary()
+        {
+            return fieldNameDict;
+        }
+
+        public static List<string> GetFieldNamesList()
+        {
+            return fieldNamesList;
+        }
+
         public static void SetFirstDayOfWeek(string firstdayString)
         {
             firstDayOfWeek = firstdayString;
@@ -599,275 +606,15 @@ namespace CyclingLogApplication
             customField2 = customDataField2;
         }
 
-        public static void SetCheckedListBoxItem0(string checkedItem0)
+        public static void SetCustomField1_OLD(string customDataField1OLD)
         {
-            checkedListBoxItem0 = checkedItem0;
+            customField1_OLD = customDataField1OLD;
         }
 
-        public static void SetCheckedListBoxItem1(string checkedItem1)
+        public static void SetCustomField2_OLD(string customDataField2OLD)
         {
-            checkedListBoxItem1 = checkedItem1;
+            customField2_OLD = customDataField2OLD;
         }
-
-        public static void SetCheckedListBoxItem2(string checkedItem2)
-        {
-            checkedListBoxItem2 = checkedItem2;
-        }
-
-        public static void SetCheckedListBoxItem3(string checkedItem3)
-        {
-            checkedListBoxItem3 = checkedItem3;
-        }
-
-        public static void SetCheckedListBoxItem4(string checkedItem4)
-        {
-            checkedListBoxItem4 = checkedItem4;
-        }
-
-        public static void SetCheckedListBoxItem5(string checkedItem5)
-        {
-            checkedListBoxItem5 = checkedItem5;
-        }
-
-        public static void SetCheckedListBoxItem6(string checkedItem6)
-        {
-            checkedListBoxItem6 = checkedItem6;
-        }
-
-        public static void SetCheckedListBoxItem7(string checkedItem7)
-        {
-            checkedListBoxItem7 = checkedItem7;
-        }
-
-        public static void SetCheckedListBoxItem8(string checkedItem8)
-        {
-            checkedListBoxItem8 = checkedItem8;
-        }
-
-        public static void SetCheckedListBoxItem9(string checkedItem9)
-        {
-            checkedListBoxItem9 = checkedItem9;
-        }
-
-        public static void SetCheckedListBoxItem10(string checkedItem10)
-        {
-            checkedListBoxItem10 = checkedItem10;
-        }
-
-        public static void SetCheckedListBoxItem11(string checkedItem11)
-        {
-            checkedListBoxItem11 = checkedItem11;
-        }
-
-        public static void SetCheckedListBoxItem12(string checkedItem12)
-        {
-            checkedListBoxItem12 = checkedItem12;
-        }
-
-        public static void SetCheckedListBoxItem13(string checkedItem13)
-        {
-            checkedListBoxItem13 = checkedItem13;
-        }
-
-        public static void SetCheckedListBoxItem14(string checkedItem14)
-        {
-            checkedListBoxItem14 = checkedItem14;
-        }
-
-        public static void SetCheckedListBoxItem15(string checkedItem15)
-        {
-            checkedListBoxItem15 = checkedItem15;
-        }
-
-        public static void SetCheckedListBoxItem16(string checkedItem16)
-        {
-            checkedListBoxItem16 = checkedItem16;
-        }
-
-        public static void SetCheckedListBoxItem17(string checkedItem17)
-        {
-            checkedListBoxItem17 = checkedItem17;
-        }
-
-        public static void SetCheckedListBoxItem18(string checkedItem18)
-        {
-            checkedListBoxItem18 = checkedItem18;
-        }
-
-        public static void SetCheckedListBoxItem19(string checkedItem19)
-        {
-            checkedListBoxItem19 = checkedItem19;
-        }
-
-        public static void SetCheckedListBoxItem20(string checkedItem20)
-        {
-            checkedListBoxItem20 = checkedItem20;
-        }
-
-        public static void SetCheckedListBoxItem21(string checkedItem21)
-        {
-            checkedListBoxItem21 = checkedItem21;
-        }
-
-        public static void SetCheckedListBoxItem22(string checkedItem22)
-        {
-            checkedListBoxItem22 = checkedItem22;
-        }
-
-        public static void SetCheckedListBoxItem23(string checkedItem23)
-        {
-            checkedListBoxItem23 = checkedItem23;
-        }
-
-        public static void SetCheckedListBoxItem24(string checkedItem24)
-        {
-            checkedListBoxItem24 = checkedItem24;
-        }
-
-        //public static void SetCheckedListBoxItem25(string checkedItem25)
-        //{
-        //    checkedListBoxItem25 = checkedItem25;
-        //}
-
-        //public static void SetCheckedListBoxItem26(string checkedItem26)
-        //{
-        //    checkedListBoxItem26 = checkedItem26;
-        //}
-
-        public static string GetCheckedListBoxItem0()
-        {
-            return checkedListBoxItem0;
-        }
-
-        public static string GetCheckedListBoxItem1()
-        {
-            return checkedListBoxItem1;
-        }
-
-        public static string GetCheckedListBoxItem2()
-        {
-            return checkedListBoxItem2;
-        }
-
-        public static string GetCheckedListBoxItem3()
-        {
-            return checkedListBoxItem3;
-        }
-
-        public static string GetCheckedListBoxItem4()
-        {
-            return checkedListBoxItem4;
-        }
-
-        public static string GetCheckedListBoxItem5()
-        {
-            return checkedListBoxItem5;
-        }
-
-        public static string GetCheckedListBoxItem6()
-        {
-            return checkedListBoxItem6;
-        }
-
-        public static string GetCheckedListBoxItem7()
-        {
-            return checkedListBoxItem7;
-        }
-
-        public static string GetCheckedListBoxItem8()
-        {
-            return checkedListBoxItem8;
-        }
-
-        public static string GetCheckedListBoxItem9()
-        {
-            return checkedListBoxItem9;
-        }
-
-        public static string GetCheckedListBoxItem10()
-        {
-            return checkedListBoxItem10;
-        }
-
-        public static string GetCheckedListBoxItem11()
-        {
-            return checkedListBoxItem11;
-        }
-
-        public static string GetCheckedListBoxItem12()
-        {
-            return checkedListBoxItem12;
-        }
-
-        public static string GetCheckedListBoxItem13()
-        {
-            return checkedListBoxItem13;
-        }
-
-        public static string GetCheckedListBoxItem14()
-        {
-            return checkedListBoxItem14;
-        }
-
-        public static string GetCheckedListBoxItem15()
-        {
-            return checkedListBoxItem15;
-        }
-
-        public static string GetCheckedListBoxItem16()
-        {
-            return checkedListBoxItem16;
-        }
-
-        public static string GetCheckedListBoxItem17()
-        {
-            return checkedListBoxItem17;
-        }
-
-        public static string GetCheckedListBoxItem18()
-        {
-            return checkedListBoxItem18;
-        }
-
-        public static string GetCheckedListBoxItem19()
-        {
-            return checkedListBoxItem19;
-        }
-
-        public static string GetCheckedListBoxItem20()
-        {
-            return checkedListBoxItem20;
-        }
-
-        public static string GetCheckedListBoxItem21()
-        {
-            return checkedListBoxItem21;
-        }
-
-        public static string GetCheckedListBoxItem22()
-        {
-            return checkedListBoxItem22;
-        }
-
-        public static string GetCheckedListBoxItem23()
-        {
-            return checkedListBoxItem23;
-        }
-
-        public static string GetCheckedListBoxItem24()
-        {
-            return checkedListBoxItem24;
-        }
-
-        //public static string GetCheckedListBoxItem25()
-        //{
-        //    return checkedListBoxItem25;
-        //}
-
-        //public static string GetCheckedListBoxItem26()
-        //{
-        //    return checkedListBoxItem26;
-        //}
 
         public static List<string> GetLogYears()
         {
@@ -1233,10 +980,8 @@ namespace CyclingLogApplication
         {
             RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
 
-            rideDataDisplayForm.SetCustomValues();
+            //rideDataDisplayForm.SetCustomValues();
             rideDataDisplayForm.SetLogYearFilterIndex(GetLastLogFilterSelected());
-            //Check/Uncheck options:
-            rideDataDisplayForm.SetCheckedValues();
             rideDataDisplayForm.ShowDialog();
         }
 
@@ -5118,6 +4863,9 @@ namespace CyclingLogApplication
 
         private void BtCustomDataField1_Click(object sender, EventArgs e)
         {
+            //Need OldValue and New Value:
+            //Need to update the Field Options Dictionary:
+
             SetCustomField1(tbCustomDataField1.Text);
             SetCustomField2(tbCustomDataField2.Text);
             ConfigurationFile.WriteConfigFile();

@@ -41,6 +41,17 @@ namespace CyclingLogApplication
                 cbLogYearFilter.Items.Add(logList[i]);
             }
 
+            if (checkedListBox.Items.Count < 20)
+            {
+                Dictionary<string, string> fieldDict = MainForm.GetFieldsDictionary();
+                for (int i = 0; i < fieldDict.Count; i++)
+                {
+                    checkedListBox.Items.Insert(i, fieldDict.Keys.ElementAt(i));
+                    checkedListBox.SetItemChecked(i, bool.Parse(fieldDict.Values.ElementAt(i)));
+                }
+            }
+            
+
             //sqlConnection.Close();
         }
 
@@ -86,7 +97,6 @@ namespace CyclingLogApplication
 
         public void SetCustomValues()
         {
-            //MainForm mainForm = new MainForm();
             string customValue1 = MainForm.GetCustomField1();
             string customValue2 = MainForm.GetCustomField2();
 
@@ -109,595 +119,87 @@ namespace CyclingLogApplication
             }
         }
 
-        public void SetCheckedValues()
-        {
-            //MainForm mainForm = new MainForm();
-            //checkedListBox.Items.Clear();
-
-            // Set CheckedListBox values:
-            if (MainForm.GetCheckedListBoxItem0().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(0, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(0, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem1().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(1, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(1, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem2().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(2, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(2, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem3().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(3, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(3, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem4().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(4, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(4, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem5().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(5, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(5, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem6().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(6, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(6, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem7().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(7, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(7, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem8().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(8, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(8, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem9().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(9, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(9, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem10().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(10, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(10, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem11().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(11, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(11, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem12().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(12, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(12, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem13().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(13, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(13, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem14().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(14, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(14, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem15().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(15, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(15, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem16().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(16, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(16, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem17().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(17, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(17, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem18().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(18, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(18, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem19().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(19, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(19, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem20().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(20, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(20, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem21().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(21, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(21, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem22().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(22, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(22, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem23().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(23, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(23, CheckState.Unchecked);
-            }
-
-            if (MainForm.GetCheckedListBoxItem24().Equals("1"))
-            {
-                checkedListBox.SetItemCheckState(24, CheckState.Checked);
-            }
-            else
-            {
-                checkedListBox.SetItemCheckState(24, CheckState.Unchecked);
-            }
-
-            //if (MainForm.GetCheckedListBoxItem25().Equals("1"))
-            //{
-            //    checkedListBox.SetItemCheckState(25, CheckState.Checked);
-            //}
-            //else
-            //{
-            //    checkedListBox.SetItemCheckState(25, CheckState.Unchecked);
-            //}
-
-            //if (MainForm.GetCheckedListBoxItem26().Equals("1"))
-            //{
-            //    checkedListBox.SetItemCheckState(26, CheckState.Checked);
-            //}
-            //else
-            //{
-            //    checkedListBox.SetItemCheckState(26, CheckState.Unchecked);
-            //}
-
-
-            //checkedListBox.Items.Add("TEST", CheckState.Unchecked);
-
-        }
-
         private void BFilter_Click(object sender, EventArgs e)
         {
+            if (cbLogYearFilter.SelectedIndex < 0)
+            {
+                MessageBox.Show("In order to view data a log must be selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             runRideDisplayClear();
 
             bool customDataField1 = false;
             bool customDataField2 = false;
+            string fieldName;
 
-            string fieldString = "[Id],[Date]" +
-                "";
-            if (checkedListBox.GetItemChecked(0))
+            string fieldString = "[Id],[Date]";
+
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
             {
-                if (fieldString.Equals(""))
+                if (checkedListBox.GetItemChecked(i))
                 {
-                    fieldString += "[WeekNumber]";
-                }
-                else
-                {
-                    fieldString += ",[WeekNumber]";
-                }
-            }
+                    fieldName = checkedListBox.Items[i].ToString();
+                    if (fieldName.Equals("Week Number"))
+                    {
+                        fieldName = "WeekNumber";
+                    } 
+                    else if (fieldName.Equals("Moving Time"))
+                    {
+                        fieldName = "MovingTime";
+                    }
+                    else if (fieldName.Equals("Ride Distance"))
+                    {
+                        fieldName = "RideDistance";
+                    }
+                    else if (fieldName.Equals("Avg Speed"))
+                    {
+                        fieldName = "AvgSpeed";
+                    }
+                    else if (fieldName.Equals("Ride Type"))
+                    {
+                        fieldName = "RideType";
+                    }
+                    else if (fieldName.Equals("Avg Cadence"))
+                    {
+                        fieldName = "AvgCadence";
+                    }
+                    else if (fieldName.Equals("Max Cadence"))
+                    {
+                        fieldName = "MaxCadence";
+                    }
+                    else if (fieldName.Equals("Avg Heart Rate"))
+                    {
+                        fieldName = "AvgHeartRate";
+                    }
+                    else if (fieldName.Equals("Max Heart Rate"))
+                    {
+                        fieldName = "MaxHeartRate";
+                    }
+                    else if (fieldName.Equals("Total Ascent"))
+                    {
+                        fieldName = "TotalAscent";
 
-            //if (checkedListBox.GetItemChecked(1))
-            //{
-            //    if (fieldString.Equals(""))
-            //    {
-            //        fieldString += "[Id]";
-            //    }
-            //    else
-            //    {
-            //        fieldString += ",[Id]";
-            //    }
-            //}
-
-            //if (checkedListBox.GetItemChecked(1))
-            //{
-            //    if (fieldString.Equals(""))
-            //    {
-            //        fieldString += "[Date]";
-            //    }
-            //    else
-            //    {
-            //        fieldString += ",[Date]";
-            //    }
-            //}
-
-            if (checkedListBox.GetItemChecked(1))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[MovingTime]";
-                }
-                else
-                {
-                    fieldString += ",[MovingTime]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(2))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[RideDistance]";
-                }
-                else
-                {
-                    fieldString += ",[RideDistance]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(3))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[AvgSpeed]";
-                }
-                else
-                {
-                    fieldString += ",[AvgSpeed]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(4))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[Bike]";
-                }
-                else
-                {
-                    fieldString += ",[Bike]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(5))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[RideType]";
-                }
-                else
-                {
-                    fieldString += ",[RideType]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(6))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[Wind]";
-                }
-                else
-                {
-                    fieldString += ",[Wind]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(7))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[Temperature]";
-                }
-                else
-                {
-                    fieldString += ",[Temperature]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(8))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[AvgCadence]";
-                }
-                else
-                {
-                    fieldString += ",[AvgCadence]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(9))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[MaxCadence]";
-                }
-                else
-                {
-                    fieldString += ",[MaxCadence]";
-                }
-            }
-
-
-            if (checkedListBox.GetItemChecked(10))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[AvgHeartRate]";
-                }
-                else
-                {
-                    fieldString += ",[AvgHeartRate]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(11))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[MaxHeartRate]";
-                }
-                else
-                {
-                    fieldString += ",[MaxHeartRate]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(12))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[Calories]";
-                }
-                else
-                {
-                    fieldString += ",[Calories]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(13))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[TotalAscent]";
-                }
-                else
-                {
-                    fieldString += ",[TotalAscent]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(14))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[TotalDescent]";
-                }
-                else
-                {
-                    fieldString += ",[TotalDescent]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(15))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[Route]";
-                }
-                else
-                {
-                    fieldString += ",[Route]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(16))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[Location]";
-                }
-                else
-                {
-                    fieldString += ",[Location]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(17))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[Comments]";
-                }
-                else
-                {
-                    fieldString += ",[Comments]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(18))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[Effort]";
-                }
-                else
-                {
-                    fieldString += ",[Effort]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(19))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[MaxSpeed]";
-                }
-                else
-                {
-                    fieldString += ",[MaxSpeed]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(20))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[AveragePower]";
-                }
-                else
-                {
-                    fieldString += ",[AveragePower]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(21))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[MaxPower]";
-                }
-                else
-                {
-                    fieldString += ",[MaxPower]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(22))
-            {
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[Comfort]";
-                }
-                else
-                {
-                    fieldString += ",[Comfort]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(23))
-            {
-                customDataField1 = true;
-
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[Custom1]";
-                }
-                else
-                {
-                    fieldString += ",[Custom1]";
-                }
-            }
-
-            if (checkedListBox.GetItemChecked(24))
-            {
-                customDataField2 = true;
-
-                if (fieldString.Equals(""))
-                {
-                    fieldString += "[Custom2]";
-                }
-                else
-                {
-                    fieldString += ",[Custom2]";
+                    }
+                    else if (fieldName.Equals("Total Descent"))
+                    {
+                        fieldName = "TotalDescent";
+                    }
+                    else if (fieldName.Equals("Max Speed"))
+                    {
+                        fieldName = "MaxSpeed";
+                    }
+                    else if (fieldName.Equals("Avg Power"))
+                    {
+                        fieldName = "AveragePower";
+                    }
+                    else if (fieldName.Equals("Max Power"))
+                    {
+                        fieldName = "MaxPower";
+                    } 
+                    
+                    fieldString += ",[" + fieldName + "]";
+                    
                 }
             }
 
@@ -715,11 +217,7 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    
-                    //logYearID = mainForm.GetLogYearIndex(cbLogYearFilter.SelectedItem.ToString());
-
                     logYearID = MainForm.GetLogYearIndexByName(cbLogYearFilter.SelectedItem.ToString());
-
                     logYearIDQuery = " and [LogYearID]=@logyearID";
                 }
 
@@ -1084,314 +582,20 @@ namespace CyclingLogApplication
             }
         }
 
-        private void BtUpdateFields_Click(object sender, EventArgs e)
-        {
-            if (checkedListBox.GetItemChecked(0))
-            {
-                MainForm.SetCheckedListBoxItem0("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem0("0");
-            }
-
-            if (checkedListBox.GetItemChecked(1))
-            {
-                MainForm.SetCheckedListBoxItem1("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem1("0");
-            }
-
-            if (checkedListBox.GetItemChecked(2))
-            {
-                MainForm.SetCheckedListBoxItem2("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem2("0");
-            }
-
-            if (checkedListBox.GetItemChecked(3))
-            {
-                MainForm.SetCheckedListBoxItem3("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem3("0");
-            }
-
-            if (checkedListBox.GetItemChecked(4))
-            {
-                MainForm.SetCheckedListBoxItem4("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem4("0");
-            }
-
-            if (checkedListBox.GetItemChecked(5))
-            {
-                MainForm.SetCheckedListBoxItem5("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem5("0");
-            }
-
-            if (checkedListBox.GetItemChecked(6))
-            {
-                MainForm.SetCheckedListBoxItem6("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem6("0");
-            }
-
-            if (checkedListBox.GetItemChecked(7))
-            {
-                MainForm.SetCheckedListBoxItem7("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem7("0");
-            }
-
-            if (checkedListBox.GetItemChecked(8))
-            {
-                MainForm.SetCheckedListBoxItem8("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem8("0");
-            }
-
-            if (checkedListBox.GetItemChecked(9))
-            {
-                MainForm.SetCheckedListBoxItem9("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem9("0");
-            }
-
-            if (checkedListBox.GetItemChecked(10))
-            {
-                MainForm.SetCheckedListBoxItem10("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem10("0");
-            }
-
-            if (checkedListBox.GetItemChecked(11))
-            {
-                MainForm.SetCheckedListBoxItem11("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem11("0");
-            }
-
-            if (checkedListBox.GetItemChecked(12))
-            {
-                MainForm.SetCheckedListBoxItem12("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem12("0");
-            }
-
-            if (checkedListBox.GetItemChecked(13))
-            {
-                MainForm.SetCheckedListBoxItem13("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem13("0");
-            }
-
-            if (checkedListBox.GetItemChecked(14))
-            {
-                MainForm.SetCheckedListBoxItem14("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem14("0");
-            }
-
-            if (checkedListBox.GetItemChecked(15))
-            {
-                MainForm.SetCheckedListBoxItem15("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem15("0");
-            }
-
-            if (checkedListBox.GetItemChecked(16))
-            {
-                MainForm.SetCheckedListBoxItem16("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem16("0");
-            }
-
-            if (checkedListBox.GetItemChecked(17))
-            {
-                MainForm.SetCheckedListBoxItem17("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem17("0");
-            }
-
-            if (checkedListBox.GetItemChecked(18))
-            {
-                MainForm.SetCheckedListBoxItem18("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem18("0");
-            }
-
-            if (checkedListBox.GetItemChecked(19))
-            {
-                MainForm.SetCheckedListBoxItem19("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem19("0");
-            }
-
-            if (checkedListBox.GetItemChecked(20))
-            {
-                MainForm.SetCheckedListBoxItem20("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem20("0");
-            }
-
-            if (checkedListBox.GetItemChecked(21))
-            {
-                MainForm.SetCheckedListBoxItem21("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem21("0");
-            }
-
-            if (checkedListBox.GetItemChecked(22))
-            {
-                MainForm.SetCheckedListBoxItem22("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem22("0");
-            }
-
-            if (checkedListBox.GetItemChecked(23))
-            {
-                MainForm.SetCheckedListBoxItem23("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem23("0");
-            }
-
-            if (checkedListBox.GetItemChecked(24))
-            {
-                MainForm.SetCheckedListBoxItem24("1");
-            }
-            else
-            {
-                MainForm.SetCheckedListBoxItem24("0");
-            }
-
-            //if (checkedListBox.GetItemChecked(25))
-            //{
-            //    MainForm.SetCheckedListBoxItem25("1");
-            //}
-            //else
-            //{
-            //    MainForm.SetCheckedListBoxItem25("0");
-            //}
-
-            //if (checkedListBox.GetItemChecked(26))
-            //{
-            //    MainForm.SetCheckedListBoxItem26("1");
-            //}
-            //else
-            //{
-            //    MainForm.SetCheckedListBoxItem26("0");
-            //}
-
-            MessageBox.Show("The Display field options have been updated.");
-        }
-
         private void BtSelectAll_Click(object sender, EventArgs e)
         {
-            checkedListBox.SetItemCheckState(0, CheckState.Checked);
-            checkedListBox.SetItemCheckState(1, CheckState.Checked);
-            checkedListBox.SetItemCheckState(2, CheckState.Checked);
-            checkedListBox.SetItemCheckState(3, CheckState.Checked);
-            checkedListBox.SetItemCheckState(4, CheckState.Checked);
-            checkedListBox.SetItemCheckState(5, CheckState.Checked);
-            checkedListBox.SetItemCheckState(6, CheckState.Checked);
-            checkedListBox.SetItemCheckState(7, CheckState.Checked);
-            checkedListBox.SetItemCheckState(8, CheckState.Checked);
-            checkedListBox.SetItemCheckState(9, CheckState.Checked);
-            checkedListBox.SetItemCheckState(10, CheckState.Checked);
-            checkedListBox.SetItemCheckState(11, CheckState.Checked);
-            checkedListBox.SetItemCheckState(12, CheckState.Checked);
-            checkedListBox.SetItemCheckState(13, CheckState.Checked);
-            checkedListBox.SetItemCheckState(14, CheckState.Checked);
-            checkedListBox.SetItemCheckState(15, CheckState.Checked);
-            checkedListBox.SetItemCheckState(16, CheckState.Checked);
-            checkedListBox.SetItemCheckState(17, CheckState.Checked);
-            checkedListBox.SetItemCheckState(18, CheckState.Checked);
-            checkedListBox.SetItemCheckState(19, CheckState.Checked);
-            checkedListBox.SetItemCheckState(20, CheckState.Checked);
-            checkedListBox.SetItemCheckState(21, CheckState.Checked);
-            checkedListBox.SetItemCheckState(22, CheckState.Checked);
-            checkedListBox.SetItemCheckState(23, CheckState.Checked);
-            checkedListBox.SetItemCheckState(24, CheckState.Checked);
-            //checkedListBox.SetItemCheckState(25, CheckState.Checked);
-            //checkedListBox.SetItemCheckState(26, CheckState.Checked);
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
+            {
+                checkedListBox.SetItemCheckState(i, CheckState.Checked);
+            }
         }
 
         private void BtDeselectAll_Click(object sender, EventArgs e)
         {
-            checkedListBox.SetItemCheckState(0, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(1, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(2, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(3, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(4, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(5, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(6, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(7, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(8, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(9, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(10, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(11, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(12, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(13, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(14, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(15, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(16, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(17, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(18, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(19, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(20, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(21, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(22, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(23, CheckState.Unchecked);
-            checkedListBox.SetItemCheckState(24, CheckState.Unchecked);
-            //checkedListBox.SetItemCheckState(25, CheckState.Unchecked);
-            //checkedListBox.SetItemCheckState(26, CheckState.Unchecked);
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
+            {
+                checkedListBox.SetItemCheckState(i, CheckState.Unchecked);
+            }
         }
 
         private void BtPrint_Click(object sender, EventArgs e)
@@ -1448,6 +652,88 @@ namespace CyclingLogApplication
             rideDataEntry.RideDisplayDataQuery(id, date, logNameIndex-1);
 
             rideDataEntry.ShowDialog();
+        }
+
+        private void UpPictureBox_Click(object sender, EventArgs e)
+        {
+            if (checkedListBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select an item to move", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                int newIndex = checkedListBox.SelectedIndex - 1;
+
+                if (newIndex < 0)
+                {
+                    return;
+                }
+
+                //CheckState.Unchecked
+                //CheckState.Checked
+                string itemChecked = checkedListBox.GetItemCheckState(checkedListBox.SelectedIndex).ToString();
+                object selectedItem = checkedListBox.SelectedItem;
+                checkedListBox.Items.Remove(selectedItem);
+                checkedListBox.Items.Insert(newIndex, selectedItem);
+
+                if (itemChecked.Equals("Unchecked"))
+                {
+                    checkedListBox.SetItemCheckState(newIndex, CheckState.Unchecked);
+                } 
+                else
+                {
+                    checkedListBox.SetItemCheckState(newIndex, CheckState.Checked);
+                }
+
+                checkedListBox.SetSelected(newIndex,true);
+            }
+        }
+
+        private void DownPictureBox_Click(object sender, EventArgs e)
+        {
+            if (checkedListBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Select an item to move", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                int newIndex = checkedListBox.SelectedIndex + 1;
+
+                if (newIndex >= checkedListBox.Items.Count)
+                {
+                    return;
+                }
+
+                string itemChecked = checkedListBox.GetItemCheckState(checkedListBox.SelectedIndex).ToString();
+                object selectedItem = checkedListBox.SelectedItem;
+                checkedListBox.Items.Remove(selectedItem);
+                checkedListBox.Items.Insert(newIndex, selectedItem);
+
+                if (itemChecked.Equals("Unchecked"))
+                {
+                    checkedListBox.SetItemCheckState(newIndex, CheckState.Unchecked);
+                }
+                else
+                {
+                    checkedListBox.SetItemCheckState(newIndex, CheckState.Checked);
+                }
+
+                checkedListBox.SetSelected(newIndex, true);
+            }
+        }
+
+        private void btSaveMoves_Click(object sender, EventArgs e)
+        {
+            //Save changes made to the options order:
+            Dictionary<string, string> fieldOptionsDict = new Dictionary<string, string>();
+
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
+            {
+                fieldOptionsDict.Add(checkedListBox.Items[i].ToString(), checkedListBox.GetItemChecked(i).ToString());
+            }
+            //Update the dictionary:
+            MainForm.SetFieldDictionary(fieldOptionsDict);
+
         }
 
 
@@ -1791,40 +1077,6 @@ namespace CyclingLogApplication
         //    rideDataEntryForm.SetCalories(calories);
 
         //    rideDataEntryForm.ShowDialog();
-        //}
-
-        //private void cbUpdateValues_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    if (cbUpdateValues.Checked)
-        //    {
-        //        checkedListBox.SetItemCheckState(0, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(1, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(2, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(3, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(4, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(5, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(6, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(7, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(8, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(9, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(10, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(11, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(12, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(13, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(14, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(15, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(16, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(17, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(18, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(19, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(20, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(21, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(22, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(23, CheckState.Checked);
-        //        checkedListBox.SetItemCheckState(24, CheckState.Checked);
-        //        //checkedListBox.SetItemCheckState(25, CheckState.Checked);
-        //        //checkedListBox.SetItemCheckState(26, CheckState.Checked);
-        //    }
         //}
     }
 }
