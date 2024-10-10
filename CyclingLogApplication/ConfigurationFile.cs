@@ -160,6 +160,30 @@ namespace CyclingLogApplication
             fieldCheckDictionary.Add(checkListBoxItemNAME23, checkListBoxItemCHECK23);
             fieldCheckDictionary.Add(checkListBoxItemNAME24, checkListBoxItemCHECK24);
 
+            int heightCLB = 379;
+            int numberRemoved = 0;
+            //Check value of custom1:
+            if (customDataField1.Equals(""))
+            {
+                fieldCheckDictionary.Remove("Custom1");
+                numberRemoved++;
+            }
+            if (customDataField2.Equals(""))
+            {
+                fieldCheckDictionary.Remove("Custom2");
+                numberRemoved++;
+            }
+
+            if (numberRemoved == 1)
+            {
+                heightCLB = 364;
+            } else if (numberRemoved == 2)
+            {
+                heightCLB = 349;
+            }
+            //Set checkedListbox height:
+            MainForm.SetHeightCLB(heightCLB);
+
             MainForm.SetFieldDictionary(fieldCheckDictionary);
 
             string lastLogYearSelected = nodes.Item(0).SelectSingleNode("LastLogSelected").InnerText;
@@ -294,11 +318,11 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(licesneNode);
 
                     XmlNode customField1Node = xmlDoc.CreateElement("CUSTOMFIELD1");
-                    customField1Node.InnerText = MainForm.GetCustomField1();
+                    customField1Node.InnerText = "";
                     rootNode.AppendChild(customField1Node);
 
                     XmlNode customField2Node = xmlDoc.CreateElement("CUSTOMFIELD2");
-                    customField2Node.InnerText = MainForm.GetCustomField2();
+                    customField2Node.InnerText = "";
                     rootNode.AppendChild(customField2Node);
 
                     //**********************************************************************
@@ -566,6 +590,140 @@ namespace CyclingLogApplication
                     MainForm.SetLicenseAgreement("False");
 
                     xmlDoc.Save(pathFile);
+                } else
+                {
+                    XmlDocument xmlDoc = new XmlDocument();
+                    xmlDoc.Load(pathFile);
+
+                    string cbStatistic1 = MainForm.GetcbStatistic1();
+                    string cbStatistic2 = MainForm.GetcbStatistic2();
+                    string cbStatistic3 = MainForm.GetcbStatistic3();
+                    string cbStatistic4 = MainForm.GetcbStatistic4();
+                    string cbStatistic5 = MainForm.GetcbStatistic5();
+
+                    string idColumnValue = MainForm.GetIDColumnValue();
+                    string version = MainForm.GetLogVersion();
+                    string firstDay = MainForm.GetFirstDayOfWeek();
+                    string license = MainForm.GetLicenseAgreement();
+                    string customField1 = MainForm.GetCustomField1();
+                    string customField2 = MainForm.GetCustomField2();
+
+                    Dictionary<string, string> fieldDictionary = MainForm.GetFieldsDictionary();
+
+                    int lastLogSelected = MainForm.GetLastLogSelected();
+                    int lastBikeSelected = MainForm.GetLastBikeSelected();
+                    int lastLogFilterSelected = MainForm.GetLastLogFilterSelected();
+
+                    int lastLogYearChartSelected = MainForm.GetLastLogYearChartSelected();
+                    int lastRouteChartSelected = MainForm.GetLastRouteChartSelected();
+                    int lastTypeChartSelected = MainForm.GetLastTypeChartSelected();
+                    int lastTypeTimeChartSelected = MainForm.GetLastTypeTimeChartSelected();
+
+                    int lastMonthlyLogSelected = MainForm.GetLastMonthlyLogSelected();
+                    int lastLogSelectedDataEntry = MainForm.GetLastLogSelectedDataEntry();
+
+                    xmlDoc.SelectSingleNode("/Config/VERSION").InnerText = version;
+                    xmlDoc.SelectSingleNode("/Config/IDCOLUMN").InnerText = idColumnValue;
+                    xmlDoc.SelectSingleNode("/Config/FIRSTDAY").InnerText = firstDay;
+                    xmlDoc.SelectSingleNode("/Config/LICENSE").InnerText = license;
+                    xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD1").InnerText = customField1;
+                    xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD2").InnerText = customField2;
+
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK0").InnerText = fieldDictionary.Values.ElementAt(0); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK1").InnerText = fieldDictionary.Values.ElementAt(1); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK2").InnerText = fieldDictionary.Values.ElementAt(2); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK3").InnerText = fieldDictionary.Values.ElementAt(3); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK4").InnerText = fieldDictionary.Values.ElementAt(4); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK5").InnerText = fieldDictionary.Values.ElementAt(5); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK6").InnerText = fieldDictionary.Values.ElementAt(6); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK7").InnerText = fieldDictionary.Values.ElementAt(7); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK8").InnerText = fieldDictionary.Values.ElementAt(8); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK9").InnerText = fieldDictionary.Values.ElementAt(9); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK10").InnerText = fieldDictionary.Values.ElementAt(10); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK11").InnerText = fieldDictionary.Values.ElementAt(11); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK12").InnerText = fieldDictionary.Values.ElementAt(12); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK13").InnerText = fieldDictionary.Values.ElementAt(13); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK14").InnerText = fieldDictionary.Values.ElementAt(14); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK15").InnerText = fieldDictionary.Values.ElementAt(15); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK16").InnerText = fieldDictionary.Values.ElementAt(16); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK17").InnerText = fieldDictionary.Values.ElementAt(17); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK18").InnerText = fieldDictionary.Values.ElementAt(18); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK19").InnerText = fieldDictionary.Values.ElementAt(19); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK20").InnerText = fieldDictionary.Values.ElementAt(20); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK21").InnerText = fieldDictionary.Values.ElementAt(21); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK22").InnerText = fieldDictionary.Values.ElementAt(22); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK23").InnerText = fieldDictionary.Values.ElementAt(23); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK24").InnerText = fieldDictionary.Values.ElementAt(24); ;
+
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME0").InnerText = fieldDictionary.Keys.ElementAt(0);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME1").InnerText = fieldDictionary.Keys.ElementAt(1);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME2").InnerText = fieldDictionary.Keys.ElementAt(2);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME3").InnerText = fieldDictionary.Keys.ElementAt(3);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME4").InnerText = fieldDictionary.Keys.ElementAt(4);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME5").InnerText = fieldDictionary.Keys.ElementAt(5);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME6").InnerText = fieldDictionary.Keys.ElementAt(6);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME7").InnerText = fieldDictionary.Keys.ElementAt(7);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME8").InnerText = fieldDictionary.Keys.ElementAt(8);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME9").InnerText = fieldDictionary.Keys.ElementAt(9);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME10").InnerText = fieldDictionary.Keys.ElementAt(10);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME11").InnerText = fieldDictionary.Keys.ElementAt(11);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME12").InnerText = fieldDictionary.Keys.ElementAt(12);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME13").InnerText = fieldDictionary.Keys.ElementAt(13);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME14").InnerText = fieldDictionary.Keys.ElementAt(14); ;
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME15").InnerText = fieldDictionary.Keys.ElementAt(15);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME16").InnerText = fieldDictionary.Keys.ElementAt(16);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME17").InnerText = fieldDictionary.Keys.ElementAt(17);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME18").InnerText = fieldDictionary.Keys.ElementAt(18);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME19").InnerText = fieldDictionary.Keys.ElementAt(19);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME20").InnerText = fieldDictionary.Keys.ElementAt(20);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME21").InnerText = fieldDictionary.Keys.ElementAt(21);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME22").InnerText = fieldDictionary.Keys.ElementAt(22);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME23").InnerText = fieldDictionary.Keys.ElementAt(23);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME24").InnerText = fieldDictionary.Keys.ElementAt(24);
+
+                    xmlDoc.SelectSingleNode("/Config/cbStatistic1").InnerText = cbStatistic1;
+                    xmlDoc.SelectSingleNode("/Config/cbStatistic2").InnerText = cbStatistic2;
+                    xmlDoc.SelectSingleNode("/Config/cbStatistic3").InnerText = cbStatistic3;
+                    xmlDoc.SelectSingleNode("/Config/cbStatistic4").InnerText = cbStatistic4;
+                    xmlDoc.SelectSingleNode("/Config/cbStatistic5").InnerText = cbStatistic5;
+
+                    xmlDoc.SelectSingleNode("/Config/LastLogSelected").InnerText = lastLogSelected.ToString();
+                    xmlDoc.SelectSingleNode("/Config/LastBikeSelected").InnerText = lastBikeSelected.ToString();
+                    xmlDoc.SelectSingleNode("/Config/LastLogFilterSelected").InnerText = lastLogFilterSelected.ToString();
+
+                    xmlDoc.SelectSingleNode("/Config/ChartLogYear").InnerText = lastLogYearChartSelected.ToString();
+                    xmlDoc.SelectSingleNode("/Config/ChartRoute").InnerText = lastRouteChartSelected.ToString();
+                    xmlDoc.SelectSingleNode("/Config/ChartType").InnerText = lastTypeChartSelected.ToString();
+                    xmlDoc.SelectSingleNode("/Config/ChartTimeType").InnerText = lastTypeTimeChartSelected.ToString();
+
+                    xmlDoc.SelectSingleNode("/Config/LastMonthlyLogSelected").InnerText = lastMonthlyLogSelected.ToString();
+                    xmlDoc.SelectSingleNode("/Config/LastLogSelectedDataEntry").InnerText = lastLogSelectedDataEntry.ToString();
+
+                    Logger.Log("Write Config Values: VERSION written:" + version, logSetting, 0);
+                    Logger.Log("Write Config Values: IDCOLUMN written:" + idColumnValue, logSetting, 0);
+                    Logger.Log("Write Config Values: FIRSTDAY written:" + firstDay, logSetting, 0);
+                    Logger.Log("Write Config Values: LICENSE written:" + license, logSetting, 0);
+                    Logger.Log("Write Config Values: CUSTOMFIELD1 written:" + customField1, logSetting, 0);
+                    Logger.Log("Write Config Values: CUSTOMFIELD2 written:" + customField2, logSetting, 0);
+
+                    Logger.Log("Write Config Values: cbStatistic1 written:" + cbStatistic1, logSetting, 0);
+                    Logger.Log("Write Config Values: cbStatistic2 written:" + cbStatistic2, logSetting, 0);
+                    Logger.Log("Write Config Values: cbStatistic3 written:" + cbStatistic3, logSetting, 0);
+                    Logger.Log("Write Config Values: cbStatistic4 written:" + cbStatistic4, logSetting, 0);
+                    Logger.Log("Write Config Values: cbStatistic5 written:" + cbStatistic5, logSetting, 0);
+                    Logger.Log("Write Config Values: lastLogSelected written:" + lastLogSelected, logSetting, 0);
+                    Logger.Log("Write Config Values: lastBikeSelected written:" + lastBikeSelected, logSetting, 0);
+                    Logger.Log("Write Config Values: lastLogFilterSelected written:" + lastLogFilterSelected, logSetting, 0);
+
+                    Logger.Log("Write Config Values: lastLogYearChartSelected written:" + lastLogYearChartSelected, logSetting, 0);
+                    Logger.Log("Write Config Values: lastRouteChartSelected written:" + lastRouteChartSelected, logSetting, 0);
+                    Logger.Log("Write Config Values: lastTypeChartSelected written:" + lastTypeChartSelected, logSetting, 0);
+                    Logger.Log("Write Config Values: lastTypeTimeChartSelected written:" + lastTypeTimeChartSelected, logSetting, 0);
+
+                    Logger.Log("Write Config Values: lastMonthlyLogSelected written:" + lastMonthlyLogSelected, logSetting, 0);
+                    Logger.Log("Write Config Values: lastLogSelectedDataEntry written:" + lastLogSelectedDataEntry, logSetting, 0);
+
+                    xmlDoc.Save(pathFile);
                 }
             }
             catch (Exception e)
@@ -574,275 +732,7 @@ namespace CyclingLogApplication
 
                 return;
             }
-            finally
-            {
-                XmlDocument xmlDoc = new XmlDocument();
-                xmlDoc.Load(pathFile);
-
-                string cbStatistic1 = MainForm.GetcbStatistic1();
-                string cbStatistic2 = MainForm.GetcbStatistic2();
-                string cbStatistic3 = MainForm.GetcbStatistic3();
-                string cbStatistic4 = MainForm.GetcbStatistic4();
-                string cbStatistic5 = MainForm.GetcbStatistic5();
-
-                string idColumnValue = MainForm.GetIDColumnValue();
-                string version = MainForm.GetLogVersion();
-                string firstDay = MainForm.GetFirstDayOfWeek();
-                string license = MainForm.GetLicenseAgreement();
-                string customField1 = MainForm.GetCustomField1();
-                string customField2 = MainForm.GetCustomField2();
-
-                Dictionary<string, string> fieldDictionary = MainForm.GetFieldsDictionary();
-
-                int lastLogSelected = MainForm.GetLastLogSelected();
-                int lastBikeSelected = MainForm.GetLastBikeSelected();
-                int lastLogFilterSelected = MainForm.GetLastLogFilterSelected();
-
-                int lastLogYearChartSelected = MainForm.GetLastLogYearChartSelected();
-                int lastRouteChartSelected = MainForm.GetLastRouteChartSelected();
-                int lastTypeChartSelected = MainForm.GetLastTypeChartSelected();
-                int lastTypeTimeChartSelected = MainForm.GetLastTypeTimeChartSelected();
-
-                int lastMonthlyLogSelected = MainForm.GetLastMonthlyLogSelected();
-                int lastLogSelectedDataEntry = MainForm.GetLastLogSelectedDataEntry();
-
-                xmlDoc.SelectSingleNode("/Config/VERSION").InnerText = version;
-                xmlDoc.SelectSingleNode("/Config/IDCOLUMN").InnerText = idColumnValue;
-                xmlDoc.SelectSingleNode("/Config/FIRSTDAY").InnerText = firstDay;
-                xmlDoc.SelectSingleNode("/Config/LICENSE").InnerText = license;
-                xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD1").InnerText = customField1;
-                xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD2").InnerText = customField2;
-
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK0").InnerText = fieldDictionary.Values.ElementAt(0); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK1").InnerText = fieldDictionary.Values.ElementAt(1); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK2").InnerText = fieldDictionary.Values.ElementAt(2); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK3").InnerText = fieldDictionary.Values.ElementAt(3); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK4").InnerText = fieldDictionary.Values.ElementAt(4); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK5").InnerText = fieldDictionary.Values.ElementAt(5); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK6").InnerText = fieldDictionary.Values.ElementAt(6); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK7").InnerText = fieldDictionary.Values.ElementAt(7); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK8").InnerText = fieldDictionary.Values.ElementAt(8); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK9").InnerText = fieldDictionary.Values.ElementAt(9); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK10").InnerText = fieldDictionary.Values.ElementAt(10); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK11").InnerText = fieldDictionary.Values.ElementAt(11); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK12").InnerText = fieldDictionary.Values.ElementAt(12); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK13").InnerText = fieldDictionary.Values.ElementAt(13); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK14").InnerText = fieldDictionary.Values.ElementAt(14); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK15").InnerText = fieldDictionary.Values.ElementAt(15); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK16").InnerText = fieldDictionary.Values.ElementAt(16); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK17").InnerText = fieldDictionary.Values.ElementAt(17); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK18").InnerText = fieldDictionary.Values.ElementAt(18); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK19").InnerText = fieldDictionary.Values.ElementAt(19); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK20").InnerText = fieldDictionary.Values.ElementAt(20); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK21").InnerText = fieldDictionary.Values.ElementAt(21); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK22").InnerText = fieldDictionary.Values.ElementAt(22); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK23").InnerText = fieldDictionary.Values.ElementAt(23); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK24").InnerText = fieldDictionary.Values.ElementAt(24); ;
-
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME0").InnerText = fieldDictionary.Keys.ElementAt(0);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME1").InnerText = fieldDictionary.Keys.ElementAt(1);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME2").InnerText = fieldDictionary.Keys.ElementAt(2);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME3").InnerText = fieldDictionary.Keys.ElementAt(3);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME4").InnerText = fieldDictionary.Keys.ElementAt(4);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME5").InnerText = fieldDictionary.Keys.ElementAt(5);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME6").InnerText = fieldDictionary.Keys.ElementAt(6);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME7").InnerText = fieldDictionary.Keys.ElementAt(7);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME8").InnerText = fieldDictionary.Keys.ElementAt(8);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME9").InnerText = fieldDictionary.Keys.ElementAt(9);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME10").InnerText = fieldDictionary.Keys.ElementAt(10);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME11").InnerText = fieldDictionary.Keys.ElementAt(11);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME12").InnerText = fieldDictionary.Keys.ElementAt(12);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME13").InnerText = fieldDictionary.Keys.ElementAt(13);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME14").InnerText = fieldDictionary.Keys.ElementAt(14); ;
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME15").InnerText = fieldDictionary.Keys.ElementAt(15);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME16").InnerText = fieldDictionary.Keys.ElementAt(16);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME17").InnerText = fieldDictionary.Keys.ElementAt(17);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME18").InnerText = fieldDictionary.Keys.ElementAt(18);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME19").InnerText = fieldDictionary.Keys.ElementAt(19);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME20").InnerText = fieldDictionary.Keys.ElementAt(20);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME21").InnerText = fieldDictionary.Keys.ElementAt(21);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME22").InnerText = fieldDictionary.Keys.ElementAt(22);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME23").InnerText = fieldDictionary.Keys.ElementAt(23);
-                xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME24").InnerText = fieldDictionary.Keys.ElementAt(24);
-
-                xmlDoc.SelectSingleNode("/Config/cbStatistic1").InnerText = cbStatistic1;
-                xmlDoc.SelectSingleNode("/Config/cbStatistic2").InnerText = cbStatistic2;
-                xmlDoc.SelectSingleNode("/Config/cbStatistic3").InnerText = cbStatistic3;
-                xmlDoc.SelectSingleNode("/Config/cbStatistic4").InnerText = cbStatistic4;
-                xmlDoc.SelectSingleNode("/Config/cbStatistic5").InnerText = cbStatistic5;
-
-                xmlDoc.SelectSingleNode("/Config/LastLogSelected").InnerText = lastLogSelected.ToString();
-                xmlDoc.SelectSingleNode("/Config/LastBikeSelected").InnerText = lastBikeSelected.ToString();
-                xmlDoc.SelectSingleNode("/Config/LastLogFilterSelected").InnerText = lastLogFilterSelected.ToString();
-
-                xmlDoc.SelectSingleNode("/Config/ChartLogYear").InnerText = lastLogYearChartSelected.ToString();
-                xmlDoc.SelectSingleNode("/Config/ChartRoute").InnerText = lastRouteChartSelected.ToString();
-                xmlDoc.SelectSingleNode("/Config/ChartType").InnerText = lastTypeChartSelected.ToString();
-                xmlDoc.SelectSingleNode("/Config/ChartTimeType").InnerText = lastTypeTimeChartSelected.ToString();
-
-                xmlDoc.SelectSingleNode("/Config/LastMonthlyLogSelected").InnerText = lastMonthlyLogSelected.ToString();
-                xmlDoc.SelectSingleNode("/Config/LastLogSelectedDataEntry").InnerText = lastLogSelectedDataEntry.ToString();
-
-                Logger.Log("Write Config Values: VERSION written:" + version, logSetting, 0);
-                Logger.Log("Write Config Values: IDCOLUMN written:" + idColumnValue, logSetting, 0);
-                Logger.Log("Write Config Values: FIRSTDAY written:" + firstDay, logSetting, 0);
-                Logger.Log("Write Config Values: LICENSE written:" + license, logSetting, 0);
-                Logger.Log("Write Config Values: CUSTOMFIELD1 written:" + customField1, logSetting, 0);
-                Logger.Log("Write Config Values: CUSTOMFIELD2 written:" + customField2, logSetting, 0);
-
-                Logger.Log("Write Config Values: cbStatistic1 written:" + cbStatistic1, logSetting, 0);
-                Logger.Log("Write Config Values: cbStatistic2 written:" + cbStatistic2, logSetting, 0);
-                Logger.Log("Write Config Values: cbStatistic3 written:" + cbStatistic3, logSetting, 0);
-                Logger.Log("Write Config Values: cbStatistic4 written:" + cbStatistic4, logSetting, 0);
-                Logger.Log("Write Config Values: cbStatistic5 written:" + cbStatistic5, logSetting, 0);
-                Logger.Log("Write Config Values: lastLogSelected written:" + lastLogSelected, logSetting, 0);
-                Logger.Log("Write Config Values: lastBikeSelected written:" + lastBikeSelected, logSetting, 0);
-                Logger.Log("Write Config Values: lastLogFilterSelected written:" + lastLogFilterSelected, logSetting, 0);
-
-                Logger.Log("Write Config Values: lastLogYearChartSelected written:" + lastLogYearChartSelected, logSetting, 0);
-                Logger.Log("Write Config Values: lastRouteChartSelected written:" + lastRouteChartSelected, logSetting, 0);
-                Logger.Log("Write Config Values: lastTypeChartSelected written:" + lastTypeChartSelected, logSetting, 0);
-                Logger.Log("Write Config Values: lastTypeTimeChartSelected written:" + lastTypeTimeChartSelected, logSetting, 0);
-
-                Logger.Log("Write Config Values: lastMonthlyLogSelected written:" + lastMonthlyLogSelected, logSetting, 0);
-                Logger.Log("Write Config Values: lastLogSelectedDataEntry written:" + lastLogSelectedDataEntry, logSetting, 0);
-
-                xmlDoc.Save(pathFile);
-            }
         }
-
-        //******************************************************************
-        //
-        // Methods not used:
-        //
-        //******************************************************************
-
-        public static void ReadConfigFile_backup()
-        {
-            XmlReader reader = XmlReader.Create("c:\\CyclingLogApplication\\CyclingLogConfig.xml");
-
-            while (reader.Read())
-            {
-                if (reader.NodeType == XmlNodeType.Element && reader.Name == "Version")
-                {
-                    while (reader.NodeType != XmlNodeType.EndElement)
-                    {
-                        reader.Read();
-                        //if (reader.Name == "value")
-                        //{
-                        //    while (reader.NodeType != XmlNodeType.EndElement)
-                        //    {
-                        //        reader.Read();
-                        //        if (reader.NodeType == XmlNodeType.Text)
-                        //        {
-                        //            Console.WriteLine("Price = {0:C}", Double.Parse(reader.Value));
-                        //        }
-                        //    }
-                        //    reader.Read();
-                        //} //end if
-
-                        if (reader.Name == "Defaults")
-                        {
-                            while (reader.NodeType != XmlNodeType.EndElement)
-                            {
-                                reader.Read();
-                                if (reader.Name == "LogYear")
-                                {
-                                    while (reader.NodeType != XmlNodeType.EndElement)
-                                    {
-                                        reader.Read();
-                                        if (reader.NodeType == XmlNodeType.Text)
-                                        {
-                                            Console.WriteLine("LogYear = " + reader.Value);
-                                        }
-                                    }
-                                    reader.Read();
-                                } //end if
-
-                                if (reader.Name == "Bike")
-                                {
-                                    while (reader.NodeType != XmlNodeType.EndElement)
-                                    {
-                                        reader.Read();
-                                        if (reader.NodeType == XmlNodeType.Text)
-                                        {
-                                            Console.WriteLine("Bike = " + reader.Value);
-                                        }
-                                    }
-                                    reader.Read();
-                                } //end if
-                                if (reader.Name == "Route")
-                                {
-                                    while (reader.NodeType != XmlNodeType.EndElement)
-                                    {
-                                        reader.Read();
-                                        if (reader.NodeType == XmlNodeType.Text)
-                                        {
-                                            Console.WriteLine("Route = " + reader.Value);
-                                        }
-                                    }
-
-                                } //end if
-                            }
-                        } //end if
-                    } //end while
-                } //end if
-
-            } //end while
-        }
-
-
-        public static void WriteConfigFile_backup()
-        {
-            string path = @"c:\CyclingLogApplication";
-
-            try
-            {
-                // Determine whether the directory exists.
-                if (!Directory.Exists(path))
-                {
-                    // Try to create the directory.
-                    DirectoryInfo di = Directory.CreateDirectory(path);
-                    Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(path));
-                } 
-            }
-            catch (Exception e)
-            {
-                //Console.WriteLine("The process failed: {0}", e.ToString());
-                Logger.LogError("[ERROR]: Exception while trying to Clear ride data." + e.Message.ToString());
-                MessageBox.Show("[ERROR] Unable to write the Configuration file. ");
-
-                return;
-            }
-            finally
-            {
-
-            }
-
-            XmlWriterSettings settings = new XmlWriterSettings
-            {
-                Indent = true
-            };
-
-            XmlWriter writer = XmlWriter.Create("c:\\CyclingLogApplication\\CyclingLogConfig.xml", settings);
-            writer.WriteStartDocument();
-            writer.WriteComment("Do not edit this file. It was generated by the CyclingLogApplicaiton.");
-            writer.WriteStartElement("Version");
-            writer.WriteAttributeString("ver", "0.0.1");
-            //writer.WriteAttributeString("Name", "x");
-            //writer.WriteElementString("value", "10.00");
-
-            //Defaults section:
-            writer.WriteStartElement("Defaults");
-            writer.WriteElementString("LogYear", "1");
-            writer.WriteElementString("Bike", "1");
-            writer.WriteElementString("Route", "1");
-            writer.WriteEndElement();
-
-            writer.WriteEndDocument();
-
-            writer.Flush();
-            writer.Close();
-        }
+ 
     }
 }

@@ -27,32 +27,39 @@ namespace CyclingLogApplication
 
         public RideDataDisplay()
         {
-            InitializeComponent();
-            sqlConnection = MainForm.GetsqlConnectionString();
-            databaseConnection = MainForm.GetsDatabaseConnectionString();
-
-            cbFilterField.SelectedIndex = 0;
-            sqlConnection = MainForm.GetsqlConnectionString();
-
-            List<string> logList = MainForm.ReadDataNames("Table_Log_year", "Name");
-
-            for (int i = 0; i < logList.Count; i++)
+            try
             {
-                cbLogYearFilter.Items.Add(logList[i]);
-            }
+                InitializeComponent();
+                sqlConnection = MainForm.GetsqlConnectionString();
+                databaseConnection = MainForm.GetsDatabaseConnectionString();
 
-            if (checkedListBox.Items.Count < 20)
-            {
-                Dictionary<string, string> fieldDict = MainForm.GetFieldsDictionary();
-                for (int i = 0; i < fieldDict.Count; i++)
+                cbFilterField.SelectedIndex = 0;
+                sqlConnection = MainForm.GetsqlConnectionString();
+
+                List<string> logList = MainForm.ReadDataNames("Table_Log_year", "Name");
+
+                for (int i = 0; i < logList.Count; i++)
                 {
-                    checkedListBox.Items.Insert(i, fieldDict.Keys.ElementAt(i));
-                    checkedListBox.SetItemChecked(i, bool.Parse(fieldDict.Values.ElementAt(i)));
+                    cbLogYearFilter.Items.Add(logList[i]);
                 }
-            }
-            
 
-            //sqlConnection.Close();
+                if (checkedListBox.Items.Count < 20)
+                {
+                    Dictionary<string, string> fieldDict = MainForm.GetFieldsDictionary();
+                    for (int i = 0; i < fieldDict.Count; i++)
+                    {
+                        checkedListBox.Items.Insert(i, fieldDict.Keys.ElementAt(i));
+                        checkedListBox.SetItemChecked(i, bool.Parse(fieldDict.Values.ElementAt(i)));
+                    }
+                }
+
+                checkedListBox.Height = MainForm.GetHeightCLB();
+                //sqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to load RideDataDisplay form. " + ex.Message.ToString());
+            }
         }
 
         private void CloseForm(object sender, EventArgs e)
@@ -95,29 +102,29 @@ namespace CyclingLogApplication
         //    return logYearFilterIndex;
         //}
 
-        public void SetCustomValues()
-        {
-            string customValue1 = MainForm.GetCustomField1();
-            string customValue2 = MainForm.GetCustomField2();
+        //public void SetCustomValues()
+        //{
+        //    string customValue1 = MainForm.GetCustomField1();
+        //    string customValue2 = MainForm.GetCustomField2();
 
-            if (customValue1.Equals(""))
-            {
-                this.checkedListBox.Items[23] = "Custom1";
-            }
-            else
-            {
-                this.checkedListBox.Items[23] = customValue1;
-            }
+        //    if (customValue1.Equals(""))
+        //    {
+        //        this.checkedListBox.Items[23] = "Custom1";
+        //    }
+        //    else
+        //    {
+        //        this.checkedListBox.Items[23] = customValue1;
+        //    }
 
-            if (customValue2.Equals(""))
-            {
-                this.checkedListBox.Items[24] = "Custom2";
-            }
-            else
-            {
-                this.checkedListBox.Items[24] = customValue2;
-            }
-        }
+        //    if (customValue2.Equals(""))
+        //    {
+        //        this.checkedListBox.Items[24] = "Custom2";
+        //    }
+        //    else
+        //    {
+        //        this.checkedListBox.Items[24] = customValue2;
+        //    }
+        //}
 
         private void BFilter_Click(object sender, EventArgs e)
         {

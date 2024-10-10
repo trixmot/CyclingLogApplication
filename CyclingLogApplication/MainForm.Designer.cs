@@ -346,11 +346,17 @@
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label69 = new System.Windows.Forms.Label();
+            this.tbCustomDataField2 = new System.Windows.Forms.TextBox();
+            this.tbCustomDataField1 = new System.Windows.Forms.TextBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
             this.label85 = new System.Windows.Forms.Label();
             this.label84 = new System.Windows.Forms.Label();
-            this.tbCustomDataField2 = new System.Windows.Forms.TextBox();
+            this.tbCustomDataField2_OLD = new System.Windows.Forms.TextBox();
             this.btCustomDataField1 = new System.Windows.Forms.Button();
-            this.tbCustomDataField1 = new System.Windows.Forms.TextBox();
+            this.tbCustomDataField1_OLD = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.label31 = new System.Windows.Forms.Label();
             this.cbLogYear = new System.Windows.Forms.ComboBox();
@@ -3689,7 +3695,7 @@
             // 
             this.groupBox20.Controls.Add(this.button3);
             this.groupBox20.Controls.Add(this.button4);
-            this.groupBox20.Location = new System.Drawing.Point(506, 256);
+            this.groupBox20.Location = new System.Drawing.Point(506, 333);
             this.groupBox20.Name = "groupBox20";
             this.groupBox20.Size = new System.Drawing.Size(241, 106);
             this.groupBox20.TabIndex = 76;
@@ -3783,22 +3789,78 @@
             // 
             // groupBox9
             // 
+            this.groupBox9.Controls.Add(this.label69);
+            this.groupBox9.Controls.Add(this.tbCustomDataField2);
+            this.groupBox9.Controls.Add(this.tbCustomDataField1);
+            this.groupBox9.Controls.Add(this.label68);
+            this.groupBox9.Controls.Add(this.label67);
+            this.groupBox9.Controls.Add(this.label66);
             this.groupBox9.Controls.Add(this.label85);
             this.groupBox9.Controls.Add(this.label84);
-            this.groupBox9.Controls.Add(this.tbCustomDataField2);
+            this.groupBox9.Controls.Add(this.tbCustomDataField2_OLD);
             this.groupBox9.Controls.Add(this.btCustomDataField1);
-            this.groupBox9.Controls.Add(this.tbCustomDataField1);
+            this.groupBox9.Controls.Add(this.tbCustomDataField1_OLD);
             this.groupBox9.Location = new System.Drawing.Point(506, 80);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(241, 141);
+            this.groupBox9.Size = new System.Drawing.Size(241, 243);
             this.groupBox9.TabIndex = 68;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Custom Data Field Name";
             // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(45, 157);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(29, 13);
+            this.label69.TabIndex = 36;
+            this.label69.Text = "New";
+            // 
+            // tbCustomDataField2
+            // 
+            this.tbCustomDataField2.Location = new System.Drawing.Point(84, 154);
+            this.tbCustomDataField2.Name = "tbCustomDataField2";
+            this.tbCustomDataField2.Size = new System.Drawing.Size(121, 20);
+            this.tbCustomDataField2.TabIndex = 35;
+            // 
+            // tbCustomDataField1
+            // 
+            this.tbCustomDataField1.Location = new System.Drawing.Point(84, 77);
+            this.tbCustomDataField1.Name = "tbCustomDataField1";
+            this.tbCustomDataField1.Size = new System.Drawing.Size(121, 20);
+            this.tbCustomDataField1.TabIndex = 34;
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(45, 80);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(29, 13);
+            this.label68.TabIndex = 33;
+            this.label68.Text = "New";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(37, 127);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(41, 13);
+            this.label67.TabIndex = 32;
+            this.label67.Text = "Current";
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(37, 47);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(41, 13);
+            this.label66.TabIndex = 31;
+            this.label66.Text = "Current";
+            // 
             // label85
             // 
             this.label85.AutoSize = true;
-            this.label85.Location = new System.Drawing.Point(15, 64);
+            this.label85.Location = new System.Drawing.Point(98, 107);
             this.label85.Name = "label85";
             this.label85.Size = new System.Drawing.Size(76, 13);
             this.label85.TabIndex = 30;
@@ -3807,22 +3869,23 @@
             // label84
             // 
             this.label84.AutoSize = true;
-            this.label84.Location = new System.Drawing.Point(15, 38);
+            this.label84.Location = new System.Drawing.Point(98, 28);
             this.label84.Name = "label84";
             this.label84.Size = new System.Drawing.Size(76, 13);
             this.label84.TabIndex = 29;
             this.label84.Text = "Custom Field 1";
             // 
-            // tbCustomDataField2
+            // tbCustomDataField2_OLD
             // 
-            this.tbCustomDataField2.Location = new System.Drawing.Point(101, 61);
-            this.tbCustomDataField2.Name = "tbCustomDataField2";
-            this.tbCustomDataField2.Size = new System.Drawing.Size(121, 20);
-            this.tbCustomDataField2.TabIndex = 28;
+            this.tbCustomDataField2_OLD.Enabled = false;
+            this.tbCustomDataField2_OLD.Location = new System.Drawing.Point(84, 124);
+            this.tbCustomDataField2_OLD.Name = "tbCustomDataField2_OLD";
+            this.tbCustomDataField2_OLD.Size = new System.Drawing.Size(121, 20);
+            this.tbCustomDataField2_OLD.TabIndex = 28;
             // 
             // btCustomDataField1
             // 
-            this.btCustomDataField1.Location = new System.Drawing.Point(86, 100);
+            this.btCustomDataField1.Location = new System.Drawing.Point(84, 199);
             this.btCustomDataField1.Name = "btCustomDataField1";
             this.btCustomDataField1.Size = new System.Drawing.Size(75, 23);
             this.btCustomDataField1.TabIndex = 27;
@@ -3830,12 +3893,13 @@
             this.btCustomDataField1.UseVisualStyleBackColor = true;
             this.btCustomDataField1.Click += new System.EventHandler(this.BtCustomDataField1_Click);
             // 
-            // tbCustomDataField1
+            // tbCustomDataField1_OLD
             // 
-            this.tbCustomDataField1.Location = new System.Drawing.Point(101, 35);
-            this.tbCustomDataField1.Name = "tbCustomDataField1";
-            this.tbCustomDataField1.Size = new System.Drawing.Size(121, 20);
-            this.tbCustomDataField1.TabIndex = 2;
+            this.tbCustomDataField1_OLD.Enabled = false;
+            this.tbCustomDataField1_OLD.Location = new System.Drawing.Point(84, 44);
+            this.tbCustomDataField1_OLD.Name = "tbCustomDataField1_OLD";
+            this.tbCustomDataField1_OLD.Size = new System.Drawing.Size(121, 20);
+            this.tbCustomDataField1_OLD.TabIndex = 2;
             // 
             // groupBox10
             // 
@@ -4396,13 +4460,13 @@
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.TextBox tbMostElevationAll;
         private System.Windows.Forms.Button btRefreshData;
-        private System.Windows.Forms.TextBox tbCustomDataField1;
+        private System.Windows.Forms.TextBox tbCustomDataField1_OLD;
         private System.Windows.Forms.Button btCustomDataField1;
         private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.GroupBox groupBox21;
         private System.Windows.Forms.Label label85;
         private System.Windows.Forms.Label label84;
-        private System.Windows.Forms.TextBox tbCustomDataField2;
+        private System.Windows.Forms.TextBox tbCustomDataField2_OLD;
         private System.Windows.Forms.DataGridView dataGridViewRoutes;
         private System.Windows.Forms.Label label86;
         private System.Windows.Forms.Label label87;
@@ -4419,6 +4483,12 @@
         private System.Windows.Forms.Button btHideShowIDColumn;
         private System.Windows.Forms.RadioButton rbHideIDColumn;
         private System.Windows.Forms.RadioButton rbShowIDColumn;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.TextBox tbCustomDataField2;
+        private System.Windows.Forms.TextBox tbCustomDataField1;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.Label label66;
     }
 }
 

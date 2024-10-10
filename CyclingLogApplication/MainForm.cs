@@ -46,8 +46,7 @@ namespace CyclingLogApplication
         private static string license;
         public static string customField1;
         public static string customField2;
-        public static string customField1_OLD;
-        public static string customField2_OLD;
+        private static int heightCLB;
 
         private static Dictionary<string, string> fieldNameDict = new Dictionary<string, string>();
         private static List<string> fieldNamesList = new List<string>();
@@ -304,8 +303,8 @@ namespace CyclingLogApplication
                     cbLogYear.Items.Add(i.ToString());
                 }
 
-                tbCustomDataField1.Text = GetCustomField1();
-                tbCustomDataField2.Text = GetCustomField2();
+                tbCustomDataField1_OLD.Text = GetCustomField1();
+                tbCustomDataField2_OLD.Text = GetCustomField2();
                 //tabControl1.SelectedTab = tabControl1.TabPages["Main"];
                 formloading = false;
 
@@ -381,6 +380,15 @@ namespace CyclingLogApplication
         //        mutex.ReleaseMutex();
         //    base.Dispose(disposing);
         //}
+        public static void SetHeightCLB(int heightCLBInt)
+        {
+            heightCLB = heightCLBInt;
+        }
+
+        public static int GetHeightCLB()
+        {
+            return heightCLB;
+        }
 
         public static string GetLogVersion()
         {
@@ -604,16 +612,6 @@ namespace CyclingLogApplication
         public static void SetCustomField2(string customDataField2)
         {
             customField2 = customDataField2;
-        }
-
-        public static void SetCustomField1_OLD(string customDataField1OLD)
-        {
-            customField1_OLD = customDataField1OLD;
-        }
-
-        public static void SetCustomField2_OLD(string customDataField2OLD)
-        {
-            customField2_OLD = customDataField2OLD;
         }
 
         public static List<string> GetLogYears()
@@ -4861,13 +4859,102 @@ namespace CyclingLogApplication
             MessageBox.Show("All data fields have been updated.");
         }
 
+        //Update custom fields:
         private void BtCustomDataField1_Click(object sender, EventArgs e)
         {
-            //Need OldValue and New Value:
-            //Need to update the Field Options Dictionary:
+            string customNEW1 = tbCustomDataField1.Text;
+            string customNEW2 = tbCustomDataField2.Text;
+            string customOLD1 = tbCustomDataField1_OLD.Text;
+            string customOLD2 = tbCustomDataField2_OLD.Text;
 
-            SetCustomField1(tbCustomDataField1.Text);
-            SetCustomField2(tbCustomDataField2.Text);
+            int heightCLB = 379;
+            int numberRemoved = 0;
+
+            Boolean changesMade = false;
+
+            // No changes to be made for custom1:
+            if (customNEW1.Equals("") && customOLD1.Equals(""))
+            {
+
+            }
+            // No old entry to remove - adding new custom1:
+            else if (customOLD1.Equals(""))
+            {
+                SetCustomField1(customNEW1);
+                fieldNameDict.Add(customNEW1, "False");
+                tbCustomDataField1_OLD.Text = customNEW1;
+                changesMade = true;
+            }
+            // Remove custom1 value:
+            else if (customNEW1.Equals("") && !customOLD1.Equals(""))
+            {
+                fieldNameDict.Remove(customOLD1);
+                numberRemoved++;
+                tbCustomDataField1_OLD.Text = "";
+                changesMade = true;
+            }
+            // Update custom1 value to a different value:
+            else if (!customNEW1.Equals("") && !customOLD1.Equals(""))
+            {
+                SetCustomField1(customNEW1);
+                string checkState = fieldNameDict[customOLD1];
+                fieldNameDict.Remove(customOLD1);
+                fieldNameDict.Add(customNEW1, "True");
+                tbCustomDataField1_OLD.Text = customNEW1;
+                changesMade = true;
+            }
+
+            // No changes to be made for custom1:
+            if (customNEW2.Equals("") && customOLD2.Equals(""))
+            {
+
+            }
+            // No old entry to remove - adding new custom1:
+            else if (customOLD2.Equals(""))
+            {
+                SetCustomField1(customNEW1);
+                fieldNameDict.Add(customNEW1, "False");
+                tbCustomDataField2_OLD.Text = customNEW2;
+                changesMade = true;
+            }
+            // Remove custom1 value:
+            else if (customNEW2.Equals("") && !customOLD2.Equals(""))
+            {
+                fieldNameDict.Remove(customOLD2);
+                numberRemoved++;
+                tbCustomDataField2_OLD.Text = "";
+                changesMade = true;
+            }
+            // Update custom1 value to a different value:
+            else if (!customNEW2.Equals("") && !customOLD2.Equals(""))
+            {
+                SetCustomField1(customNEW2);
+                string checkState = fieldNameDict[customOLD2];
+                fieldNameDict.Remove(customOLD2);
+                fieldNameDict.Add(customNEW2, "True");
+                tbCustomDataField2_OLD.Text = customNEW2;
+                changesMade = true;
+            }
+
+            if (numberRemoved == 1)
+            {
+                heightCLB = 364;
+            }
+            else if (numberRemoved == 2)
+            {
+                heightCLB = 349;
+            }
+
+            SetHeightCLB(heightCLB);
+
+            if (changesMade)
+            {
+                MessageBox.Show("Custom data fields have been updated.");
+            } else
+            {
+                MessageBox.Show("No changes saved.");
+            }
+
             ConfigurationFile.WriteConfigFile();
         }
 
