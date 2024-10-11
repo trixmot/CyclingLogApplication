@@ -165,7 +165,7 @@ namespace CyclingLogApplication
                     else
                     {
                         SetLicenseAgreement("True");
-                        ConfigurationFile.WriteConfigFile();
+                        //ConfigurationFile.WriteConfigFile();
                     }
                 }
 
@@ -309,6 +309,9 @@ namespace CyclingLogApplication
                 tbCustomDataField1_OLD.Text = GetCustomField1();
                 tbCustomDataField2_OLD.Text = GetCustomField2();
                 //tabControl1.SelectedTab = tabControl1.TabPages["Main"];
+                cbMaintColors.SelectedIndex = cbMaintColors.FindStringExact(gridMaintColor);
+                cbWeeklyColors.SelectedIndex = cbWeeklyColors.FindStringExact(gridWeeklyColor);
+                cbDisplayDataColors.SelectedIndex = cbDisplayDataColors.FindStringExact(gridDisplayDataColor);
                 formloading = false;
 
             }
@@ -5514,7 +5517,7 @@ namespace CyclingLogApplication
 
                 dataGridViewWeekly.Columns[0].ValueType = typeof(double);
                 dataGridViewWeekly.Columns[1].ValueType = typeof(double);
-                dataGridViewWeekly.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
+                dataGridViewWeekly.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 dataGridViewWeekly.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
 
                 //dataGridViewWeekly.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells; 
@@ -5586,6 +5589,7 @@ namespace CyclingLogApplication
                 dataGridViewWeekly.AllowUserToResizeRows = false;
                 dataGridViewWeekly.AllowUserToResizeColumns = false;
                 dataGridViewWeekly.CurrentCell = dataGridViewWeekly.Rows[0].Cells[4];
+                dataGridViewWeekly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetWeeklyColor());
             }
             catch (Exception ex)
             {
@@ -5894,14 +5898,33 @@ namespace CyclingLogApplication
 
         private void btSetColors_Click(object sender, EventArgs e)
         {
+            //Maintenance Grid:
             SetMaintColor(cbMaintColors.SelectedItem.ToString());
             dgvMaint.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetMaintColor());
             dgvMaint.Refresh();
+
+            //Weekly Stat Grid:
+            SetWeeklyColor(cbWeeklyColors.SelectedItem.ToString());
+            dataGridViewWeekly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetWeeklyColor());
+            dataGridViewWeekly.Refresh();
+
+            //Display Data Grid:
+            SetDisplayDataColor(cbDisplayDataColors.SelectedItem.ToString());
         }
 
         private void cbMaintColors_SelectedIndexChanged(object sender, EventArgs e)
         {
             tbColorMaint.BackColor = Color.FromName(cbMaintColors.SelectedItem.ToString());
+        }
+
+        private void cbWeeklyColors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbColorWeekly.BackColor = Color.FromName(cbWeeklyColors.SelectedItem.ToString());
+        }
+
+        private void cbDisplayDataColors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbColorDisplayData.BackColor = Color.FromName(cbDisplayDataColors.SelectedItem.ToString());
         }
     }
 }

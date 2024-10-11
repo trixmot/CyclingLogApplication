@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CyclingLogApplication.exe" size="371200">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CyclingLogApplication.exe" size="375296">
       <assemblyIdentity name="CyclingLogApplication" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>iND9w2q//0TqrfrqkJJ5EmgJ3JwDPYzOLXrkJczdYvI=</dsig:DigestValue>
+        <dsig:DigestValue>ak9xKH5/SV4GU9YB7RlfvOaWAHyABx0uKIupvJvaHBQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

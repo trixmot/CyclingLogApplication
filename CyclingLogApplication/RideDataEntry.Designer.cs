@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtpRideDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btRideDisplayUpdate = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
             this.groupBoxRetrieveDate = new System.Windows.Forms.GroupBox();
             this.label28 = new System.Windows.Forms.Label();
@@ -105,7 +106,6 @@
             this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
-            this.btRideDisplayUpdate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBoxRetrieveDate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -168,10 +168,20 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
+            // btRideDisplayUpdate
+            // 
+            this.btRideDisplayUpdate.Location = new System.Drawing.Point(382, 71);
+            this.btRideDisplayUpdate.Name = "btRideDisplayUpdate";
+            this.btRideDisplayUpdate.Size = new System.Drawing.Size(85, 34);
+            this.btRideDisplayUpdate.TabIndex = 8;
+            this.btRideDisplayUpdate.Text = "Update";
+            this.btRideDisplayUpdate.UseVisualStyleBackColor = true;
+            this.btRideDisplayUpdate.Click += new System.EventHandler(this.btRideDisplayUpdate_Click);
+            // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(133, 120);
+            this.label29.Location = new System.Drawing.Point(126, 115);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(18, 13);
             this.label29.TabIndex = 49;
@@ -246,7 +256,7 @@
             // tbRecordID
             // 
             this.tbRecordID.Enabled = false;
-            this.tbRecordID.Location = new System.Drawing.Point(161, 115);
+            this.tbRecordID.Location = new System.Drawing.Point(150, 112);
             this.tbRecordID.Name = "tbRecordID";
             this.tbRecordID.Size = new System.Drawing.Size(41, 20);
             this.tbRecordID.TabIndex = 9;
@@ -849,16 +859,6 @@
             // table_Ride_InformationTableAdapter
             // 
             this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
-            // 
-            // btRideDisplayUpdate
-            // 
-            this.btRideDisplayUpdate.Location = new System.Drawing.Point(382, 71);
-            this.btRideDisplayUpdate.Name = "btRideDisplayUpdate";
-            this.btRideDisplayUpdate.Size = new System.Drawing.Size(85, 34);
-            this.btRideDisplayUpdate.TabIndex = 8;
-            this.btRideDisplayUpdate.Text = "Update";
-            this.btRideDisplayUpdate.UseVisualStyleBackColor = true;
-            this.btRideDisplayUpdate.Click += new System.EventHandler(this.btRideDisplayUpdate_Click);
             // 
             // RideDataEntry
             // 

@@ -215,6 +215,7 @@
             // 
             // UpPictureBox
             // 
+            this.UpPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.UpPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("UpPictureBox.Image")));
             this.UpPictureBox.Location = new System.Drawing.Point(1276, 189);
             this.UpPictureBox.Name = "UpPictureBox";
@@ -226,6 +227,7 @@
             // 
             // DownPictureBox
             // 
+            this.DownPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DownPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("DownPictureBox.Image")));
             this.DownPictureBox.Location = new System.Drawing.Point(1276, 257);
             this.DownPictureBox.Name = "DownPictureBox";

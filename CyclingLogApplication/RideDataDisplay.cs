@@ -36,8 +36,14 @@ namespace CyclingLogApplication
                 cbFilterField.SelectedIndex = 0;
                 sqlConnection = MainForm.GetsqlConnectionString();
 
-                List<string> logList = MainForm.ReadDataNames("Table_Log_year", "Name");
+                string custom1 = MainForm.GetCustomField1();
+                string custom2 = MainForm.GetCustomField2();
+                Boolean custom1Skipped = false;
+                Boolean custom2Skipped = false;
+                int numberRemoved = 0;
 
+                List<string> logList = MainForm.ReadDataNames("Table_Log_year", "Name");
+                int checkListBoxIndex = 0;
                 for (int i = 0; i < logList.Count; i++)
                 {
                     cbLogYearFilter.Items.Add(logList[i]);
@@ -48,12 +54,47 @@ namespace CyclingLogApplication
                     Dictionary<string, string> fieldDict = MainForm.GetFieldsDictionary();
                     for (int i = 0; i < fieldDict.Count; i++)
                     {
-                        checkedListBox.Items.Insert(i, fieldDict.Keys.ElementAt(i));
-                        checkedListBox.SetItemChecked(i, bool.Parse(fieldDict.Values.ElementAt(i)));
+                        if (custom1.Equals("") && fieldDict.Keys.ElementAt(i).Equals("Custom1"))
+                        {
+                            //skip adding
+                            custom1Skipped = true;
+                            numberRemoved++;
+                        } 
+                        else if (custom2.Equals("") && fieldDict.Keys.ElementAt(i).Equals("Custom2"))
+                        {
+                            //skip adding
+                            custom2Skipped = true;
+                            numberRemoved++;
+                        }
+                        else
+                        {
+                            if (custom1Skipped)
+                            {
+                                checkListBoxIndex--;
+                            }
+                            if (custom2Skipped)
+                            {
+                                checkListBoxIndex--;
+                            }
+                            checkedListBox.Items.Insert(checkListBoxIndex, fieldDict.Keys.ElementAt(i));
+                            checkedListBox.SetItemChecked(checkListBoxIndex, bool.Parse(fieldDict.Values.ElementAt(i)));
+                            checkListBoxIndex++;
+                        }                
                     }
                 }
 
-                checkedListBox.Height = MainForm.GetHeightCLB();
+                int heightCLB = 394;
+
+                if (numberRemoved == 1)
+                {
+                    heightCLB = 379;
+                }
+                else if (numberRemoved == 2)
+                {
+                    heightCLB = 364;
+                }
+                
+                checkedListBox.Height = heightCLB;
                 //sqlConnection.Close();
             }
             catch (Exception ex)
@@ -136,6 +177,8 @@ namespace CyclingLogApplication
 
             runRideDisplayClear();
 
+            string custom1 = MainForm.GetCustomField1();
+            string custom2 = MainForm.GetCustomField2();
             bool customDataField1 = false;
             bool customDataField2 = false;
             string fieldName;
@@ -208,8 +251,16 @@ namespace CyclingLogApplication
                     {
                         fieldName = "Windchill";
                     }
+                    //else if (fieldName.Equals("Custom1") && custom1.Equals(""))
+                    //{
+                    //    //skip adding field:
+                    //}
+                    //else if (fieldName.Equals("Custom2") && custom2.Equals(""))
+                    //{
+                    //    //skip adding field:
+                    //} else
 
-                    fieldString += ",[" + fieldName + "]";
+                    fieldString += ",[" + fieldName + "]";              
                     
                 }
             }
@@ -385,30 +436,27 @@ namespace CyclingLogApplication
                 dataTable.Columns["Item"].AutoIncrementStep = 1;
                 sqlDataAdapter.Fill(dataTable);
 
-                string customValue1 = MainForm.GetCustomField1();
-                string customValue2 = MainForm.GetCustomField2();
-
                 if (customDataField1)
                 {
-                    if (customValue1.Equals(""))
+                    if (custom1.Equals(""))
                     {
-                        dataTable.Columns["Custom1"].ColumnName = "Custom1";
+                        //dataTable.Columns["Custom1"].ColumnName = "Custom1";
                     }
                     else
                     {
-                        dataTable.Columns["Custom1"].ColumnName = customValue1;
+                        dataTable.Columns["Custom1"].ColumnName = custom1;
                     }
                 }
 
                 if (customDataField2)
                 {
-                    if (customValue2.Equals(""))
+                    if (custom2.Equals(""))
                     {
-                        dataTable.Columns["Custom2"].ColumnName = "Custom2";
+                        //dataTable.Columns["Custom2"].ColumnName = "Custom2";
                     }
                     else
                     {
-                        dataTable.Columns["Custom2"].ColumnName = customValue2;
+                        dataTable.Columns["Custom2"].ColumnName = custom2;
                     }
                 }
 
@@ -422,7 +470,7 @@ namespace CyclingLogApplication
                 // Configure the details DataGridView so that its columns automatically adjust their widths when the data changes.
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 dataGridView1.AllowUserToAddRows = false;
-                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
                 dataGridView1.ReadOnly = true;
                 dataGridView1.EnableHeadersVisualStyles = false;
@@ -431,9 +479,10 @@ namespace CyclingLogApplication
                 dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
                 dataGridView1.ColumnHeadersHeight = 30;
                 dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(MainForm.GetDisplayDataColor());
 
                 string idColumnValue = MainForm.GetIDColumnValue();
+                //Determine if ID field should appear in the Data Display grid output:
                 if (idColumnValue.Equals("0"))
                 {
                     dataGridView1.Columns["Id"].Visible = false;
@@ -442,6 +491,8 @@ namespace CyclingLogApplication
                 {
                     dataGridView1.Columns["Id"].Visible = true;
                 }
+
+                dataGridView1.Refresh();
             }
             catch (Exception ex)
             {
@@ -737,14 +788,27 @@ namespace CyclingLogApplication
         {
             //Save changes made to the options order:
             Dictionary<string, string> fieldOptionsDict = new Dictionary<string, string>();
+            string custom1 = MainForm.GetCustomField1();
+            string custom2 = MainForm.GetCustomField2();
 
             for (int i = 0; i < checkedListBox.Items.Count; i++)
             {
                 fieldOptionsDict.Add(checkedListBox.Items[i].ToString(), checkedListBox.GetItemChecked(i).ToString());
             }
+
+            if (custom1.Equals(""))
+            {
+                fieldOptionsDict.Add("Custom1", "False");
+            }
+            if (custom2.Equals(""))
+            {
+                fieldOptionsDict.Add("Custom2", "False");
+            }
+
             //Update the dictionary:
             MainForm.SetFieldDictionary(fieldOptionsDict);
 
+            MessageBox.Show("Changes saved for Field Options.");
         }
 
 

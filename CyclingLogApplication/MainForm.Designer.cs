@@ -380,10 +380,10 @@
             this.label70 = new System.Windows.Forms.Label();
             this.label76 = new System.Windows.Forms.Label();
             this.tbColorWeekly = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbWeeklyColors = new System.Windows.Forms.ComboBox();
             this.label81 = new System.Windows.Forms.Label();
             this.tbColorDisplayData = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbDisplayDataColors = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -4087,10 +4087,10 @@
             // 
             this.groupBox23.Controls.Add(this.label81);
             this.groupBox23.Controls.Add(this.tbColorDisplayData);
-            this.groupBox23.Controls.Add(this.comboBox2);
+            this.groupBox23.Controls.Add(this.cbDisplayDataColors);
             this.groupBox23.Controls.Add(this.label76);
             this.groupBox23.Controls.Add(this.tbColorWeekly);
-            this.groupBox23.Controls.Add(this.comboBox1);
+            this.groupBox23.Controls.Add(this.cbWeeklyColors);
             this.groupBox23.Controls.Add(this.label70);
             this.groupBox23.Controls.Add(this.tbColorMaint);
             this.groupBox23.Controls.Add(this.btSetColors);
@@ -4238,10 +4238,11 @@
             // 
             // tbColorMaint
             // 
-            this.tbColorMaint.Location = new System.Drawing.Point(168, 38);
+            this.tbColorMaint.Location = new System.Drawing.Point(163, 38);
             this.tbColorMaint.Name = "tbColorMaint";
-            this.tbColorMaint.Size = new System.Drawing.Size(42, 20);
+            this.tbColorMaint.Size = new System.Drawing.Size(65, 20);
             this.tbColorMaint.TabIndex = 76;
+            this.tbColorMaint.Text = "Test String";
             // 
             // label70
             // 
@@ -4263,16 +4264,17 @@
             // 
             // tbColorWeekly
             // 
-            this.tbColorWeekly.Location = new System.Drawing.Point(168, 83);
+            this.tbColorWeekly.Location = new System.Drawing.Point(163, 83);
             this.tbColorWeekly.Name = "tbColorWeekly";
-            this.tbColorWeekly.Size = new System.Drawing.Size(42, 20);
+            this.tbColorWeekly.Size = new System.Drawing.Size(65, 20);
             this.tbColorWeekly.TabIndex = 79;
+            this.tbColorWeekly.Text = "Test String";
             // 
-            // comboBox1
+            // cbWeeklyColors
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbWeeklyColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWeeklyColors.FormattingEnabled = true;
+            this.cbWeeklyColors.Items.AddRange(new object[] {
             "AliceBlue",
             "AntiqueWhite",
             "Aqua",
@@ -4386,10 +4388,11 @@
             "WhiteSmoke",
             "Yellow",
             "YellowGreen"});
-            this.comboBox1.Location = new System.Drawing.Point(21, 82);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(111, 21);
-            this.comboBox1.TabIndex = 78;
+            this.cbWeeklyColors.Location = new System.Drawing.Point(21, 82);
+            this.cbWeeklyColors.Name = "cbWeeklyColors";
+            this.cbWeeklyColors.Size = new System.Drawing.Size(111, 21);
+            this.cbWeeklyColors.TabIndex = 78;
+            this.cbWeeklyColors.SelectedIndexChanged += new System.EventHandler(this.cbWeeklyColors_SelectedIndexChanged);
             // 
             // label81
             // 
@@ -4402,16 +4405,17 @@
             // 
             // tbColorDisplayData
             // 
-            this.tbColorDisplayData.Location = new System.Drawing.Point(168, 129);
+            this.tbColorDisplayData.Location = new System.Drawing.Point(163, 129);
             this.tbColorDisplayData.Name = "tbColorDisplayData";
-            this.tbColorDisplayData.Size = new System.Drawing.Size(42, 20);
+            this.tbColorDisplayData.Size = new System.Drawing.Size(65, 20);
             this.tbColorDisplayData.TabIndex = 82;
+            this.tbColorDisplayData.Text = "Test String";
             // 
-            // comboBox2
+            // cbDisplayDataColors
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.cbDisplayDataColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDisplayDataColors.FormattingEnabled = true;
+            this.cbDisplayDataColors.Items.AddRange(new object[] {
             "AliceBlue",
             "AntiqueWhite",
             "Aqua",
@@ -4525,10 +4529,11 @@
             "WhiteSmoke",
             "Yellow",
             "YellowGreen"});
-            this.comboBox2.Location = new System.Drawing.Point(21, 128);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(111, 21);
-            this.comboBox2.TabIndex = 81;
+            this.cbDisplayDataColors.Location = new System.Drawing.Point(21, 128);
+            this.cbDisplayDataColors.Name = "cbDisplayDataColors";
+            this.cbDisplayDataColors.Size = new System.Drawing.Size(111, 21);
+            this.cbDisplayDataColors.TabIndex = 81;
+            this.cbDisplayDataColors.SelectedIndexChanged += new System.EventHandler(this.cbDisplayDataColors_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -4957,10 +4962,10 @@
         private System.Windows.Forms.TextBox tbColorMaint;
         private System.Windows.Forms.Label label81;
         private System.Windows.Forms.TextBox tbColorDisplayData;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbDisplayDataColors;
         private System.Windows.Forms.Label label76;
         private System.Windows.Forms.TextBox tbColorWeekly;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbWeeklyColors;
         private System.Windows.Forms.Label label70;
     }
 }

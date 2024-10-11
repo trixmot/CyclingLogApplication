@@ -166,29 +166,29 @@ namespace CyclingLogApplication
             fieldCheckDictionary.Add(checkListBoxItemNAME24, checkListBoxItemCHECK24);
             fieldCheckDictionary.Add(checkListBoxItemNAME25, checkListBoxItemCHECK25);
 
-            int heightCLB = 394;
-            int numberRemoved = 0;
-            //Check value of custom1:
-            if (customDataField1.Equals(""))
-            {
-                fieldCheckDictionary.Remove("Custom1");
-                numberRemoved++;
-            }
-            if (customDataField2.Equals(""))
-            {
-                fieldCheckDictionary.Remove("Custom2");
-                numberRemoved++;
-            }
+            //int heightCLB = 394;
+            //int numberRemoved = 0;
+            ////Check value of custom1:
+            //if (customDataField1.Equals(""))
+            //{
+            //    fieldCheckDictionary.Remove("Custom1");
+            //    numberRemoved++;
+            //}
+            //if (customDataField2.Equals(""))
+            //{
+            //    fieldCheckDictionary.Remove("Custom2");
+            //    numberRemoved++;
+            //}
 
-            if (numberRemoved == 1)
-            {
-                heightCLB = 379;
-            } else if (numberRemoved == 2)
-            {
-                heightCLB = 364;
-            }
+            //if (numberRemoved == 1)
+            //{
+            //    heightCLB = 379;
+            //} else if (numberRemoved == 2)
+            //{
+            //    heightCLB = 364;
+            //}
             //Set checkedListbox height:
-            MainForm.SetHeightCLB(heightCLB);
+            //MainForm.SetHeightCLB(heightCLB);
 
             MainForm.SetFieldDictionary(fieldCheckDictionary);
 
@@ -320,7 +320,7 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(versionNode);
 
                     XmlNode idNode = xmlDoc.CreateElement("IDCOLUMN");
-                    idNode.InnerText = MainForm.GetLogVersion();
+                    idNode.InnerText = "0";
                     rootNode.AppendChild(idNode);
 
                     XmlNode firstDayNode = xmlDoc.CreateElement("FIRSTDAY");
