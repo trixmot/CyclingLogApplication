@@ -47,6 +47,9 @@ namespace CyclingLogApplication
         public static string customField1;
         public static string customField2;
         private static int heightCLB;
+        private static string gridMaintColor;
+        private static string gridWeeklyColor;
+        private static string gridDisplayDataColor;
 
         private static Dictionary<string, string> fieldNameDict = new Dictionary<string, string>();
         private static List<string> fieldNamesList = new List<string>();
@@ -380,6 +383,37 @@ namespace CyclingLogApplication
         //        mutex.ReleaseMutex();
         //    base.Dispose(disposing);
         //}
+
+        public static void SetMaintColor(string color)
+        {
+            gridMaintColor = color;
+        }
+
+        public static string GetMaintColor()
+        {
+            return gridMaintColor;
+        }
+
+        public static void SetWeeklyColor(string color)
+        {
+            gridWeeklyColor = color;
+        }
+
+        public static string GetWeeklyColor()
+        {
+            return gridWeeklyColor;
+        }
+
+        public static void SetDisplayDataColor(string color)
+        {
+            gridDisplayDataColor = color;
+        }
+
+        public static string GetDisplayDataColor()
+        {
+            return gridDisplayDataColor;
+        }
+
         public static void SetHeightCLB(int heightCLBInt)
         {
             heightCLB = heightCLBInt;
@@ -2711,16 +2745,17 @@ namespace CyclingLogApplication
 
                     DataTable dataTable = new DataTable();
                     sqlDataAdapter.Fill(dataTable);
-                    dgvMaint.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
+                    dgvMaint.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                     dgvMaint.EnableHeadersVisualStyles = false;
                     dgvMaint.DataSource = dataTable;
-                    dgvMaint.Refresh();
                     dgvMaint.Sort(dgvMaint.Columns["Date"], ListSortDirection.Descending);
                     dgvMaint.AllowUserToResizeRows = false;
                     dgvMaint.AllowUserToResizeColumns = false;
                     dgvMaint.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
                     dgvMaint.AllowUserToAddRows = false;
-                    dgvMaint.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
+                    //dgvMaint.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
+                    dgvMaint.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetMaintColor());
+                    dgvMaint.Refresh();
                 }
             }
             catch (Exception ex)
@@ -5855,6 +5890,18 @@ namespace CyclingLogApplication
                 SetIDColumn("0");
                 MessageBox.Show("Setting to hide the ID Column.");
             }
+        }
+
+        private void btSetColors_Click(object sender, EventArgs e)
+        {
+            SetMaintColor(cbMaintColors.SelectedItem.ToString());
+            dgvMaint.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetMaintColor());
+            dgvMaint.Refresh();
+        }
+
+        private void cbMaintColors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbColorMaint.BackColor = Color.FromName(cbMaintColors.SelectedItem.ToString());
         }
     }
 }

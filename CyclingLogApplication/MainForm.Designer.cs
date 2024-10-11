@@ -373,6 +373,17 @@
             this.tbMaintID = new System.Windows.Forms.TextBox();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox23 = new System.Windows.Forms.GroupBox();
+            this.cbMaintColors = new System.Windows.Forms.ComboBox();
+            this.btSetColors = new System.Windows.Forms.Button();
+            this.tbColorMaint = new System.Windows.Forms.TextBox();
+            this.label70 = new System.Windows.Forms.Label();
+            this.label76 = new System.Windows.Forms.Label();
+            this.tbColorWeekly = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label81 = new System.Windows.Forms.Label();
+            this.tbColorDisplayData = new System.Windows.Forms.TextBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -411,13 +422,14 @@
             this.groupBox10.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox23.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbLogYearConfig
             // 
             this.cbLogYearConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYearConfig.FormattingEnabled = true;
-            this.cbLogYearConfig.Location = new System.Drawing.Point(22, 65);
+            this.cbLogYearConfig.Location = new System.Drawing.Point(18, 44);
             this.cbLogYearConfig.Name = "cbLogYearConfig";
             this.cbLogYearConfig.Size = new System.Drawing.Size(140, 21);
             this.cbLogYearConfig.TabIndex = 0;
@@ -425,7 +437,7 @@
             // 
             // btAddLogYear
             // 
-            this.btAddLogYear.Location = new System.Drawing.Point(55, 249);
+            this.btAddLogYear.Location = new System.Drawing.Point(51, 181);
             this.btAddLogYear.Name = "btAddLogYear";
             this.btAddLogYear.Size = new System.Drawing.Size(75, 23);
             this.btAddLogYear.TabIndex = 2;
@@ -435,7 +447,7 @@
             // 
             // btRemoveLogYear
             // 
-            this.btRemoveLogYear.Location = new System.Drawing.Point(55, 278);
+            this.btRemoveLogYear.Location = new System.Drawing.Point(51, 210);
             this.btRemoveLogYear.Name = "btRemoveLogYear";
             this.btRemoveLogYear.Size = new System.Drawing.Size(75, 23);
             this.btRemoveLogYear.TabIndex = 3;
@@ -445,7 +457,7 @@
             // 
             // tbLogYearConfig
             // 
-            this.tbLogYearConfig.Location = new System.Drawing.Point(22, 115);
+            this.tbLogYearConfig.Location = new System.Drawing.Point(18, 94);
             this.tbLogYearConfig.Name = "tbLogYearConfig";
             this.tbLogYearConfig.Size = new System.Drawing.Size(140, 20);
             this.tbLogYearConfig.TabIndex = 1;
@@ -873,7 +885,7 @@
             // btDeleteAllData
             // 
             this.btDeleteAllData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btDeleteAllData.Location = new System.Drawing.Point(69, 77);
+            this.btDeleteAllData.Location = new System.Drawing.Point(36, 61);
             this.btDeleteAllData.Name = "btDeleteAllData";
             this.btDeleteAllData.Size = new System.Drawing.Size(92, 21);
             this.btDeleteAllData.TabIndex = 3;
@@ -3633,6 +3645,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.groupBox23);
             this.groupBox2.Controls.Add(this.groupBox22);
             this.groupBox2.Controls.Add(this.groupBox20);
             this.groupBox2.Controls.Add(this.groupBox18);
@@ -3652,16 +3665,16 @@
             this.groupBox22.Controls.Add(this.btHideShowIDColumn);
             this.groupBox22.Controls.Add(this.rbHideIDColumn);
             this.groupBox22.Controls.Add(this.rbShowIDColumn);
-            this.groupBox22.Location = new System.Drawing.Point(256, 339);
+            this.groupBox22.Location = new System.Drawing.Point(535, 381);
             this.groupBox22.Name = "groupBox22";
-            this.groupBox22.Size = new System.Drawing.Size(216, 100);
+            this.groupBox22.Size = new System.Drawing.Size(212, 100);
             this.groupBox22.TabIndex = 77;
             this.groupBox22.TabStop = false;
             this.groupBox22.Text = "Ride Display ID Column";
             // 
             // btHideShowIDColumn
             // 
-            this.btHideShowIDColumn.Location = new System.Drawing.Point(121, 48);
+            this.btHideShowIDColumn.Location = new System.Drawing.Point(104, 42);
             this.btHideShowIDColumn.Name = "btHideShowIDColumn";
             this.btHideShowIDColumn.Size = new System.Drawing.Size(75, 23);
             this.btHideShowIDColumn.TabIndex = 29;
@@ -3672,7 +3685,7 @@
             // rbHideIDColumn
             // 
             this.rbHideIDColumn.AutoSize = true;
-            this.rbHideIDColumn.Location = new System.Drawing.Point(30, 61);
+            this.rbHideIDColumn.Location = new System.Drawing.Point(29, 61);
             this.rbHideIDColumn.Name = "rbHideIDColumn";
             this.rbHideIDColumn.Size = new System.Drawing.Size(47, 17);
             this.rbHideIDColumn.TabIndex = 1;
@@ -3683,7 +3696,7 @@
             // rbShowIDColumn
             // 
             this.rbShowIDColumn.AutoSize = true;
-            this.rbShowIDColumn.Location = new System.Drawing.Point(30, 38);
+            this.rbShowIDColumn.Location = new System.Drawing.Point(29, 38);
             this.rbShowIDColumn.Name = "rbShowIDColumn";
             this.rbShowIDColumn.Size = new System.Drawing.Size(52, 17);
             this.rbShowIDColumn.TabIndex = 0;
@@ -3695,16 +3708,16 @@
             // 
             this.groupBox20.Controls.Add(this.button3);
             this.groupBox20.Controls.Add(this.button4);
-            this.groupBox20.Location = new System.Drawing.Point(506, 333);
+            this.groupBox20.Location = new System.Drawing.Point(254, 396);
             this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(241, 106);
+            this.groupBox20.Size = new System.Drawing.Size(252, 85);
             this.groupBox20.TabIndex = 76;
             this.groupBox20.TabStop = false;
             this.groupBox20.Text = "Backup Database";
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(74, 29);
+            this.button3.Location = new System.Drawing.Point(83, 25);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 74;
@@ -3714,7 +3727,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(74, 58);
+            this.button4.Location = new System.Drawing.Point(83, 54);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 75;
@@ -3727,9 +3740,9 @@
             this.groupBox18.Controls.Add(this.btFirstDay);
             this.groupBox18.Controls.Add(this.rbFirstDayMonday);
             this.groupBox18.Controls.Add(this.rbFirstDaySunday);
-            this.groupBox18.Location = new System.Drawing.Point(254, 80);
+            this.groupBox18.Location = new System.Drawing.Point(254, 68);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(218, 101);
+            this.groupBox18.Size = new System.Drawing.Size(252, 101);
             this.groupBox18.TabIndex = 73;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "First Day Of Week";
@@ -3771,9 +3784,9 @@
             // 
             this.groupBox13.Controls.Add(this.label2);
             this.groupBox13.Controls.Add(this.btDeleteAllData);
-            this.groupBox13.Location = new System.Drawing.Point(254, 204);
+            this.groupBox13.Location = new System.Drawing.Point(31, 362);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(218, 119);
+            this.groupBox13.Size = new System.Drawing.Size(187, 119);
             this.groupBox13.TabIndex = 72;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Delete All Data";
@@ -3781,11 +3794,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 45);
+            this.label2.Location = new System.Drawing.Point(33, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(161, 13);
+            this.label2.Size = new System.Drawing.Size(128, 13);
             this.label2.TabIndex = 19;
-            this.label2.Text = "Delete All Data in the application";
+            this.label2.Text = "Delete All Data in the app";
             // 
             // groupBox9
             // 
@@ -3800,9 +3813,9 @@
             this.groupBox9.Controls.Add(this.tbCustomDataField2_OLD);
             this.groupBox9.Controls.Add(this.btCustomDataField1);
             this.groupBox9.Controls.Add(this.tbCustomDataField1_OLD);
-            this.groupBox9.Location = new System.Drawing.Point(506, 80);
+            this.groupBox9.Location = new System.Drawing.Point(535, 68);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(241, 243);
+            this.groupBox9.Size = new System.Drawing.Size(212, 272);
             this.groupBox9.TabIndex = 68;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Custom Data Field Name";
@@ -3810,7 +3823,7 @@
             // label69
             // 
             this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(45, 157);
+            this.label69.Location = new System.Drawing.Point(28, 177);
             this.label69.Name = "label69";
             this.label69.Size = new System.Drawing.Size(29, 13);
             this.label69.TabIndex = 36;
@@ -3818,14 +3831,14 @@
             // 
             // tbCustomDataField2
             // 
-            this.tbCustomDataField2.Location = new System.Drawing.Point(84, 154);
+            this.tbCustomDataField2.Location = new System.Drawing.Point(67, 174);
             this.tbCustomDataField2.Name = "tbCustomDataField2";
             this.tbCustomDataField2.Size = new System.Drawing.Size(121, 20);
             this.tbCustomDataField2.TabIndex = 35;
             // 
             // tbCustomDataField1
             // 
-            this.tbCustomDataField1.Location = new System.Drawing.Point(84, 77);
+            this.tbCustomDataField1.Location = new System.Drawing.Point(67, 77);
             this.tbCustomDataField1.Name = "tbCustomDataField1";
             this.tbCustomDataField1.Size = new System.Drawing.Size(121, 20);
             this.tbCustomDataField1.TabIndex = 34;
@@ -3833,7 +3846,7 @@
             // label68
             // 
             this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(45, 80);
+            this.label68.Location = new System.Drawing.Point(28, 80);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(29, 13);
             this.label68.TabIndex = 33;
@@ -3842,7 +3855,7 @@
             // label67
             // 
             this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(37, 127);
+            this.label67.Location = new System.Drawing.Point(20, 147);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(41, 13);
             this.label67.TabIndex = 32;
@@ -3851,7 +3864,7 @@
             // label66
             // 
             this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(37, 47);
+            this.label66.Location = new System.Drawing.Point(20, 47);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(41, 13);
             this.label66.TabIndex = 31;
@@ -3860,7 +3873,7 @@
             // label85
             // 
             this.label85.AutoSize = true;
-            this.label85.Location = new System.Drawing.Point(98, 107);
+            this.label85.Location = new System.Drawing.Point(81, 127);
             this.label85.Name = "label85";
             this.label85.Size = new System.Drawing.Size(76, 13);
             this.label85.TabIndex = 30;
@@ -3869,7 +3882,7 @@
             // label84
             // 
             this.label84.AutoSize = true;
-            this.label84.Location = new System.Drawing.Point(98, 28);
+            this.label84.Location = new System.Drawing.Point(81, 28);
             this.label84.Name = "label84";
             this.label84.Size = new System.Drawing.Size(76, 13);
             this.label84.TabIndex = 29;
@@ -3878,14 +3891,14 @@
             // tbCustomDataField2_OLD
             // 
             this.tbCustomDataField2_OLD.Enabled = false;
-            this.tbCustomDataField2_OLD.Location = new System.Drawing.Point(84, 124);
+            this.tbCustomDataField2_OLD.Location = new System.Drawing.Point(67, 144);
             this.tbCustomDataField2_OLD.Name = "tbCustomDataField2_OLD";
             this.tbCustomDataField2_OLD.Size = new System.Drawing.Size(121, 20);
             this.tbCustomDataField2_OLD.TabIndex = 28;
             // 
             // btCustomDataField1
             // 
-            this.btCustomDataField1.Location = new System.Drawing.Point(84, 199);
+            this.btCustomDataField1.Location = new System.Drawing.Point(61, 224);
             this.btCustomDataField1.Name = "btCustomDataField1";
             this.btCustomDataField1.Size = new System.Drawing.Size(75, 23);
             this.btCustomDataField1.TabIndex = 27;
@@ -3896,7 +3909,7 @@
             // tbCustomDataField1_OLD
             // 
             this.tbCustomDataField1_OLD.Enabled = false;
-            this.tbCustomDataField1_OLD.Location = new System.Drawing.Point(84, 44);
+            this.tbCustomDataField1_OLD.Location = new System.Drawing.Point(67, 44);
             this.tbCustomDataField1_OLD.Name = "tbCustomDataField1_OLD";
             this.tbCustomDataField1_OLD.Size = new System.Drawing.Size(121, 20);
             this.tbCustomDataField1_OLD.TabIndex = 2;
@@ -3912,9 +3925,9 @@
             this.groupBox10.Controls.Add(this.label3);
             this.groupBox10.Controls.Add(this.bRenameLogYear);
             this.groupBox10.Controls.Add(this.label24);
-            this.groupBox10.Location = new System.Drawing.Point(31, 80);
+            this.groupBox10.Location = new System.Drawing.Point(31, 68);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(187, 359);
+            this.groupBox10.Size = new System.Drawing.Size(187, 272);
             this.groupBox10.TabIndex = 69;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "LOGS";
@@ -3922,7 +3935,7 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(19, 148);
+            this.label31.Location = new System.Drawing.Point(15, 127);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(83, 13);
             this.label31.TabIndex = 24;
@@ -3932,7 +3945,7 @@
             // 
             this.cbLogYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYear.FormattingEnabled = true;
-            this.cbLogYear.Location = new System.Drawing.Point(22, 167);
+            this.cbLogYear.Location = new System.Drawing.Point(18, 146);
             this.cbLogYear.Name = "cbLogYear";
             this.cbLogYear.Size = new System.Drawing.Size(108, 21);
             this.cbLogYear.TabIndex = 23;
@@ -3940,7 +3953,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 98);
+            this.label3.Location = new System.Drawing.Point(15, 77);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(102, 13);
             this.label3.TabIndex = 0;
@@ -3948,7 +3961,7 @@
             // 
             // bRenameLogYear
             // 
-            this.bRenameLogYear.Location = new System.Drawing.Point(55, 307);
+            this.bRenameLogYear.Location = new System.Drawing.Point(51, 239);
             this.bRenameLogYear.Name = "bRenameLogYear";
             this.bRenameLogYear.Size = new System.Drawing.Size(75, 23);
             this.bRenameLogYear.TabIndex = 4;
@@ -3959,7 +3972,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(19, 49);
+            this.label24.Location = new System.Drawing.Point(15, 28);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(81, 13);
             this.label24.TabIndex = 18;
@@ -4070,6 +4083,453 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
+            // groupBox23
+            // 
+            this.groupBox23.Controls.Add(this.label81);
+            this.groupBox23.Controls.Add(this.tbColorDisplayData);
+            this.groupBox23.Controls.Add(this.comboBox2);
+            this.groupBox23.Controls.Add(this.label76);
+            this.groupBox23.Controls.Add(this.tbColorWeekly);
+            this.groupBox23.Controls.Add(this.comboBox1);
+            this.groupBox23.Controls.Add(this.label70);
+            this.groupBox23.Controls.Add(this.tbColorMaint);
+            this.groupBox23.Controls.Add(this.btSetColors);
+            this.groupBox23.Controls.Add(this.cbMaintColors);
+            this.groupBox23.Location = new System.Drawing.Point(254, 175);
+            this.groupBox23.Name = "groupBox23";
+            this.groupBox23.Size = new System.Drawing.Size(252, 215);
+            this.groupBox23.TabIndex = 78;
+            this.groupBox23.TabStop = false;
+            this.groupBox23.Text = "Grid Colors";
+            // 
+            // cbMaintColors
+            // 
+            this.cbMaintColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMaintColors.FormattingEnabled = true;
+            this.cbMaintColors.Items.AddRange(new object[] {
+            "AliceBlue",
+            "AntiqueWhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "BlanchedAlmond",
+            "BlueViolet",
+            "Brown",
+            "BurlyWood",
+            "CadetBlue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "CornflowerBlue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "DimGray",
+            "DodgerBlue",
+            "Firebrick",
+            "FloralWhite",
+            "ForestGreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "GreenYellow",
+            "Honeydew",
+            "HotPink",
+            "IndianRed",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "LavenderBlush",
+            "LawnGreen",
+            "LemonChiffon",
+            "LightBlue",
+            "LightCoral",
+            "LightCyan",
+            "LightGoldenrodYellow",
+            "LightGray",
+            "LightGreen",
+            "LightPink",
+            "LightSalmon",
+            "LightSeaGreen",
+            "LightSkyBlue",
+            "LightSlateGray",
+            "LightSteelBlue",
+            "LightYellow",
+            "Lime",
+            "LimeGreen",
+            "Linen",
+            "Magenta",
+            "MediumAquamarine",
+            "MediumOrchid",
+            "MediumPurple",
+            "MediumSeaGreen",
+            "MediumSlateBlue",
+            "MediumSpringGreen",
+            "MediumTurquoise",
+            "MintCream",
+            "MistyRose",
+            "Moccasin",
+            "NavajoWhite",
+            "OldLace",
+            "Olive",
+            "OliveDrab",
+            "Orange",
+            "OrangeRed",
+            "Orchid",
+            "PaleGoldenrod",
+            "PaleGreen",
+            "PaleTurquoise",
+            "PaleVioletRed",
+            "PapayaWhip",
+            "PeachPuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "PowderBlue",
+            "Purple",
+            "RebeccaPurple",
+            "Red",
+            "RosyBrown",
+            "RoyalBlue",
+            "SaddleBrown",
+            "Salmon",
+            "SandyBrown",
+            "SeaGreen",
+            "SeaShell",
+            "Sienna",
+            "Silver",
+            "SkyBlue",
+            "SlateBlue",
+            "SlateGray",
+            "Snow",
+            "SpringGreen",
+            "SteelBlue",
+            "Tan",
+            "Thistle",
+            "Tomato",
+            "Transparent",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "WhiteSmoke",
+            "Yellow",
+            "YellowGreen"});
+            this.cbMaintColors.Location = new System.Drawing.Point(21, 37);
+            this.cbMaintColors.Name = "cbMaintColors";
+            this.cbMaintColors.Size = new System.Drawing.Size(111, 21);
+            this.cbMaintColors.TabIndex = 1;
+            this.cbMaintColors.SelectedIndexChanged += new System.EventHandler(this.cbMaintColors_SelectedIndexChanged);
+            // 
+            // btSetColors
+            // 
+            this.btSetColors.Location = new System.Drawing.Point(83, 174);
+            this.btSetColors.Name = "btSetColors";
+            this.btSetColors.Size = new System.Drawing.Size(75, 23);
+            this.btSetColors.TabIndex = 75;
+            this.btSetColors.Text = "Set";
+            this.btSetColors.UseVisualStyleBackColor = true;
+            this.btSetColors.Click += new System.EventHandler(this.btSetColors_Click);
+            // 
+            // tbColorMaint
+            // 
+            this.tbColorMaint.Location = new System.Drawing.Point(168, 38);
+            this.tbColorMaint.Name = "tbColorMaint";
+            this.tbColorMaint.Size = new System.Drawing.Size(42, 20);
+            this.tbColorMaint.TabIndex = 76;
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(18, 21);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(91, 13);
+            this.label70.TabIndex = 77;
+            this.label70.Text = "Maintenance Grid";
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.Location = new System.Drawing.Point(18, 67);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(87, 13);
+            this.label76.TabIndex = 80;
+            this.label76.Text = "Weekly Stat Grid";
+            // 
+            // tbColorWeekly
+            // 
+            this.tbColorWeekly.Location = new System.Drawing.Point(168, 83);
+            this.tbColorWeekly.Name = "tbColorWeekly";
+            this.tbColorWeekly.Size = new System.Drawing.Size(42, 20);
+            this.tbColorWeekly.TabIndex = 79;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "AliceBlue",
+            "AntiqueWhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "BlanchedAlmond",
+            "BlueViolet",
+            "Brown",
+            "BurlyWood",
+            "CadetBlue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "CornflowerBlue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "DimGray",
+            "DodgerBlue",
+            "Firebrick",
+            "FloralWhite",
+            "ForestGreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "GreenYellow",
+            "Honeydew",
+            "HotPink",
+            "IndianRed",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "LavenderBlush",
+            "LawnGreen",
+            "LemonChiffon",
+            "LightBlue",
+            "LightCoral",
+            "LightCyan",
+            "LightGoldenrodYellow",
+            "LightGray",
+            "LightGreen",
+            "LightPink",
+            "LightSalmon",
+            "LightSeaGreen",
+            "LightSkyBlue",
+            "LightSlateGray",
+            "LightSteelBlue",
+            "LightYellow",
+            "Lime",
+            "LimeGreen",
+            "Linen",
+            "Magenta",
+            "MediumAquamarine",
+            "MediumOrchid",
+            "MediumPurple",
+            "MediumSeaGreen",
+            "MediumSlateBlue",
+            "MediumSpringGreen",
+            "MediumTurquoise",
+            "MintCream",
+            "MistyRose",
+            "Moccasin",
+            "NavajoWhite",
+            "OldLace",
+            "Olive",
+            "OliveDrab",
+            "Orange",
+            "OrangeRed",
+            "Orchid",
+            "PaleGoldenrod",
+            "PaleGreen",
+            "PaleTurquoise",
+            "PaleVioletRed",
+            "PapayaWhip",
+            "PeachPuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "PowderBlue",
+            "Purple",
+            "RebeccaPurple",
+            "Red",
+            "RosyBrown",
+            "RoyalBlue",
+            "SaddleBrown",
+            "Salmon",
+            "SandyBrown",
+            "SeaGreen",
+            "SeaShell",
+            "Sienna",
+            "Silver",
+            "SkyBlue",
+            "SlateBlue",
+            "SlateGray",
+            "Snow",
+            "SpringGreen",
+            "SteelBlue",
+            "Tan",
+            "Thistle",
+            "Tomato",
+            "Transparent",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "WhiteSmoke",
+            "Yellow",
+            "YellowGreen"});
+            this.comboBox1.Location = new System.Drawing.Point(21, 82);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(111, 21);
+            this.comboBox1.TabIndex = 78;
+            // 
+            // label81
+            // 
+            this.label81.AutoSize = true;
+            this.label81.Location = new System.Drawing.Point(18, 112);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(89, 13);
+            this.label81.TabIndex = 83;
+            this.label81.Text = "Display Data Grid";
+            // 
+            // tbColorDisplayData
+            // 
+            this.tbColorDisplayData.Location = new System.Drawing.Point(168, 129);
+            this.tbColorDisplayData.Name = "tbColorDisplayData";
+            this.tbColorDisplayData.Size = new System.Drawing.Size(42, 20);
+            this.tbColorDisplayData.TabIndex = 82;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "AliceBlue",
+            "AntiqueWhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "BlanchedAlmond",
+            "BlueViolet",
+            "Brown",
+            "BurlyWood",
+            "CadetBlue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "CornflowerBlue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "DimGray",
+            "DodgerBlue",
+            "Firebrick",
+            "FloralWhite",
+            "ForestGreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "GreenYellow",
+            "Honeydew",
+            "HotPink",
+            "IndianRed",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "LavenderBlush",
+            "LawnGreen",
+            "LemonChiffon",
+            "LightBlue",
+            "LightCoral",
+            "LightCyan",
+            "LightGoldenrodYellow",
+            "LightGray",
+            "LightGreen",
+            "LightPink",
+            "LightSalmon",
+            "LightSeaGreen",
+            "LightSkyBlue",
+            "LightSlateGray",
+            "LightSteelBlue",
+            "LightYellow",
+            "Lime",
+            "LimeGreen",
+            "Linen",
+            "Magenta",
+            "MediumAquamarine",
+            "MediumOrchid",
+            "MediumPurple",
+            "MediumSeaGreen",
+            "MediumSlateBlue",
+            "MediumSpringGreen",
+            "MediumTurquoise",
+            "MintCream",
+            "MistyRose",
+            "Moccasin",
+            "NavajoWhite",
+            "OldLace",
+            "Olive",
+            "OliveDrab",
+            "Orange",
+            "OrangeRed",
+            "Orchid",
+            "PaleGoldenrod",
+            "PaleGreen",
+            "PaleTurquoise",
+            "PaleVioletRed",
+            "PapayaWhip",
+            "PeachPuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "PowderBlue",
+            "Purple",
+            "RebeccaPurple",
+            "Red",
+            "RosyBrown",
+            "RoyalBlue",
+            "SaddleBrown",
+            "Salmon",
+            "SandyBrown",
+            "SeaGreen",
+            "SeaShell",
+            "Sienna",
+            "Silver",
+            "SkyBlue",
+            "SlateBlue",
+            "SlateGray",
+            "Snow",
+            "SpringGreen",
+            "SteelBlue",
+            "Tan",
+            "Thistle",
+            "Tomato",
+            "Transparent",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "WhiteSmoke",
+            "Yellow",
+            "YellowGreen"});
+            this.comboBox2.Location = new System.Drawing.Point(21, 128);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(111, 21);
+            this.comboBox2.TabIndex = 81;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -4140,6 +4600,8 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox23.ResumeLayout(false);
+            this.groupBox23.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4489,6 +4951,17 @@
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.GroupBox groupBox23;
+        private System.Windows.Forms.ComboBox cbMaintColors;
+        private System.Windows.Forms.Button btSetColors;
+        private System.Windows.Forms.TextBox tbColorMaint;
+        private System.Windows.Forms.Label label81;
+        private System.Windows.Forms.TextBox tbColorDisplayData;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label76;
+        private System.Windows.Forms.TextBox tbColorWeekly;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label70;
     }
 }
 
