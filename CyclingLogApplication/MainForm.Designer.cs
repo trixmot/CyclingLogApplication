@@ -390,6 +390,17 @@
             this.tbMaintID = new System.Windows.Forms.TextBox();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label88 = new System.Windows.Forms.Label();
+            this.cbMaintTextColor = new System.Windows.Forms.CheckBox();
+            this.cbWeeklyTextColor = new System.Windows.Forms.CheckBox();
+            this.cbDisplayDataTextColor = new System.Windows.Forms.CheckBox();
+            this.cbBikeTextColor = new System.Windows.Forms.CheckBox();
+            this.cbRouteTextColor = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -3668,6 +3679,17 @@
             // 
             // groupBox23
             // 
+            this.groupBox23.Controls.Add(this.cbRouteTextColor);
+            this.groupBox23.Controls.Add(this.cbBikeTextColor);
+            this.groupBox23.Controls.Add(this.cbDisplayDataTextColor);
+            this.groupBox23.Controls.Add(this.cbWeeklyTextColor);
+            this.groupBox23.Controls.Add(this.cbMaintTextColor);
+            this.groupBox23.Controls.Add(this.label88);
+            this.groupBox23.Controls.Add(this.textBox6);
+            this.groupBox23.Controls.Add(this.textBox5);
+            this.groupBox23.Controls.Add(this.textBox4);
+            this.groupBox23.Controls.Add(this.textBox3);
+            this.groupBox23.Controls.Add(this.textBox2);
             this.groupBox23.Controls.Add(this.cbRoutesColor);
             this.groupBox23.Controls.Add(this.tbRouteColor);
             this.groupBox23.Controls.Add(this.cbRouteColors);
@@ -3684,9 +3706,9 @@
             this.groupBox23.Controls.Add(this.tbColorMaint);
             this.groupBox23.Controls.Add(this.btSetColors);
             this.groupBox23.Controls.Add(this.cbMaintColors);
-            this.groupBox23.Location = new System.Drawing.Point(254, 175);
+            this.groupBox23.Location = new System.Drawing.Point(232, 175);
             this.groupBox23.Name = "groupBox23";
-            this.groupBox23.Size = new System.Drawing.Size(252, 306);
+            this.groupBox23.Size = new System.Drawing.Size(281, 306);
             this.groupBox23.TabIndex = 78;
             this.groupBox23.TabStop = false;
             this.groupBox23.Text = "Grid Colors";
@@ -3702,11 +3724,11 @@
             // 
             // tbRouteColor
             // 
-            this.tbRouteColor.Location = new System.Drawing.Point(165, 214);
+            this.tbRouteColor.Location = new System.Drawing.Point(198, 217);
             this.tbRouteColor.Name = "tbRouteColor";
             this.tbRouteColor.Size = new System.Drawing.Size(65, 20);
             this.tbRouteColor.TabIndex = 88;
-            this.tbRouteColor.Text = "Test String";
+            this.tbRouteColor.Text = "Color Row";
             // 
             // cbRouteColors
             // 
@@ -3720,7 +3742,9 @@
             "Azure",
             "Beige",
             "Bisque",
+            "Black",
             "BlanchedAlmond",
+            "Blue",
             "BlueViolet",
             "Brown",
             "BurlyWood",
@@ -3732,6 +3756,25 @@
             "Cornsilk",
             "Crimson",
             "Cyan",
+            "DarkBlue\t",
+            "DarkCyan\t",
+            "DarkGoldenrod\t",
+            "DarkGray\t",
+            "DarkGreen\t",
+            "DarkKhaki\t",
+            "DarkMagenta\t",
+            "DarkOliveGreen\t",
+            "DarkOrange\t",
+            "DarkOrchid\t",
+            "DarkRed\t",
+            "DarkSalmon\t",
+            "DarkSeaGreen\t",
+            "DarkSlateBlue\t",
+            "DarkSlateGray\t",
+            "DarkTurquoise\t",
+            "DarkViolet\t",
+            "DeepPink\t",
+            "DeepSkyBlue",
             "DimGray",
             "DodgerBlue",
             "Firebrick",
@@ -3747,6 +3790,7 @@
             "Honeydew",
             "HotPink",
             "IndianRed",
+            "Indigo",
             "Ivory",
             "Khaki",
             "Lavender",
@@ -3770,6 +3814,7 @@
             "LimeGreen",
             "Linen",
             "Magenta",
+            "Maroon",
             "MediumAquamarine",
             "MediumOrchid",
             "MediumPurple",
@@ -3802,6 +3847,7 @@
             "Red",
             "RosyBrown",
             "RoyalBlue",
+            "SaddleBrown",
             "Salmon",
             "SandyBrown",
             "SeaGreen",
@@ -3842,11 +3888,11 @@
             // 
             // tbBikeColor
             // 
-            this.tbBikeColor.Location = new System.Drawing.Point(165, 172);
+            this.tbBikeColor.Location = new System.Drawing.Point(198, 175);
             this.tbBikeColor.Name = "tbBikeColor";
             this.tbBikeColor.Size = new System.Drawing.Size(65, 20);
             this.tbBikeColor.TabIndex = 85;
-            this.tbBikeColor.Text = "Test String";
+            this.tbBikeColor.Text = "Color Row";
             // 
             // cbBikeColors
             // 
@@ -3860,7 +3906,9 @@
             "Azure",
             "Beige",
             "Bisque",
+            "Black",
             "BlanchedAlmond",
+            "Blue",
             "BlueViolet",
             "Brown",
             "BurlyWood",
@@ -3872,6 +3920,25 @@
             "Cornsilk",
             "Crimson",
             "Cyan",
+            "DarkBlue\t",
+            "DarkCyan\t",
+            "DarkGoldenrod\t",
+            "DarkGray\t",
+            "DarkGreen\t",
+            "DarkKhaki\t",
+            "DarkMagenta\t",
+            "DarkOliveGreen\t",
+            "DarkOrange\t",
+            "DarkOrchid\t",
+            "DarkRed\t",
+            "DarkSalmon\t",
+            "DarkSeaGreen\t",
+            "DarkSlateBlue\t",
+            "DarkSlateGray\t",
+            "DarkTurquoise\t",
+            "DarkViolet\t",
+            "DeepPink\t",
+            "DeepSkyBlue",
             "DimGray",
             "DodgerBlue",
             "Firebrick",
@@ -3887,6 +3954,7 @@
             "Honeydew",
             "HotPink",
             "IndianRed",
+            "Indigo",
             "Ivory",
             "Khaki",
             "Lavender",
@@ -3910,6 +3978,7 @@
             "LimeGreen",
             "Linen",
             "Magenta",
+            "Maroon",
             "MediumAquamarine",
             "MediumOrchid",
             "MediumPurple",
@@ -3942,6 +4011,7 @@
             "Red",
             "RosyBrown",
             "RoyalBlue",
+            "SaddleBrown",
             "Salmon",
             "SandyBrown",
             "SeaGreen",
@@ -3982,11 +4052,11 @@
             // 
             // tbColorDisplayData
             // 
-            this.tbColorDisplayData.Location = new System.Drawing.Point(163, 129);
+            this.tbColorDisplayData.Location = new System.Drawing.Point(196, 132);
             this.tbColorDisplayData.Name = "tbColorDisplayData";
             this.tbColorDisplayData.Size = new System.Drawing.Size(65, 20);
             this.tbColorDisplayData.TabIndex = 82;
-            this.tbColorDisplayData.Text = "Test String";
+            this.tbColorDisplayData.Text = "Color Row";
             // 
             // cbDisplayDataColors
             // 
@@ -4000,7 +4070,9 @@
             "Azure",
             "Beige",
             "Bisque",
+            "Black",
             "BlanchedAlmond",
+            "Blue",
             "BlueViolet",
             "Brown",
             "BurlyWood",
@@ -4012,6 +4084,25 @@
             "Cornsilk",
             "Crimson",
             "Cyan",
+            "DarkBlue\t",
+            "DarkCyan\t",
+            "DarkGoldenrod\t",
+            "DarkGray\t",
+            "DarkGreen\t",
+            "DarkKhaki\t",
+            "DarkMagenta\t",
+            "DarkOliveGreen\t",
+            "DarkOrange\t",
+            "DarkOrchid\t",
+            "DarkRed\t",
+            "DarkSalmon\t",
+            "DarkSeaGreen\t",
+            "DarkSlateBlue\t",
+            "DarkSlateGray\t",
+            "DarkTurquoise\t",
+            "DarkViolet\t",
+            "DeepPink\t",
+            "DeepSkyBlue",
             "DimGray",
             "DodgerBlue",
             "Firebrick",
@@ -4027,6 +4118,7 @@
             "Honeydew",
             "HotPink",
             "IndianRed",
+            "Indigo",
             "Ivory",
             "Khaki",
             "Lavender",
@@ -4050,6 +4142,7 @@
             "LimeGreen",
             "Linen",
             "Magenta",
+            "Maroon",
             "MediumAquamarine",
             "MediumOrchid",
             "MediumPurple",
@@ -4082,6 +4175,7 @@
             "Red",
             "RosyBrown",
             "RoyalBlue",
+            "SaddleBrown",
             "Salmon",
             "SandyBrown",
             "SeaGreen",
@@ -4122,11 +4216,11 @@
             // 
             // tbColorWeekly
             // 
-            this.tbColorWeekly.Location = new System.Drawing.Point(163, 83);
+            this.tbColorWeekly.Location = new System.Drawing.Point(196, 86);
             this.tbColorWeekly.Name = "tbColorWeekly";
             this.tbColorWeekly.Size = new System.Drawing.Size(65, 20);
             this.tbColorWeekly.TabIndex = 79;
-            this.tbColorWeekly.Text = "Test String";
+            this.tbColorWeekly.Text = "Color Row";
             // 
             // cbWeeklyColors
             // 
@@ -4140,7 +4234,9 @@
             "Azure",
             "Beige",
             "Bisque",
+            "Black",
             "BlanchedAlmond",
+            "Blue",
             "BlueViolet",
             "Brown",
             "BurlyWood",
@@ -4152,6 +4248,25 @@
             "Cornsilk",
             "Crimson",
             "Cyan",
+            "DarkBlue\t",
+            "DarkCyan\t",
+            "DarkGoldenrod\t",
+            "DarkGray\t",
+            "DarkGreen\t",
+            "DarkKhaki\t",
+            "DarkMagenta\t",
+            "DarkOliveGreen\t",
+            "DarkOrange\t",
+            "DarkOrchid\t",
+            "DarkRed\t",
+            "DarkSalmon\t",
+            "DarkSeaGreen\t",
+            "DarkSlateBlue\t",
+            "DarkSlateGray\t",
+            "DarkTurquoise\t",
+            "DarkViolet\t",
+            "DeepPink\t",
+            "DeepSkyBlue",
             "DimGray",
             "DodgerBlue",
             "Firebrick",
@@ -4167,6 +4282,7 @@
             "Honeydew",
             "HotPink",
             "IndianRed",
+            "Indigo",
             "Ivory",
             "Khaki",
             "Lavender",
@@ -4190,6 +4306,7 @@
             "LimeGreen",
             "Linen",
             "Magenta",
+            "Maroon",
             "MediumAquamarine",
             "MediumOrchid",
             "MediumPurple",
@@ -4222,6 +4339,7 @@
             "Red",
             "RosyBrown",
             "RoyalBlue",
+            "SaddleBrown",
             "Salmon",
             "SandyBrown",
             "SeaGreen",
@@ -4262,11 +4380,11 @@
             // 
             // tbColorMaint
             // 
-            this.tbColorMaint.Location = new System.Drawing.Point(163, 38);
+            this.tbColorMaint.Location = new System.Drawing.Point(196, 41);
             this.tbColorMaint.Name = "tbColorMaint";
             this.tbColorMaint.Size = new System.Drawing.Size(65, 20);
             this.tbColorMaint.TabIndex = 76;
-            this.tbColorMaint.Text = "Test String";
+            this.tbColorMaint.Text = "Color Row";
             // 
             // btSetColors
             // 
@@ -4290,7 +4408,9 @@
             "Azure",
             "Beige",
             "Bisque",
+            "Black",
             "BlanchedAlmond",
+            "Blue",
             "BlueViolet",
             "Brown",
             "BurlyWood",
@@ -4302,6 +4422,25 @@
             "Cornsilk",
             "Crimson",
             "Cyan",
+            "DarkBlue\t",
+            "DarkCyan\t",
+            "DarkGoldenrod\t",
+            "DarkGray\t",
+            "DarkGreen\t",
+            "DarkKhaki\t",
+            "DarkMagenta\t",
+            "DarkOliveGreen\t",
+            "DarkOrange\t",
+            "DarkOrchid\t",
+            "DarkRed\t",
+            "DarkSalmon\t",
+            "DarkSeaGreen\t",
+            "DarkSlateBlue\t",
+            "DarkSlateGray\t",
+            "DarkTurquoise\t",
+            "DarkViolet\t",
+            "DeepPink\t",
+            "DeepSkyBlue",
             "DimGray",
             "DodgerBlue",
             "Firebrick",
@@ -4317,6 +4456,7 @@
             "Honeydew",
             "HotPink",
             "IndianRed",
+            "Indigo",
             "Ivory",
             "Khaki",
             "Lavender",
@@ -4340,6 +4480,7 @@
             "LimeGreen",
             "Linen",
             "Magenta",
+            "Maroon",
             "MediumAquamarine",
             "MediumOrchid",
             "MediumPurple",
@@ -4372,6 +4513,7 @@
             "Red",
             "RosyBrown",
             "RoyalBlue",
+            "SaddleBrown",
             "Salmon",
             "SandyBrown",
             "SeaGreen",
@@ -4481,16 +4623,16 @@
             this.groupBox18.Controls.Add(this.btFirstDay);
             this.groupBox18.Controls.Add(this.rbFirstDayMonday);
             this.groupBox18.Controls.Add(this.rbFirstDaySunday);
-            this.groupBox18.Location = new System.Drawing.Point(254, 68);
+            this.groupBox18.Location = new System.Drawing.Point(232, 68);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(252, 101);
+            this.groupBox18.Size = new System.Drawing.Size(281, 101);
             this.groupBox18.TabIndex = 73;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "First Day Of Week";
             // 
             // btFirstDay
             // 
-            this.btFirstDay.Location = new System.Drawing.Point(127, 44);
+            this.btFirstDay.Location = new System.Drawing.Point(163, 44);
             this.btFirstDay.Name = "btFirstDay";
             this.btFirstDay.Size = new System.Drawing.Size(75, 23);
             this.btFirstDay.TabIndex = 28;
@@ -4501,7 +4643,7 @@
             // rbFirstDayMonday
             // 
             this.rbFirstDayMonday.AutoSize = true;
-            this.rbFirstDayMonday.Location = new System.Drawing.Point(32, 60);
+            this.rbFirstDayMonday.Location = new System.Drawing.Point(48, 60);
             this.rbFirstDayMonday.Name = "rbFirstDayMonday";
             this.rbFirstDayMonday.Size = new System.Drawing.Size(63, 17);
             this.rbFirstDayMonday.TabIndex = 27;
@@ -4512,7 +4654,7 @@
             // rbFirstDaySunday
             // 
             this.rbFirstDaySunday.AutoSize = true;
-            this.rbFirstDaySunday.Location = new System.Drawing.Point(32, 37);
+            this.rbFirstDaySunday.Location = new System.Drawing.Point(48, 37);
             this.rbFirstDaySunday.Name = "rbFirstDaySunday";
             this.rbFirstDaySunday.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.rbFirstDaySunday.Size = new System.Drawing.Size(61, 17);
@@ -4823,6 +4965,100 @@
             this.label1.Size = new System.Drawing.Size(287, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(196, 24);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(65, 20);
+            this.textBox2.TabIndex = 90;
+            this.textBox2.Text = "White Row";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(196, 67);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(65, 20);
+            this.textBox3.TabIndex = 91;
+            this.textBox3.Text = "White Row";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(196, 112);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(65, 20);
+            this.textBox4.TabIndex = 92;
+            this.textBox4.Text = "White Row";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(198, 158);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(65, 20);
+            this.textBox5.TabIndex = 93;
+            this.textBox5.Text = "White Row";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(198, 200);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(65, 20);
+            this.textBox6.TabIndex = 94;
+            this.textBox6.Text = "White Row";
+            // 
+            // label88
+            // 
+            this.label88.AutoSize = true;
+            this.label88.Location = new System.Drawing.Point(141, 16);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(58, 13);
+            this.label88.TabIndex = 95;
+            this.label88.Text = "Text Black";
+            // 
+            // cbMaintTextColor
+            // 
+            this.cbMaintTextColor.AutoSize = true;
+            this.cbMaintTextColor.Location = new System.Drawing.Point(163, 42);
+            this.cbMaintTextColor.Name = "cbMaintTextColor";
+            this.cbMaintTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbMaintTextColor.TabIndex = 96;
+            this.cbMaintTextColor.UseVisualStyleBackColor = true;
+            // 
+            // cbWeeklyTextColor
+            // 
+            this.cbWeeklyTextColor.AutoSize = true;
+            this.cbWeeklyTextColor.Location = new System.Drawing.Point(163, 85);
+            this.cbWeeklyTextColor.Name = "cbWeeklyTextColor";
+            this.cbWeeklyTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbWeeklyTextColor.TabIndex = 97;
+            this.cbWeeklyTextColor.UseVisualStyleBackColor = true;
+            // 
+            // cbDisplayDataTextColor
+            // 
+            this.cbDisplayDataTextColor.AutoSize = true;
+            this.cbDisplayDataTextColor.Location = new System.Drawing.Point(163, 132);
+            this.cbDisplayDataTextColor.Name = "cbDisplayDataTextColor";
+            this.cbDisplayDataTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbDisplayDataTextColor.TabIndex = 98;
+            this.cbDisplayDataTextColor.UseVisualStyleBackColor = true;
+            // 
+            // cbBikeTextColor
+            // 
+            this.cbBikeTextColor.AutoSize = true;
+            this.cbBikeTextColor.Location = new System.Drawing.Point(165, 174);
+            this.cbBikeTextColor.Name = "cbBikeTextColor";
+            this.cbBikeTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbBikeTextColor.TabIndex = 99;
+            this.cbBikeTextColor.UseVisualStyleBackColor = true;
+            // 
+            // cbRouteTextColor
+            // 
+            this.cbRouteTextColor.AutoSize = true;
+            this.cbRouteTextColor.Location = new System.Drawing.Point(165, 217);
+            this.cbRouteTextColor.Name = "cbRouteTextColor";
+            this.cbRouteTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbRouteTextColor.TabIndex = 100;
+            this.cbRouteTextColor.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -5262,6 +5498,17 @@
         private System.Windows.Forms.Label cbBikesColor;
         private System.Windows.Forms.TextBox tbBikeColor;
         private System.Windows.Forms.ComboBox cbBikeColors;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label88;
+        private System.Windows.Forms.CheckBox cbRouteTextColor;
+        private System.Windows.Forms.CheckBox cbBikeTextColor;
+        private System.Windows.Forms.CheckBox cbDisplayDataTextColor;
+        private System.Windows.Forms.CheckBox cbWeeklyTextColor;
+        private System.Windows.Forms.CheckBox cbMaintTextColor;
     }
 }
 

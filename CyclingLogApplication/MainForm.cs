@@ -53,6 +53,12 @@ namespace CyclingLogApplication
         private static string gridBikeColor;
         private static string gridRouteColor;
 
+        private static string gridMaintTextColor;
+        private static string gridWeeklyTextColor;
+        private static string gridDisplayTextColor;
+        private static string gridBikeTextColor;
+        private static string gridRouteTextColor;
+
         private static Dictionary<string, string> fieldNameDict = new Dictionary<string, string>();
         private static List<string> fieldNamesList = new List<string>();
 
@@ -301,6 +307,12 @@ namespace CyclingLogApplication
                 RefreshRoutes();
                 RefreshBikes();
 
+                cbMaintTextColor.Checked = Boolean.Parse(GetTextMaint());
+                cbWeeklyTextColor.Checked = Boolean.Parse(GetTextWeekly());
+                cbDisplayDataTextColor.Checked = Boolean.Parse(GetTextDisplay());
+                cbBikeTextColor.Checked = Boolean.Parse(GetTextBike());
+                cbRouteTextColor.Checked = Boolean.Parse(GetTextRoute());
+
                 int currentYear = DateTime.Now.Year;
                 //cbLogYear
                 for (int i = 2010; i <= currentYear; i++)
@@ -390,6 +402,55 @@ namespace CyclingLogApplication
         //        mutex.ReleaseMutex();
         //    base.Dispose(disposing);
         //}
+        public static void SetTextMaint(string text)
+        {
+            gridMaintTextColor = text;
+        }
+
+        public static void SetTextWeekly(string text)
+        {
+            gridWeeklyTextColor = text;
+        }
+
+        public static void SetTextDisplay(string text)
+        {
+            gridDisplayTextColor = text;
+        }
+
+        public static void SetTextBike(string text)
+        {
+            gridBikeTextColor = text;
+        }
+
+        public static void SetTextRoute(string text)
+        {
+            gridRouteTextColor = text;
+        }
+
+        public static string GetTextMaint()
+        {
+            return gridMaintTextColor;
+        }
+
+        public static string GetTextWeekly()
+        {
+            return gridWeeklyTextColor;
+        }
+
+        public static string GetTextDisplay()
+        {
+            return gridDisplayTextColor;
+        }
+
+        public static string GetTextBike()
+        {
+            return gridBikeTextColor;
+        }
+
+        public static string GetTextRoute()
+        {
+            return gridRouteTextColor;
+        }
 
         public static void SetMaintColor(string color)
         {
@@ -5062,8 +5123,18 @@ namespace CyclingLogApplication
 
                 for (int i = 0; i < routeList.Count; i++)
                 {
+                   
                     count = GetRouteCount(routeList[i]);
                     this.dataGridViewRoutes.Rows.Add(routeList[i], count);
+                    if (i % 2 == 0)
+                    {
+                        //is even
+                    }
+                    else
+                    {
+                        //is odd
+                        this.dataGridViewRoutes.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    }
                 }
 
                 dataGridViewRoutes.Refresh();
