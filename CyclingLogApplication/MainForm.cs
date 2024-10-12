@@ -5964,5 +5964,15 @@ namespace CyclingLogApplication
         {
             tbColorDisplayData.BackColor = Color.FromName(cbDisplayDataColors.SelectedItem.ToString());
         }
+
+        private void cbBikeColors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbBikeColor.BackColor = Color.FromName(cbBikeColors.SelectedItem.ToString());
+        }
+
+        private void cbRouteColors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbRouteColor.BackColor = Color.FromName(cbRouteColors.SelectedItem.ToString());
+        }
     }
 }

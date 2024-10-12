@@ -4686,6 +4686,7 @@
             this.cbBikeColors.Name = "cbBikeColors";
             this.cbBikeColors.Size = new System.Drawing.Size(111, 21);
             this.cbBikeColors.TabIndex = 84;
+            this.cbBikeColors.SelectedIndexChanged += new System.EventHandler(this.cbBikeColors_SelectedIndexChanged);
             // 
             // cbRoutesColor
             // 
@@ -4826,6 +4827,7 @@
             this.cbRouteColors.Name = "cbRouteColors";
             this.cbRouteColors.Size = new System.Drawing.Size(111, 21);
             this.cbRouteColors.TabIndex = 87;
+            this.cbRouteColors.SelectedIndexChanged += new System.EventHandler(this.cbRouteColors_SelectedIndexChanged);
             // 
             // MainForm
             // 
