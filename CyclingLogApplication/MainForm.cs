@@ -5057,7 +5057,8 @@ namespace CyclingLogApplication
                 dataGridViewRoutes.ColumnHeadersHeight = 40;
                 dataGridViewRoutes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
                 dataGridViewRoutes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetRouteColor());
-                dataGridViewRoutes.Refresh();
+                
+                this.dataGridViewRoutes.Rows.Clear();
 
                 for (int i = 0; i < routeList.Count; i++)
                 {
@@ -5065,6 +5066,7 @@ namespace CyclingLogApplication
                     this.dataGridViewRoutes.Rows.Add(routeList[i], count);
                 }
 
+                dataGridViewRoutes.Refresh();
                 tbTotalRoutes.Text = routeList.Count.ToString("N0");
             }
             catch (Exception ex)
@@ -5123,6 +5125,16 @@ namespace CyclingLogApplication
                 dataGridViewBikes.ColumnHeadersHeight = 40;
                 dataGridViewBikes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
                 dataGridViewBikes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetBikeColor());
+
+                int bikeCount = bikeList.Count;
+                int height = 355;
+                int heightNew = (bikeCount * 25) + 25;
+                if (heightNew < height)
+                {
+                    height = heightNew;
+                }
+                Size startingSize = new Size(467, height);
+                dataGridViewBikes.Size = startingSize;
                 dataGridViewBikes.Refresh();
 
                 for (int i = 0; i < bikeList.Count; i++)

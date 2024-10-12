@@ -387,87 +387,87 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(checkedItemNode4);
 
                     XmlNode checkedItemNode5= xmlDoc.CreateElement("CHECKEDLISTBOXNAME5");
-                    checkedItemNode5.InnerText = "Ride Type";
+                    checkedItemNode5.InnerText = "Route";
                     rootNode.AppendChild(checkedItemNode5);
 
                     XmlNode checkedItemNode6 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME6");
-                    checkedItemNode6.InnerText = "Wind";
+                    checkedItemNode6.InnerText = "Total Ascent";
                     rootNode.AppendChild(checkedItemNode6);
 
                     XmlNode checkedItemNode7 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME7");
-                    checkedItemNode7.InnerText = "Temperature";
+                    checkedItemNode7.InnerText = "Avg Cadence";
                     rootNode.AppendChild(checkedItemNode7);
 
                     XmlNode checkedItemNode8 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME8");
-                    checkedItemNode8.InnerText = "Avg Cadence";
+                    checkedItemNode8.InnerText = "Avg Heart Rate";
                     rootNode.AppendChild(checkedItemNode8);
 
                     XmlNode checkedItemNode9 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME9");
-                    checkedItemNode9.InnerText = "Max Cadence";
+                    checkedItemNode9.InnerText = "Comments";
                     rootNode.AppendChild(checkedItemNode9);
 
                     XmlNode checkedItemNode10 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME10");
-                    checkedItemNode10.InnerText = "Avg Heart Rate";
+                    checkedItemNode10.InnerText = "Calories";
                     rootNode.AppendChild(checkedItemNode10);
 
                     XmlNode checkedItemNode11 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME11");
-                    checkedItemNode11.InnerText = "Max Heart Rate";
+                    checkedItemNode11.InnerText = "Ride Type";
                     rootNode.AppendChild(checkedItemNode11);
 
                     XmlNode checkedItemNode12 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME12");
-                    checkedItemNode12.InnerText = "Calories";
+                    checkedItemNode12.InnerText = "Effort";
                     rootNode.AppendChild(checkedItemNode12);
 
                     XmlNode checkedItemNode13 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME13");
-                    checkedItemNode13.InnerText = "Total Ascent";
+                    checkedItemNode13.InnerText = "Comfort";
                     rootNode.AppendChild(checkedItemNode13);
 
                     XmlNode checkedItemNode14 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME14");
-                    checkedItemNode14.InnerText = "Total Descent";
+                    checkedItemNode14.InnerText = "Wind";
                     rootNode.AppendChild(checkedItemNode14);
 
                     XmlNode checkedItemNode15 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME15");
-                    checkedItemNode15.InnerText = "Route";
+                    checkedItemNode15.InnerText = "Temperature";
                     rootNode.AppendChild(checkedItemNode15);
 
                     XmlNode checkedItemNode16 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME16");
-                    checkedItemNode16.InnerText = "Location";
+                    checkedItemNode16.InnerText = "Wind Chill";
                     rootNode.AppendChild(checkedItemNode16);
 
                     XmlNode checkedItemNode17 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME17");
-                    checkedItemNode17.InnerText = "Comments";
+                    checkedItemNode17.InnerText = "Location";
                     rootNode.AppendChild(checkedItemNode17);
 
                     XmlNode checkedItemNode18 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME18");
-                    checkedItemNode18.InnerText = "Effort";
+                    checkedItemNode18.InnerText = "Total Descent";
                     rootNode.AppendChild(checkedItemNode18);
 
                     XmlNode checkedItemNode19 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME19");
-                    checkedItemNode19.InnerText = "Max Speed";
+                    checkedItemNode19.InnerText = "Max Cadence";
                     rootNode.AppendChild(checkedItemNode19);
 
                     XmlNode checkedItemNode20 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME20");
-                    checkedItemNode20.InnerText = "Avg Power";
+                    checkedItemNode20.InnerText = "Max Heart Rate";
                     rootNode.AppendChild(checkedItemNode20);
 
                     XmlNode checkedItemNode21 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME21");
-                    checkedItemNode21.InnerText = "Max Power";
+                    checkedItemNode21.InnerText = "Max Speed";
                     rootNode.AppendChild(checkedItemNode21);
 
                     XmlNode checkedItemNode22 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME22");
-                    checkedItemNode22.InnerText = "Comfort";
+                    checkedItemNode22.InnerText = "Avg Power";
                     rootNode.AppendChild(checkedItemNode22);
 
                     XmlNode checkedItemNode23 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME23");
-                    checkedItemNode23.InnerText = "Custom1";
+                    checkedItemNode23.InnerText = "Max Power";
                     rootNode.AppendChild(checkedItemNode23);
 
                     XmlNode checkedItemNode24 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME24");
-                    checkedItemNode24.InnerText = "Custom2";
+                    checkedItemNode24.InnerText = "Custom1";
                     rootNode.AppendChild(checkedItemNode24);
 
                     XmlNode checkedItemNode25 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME25");
-                    checkedItemNode25.InnerText = "Wind Chill";
+                    checkedItemNode25.InnerText = "Custom2";
                     rootNode.AppendChild(checkedItemNode25);
                     //**********************************************************************
                     XmlNode checkedItemNodeCHECK0 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK0");
@@ -499,11 +499,11 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(checkedItemNodeCHECK6);
 
                     XmlNode checkedItemNodeCHECK7 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK7");
-                    checkedItemNodeCHECK7.InnerText = "False";
+                    checkedItemNodeCHECK7.InnerText = "True";
                     rootNode.AppendChild(checkedItemNodeCHECK7);
 
                     XmlNode checkedItemNodeCHECK8 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK8");
-                    checkedItemNodeCHECK8.InnerText = "False";
+                    checkedItemNodeCHECK8.InnerText = "True";
                     rootNode.AppendChild(checkedItemNodeCHECK8);
 
                     XmlNode checkedItemNodeCHECK9 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK9");

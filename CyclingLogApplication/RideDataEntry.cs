@@ -1324,8 +1324,9 @@ namespace CyclingLogApplication
 
         private void CbLogYearDataEntry_SelectedIndexChanged(object sender, EventArgs e)
         {
-            using (MainForm mainForm = new MainForm(""))
-            {
+            //MainForm mainForm = new MainForm("")
+            //using (MainForm mainForm = new MainForm(""))
+            //{
                 MainForm.SetLastLogSelected(cbLogYearDataEntry.SelectedIndex);
                 if (cbLogYearDataEntry.SelectedIndex == -1)
                 {
@@ -1369,7 +1370,7 @@ namespace CyclingLogApplication
                     }
                     
                 }
-            }
+            //}
         }
 
         private void DtpRideDate_ValueChanged(object sender, EventArgs e)
@@ -1955,7 +1956,7 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to retrive ride data." + ex.Message.ToString());
+                Logger.LogError("[ERROR]: RideDisplayDataQuery: Exception while trying to retrive ride data. " + ex.Message.ToString());
             }
 
             //this.cbBikeDataEntrySelection.SelectedIndex = cbBikeDataEntrySelection.Items.IndexOf(GetBike());

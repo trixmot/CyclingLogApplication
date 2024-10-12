@@ -255,9 +255,9 @@
             // 
             // tbRecordID
             // 
-            this.tbRecordID.Enabled = false;
             this.tbRecordID.Location = new System.Drawing.Point(150, 112);
             this.tbRecordID.Name = "tbRecordID";
+            this.tbRecordID.ReadOnly = true;
             this.tbRecordID.Size = new System.Drawing.Size(41, 20);
             this.tbRecordID.TabIndex = 9;
             // 
