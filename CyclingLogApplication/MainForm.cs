@@ -50,6 +50,8 @@ namespace CyclingLogApplication
         private static string gridMaintColor;
         private static string gridWeeklyColor;
         private static string gridDisplayDataColor;
+        private static string gridBikeColor;
+        private static string gridRouteColor;
 
         private static Dictionary<string, string> fieldNameDict = new Dictionary<string, string>();
         private static List<string> fieldNamesList = new List<string>();
@@ -312,6 +314,8 @@ namespace CyclingLogApplication
                 cbMaintColors.SelectedIndex = cbMaintColors.FindStringExact(gridMaintColor);
                 cbWeeklyColors.SelectedIndex = cbWeeklyColors.FindStringExact(gridWeeklyColor);
                 cbDisplayDataColors.SelectedIndex = cbDisplayDataColors.FindStringExact(gridDisplayDataColor);
+                cbBikeColors.SelectedIndex = cbBikeColors.FindStringExact(gridBikeColor);
+                cbRouteColors.SelectedIndex = cbRouteColors.FindStringExact(gridRouteColor);
                 formloading = false;
 
             }
@@ -415,6 +419,26 @@ namespace CyclingLogApplication
         public static string GetDisplayDataColor()
         {
             return gridDisplayDataColor;
+        }
+
+        public static void SetBikeColor(string color)
+        {
+            gridBikeColor = color;
+        }
+
+        public static string GetBikeColor()
+        {
+            return gridBikeColor;
+        }
+
+        public static void SetRouteColor(string color)
+        {
+            gridRouteColor = color;
+        }
+
+        public static string GetRouteColor()
+        {
+            return gridRouteColor;
         }
 
         public static void SetHeightCLB(int heightCLBInt)
@@ -5010,7 +5034,7 @@ namespace CyclingLogApplication
                 dataGridViewRoutes.Columns[0].Name = "Route Name";
                 dataGridViewRoutes.Columns[1].ValueType = typeof(int);
                 dataGridViewRoutes.Columns[0].ValueType = typeof(string);
-                dataGridViewRoutes.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
+                dataGridViewRoutes.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 dataGridViewRoutes.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
                 dataGridViewRoutes.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dataGridViewRoutes.ReadOnly = true;
@@ -5032,6 +5056,8 @@ namespace CyclingLogApplication
                 dataGridViewRoutes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
                 dataGridViewRoutes.ColumnHeadersHeight = 40;
                 dataGridViewRoutes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                dataGridViewRoutes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetRouteColor());
+                dataGridViewRoutes.Refresh();
 
                 for (int i = 0; i < routeList.Count; i++)
                 {
@@ -5072,7 +5098,7 @@ namespace CyclingLogApplication
                 dataGridViewBikes.Columns[0].ValueType = typeof(int);
                 dataGridViewBikes.Columns[0].ValueType = typeof(double);
                 dataGridViewBikes.Columns[0].ValueType = typeof(double);
-                dataGridViewBikes.ColumnHeadersDefaultCellStyle.BackColor = Color.LightBlue;
+                dataGridViewBikes.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 dataGridViewBikes.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
                 dataGridViewBikes.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dataGridViewBikes.ReadOnly = true;
@@ -5096,6 +5122,8 @@ namespace CyclingLogApplication
                 dataGridViewBikes.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
                 dataGridViewBikes.ColumnHeadersHeight = 40;
                 dataGridViewBikes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                dataGridViewBikes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetBikeColor());
+                dataGridViewBikes.Refresh();
 
                 for (int i = 0; i < bikeList.Count; i++)
                 {
@@ -5910,6 +5938,16 @@ namespace CyclingLogApplication
 
             //Display Data Grid:
             SetDisplayDataColor(cbDisplayDataColors.SelectedItem.ToString());
+
+            //Bike Grid:
+            SetBikeColor(cbBikeColors.SelectedItem.ToString());
+            dataGridViewBikes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetBikeColor());
+            dataGridViewBikes.Refresh();
+
+            //Route Grid:
+            SetRouteColor(cbRouteColors.SelectedItem.ToString());
+            dataGridViewRoutes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetRouteColor());
+            dataGridViewRoutes.Refresh();
         }
 
         private void cbMaintColors_SelectedIndexChanged(object sender, EventArgs e)

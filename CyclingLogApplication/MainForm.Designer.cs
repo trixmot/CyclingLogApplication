@@ -384,6 +384,12 @@
             this.label81 = new System.Windows.Forms.Label();
             this.tbColorDisplayData = new System.Windows.Forms.TextBox();
             this.cbDisplayDataColors = new System.Windows.Forms.ComboBox();
+            this.cbBikesColor = new System.Windows.Forms.Label();
+            this.tbBikeColor = new System.Windows.Forms.TextBox();
+            this.cbBikeColors = new System.Windows.Forms.ComboBox();
+            this.cbRoutesColor = new System.Windows.Forms.Label();
+            this.tbRouteColor = new System.Windows.Forms.TextBox();
+            this.cbRouteColors = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -3665,9 +3671,9 @@
             this.groupBox22.Controls.Add(this.btHideShowIDColumn);
             this.groupBox22.Controls.Add(this.rbHideIDColumn);
             this.groupBox22.Controls.Add(this.rbShowIDColumn);
-            this.groupBox22.Location = new System.Drawing.Point(535, 381);
+            this.groupBox22.Location = new System.Drawing.Point(535, 330);
             this.groupBox22.Name = "groupBox22";
-            this.groupBox22.Size = new System.Drawing.Size(212, 100);
+            this.groupBox22.Size = new System.Drawing.Size(212, 85);
             this.groupBox22.TabIndex = 77;
             this.groupBox22.TabStop = false;
             this.groupBox22.Text = "Ride Display ID Column";
@@ -3685,7 +3691,7 @@
             // rbHideIDColumn
             // 
             this.rbHideIDColumn.AutoSize = true;
-            this.rbHideIDColumn.Location = new System.Drawing.Point(29, 61);
+            this.rbHideIDColumn.Location = new System.Drawing.Point(29, 55);
             this.rbHideIDColumn.Name = "rbHideIDColumn";
             this.rbHideIDColumn.Size = new System.Drawing.Size(47, 17);
             this.rbHideIDColumn.TabIndex = 1;
@@ -3696,7 +3702,7 @@
             // rbShowIDColumn
             // 
             this.rbShowIDColumn.AutoSize = true;
-            this.rbShowIDColumn.Location = new System.Drawing.Point(29, 38);
+            this.rbShowIDColumn.Location = new System.Drawing.Point(29, 32);
             this.rbShowIDColumn.Name = "rbShowIDColumn";
             this.rbShowIDColumn.Size = new System.Drawing.Size(52, 17);
             this.rbShowIDColumn.TabIndex = 0;
@@ -3708,16 +3714,16 @@
             // 
             this.groupBox20.Controls.Add(this.button3);
             this.groupBox20.Controls.Add(this.button4);
-            this.groupBox20.Location = new System.Drawing.Point(254, 396);
+            this.groupBox20.Location = new System.Drawing.Point(535, 423);
             this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(252, 85);
+            this.groupBox20.Size = new System.Drawing.Size(212, 64);
             this.groupBox20.TabIndex = 76;
             this.groupBox20.TabStop = false;
             this.groupBox20.Text = "Backup Database";
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(83, 25);
+            this.button3.Location = new System.Drawing.Point(29, 27);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 74;
@@ -3727,7 +3733,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(83, 54);
+            this.button4.Location = new System.Drawing.Point(113, 27);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 75;
@@ -3815,7 +3821,7 @@
             this.groupBox9.Controls.Add(this.tbCustomDataField1_OLD);
             this.groupBox9.Location = new System.Drawing.Point(535, 68);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(212, 272);
+            this.groupBox9.Size = new System.Drawing.Size(212, 256);
             this.groupBox9.TabIndex = 68;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Custom Data Field Name";
@@ -3898,7 +3904,7 @@
             // 
             // btCustomDataField1
             // 
-            this.btCustomDataField1.Location = new System.Drawing.Point(61, 224);
+            this.btCustomDataField1.Location = new System.Drawing.Point(67, 219);
             this.btCustomDataField1.Name = "btCustomDataField1";
             this.btCustomDataField1.Size = new System.Drawing.Size(75, 23);
             this.btCustomDataField1.TabIndex = 27;
@@ -4085,6 +4091,12 @@
             // 
             // groupBox23
             // 
+            this.groupBox23.Controls.Add(this.cbRoutesColor);
+            this.groupBox23.Controls.Add(this.tbRouteColor);
+            this.groupBox23.Controls.Add(this.cbRouteColors);
+            this.groupBox23.Controls.Add(this.cbBikesColor);
+            this.groupBox23.Controls.Add(this.tbBikeColor);
+            this.groupBox23.Controls.Add(this.cbBikeColors);
             this.groupBox23.Controls.Add(this.label81);
             this.groupBox23.Controls.Add(this.tbColorDisplayData);
             this.groupBox23.Controls.Add(this.cbDisplayDataColors);
@@ -4097,7 +4109,7 @@
             this.groupBox23.Controls.Add(this.cbMaintColors);
             this.groupBox23.Location = new System.Drawing.Point(254, 175);
             this.groupBox23.Name = "groupBox23";
-            this.groupBox23.Size = new System.Drawing.Size(252, 215);
+            this.groupBox23.Size = new System.Drawing.Size(252, 306);
             this.groupBox23.TabIndex = 78;
             this.groupBox23.TabStop = false;
             this.groupBox23.Text = "Grid Colors";
@@ -4228,7 +4240,7 @@
             // 
             // btSetColors
             // 
-            this.btSetColors.Location = new System.Drawing.Point(83, 174);
+            this.btSetColors.Location = new System.Drawing.Point(83, 266);
             this.btSetColors.Name = "btSetColors";
             this.btSetColors.Size = new System.Drawing.Size(75, 23);
             this.btSetColors.TabIndex = 75;
@@ -4534,6 +4546,286 @@
             this.cbDisplayDataColors.Size = new System.Drawing.Size(111, 21);
             this.cbDisplayDataColors.TabIndex = 81;
             this.cbDisplayDataColors.SelectedIndexChanged += new System.EventHandler(this.cbDisplayDataColors_SelectedIndexChanged);
+            // 
+            // cbBikesColor
+            // 
+            this.cbBikesColor.AutoSize = true;
+            this.cbBikesColor.Location = new System.Drawing.Point(18, 155);
+            this.cbBikesColor.Name = "cbBikesColor";
+            this.cbBikesColor.Size = new System.Drawing.Size(55, 13);
+            this.cbBikesColor.TabIndex = 86;
+            this.cbBikesColor.Text = "Bikes Grid";
+            // 
+            // tbBikeColor
+            // 
+            this.tbBikeColor.Location = new System.Drawing.Point(165, 172);
+            this.tbBikeColor.Name = "tbBikeColor";
+            this.tbBikeColor.Size = new System.Drawing.Size(65, 20);
+            this.tbBikeColor.TabIndex = 85;
+            this.tbBikeColor.Text = "Test String";
+            // 
+            // cbBikeColors
+            // 
+            this.cbBikeColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBikeColors.FormattingEnabled = true;
+            this.cbBikeColors.Items.AddRange(new object[] {
+            "AliceBlue",
+            "AntiqueWhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "BlanchedAlmond",
+            "BlueViolet",
+            "Brown",
+            "BurlyWood",
+            "CadetBlue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "CornflowerBlue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "DimGray",
+            "DodgerBlue",
+            "Firebrick",
+            "FloralWhite",
+            "ForestGreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "GreenYellow",
+            "Honeydew",
+            "HotPink",
+            "IndianRed",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "LavenderBlush",
+            "LawnGreen",
+            "LemonChiffon",
+            "LightBlue",
+            "LightCoral",
+            "LightCyan",
+            "LightGoldenrodYellow",
+            "LightGray",
+            "LightGreen",
+            "LightPink",
+            "LightSalmon",
+            "LightSeaGreen",
+            "LightSkyBlue",
+            "LightSlateGray",
+            "LightSteelBlue",
+            "LightYellow",
+            "Lime",
+            "LimeGreen",
+            "Linen",
+            "Magenta",
+            "MediumAquamarine",
+            "MediumOrchid",
+            "MediumPurple",
+            "MediumSeaGreen",
+            "MediumSlateBlue",
+            "MediumSpringGreen",
+            "MediumTurquoise",
+            "MintCream",
+            "MistyRose",
+            "Moccasin",
+            "NavajoWhite",
+            "OldLace",
+            "Olive",
+            "OliveDrab",
+            "Orange",
+            "OrangeRed",
+            "Orchid",
+            "PaleGoldenrod",
+            "PaleGreen",
+            "PaleTurquoise",
+            "PaleVioletRed",
+            "PapayaWhip",
+            "PeachPuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "PowderBlue",
+            "Purple",
+            "RebeccaPurple",
+            "Red",
+            "RosyBrown",
+            "RoyalBlue",
+            "SaddleBrown",
+            "Salmon",
+            "SandyBrown",
+            "SeaGreen",
+            "SeaShell",
+            "Sienna",
+            "Silver",
+            "SkyBlue",
+            "SlateBlue",
+            "SlateGray",
+            "Snow",
+            "SpringGreen",
+            "SteelBlue",
+            "Tan",
+            "Thistle",
+            "Tomato",
+            "Transparent",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "WhiteSmoke",
+            "Yellow",
+            "YellowGreen"});
+            this.cbBikeColors.Location = new System.Drawing.Point(23, 171);
+            this.cbBikeColors.Name = "cbBikeColors";
+            this.cbBikeColors.Size = new System.Drawing.Size(111, 21);
+            this.cbBikeColors.TabIndex = 84;
+            // 
+            // cbRoutesColor
+            // 
+            this.cbRoutesColor.AutoSize = true;
+            this.cbRoutesColor.Location = new System.Drawing.Point(20, 197);
+            this.cbRoutesColor.Name = "cbRoutesColor";
+            this.cbRoutesColor.Size = new System.Drawing.Size(63, 13);
+            this.cbRoutesColor.TabIndex = 89;
+            this.cbRoutesColor.Text = "Routes Grid";
+            // 
+            // tbRouteColor
+            // 
+            this.tbRouteColor.Location = new System.Drawing.Point(165, 214);
+            this.tbRouteColor.Name = "tbRouteColor";
+            this.tbRouteColor.Size = new System.Drawing.Size(65, 20);
+            this.tbRouteColor.TabIndex = 88;
+            this.tbRouteColor.Text = "Test String";
+            // 
+            // cbRouteColors
+            // 
+            this.cbRouteColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRouteColors.FormattingEnabled = true;
+            this.cbRouteColors.Items.AddRange(new object[] {
+            "AliceBlue",
+            "AntiqueWhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "BlanchedAlmond",
+            "BlueViolet",
+            "Brown",
+            "BurlyWood",
+            "CadetBlue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "CornflowerBlue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "DimGray",
+            "DodgerBlue",
+            "Firebrick",
+            "FloralWhite",
+            "ForestGreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "GreenYellow",
+            "Honeydew",
+            "HotPink",
+            "IndianRed",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "LavenderBlush",
+            "LawnGreen",
+            "LemonChiffon",
+            "LightBlue",
+            "LightCoral",
+            "LightCyan",
+            "LightGoldenrodYellow",
+            "LightGray",
+            "LightGreen",
+            "LightPink",
+            "LightSalmon",
+            "LightSeaGreen",
+            "LightSkyBlue",
+            "LightSlateGray",
+            "LightSteelBlue",
+            "LightYellow",
+            "Lime",
+            "LimeGreen",
+            "Linen",
+            "Magenta",
+            "MediumAquamarine",
+            "MediumOrchid",
+            "MediumPurple",
+            "MediumSeaGreen",
+            "MediumSlateBlue",
+            "MediumSpringGreen",
+            "MediumTurquoise",
+            "MintCream",
+            "MistyRose",
+            "Moccasin",
+            "NavajoWhite",
+            "OldLace",
+            "Olive",
+            "OliveDrab",
+            "Orange",
+            "OrangeRed",
+            "Orchid",
+            "PaleGoldenrod",
+            "PaleGreen",
+            "PaleTurquoise",
+            "PaleVioletRed",
+            "PapayaWhip",
+            "PeachPuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "PowderBlue",
+            "Purple",
+            "RebeccaPurple",
+            "Red",
+            "RosyBrown",
+            "RoyalBlue",
+            "SaddleBrown",
+            "Salmon",
+            "SandyBrown",
+            "SeaGreen",
+            "SeaShell",
+            "Sienna",
+            "Silver",
+            "SkyBlue",
+            "SlateBlue",
+            "SlateGray",
+            "Snow",
+            "SpringGreen",
+            "SteelBlue",
+            "Tan",
+            "Thistle",
+            "Tomato",
+            "Transparent",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "WhiteSmoke",
+            "Yellow",
+            "YellowGreen"});
+            this.cbRouteColors.Location = new System.Drawing.Point(23, 213);
+            this.cbRouteColors.Name = "cbRouteColors";
+            this.cbRouteColors.Size = new System.Drawing.Size(111, 21);
+            this.cbRouteColors.TabIndex = 87;
             // 
             // MainForm
             // 
@@ -4967,6 +5259,12 @@
         private System.Windows.Forms.TextBox tbColorWeekly;
         private System.Windows.Forms.ComboBox cbWeeklyColors;
         private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Label cbRoutesColor;
+        private System.Windows.Forms.TextBox tbRouteColor;
+        private System.Windows.Forms.ComboBox cbRouteColors;
+        private System.Windows.Forms.Label cbBikesColor;
+        private System.Windows.Forms.TextBox tbBikeColor;
+        private System.Windows.Forms.ComboBox cbBikeColors;
     }
 }
 

@@ -82,6 +82,8 @@ namespace CyclingLogApplication
             string colorMaint = nodes.Item(0).SelectSingleNode("COLORMAINT").InnerText;
             string colorWeekly = nodes.Item(0).SelectSingleNode("COLORWEEKLY").InnerText;
             string colorDisplayData = nodes.Item(0).SelectSingleNode("COLORDISPLAYDATA").InnerText;
+            string colorBike = nodes.Item(0).SelectSingleNode("COLORBIKE").InnerText;
+            string colorRoute = nodes.Item(0).SelectSingleNode("COLORROUTE").InnerText;
 
             Dictionary<string, string> fieldCheckDictionary = new Dictionary<string, string>();  
 
@@ -213,6 +215,8 @@ namespace CyclingLogApplication
             MainForm.SetMaintColor(colorMaint);
             MainForm.SetWeeklyColor(colorWeekly);
             MainForm.SetDisplayDataColor(colorDisplayData);
+            MainForm.SetBikeColor(colorBike);
+            MainForm.SetRouteColor(colorRoute);
             MainForm.SetcbStatistic1(cbStatistic1);
             MainForm.SetcbStatistic2(cbStatistic2);
             MainForm.SetcbStatistic3(cbStatistic3);
@@ -247,6 +251,8 @@ namespace CyclingLogApplication
                 Logger.Log("Configuration Read: color maint : " + colorMaint, 0, 0);
                 Logger.Log("Configuration Read: color weekly : " + colorWeekly, 0, 0);
                 Logger.Log("Configuration Read: color display data : " + colorDisplayData, 0, 0);
+                Logger.Log("Configuration Read: color bike : " + colorBike, 0, 0);
+                Logger.Log("Configuration Read: color route : " + colorRoute, 0, 0);
                 Logger.Log("Configuration Read: lastLogYearFilterSelected : " + lastLogYearFilterSelected, 0, 0);
                 Logger.Log("Configuration Read: lastLogYearSelected : " + lastLogYearSelected, 0, 0);
                 Logger.Log("Configuration Read: lastBikeSelected : " + lastBikeSelected, 0, 0);
@@ -350,6 +356,14 @@ namespace CyclingLogApplication
                     XmlNode displayDataColorNode = xmlDoc.CreateElement("COLORDISPLAYDATA");
                     displayDataColorNode.InnerText = "Beige";
                     rootNode.AppendChild(displayDataColorNode);
+
+                    XmlNode colorBikeNode = xmlDoc.CreateElement("COLORBIKE");
+                    colorBikeNode.InnerText = "Beige";
+                    rootNode.AppendChild(colorBikeNode);
+
+                    XmlNode colorRouteNode = xmlDoc.CreateElement("COLORROUTE");
+                    colorRouteNode.InnerText = "Beige";
+                    rootNode.AppendChild(colorRouteNode);
 
                     //**********************************************************************
                     XmlNode checkedItemNode0 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME0");
@@ -644,6 +658,8 @@ namespace CyclingLogApplication
                     string colorMaint = MainForm.GetMaintColor();
                     string colorWeekly = MainForm.GetWeeklyColor();
                     string colorDisplayData = MainForm.GetDisplayDataColor();
+                    string colorBike = MainForm.GetBikeColor();
+                    string colorRoute = MainForm.GetRouteColor();
 
                     Dictionary<string, string> fieldDictionary = MainForm.GetFieldsDictionary();
 
@@ -668,6 +684,8 @@ namespace CyclingLogApplication
                     xmlDoc.SelectSingleNode("/Config/COLORMAINT").InnerText = colorMaint;
                     xmlDoc.SelectSingleNode("/Config/COLORWEEKLY").InnerText = colorWeekly;
                     xmlDoc.SelectSingleNode("/Config/COLORDISPLAYDATA").InnerText = colorDisplayData;
+                    xmlDoc.SelectSingleNode("/Config/COLORBIKE").InnerText = colorBike;
+                    xmlDoc.SelectSingleNode("/Config/COLORROUTE").InnerText = colorRoute;
 
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK0").InnerText = fieldDictionary.Values.ElementAt(0);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK1").InnerText = fieldDictionary.Values.ElementAt(1);
@@ -747,6 +765,11 @@ namespace CyclingLogApplication
                     Logger.Log("Write Config Values: LICENSE written:" + license, logSetting, 0);
                     Logger.Log("Write Config Values: CUSTOMFIELD1 written:" + customField1, logSetting, 0);
                     Logger.Log("Write Config Values: CUSTOMFIELD2 written:" + customField2, logSetting, 0);
+
+                    Logger.Log("Write Config Values: COLORMAINT written:" + colorMaint, logSetting, 0);
+                    Logger.Log("Write Config Values: COLORDISPLAYDATA written:" + colorDisplayData, logSetting, 0);
+                    Logger.Log("Write Config Values: COLORBIKE written:" + colorBike, logSetting, 0);
+                    Logger.Log("Write Config Values: COLORROUTE written:" + colorRoute, logSetting, 0);
 
                     Logger.Log("Write Config Values: cbStatistic1 written:" + cbStatistic1, logSetting, 0);
                     Logger.Log("Write Config Values: cbStatistic2 written:" + cbStatistic2, logSetting, 0);
