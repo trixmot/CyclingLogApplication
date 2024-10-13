@@ -279,8 +279,6 @@ namespace CyclingLogApplication
                     return;
                 }
 
-                GetMaintLog();
-
                 formloading = true;
                 //Set first option of 'None':
                 cbStatMonthlyLogYear.Items.Add("--None--");
@@ -301,18 +299,6 @@ namespace CyclingLogApplication
 
                 cbStatMonthlyLogYear.SelectedIndex = Convert.ToInt32(GetLastMonthlyLogSelected());
 
-                RefreshStatisticsData();
-                RunMonthlyStatistics();
-                RefreshWeekly();
-                RefreshRoutes();
-                RefreshBikes();
-
-                cbMaintTextColor.Checked = Boolean.Parse(GetTextMaint());
-                cbWeeklyTextColor.Checked = Boolean.Parse(GetTextWeekly());
-                cbDisplayDataTextColor.Checked = Boolean.Parse(GetTextDisplay());
-                cbBikeTextColor.Checked = Boolean.Parse(GetTextBike());
-                cbRouteTextColor.Checked = Boolean.Parse(GetTextRoute());
-
                 int currentYear = DateTime.Now.Year;
                 //cbLogYear
                 for (int i = 2010; i <= currentYear; i++)
@@ -328,6 +314,61 @@ namespace CyclingLogApplication
                 cbDisplayDataColors.SelectedIndex = cbDisplayDataColors.FindStringExact(gridDisplayDataColor);
                 cbBikeColors.SelectedIndex = cbBikeColors.FindStringExact(gridBikeColor);
                 cbRouteColors.SelectedIndex = cbRouteColors.FindStringExact(gridRouteColor);
+
+                if (GetTextMaint().Equals("True")){
+                    cbMaintTextColor.Checked = true;
+                    tbColorMaint.ForeColor = Color.Black;
+                } else
+                {
+                    cbMaintTextColor.Checked = false;
+                    tbColorMaint.ForeColor = Color.White;
+                }
+
+                if (GetTextMaint().Equals("True"))
+                {
+                    cbWeeklyTextColor.Checked = true;
+                    tbColorWeekly.ForeColor = Color.Black;
+                }
+                else
+                {
+                    cbWeeklyTextColor.Checked = false;
+                    tbColorWeekly.ForeColor = Color.White;
+                }
+
+                if (GetTextMaint().Equals("True"))
+                {
+                    cbDisplayDataTextColor.Checked = true;
+                    tbColorDisplayData.ForeColor = Color.Black;
+                }
+                else
+                {
+                    cbDisplayDataTextColor.Checked = false;
+                    tbColorDisplayData.ForeColor = Color.White;
+                }
+
+                if (GetTextMaint().Equals("True"))
+                {
+                    cbBikeTextColor.Checked = true;
+                    tbBikeColor.ForeColor = Color.Black;
+                }
+                else
+                {
+                    cbBikeTextColor.Checked = false;
+                    tbBikeColor.ForeColor = Color.White;
+                }
+
+                if (GetTextMaint().Equals("True"))
+                {
+                    cbRouteTextColor.Checked = true;
+                    tbRouteColor.ForeColor = Color.Black;
+                }
+                else
+                {
+                    cbRouteTextColor.Checked = false;
+                    tbRouteColor.ForeColor = Color.White;
+                }
+
+                RefreshData();
                 formloading = false;
 
             }
@@ -2833,17 +2874,42 @@ namespace CyclingLogApplication
 
                     DataTable dataTable = new DataTable();
                     sqlDataAdapter.Fill(dataTable);
+                    
+                    dgvMaint.DataSource = dataTable;
                     dgvMaint.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                     dgvMaint.EnableHeadersVisualStyles = false;
-                    dgvMaint.DataSource = dataTable;
                     dgvMaint.Sort(dgvMaint.Columns["Date"], ListSortDirection.Descending);
                     dgvMaint.AllowUserToResizeRows = false;
                     dgvMaint.AllowUserToResizeColumns = false;
                     dgvMaint.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
                     dgvMaint.AllowUserToAddRows = false;
-                    //dgvMaint.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
                     dgvMaint.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetMaintColor());
-                    dgvMaint.Refresh();
+
+                    string testValue = GetTextMaint();
+                    int rowCount = dgvMaint.Rows.Count;
+                    for (int i = 0; i < rowCount; i++)
+                    {
+                        if (i % 2 == 0)
+                        {
+                            //is even
+                            dgvMaint.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                        }
+                        else
+                        {
+                            //is odd
+                            if (testValue.Equals("True"))
+                            {
+                                dgvMaint.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                            }
+                            else
+                            {
+                                dgvMaint.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                            }
+                        }
+                    }
+
+                    string test = dgvMaint.Rows[1].DefaultCellStyle.ForeColor.ToString();
+                    //dgvMaint.Refresh();
                 }
             }
             catch (Exception ex)
@@ -3985,7 +4051,7 @@ namespace CyclingLogApplication
 
         private void TabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            GetMaintLog();
         }
 
         private void BtBikeMilesUpdate_Click(object sender, EventArgs e)
@@ -4963,6 +5029,7 @@ namespace CyclingLogApplication
             RefreshWeekly();
             RefreshBikes();
             RefreshRoutes();
+            GetMaintLog();
 
             //using (RefreshingForm refreshingForm = new RefreshingForm())
             //{
@@ -5133,7 +5200,13 @@ namespace CyclingLogApplication
                     else
                     {
                         //is odd
-                        this.dataGridViewRoutes.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                        if (GetTextRoute().Equals("True"))
+                        {
+                            this.dataGridViewRoutes.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                        } else
+                        {
+                            this.dataGridViewRoutes.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                        }      
                     }
                 }
 
@@ -5275,6 +5348,22 @@ namespace CyclingLogApplication
 
                     count = GetBikeCount(bikeList[i]);
                     this.dataGridViewBikes.Rows.Add(bikeList[i], count, miles, milesNotInLog);
+                    if (i % 2 == 0)
+                    {
+                        //is even
+                    }
+                    else
+                    {
+                        //is odd
+                        if (GetTextBike().Equals("True"))
+                        {
+                            this.dataGridViewBikes.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                        }
+                        else
+                        {
+                            this.dataGridViewBikes.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                        }
+                    }
                 }
 
                 tbBikeMilesTotal.Text = totalMiles.ToString("N0");
@@ -5701,6 +5790,28 @@ namespace CyclingLogApplication
                 dataGridViewWeekly.AllowUserToResizeColumns = false;
                 dataGridViewWeekly.CurrentCell = dataGridViewWeekly.Rows[0].Cells[4];
                 dataGridViewWeekly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetWeeklyColor());
+
+                string textValue = GetTextWeekly();
+                int rowCount = dataGridViewWeekly.Rows.Count;
+                for (int i = 0; i < rowCount; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        //is even
+                    }
+                    else
+                    {
+                        //is odd
+                        if (textValue.Equals("True"))
+                        {
+                            dataGridViewWeekly.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                        }
+                        else
+                        {
+                            dataGridViewWeekly.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -6031,6 +6142,50 @@ namespace CyclingLogApplication
             SetRouteColor(cbRouteColors.SelectedItem.ToString());
             dataGridViewRoutes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetRouteColor());
             dataGridViewRoutes.Refresh();
+
+            if (cbMaintTextColor.Checked)
+            {
+                SetTextMaint("True");
+            } else
+            {
+                SetTextMaint("False");
+            }
+
+            if (cbWeeklyTextColor.Checked)
+            {
+                SetTextWeekly("True");
+            }
+            else
+            {
+                SetTextWeekly("False");
+            }
+
+            if (cbDisplayDataTextColor.Checked)
+            {
+                SetTextDisplay("True");
+            }
+            else
+            {
+                SetTextDisplay("False");
+            }
+
+            if (cbBikeTextColor.Checked)
+            {
+                SetTextBike("True");
+            }
+            else
+            {
+                SetTextBike("False");
+            }
+
+            if (cbRouteTextColor.Checked)
+            {
+                SetTextRoute("True");
+            }
+            else
+            {
+                SetTextRoute("False");
+            }
         }
 
         private void cbMaintColors_SelectedIndexChanged(object sender, EventArgs e)
@@ -6056,6 +6211,65 @@ namespace CyclingLogApplication
         private void cbRouteColors_SelectedIndexChanged(object sender, EventArgs e)
         {
             tbRouteColor.BackColor = Color.FromName(cbRouteColors.SelectedItem.ToString());
+        }
+
+        private void cbMaintTextColor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbMaintTextColor.Checked)
+            {
+                tbColorMaint.ForeColor = Color.Black;
+            } else
+            {
+                tbColorMaint.ForeColor= Color.White;
+            }
+        }
+
+        private void cbWeeklyTextColor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbWeeklyTextColor.Checked)
+            {
+                tbColorWeekly.ForeColor = Color.Black;
+            }
+            else
+            {
+                tbColorWeekly.ForeColor = Color.White;
+            }
+        }
+
+        private void cbDisplayDataTextColor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbDisplayDataTextColor.Checked)
+            {
+                tbColorDisplayData.ForeColor = Color.Black;
+            }
+            else
+            {
+                tbColorDisplayData.ForeColor = Color.White;
+            }
+        }
+
+        private void cbBikeTextColor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbBikeTextColor.Checked)
+            {
+                tbBikeColor.ForeColor = Color.Black;
+            }
+            else
+            {
+                tbBikeColor.ForeColor = Color.White;
+            }
+        }
+
+        private void cbRouteTextColor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbRouteTextColor.Checked)
+            {
+                tbRouteColor.ForeColor = Color.Black;
+            }
+            else
+            {
+                tbRouteColor.ForeColor = Color.White;
+            }
         }
     }
 }

@@ -333,6 +333,17 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
+            this.cbRouteTextColor = new System.Windows.Forms.CheckBox();
+            this.cbBikeTextColor = new System.Windows.Forms.CheckBox();
+            this.cbDisplayDataTextColor = new System.Windows.Forms.CheckBox();
+            this.cbWeeklyTextColor = new System.Windows.Forms.CheckBox();
+            this.cbMaintTextColor = new System.Windows.Forms.CheckBox();
+            this.label88 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.cbRoutesColor = new System.Windows.Forms.Label();
             this.tbRouteColor = new System.Windows.Forms.TextBox();
             this.cbRouteColors = new System.Windows.Forms.ComboBox();
@@ -390,17 +401,6 @@
             this.tbMaintID = new System.Windows.Forms.TextBox();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label88 = new System.Windows.Forms.Label();
-            this.cbMaintTextColor = new System.Windows.Forms.CheckBox();
-            this.cbWeeklyTextColor = new System.Windows.Forms.CheckBox();
-            this.cbDisplayDataTextColor = new System.Windows.Forms.CheckBox();
-            this.cbBikeTextColor = new System.Windows.Forms.CheckBox();
-            this.cbRouteTextColor = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -3713,6 +3713,105 @@
             this.groupBox23.TabStop = false;
             this.groupBox23.Text = "Grid Colors";
             // 
+            // cbRouteTextColor
+            // 
+            this.cbRouteTextColor.AutoSize = true;
+            this.cbRouteTextColor.Location = new System.Drawing.Point(165, 217);
+            this.cbRouteTextColor.Name = "cbRouteTextColor";
+            this.cbRouteTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbRouteTextColor.TabIndex = 100;
+            this.cbRouteTextColor.UseVisualStyleBackColor = true;
+            this.cbRouteTextColor.CheckedChanged += new System.EventHandler(this.cbRouteTextColor_CheckedChanged);
+            // 
+            // cbBikeTextColor
+            // 
+            this.cbBikeTextColor.AutoSize = true;
+            this.cbBikeTextColor.Location = new System.Drawing.Point(165, 174);
+            this.cbBikeTextColor.Name = "cbBikeTextColor";
+            this.cbBikeTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbBikeTextColor.TabIndex = 99;
+            this.cbBikeTextColor.UseVisualStyleBackColor = true;
+            this.cbBikeTextColor.CheckedChanged += new System.EventHandler(this.cbBikeTextColor_CheckedChanged);
+            // 
+            // cbDisplayDataTextColor
+            // 
+            this.cbDisplayDataTextColor.AutoSize = true;
+            this.cbDisplayDataTextColor.Location = new System.Drawing.Point(163, 132);
+            this.cbDisplayDataTextColor.Name = "cbDisplayDataTextColor";
+            this.cbDisplayDataTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbDisplayDataTextColor.TabIndex = 98;
+            this.cbDisplayDataTextColor.UseVisualStyleBackColor = true;
+            this.cbDisplayDataTextColor.CheckedChanged += new System.EventHandler(this.cbDisplayDataTextColor_CheckedChanged);
+            // 
+            // cbWeeklyTextColor
+            // 
+            this.cbWeeklyTextColor.AutoSize = true;
+            this.cbWeeklyTextColor.Location = new System.Drawing.Point(163, 85);
+            this.cbWeeklyTextColor.Name = "cbWeeklyTextColor";
+            this.cbWeeklyTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbWeeklyTextColor.TabIndex = 97;
+            this.cbWeeklyTextColor.UseVisualStyleBackColor = true;
+            this.cbWeeklyTextColor.CheckedChanged += new System.EventHandler(this.cbWeeklyTextColor_CheckedChanged);
+            // 
+            // cbMaintTextColor
+            // 
+            this.cbMaintTextColor.AutoSize = true;
+            this.cbMaintTextColor.Location = new System.Drawing.Point(163, 42);
+            this.cbMaintTextColor.Name = "cbMaintTextColor";
+            this.cbMaintTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbMaintTextColor.TabIndex = 96;
+            this.cbMaintTextColor.UseVisualStyleBackColor = true;
+            this.cbMaintTextColor.CheckedChanged += new System.EventHandler(this.cbMaintTextColor_CheckedChanged);
+            // 
+            // label88
+            // 
+            this.label88.AutoSize = true;
+            this.label88.Location = new System.Drawing.Point(141, 16);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(58, 13);
+            this.label88.TabIndex = 95;
+            this.label88.Text = "Text Black";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(198, 200);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(65, 20);
+            this.textBox6.TabIndex = 94;
+            this.textBox6.Text = "White Row";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(198, 158);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(65, 20);
+            this.textBox5.TabIndex = 93;
+            this.textBox5.Text = "White Row";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(196, 112);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(65, 20);
+            this.textBox4.TabIndex = 92;
+            this.textBox4.Text = "White Row";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(196, 67);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(65, 20);
+            this.textBox3.TabIndex = 91;
+            this.textBox3.Text = "White Row";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(196, 24);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(65, 20);
+            this.textBox2.TabIndex = 90;
+            this.textBox2.Text = "White Row";
+            // 
             // cbRoutesColor
             // 
             this.cbRoutesColor.AutoSize = true;
@@ -4965,100 +5064,6 @@
             this.label1.Size = new System.Drawing.Size(287, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(196, 24);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(65, 20);
-            this.textBox2.TabIndex = 90;
-            this.textBox2.Text = "White Row";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(196, 67);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(65, 20);
-            this.textBox3.TabIndex = 91;
-            this.textBox3.Text = "White Row";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(196, 112);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(65, 20);
-            this.textBox4.TabIndex = 92;
-            this.textBox4.Text = "White Row";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(198, 158);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(65, 20);
-            this.textBox5.TabIndex = 93;
-            this.textBox5.Text = "White Row";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(198, 200);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(65, 20);
-            this.textBox6.TabIndex = 94;
-            this.textBox6.Text = "White Row";
-            // 
-            // label88
-            // 
-            this.label88.AutoSize = true;
-            this.label88.Location = new System.Drawing.Point(141, 16);
-            this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(58, 13);
-            this.label88.TabIndex = 95;
-            this.label88.Text = "Text Black";
-            // 
-            // cbMaintTextColor
-            // 
-            this.cbMaintTextColor.AutoSize = true;
-            this.cbMaintTextColor.Location = new System.Drawing.Point(163, 42);
-            this.cbMaintTextColor.Name = "cbMaintTextColor";
-            this.cbMaintTextColor.Size = new System.Drawing.Size(15, 14);
-            this.cbMaintTextColor.TabIndex = 96;
-            this.cbMaintTextColor.UseVisualStyleBackColor = true;
-            // 
-            // cbWeeklyTextColor
-            // 
-            this.cbWeeklyTextColor.AutoSize = true;
-            this.cbWeeklyTextColor.Location = new System.Drawing.Point(163, 85);
-            this.cbWeeklyTextColor.Name = "cbWeeklyTextColor";
-            this.cbWeeklyTextColor.Size = new System.Drawing.Size(15, 14);
-            this.cbWeeklyTextColor.TabIndex = 97;
-            this.cbWeeklyTextColor.UseVisualStyleBackColor = true;
-            // 
-            // cbDisplayDataTextColor
-            // 
-            this.cbDisplayDataTextColor.AutoSize = true;
-            this.cbDisplayDataTextColor.Location = new System.Drawing.Point(163, 132);
-            this.cbDisplayDataTextColor.Name = "cbDisplayDataTextColor";
-            this.cbDisplayDataTextColor.Size = new System.Drawing.Size(15, 14);
-            this.cbDisplayDataTextColor.TabIndex = 98;
-            this.cbDisplayDataTextColor.UseVisualStyleBackColor = true;
-            // 
-            // cbBikeTextColor
-            // 
-            this.cbBikeTextColor.AutoSize = true;
-            this.cbBikeTextColor.Location = new System.Drawing.Point(165, 174);
-            this.cbBikeTextColor.Name = "cbBikeTextColor";
-            this.cbBikeTextColor.Size = new System.Drawing.Size(15, 14);
-            this.cbBikeTextColor.TabIndex = 99;
-            this.cbBikeTextColor.UseVisualStyleBackColor = true;
-            // 
-            // cbRouteTextColor
-            // 
-            this.cbRouteTextColor.AutoSize = true;
-            this.cbRouteTextColor.Location = new System.Drawing.Point(165, 217);
-            this.cbRouteTextColor.Name = "cbRouteTextColor";
-            this.cbRouteTextColor.Size = new System.Drawing.Size(15, 14);
-            this.cbRouteTextColor.TabIndex = 100;
-            this.cbRouteTextColor.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 

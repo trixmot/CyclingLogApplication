@@ -492,6 +492,28 @@ namespace CyclingLogApplication
                     dataGridView1.Columns["Id"].Visible = true;
                 }
 
+                string textValue = MainForm.GetTextDisplay();
+                int rowCount = dataGridView1.Rows.Count;
+                for (int i = 0; i < rowCount; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        //is even
+                    }
+                    else
+                    {
+                        //is odd
+                        if (textValue.Equals("True"))
+                        {
+                            dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                        }
+                        else
+                        {
+                            dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                        }
+                    }
+                }
+
                 dataGridView1.Refresh();
             }
             catch (Exception ex)
