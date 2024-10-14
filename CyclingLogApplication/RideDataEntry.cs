@@ -27,8 +27,8 @@ namespace CyclingLogApplication
     {
         private static int formLoad = 1;
         private static int formClosing = 0;
-        private SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-        private DatabaseConnection databaseConnection;// = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+        private SqlConnection sqlConnection;
+        private DatabaseConnection databaseConnection;
         private int id;
         private int logYearID;
         private DateTime date;
@@ -1687,18 +1687,6 @@ namespace CyclingLogApplication
             DeleteRecordByID(GetID());
             UpdateRideDisplayInformationAdd();
         }
-
-        //private void tbCustom1_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (!tbCustom1.Text.Equals(""))
-        //    {
-        //        tbCustom2.Visible = true;
-        //    }
-        //    else
-        //    {
-        //        tbCustom2.Visible = false;
-        //    }
-        //}
 
         public void RideDisplayDataQuery(string id, string date, int logYearID)
         {

@@ -21,8 +21,8 @@ namespace CyclingLogApplication
 {
     public partial class RideDataDisplay : Form
     {
-        private SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-        private DatabaseConnection databaseConnection;// = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+        private SqlConnection sqlConnection;
+        private DatabaseConnection databaseConnection;
 
 
         public RideDataDisplay()
@@ -54,13 +54,15 @@ namespace CyclingLogApplication
                     Dictionary<string, string> fieldDict = MainForm.GetFieldsDictionary();
                     for (int i = 0; i < fieldDict.Count; i++)
                     {
-                        if (custom1.Equals("") && fieldDict.Keys.ElementAt(i).Equals("Custom1"))
+                        string keyValue = fieldDict.Keys.ElementAt(i);
+
+                        if (custom1.Equals("") && keyValue.Equals("Custom1"))
                         {
                             //skip adding
                             custom1Skipped = true;
                             numberRemoved++;
                         } 
-                        else if (custom2.Equals("") && fieldDict.Keys.ElementAt(i).Equals("Custom2"))
+                        else if (custom2.Equals("") && keyValue.Equals("Custom2"))
                         {
                             //skip adding
                             custom2Skipped = true;
@@ -76,7 +78,19 @@ namespace CyclingLogApplication
                             {
                                 checkListBoxIndex--;
                             }
-                            checkedListBox.Items.Insert(checkListBoxIndex, fieldDict.Keys.ElementAt(i));
+
+                            if (keyValue.Equals("Custom1")){
+                                checkedListBox.Items.Insert(checkListBoxIndex, custom1);
+                            }
+                            else if (keyValue.Equals("Custom2"))
+                            {
+                                checkedListBox.Items.Insert(checkListBoxIndex, custom2);
+                            }
+                            else
+                            {
+                                checkedListBox.Items.Insert(checkListBoxIndex, keyValue);
+                            }
+
                             checkedListBox.SetItemChecked(checkListBoxIndex, bool.Parse(fieldDict.Values.ElementAt(i)));
                             checkListBoxIndex++;
                         }                
@@ -181,12 +195,35 @@ namespace CyclingLogApplication
             string custom2 = MainForm.GetCustomField2();
             bool customDataField1 = false;
             bool customDataField2 = false;
+
+            bool customDataField1Checked = false;
+            bool customDataField2Checked = false;
+
             string fieldName;
+
+            if (!custom1.Equals(""))
+            {
+                customDataField1 = true;
+            }
+            if (!custom2.Equals(""))
+            {
+                customDataField2 = true;
+            }
 
             string fieldString = "[Id],[Date]";
 
             for (int i = 0; i < checkedListBox.Items.Count; i++)
             {
+                string nameValue = checkedListBox.Items[i].ToString();
+                if (nameValue.Equals(custom1))
+                {
+                    customDataField1Checked = checkedListBox.GetItemChecked(i);
+                }
+                if (nameValue.Equals(custom2))
+                {
+                    customDataField2Checked = checkedListBox.GetItemChecked(i);
+                }
+
                 if (checkedListBox.GetItemChecked(i))
                 {
                     fieldName = checkedListBox.Items[i].ToString();
@@ -251,14 +288,14 @@ namespace CyclingLogApplication
                     {
                         fieldName = "Windchill";
                     }
-                    //else if (fieldName.Equals("Custom1") && custom1.Equals(""))
-                    //{
-                    //    //skip adding field:
-                    //}
-                    //else if (fieldName.Equals("Custom2") && custom2.Equals(""))
-                    //{
-                    //    //skip adding field:
-                    //} else
+                    else if (fieldName.Equals(custom1))
+                    {
+                        fieldName = "Custom1";
+                    }
+                    else if (fieldName.Equals(custom2))
+                    {
+                        fieldName = "Custom2";
+                    }
 
                     fieldString += ",[" + fieldName + "]";              
                     
@@ -436,7 +473,7 @@ namespace CyclingLogApplication
                 dataTable.Columns["Item"].AutoIncrementStep = 1;
                 sqlDataAdapter.Fill(dataTable);
 
-                if (customDataField1)
+                if (customDataField1Checked && customDataField1)
                 {
                     if (custom1.Equals(""))
                     {
@@ -448,7 +485,7 @@ namespace CyclingLogApplication
                     }
                 }
 
-                if (customDataField2)
+                if (customDataField2Checked && customDataField2)
                 {
                     if (custom2.Equals(""))
                     {

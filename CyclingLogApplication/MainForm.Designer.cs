@@ -374,17 +374,11 @@
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.label69 = new System.Windows.Forms.Label();
             this.tbCustomDataField2 = new System.Windows.Forms.TextBox();
             this.tbCustomDataField1 = new System.Windows.Forms.TextBox();
-            this.label68 = new System.Windows.Forms.Label();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
             this.label85 = new System.Windows.Forms.Label();
             this.label84 = new System.Windows.Forms.Label();
-            this.tbCustomDataField2_OLD = new System.Windows.Forms.TextBox();
             this.btCustomDataField1 = new System.Windows.Forms.Button();
-            this.tbCustomDataField1_OLD = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.label31 = new System.Windows.Forms.Label();
             this.cbLogYear = new System.Windows.Forms.ComboBox();
@@ -3708,7 +3702,7 @@
             this.groupBox23.Controls.Add(this.cbMaintColors);
             this.groupBox23.Location = new System.Drawing.Point(232, 175);
             this.groupBox23.Name = "groupBox23";
-            this.groupBox23.Size = new System.Drawing.Size(281, 306);
+            this.groupBox23.Size = new System.Drawing.Size(281, 312);
             this.groupBox23.TabIndex = 78;
             this.groupBox23.TabStop = false;
             this.groupBox23.Text = "Grid Colors";
@@ -3716,7 +3710,7 @@
             // cbRouteTextColor
             // 
             this.cbRouteTextColor.AutoSize = true;
-            this.cbRouteTextColor.Location = new System.Drawing.Point(165, 217);
+            this.cbRouteTextColor.Location = new System.Drawing.Point(165, 238);
             this.cbRouteTextColor.Name = "cbRouteTextColor";
             this.cbRouteTextColor.Size = new System.Drawing.Size(15, 14);
             this.cbRouteTextColor.TabIndex = 100;
@@ -3726,7 +3720,7 @@
             // cbBikeTextColor
             // 
             this.cbBikeTextColor.AutoSize = true;
-            this.cbBikeTextColor.Location = new System.Drawing.Point(165, 174);
+            this.cbBikeTextColor.Location = new System.Drawing.Point(165, 195);
             this.cbBikeTextColor.Name = "cbBikeTextColor";
             this.cbBikeTextColor.Size = new System.Drawing.Size(15, 14);
             this.cbBikeTextColor.TabIndex = 99;
@@ -3736,7 +3730,7 @@
             // cbDisplayDataTextColor
             // 
             this.cbDisplayDataTextColor.AutoSize = true;
-            this.cbDisplayDataTextColor.Location = new System.Drawing.Point(163, 132);
+            this.cbDisplayDataTextColor.Location = new System.Drawing.Point(163, 153);
             this.cbDisplayDataTextColor.Name = "cbDisplayDataTextColor";
             this.cbDisplayDataTextColor.Size = new System.Drawing.Size(15, 14);
             this.cbDisplayDataTextColor.TabIndex = 98;
@@ -3746,7 +3740,7 @@
             // cbWeeklyTextColor
             // 
             this.cbWeeklyTextColor.AutoSize = true;
-            this.cbWeeklyTextColor.Location = new System.Drawing.Point(163, 85);
+            this.cbWeeklyTextColor.Location = new System.Drawing.Point(163, 106);
             this.cbWeeklyTextColor.Name = "cbWeeklyTextColor";
             this.cbWeeklyTextColor.Size = new System.Drawing.Size(15, 14);
             this.cbWeeklyTextColor.TabIndex = 97;
@@ -3756,7 +3750,7 @@
             // cbMaintTextColor
             // 
             this.cbMaintTextColor.AutoSize = true;
-            this.cbMaintTextColor.Location = new System.Drawing.Point(163, 42);
+            this.cbMaintTextColor.Location = new System.Drawing.Point(163, 63);
             this.cbMaintTextColor.Name = "cbMaintTextColor";
             this.cbMaintTextColor.Size = new System.Drawing.Size(15, 14);
             this.cbMaintTextColor.TabIndex = 96;
@@ -3766,7 +3760,7 @@
             // label88
             // 
             this.label88.AutoSize = true;
-            this.label88.Location = new System.Drawing.Point(141, 16);
+            this.label88.Location = new System.Drawing.Point(140, 29);
             this.label88.Name = "label88";
             this.label88.Size = new System.Drawing.Size(58, 13);
             this.label88.TabIndex = 95;
@@ -3774,7 +3768,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(198, 200);
+            this.textBox6.Location = new System.Drawing.Point(198, 221);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(65, 20);
             this.textBox6.TabIndex = 94;
@@ -3782,7 +3776,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(198, 158);
+            this.textBox5.Location = new System.Drawing.Point(198, 179);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(65, 20);
             this.textBox5.TabIndex = 93;
@@ -3790,7 +3784,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(196, 112);
+            this.textBox4.Location = new System.Drawing.Point(196, 133);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(65, 20);
             this.textBox4.TabIndex = 92;
@@ -3798,7 +3792,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(196, 67);
+            this.textBox3.Location = new System.Drawing.Point(196, 88);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(65, 20);
             this.textBox3.TabIndex = 91;
@@ -3806,7 +3800,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(196, 24);
+            this.textBox2.Location = new System.Drawing.Point(196, 45);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(65, 20);
             this.textBox2.TabIndex = 90;
@@ -3815,7 +3809,7 @@
             // cbRoutesColor
             // 
             this.cbRoutesColor.AutoSize = true;
-            this.cbRoutesColor.Location = new System.Drawing.Point(20, 197);
+            this.cbRoutesColor.Location = new System.Drawing.Point(20, 218);
             this.cbRoutesColor.Name = "cbRoutesColor";
             this.cbRoutesColor.Size = new System.Drawing.Size(63, 13);
             this.cbRoutesColor.TabIndex = 89;
@@ -3823,7 +3817,7 @@
             // 
             // tbRouteColor
             // 
-            this.tbRouteColor.Location = new System.Drawing.Point(198, 217);
+            this.tbRouteColor.Location = new System.Drawing.Point(198, 238);
             this.tbRouteColor.Name = "tbRouteColor";
             this.tbRouteColor.Size = new System.Drawing.Size(65, 20);
             this.tbRouteColor.TabIndex = 88;
@@ -3970,7 +3964,7 @@
             "WhiteSmoke",
             "Yellow",
             "YellowGreen"});
-            this.cbRouteColors.Location = new System.Drawing.Point(23, 213);
+            this.cbRouteColors.Location = new System.Drawing.Point(23, 234);
             this.cbRouteColors.Name = "cbRouteColors";
             this.cbRouteColors.Size = new System.Drawing.Size(111, 21);
             this.cbRouteColors.TabIndex = 87;
@@ -3979,7 +3973,7 @@
             // cbBikesColor
             // 
             this.cbBikesColor.AutoSize = true;
-            this.cbBikesColor.Location = new System.Drawing.Point(18, 155);
+            this.cbBikesColor.Location = new System.Drawing.Point(18, 176);
             this.cbBikesColor.Name = "cbBikesColor";
             this.cbBikesColor.Size = new System.Drawing.Size(55, 13);
             this.cbBikesColor.TabIndex = 86;
@@ -3987,7 +3981,7 @@
             // 
             // tbBikeColor
             // 
-            this.tbBikeColor.Location = new System.Drawing.Point(198, 175);
+            this.tbBikeColor.Location = new System.Drawing.Point(198, 196);
             this.tbBikeColor.Name = "tbBikeColor";
             this.tbBikeColor.Size = new System.Drawing.Size(65, 20);
             this.tbBikeColor.TabIndex = 85;
@@ -4134,7 +4128,7 @@
             "WhiteSmoke",
             "Yellow",
             "YellowGreen"});
-            this.cbBikeColors.Location = new System.Drawing.Point(23, 171);
+            this.cbBikeColors.Location = new System.Drawing.Point(23, 192);
             this.cbBikeColors.Name = "cbBikeColors";
             this.cbBikeColors.Size = new System.Drawing.Size(111, 21);
             this.cbBikeColors.TabIndex = 84;
@@ -4143,7 +4137,7 @@
             // label81
             // 
             this.label81.AutoSize = true;
-            this.label81.Location = new System.Drawing.Point(18, 112);
+            this.label81.Location = new System.Drawing.Point(18, 133);
             this.label81.Name = "label81";
             this.label81.Size = new System.Drawing.Size(89, 13);
             this.label81.TabIndex = 83;
@@ -4151,7 +4145,7 @@
             // 
             // tbColorDisplayData
             // 
-            this.tbColorDisplayData.Location = new System.Drawing.Point(196, 132);
+            this.tbColorDisplayData.Location = new System.Drawing.Point(196, 153);
             this.tbColorDisplayData.Name = "tbColorDisplayData";
             this.tbColorDisplayData.Size = new System.Drawing.Size(65, 20);
             this.tbColorDisplayData.TabIndex = 82;
@@ -4298,7 +4292,7 @@
             "WhiteSmoke",
             "Yellow",
             "YellowGreen"});
-            this.cbDisplayDataColors.Location = new System.Drawing.Point(21, 128);
+            this.cbDisplayDataColors.Location = new System.Drawing.Point(21, 149);
             this.cbDisplayDataColors.Name = "cbDisplayDataColors";
             this.cbDisplayDataColors.Size = new System.Drawing.Size(111, 21);
             this.cbDisplayDataColors.TabIndex = 81;
@@ -4307,7 +4301,7 @@
             // label76
             // 
             this.label76.AutoSize = true;
-            this.label76.Location = new System.Drawing.Point(18, 67);
+            this.label76.Location = new System.Drawing.Point(18, 88);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(87, 13);
             this.label76.TabIndex = 80;
@@ -4315,7 +4309,7 @@
             // 
             // tbColorWeekly
             // 
-            this.tbColorWeekly.Location = new System.Drawing.Point(196, 86);
+            this.tbColorWeekly.Location = new System.Drawing.Point(196, 107);
             this.tbColorWeekly.Name = "tbColorWeekly";
             this.tbColorWeekly.Size = new System.Drawing.Size(65, 20);
             this.tbColorWeekly.TabIndex = 79;
@@ -4462,7 +4456,7 @@
             "WhiteSmoke",
             "Yellow",
             "YellowGreen"});
-            this.cbWeeklyColors.Location = new System.Drawing.Point(21, 82);
+            this.cbWeeklyColors.Location = new System.Drawing.Point(21, 103);
             this.cbWeeklyColors.Name = "cbWeeklyColors";
             this.cbWeeklyColors.Size = new System.Drawing.Size(111, 21);
             this.cbWeeklyColors.TabIndex = 78;
@@ -4471,7 +4465,7 @@
             // label70
             // 
             this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(18, 21);
+            this.label70.Location = new System.Drawing.Point(18, 42);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(91, 13);
             this.label70.TabIndex = 77;
@@ -4479,7 +4473,7 @@
             // 
             // tbColorMaint
             // 
-            this.tbColorMaint.Location = new System.Drawing.Point(196, 41);
+            this.tbColorMaint.Location = new System.Drawing.Point(196, 62);
             this.tbColorMaint.Name = "tbColorMaint";
             this.tbColorMaint.Size = new System.Drawing.Size(65, 20);
             this.tbColorMaint.TabIndex = 76;
@@ -4487,7 +4481,7 @@
             // 
             // btSetColors
             // 
-            this.btSetColors.Location = new System.Drawing.Point(83, 266);
+            this.btSetColors.Location = new System.Drawing.Point(94, 275);
             this.btSetColors.Name = "btSetColors";
             this.btSetColors.Size = new System.Drawing.Size(75, 23);
             this.btSetColors.TabIndex = 75;
@@ -4636,7 +4630,7 @@
             "WhiteSmoke",
             "Yellow",
             "YellowGreen"});
-            this.cbMaintColors.Location = new System.Drawing.Point(21, 37);
+            this.cbMaintColors.Location = new System.Drawing.Point(21, 58);
             this.cbMaintColors.Name = "cbMaintColors";
             this.cbMaintColors.Size = new System.Drawing.Size(111, 21);
             this.cbMaintColors.TabIndex = 1;
@@ -4647,16 +4641,16 @@
             this.groupBox22.Controls.Add(this.btHideShowIDColumn);
             this.groupBox22.Controls.Add(this.rbHideIDColumn);
             this.groupBox22.Controls.Add(this.rbShowIDColumn);
-            this.groupBox22.Location = new System.Drawing.Point(535, 330);
+            this.groupBox22.Location = new System.Drawing.Point(535, 308);
             this.groupBox22.Name = "groupBox22";
-            this.groupBox22.Size = new System.Drawing.Size(212, 85);
+            this.groupBox22.Size = new System.Drawing.Size(212, 107);
             this.groupBox22.TabIndex = 77;
             this.groupBox22.TabStop = false;
             this.groupBox22.Text = "Ride Display ID Column";
             // 
             // btHideShowIDColumn
             // 
-            this.btHideShowIDColumn.Location = new System.Drawing.Point(104, 42);
+            this.btHideShowIDColumn.Location = new System.Drawing.Point(113, 53);
             this.btHideShowIDColumn.Name = "btHideShowIDColumn";
             this.btHideShowIDColumn.Size = new System.Drawing.Size(75, 23);
             this.btHideShowIDColumn.TabIndex = 29;
@@ -4667,7 +4661,7 @@
             // rbHideIDColumn
             // 
             this.rbHideIDColumn.AutoSize = true;
-            this.rbHideIDColumn.Location = new System.Drawing.Point(29, 55);
+            this.rbHideIDColumn.Location = new System.Drawing.Point(38, 66);
             this.rbHideIDColumn.Name = "rbHideIDColumn";
             this.rbHideIDColumn.Size = new System.Drawing.Size(47, 17);
             this.rbHideIDColumn.TabIndex = 1;
@@ -4678,7 +4672,7 @@
             // rbShowIDColumn
             // 
             this.rbShowIDColumn.AutoSize = true;
-            this.rbShowIDColumn.Location = new System.Drawing.Point(29, 32);
+            this.rbShowIDColumn.Location = new System.Drawing.Point(38, 43);
             this.rbShowIDColumn.Name = "rbShowIDColumn";
             this.rbShowIDColumn.Size = new System.Drawing.Size(52, 17);
             this.rbShowIDColumn.TabIndex = 0;
@@ -4709,6 +4703,7 @@
             // 
             // button4
             // 
+            this.button4.Enabled = false;
             this.button4.Location = new System.Drawing.Point(113, 27);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
@@ -4766,7 +4761,7 @@
             // 
             this.groupBox13.Controls.Add(this.label2);
             this.groupBox13.Controls.Add(this.btDeleteAllData);
-            this.groupBox13.Location = new System.Drawing.Point(31, 362);
+            this.groupBox13.Location = new System.Drawing.Point(31, 368);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(187, 119);
             this.groupBox13.TabIndex = 72;
@@ -4784,78 +4779,36 @@
             // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.label69);
             this.groupBox9.Controls.Add(this.tbCustomDataField2);
             this.groupBox9.Controls.Add(this.tbCustomDataField1);
-            this.groupBox9.Controls.Add(this.label68);
-            this.groupBox9.Controls.Add(this.label67);
-            this.groupBox9.Controls.Add(this.label66);
             this.groupBox9.Controls.Add(this.label85);
             this.groupBox9.Controls.Add(this.label84);
-            this.groupBox9.Controls.Add(this.tbCustomDataField2_OLD);
             this.groupBox9.Controls.Add(this.btCustomDataField1);
-            this.groupBox9.Controls.Add(this.tbCustomDataField1_OLD);
             this.groupBox9.Location = new System.Drawing.Point(535, 68);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(212, 256);
+            this.groupBox9.Size = new System.Drawing.Size(212, 227);
             this.groupBox9.TabIndex = 68;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Custom Data Field Name";
             // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(28, 177);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(29, 13);
-            this.label69.TabIndex = 36;
-            this.label69.Text = "New";
-            // 
             // tbCustomDataField2
             // 
-            this.tbCustomDataField2.Location = new System.Drawing.Point(67, 174);
+            this.tbCustomDataField2.Location = new System.Drawing.Point(49, 107);
             this.tbCustomDataField2.Name = "tbCustomDataField2";
             this.tbCustomDataField2.Size = new System.Drawing.Size(121, 20);
             this.tbCustomDataField2.TabIndex = 35;
             // 
             // tbCustomDataField1
             // 
-            this.tbCustomDataField1.Location = new System.Drawing.Point(67, 77);
+            this.tbCustomDataField1.Location = new System.Drawing.Point(49, 47);
             this.tbCustomDataField1.Name = "tbCustomDataField1";
             this.tbCustomDataField1.Size = new System.Drawing.Size(121, 20);
             this.tbCustomDataField1.TabIndex = 34;
             // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(28, 80);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(29, 13);
-            this.label68.TabIndex = 33;
-            this.label68.Text = "New";
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(20, 147);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(41, 13);
-            this.label67.TabIndex = 32;
-            this.label67.Text = "Current";
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(20, 47);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(41, 13);
-            this.label66.TabIndex = 31;
-            this.label66.Text = "Current";
-            // 
             // label85
             // 
             this.label85.AutoSize = true;
-            this.label85.Location = new System.Drawing.Point(81, 127);
+            this.label85.Location = new System.Drawing.Point(70, 91);
             this.label85.Name = "label85";
             this.label85.Size = new System.Drawing.Size(76, 13);
             this.label85.TabIndex = 30;
@@ -4864,37 +4817,21 @@
             // label84
             // 
             this.label84.AutoSize = true;
-            this.label84.Location = new System.Drawing.Point(81, 28);
+            this.label84.Location = new System.Drawing.Point(70, 31);
             this.label84.Name = "label84";
             this.label84.Size = new System.Drawing.Size(76, 13);
             this.label84.TabIndex = 29;
             this.label84.Text = "Custom Field 1";
             // 
-            // tbCustomDataField2_OLD
-            // 
-            this.tbCustomDataField2_OLD.Location = new System.Drawing.Point(67, 144);
-            this.tbCustomDataField2_OLD.Name = "tbCustomDataField2_OLD";
-            this.tbCustomDataField2_OLD.ReadOnly = true;
-            this.tbCustomDataField2_OLD.Size = new System.Drawing.Size(121, 20);
-            this.tbCustomDataField2_OLD.TabIndex = 28;
-            // 
             // btCustomDataField1
             // 
-            this.btCustomDataField1.Location = new System.Drawing.Point(67, 219);
+            this.btCustomDataField1.Location = new System.Drawing.Point(73, 169);
             this.btCustomDataField1.Name = "btCustomDataField1";
             this.btCustomDataField1.Size = new System.Drawing.Size(75, 23);
             this.btCustomDataField1.TabIndex = 27;
             this.btCustomDataField1.Text = "Update";
             this.btCustomDataField1.UseVisualStyleBackColor = true;
             this.btCustomDataField1.Click += new System.EventHandler(this.BtCustomDataField1_Click);
-            // 
-            // tbCustomDataField1_OLD
-            // 
-            this.tbCustomDataField1_OLD.Location = new System.Drawing.Point(67, 44);
-            this.tbCustomDataField1_OLD.Name = "tbCustomDataField1_OLD";
-            this.tbCustomDataField1_OLD.ReadOnly = true;
-            this.tbCustomDataField1_OLD.Size = new System.Drawing.Size(121, 20);
-            this.tbCustomDataField1_OLD.TabIndex = 2;
             // 
             // groupBox10
             // 
@@ -4909,7 +4846,7 @@
             this.groupBox10.Controls.Add(this.label24);
             this.groupBox10.Location = new System.Drawing.Point(31, 68);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(187, 272);
+            this.groupBox10.Size = new System.Drawing.Size(187, 285);
             this.groupBox10.TabIndex = 69;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "LOGS";
@@ -5457,13 +5394,11 @@
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.TextBox tbMostElevationAll;
         private System.Windows.Forms.Button btRefreshData;
-        private System.Windows.Forms.TextBox tbCustomDataField1_OLD;
         private System.Windows.Forms.Button btCustomDataField1;
         private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.GroupBox groupBox21;
         private System.Windows.Forms.Label label85;
         private System.Windows.Forms.Label label84;
-        private System.Windows.Forms.TextBox tbCustomDataField2_OLD;
         private System.Windows.Forms.DataGridView dataGridViewRoutes;
         private System.Windows.Forms.Label label86;
         private System.Windows.Forms.Label label87;
@@ -5480,12 +5415,8 @@
         private System.Windows.Forms.Button btHideShowIDColumn;
         private System.Windows.Forms.RadioButton rbHideIDColumn;
         private System.Windows.Forms.RadioButton rbShowIDColumn;
-        private System.Windows.Forms.Label label69;
         private System.Windows.Forms.TextBox tbCustomDataField2;
         private System.Windows.Forms.TextBox tbCustomDataField1;
-        private System.Windows.Forms.Label label68;
-        private System.Windows.Forms.Label label67;
-        private System.Windows.Forms.Label label66;
         private System.Windows.Forms.GroupBox groupBox23;
         private System.Windows.Forms.ComboBox cbMaintColors;
         private System.Windows.Forms.Button btSetColors;

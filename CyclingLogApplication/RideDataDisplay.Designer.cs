@@ -47,9 +47,11 @@
             this.UpPictureBox = new System.Windows.Forms.PictureBox();
             this.DownPictureBox = new System.Windows.Forms.PictureBox();
             this.btSaveMoves = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DownPictureBox)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -57,13 +59,13 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(23, 54);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1079, 583);
+            this.dataGridView1.Size = new System.Drawing.Size(1079, 648);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1163, 634);
+            this.button1.Location = new System.Drawing.Point(1159, 681);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(82, 33);
             this.button1.TabIndex = 1;
@@ -123,9 +125,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(20, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 13);
+            this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Log Year";
+            this.label1.Text = "Log Selection";
             // 
             // cbLogYearFilter
             // 
@@ -175,7 +177,7 @@
             // 
             // btSelectAll
             // 
-            this.btSelectAll.Location = new System.Drawing.Point(1163, 472);
+            this.btSelectAll.Location = new System.Drawing.Point(35, 115);
             this.btSelectAll.Name = "btSelectAll";
             this.btSelectAll.Size = new System.Drawing.Size(75, 23);
             this.btSelectAll.TabIndex = 14;
@@ -185,7 +187,7 @@
             // 
             // btDeselectAll
             // 
-            this.btDeselectAll.Location = new System.Drawing.Point(1163, 501);
+            this.btDeselectAll.Location = new System.Drawing.Point(35, 144);
             this.btDeselectAll.Name = "btDeselectAll";
             this.btDeselectAll.Size = new System.Drawing.Size(75, 23);
             this.btDeselectAll.TabIndex = 15;
@@ -206,18 +208,18 @@
             // cbUpdateValues
             // 
             this.cbUpdateValues.AutoSize = true;
-            this.cbUpdateValues.Location = new System.Drawing.Point(869, 27);
+            this.cbUpdateValues.Location = new System.Drawing.Point(865, 27);
             this.cbUpdateValues.Name = "cbUpdateValues";
-            this.cbUpdateValues.Size = new System.Drawing.Size(96, 17);
+            this.cbUpdateValues.Size = new System.Drawing.Size(116, 17);
             this.cbUpdateValues.TabIndex = 17;
-            this.cbUpdateValues.Text = "Update Values";
+            this.cbUpdateValues.Text = "Update a ride entry";
             this.cbUpdateValues.UseVisualStyleBackColor = true;
             // 
             // UpPictureBox
             // 
             this.UpPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.UpPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("UpPictureBox.Image")));
-            this.UpPictureBox.Location = new System.Drawing.Point(1276, 189);
+            this.UpPictureBox.Location = new System.Drawing.Point(50, 14);
             this.UpPictureBox.Name = "UpPictureBox";
             this.UpPictureBox.Size = new System.Drawing.Size(40, 40);
             this.UpPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -229,7 +231,7 @@
             // 
             this.DownPictureBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DownPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("DownPictureBox.Image")));
-            this.DownPictureBox.Location = new System.Drawing.Point(1276, 257);
+            this.DownPictureBox.Location = new System.Drawing.Point(50, 60);
             this.DownPictureBox.Name = "DownPictureBox";
             this.DownPictureBox.Size = new System.Drawing.Size(40, 40);
             this.DownPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -239,7 +241,7 @@
             // 
             // btSaveMoves
             // 
-            this.btSaveMoves.Location = new System.Drawing.Point(1163, 530);
+            this.btSaveMoves.Location = new System.Drawing.Point(35, 173);
             this.btSaveMoves.Name = "btSaveMoves";
             this.btSaveMoves.Size = new System.Drawing.Size(75, 23);
             this.btSaveMoves.TabIndex = 20;
@@ -247,18 +249,27 @@
             this.btSaveMoves.UseVisualStyleBackColor = true;
             this.btSaveMoves.Click += new System.EventHandler(this.btSaveMoves_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.DownPictureBox);
+            this.groupBox1.Controls.Add(this.btSaveMoves);
+            this.groupBox1.Controls.Add(this.btSelectAll);
+            this.groupBox1.Controls.Add(this.btDeselectAll);
+            this.groupBox1.Controls.Add(this.UpPictureBox);
+            this.groupBox1.Location = new System.Drawing.Point(1124, 455);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(146, 209);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            // 
             // RideDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1329, 679);
-            this.Controls.Add(this.btSaveMoves);
-            this.Controls.Add(this.DownPictureBox);
-            this.Controls.Add(this.UpPictureBox);
+            this.ClientSize = new System.Drawing.Size(1287, 726);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cbUpdateValues);
             this.Controls.Add(this.btPrint);
-            this.Controls.Add(this.btDeselectAll);
-            this.Controls.Add(this.btSelectAll);
             this.Controls.Add(this.checkedListBox);
             this.Controls.Add(this.cbFilterValue);
             this.Controls.Add(this.btClear);
@@ -280,6 +291,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DownPictureBox)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,5 +318,6 @@
         private System.Windows.Forms.PictureBox UpPictureBox;
         private System.Windows.Forms.PictureBox DownPictureBox;
         private System.Windows.Forms.Button btSaveMoves;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

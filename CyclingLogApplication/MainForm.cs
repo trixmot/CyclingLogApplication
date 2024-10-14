@@ -25,7 +25,7 @@ namespace CyclingLogApplication
         //private static Mutex mutex = null;
         Boolean formloading = false;
 
-        private static readonly string logVersion = "0.9.0";
+        private static readonly string logVersion = "0.9.1";
         private static int logLevel = 0;
         private static string cbStatistic1 = "-1";
         private static string cbStatistic2 = "-1";
@@ -306,8 +306,6 @@ namespace CyclingLogApplication
                     cbLogYear.Items.Add(i.ToString());
                 }
 
-                tbCustomDataField1_OLD.Text = GetCustomField1();
-                tbCustomDataField2_OLD.Text = GetCustomField2();
                 //tabControl1.SelectedTab = tabControl1.TabPages["Main"];
                 cbMaintColors.SelectedIndex = cbMaintColors.FindStringExact(gridMaintColor);
                 cbWeeklyColors.SelectedIndex = cbWeeklyColors.FindStringExact(gridWeeklyColor);
@@ -5054,75 +5052,37 @@ namespace CyclingLogApplication
         {
             string customNEW1 = tbCustomDataField1.Text;
             string customNEW2 = tbCustomDataField2.Text;
-            string customOLD1 = tbCustomDataField1_OLD.Text;
-            string customOLD2 = tbCustomDataField2_OLD.Text;
 
             int heightCLB = 394;
             int numberRemoved = 0;
 
             Boolean changesMade = false;
 
-            // No changes to be made for custom1:
-            if (customNEW1.Equals("") && customOLD1.Equals(""))
-            {
-
-            }
-            // No old entry to remove - adding new custom1:
-            else if (customOLD1.Equals(""))
-            {
-                SetCustomField1(customNEW1);
-                fieldNameDict.Add(customNEW1, "False");
-                tbCustomDataField1_OLD.Text = customNEW1;
-                changesMade = true;
-            }
             // Remove custom1 value:
-            else if (customNEW1.Equals("") && !customOLD1.Equals(""))
+            if (customNEW1.Equals(""))
             {
-                fieldNameDict.Remove(customOLD1);
                 numberRemoved++;
-                tbCustomDataField1_OLD.Text = "";
                 changesMade = true;
+                SetCustomField1("");
             }
             // Update custom1 value to a different value:
-            else if (!customNEW1.Equals("") && !customOLD1.Equals(""))
+            else
             {
                 SetCustomField1(customNEW1);
-                string checkState = fieldNameDict[customOLD1];
-                fieldNameDict.Remove(customOLD1);
-                fieldNameDict.Add(customNEW1, "True");
-                tbCustomDataField1_OLD.Text = customNEW1;
                 changesMade = true;
             }
 
-            // No changes to be made for custom1:
-            if (customNEW2.Equals("") && customOLD2.Equals(""))
-            {
-
-            }
-            // No old entry to remove - adding new custom1:
-            else if (customOLD2.Equals(""))
-            {
-                SetCustomField1(customNEW1);
-                fieldNameDict.Add(customNEW1, "False");
-                tbCustomDataField2_OLD.Text = customNEW2;
-                changesMade = true;
-            }
             // Remove custom1 value:
-            else if (customNEW2.Equals("") && !customOLD2.Equals(""))
+            if (customNEW2.Equals(""))
             {
-                fieldNameDict.Remove(customOLD2);
                 numberRemoved++;
-                tbCustomDataField2_OLD.Text = "";
                 changesMade = true;
+                SetCustomField2("");
             }
             // Update custom1 value to a different value:
-            else if (!customNEW2.Equals("") && !customOLD2.Equals(""))
+            else
             {
-                SetCustomField1(customNEW2);
-                string checkState = fieldNameDict[customOLD2];
-                fieldNameDict.Remove(customOLD2);
-                fieldNameDict.Add(customNEW2, "True");
-                tbCustomDataField2_OLD.Text = customNEW2;
+                SetCustomField2(customNEW2);
                 changesMade = true;
             }
 
