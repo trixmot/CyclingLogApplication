@@ -15,6 +15,7 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Xml.Linq;
 using System.Diagnostics;
 using static System.Net.WebRequestMethods;
+using static DGVPrinterHelper.DGVPrinter;
 
 
 
@@ -368,6 +369,8 @@ namespace CyclingLogApplication
 
                 RefreshData();
                 formloading = false;
+
+                tbMaintAddUpdate.Text = "Add";
 
             }
             catch (Exception ex)
@@ -957,63 +960,79 @@ namespace CyclingLogApplication
 
         public static int GetLogYearIndex(string logYearName)
         {
-            SqlDataReader reader = null;
-            int returnValue = -1;
-
-            try
+            List<object> objectValues = new List<object>
             {
-                if (sqlConnection != null && sqlConnection.State == ConnectionState.Closed)
+                logYearName
+            };
+
+            int logIndex = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("Get_LogYear_Index_Name", objectValues))
+            {
+                if (results.HasRows)
                 {
-                    sqlConnection.Open();
-                }
-
-                // 1. declare command object with parameter
-                using (SqlCommand cmd = new SqlCommand("SELECT LogYearID FROM Table_Log_Year WHERE @logYearName=[Name]", sqlConnection))
-                {
-
-                    // 2. define parameters used in command object
-                    SqlParameter param = new SqlParameter
+                    while (results.Read())
                     {
-                        ParameterName = "@logYearName",
-                        Value = logYearName
-                    };
-
-                    // 3. add new parameter to command object
-                    cmd.Parameters.Add(param);
-
-                    // get data stream
-                    reader = cmd.ExecuteReader();
-                }
-
-                // write each record
-                while (reader.Read())
-                {
-                    string temp = reader[0].ToString();
-
-                    if (temp.Equals(""))
-                    {
-                        returnValue = 0;
-                    }
-                    else
-                    {
-                        returnValue = int.Parse(temp);
+                        logIndex = int.Parse(results[0].ToString());
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                Logger.LogError("[ERROR]: Exception while trying to the Log year Index from the database." + ex.Message.ToString());
-            }
-            finally
-            {
-                // close reader
-                reader?.Close();
 
-                // close connection
-                sqlConnection?.Close();
-            }
+            //try
+            //{
+            //    if (sqlConnection != null && sqlConnection.State == ConnectionState.Closed)
+            //    {
+            //        sqlConnection.Open();
+            //    }
 
-            return returnValue;
+            //    // 1. declare command object with parameter
+            //    using (SqlCommand cmd = new SqlCommand("SELECT LogYearID FROM Table_Log_Year WHERE @logYearName=[Name]", sqlConnection))
+            //    {
+
+            //        // 2. define parameters used in command object
+            //        SqlParameter param = new SqlParameter
+            //        {
+            //            ParameterName = "@logYearName",
+            //            Value = logYearName
+            //        };
+
+            //        // 3. add new parameter to command object
+            //        cmd.Parameters.Add(param);
+
+            //        // get data stream
+            //        reader = cmd.ExecuteReader();
+            //    }
+
+            //    // write each record
+            //    while (reader.Read())
+            //    {
+            //        string temp = reader[0].ToString();
+
+            //        if (temp.Equals(""))
+            //        {
+            //            returnValue = 0;
+            //        }
+            //        else
+            //        {
+            //            returnValue = int.Parse(temp);
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Logger.LogError("[ERROR]: Exception while trying to the Log year Index from the database." + ex.Message.ToString());
+            //}
+            //finally
+            //{
+            //    // close reader
+            //    reader?.Close();
+
+            //    // close connection
+            //    sqlConnection?.Close();
+            //}
+
+            return logIndex;
         }
 
         public static int GetLogYearByIndex(int logYearIndex)
@@ -1168,6 +1187,113 @@ namespace CyclingLogApplication
             //thread.Start();
         }
 
+        private void BTRouteSave_Click(object sender, EventArgs e)
+        {
+            string routeName = tbRouteConfig.Text;
+            string routeOldName = tbRouteOldName.Text;
+            List<string> routeList = ReadDataNames("Table_Routes", "Name");
+            string routeType = "Add";
+
+            //Check to see if the string has already been entered to eliminate duplicates:
+            if (routeList.Contains(routeOldName))
+            {
+                DialogResult result = MessageBox.Show("The Route already exists. Do you want to continue with the update?", "Update Route", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    routeType = "Update";
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("The Route does not exist. Do you want to continue with the adding the Route?", "Add Route", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    routeType = "Add";
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            // Add new route:
+            if (routeType.Equals("Add"))
+            {
+                List<object> objectValues = new List<object>();
+                objectValues.Add(routeName);
+                RunStoredProcedure(objectValues, "Route_Add");
+
+                cbRouteConfig.Items.Add(routeName);
+                cbRouteConfig.SelectedIndex = cbRouteConfig.Items.Count - 1;
+                RideDataEntry rideDataEntryForm = new RideDataEntry();
+                rideDataEntryForm.AddRouteDataEntry(routeName);
+                ChartForm chartForm = new ChartForm();
+                chartForm.cbRoutesChart.Items.Add(routeName);
+            }
+            // Update an existing Route:
+            else
+            {
+                RideDataEntry rideDataEntryForm = new RideDataEntry();
+                List<object> objectValues = new List<object>();
+                objectValues.Add(routeName);
+                objectValues.Add(routeOldName);
+
+                try
+                {
+                    //ExecuteScalarFunction
+                    using (var results = ExecuteSimpleQueryConnection("Route_Update", objectValues))
+                    {
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError("[ERROR]: Exception while trying to update Route." + ex.Message.ToString());
+                }
+
+                int routeIndex = rideDataEntryForm.cbRouteDataEntry.Items.IndexOf(routeOldName);
+                ChartForm chartForm = new ChartForm();
+
+                rideDataEntryForm.cbRouteDataEntry.Items.Remove(routeOldName);
+                rideDataEntryForm.cbRouteDataEntry.Items.Add(routeName);
+                rideDataEntryForm.cbRouteDataEntry.Sorted = true;
+
+                chartForm.cbRoutesChart.Items.Remove(routeOldName);
+                chartForm.cbRoutesChart.Items.Add(routeName);
+                chartForm.cbRoutesChart.Sorted = true;
+
+                //Update the route name in the database for each row:
+                try
+                {
+                    sqlConnection.Open();
+
+                    // declare command object with parameter
+                    using (SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET Route=@NewValue WHERE [Route]=@OldValue", sqlConnection))
+                    {
+                        SqlDataReader reader = null;
+                        cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = routeName;
+                        cmd.Parameters.Add("@OldValue", SqlDbType.NVarChar).Value = routeOldName;
+
+                        // get data stream
+                        reader = cmd.ExecuteReader();
+                    }
+                }
+                finally
+                {
+                    // close connection
+                    sqlConnection?.Close();
+                }
+
+                tbRouteOldName.Text = routeName;
+            }
+
+            RefreshRoutes();
+        }
+
         private void BtAddRoute_Click(object sender, EventArgs e)
         {
             string routeString = tbRouteConfig.Text;
@@ -1229,10 +1355,9 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to delete the Route option?", "Delete Route Option", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                string deleteValue = cbRouteConfig.SelectedItem.ToString();
+                string deleteValue = tbRouteConfig.Text;
                 RideDataEntry rideDataEntryForm = new RideDataEntry();
                 //Note: only removing value as an option, all records using this value are unchanged:
-                cbRouteConfig.Items.Remove(deleteValue);
                 rideDataEntryForm.RemoveRouteDataEntry(deleteValue);
 
                 ChartForm chartForm = new ChartForm();
@@ -1259,46 +1384,166 @@ namespace CyclingLogApplication
             }
         }
 
-        private void BtAddBikeConfig_Click(object sender, EventArgs e)
+        private void BtSaveBikeConfig_Click(object sender, EventArgs e)
         {
-            string bikeString = tbBikeConfig.Text;
-            string miles = tbConfigMilesNotInLog.Text;
-            Boolean updateBikeTotals = true;
-            RideDataEntry rideDataEntryForm = new RideDataEntry();
-
-            //Check to see if the string has already been entered to eliminate duplicates:
-            if (cbBikeConfig.Items.Contains(bikeString))
-            {
-                MessageBox.Show("Duplicate name entered. Enter a unique name for the bike.");
-                return;
-            }
-
             //Verify Miles is entered and in the correct format:
-            if (!int.TryParse(tbConfigMilesNotInLog.Text, out _))
+            if (!float.TryParse(tbConfigMilesNotInLog.Text.ToString(), out _))
             {
                 MessageBox.Show("The miles for the Bike must be in numeric format. Enter 0 if unknown.");
                 return;
             }
 
-            List<object> objectBikes = new List<object>();
-            objectBikes.Add(bikeString);
-            RunStoredProcedure(objectBikes, "Bike_Add");
+            string bikeOldName = tbBikeOldName.Text;
+            string bikeName = tbBikeConfig.Text;
+            float notInMiles = float.Parse(tbConfigMilesNotInLog.Text);
+            float logMiles = 0;
+            float totalMiles = 0;
+            string bikeType = "Add";
 
-            cbBikeConfig.Items.Add(bikeString);
-            cbBikeMaint.Items.Add(tbConfigMilesNotInLog.Text);
-            cbBikeConfig.SelectedIndex = cbBikeConfig.Items.Count - 1;
-            rideDataEntryForm.AddBikeDataEntry(bikeString);
+            List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
 
-            if (updateBikeTotals)
+            RideDataEntry rideDataEntryForm = new RideDataEntry();
+
+            //Check to see if the string has already been entered to eliminate duplicates:
+            if (bikeList.Contains(bikeOldName))
             {
+                DialogResult result = MessageBox.Show("The bike already exists. Do you want to continue with the update?", "Update Bike", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    bikeType = "Update";
+                } else
+                {
+                    return;
+                }
+            } else
+            {
+                DialogResult result = MessageBox.Show("The bike does not exist. Do you want to continue with the adding the bike?", "Add Bike", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    bikeType = "Add";
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            List<object> objectBikes = new List<object>();           
+
+            // Add a new bike:
+            if (bikeType.Equals("Add"))
+            {
+                cbBikeConfig.Items.Add(bikeName);
+                cbBikeMaint.Items.Add(tbConfigMilesNotInLog.Text);
+                cbBikeConfig.SelectedIndex = cbBikeConfig.Items.Count - 1;
+                rideDataEntryForm.AddBikeDataEntry(bikeName);
+                totalMiles = notInMiles + logMiles;
+
                 List<object> objectBikesTotals = new List<object>();
-                objectBikesTotals.Add(bikeString);
-                objectBikesTotals.Add(miles);
+                objectBikesTotals.Add(bikeName);
+                objectBikesTotals.Add(notInMiles);
+                objectBikesTotals.Add(logMiles);    //should be 0
+                objectBikesTotals.Add(totalMiles);  //should be the same as notinmiles
                 RunStoredProcedure(objectBikesTotals, "Bike_Totals_Add");
+            } 
+            // Update an existing bike:
+            else
+            {
+                logMiles = float.Parse(tbBikeLogMiles.Text);
+                totalMiles = notInMiles + logMiles;
+
+                List<object> objectBikeTotals = new List<object>();
+                objectBikeTotals.Add(bikeName);
+                objectBikeTotals.Add(bikeOldName);
+                objectBikeTotals.Add(notInMiles);
+                objectBikeTotals.Add(logMiles);
+                objectBikeTotals.Add(totalMiles);
+                RunStoredProcedure(objectBikeTotals, "Bike_Totals_Update");
+
+                int bikeIndex = cbBikeMaint.Items.IndexOf(bikeOldName);
+                cbBikeMaint.Items.RemoveAt(bikeIndex);
+                cbBikeMaint.Items.Add(bikeName);
+                cbBikeMaint.Sorted = true;
+
+                rideDataEntryForm.cbBikeDataEntrySelection.Items.RemoveAt(bikeIndex);
+                rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(bikeName);
+                rideDataEntryForm.cbBikeDataEntrySelection.Sorted = true;
+
+                // Check if the bike names have changed:
+                if (!bikeOldName.Equals(bikeName))
+                {
+                    //Update the route name in the database for each row:
+                    try
+                    {
+                        sqlConnection.Open();
+
+                        // declare command object with parameter
+                        using (SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET Bike=@NewValue WHERE [Bike]=@OldValue", sqlConnection))
+                        {
+                            SqlDataReader reader = null;
+                            cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = bikeName;
+                            cmd.Parameters.Add("@OldValue", SqlDbType.NVarChar).Value = bikeOldName;
+
+                            // get data stream
+                            reader = cmd.ExecuteReader();
+                        }
+                    }
+                    finally
+                    {
+                        // close connection
+                        sqlConnection?.Close();
+                    }
+                }
+
+                tbBikeOldName.Text = bikeName;
             }
 
             RefreshBikes();
         }
+
+        //private void BtAddBikeConfig_Click(object sender, EventArgs e)
+        //{
+        //    string bikeString = tbBikeConfig.Text;
+        //    float nonInMiles = float.Parse(tbConfigMilesNotInLog.Text);
+        //    float totalMiles = 0;
+        //    Boolean updateBikeTotals = true;
+        //    RideDataEntry rideDataEntryForm = new RideDataEntry();
+
+        //    //Check to see if the string has already been entered to eliminate duplicates:
+        //    if (cbBikeConfig.Items.Contains(bikeString))
+        //    {
+        //        MessageBox.Show("Duplicate name entered. Enter a unique name for the bike.");
+        //        return;
+        //    }
+
+        //    //Verify Miles is entered and in the correct format:
+        //    if (!float.TryParse(tbConfigMilesNotInLog.Text, out _))
+        //    {
+        //        MessageBox.Show("The miles for the Bike must be in numeric format. Enter 0 if unknown.");
+        //        return;
+        //    }
+
+        //    List<object> objectBikes = new List<object>();
+        //    objectBikes.Add(bikeString);
+        //    RunStoredProcedure(objectBikes, "Bike_Add");
+
+        //    cbBikeConfig.Items.Add(bikeString);
+        //    cbBikeMaint.Items.Add(tbConfigMilesNotInLog.Text);
+        //    cbBikeConfig.SelectedIndex = cbBikeConfig.Items.Count - 1;
+        //    rideDataEntryForm.AddBikeDataEntry(bikeString);
+        //    totalMiles = totalMiles + nonInMiles;
+
+        //    if (updateBikeTotals)
+        //    {
+        //        List<object> objectBikesTotals = new List<object>();
+        //        objectBikesTotals.Add(bikeString);
+        //        objectBikesTotals.Add(nonInMiles);
+        //        objectBikesTotals.Add(totalMiles);
+        //        RunStoredProcedure(objectBikesTotals, "Bike_Totals_Add");
+        //    }
+
+        //    RefreshBikes();
+        //}
 
         private void BtRemoveBikeConfig_Click(object sender, EventArgs e)
         {
@@ -1306,49 +1551,30 @@ namespace CyclingLogApplication
 
             if (result == DialogResult.Yes)
             {
-                string deleteValue = cbBikeConfig.SelectedItem.ToString();
+                string bikeName = tbBikeConfig.Text.ToString();
                 RideDataEntry rideDataEntryForm = new RideDataEntry();
 
                 //Note: only removing value as an option, all records using this value are unchanged:
-                cbBikeConfig.Items.Remove(deleteValue);
-                cbBikeMaint.Items.Remove(deleteValue);
-                rideDataEntryForm.RemoveBikeDataEntry(deleteValue);
+                cbBikeMaint.Items.Remove(bikeName);
+                rideDataEntryForm.RemoveBikeDataEntry(bikeName);
 
                 //Clear entires:
-                tbConfigMilesNotInLog.Text = "0";
+                tbConfigMilesNotInLog.Text = "";
+                tbBikeLogMiles.Text = "";
                 tbBikeConfig.Text = "";
+                tbBikeOldName.Text = "";
+                tbBikeTotalMiles.Text = "";
 
                 //Remove the Bike from the database table:
                 List<object> objectValues = new List<object>();
-                objectValues.Add(deleteValue);
+                objectValues.Add(bikeName);
 
                 try
                 {
                     //ExecuteScalarFunction
-                    using (var results = ExecuteSimpleQueryConnection("Bike_Remove", objectValues))
+                    using (var results = ExecuteSimpleQueryConnection("Bike_Remove_Totals", objectValues))
                     {
-
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogError("[ERROR]: Exception while trying to Delete Bike name entry." + ex.Message.ToString());
-                }
-
-                //Clear entires:
-                tbConfigMilesNotInLog.Text = "0";
-                tbBikeConfig.Text = "";
-
-                //Remove the Bike from the database table:
-                List<object> objectValues2 = new List<object>();
-                objectValues.Add(deleteValue);
-
-                try
-                {
-                    //ExecuteScalarFunction
-                    using (var results = ExecuteSimpleQueryConnection("Bike_Remove_Totals", objectValues2))
-                    {
-
+                        //databaseConnection.CloseConnection();
                     }
 
                     RefreshBikes();
@@ -1384,6 +1610,7 @@ namespace CyclingLogApplication
 
             tmpProcedureName = tmpProcedureName.TrimEnd(',') + ";";
             SqlDataReader ToReturn = databaseConnection.ExecuteQueryConnection(tmpProcedureName, _Parameters);
+            //databaseConnection.CloseConnection();
 
             return ToReturn;
         }
@@ -1753,8 +1980,6 @@ namespace CyclingLogApplication
                                 weekMilesTotal += (double)reader["RideDistance"];
                             }
                         }
-
-                        //reader.Close();
                     }
                     command.Cancel();
                 }
@@ -2922,106 +3147,6 @@ namespace CyclingLogApplication
             }
         }
 
-        private void BtMaintAdd_Click(object sender, EventArgs e)
-        {
-            lbMaintError.Text = "";
-
-            if (!tbMaintID.Text.Equals(""))
-            {
-                //MessageBox.Show("The selected date already has an entry. The entry can be updated but not added.");
-                lbMaintError.Text = "The selected date and bike already have an entry. Select the Update option.";
-                return;
-            }
-
-            if (cbBikeMaint.SelectedIndex == -1)
-            {
-                //MessageBox.Show("All the selections are not set.");
-                lbMaintError.Text = "The Bike selection is not set.";
-                return;
-            }
-
-            if (rtbMaintComments.Text.Equals(""))
-            {
-                //MessageBox.Show("All the selections are not set.");
-                lbMaintError.Text = "The Comments are missing.";
-                return;
-            }
-
-            //Check format of miles:
-            if (!int.TryParse(tbMaintMiles.Text, out _))
-            {
-                lbMaintError.Text = "The miles value must be in numeric format. Enter 0 if unknown.";
-                return;
-            }
-
-            List<object> objectValues = new List<object>();
-            objectValues.Add(cbBikeMaint.SelectedItem.ToString());
-            objectValues.Add(rtbMaintComments.Text);
-            objectValues.Add(dateTimePicker1.Value);
-            objectValues.Add(tbMaintMiles.Text);
-            RunStoredProcedure(objectValues, "Maintenance_Add");
-
-            tbMaintID.Text = "";
-            tbMaintMiles.Text = "";
-            rtbMaintComments.Text = "";
-            GetMaintLog();
-        }
-
-        private void BtMaintUpdate_Click(object sender, EventArgs e)
-        {
-            lbMaintError.Text = "";
-
-            if (tbMaintID.Equals(""))
-            {
-                //MessageBox.Show("The selected entry has not been saved yet. Select Add Entry instead of Update.");
-                lbMaintError.Text = "The selected entry has not been saved yet. Select Add Entry instead of Update.";
-                return;
-            }
-
-            if (cbBikeMaint.SelectedIndex == -1)
-            {
-                //MessageBox.Show("All the selections are not set.");
-                lbMaintError.Text = "The Bike selection is not set.";
-                return;
-            }
-
-            if (rtbMaintComments.Text.Equals(""))
-            {
-                //MessageBox.Show("All the selections are not set.");
-                lbMaintError.Text = "The Comments are missing.";
-                return;
-            }
-
-            //Check format of miles:
-            if (!double.TryParse(tbMaintMiles.Text, out _))
-            {
-                lbMaintError.Text = "The miles value must be in numeric format. Enter 0 if unknown.";
-                return;
-            }
-
-            if (cbBikeMaint.SelectedIndex == -1 || rtbMaintComments.Text.Equals(""))
-            {
-                //MessageBox.Show("All the selections are not set.");
-                lbMaintError.Text = "All the selections are not set.";
-                return;
-            }
-
-            DialogResult result = MessageBox.Show("Updating the Maintenance entry. Do you want to continue?", "Update Maintenance Entry", MessageBoxButtons.YesNo);
-            if (result == DialogResult.No)
-            {
-                return;
-            }
-
-            List<object> objectValues = new List<object>();
-            objectValues.Add(tbMaintID.Text);
-            objectValues.Add(cbBikeMaint.SelectedItem.ToString());
-            objectValues.Add(rtbMaintComments.Text);
-            objectValues.Add(dateTimePicker1.Value);
-            objectValues.Add(tbMaintMiles.Text);
-            RunStoredProcedure(objectValues, "Maintenance_Update");
-            GetMaintLog();
-        }
-
         private void BtMaintRemove_Click(object sender, EventArgs e)
         {
             if (tbMaintID.Text.Equals(""))
@@ -3045,61 +3170,61 @@ namespace CyclingLogApplication
             GetMaintLog();
         }
 
-        private void BtMaintRetrieve_Click(object sender, EventArgs e)
-        {
-            lbMaintError.Text = "";
+        //private void BtMaintRetrieve_Click(object sender, EventArgs e)
+        //{
+        //    lbMaintError.Text = "";
 
-            if (cbBikeMaint.SelectedIndex == -1)
-            {
-                //MessageBox.Show("A Bike option must be selected before continuing.");
-                lbMaintError.Text = "A Bike option must be selected before continuing.";
-                return;
-            }
+        //    if (cbBikeMaint.SelectedIndex == -1)
+        //    {
+        //        //MessageBox.Show("A Bike option must be selected before continuing.");
+        //        lbMaintError.Text = "A Bike option must be selected before continuing.";
+        //        return;
+        //    }
 
-            List<object> objectValues = new List<object>();
-            objectValues.Add(dateTimePicker1.Value);
-            objectValues.Add(cbBikeMaint.SelectedItem.ToString());
+        //    List<object> objectValues = new List<object>();
+        //    objectValues.Add(dateTimePicker1.Value);
+        //    objectValues.Add(cbBikeMaint.SelectedItem.ToString());
 
-            string comments;
-            string mainID;
-            string miles;
+        //    string comments;
+        //    string mainID;
+        //    string miles;
 
-            try
-            {
-                //ExecuteScalarFunction
-                using (var results = ExecuteSimpleQueryConnection("Maintenance_Get", objectValues))
-                {
-                    if (results.HasRows)
-                    {
-                        while (results.Read())
-                        {
-                            //MessageBox.Show(String.Format("{0}", results[0]));
-                            //lbErrorMessage.Hide();
-                            comments = results[0].ToString();
-                            mainID = results[1].ToString();
-                            miles = results[2].ToString();
+        //    try
+        //    {
+        //        //ExecuteScalarFunction
+        //        using (var results = ExecuteSimpleQueryConnection("Maintenance_Get", objectValues))
+        //        {
+        //            if (results.HasRows)
+        //            {
+        //                while (results.Read())
+        //                {
+        //                    //MessageBox.Show(String.Format("{0}", results[0]));
+        //                    //lbErrorMessage.Hide();
+        //                    comments = results[0].ToString();
+        //                    mainID = results[1].ToString();
+        //                    miles = results[2].ToString();
 
-                            //Load maintenance data page:
-                            rtbMaintComments.Text = comments;
-                            tbMaintID.Text = mainID;
-                            tbMaintMiles.Text = miles;
-                        }
-                    }
-                    else
-                    {
-                        //lbErrorMessage.Show();
-                        //lbErrorMessage.Text = "No ride data found for the selected date.";
-                        //tbRecordID.Text = "0";
-                        //lbMaintError.Text = "No entry found for the selected Bike and Date.";
-                        Logger.LogError("WARNING: No entry found for the selected Bike and Date.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
-            }
-        }
+        //                    //Load maintenance data page:
+        //                    rtbMaintComments.Text = comments;
+        //                    tbMaintID.Text = mainID;
+        //                    tbMaintMiles.Text = miles;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                //lbErrorMessage.Show();
+        //                //lbErrorMessage.Text = "No ride data found for the selected date.";
+        //                //tbRecordID.Text = "0";
+        //                //lbMaintError.Text = "No entry found for the selected Bike and Date.";
+        //                Logger.LogError("WARNING: No entry found for the selected Bike and Date.");
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
+        //    }
+        //}
 
         private void BtMaintRetrieve_Run(string date, string bike)
         {
@@ -3152,7 +3277,10 @@ namespace CyclingLogApplication
 
         private void CbBikeConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string miles;
+            double notInMiles = 0;
+            double logMiles = 0;
+            double totalMiles = 0;
+
             //Load miles from the database:
             try
             {
@@ -3173,18 +3301,24 @@ namespace CyclingLogApplication
                 }
 
                 //ExecuteScalarFunction
+                //Get Notinmiles
                 using (var results = ExecuteSimpleQueryConnection("Bike_GetMiles", objectValues))
                 {
                     if (results.HasRows)
                     {
                         while (results.Read())
                         {
-                            miles = results[0].ToString();
-                            if (miles.Equals(""))
-                            {
-                                miles = "0";
-                            }
-                            tbConfigMilesNotInLog.Text = miles;
+                            notInMiles = float.Parse(results[0].ToString());
+                            logMiles = float.Parse(results[1].ToString());
+                            totalMiles = float.Parse(results[2].ToString());
+
+                            notInMiles = Math.Round(notInMiles, 1);
+                            logMiles = Math.Round(logMiles, 1);
+                            totalMiles = Math.Round(totalMiles, 1);
+
+                            tbConfigMilesNotInLog.Text = notInMiles.ToString();
+                            tbBikeLogMiles.Text = logMiles.ToString();
+                            tbBikeTotalMiles.Text = totalMiles.ToString();
                         }
                     }
                     else
@@ -3213,13 +3347,10 @@ namespace CyclingLogApplication
             //List of things to clean up:
             // Clear out Table_Routes:
             // Clear out Table_Bikes:
-            // Clear out Table_Bike_Totals:
             // Clear out Table_Log_year:
             // Clear out Table_Bike_Mainenace:
             // Clear out Table_Ride_Information:
             List<object> objectBlank = new List<object>();
-
-            //Update Table_Bikes Table:
             RunStoredProcedure(objectBlank, "DeleteTable");
 
             // Clear out all combo boxes:
@@ -3303,109 +3434,111 @@ namespace CyclingLogApplication
         }
 
         //Rename or update miles not in log:
-        private void BtRenameBike_Click(object sender, EventArgs e)
-        {
-            if (cbBikeConfig.SelectedItem != null)
-            {
-                RideDataEntry rideDataEntryForm = new RideDataEntry();
-                //Verify Miles is entered and in the correct format:
-                string miles = tbConfigMilesNotInLog.Text;
-                if (!int.TryParse(miles, out _))
-                {
-                    MessageBox.Show("\"The miles for the Bike must be in numeric format. Enter 0 if unknown.");
-                    return;
-                }
+        //private void BtRenameBike_Click(object sender, EventArgs e)
+        //{
+        //    if (cbBikeConfig.SelectedItem != null)
+        //    {
+        //        RideDataEntry rideDataEntryForm = new RideDataEntry();
+        //        //Verify Miles is entered and in the correct format:
+        //        float miles = float.Parse(tbConfigMilesNotInLog.Text);
+        //        if (!float.TryParse(miles.ToString(), out _))
+        //        {
+        //            MessageBox.Show("\"The miles for the Bike must be in numeric format. Enter 0 if unknown.");
+        //            return;
+        //        }
 
-                int selectedIndex = cbBikeConfig.SelectedIndex;
-                string newValue = tbBikeConfig.Text;
-                string oldValue = cbBikeConfig.SelectedItem.ToString();
+        //        int selectedIndex = cbBikeConfig.SelectedIndex;
+        //        string newValue = tbBikeConfig.Text;
+        //        string oldValue = cbBikeConfig.SelectedItem.ToString();
+        //        float totalMiles = float.Parse(tbBikeTotalMiles.Text);
 
-                List<object> objectBikes = new List<object>();
-                objectBikes.Add(newValue);
-                objectBikes.Add(oldValue);
+        //        List<object> objectBikes = new List<object>();
+        //        objectBikes.Add(newValue);
+        //        objectBikes.Add(oldValue);
 
-                //Update Table_Bikes Table:
-                RunStoredProcedure(objectBikes, "Bike_Update");
+        //        //Update Table_Bikes Table:
+        //        RunStoredProcedure(objectBikes, "Bike_Update");
 
-                List<object> objectBikeTotals = new List<object>();
-                objectBikeTotals.Add(newValue);
-                objectBikeTotals.Add(oldValue);
-                objectBikeTotals.Add(Convert.ToDouble(miles));
+        //        List<object> objectBikeTotals = new List<object>();
+        //        objectBikeTotals.Add(newValue);
+        //        objectBikeTotals.Add(oldValue);
+        //        objectBikeTotals.Add(miles);
+        //        objectBikeTotals.Add(totalMiles);
 
-                RunStoredProcedure(objectBikeTotals, "Bike_Totals_Update");
+        //        RunStoredProcedure(objectBikeTotals, "Bike_Totals_Update");
 
-                List<string> tempList = new List<string>();
+        //        List<string> tempList = new List<string>();
 
-                for (int i = 0; i < cbBikeConfig.Items.Count; i++)
-                {
-                    tempList.Add(cbBikeConfig.Items[i].ToString());
-                }
+        //        for (int i = 0; i < cbBikeConfig.Items.Count; i++)
+        //        {
+        //            tempList.Add(cbBikeConfig.Items[i].ToString());
+        //        }
 
-                for (int i = 0; i < tempList.Count; i++)
-                {
-                    if (selectedIndex == i)
-                    {
-                        cbBikeConfig.Items.Remove(oldValue);
-                        cbBikeConfig.Items.Add(newValue);
+        //        for (int i = 0; i < tempList.Count; i++)
+        //        {
+        //            if (selectedIndex == i)
+        //            {
+        //                cbBikeConfig.Items.Remove(oldValue);
+        //                cbBikeConfig.Items.Add(newValue);
 
-                        cbBikeMaint.Items.Remove(oldValue);
-                        cbBikeMaint.Items.Add(newValue);
+        //                cbBikeMaint.Items.Remove(oldValue);
+        //                cbBikeMaint.Items.Add(newValue);
 
-                        rideDataEntryForm.cbBikeDataEntrySelection.Items.Remove(oldValue);
-                        rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(newValue);
-                    }
-                }
+        //                rideDataEntryForm.cbBikeDataEntrySelection.Items.Remove(oldValue);
+        //                rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(newValue);
+        //            }
+        //        }
 
 
-                cbBikeConfig.Sorted = true;
-                cbBikeMaint.Sorted = true;
-                rideDataEntryForm.cbBikeDataEntrySelection.Sorted = true;
+        //        cbBikeConfig.Sorted = true;
+        //        cbBikeMaint.Sorted = true;
+        //        rideDataEntryForm.cbBikeDataEntrySelection.Sorted = true;
 
-                cbBikeConfig.SelectedIndex = selectedIndex;
-                //Update value in all database rows:
-                SqlDataReader reader = null;
+        //        cbBikeConfig.SelectedIndex = selectedIndex;
+        //        //Update value in all database rows:
+        //        SqlDataReader reader = null;
 
-                try
-                {
-                    sqlConnection.Open();
+        //        try
+        //        {
+        //            sqlConnection.Open();
 
-                    //  declare command object with parameter
-                    using (SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET [Bike]=@NewValue WHERE [Bike]=@OldValue", sqlConnection))
-                    {
+        //            //  declare command object with parameter
+        //            using (SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET [Bike]=@NewValue WHERE [Bike]=@OldValue", sqlConnection))
+        //            {
 
-                        cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = newValue;
-                        cmd.Parameters.Add("@OldValue", SqlDbType.NVarChar).Value = oldValue;
+        //                cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = newValue;
+        //                cmd.Parameters.Add("@OldValue", SqlDbType.NVarChar).Value = oldValue;
 
-                        // get data stream
-                        reader = cmd.ExecuteReader();
-                    }
+        //                // get data stream
+        //                reader = cmd.ExecuteReader();
+        //            }
 
-                    // write each record
-                    while (reader.Read())
-                    {
-                    }
+        //            // write each record
+        //            while (reader.Read())
+        //            {
+        //            }
 
-                    RefreshBikes();
-                }
-                catch (Exception ex)
-                {
-                    Logger.LogError("[ERROR]: Exception while trying to Rename bike name." + ex.Message.ToString());
-                }
-                finally
-                {
-                    // close reader
-                    reader?.Close();
+        //            RefreshBikes();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Logger.LogError("[ERROR]: Exception while trying to Rename bike name." + ex.Message.ToString());
+        //        }
+        //        finally
+        //        {
+        //            // close reader
+        //            reader?.Close();
 
-                    // close connection
-                    sqlConnection?.Close();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Must select a Bike from the Bike Selection list.");
-                return;
-            }
-        }
+        //            // close connection
+        //            sqlConnection?.Close();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Must select a Bike from the Bike Selection list.");
+        //        return;
+        //    }
+        //}
 
         public static int GetLogYearIndexByName(string logName)
         {
@@ -5184,9 +5317,10 @@ namespace CyclingLogApplication
         private void RefreshBikes()
         {
             int count;
-            double miles = 0;
             double milesNotInLog = 0;
+            double logMiles = 0;
             double totalMiles = 0;
+            double sumMiles = 0; //running total of all miles from all bikes:
 
             try
             {
@@ -5194,23 +5328,25 @@ namespace CyclingLogApplication
 
                 dataGridViewBikes.DataSource = null;
                 dataGridViewBikes.Rows.Clear();
-                dataGridViewBikes.ColumnCount = 4;
+                dataGridViewBikes.ColumnCount = 5;
                 dataGridViewBikes.Name = "Bike Listing And Miles";
                 dataGridViewBikes.Columns[0].Name = "Bike Name";
                 dataGridViewBikes.Columns[1].Name = "Rides";
-                dataGridViewBikes.Columns[2].Name = "Miles";
-                dataGridViewBikes.Columns[3].Name = "Miles Not In Log";
-                dataGridViewBikes.Columns[0].ValueType = typeof(string);
-                dataGridViewBikes.Columns[0].ValueType = typeof(int);
-                dataGridViewBikes.Columns[0].ValueType = typeof(double);
-                dataGridViewBikes.Columns[0].ValueType = typeof(double);
+                dataGridViewBikes.Columns[2].Name = "Total Miles";
+                dataGridViewBikes.Columns[3].Name = "Log Miles";
+                dataGridViewBikes.Columns[4].Name = "Miles Not In Log";
+                //dataGridViewBikes.Columns[0].ValueType = typeof(string);
+                //dataGridViewBikes.Columns[0].ValueType = typeof(int);
+                //dataGridViewBikes.Columns[0].ValueType = typeof(double);
+                //dataGridViewBikes.Columns[0].ValueType = typeof(double);
                 dataGridViewBikes.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 dataGridViewBikes.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
                 dataGridViewBikes.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dataGridViewBikes.ReadOnly = true;
                 dataGridViewBikes.EnableHeadersVisualStyles = false;
                 dataGridViewBikes.Columns["Rides"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dataGridViewBikes.Columns["Miles"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewBikes.Columns["Log Miles"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewBikes.Columns["Total Miles"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridViewBikes.Columns["Miles Not In Log"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 // Resize the master DataGridView columns to fit the newly loaded data.
@@ -5219,7 +5355,8 @@ namespace CyclingLogApplication
                 // Configure the details DataGridView so that its columns automatically adjust their widths when the data changes.
                 dataGridViewBikes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 dataGridViewBikes.Columns["Rides"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dataGridViewBikes.Columns["Miles"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewBikes.Columns["Total Miles"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewBikes.Columns["Log Miles"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridViewBikes.Columns["Miles Not In Log"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridViewBikes.AllowUserToAddRows = false;
                 dataGridViewBikes.RowHeadersDefaultCellStyle.BackColor = Color.LightGray;
@@ -5232,7 +5369,7 @@ namespace CyclingLogApplication
 
                 int bikeCount = bikeList.Count;
                 int height = 355;
-                int heightNew = (bikeCount * 25) + 25;
+                int heightNew = (bikeCount * 23) + 40;
                 if (heightNew < height)
                 {
                     height = heightNew;
@@ -5250,7 +5387,7 @@ namespace CyclingLogApplication
                             bikeList[i]
                         };
 
-                        //ExecuteScalarFunction
+                        //Sum up all miles logged for each bike:
                         using (var results = ExecuteSimpleQueryConnection("GetTotalMiles_AllLogs_ForABike", objectValues))
                         {
                             if (results.HasRows)
@@ -5261,22 +5398,23 @@ namespace CyclingLogApplication
                                     string temp = results[0].ToString();
                                     if (temp.Equals(""))
                                     {
-                                        miles = 0;
+                                        logMiles = 0;
                                     }
                                     else
                                     {
-                                        miles = Convert.ToDouble(temp);
+                                        logMiles = float.Parse(temp);
                                     }
                                 }
-                                totalMiles += miles;
+                                sumMiles += logMiles;
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
+                        Logger.LogError("[ERROR]: Exception while trying to total miles for each bike." + ex.Message.ToString());
                     }
 
+                    //Get NotInMiles for each bike:
                     try
                     {
                         List<object> objectValues = new List<object>
@@ -5297,17 +5435,20 @@ namespace CyclingLogApplication
                             else
                             {
                                 //lbMaintError.Text = "No entry found for the selected Bike and Date.";
-                                Logger.LogError("[WARNING: No entry found for the selected Bike and Date.");
+                                Logger.LogError("[WARNING: RefreshBikes() No entry found for the selected Bike and Date.");
                             }
                         }
                     }
                     catch (Exception ex)
                     {
-                        Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
+                        Logger.LogError("[ERROR]: Exception while trying to get bike miles." + ex.Message.ToString());
                     }
 
+                    totalMiles = milesNotInLog + logMiles;
+                    totalMiles = Math.Round(totalMiles, 1);
+                    logMiles = Math.Round(logMiles, 1);
                     count = GetBikeCount(bikeList[i]);
-                    this.dataGridViewBikes.Rows.Add(bikeList[i], count, miles, milesNotInLog);
+                    this.dataGridViewBikes.Rows.Add(bikeList[i], count, totalMiles, logMiles, milesNotInLog);
                     if (i % 2 == 0)
                     {
                         //is even
@@ -5324,9 +5465,42 @@ namespace CyclingLogApplication
                             this.dataGridViewBikes.Rows[i].DefaultCellStyle.ForeColor = Color.White;
                         }
                     }
+
+                    //Update bike table with total miles:
+                    try
+                    {
+                        List<object> objectValues = new List<object>
+                        {
+                            bikeList[i],
+                            milesNotInLog,
+                            logMiles,
+                            totalMiles
+                        };
+
+                        //ExecuteScalarFunction
+                        using (var results = ExecuteSimpleQueryConnection("Bike_TotalMiles_Update", objectValues))
+                        {
+                            if (results.HasRows)
+                            {
+                                while (results.Read())
+                                {
+                                    
+                                }
+                            }
+                            else
+                            {
+                                //lbMaintError.Text = "No entry found for the selected Bike.";
+                                Logger.LogError("[WARNING: No entry found for the selected Bike.");
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.LogError("[ERROR]: Exception while trying to update bike total miles." + ex.Message.ToString());
+                    }
                 }
 
-                tbBikeMilesTotal.Text = totalMiles.ToString("N0");
+                tbBikeAllMilesTotal.Text = sumMiles.ToString("N0");
             }
             catch (Exception ex)
             {
@@ -6059,9 +6233,11 @@ namespace CyclingLogApplication
                 }
             }
 
+            tbMaintDateCheck.Text = dgvMaint.Rows[rowindex].Cells[0].Value.ToString();
             dateTimePicker1.Value = DateTime.Parse(dgvMaint.Rows[rowindex].Cells[0].Value.ToString());
             cbBikeMaint.SelectedIndex = bikeIndex;
             tbMaintMiles.Text = miles;
+            tbMaintAddUpdate.Text = "Update";
         }
 
         private void btHideShowIDColumn_Click(object sender, EventArgs e)
@@ -6230,6 +6406,207 @@ namespace CyclingLogApplication
             {
                 tbRouteColor.ForeColor = Color.White;
             }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            tbMaintAddUpdate.Text = "Add";
+        }
+
+        private void cbBikeMaint_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tbMaintAddUpdate.Text.Equals("Add"))
+            {
+                string bikeName = cbBikeMaint.SelectedItem.ToString();
+                double miles;
+
+                try
+                {
+                    List<object> objectValues = new List<object>
+                        {
+                            bikeName
+                        };
+
+                    //ExecuteScalarFunction
+                    using (var results = ExecuteSimpleQueryConnection("Bike_GetMiles", objectValues))
+                    {
+                        if (results.HasRows)
+                        {
+                            while (results.Read())
+                            {
+                                miles = double.Parse(results[1].ToString());
+                                miles = Math.Round(miles, 1);
+                                tbMaintMiles.Text = miles.ToString();
+                            }
+                        }
+                        else
+                        {
+                            //lbMaintError.Text = "No entry found for the selected Bik.";
+                            Logger.LogError("[WARNING: cbBikeMaint_SelectedIndexChanged - No entry found for the selected Bike.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError("[ERROR]: Exception cbBikeMaint_SelectedIndexChanged." + ex.Message.ToString());
+                }
+                
+            }
+        }
+
+        private void BtMaintSave_Click(object sender, EventArgs e)
+        {
+            lbMaintError.Text = "";
+
+            if (!tbMaintID.Text.Equals("") && tbMaintDateCheck.Text.Equals(dateTimePicker1.Value) && tbMaintAddUpdate.Text.Equals("Update"))
+            {
+                //MessageBox.Show("The selected date already has an entry. The entry can be updated but not added.");
+                lbMaintError.Text = "The selected date and bike already have an entry. Select the Update option.";
+                return;
+            }
+
+            if (cbBikeMaint.SelectedIndex == -1)
+            {
+                //MessageBox.Show("All the selections are not set.");
+                lbMaintError.Text = "The Bike selection is not set.";
+                return;
+            }
+
+            if (rtbMaintComments.Text.Equals(""))
+            {
+                //MessageBox.Show("All the selections are not set.");
+                lbMaintError.Text = "The Comments are missing.";
+                return;
+            }
+
+            //Check format of miles:
+            if (!int.TryParse(tbMaintMiles.Text, out _))
+            {
+                lbMaintError.Text = "The miles value must be in numeric format. Enter 0 if unknown.";
+                return;
+            }
+
+            List<object> objectValues = new List<object>();
+
+            //Check if adding a new entry or updating one:
+            if (tbMaintDateCheck.Text.Equals(dateTimePicker1.Value.ToString()) && tbMaintAddUpdate.Text.Equals("Update"))
+            {
+                objectValues.Add(tbMaintID.Text);
+                objectValues.Add(cbBikeMaint.SelectedItem.ToString());
+                objectValues.Add(rtbMaintComments.Text);
+                objectValues.Add(dateTimePicker1.Value);
+                objectValues.Add(float.Parse(tbMaintMiles.Text));
+                RunStoredProcedure(objectValues, "Maintenance_Update");
+            }
+            else
+            {
+                objectValues.Add(cbBikeMaint.SelectedItem.ToString());
+                objectValues.Add(rtbMaintComments.Text);
+                objectValues.Add(dateTimePicker1.Value);
+                objectValues.Add(float.Parse(tbMaintMiles.Text));
+                RunStoredProcedure(objectValues, "Maintenance_Add");
+            }
+
+            //tbMaintID.Text = "";
+            //tbMaintMiles.Text = "";
+            //rtbMaintComments.Text = "";
+            GetMaintLog();
+        }
+
+        private void dataGridViewBikes_Click(object sender, EventArgs e)
+        {
+            int rowindex = dataGridViewBikes.CurrentCell.RowIndex;
+            int columnindex = dataGridViewBikes.CurrentCell.ColumnIndex;
+
+            tbBikeConfig.Text = dataGridViewBikes.Rows[rowindex].Cells[0].Value.ToString();
+            tbBikeTotalMiles.Text = dataGridViewBikes.Rows[rowindex].Cells[2].Value.ToString();
+            tbBikeLogMiles.Text = dataGridViewBikes.Rows[rowindex].Cells[3].Value.ToString();
+            tbConfigMilesNotInLog.Text = dataGridViewBikes.Rows[rowindex].Cells[4].Value.ToString();
+
+            tbBikeOldName.Text = dataGridViewBikes.Rows[rowindex].Cells[0].Value.ToString();
+
+            //double notInMiles = 0;
+            //double logMiles = 0;
+            //double totalMiles = 0;
+
+            //Load miles from the database:
+            //try
+            //{
+            //    List<object> objectValues = new List<object>();
+
+            //    if (cbBikeConfig.SelectedItem == null)
+            //    {
+            //        cbBikeConfig.SelectedIndex = 0;
+            //        //bikeName = cbBikeConfig.SelectedItem.ToString();
+
+            //        objectValues.Add(tbBikeConfig.Text);
+
+            //    }
+            //    else
+            //    {
+            //        objectValues.Add(cbBikeConfig.SelectedItem.ToString());
+            //        tbBikeConfig.Text = cbBikeConfig.SelectedItem.ToString();
+            //    }
+
+            //    //ExecuteScalarFunction
+            //    //Get Notinmiles
+            //    using (var results = ExecuteSimpleQueryConnection("Bike_GetMiles", objectValues))
+            //    {
+            //        if (results.HasRows)
+            //        {
+            //            while (results.Read())
+            //            {
+            //                notInMiles = float.Parse(results[0].ToString());
+            //                logMiles = float.Parse(results[1].ToString());
+            //                totalMiles = float.Parse(results[2].ToString());
+
+            //                notInMiles = Math.Round(notInMiles, 1);
+            //                logMiles = Math.Round(logMiles, 1);
+            //                totalMiles = Math.Round(totalMiles, 1);
+
+            //                tbConfigMilesNotInLog.Text = notInMiles.ToString();
+            //                tbBikeLogMiles.Text = logMiles.ToString();
+            //                tbBikeTotalMiles.Text = totalMiles.ToString();
+            //            }
+            //        }
+            //        else
+            //        {
+            //            //MessageBox.Show("\"No entry found for the selected Bike and Date.");
+            //            Logger.LogError("WARNING: No entry found for the selected Bike and Date.");
+            //            return;
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Logger.LogError("[ERROR]: Exception while trying to retrive Bike miles data." + ex.Message.ToString());
+            //}
+        }
+
+        private void BtBikeClear_Click(object sender, EventArgs e)
+        {
+            tbBikeOldName.Text = "";
+            tbBikeConfig.Text = "";
+            tbConfigMilesNotInLog.Text = "";
+            tbBikeLogMiles.Text = "";
+            tbBikeTotalMiles.Text = "";
+        }
+
+        private void BtRouteClear_Click(object sender, EventArgs e)
+        {
+            tbRouteConfig.Text = "";
+            tbRouteOldName.Text = "";
+        }
+
+        private void dataGridViewRoutes_Click(object sender, EventArgs e)
+        {
+            int rowindex = dataGridViewRoutes.CurrentCell.RowIndex;
+            int columnindex = dataGridViewRoutes.CurrentCell.ColumnIndex;
+
+            tbRouteConfig.Text = dataGridViewRoutes.Rows[rowindex].Cells[0].Value.ToString();
+            tbRouteOldName.Text = dataGridViewRoutes.Rows[rowindex].Cells[0].Value.ToString();
+
+
         }
     }
 }
