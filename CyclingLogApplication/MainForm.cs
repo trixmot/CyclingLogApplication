@@ -16,6 +16,7 @@ using System.Xml.Linq;
 using System.Diagnostics;
 using static System.Net.WebRequestMethods;
 using static DGVPrinterHelper.DGVPrinter;
+using System.Windows.Forms.VisualStyles;
 
 
 
@@ -861,12 +862,209 @@ namespace CyclingLogApplication
             return nameList;
         }
 
+        private void LogTitleSave()
+        {
+            string logYearTitle = tbLogYearConfig.Text;
+            string logType = "Add";
+            RideDataEntry rideDataEntryForm = new RideDataEntry();
+            RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
+            ChartForm chartForm = new ChartForm();
+
+            if (logYearTitle.Equals(""))
+            {
+                MessageBox.Show("No title entered. Enter a unique name for the log.");
+                return;
+            }
+
+            //Needs to be selected for new or updated entry:
+            if (cbLogYear.SelectedIndex < 0)
+            {
+                MessageBox.Show("Log Year not selected. Select a year from the dropdown list.");
+                return;
+            }
+
+            //Get list of Log Titles to determine if the title already exists:
+            List<string> logList = ReadDataNames("Table_Log_year", "Name");
+
+            if (logList.Contains(logYearTitle) || cbLogYearConfig.SelectedIndex > 0)
+            {
+                logType = "Update";
+                DialogResult result = MessageBox.Show("Do you really want to update the Log Title?", "Update Log", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+
+                }
+                else
+                {
+                    return;
+                }
+            } else
+            { 
+                logType = "Add";
+                DialogResult result = MessageBox.Show("Do you really want to Add the Log Title?", "Add Log", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            string logYear = cbLogYear.SelectedItem.ToString();
+            int logSetting = GetLogLevel();
+
+            // New Log created:
+            if (logType.Equals("Add"))
+            {
+                //Add new entry to the LogYear Table:
+                List<object> objectValues = new List<object>();
+                objectValues.Add(logYearTitle);
+                objectValues.Add(Convert.ToInt32(logYear));
+                RunStoredProcedure(objectValues, "Log_Year_Add");
+
+                cbLogYearConfig.Items.Add(logYearTitle);
+                cbLogYearConfig.SelectedIndex = cbLogYearConfig.Items.Count - 1;
+                rideDataEntryForm.AddLogYearDataEntry(logYearTitle);
+                rideDataDisplayForm.AddLogYearFilter(logYearTitle);
+                chartForm.cbLogYearChart.Items.Add(logYearTitle);
+                cbStatMonthlyLogYear.Items.Add(logYearTitle);
+
+                //Update combo's on stat tab:
+                cbLogYear1.Items.Add(logYearTitle);
+                cbLogYear2.Items.Add(logYearTitle);
+                cbLogYear3.Items.Add(logYearTitle);
+                cbLogYear4.Items.Add(logYearTitle);
+                cbLogYear5.Items.Add(logYearTitle);
+            }
+            // Update to an existing log:
+            else
+            {
+                string newValue = logYearTitle;
+                string oldValue;
+
+                // check if a title has been selected from the combobox:
+                if (cbLogYearConfig.SelectedIndex < 0)
+                {
+                    oldValue = logYearTitle;
+                } 
+                else
+                {
+                    oldValue = cbLogYearConfig.SelectedItem.ToString();
+                }
+
+                List<object> objectValues = new List<object>();
+                objectValues.Add(newValue);
+                objectValues.Add(oldValue);
+                objectValues.Add(logYear);
+
+                RunStoredProcedure(objectValues, "Log_Year_Update");
+
+                List<string> tempList = new List<string>();
+
+                int statIndex1 = cbLogYear1.SelectedIndex;
+                int statIndex2 = cbLogYear2.SelectedIndex;
+                int statIndex3 = cbLogYear3.SelectedIndex;
+                int statIndex4 = cbLogYear4.SelectedIndex;
+                int statIndex5 = cbLogYear5.SelectedIndex;
+
+                int cbLogYearConfigIndex = cbLogYearConfig.SelectedIndex;
+                int cbStatMonthlyLogYearIndex = cbStatMonthlyLogYear.SelectedIndex;
+                int rideDataEntryIndex = rideDataEntryForm.cbLogYearDataEntry.SelectedIndex;
+                int rideDataDisplayFormIndex = rideDataDisplayForm.cbLogYearFilter.SelectedIndex;
+                int rideDataChartIndex = chartForm.cbLogYearChart.SelectedIndex;
+
+                for (int i = 0; i < cbLogYearConfig.Items.Count; i++)
+                {
+                    tempList.Add(cbLogYearConfig.Items[i].ToString());
+                }
+
+                cbLogYear1.DataSource = null;
+                cbLogYear1.Items.Clear();
+                cbLogYear2.DataSource = null;
+                cbLogYear2.Items.Clear();
+                cbLogYear3.DataSource = null;
+                cbLogYear3.Items.Clear();
+                cbLogYear4.DataSource = null;
+                cbLogYear4.Items.Clear();
+                cbLogYear5.DataSource = null;
+                cbLogYear5.Items.Clear();
+
+                //Set first option of 'None':
+                cbLogYear1.Items.Add("--None--");
+                cbLogYear2.Items.Add("--None--");
+                cbLogYear3.Items.Add("--None--");
+                cbLogYear4.Items.Add("--None--");
+                cbLogYear5.Items.Add("--None--");
+
+                for (int i = 0; i < tempList.Count; i++)
+                {
+                    if (cbLogYearConfigIndex == i)
+                    {
+                        cbLogYearConfig.Items.Remove(oldValue);
+                        cbLogYearConfig.Items.Add(newValue);
+
+                        rideDataEntryForm.cbLogYearDataEntry.Items.Remove(oldValue);
+                        rideDataEntryForm.cbLogYearDataEntry.Items.Add(newValue);
+
+                        rideDataDisplayForm.cbLogYearFilter.Items.Remove(oldValue);
+                        rideDataDisplayForm.cbLogYearFilter.Items.Add(newValue);
+
+                        chartForm.cbLogYearChart.Items.Remove(oldValue);
+                        chartForm.cbLogYearChart.Items.Add(newValue);
+
+                        cbStatMonthlyLogYear.Items.Remove(oldValue);
+                        cbStatMonthlyLogYear.Items.Add(newValue);
+
+                        cbLogYear1.Items.Add(newValue);
+                        cbLogYear2.Items.Add(newValue);
+                        cbLogYear3.Items.Add(newValue);
+                        cbLogYear4.Items.Add(newValue);
+                        cbLogYear5.Items.Add(newValue);
+                    }
+                    else
+                    {
+                        cbLogYear1.Items.Add(tempList[i]);
+                        cbLogYear2.Items.Add(tempList[i]);
+                        cbLogYear3.Items.Add(tempList[i]);
+                        cbLogYear4.Items.Add(tempList[i]);
+                        cbLogYear5.Items.Add(tempList[i]);
+                    }
+                }
+
+                cbLogYearConfig.Sorted = true;
+                rideDataEntryForm.cbLogYearDataEntry.Sorted = true;
+                chartForm.cbLogYearChart.Sorted = true;
+                cbStatMonthlyLogYear.Sorted = true;
+                rideDataDisplayForm.cbLogYearFilter.Sorted = true;
+
+                cbLogYearConfig.SelectedIndex = cbLogYearConfigIndex;
+                rideDataEntryForm.cbLogYearDataEntry.SelectedIndex = rideDataEntryIndex;
+                rideDataDisplayForm.cbLogYearFilter.SelectedIndex = rideDataDisplayFormIndex;
+                chartForm.cbLogYearChart.SelectedIndex = rideDataChartIndex;
+                cbStatMonthlyLogYear.SelectedIndex = cbStatMonthlyLogYearIndex;
+
+                cbLogYear1.Sorted = true;
+                cbLogYear2.Sorted = true;
+                cbLogYear3.Sorted = true;
+                cbLogYear4.Sorted = true;
+                cbLogYear5.Sorted = true;
+
+                cbLogYear1.SelectedIndex = statIndex1;
+                cbLogYear2.SelectedIndex = statIndex2;
+                cbLogYear3.SelectedIndex = statIndex3;
+                cbLogYear4.SelectedIndex = statIndex4;
+                cbLogYear5.SelectedIndex = statIndex5;
+            }
+        }
+            
         private void BtAddLogYearConfig(object sender, EventArgs e)
         {
             string logYearTitle;
             RideDataEntry rideDataEntryForm = new RideDataEntry();
 
-            if (tbLogYearConfig.Text != "")
+            if (!tbLogYearConfig.Text.Equals(""))
             {
                 logYearTitle = tbLogYearConfig.Text;
                 //Check to see if the string has already been entered to eliminate duplicates:
@@ -897,7 +1095,6 @@ namespace CyclingLogApplication
             //Add new entry to the LogYear Table:
             List<object> objectValues = new List<object>();
             objectValues.Add(logYearTitle);
-            objectValues.Add(logYearTitle);
             objectValues.Add(Convert.ToInt32(logYearValue));
             RunStoredProcedure(objectValues, "Log_Year_Add");
             RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
@@ -916,18 +1113,30 @@ namespace CyclingLogApplication
             cbLogYear4.Items.Add(logYearTitle);
             cbLogYear5.Items.Add(logYearTitle);
 
-            RefreshWeekly();
-
             Logger.Log("Adding a Log Year entry to the Configuration:" + logYearTitle, logSetting, 0);
         }
 
         private void RemoveLogYearConfig(object sender, EventArgs e)
         {
+            if (tbLogYearConfig.Text.Equals(""))
+            {
+                MessageBox.Show("No Log Title entered. Select a Title from the dropdown list.");
+                return;
+            }
+            //Get list of Log Titles to determine if the title already exists:
+            List<string> logList = ReadDataNames("Table_Log_year", "Name");
+            string logName = tbLogYearConfig.Text;
+
+            if (!logList.Contains(logName))
+            {
+                MessageBox.Show("The entered log Title does not exist.  Select a title from the dropdown list.");
+                return;
+            }
+
             DialogResult result = MessageBox.Show("Do you really want to delete the Log and all its data?", "Delete Log", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 RideDataEntry rideDataEntryForm = new RideDataEntry();
-                string logName = cbLogYearConfig.SelectedItem.ToString();
                 int logYearIndex = GetLogYearIndex(logName);
                 RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
                 ChartForm chartForm = new ChartForm();
@@ -1112,6 +1321,20 @@ namespace CyclingLogApplication
         //Remove all records that match the LogYearID:
         private static void RemoveLogYearData(int logIndex)
         {
+            List<object> objectValues = new List<object>
+            {
+                logIndex
+            };
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("DeleteLogTitleFromRideInformation", objectValues))
+            {
+            }
+        }
+
+        //Remove all records that match the LogYearID:
+        private static void RemoveLogYearData_BACKUP(int logIndex)
+        {
             SqlDataReader reader = null;
 
             try
@@ -1193,6 +1416,17 @@ namespace CyclingLogApplication
             string routeOldName = tbRouteOldName.Text;
             List<string> routeList = ReadDataNames("Table_Routes", "Name");
             string routeType = "Add";
+
+            if (tbRouteConfig.Text.Equals(""))
+            {
+                MessageBox.Show("A Route name must be entered into the field.");
+                return;
+            }
+
+            if (tbRouteOldName.Text.Equals(""))
+            {
+                routeOldName = tbRouteConfig.Text;
+            }
 
             //Check to see if the string has already been entered to eliminate duplicates:
             if (routeList.Contains(routeOldName))
@@ -1386,19 +1620,30 @@ namespace CyclingLogApplication
 
         private void BtSaveBikeConfig_Click(object sender, EventArgs e)
         {
-            //Verify Miles is entered and in the correct format:
-            if (!float.TryParse(tbConfigMilesNotInLog.Text.ToString(), out _))
-            {
-                MessageBox.Show("The miles for the Bike must be in numeric format. Enter 0 if unknown.");
-                return;
-            }
-
             string bikeOldName = tbBikeOldName.Text;
             string bikeName = tbBikeConfig.Text;
             float notInMiles = float.Parse(tbConfigMilesNotInLog.Text);
             float logMiles = 0;
             float totalMiles = 0;
             string bikeType = "Add";
+
+            if (tbBikeConfig.Text.Equals(""))
+            {
+                MessageBox.Show("A Bike name must be entered into the field.");
+                return;
+            }
+
+            if (tbBikeOldName.Text.Equals(""))
+            {
+                bikeOldName = tbBikeConfig.Text;
+            }
+
+            //Verify Miles is entered and in the correct format:
+            if (!float.TryParse(tbConfigMilesNotInLog.Text.ToString(), out _))
+            {
+                MessageBox.Show("The miles for the Bike must be in numeric format. Enter 0 if unknown.");
+                return;
+            }
 
             List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
 
@@ -5480,18 +5725,18 @@ namespace CyclingLogApplication
                         //ExecuteScalarFunction
                         using (var results = ExecuteSimpleQueryConnection("Bike_TotalMiles_Update", objectValues))
                         {
-                            if (results.HasRows)
-                            {
-                                while (results.Read())
-                                {
+                            //if (results.HasRows)
+                            //{
+                            //    while (results.Read())
+                            //    {
                                     
-                                }
-                            }
-                            else
-                            {
-                                //lbMaintError.Text = "No entry found for the selected Bike.";
-                                Logger.LogError("[WARNING: No entry found for the selected Bike.");
-                            }
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    //lbMaintError.Text = "No entry found for the selected Bike.";
+                            //    Logger.LogError("[WARNING: No entry found for the selected Bike.");
+                            //}
                         }
                     }
                     catch (Exception ex)
@@ -6607,6 +6852,18 @@ namespace CyclingLogApplication
             tbRouteOldName.Text = dataGridViewRoutes.Rows[rowindex].Cells[0].Value.ToString();
 
 
+        }
+
+        private void btLogTitleSave_Click(object sender, EventArgs e)
+        {
+            LogTitleSave();
+        }
+
+        private void btLogTitleClear_Click(object sender, EventArgs e)
+        {
+            cbLogYearConfig.SelectedIndex = -1;
+            tbLogYearConfig.Text = string.Empty;
+            cbLogYear.SelectedIndex = -1;
         }
     }
 }

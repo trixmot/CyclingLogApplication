@@ -406,6 +406,8 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
             this.label69 = new System.Windows.Forms.Label();
+            this.btLogTitleSave = new System.Windows.Forms.Button();
+            this.btLogTitleClear = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -459,17 +461,18 @@
             // 
             // btAddLogYear
             // 
-            this.btAddLogYear.Location = new System.Drawing.Point(51, 181);
+            this.btAddLogYear.Location = new System.Drawing.Point(100, 32);
             this.btAddLogYear.Name = "btAddLogYear";
             this.btAddLogYear.Size = new System.Drawing.Size(75, 23);
             this.btAddLogYear.TabIndex = 2;
             this.btAddLogYear.Text = "Add";
             this.btAddLogYear.UseVisualStyleBackColor = true;
+            this.btAddLogYear.Visible = false;
             this.btAddLogYear.Click += new System.EventHandler(this.BtAddLogYearConfig);
             // 
             // btRemoveLogYear
             // 
-            this.btRemoveLogYear.Location = new System.Drawing.Point(51, 210);
+            this.btRemoveLogYear.Location = new System.Drawing.Point(56, 251);
             this.btRemoveLogYear.Name = "btRemoveLogYear";
             this.btRemoveLogYear.Size = new System.Drawing.Size(75, 23);
             this.btRemoveLogYear.TabIndex = 3;
@@ -3747,12 +3750,14 @@
             // 
             this.groupBox2.Controls.Add(this.groupBox23);
             this.groupBox2.Controls.Add(this.groupBox22);
+            this.groupBox2.Controls.Add(this.btAddLogYear);
             this.groupBox2.Controls.Add(this.groupBox20);
             this.groupBox2.Controls.Add(this.groupBox18);
             this.groupBox2.Controls.Add(this.groupBox13);
             this.groupBox2.Controls.Add(this.groupBox9);
             this.groupBox2.Controls.Add(this.groupBox10);
             this.groupBox2.Controls.Add(this.label64);
+            this.groupBox2.Controls.Add(this.bRenameLogYear);
             this.groupBox2.Location = new System.Drawing.Point(71, 23);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(780, 518);
@@ -4924,14 +4929,14 @@
             // 
             // groupBox10
             // 
+            this.groupBox10.Controls.Add(this.btLogTitleClear);
+            this.groupBox10.Controls.Add(this.btLogTitleSave);
             this.groupBox10.Controls.Add(this.label31);
-            this.groupBox10.Controls.Add(this.btAddLogYear);
             this.groupBox10.Controls.Add(this.cbLogYearConfig);
             this.groupBox10.Controls.Add(this.btRemoveLogYear);
             this.groupBox10.Controls.Add(this.tbLogYearConfig);
             this.groupBox10.Controls.Add(this.cbLogYear);
             this.groupBox10.Controls.Add(this.label3);
-            this.groupBox10.Controls.Add(this.bRenameLogYear);
             this.groupBox10.Controls.Add(this.label24);
             this.groupBox10.Location = new System.Drawing.Point(31, 68);
             this.groupBox10.Name = "groupBox10";
@@ -4963,18 +4968,19 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(15, 77);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 13);
+            this.label3.Size = new System.Drawing.Size(116, 13);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Add or Rename Log";
+            this.label3.Text = "Log Title (Add/Update)";
             // 
             // bRenameLogYear
             // 
-            this.bRenameLogYear.Location = new System.Drawing.Point(51, 239);
+            this.bRenameLogYear.Location = new System.Drawing.Point(19, 32);
             this.bRenameLogYear.Name = "bRenameLogYear";
             this.bRenameLogYear.Size = new System.Drawing.Size(75, 23);
             this.bRenameLogYear.TabIndex = 4;
             this.bRenameLogYear.Text = "Update";
             this.bRenameLogYear.UseVisualStyleBackColor = true;
+            this.bRenameLogYear.Visible = false;
             this.bRenameLogYear.Click += new System.EventHandler(this.BRenameLogYear_Click);
             // 
             // label24
@@ -4982,9 +4988,9 @@
             this.label24.AutoSize = true;
             this.label24.Location = new System.Drawing.Point(15, 28);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(81, 13);
+            this.label24.Size = new System.Drawing.Size(48, 13);
             this.label24.TabIndex = 18;
-            this.label24.Text = "Log Entry Label";
+            this.label24.Text = "Log Title";
             // 
             // label64
             // 
@@ -5125,6 +5131,26 @@
             this.label69.Size = new System.Drawing.Size(90, 13);
             this.label69.TabIndex = 24;
             this.label69.Text = "New Route Label";
+            // 
+            // btLogTitleSave
+            // 
+            this.btLogTitleSave.Location = new System.Drawing.Point(56, 193);
+            this.btLogTitleSave.Name = "btLogTitleSave";
+            this.btLogTitleSave.Size = new System.Drawing.Size(75, 23);
+            this.btLogTitleSave.TabIndex = 25;
+            this.btLogTitleSave.Text = "Save";
+            this.btLogTitleSave.UseVisualStyleBackColor = true;
+            this.btLogTitleSave.Click += new System.EventHandler(this.btLogTitleSave_Click);
+            // 
+            // btLogTitleClear
+            // 
+            this.btLogTitleClear.Location = new System.Drawing.Point(56, 222);
+            this.btLogTitleClear.Name = "btLogTitleClear";
+            this.btLogTitleClear.Size = new System.Drawing.Size(75, 23);
+            this.btLogTitleClear.TabIndex = 26;
+            this.btLogTitleClear.Text = "Clear";
+            this.btLogTitleClear.UseVisualStyleBackColor = true;
+            this.btLogTitleClear.Click += new System.EventHandler(this.btLogTitleClear_Click);
             // 
             // MainForm
             // 
@@ -5580,6 +5606,8 @@
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.Button btLogTitleSave;
+        private System.Windows.Forms.Button btLogTitleClear;
     }
 }
 
