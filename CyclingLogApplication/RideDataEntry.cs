@@ -631,7 +631,7 @@ namespace CyclingLogApplication
             lbRideDataEntryError.Text = "";
             lbRideDataEntryError.Hide();
 
-            RideInformationChange("Add", "Ride_Information_Add");
+            //RideInformationChange("Add", "Ride_Information_Add");
         }
 
         private void CloseRideDataEntry(object sender, EventArgs e)
@@ -687,10 +687,43 @@ namespace CyclingLogApplication
         //    }
         //}
 
-        private void RideInformationChange(string changeType, string procedureName)
+        private void RideInformationChange(Boolean rideDisplayChange)
         {
             lbRideDataEntryError.Hide();
+            string changeType;
+            string procedureName;
 
+            if (rideDisplayChange)
+            {
+                changeType = "DisplayUpdate";
+                procedureName = "Ride_Information_Update";
+            }
+            else
+            {
+                //Determine if Add or Update:
+                //ID field = 0 -> Add otherwise Update
+                if (tbRecordID.Text.Equals("0"))
+                {
+                    changeType = "Add";
+                    procedureName = "Ride_Information_Add";
+                    DialogResult result = MessageBox.Show("Do you really want to Add a new ride entry?", "Add Ride Entry", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    changeType = "Update";
+                    procedureName = "Ride_Information_Update";
+                    DialogResult result = MessageBox.Show("Do you really want to Update the ride entry?", "Update Ride Entry", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
+            }
+            
             try
             {
                 //Make sure certain required fields are filled in:
@@ -827,11 +860,11 @@ namespace CyclingLogApplication
 
                         return;
                     }
-                    DialogResult result = MessageBox.Show("Updating the ride in the log. Do you want to continue?", "Update Data", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.No)
-                    {
-                        return;
-                    }
+                    //DialogResult result = MessageBox.Show("Updating the ride in the log. Do you want to continue?", "Update Data", MessageBoxButtons.YesNo);
+                    //if (result == DialogResult.No)
+                    //{
+                    //    return;
+                    //}
                 }
 
                 // Check recordID value:
@@ -847,14 +880,14 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    if (changeType.Equals("Add"))
-                    {
-                        DialogResult result = MessageBox.Show("Adding the ride to the log. Do you want to continue?", "Add Data", MessageBoxButtons.YesNo);
-                        if (result == DialogResult.No)
-                        {
-                            return;
-                        }
-                    }
+                    //if (changeType.Equals("Add"))
+                    //{
+                    //    DialogResult result = MessageBox.Show("Adding the ride to the log. Do you want to continue?", "Add Data", MessageBoxButtons.YesNo);
+                    //    if (result == DialogResult.No)
+                    //    {
+                    //        return;
+                    //    }
+                    //}
 
                 }
 
@@ -981,12 +1014,14 @@ namespace CyclingLogApplication
                 }
 
                 objectValues.Add(cbLocationDataEntry.SelectedItem.ToString());          //Location:
-                double winchill = 0;
+                double windChill = 0;
+                double maxSpeed = double.Parse(max_speed.Text);
 
-                if (windspeed > 3 && temp < 50)                                          //Winchill:
+                if (maxSpeed > 0 && temp > 0)                                          //Winchill:
                 {
-                    winchill = 35.74 + (0.6215) * (temp) - (35.75) * (Math.Pow(windspeed, 0.16)) + (0.4275) * (Math.Pow(windspeed, 0.16));
-                    objectValues.Add(winchill.ToString());
+                    windChill = 35.74 + 0.6215 * temp + (0.4275 * temp - 35.75) * Math.Pow(maxSpeed, 0.16);
+                    windChill = Math.Round(windChill, 1);
+                    objectValues.Add(windChill.ToString());
                 }
                 else
                 {
@@ -1022,7 +1057,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        if (changeType.Equals("Update"))
+                        if (changeType.Equals("Update") || changeType.Equals("DisplayUpdate"))
                         {
                             MessageBox.Show("The ride has been updated successfully.");
                         }
@@ -1392,7 +1427,7 @@ namespace CyclingLogApplication
 
         private void BtUpdateRideDateEntry_Click(object sender, EventArgs e)
         {
-            RideInformationChange("Update", "Ride_Information_Update");
+            //RideInformationChange("Update", "Ride_Information_Update");
         }
 
         private void BtDeleteRideDataEntry_Click(object sender, EventArgs e)
@@ -1701,6 +1736,7 @@ namespace CyclingLogApplication
             btDeleteRideDataEntry.Visible = false;
             btClearDataEntry.Visible = false;
             btRideDisplayUpdate.Visible = true;
+            btLogEntrySave.Visible = false;
 
             List<object> objectValues = new List<object>
             {
@@ -2487,7 +2523,12 @@ namespace CyclingLogApplication
 
         private void btRideDisplayUpdate_Click(object sender, EventArgs e)
         {
-            RideInformationChange("DisplayUpdate", "Ride_Information_Update");
+            RideInformationChange(true);
+        }
+
+        private void btLogEntrySave_Click(object sender, EventArgs e)
+        {
+            RideInformationChange(false);
         }
     }
 }

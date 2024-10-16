@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.cbLogYearConfig = new System.Windows.Forms.ComboBox();
-            this.btAddLogYear = new System.Windows.Forms.Button();
             this.btRemoveLogYear = new System.Windows.Forms.Button();
             this.tbLogYearConfig = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
@@ -390,7 +389,6 @@
             this.label31 = new System.Windows.Forms.Label();
             this.cbLogYear = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.bRenameLogYear = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
             this.label64 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -458,17 +456,6 @@
             this.cbLogYearConfig.Size = new System.Drawing.Size(140, 21);
             this.cbLogYearConfig.TabIndex = 0;
             this.cbLogYearConfig.SelectedIndexChanged += new System.EventHandler(this.CbLogYearConfig_SelectedIndexChanged);
-            // 
-            // btAddLogYear
-            // 
-            this.btAddLogYear.Location = new System.Drawing.Point(100, 32);
-            this.btAddLogYear.Name = "btAddLogYear";
-            this.btAddLogYear.Size = new System.Drawing.Size(75, 23);
-            this.btAddLogYear.TabIndex = 2;
-            this.btAddLogYear.Text = "Add";
-            this.btAddLogYear.UseVisualStyleBackColor = true;
-            this.btAddLogYear.Visible = false;
-            this.btAddLogYear.Click += new System.EventHandler(this.BtAddLogYearConfig);
             // 
             // btRemoveLogYear
             // 
@@ -3750,14 +3737,12 @@
             // 
             this.groupBox2.Controls.Add(this.groupBox23);
             this.groupBox2.Controls.Add(this.groupBox22);
-            this.groupBox2.Controls.Add(this.btAddLogYear);
             this.groupBox2.Controls.Add(this.groupBox20);
             this.groupBox2.Controls.Add(this.groupBox18);
             this.groupBox2.Controls.Add(this.groupBox13);
             this.groupBox2.Controls.Add(this.groupBox9);
             this.groupBox2.Controls.Add(this.groupBox10);
             this.groupBox2.Controls.Add(this.label64);
-            this.groupBox2.Controls.Add(this.bRenameLogYear);
             this.groupBox2.Location = new System.Drawing.Point(71, 23);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(780, 518);
@@ -4972,17 +4957,6 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Log Title (Add/Update)";
             // 
-            // bRenameLogYear
-            // 
-            this.bRenameLogYear.Location = new System.Drawing.Point(19, 32);
-            this.bRenameLogYear.Name = "bRenameLogYear";
-            this.bRenameLogYear.Size = new System.Drawing.Size(75, 23);
-            this.bRenameLogYear.TabIndex = 4;
-            this.bRenameLogYear.Text = "Update";
-            this.bRenameLogYear.UseVisualStyleBackColor = true;
-            this.bRenameLogYear.Visible = false;
-            this.bRenameLogYear.Click += new System.EventHandler(this.BRenameLogYear_Click);
-            // 
             // label24
             // 
             this.label24.AutoSize = true;
@@ -5230,7 +5204,6 @@
 
         #endregion
         private System.Windows.Forms.ComboBox cbLogYearConfig;
-        private System.Windows.Forms.Button btAddLogYear;
         private System.Windows.Forms.Button btRemoveLogYear;
         private System.Windows.Forms.TextBox tbLogYearConfig;
         private System.Windows.Forms.Button button5;
@@ -5309,7 +5282,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox tbTimeChange;
         private System.Windows.Forms.Button btRenameBike;
-        private System.Windows.Forms.Button bRenameLogYear;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;

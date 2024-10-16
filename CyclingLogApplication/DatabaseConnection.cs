@@ -143,13 +143,19 @@ namespace CyclingLogApplication
         /// </summary>
         public void CloseConnection()
         {
-            try { this.CloseDataReader(); }
+            try { 
+                this.CloseDataReader(); 
+            }
             catch { }
+
             try {
                 this.Connection?.Close();
             }
             catch { }
-            try { SqlConnection.ClearPool(this.Connection); }
+
+            try { 
+                SqlConnection.ClearPool(this.Connection); 
+            }
             catch { }
         }
 
