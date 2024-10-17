@@ -620,23 +620,23 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(logLevelNode);
 
                     XmlNode cbStatistic1Node = xmlDoc.CreateElement("cbStatistic1");
-                    cbStatistic1Node.InnerText = "-1";
+                    cbStatistic1Node.InnerText = "0";
                     rootNode.AppendChild(cbStatistic1Node);
 
                     XmlNode cbStatistic2Node = xmlDoc.CreateElement("cbStatistic2");
-                    cbStatistic2Node.InnerText = "-1";
+                    cbStatistic2Node.InnerText = "0";
                     rootNode.AppendChild(cbStatistic2Node);
 
                     XmlNode cbStatistic3Node = xmlDoc.CreateElement("cbStatistic3");
-                    cbStatistic3Node.InnerText = "-1";
+                    cbStatistic3Node.InnerText = "0";
                     rootNode.AppendChild(cbStatistic3Node);
 
                     XmlNode cbStatistic4Node = xmlDoc.CreateElement("cbStatistic4");
-                    cbStatistic4Node.InnerText = "-1";
+                    cbStatistic4Node.InnerText = "0";
                     rootNode.AppendChild(cbStatistic4Node);
 
                     XmlNode cbStatistic5Node = xmlDoc.CreateElement("cbStatistic5");
-                    cbStatistic5Node.InnerText = "-1";
+                    cbStatistic5Node.InnerText = "0";
                     rootNode.AppendChild(cbStatistic5Node);
 
                     XmlNode lastBikeSelectedNode = xmlDoc.CreateElement("LastBikeSelected");
@@ -647,12 +647,12 @@ namespace CyclingLogApplication
                     lastLogSelectedNode.InnerText = "-1";
                     rootNode.AppendChild(lastLogSelectedNode);
 
-                    XmlNode lastLogFilterSelectedNode = xmlDoc.CreateElement("LastLogFilterSelected");
-                    lastLogFilterSelectedNode.InnerText = "-1";
+                    XmlNode lastLogFilterSelectedNode = xmlDoc.CreateElement("LastLogFilterSelected"); //Display form logyear
+                    lastLogFilterSelectedNode.InnerText = "0";
                     rootNode.AppendChild(lastLogFilterSelectedNode);
 
                     XmlNode lastLogYearChartSelectedNode = xmlDoc.CreateElement("ChartLogYear");
-                    lastLogYearChartSelectedNode.InnerText = "-1";
+                    lastLogYearChartSelectedNode.InnerText = "0";
                     rootNode.AppendChild(lastLogYearChartSelectedNode);
 
                     XmlNode lastRouteChartSelectedNode = xmlDoc.CreateElement("ChartRoute");
@@ -660,19 +660,19 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(lastRouteChartSelectedNode);
 
                     XmlNode lastTypeChartSelectedNode = xmlDoc.CreateElement("ChartType");
-                    lastTypeChartSelectedNode.InnerText = "-1";
+                    lastTypeChartSelectedNode.InnerText = "0";
                     rootNode.AppendChild(lastTypeChartSelectedNode);
 
                     XmlNode lastTypeTimeChartSelectedNode = xmlDoc.CreateElement("ChartTimeType");
-                    lastTypeTimeChartSelectedNode.InnerText = "-1";
+                    lastTypeTimeChartSelectedNode.InnerText = "0";
                     rootNode.AppendChild(lastTypeTimeChartSelectedNode);
 
-                    XmlNode lastMonthlyLogYearSelectedNode = xmlDoc.CreateElement("LastMonthlyLogSelected");
-                    lastMonthlyLogYearSelectedNode.InnerText = "-1";
+                    XmlNode lastMonthlyLogYearSelectedNode = xmlDoc.CreateElement("LastMonthlyLogSelected");//for cbStatMonthlyLogYear
+                    lastMonthlyLogYearSelectedNode.InnerText = "0";
                     rootNode.AppendChild(lastMonthlyLogYearSelectedNode);
 
                     XmlNode lastLogYearSelectedDataEntryNode = xmlDoc.CreateElement("LastLogSelectedDataEntry");
-                    lastLogYearSelectedDataEntryNode.InnerText = "-1";
+                    lastLogYearSelectedDataEntryNode.InnerText = "-0";
                     rootNode.AppendChild(lastLogYearSelectedDataEntryNode);
 
                     MainForm.SetLicenseAgreement("False");

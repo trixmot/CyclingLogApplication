@@ -4945,7 +4945,7 @@
             this.cbLogYear.FormattingEnabled = true;
             this.cbLogYear.Location = new System.Drawing.Point(18, 146);
             this.cbLogYear.Name = "cbLogYear";
-            this.cbLogYear.Size = new System.Drawing.Size(108, 21);
+            this.cbLogYear.Size = new System.Drawing.Size(140, 21);
             this.cbLogYear.TabIndex = 23;
             // 
             // label3

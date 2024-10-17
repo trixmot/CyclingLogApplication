@@ -213,15 +213,18 @@ namespace CyclingLogApplication
                 List<string> routeList = ReadDataNames("Table_Routes", "Name");
                 List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
 
-                RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
+                //RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
                 ChartForm chartForm = new ChartForm();
 
                 //Set first option of 'None':
-                cbLogYear1.Items.Add("--None--");
-                cbLogYear2.Items.Add("--None--");
-                cbLogYear3.Items.Add("--None--");
-                cbLogYear4.Items.Add("--None--");
-                cbLogYear5.Items.Add("--None--");
+                cbLogYear1.Items.Add("--Select Value--");
+                cbLogYear2.Items.Add("--Select Value--");
+                cbLogYear3.Items.Add("--Select Value--");
+                cbLogYear4.Items.Add("--Select Value--");
+                cbLogYear5.Items.Add("--Select Value--");
+
+                cbLogYearConfig.Items.Add("--Select Value--");
+                //rideDataDisplayForm.cbLogYearFilter.Items.Add("--Select Value--");
 
                 //Load LogYear values:
                 foreach (string val in logYearList)
@@ -233,10 +236,12 @@ namespace CyclingLogApplication
                     cbLogYear3.Items.Add(val);
                     cbLogYear4.Items.Add(val);
                     cbLogYear5.Items.Add(val);
-                    rideDataDisplayForm.cbLogYearFilter.Items.Add(val);
+                    //rideDataDisplayForm.cbLogYearFilter.Items.Add(val);
                     chartForm.cbLogYearChart.Items.Add(val);
                     Logger.Log("Data Loading: Log Year: " + val, logSetting, 1);
                 }
+
+                cbLogYearConfig.SelectedIndex = 0;
 
                 if (GetLastLogSelectedDataEntry() != 0)
                 {
@@ -282,10 +287,9 @@ namespace CyclingLogApplication
                 }
 
                 formloading = true;
+
                 //Set first option of 'None':
-                cbStatMonthlyLogYear.Items.Add("--None--");
-
-
+                cbStatMonthlyLogYear.Items.Add("--Select Value--");
                 //Load LogYear Monthly values:
                 foreach (string val in logYearList)
                 {
@@ -302,11 +306,14 @@ namespace CyclingLogApplication
                 cbStatMonthlyLogYear.SelectedIndex = Convert.ToInt32(GetLastMonthlyLogSelected());
 
                 int currentYear = DateTime.Now.Year;
+
+                cbLogYear.Items.Add("--Select Value--");
                 //cbLogYear
                 for (int i = 2010; i <= currentYear; i++)
                 {
                     cbLogYear.Items.Add(i.ToString());
                 }
+                cbLogYear.SelectedIndex = 0;
 
                 //tabControl1.SelectedTab = tabControl1.TabPages["Main"];
                 cbMaintColors.SelectedIndex = cbMaintColors.FindStringExact(gridMaintColor);
@@ -877,7 +884,7 @@ namespace CyclingLogApplication
             }
 
             //Needs to be selected for new or updated entry:
-            if (cbLogYear.SelectedIndex < 0)
+            if (cbLogYear.SelectedIndex < 1)
             {
                 MessageBox.Show("Log Year not selected. Select a year from the dropdown list.");
                 return;
@@ -945,7 +952,7 @@ namespace CyclingLogApplication
                 string oldValue;
 
                 // check if a title has been selected from the combobox:
-                if (cbLogYearConfig.SelectedIndex < 0)
+                if (cbLogYearConfig.SelectedIndex < 1)
                 {
                     oldValue = logYearTitle;
                 } 
@@ -975,7 +982,8 @@ namespace CyclingLogApplication
                 int rideDataDisplayFormIndex = rideDataDisplayForm.cbLogYearFilter.SelectedIndex;
                 int rideDataChartIndex = chartForm.cbLogYearChart.SelectedIndex;
 
-                for (int i = 0; i < cbLogYearConfig.Items.Count; i++)
+                // Skip first item:
+                for (int i = 1; i < cbLogYearConfig.Items.Count; i++)
                 {
                     tempList.Add(cbLogYearConfig.Items[i].ToString());
                 }
@@ -992,15 +1000,16 @@ namespace CyclingLogApplication
                 cbLogYear5.Items.Clear();
 
                 //Set first option of 'None':
-                cbLogYear1.Items.Add("--None--");
-                cbLogYear2.Items.Add("--None--");
-                cbLogYear3.Items.Add("--None--");
-                cbLogYear4.Items.Add("--None--");
-                cbLogYear5.Items.Add("--None--");
+                cbLogYear1.Items.Add("--Select Value--");
+                cbLogYear2.Items.Add("--Select Value--");
+                cbLogYear3.Items.Add("--Select Value--");
+                cbLogYear4.Items.Add("--Select Value--");
+                cbLogYear5.Items.Add("--Select Value--");
 
                 for (int i = 0; i < tempList.Count; i++)
                 {
-                    if (cbLogYearConfigIndex == i)
+                    // -1 since do not want to include the --not select-- option:
+                    if (cbLogYearConfigIndex -1 == i)
                     {
                         cbLogYearConfig.Items.Remove(oldValue);
                         cbLogYearConfig.Items.Add(newValue);
@@ -1022,6 +1031,8 @@ namespace CyclingLogApplication
                         cbLogYear3.Items.Add(newValue);
                         cbLogYear4.Items.Add(newValue);
                         cbLogYear5.Items.Add(newValue);
+
+                        break;
                     }
                     else
                     {
@@ -1083,7 +1094,7 @@ namespace CyclingLogApplication
                 return;
             }
 
-            if (cbLogYear.SelectedIndex == 0)
+            if (cbLogYear.SelectedIndex < 1)
             {
                 MessageBox.Show("Invalid Log Year selected. Select a valid year.");
                 return;
@@ -1389,7 +1400,7 @@ namespace CyclingLogApplication
         private void OpenRideDataEntry(object sender, EventArgs e)
         {
             //Need to check that there is a least 1 LogYear value entered:
-            if (cbLogYearConfig.Items.Count == 0)
+            if (cbLogYearConfig.Items.Count <= 1)
             {
                 MessageBox.Show("You must add at least 1 log Entry before entering data.  Add a new Log Year entry in the Settings tab.");
             }
@@ -3821,8 +3832,15 @@ namespace CyclingLogApplication
 
         private void CbLogYearConfig_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbLogYearConfig.SelectedItem == null)
+            if (cbLogYearConfig.SelectedItem == null || cbLogYearConfig.SelectedIndex == 0)
             {
+                tbLogYearConfig.Text = "";
+
+                if (cbLogYear.Items.Count > 0)
+                {
+                    cbLogYear.SelectedIndex = 0;
+                }
+                
                 return;
             }
 
@@ -6861,9 +6879,9 @@ namespace CyclingLogApplication
 
         private void btLogTitleClear_Click(object sender, EventArgs e)
         {
-            cbLogYearConfig.SelectedIndex = -1;
+            cbLogYearConfig.SelectedIndex = 0;
             tbLogYearConfig.Text = string.Empty;
-            cbLogYear.SelectedIndex = -1;
+            cbLogYear.SelectedIndex = 0;
         }
     }
 }

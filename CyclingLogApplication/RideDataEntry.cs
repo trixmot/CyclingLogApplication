@@ -91,6 +91,7 @@ namespace CyclingLogApplication
             }
 
             List<string> logYearList = MainForm.GetLogYears();
+            cbLogYearDataEntry.Items.Add("--Select Value--");
             for (int i = 0; i < logYearList.Count; i++)
             {
                 cbLogYearDataEntry.Items.Add(logYearList.ElementAt(i));
@@ -416,6 +417,11 @@ namespace CyclingLogApplication
             tbComments.Text = comments;
         }
 
+        public void SetWindChill(string wind_Chill)
+        {
+            tbRideEntryWindChill.Text = wind_Chill;
+        }
+
         //Diable x close option:
         private const int CP_NOCLOSE_BUTTON = 0x200;
         protected override CreateParams CreateParams
@@ -432,7 +438,7 @@ namespace CyclingLogApplication
         {
             if (formClosing == 0)
             {
-                if (cbLogYearDataEntry.SelectedIndex == -1)
+                if (cbLogYearDataEntry.SelectedIndex < 1)
                 {
                     lbRideDataEntryError.Show();
                     lbRideDataEntryError.Text = "No Log Year selected";
@@ -516,6 +522,7 @@ namespace CyclingLogApplication
             string comfort;
             string custom1;
             string custom2;
+            string windChill;
 
             int recordIndex = 0;
 
@@ -562,6 +569,7 @@ namespace CyclingLogApplication
                                 comfort = results[23].ToString();
                                 custom1 = results[24].ToString();
                                 custom2 = results[25].ToString();
+                                windChill = results[26].ToString();
 
                                 //Load ride data page:
                                 dtpTimeRideDataEntry.Value = Convert.ToDateTime(movingTime);
@@ -590,6 +598,7 @@ namespace CyclingLogApplication
                                 cbComfortRideDataEntry.SelectedIndex = cbComfortRideDataEntry.Items.IndexOf(comfort);
                                 tbCustom1.Text = custom1;
                                 tbCustom2.Text = custom2;
+                                tbRideEntryWindChill.Text = Math.Round(double.Parse(windChill), 1).ToString();
                             }
                             else
                             {
@@ -622,7 +631,7 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to retrive ride data." + ex.Message.ToString());
+                Logger.LogError("[ERROR]: GetRideData() Exception while trying to retrive ride data. " + ex.Message.ToString());
             }
         }
 
@@ -654,22 +663,6 @@ namespace CyclingLogApplication
                 //}
             }
         }
-
-        //private void textBox1_Validating(object sender, CancelEventArgs e)
-        //{
-        //    TextBox box = sender as TextBox;
-        //    string pattern = "\\d{1,2}:\\d{2}\\s*(AM|PM)";
-        //    //textBox1.Text = string.Format("{00:00:00}", 55);
-        //    if (box != null)
-        //    {
-        //        if (!Regex.IsMatch(box.Text, pattern, RegexOptions.CultureInvariant))
-        //        {
-        //            MessageBox.Show("Not a valid time format ('hh:mm AM|PM').");
-        //            e.Cancel = true;
-        //            box.Select(0, box.Text.Length);
-        //        }
-        //    }
-        //}
 
         //private void RideDataEntry_FormClosing(object sender, FormClosingEventArgs e)
         //{
@@ -741,7 +734,7 @@ namespace CyclingLogApplication
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (cbLogYearDataEntry.SelectedIndex < 0)
+                if (cbLogYearDataEntry.SelectedIndex < 1)
                 {
                     lbRideDataEntryError.Text = "A Log year must be selected.";
                     lbRideDataEntryError.Show();
@@ -860,11 +853,6 @@ namespace CyclingLogApplication
 
                         return;
                     }
-                    //DialogResult result = MessageBox.Show("Updating the ride in the log. Do you want to continue?", "Update Data", MessageBoxButtons.YesNo);
-                    //if (result == DialogResult.No)
-                    //{
-                    //    return;
-                    //}
                 }
 
                 // Check recordID value:
@@ -877,18 +865,6 @@ namespace CyclingLogApplication
 
                         return;
                     }
-                }
-                else
-                {
-                    //if (changeType.Equals("Add"))
-                    //{
-                    //    DialogResult result = MessageBox.Show("Adding the ride to the log. Do you want to continue?", "Add Data", MessageBoxButtons.YesNo);
-                    //    if (result == DialogResult.No)
-                    //    {
-                    //        return;
-                    //    }
-                    //}
-
                 }
 
                 List<object> objectValues = new List<object>();
@@ -1308,7 +1284,19 @@ namespace CyclingLogApplication
                 MessageBox.Show("[ERROR] Exception occurred. Refer to the log for more information. ");
             }
 
-            //tbRecordID.Text = "import";
+            double windChill;
+            double maxSpeed = double.Parse(max_speed.Text);
+            double temperature = double.Parse(numericUpDown3.Value.ToString());
+            if (maxSpeed > 0 && temperature > 0)
+            {
+                windChill = 35.74 + 0.6215 * temperature + (0.4275 * temperature - 35.75) * Math.Pow(maxSpeed, 0.16);
+            } else
+            {
+                windChill = temperature;
+            }
+
+            windChill = Math.Round(windChill, 1);
+            tbRideEntryWindChill.Text = windChill.ToString();
         }
 
         // Used to clear the form on date changes:
@@ -1363,7 +1351,7 @@ namespace CyclingLogApplication
             //using (MainForm mainForm = new MainForm(""))
             //{
                 MainForm.SetLastLogSelected(cbLogYearDataEntry.SelectedIndex);
-                if (cbLogYearDataEntry.SelectedIndex == -1)
+                if (cbLogYearDataEntry.SelectedIndex < 1)
                 {
                     lbRideDataEntryError.Show();
                     lbRideDataEntryError.Text = "No Log Year selected.";
@@ -1466,44 +1454,6 @@ namespace CyclingLogApplication
                             //No matching date found
                         }
                     }
-                    //// instantiate and open connection
-                    ////conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-                    //sqlConnection.Open();
-
-                    //// 1. declare command object with parameter
-                    //using (SqlCommand cmd = new SqlCommand("DELETE FROM Table_Ride_Information WHERE @Id=[Id]", sqlConnection))
-                    //{
-                    //    // 2. define parameters used in command object
-                    //    SqlParameter param = new SqlParameter
-                    //    {
-                    //        ParameterName = "@Id",
-                    //        Value = rideRecordID
-                    //    };
-
-                    //    // 3. add new parameter to command object
-                    //    cmd.Parameters.Add(param);
-
-                    //    // get data stream
-                    //    reader = cmd.ExecuteReader();
-                    //}
-
-                    //// write each record
-                    //while (reader.Read())
-                    //{
-                    //    //Console.WriteLine("{0}, {1}", reader["field1"], reader["field2"]);
-                    //    //MessageBox.Show(String.Format("{0}", reader[0]));
-                    //    //Console.WriteLine(String.Format("{0}", reader[0]));
-                    //    string temp = reader[0].ToString();
-
-                    //    if (temp.Equals(""))
-                    //    {
-                    //        returnValue = 0;
-                    //    }
-                    //    else
-                    //    {
-                    //        returnValue = int.Parse(temp);
-                    //    }
-                    //}
 
                     if (numericUpDown2.Enabled == true)
                     {
@@ -1517,12 +1467,6 @@ namespace CyclingLogApplication
                 }
                 finally
                 {
-                    // close reader
-                    //if (reader != null)
-                    //{
-                    //    reader.Close();
-                   // }
-
                     // close connection
                     sqlConnection?.Close();
                 }
@@ -1560,7 +1504,7 @@ namespace CyclingLogApplication
 
         private void Retrieve_run()
         {
-            if (cbLogYearDataEntry.SelectedIndex == -1)
+            if (cbLogYearDataEntry.SelectedIndex < 1)
             {
                 MessageBox.Show("A Log Year must be selected.");
 
@@ -1772,6 +1716,7 @@ namespace CyclingLogApplication
             string comfort;
             string custom1;
             string custom2;
+            string windChill;
             int routeIndex = -1;
             int bikeIndex = -1;
             int rideTypeIndex = -1;
@@ -1816,6 +1761,7 @@ namespace CyclingLogApplication
                             comfort = results[23].ToString();
                             custom1 = results[24].ToString();
                             custom2 = results[25].ToString();
+                            windChill = results[26].ToString();
 
                             MainForm mainform = new MainForm();
                             List<string> routeList = MainForm.ReadDataNames("Table_Routes", "Name");
@@ -1938,6 +1884,7 @@ namespace CyclingLogApplication
                             SetBike(bike);
                             SetBikeIndex(bikeIndex);
                             SetComments(comments);
+                            SetWindChill(windChill);
 
          
                             //Dictionary<string, string> sqlParameters = new Dictionary<string, string>();
@@ -2073,7 +2020,7 @@ namespace CyclingLogApplication
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (cbLogYearDataEntry.SelectedIndex < 0)
+                if (cbLogYearDataEntry.SelectedIndex < 1)
                 {
                     lbRideDataEntryError.Text = "A Log year must be selected.";
                     lbRideDataEntryError.Show();

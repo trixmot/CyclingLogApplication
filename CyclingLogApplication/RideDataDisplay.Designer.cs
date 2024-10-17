@@ -86,7 +86,7 @@
             "Route",
             "Temperature",
             "WeekNumber"});
-            this.cbFilterField.Location = new System.Drawing.Point(181, 27);
+            this.cbFilterField.Location = new System.Drawing.Point(223, 27);
             this.cbFilterField.Name = "cbFilterField";
             this.cbFilterField.Size = new System.Drawing.Size(121, 21);
             this.cbFilterField.TabIndex = 2;
@@ -95,7 +95,7 @@
             // Field
             // 
             this.Field.AutoSize = true;
-            this.Field.Location = new System.Drawing.Point(178, 9);
+            this.Field.Location = new System.Drawing.Point(220, 9);
             this.Field.Name = "Field";
             this.Field.Size = new System.Drawing.Size(54, 13);
             this.Field.TabIndex = 4;
@@ -104,7 +104,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(335, 9);
+            this.label2.Location = new System.Drawing.Point(359, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 5;
@@ -112,7 +112,7 @@
             // 
             // bFilter
             // 
-            this.bFilter.Location = new System.Drawing.Point(1001, 25);
+            this.bFilter.Location = new System.Drawing.Point(1026, 25);
             this.bFilter.Name = "bFilter";
             this.bFilter.Size = new System.Drawing.Size(75, 23);
             this.bFilter.TabIndex = 6;
@@ -133,17 +133,15 @@
             // 
             this.cbLogYearFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYearFilter.FormattingEnabled = true;
-            this.cbLogYearFilter.Items.AddRange(new object[] {
-            "All Logs"});
             this.cbLogYearFilter.Location = new System.Drawing.Point(23, 27);
             this.cbLogYearFilter.Name = "cbLogYearFilter";
-            this.cbLogYearFilter.Size = new System.Drawing.Size(131, 21);
+            this.cbLogYearFilter.Size = new System.Drawing.Size(171, 21);
             this.cbLogYearFilter.TabIndex = 7;
             this.cbLogYearFilter.SelectedIndexChanged += new System.EventHandler(this.CbLogYearFilter_SelectedIndexChanged);
             // 
             // btClear
             // 
-            this.btClear.Location = new System.Drawing.Point(775, 25);
+            this.btClear.Location = new System.Drawing.Point(800, 25);
             this.btClear.Name = "btClear";
             this.btClear.Size = new System.Drawing.Size(75, 23);
             this.btClear.TabIndex = 9;
@@ -162,7 +160,7 @@
             "RideType",
             "Route",
             "WeekNumber"});
-            this.cbFilterValue.Location = new System.Drawing.Point(338, 28);
+            this.cbFilterValue.Location = new System.Drawing.Point(362, 28);
             this.cbFilterValue.Name = "cbFilterValue";
             this.cbFilterValue.Size = new System.Drawing.Size(316, 21);
             this.cbFilterValue.TabIndex = 10;
@@ -197,7 +195,7 @@
             // 
             // btPrint
             // 
-            this.btPrint.Location = new System.Drawing.Point(694, 25);
+            this.btPrint.Location = new System.Drawing.Point(719, 25);
             this.btPrint.Name = "btPrint";
             this.btPrint.Size = new System.Drawing.Size(75, 23);
             this.btPrint.TabIndex = 16;
@@ -208,7 +206,7 @@
             // cbUpdateValues
             // 
             this.cbUpdateValues.AutoSize = true;
-            this.cbUpdateValues.Location = new System.Drawing.Point(865, 27);
+            this.cbUpdateValues.Location = new System.Drawing.Point(890, 27);
             this.cbUpdateValues.Name = "cbUpdateValues";
             this.cbUpdateValues.Size = new System.Drawing.Size(116, 17);
             this.cbUpdateValues.TabIndex = 17;

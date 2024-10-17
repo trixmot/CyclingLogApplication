@@ -61,11 +61,13 @@
             this.cbTypeTime = new System.Windows.Forms.ComboBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // chart1
@@ -76,7 +78,7 @@
             legend1.Name = "Legend1";
             legend1.Title = "Average Speed";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(251, 12);
+            this.chart1.Location = new System.Drawing.Point(283, 12);
             this.chart1.Name = "chart1";
             series1.BorderWidth = 5;
             series1.ChartArea = "ChartArea1";
@@ -86,7 +88,7 @@
             series1.XValueMember = "Date";
             series1.YValueMembers = "RideDistance";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(861, 589);
+            this.chart1.Size = new System.Drawing.Size(932, 589);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             title1.Name = "chart";
@@ -128,17 +130,15 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cbTypeChartData);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.labelChartError);
-            this.groupBox1.Controls.Add(this.checkBoxRouteOption);
             this.groupBox1.Controls.Add(this.btCloseChart);
             this.groupBox1.Controls.Add(this.btRunChart);
             this.groupBox1.Controls.Add(this.tbYAxis);
             this.groupBox1.Controls.Add(this.tbXAxis);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.cbRoutesChart);
             this.groupBox1.Controls.Add(this.cbLogYearChart);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
@@ -147,7 +147,7 @@
             this.groupBox1.Controls.Add(this.lbYAxis);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(223, 589);
+            this.groupBox1.Size = new System.Drawing.Size(265, 589);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
@@ -164,6 +164,7 @@
             // 
             this.cbTypeChartData.FormattingEnabled = true;
             this.cbTypeChartData.Items.AddRange(new object[] {
+            "--Select Value--",
             "Average Speed",
             "Longest",
             "Miles"});
@@ -178,9 +179,9 @@
             this.groupBox2.Controls.Add(this.rbChartTypeColumn);
             this.groupBox2.Controls.Add(this.rbChartTypeLine);
             this.groupBox2.Controls.Add(this.rbChartTypeBar);
-            this.groupBox2.Location = new System.Drawing.Point(22, 310);
+            this.groupBox2.Location = new System.Drawing.Point(22, 353);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(175, 100);
+            this.groupBox2.Size = new System.Drawing.Size(223, 100);
             this.groupBox2.TabIndex = 19;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Chart Type";
@@ -222,7 +223,7 @@
             // 
             this.labelChartError.AutoSize = true;
             this.labelChartError.ForeColor = System.Drawing.Color.Red;
-            this.labelChartError.Location = new System.Drawing.Point(32, 422);
+            this.labelChartError.Location = new System.Drawing.Point(41, 469);
             this.labelChartError.MaximumSize = new System.Drawing.Size(200, 0);
             this.labelChartError.Name = "labelChartError";
             this.labelChartError.Size = new System.Drawing.Size(165, 26);
@@ -233,17 +234,17 @@
             // checkBoxRouteOption
             // 
             this.checkBoxRouteOption.AutoSize = true;
-            this.checkBoxRouteOption.Location = new System.Drawing.Point(22, 227);
+            this.checkBoxRouteOption.Location = new System.Drawing.Point(18, 24);
             this.checkBoxRouteOption.Name = "checkBoxRouteOption";
-            this.checkBoxRouteOption.Size = new System.Drawing.Size(96, 17);
+            this.checkBoxRouteOption.Size = new System.Drawing.Size(136, 17);
             this.checkBoxRouteOption.TabIndex = 14;
-            this.checkBoxRouteOption.Text = "Specific Route";
+            this.checkBoxRouteOption.Text = "Filter on Specific Route";
             this.checkBoxRouteOption.UseVisualStyleBackColor = true;
             this.checkBoxRouteOption.Click += new System.EventHandler(this.CheckBoxRouteOption_Click);
             // 
             // btCloseChart
             // 
-            this.btCloseChart.Location = new System.Drawing.Point(68, 504);
+            this.btCloseChart.Location = new System.Drawing.Point(80, 543);
             this.btCloseChart.Name = "btCloseChart";
             this.btCloseChart.Size = new System.Drawing.Size(75, 23);
             this.btCloseChart.TabIndex = 13;
@@ -253,7 +254,7 @@
             // 
             // btRunChart
             // 
-            this.btRunChart.Location = new System.Drawing.Point(68, 464);
+            this.btRunChart.Location = new System.Drawing.Point(80, 514);
             this.btRunChart.Name = "btRunChart";
             this.btRunChart.Size = new System.Drawing.Size(75, 23);
             this.btRunChart.TabIndex = 12;
@@ -263,26 +264,28 @@
             // 
             // tbYAxis
             // 
+            this.tbYAxis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbYAxis.Location = new System.Drawing.Point(122, 51);
             this.tbYAxis.Name = "tbYAxis";
             this.tbYAxis.ReadOnly = true;
-            this.tbYAxis.Size = new System.Drawing.Size(75, 20);
+            this.tbYAxis.Size = new System.Drawing.Size(75, 26);
             this.tbYAxis.TabIndex = 11;
             this.tbYAxis.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbXAxis
             // 
+            this.tbXAxis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbXAxis.Location = new System.Drawing.Point(22, 51);
             this.tbXAxis.Name = "tbXAxis";
             this.tbXAxis.ReadOnly = true;
-            this.tbXAxis.Size = new System.Drawing.Size(75, 20);
+            this.tbXAxis.Size = new System.Drawing.Size(75, 26);
             this.tbXAxis.TabIndex = 10;
             this.tbXAxis.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(19, 256);
+            this.label5.Location = new System.Drawing.Point(6, 53);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 13);
             this.label5.TabIndex = 9;
@@ -291,16 +294,16 @@
             // cbRoutesChart
             // 
             this.cbRoutesChart.FormattingEnabled = true;
-            this.cbRoutesChart.Location = new System.Drawing.Point(22, 272);
+            this.cbRoutesChart.Location = new System.Drawing.Point(9, 69);
             this.cbRoutesChart.Name = "cbRoutesChart";
-            this.cbRoutesChart.Size = new System.Drawing.Size(175, 21);
+            this.cbRoutesChart.Size = new System.Drawing.Size(213, 21);
             this.cbRoutesChart.TabIndex = 8;
             this.cbRoutesChart.SelectedIndexChanged += new System.EventHandler(this.CbRoutesChart_SelectedIndexChanged);
             // 
             // cbLogYearChart
             // 
             this.cbLogYearChart.FormattingEnabled = true;
-            this.cbLogYearChart.Location = new System.Drawing.Point(22, 151);
+            this.cbLogYearChart.Location = new System.Drawing.Point(22, 104);
             this.cbLogYearChart.Name = "cbLogYearChart";
             this.cbLogYearChart.Size = new System.Drawing.Size(146, 21);
             this.cbLogYearChart.TabIndex = 6;
@@ -309,7 +312,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 135);
+            this.label4.Location = new System.Drawing.Point(19, 88);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 5;
@@ -318,7 +321,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 86);
+            this.label3.Location = new System.Drawing.Point(19, 137);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 13);
             this.label3.TabIndex = 4;
@@ -328,10 +331,11 @@
             // 
             this.cbTypeTime.FormattingEnabled = true;
             this.cbTypeTime.Items.AddRange(new object[] {
+            "--Select Value--",
             "Daily",
             "Weekly",
             "Monthly"});
-            this.cbTypeTime.Location = new System.Drawing.Point(22, 102);
+            this.cbTypeTime.Location = new System.Drawing.Point(22, 153);
             this.cbTypeTime.Name = "cbTypeTime";
             this.cbTypeTime.Size = new System.Drawing.Size(146, 21);
             this.cbTypeTime.TabIndex = 3;
@@ -341,11 +345,23 @@
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.cbRoutesChart);
+            this.groupBox3.Controls.Add(this.checkBoxRouteOption);
+            this.groupBox3.Location = new System.Drawing.Point(17, 238);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(228, 100);
+            this.groupBox3.TabIndex = 22;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Route Selection";
+            // 
             // ChartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1124, 613);
+            this.ClientSize = new System.Drawing.Size(1250, 613);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.chart1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -362,6 +378,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -395,5 +413,6 @@
         private System.Windows.Forms.ComboBox cbTypeChartData;
         private System.Windows.Forms.Timer timer1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

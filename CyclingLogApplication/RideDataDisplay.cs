@@ -44,10 +44,14 @@ namespace CyclingLogApplication
 
                 List<string> logList = MainForm.ReadDataNames("Table_Log_year", "Name");
                 int checkListBoxIndex = 0;
+                cbLogYearFilter.Items.Add("--Select Value--");
+                cbLogYearFilter.Items.Add("All Logs");
                 for (int i = 0; i < logList.Count; i++)
                 {
                     cbLogYearFilter.Items.Add(logList[i]);
                 }
+
+                cbLogYearFilter.SelectedIndex = checkListBoxIndex;
 
                 if (checkedListBox.Items.Count < 20)
                 {
@@ -183,7 +187,7 @@ namespace CyclingLogApplication
 
         private void BFilter_Click(object sender, EventArgs e)
         {
-            if (cbLogYearFilter.SelectedIndex < 0)
+            if (cbLogYearFilter.SelectedIndex < 1)
             {
                 MessageBox.Show("In order to view data a log must be selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -310,9 +314,9 @@ namespace CyclingLogApplication
                 string logYearIDQuery = "";
 
                 //Get the Logyear ID:
-                if (cbLogYearFilter.SelectedIndex == 0)
+                if (cbLogYearFilter.SelectedIndex < 2)
                 {
-                    logYearID = 0;
+                    logYearID = 1;
                 }
                 else
                 {
