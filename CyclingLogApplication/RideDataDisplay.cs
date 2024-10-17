@@ -193,7 +193,22 @@ namespace CyclingLogApplication
                 return;
             }
 
-            runRideDisplayClear();
+            SqlConnection conn = null;
+
+            try
+            {
+                dataGridView1.DataSource = null;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to Clear ride data." + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred.  Review the log for more information.");
+            }
+            finally
+            {
+                // close connection
+                conn?.Close();
+            }
 
             string custom1 = MainForm.GetCustomField1();
             string custom2 = MainForm.GetCustomField2();
@@ -325,7 +340,7 @@ namespace CyclingLogApplication
                 }
 
                 //WeekNumber, Bike, RideType, route
-                if (cbFilterField.Text.Equals("WeekNumber"))
+                if (cbFilterField.SelectedItem.Equals("WeekNumber"))
                 {
                     sqlDataAdapter = new SqlDataAdapter
                     {
@@ -341,7 +356,7 @@ namespace CyclingLogApplication
 
                     //sqlDataAdapter = new SqlDataAdapter("select [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Comments] from Table_Ride_Information WHERE WeekNumber LIKE " + cbFilter.Text + "%", conn);
                 }
-                else if (cbFilterField.Text.Equals("Bike"))
+                else if (cbFilterField.SelectedItem.Equals("Bike"))
                 {
                     sqlDataAdapter = new SqlDataAdapter
                     {
@@ -355,7 +370,7 @@ namespace CyclingLogApplication
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
                     }
                 }
-                else if (cbFilterField.Text.Equals("RideType"))
+                else if (cbFilterField.SelectedItem.Equals("RideType"))
                 {
                     sqlDataAdapter = new SqlDataAdapter
                     {
@@ -369,7 +384,7 @@ namespace CyclingLogApplication
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
                     }
                 }
-                else if (cbFilterField.Text.Equals("Route"))
+                else if (cbFilterField.SelectedItem.Equals("Route"))
                 {
                     sqlDataAdapter = new SqlDataAdapter
                     {
@@ -383,7 +398,7 @@ namespace CyclingLogApplication
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
                     }
                 }
-                else if (cbFilterField.Text.Equals("Location"))
+                else if (cbFilterField.SelectedItem.Equals("Location"))
                 {
                     sqlDataAdapter = new SqlDataAdapter
                     {
@@ -397,7 +412,7 @@ namespace CyclingLogApplication
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
                     }
                 }
-                else if (cbFilterField.Text.Equals("Longest"))
+                else if (cbFilterField.SelectedItem.Equals("Longest"))
                 {
                     sqlDataAdapter = new SqlDataAdapter();
 
@@ -413,7 +428,7 @@ namespace CyclingLogApplication
                         sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information ORDER BY[RideDistance] DESC", sqlConnection);
                     }
                 }
-                else if (cbFilterField.Text.Equals("Temperature"))
+                else if (cbFilterField.SelectedItem.Equals("Temperature"))
                 {
                     sqlDataAdapter = new SqlDataAdapter();
 

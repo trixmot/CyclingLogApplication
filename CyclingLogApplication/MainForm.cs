@@ -257,6 +257,7 @@ namespace CyclingLogApplication
                     Logger.Log("Data Loading: Route: " + val, logSetting, 1);
                 }
 
+                cbBikeMaint.Items.Add("--Select Value--");
                 //Load Bike values:
                 foreach (var val in bikeList)
                 {
@@ -264,6 +265,8 @@ namespace CyclingLogApplication
                     cbBikeMaint.Items.Add(val);
                     Logger.Log("Data Loading: Bikes: " + val, logSetting, 1);
                 }
+
+                cbBikeMaint.SelectedIndex = 0;
 
                 if (logYearList.Count == 0)
                 {
@@ -6485,11 +6488,11 @@ namespace CyclingLogApplication
 
             BtMaintRetrieve_Run(date, bike);
 
-            List<string> routeList = ReadDataNames("Table_Bikes", "Name");
+            List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
 
-            for (int i = 0; i < routeList.Count; i++)
+            for (int i = 0; i < bikeList.Count; i++)
             {
-                if (routeList[i].Equals(bike))
+                if (bikeList[i].Equals(bike))
                 {
                     bikeIndex = i;
                     break;
@@ -6498,7 +6501,7 @@ namespace CyclingLogApplication
 
             tbMaintDateCheck.Text = dgvMaint.Rows[rowindex].Cells[0].Value.ToString();
             dateTimePicker1.Value = DateTime.Parse(dgvMaint.Rows[rowindex].Cells[0].Value.ToString());
-            cbBikeMaint.SelectedIndex = bikeIndex;
+            cbBikeMaint.SelectedIndex = bikeIndex + 1; // Add 1 to account for --select value--:
             tbMaintMiles.Text = miles;
             tbMaintAddUpdate.Text = "Update";
         }
@@ -6678,6 +6681,11 @@ namespace CyclingLogApplication
 
         private void cbBikeMaint_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbBikeMaint.SelectedIndex < 1)
+            {
+                return;
+            }
+
             if (tbMaintAddUpdate.Text.Equals("Add"))
             {
                 string bikeName = cbBikeMaint.SelectedItem.ToString();
@@ -6728,7 +6736,7 @@ namespace CyclingLogApplication
                 return;
             }
 
-            if (cbBikeMaint.SelectedIndex == -1)
+            if (cbBikeMaint.SelectedIndex < 1)
             {
                 //MessageBox.Show("All the selections are not set.");
                 lbMaintError.Text = "The Bike selection is not set.";
