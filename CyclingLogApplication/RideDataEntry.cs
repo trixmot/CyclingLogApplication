@@ -50,17 +50,17 @@ namespace CyclingLogApplication
             lbRideDataEntryError.Text = "";
 
             // Set the Minimum, Maximum, and initial Value.
-            numericUpDown1.Value = 0;
-            numericUpDown1.Maximum = 200;
-            numericUpDown1.Minimum = 0;
-            numericUpDown1.DecimalPlaces = 2;
-            numericUpDown1.Increment = 0.10M;
+            //numericUpDown1.Value = 0;
+            //numericUpDown1.Maximum = 200;
+            //numericUpDown1.Minimum = 0;
+            //numericUpDown1.DecimalPlaces = 2;
+            //numericUpDown1.Increment = 0.10M;
 
-            numDistanceRideDataEntry.Value = 0;
-            numDistanceRideDataEntry.Maximum = 200;
-            numDistanceRideDataEntry.Minimum = 0;
-            numDistanceRideDataEntry.DecimalPlaces = 2;
-            numDistanceRideDataEntry.Increment = 0.01M;
+            //numDistanceRideDataEntry.Value = 0;
+            //numDistanceRideDataEntry.Maximum = 200;
+            //numDistanceRideDataEntry.Minimum = 0;
+            //numDistanceRideDataEntry.DecimalPlaces = 2;
+            //numDistanceRideDataEntry.Increment = 1.01M;
 
             //tbComments.ScrollBars = ScrollBars.Horizontal;
 
@@ -221,7 +221,7 @@ namespace CyclingLogApplication
 
         public void SetDistance(decimal distance)
         {
-            numDistanceRideDataEntry.Value = distance;
+            tbRideDataEntryDistance.Text = distance.ToString();
         }
 
         public void SetID(int idValue)
@@ -279,17 +279,17 @@ namespace CyclingLogApplication
 
         public void SetAvgSpeed(decimal avgSpeed)
         {
-            numericUpDown1.Value = avgSpeed;
+            tbRideDataEntryAvgSpeed.Text = avgSpeed.ToString();
         }
 
         public void SetWind(decimal windIndex)
         {
-            numericUpDown4.Value = windIndex;
+            tbRideDataEntryWind.Text = windIndex.ToString();
         }
 
         public void SetTemp(decimal temp)
         {
-            numericUpDown3.Value = temp;
+            tbRideEntryTemp.Text = temp.ToString();
         }
 
         public void SetType(int typeIndex)
@@ -573,12 +573,12 @@ namespace CyclingLogApplication
 
                                 //Load ride data page:
                                 dtpTimeRideDataEntry.Value = Convert.ToDateTime(movingTime);
-                                numDistanceRideDataEntry.Value = Convert.ToDecimal(rideDistance);
-                                numericUpDown1.Value = Convert.ToDecimal(avgSpeed);
+                                tbRideDataEntryDistance.Text = rideDistance;
+                                tbRideDataEntryAvgSpeed.Text = avgSpeed;
                                 cbBikeDataEntrySelection.SelectedIndex = cbBikeDataEntrySelection.Items.IndexOf(bike);
                                 cbRideTypeDataEntry.SelectedIndex = cbRideTypeDataEntry.Items.IndexOf(rideType);
-                                numericUpDown4.Value = Convert.ToDecimal(wind);
-                                numericUpDown3.Value = Convert.ToDecimal(temp);
+                                tbRideDataEntryWind.Text = wind;
+                                tbRideEntryTemp.Text = temp;
                                 avg_cadence.Text = avgCadence;
                                 tbMaxCadence.Text = maxCadence;
                                 avg_heart_rate.Text = avgHeartRate;
@@ -595,7 +595,7 @@ namespace CyclingLogApplication
                                 //tbWeekNumber.Text = weekNumber;
                                 cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.Items.IndexOf(location);
                                 cbEffortRideDataEntry.SelectedIndex = cbEffortRideDataEntry.Items.IndexOf(effort);
-                                cbComfortRideDataEntry.SelectedIndex = cbComfortRideDataEntry.Items.IndexOf(comfort);
+                                cbComfortRideDataEntry.SelectedIndex = cbComfortRideDataEntry.Items.IndexOf(comfort.TrimEnd());
                                 tbCustom1.Text = custom1;
                                 tbCustom2.Text = custom2;
                                 tbRideEntryWindChill.Text = Math.Round(double.Parse(windChill), 1).ToString();
@@ -727,7 +727,7 @@ namespace CyclingLogApplication
                     lbRideDataEntryError.Show();
                     return;
                 }
-                decimal avgspeed = numericUpDown1.Value;
+                decimal avgspeed = decimal.Parse(tbRideDataEntryAvgSpeed.Text);
                 if (avgspeed == 0)
                 {
                     lbRideDataEntryError.Text = "The Average Speed must be greater than 0.";
@@ -869,13 +869,13 @@ namespace CyclingLogApplication
 
                 List<object> objectValues = new List<object>();
                 objectValues.Add(dtpTimeRideDataEntry.Value);                           //Moving Time:
-                objectValues.Add(numDistanceRideDataEntry.Value);                       //Ride Distance:
-                objectValues.Add(numericUpDown1.Value);                                 //Average Speed:
+                objectValues.Add(tbRideDataEntryDistance.Text);                       //Ride Distance:
+                objectValues.Add(tbRideDataEntryAvgSpeed.Text);                                 //Average Speed:
                 objectValues.Add(cbBikeDataEntrySelection.SelectedItem.ToString());     //Bike:
                 objectValues.Add(cbRideTypeDataEntry.SelectedItem.ToString());          //Ride Type:
-                float windspeed = (float)numericUpDown4.Value;                          //----
+                float windspeed = float.Parse(tbRideDataEntryWind.Text);                          //----
                 objectValues.Add(windspeed);                                            //Wind:
-                float temp = (float)numericUpDown3.Value;                               //--
+                float temp = float.Parse(tbRideEntryTemp.Text);                               //--
                 objectValues.Add(Math.Round(temp, 1));                                   //Temp:
                 objectValues.Add(dtpRideDate.Value);                                    //Date:
 
@@ -1227,8 +1227,7 @@ namespace CyclingLogApplication
                     dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Int32.Parse(temp2[0]), Int32.Parse(temp2[1]), Int32.Parse(temp2[2]));
                 }
 
-                numDistanceRideDataEntry.Maximum = (200);
-                numDistanceRideDataEntry.Value = System.Convert.ToDecimal(garminDataDictionary["\"Distance\""]);
+                tbRideDataEntryDistance.Text = garminDataDictionary["\"Distance\""];
 
                 if (garminDataDictionary.TryGetValue("\"Total Ascent\"", out value))
                 {
@@ -1242,11 +1241,11 @@ namespace CyclingLogApplication
 
                 if (garminDataDictionary.TryGetValue("\"Avg Moving Speed\"", out value))
                 {
-                    numericUpDown1.Value = System.Convert.ToDecimal(value);
+                    tbRideDataEntryAvgSpeed.Text = value;
                 }
                 else
                 {
-                    numericUpDown1.Value = System.Convert.ToDecimal(garminDataDictionary["\"Avg Speed\""]);
+                    tbRideDataEntryAvgSpeed.Text = garminDataDictionary["\"Avg Speed\""];
                 }
 
                 if (garminDataDictionary.TryGetValue("\"Max Speed\"", out value))
@@ -1272,7 +1271,7 @@ namespace CyclingLogApplication
 
                 if (garminDataDictionary.TryGetValue("\"Avg Temperature\"", out value))
                 {
-                    numericUpDown3.Value = decimal.Round(System.Convert.ToDecimal(value), 2, MidpointRounding.AwayFromZero);
+                    tbRideEntryTemp.Text = decimal.Round(System.Convert.ToDecimal(value), 2, MidpointRounding.AwayFromZero).ToString();
                 }
 
                 calories.Text = garminDataDictionary["\"Calories\""];
@@ -1286,7 +1285,7 @@ namespace CyclingLogApplication
 
             double windChill;
             double maxSpeed = double.Parse(max_speed.Text);
-            double temperature = double.Parse(numericUpDown3.Value.ToString());
+            double temperature = double.Parse(tbRideEntryTemp.Text.ToString());
             if (maxSpeed > 0 && temperature > 0)
             {
                 windChill = 35.74 + 0.6215 * temperature + (0.4275 * temperature - 35.75) * Math.Pow(maxSpeed, 0.16);
@@ -1304,12 +1303,12 @@ namespace CyclingLogApplication
         {
             //Reset and clear values:
             dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);//Moving Time:
-            numDistanceRideDataEntry.Value = 0;                                                                         //Ride Distance:
-            numericUpDown1.Value = 0;                                                                                   //Average Speed:
+            tbRideDataEntryDistance.Text = "";                                                                         //Ride Distance:
+            tbRideDataEntryAvgSpeed.Text = "";                                                                                   //Average Speed:
             cbBikeDataEntrySelection.SelectedIndex = cbBikeDataEntrySelection.FindStringExact(""); ;                    //Bike:
             cbRideTypeDataEntry.SelectedIndex = cbRideTypeDataEntry.FindStringExact(""); ;                              //Ride Type:
-            numericUpDown4.Value = 0;                                                                                   //Wind:
-            numericUpDown3.Value = 0;                                                                                   //Temp:
+            tbRideDataEntryWind.Text = "";                                                                                   //Wind:
+            tbRideEntryTemp.Text = "";                                                                                   //Temp:
             //dtpRideDate.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0); ;     //Date:
             avg_cadence.Text = "";                                                                                      //Average Cadence:
             avg_heart_rate.Text = "";                                                                                   //Average Heart Rate:
@@ -2013,7 +2012,7 @@ namespace CyclingLogApplication
                     lbRideDataEntryError.Show();
                     return;
                 }
-                decimal avgspeed = numericUpDown1.Value;
+                decimal avgspeed = decimal.Parse(tbRideDataEntryAvgSpeed.Text);
                 if (avgspeed == 0)
                 {
                     lbRideDataEntryError.Text = "The Average Speed must be greater than 0.";
@@ -2071,13 +2070,13 @@ namespace CyclingLogApplication
 
                 List<object> objectValues = new List<object>();
                 objectValues.Add(dtpTimeRideDataEntry.Value);                           //Moving Time:
-                objectValues.Add(numDistanceRideDataEntry.Value);                       //Ride Distance:
-                objectValues.Add(numericUpDown1.Value);                                 //Average Speed:
+                objectValues.Add(tbRideDataEntryDistance.Text);                       //Ride Distance:
+                objectValues.Add(tbRideDataEntryAvgSpeed.Text);                                 //Average Speed:
                 objectValues.Add(cbBikeDataEntrySelection.SelectedItem.ToString());     //Bike:
                 objectValues.Add(cbRideTypeDataEntry.SelectedItem.ToString());          //Ride Type:
-                float windspeed = (float)numericUpDown4.Value;                          //----
+                float windspeed = float.Parse(tbRideDataEntryWind.Text);                          //----
                 objectValues.Add(windspeed);                                            //Wind:
-                float temp = (float)numericUpDown3.Value;                               //--
+                float temp = float.Parse(tbRideEntryTemp.Text);                               //--
                 objectValues.Add(Math.Round(temp, 1));                                   //Temp:
                 objectValues.Add(dtpRideDate.Value);                                                 //Date:
 
