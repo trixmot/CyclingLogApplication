@@ -44,7 +44,7 @@ namespace CyclingLogApplication
                 cbLogYearChart.Items.Add(logList[i]);
             }
 
-            List<string> routeList = MainForm.ReadDataNames("Table_Routes", "Name");
+            List<string> routeList = MainForm.GetRoutes();
 
             for (int i = 0; i < routeList.Count; i++)
             {

@@ -44,6 +44,7 @@ namespace CyclingLogApplication
 
                 List<string> logList = MainForm.ReadDataNames("Table_Log_year", "Name");
                 int checkListBoxIndex = 0;
+                
                 cbLogYearFilter.Items.Add("--Select Value--");
                 cbLogYearFilter.Items.Add("All Logs");
                 for (int i = 0; i < logList.Count; i++)
@@ -51,7 +52,7 @@ namespace CyclingLogApplication
                     cbLogYearFilter.Items.Add(logList[i]);
                 }
 
-                cbLogYearFilter.SelectedIndex = checkListBoxIndex;
+                cbLogYearFilter.SelectedIndex = MainForm.GetLastLogFilterSelected();
 
                 if (checkedListBox.Items.Count < 20)
                 {
@@ -645,6 +646,15 @@ namespace CyclingLogApplication
             //Route         - 5
             //Temperature   - 6
             //WeekNumber    - 7
+
+            //Enable disable filter list:
+            if (cbFilterField.SelectedIndex == 0)
+            {
+                cbFilterValue.Enabled = false;
+            } else
+            {
+                cbFilterValue.Enabled = true;
+            }
 
             if (cbFilterField.SelectedIndex == 0)
             {

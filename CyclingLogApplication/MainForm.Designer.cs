@@ -286,7 +286,6 @@
             this.label65 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tbMaintDateCheck = new System.Windows.Forms.TextBox();
-            this.btMaintRetrieve = new System.Windows.Forms.Button();
             this.lbMaintError = new System.Windows.Forms.Label();
             this.tbMaintAddUpdate = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -304,6 +303,8 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.dataGridViewBikes = new System.Windows.Forms.DataGridView();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.tbBikeOldName = new System.Windows.Forms.TextBox();
             this.btBikeClear = new System.Windows.Forms.Button();
             this.label67 = new System.Windows.Forms.Label();
@@ -319,15 +320,13 @@
             this.label27 = new System.Windows.Forms.Label();
             this.tbConfigMilesNotInLog = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.btRenameBike = new System.Windows.Forms.Button();
-            this.cbBikeConfig = new System.Windows.Forms.ComboBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.label86 = new System.Windows.Forms.Label();
             this.dataGridViewRoutes = new System.Windows.Forms.DataGridView();
-            this.label25 = new System.Windows.Forms.Label();
-            this.cbRouteConfig = new System.Windows.Forms.ComboBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.label69 = new System.Windows.Forms.Label();
+            this.tbRouteOldName = new System.Windows.Forms.TextBox();
             this.BtRouteClear = new System.Windows.Forms.Button();
             this.tbTotalRoutes = new System.Windows.Forms.TextBox();
             this.label87 = new System.Windows.Forms.Label();
@@ -335,7 +334,6 @@
             this.btRemoveRoute = new System.Windows.Forms.Button();
             this.tbRouteConfig = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
@@ -386,6 +384,8 @@
             this.label84 = new System.Windows.Forms.Label();
             this.btCustomDataField1 = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.btLogTitleClear = new System.Windows.Forms.Button();
+            this.btLogTitleSave = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
             this.cbLogYear = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -400,12 +400,6 @@
             this.tbMaintID = new System.Windows.Forms.TextBox();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbRouteOldName = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
-            this.btLogTitleSave = new System.Windows.Forms.Button();
-            this.btLogTitleClear = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -481,7 +475,7 @@
             this.button5.Location = new System.Drawing.Point(53, 30);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(130, 35);
-            this.button5.TabIndex = 1;
+            this.button5.TabIndex = 2;
             this.button5.Text = "Data";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.OpenRideDataForm);
@@ -818,7 +812,7 @@
             this.button1.Location = new System.Drawing.Point(53, 31);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(130, 35);
-            this.button1.TabIndex = 11;
+            this.button1.TabIndex = 3;
             this.button1.Text = "Charts";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.BtCharts_Click);
@@ -892,7 +886,6 @@
             this.button11.Text = "Legacy Data Import";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Visible = false;
-            this.button11.Click += new System.EventHandler(this.ImportFromExcelLog);
             // 
             // btDeleteAllData
             // 
@@ -3031,7 +3024,7 @@
             this.cbStatMonthlyLogYear.Location = new System.Drawing.Point(45, 22);
             this.cbStatMonthlyLogYear.Name = "cbStatMonthlyLogYear";
             this.cbStatMonthlyLogYear.Size = new System.Drawing.Size(136, 21);
-            this.cbStatMonthlyLogYear.TabIndex = 15;
+            this.cbStatMonthlyLogYear.TabIndex = 0;
             this.cbStatMonthlyLogYear.SelectedIndexChanged += new System.EventHandler(this.CbStatMonthlyLogYear_changed);
             // 
             // label32
@@ -3196,7 +3189,6 @@
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.tbMaintDateCheck);
-            this.tabPage5.Controls.Add(this.btMaintRetrieve);
             this.tabPage5.Controls.Add(this.lbMaintError);
             this.tabPage5.Controls.Add(this.tbMaintAddUpdate);
             this.tabPage5.Controls.Add(this.label18);
@@ -3225,16 +3217,6 @@
             this.tbMaintDateCheck.Size = new System.Drawing.Size(47, 20);
             this.tbMaintDateCheck.TabIndex = 19;
             this.tbMaintDateCheck.Visible = false;
-            // 
-            // btMaintRetrieve
-            // 
-            this.btMaintRetrieve.Location = new System.Drawing.Point(825, 44);
-            this.btMaintRetrieve.Name = "btMaintRetrieve";
-            this.btMaintRetrieve.Size = new System.Drawing.Size(75, 23);
-            this.btMaintRetrieve.TabIndex = 17;
-            this.btMaintRetrieve.Text = "Retrieve";
-            this.btMaintRetrieve.UseVisualStyleBackColor = true;
-            this.btMaintRetrieve.Visible = false;
             // 
             // lbMaintError
             // 
@@ -3270,7 +3252,7 @@
             this.cbBikeMaint.Location = new System.Drawing.Point(280, 30);
             this.cbBikeMaint.Name = "cbBikeMaint";
             this.cbBikeMaint.Size = new System.Drawing.Size(121, 21);
-            this.cbBikeMaint.TabIndex = 5;
+            this.cbBikeMaint.TabIndex = 1;
             this.cbBikeMaint.SelectedIndexChanged += new System.EventHandler(this.cbBikeMaint_SelectedIndexChanged);
             // 
             // btMaintRemove
@@ -3278,7 +3260,7 @@
             this.btMaintRemove.Location = new System.Drawing.Point(721, 44);
             this.btMaintRemove.Name = "btMaintRemove";
             this.btMaintRemove.Size = new System.Drawing.Size(75, 23);
-            this.btMaintRemove.TabIndex = 15;
+            this.btMaintRemove.TabIndex = 4;
             this.btMaintRemove.Text = "Delete";
             this.btMaintRemove.UseVisualStyleBackColor = true;
             this.btMaintRemove.Click += new System.EventHandler(this.BtMaintRemove_Click);
@@ -3288,7 +3270,7 @@
             this.tbMaintMiles.Location = new System.Drawing.Point(415, 31);
             this.tbMaintMiles.Name = "tbMaintMiles";
             this.tbMaintMiles.Size = new System.Drawing.Size(100, 20);
-            this.tbMaintMiles.TabIndex = 14;
+            this.tbMaintMiles.TabIndex = 2;
             // 
             // label19
             // 
@@ -3313,7 +3295,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(55, 31);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(202, 20);
-            this.dateTimePicker1.TabIndex = 6;
+            this.dateTimePicker1.TabIndex = 0;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // rtbMaintComments
@@ -3329,7 +3311,7 @@
             this.btMaintAdd.Location = new System.Drawing.Point(627, 44);
             this.btMaintAdd.Name = "btMaintAdd";
             this.btMaintAdd.Size = new System.Drawing.Size(75, 23);
-            this.btMaintAdd.TabIndex = 7;
+            this.btMaintAdd.TabIndex = 3;
             this.btMaintAdd.Text = "Save";
             this.btMaintAdd.UseVisualStyleBackColor = true;
             this.btMaintAdd.Click += new System.EventHandler(this.BtMaintSave_Click);
@@ -3369,8 +3351,6 @@
             this.groupBox5.Controls.Add(this.dataGridViewBikes);
             this.groupBox5.Controls.Add(this.groupBox12);
             this.groupBox5.Controls.Add(this.label21);
-            this.groupBox5.Controls.Add(this.btRenameBike);
-            this.groupBox5.Controls.Add(this.cbBikeConfig);
             this.groupBox5.Location = new System.Drawing.Point(65, 34);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(783, 484);
@@ -3409,6 +3389,24 @@
             this.groupBox12.Size = new System.Drawing.Size(254, 358);
             this.groupBox12.TabIndex = 71;
             this.groupBox12.TabStop = false;
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(47, 113);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(29, 13);
+            this.label68.TabIndex = 29;
+            this.label68.Text = "New";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(49, 94);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(23, 13);
+            this.label26.TabIndex = 28;
+            this.label26.Text = "Old";
             // 
             // tbBikeOldName
             // 
@@ -3546,31 +3544,9 @@
             this.label21.TabIndex = 19;
             this.label21.Text = "Bikes";
             // 
-            // btRenameBike
-            // 
-            this.btRenameBike.Location = new System.Drawing.Point(613, 443);
-            this.btRenameBike.Name = "btRenameBike";
-            this.btRenameBike.Size = new System.Drawing.Size(75, 23);
-            this.btRenameBike.TabIndex = 14;
-            this.btRenameBike.Text = "Update";
-            this.btRenameBike.UseVisualStyleBackColor = true;
-            this.btRenameBike.Visible = false;
-            // 
-            // cbBikeConfig
-            // 
-            this.cbBikeConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBikeConfig.FormattingEnabled = true;
-            this.cbBikeConfig.Location = new System.Drawing.Point(547, 29);
-            this.cbBikeConfig.Name = "cbBikeConfig";
-            this.cbBikeConfig.Size = new System.Drawing.Size(141, 21);
-            this.cbBikeConfig.TabIndex = 10;
-            this.cbBikeConfig.Visible = false;
-            this.cbBikeConfig.SelectedIndexChanged += new System.EventHandler(this.CbBikeConfig_SelectedIndexChanged);
-            // 
             // tabPage9
             // 
             this.tabPage9.Controls.Add(this.groupBox21);
-            this.tabPage9.Controls.Add(this.button6);
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
@@ -3583,8 +3559,6 @@
             // 
             this.groupBox21.Controls.Add(this.label86);
             this.groupBox21.Controls.Add(this.dataGridViewRoutes);
-            this.groupBox21.Controls.Add(this.label25);
-            this.groupBox21.Controls.Add(this.cbRouteConfig);
             this.groupBox21.Controls.Add(this.groupBox11);
             this.groupBox21.Location = new System.Drawing.Point(59, 33);
             this.groupBox21.Name = "groupBox21";
@@ -3611,25 +3585,6 @@
             this.dataGridViewRoutes.TabIndex = 71;
             this.dataGridViewRoutes.Click += new System.EventHandler(this.dataGridViewRoutes_Click);
             // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(414, 30);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(83, 13);
-            this.label25.TabIndex = 19;
-            this.label25.Text = "Route Selection";
-            // 
-            // cbRouteConfig
-            // 
-            this.cbRouteConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbRouteConfig.FormattingEnabled = true;
-            this.cbRouteConfig.Location = new System.Drawing.Point(545, 30);
-            this.cbRouteConfig.Name = "cbRouteConfig";
-            this.cbRouteConfig.Size = new System.Drawing.Size(205, 21);
-            this.cbRouteConfig.TabIndex = 5;
-            this.cbRouteConfig.SelectedIndexChanged += new System.EventHandler(this.CbRouteConfig_SelectedIndexChanged);
-            // 
             // groupBox11
             // 
             this.groupBox11.Controls.Add(this.label69);
@@ -3646,6 +3601,23 @@
             this.groupBox11.Size = new System.Drawing.Size(241, 384);
             this.groupBox11.TabIndex = 70;
             this.groupBox11.TabStop = false;
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(20, 142);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(90, 13);
+            this.label69.TabIndex = 24;
+            this.label69.Text = "New Route Label";
+            // 
+            // tbRouteOldName
+            // 
+            this.tbRouteOldName.Location = new System.Drawing.Point(23, 106);
+            this.tbRouteOldName.Name = "tbRouteOldName";
+            this.tbRouteOldName.ReadOnly = true;
+            this.tbRouteOldName.Size = new System.Drawing.Size(205, 20);
+            this.tbRouteOldName.TabIndex = 23;
             // 
             // BtRouteClear
             // 
@@ -3710,17 +3682,6 @@
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 0;
             this.label4.Text = "Old Route Label";
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(610, 6);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 9;
-            this.button6.Text = "Update";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Visible = false;
-            this.button6.Click += new System.EventHandler(this.CbRenameRoute);
             // 
             // tabPage2
             // 
@@ -4930,6 +4891,26 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "LOGS";
             // 
+            // btLogTitleClear
+            // 
+            this.btLogTitleClear.Location = new System.Drawing.Point(56, 222);
+            this.btLogTitleClear.Name = "btLogTitleClear";
+            this.btLogTitleClear.Size = new System.Drawing.Size(75, 23);
+            this.btLogTitleClear.TabIndex = 26;
+            this.btLogTitleClear.Text = "Clear";
+            this.btLogTitleClear.UseVisualStyleBackColor = true;
+            this.btLogTitleClear.Click += new System.EventHandler(this.btLogTitleClear_Click);
+            // 
+            // btLogTitleSave
+            // 
+            this.btLogTitleSave.Location = new System.Drawing.Point(56, 193);
+            this.btLogTitleSave.Name = "btLogTitleSave";
+            this.btLogTitleSave.Size = new System.Drawing.Size(75, 23);
+            this.btLogTitleSave.TabIndex = 25;
+            this.btLogTitleSave.Text = "Save";
+            this.btLogTitleSave.UseVisualStyleBackColor = true;
+            this.btLogTitleSave.Click += new System.EventHandler(this.btLogTitleSave_Click);
+            // 
             // label31
             // 
             this.label31.AutoSize = true;
@@ -5071,61 +5052,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
-            // tbRouteOldName
-            // 
-            this.tbRouteOldName.Location = new System.Drawing.Point(23, 106);
-            this.tbRouteOldName.Name = "tbRouteOldName";
-            this.tbRouteOldName.ReadOnly = true;
-            this.tbRouteOldName.Size = new System.Drawing.Size(205, 20);
-            this.tbRouteOldName.TabIndex = 23;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(49, 94);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(23, 13);
-            this.label26.TabIndex = 28;
-            this.label26.Text = "Old";
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(47, 113);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(29, 13);
-            this.label68.TabIndex = 29;
-            this.label68.Text = "New";
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(20, 142);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(90, 13);
-            this.label69.TabIndex = 24;
-            this.label69.Text = "New Route Label";
-            // 
-            // btLogTitleSave
-            // 
-            this.btLogTitleSave.Location = new System.Drawing.Point(56, 193);
-            this.btLogTitleSave.Name = "btLogTitleSave";
-            this.btLogTitleSave.Size = new System.Drawing.Size(75, 23);
-            this.btLogTitleSave.TabIndex = 25;
-            this.btLogTitleSave.Text = "Save";
-            this.btLogTitleSave.UseVisualStyleBackColor = true;
-            this.btLogTitleSave.Click += new System.EventHandler(this.btLogTitleSave_Click);
-            // 
-            // btLogTitleClear
-            // 
-            this.btLogTitleClear.Location = new System.Drawing.Point(56, 222);
-            this.btLogTitleClear.Name = "btLogTitleClear";
-            this.btLogTitleClear.Size = new System.Drawing.Size(75, 23);
-            this.btLogTitleClear.TabIndex = 26;
-            this.btLogTitleClear.Text = "Clear";
-            this.btLogTitleClear.UseVisualStyleBackColor = true;
-            this.btLogTitleClear.Click += new System.EventHandler(this.btLogTitleClear_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5224,7 +5150,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbBikeConfig;
         private System.Windows.Forms.Button btRemoveBikeConfig;
-        private System.Windows.Forms.ComboBox cbBikeConfig;
         private System.Windows.Forms.Button btAddBikeConfig;
         private System.Windows.Forms.TextBox tb7Log1;
         private System.Windows.Forms.Label label12;
@@ -5281,7 +5206,6 @@
         private System.Windows.Forms.TextBox tbWeekCount;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox tbTimeChange;
-        private System.Windows.Forms.Button btRenameBike;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
@@ -5299,7 +5223,6 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button btMaintRemove;
         private System.Windows.Forms.Label lbMaintError;
-        private System.Windows.Forms.Button btMaintRetrieve;
         private System.Windows.Forms.TextBox tbStatisticsTotalMiles;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label27;
@@ -5491,13 +5414,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button btAddRoute;
-        private System.Windows.Forms.ComboBox cbRouteConfig;
         private System.Windows.Forms.Button btRemoveRoute;
         private System.Windows.Forms.TextBox tbRouteConfig;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.GroupBox groupBox16;
         private System.Windows.Forms.GroupBox groupBox15;
         private System.Windows.Forms.GroupBox groupBox14;

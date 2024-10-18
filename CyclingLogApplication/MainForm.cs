@@ -63,6 +63,7 @@ namespace CyclingLogApplication
 
         private static Dictionary<string, string> fieldNameDict = new Dictionary<string, string>();
         private static List<string> fieldNamesList = new List<string>();
+        private static List<string> routeNamesList = new List<string>();
 
         private static SqlConnection sqlConnection;             // = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=False");
         private static DatabaseConnection databaseConnection;   // = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=False");
@@ -211,6 +212,7 @@ namespace CyclingLogApplication
                 //Get all values and load the comboboxes:
                 List<string> logYearList = ReadDataNames("Table_Log_year", "Name");
                 List<string> routeList = ReadDataNames("Table_Routes", "Name");
+                SetRoutes(routeList);
                 List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
 
                 //RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
@@ -251,7 +253,6 @@ namespace CyclingLogApplication
                 //Load Route values:
                 foreach (var val in routeList)
                 {
-                    cbRouteConfig.Items.Add(val);
                     rideDataEntryForm.cbRouteDataEntry.Items.Add(val);
                     chartForm.cbRoutesChart.Items.Add(val);
                     Logger.Log("Data Loading: Route: " + val, logSetting, 1);
@@ -261,7 +262,6 @@ namespace CyclingLogApplication
                 //Load Bike values:
                 foreach (var val in bikeList)
                 {
-                    cbBikeConfig.Items.Add(val);
                     cbBikeMaint.Items.Add(val);
                     Logger.Log("Data Loading: Bikes: " + val, logSetting, 1);
                 }
@@ -804,15 +804,18 @@ namespace CyclingLogApplication
 
         public static List<string> GetRoutes()
         {
-            MainForm mainform = new MainForm();
-            List<string> routeList = MainForm.ReadDataNames("Table_Routes", "Name");
+            return routeNamesList;
+        }
 
-            for (int i = 0; i < mainform.cbRouteConfig.Items.Count; i++)
+        public static void SetRoutes(List<string> routeList)
+        {
+            routeNamesList.Clear();
+
+            for (int i = 0; i < routeList.Count; i++)
             {
-                routeList.Add(routeList[i]);
+                routeNamesList.Add(routeList[i]);
             }
 
-            return routeList;
         }
 
         //Disable x close option:
@@ -1409,11 +1412,12 @@ namespace CyclingLogApplication
             }
             else
             {
-                if (cbRouteConfig.Items.Count == 0)
-                {
-                    //Give a warning if no additional routed have been entered:
-                    MessageBox.Show("Reminder: No Routes have been entered. Add a new Route in the Settings tab.");
-                }
+                // Should not be needed since the Misc route entry is added by default:
+                //if (routeNamesList.Count 0)
+                //{
+                //    //Give a warning if no additional routed have been entered:
+                //    MessageBox.Show("Reminder: No Routes have been entered. Add a new Route in the Settings tab.");
+                //}
                 RideDataEntry rideDataEntryForm = new RideDataEntry();
                 rideDataEntryForm.cbBikeDataEntrySelection.SelectedIndex = Convert.ToInt32(GetLastBikeSelected());
                 rideDataEntryForm.ShowDialog();
@@ -1428,7 +1432,7 @@ namespace CyclingLogApplication
         {
             string routeName = tbRouteConfig.Text;
             string routeOldName = tbRouteOldName.Text;
-            List<string> routeList = ReadDataNames("Table_Routes", "Name");
+            List<string> routeList = GetRoutes();
             string routeType = "Add";
 
             if (tbRouteConfig.Text.Equals(""))
@@ -1474,9 +1478,6 @@ namespace CyclingLogApplication
                 List<object> objectValues = new List<object>();
                 objectValues.Add(routeName);
                 RunStoredProcedure(objectValues, "Route_Add");
-
-                cbRouteConfig.Items.Add(routeName);
-                cbRouteConfig.SelectedIndex = cbRouteConfig.Items.Count - 1;
                 RideDataEntry rideDataEntryForm = new RideDataEntry();
                 rideDataEntryForm.AddRouteDataEntry(routeName);
                 ChartForm chartForm = new ChartForm();
@@ -1539,41 +1540,43 @@ namespace CyclingLogApplication
                 tbRouteOldName.Text = routeName;
             }
 
+            //Update Routes list:
+            SetRoutes(ReadDataNames("Table_Routes", "Name"));
             RefreshRoutes();
         }
 
-        private void BtAddRoute_Click(object sender, EventArgs e)
-        {
-            string routeString = tbRouteConfig.Text;
-            int logSetting = GetLogLevel();
+        //private void BtAddRoute_Click(object sender, EventArgs e)
+        //{
+        //    string routeString = tbRouteConfig.Text;
+        //    int logSetting = GetLogLevel();
 
-            if (cbRouteConfig.SelectedItem != null)
-            {
-                //Check to see if the string has already been entered to eliminate duplicates:
-                for (int index = 0; index < cbRouteConfig.Items.Count; index++)
-                {
-                    if (cbRouteConfig.Items.IndexOf(index).Equals(routeString))
-                    {
-                        MessageBox.Show("Duplicate name entered. Enter a unique name for the route.");
-                        return;
-                    }
-                }
-            }
+        //    if (cbRouteConfig.SelectedItem != null)
+        //    {
+        //        //Check to see if the string has already been entered to eliminate duplicates:
+        //        for (int index = 0; index < cbRouteConfig.Items.Count; index++)
+        //        {
+        //            if (cbRouteConfig.Items.IndexOf(index).Equals(routeString))
+        //            {
+        //                MessageBox.Show("Duplicate name entered. Enter a unique name for the route.");
+        //                return;
+        //            }
+        //        }
+        //    }
 
-            List<object> objectValues = new List<object>();
-            objectValues.Add(routeString);
-            RunStoredProcedure(objectValues, "Route_Add");
+        //    List<object> objectValues = new List<object>();
+        //    objectValues.Add(routeString);
+        //    RunStoredProcedure(objectValues, "Route_Add");
 
-            cbRouteConfig.Items.Add(routeString);
-            cbRouteConfig.SelectedIndex = cbRouteConfig.Items.Count - 1;
-            RideDataEntry rideDataEntryForm = new RideDataEntry();
-            rideDataEntryForm.AddRouteDataEntry(routeString);
-            ChartForm chartForm = new ChartForm();
-            chartForm.cbRoutesChart.Items.Add(routeString);
+        //    cbRouteConfig.Items.Add(routeString);
+        //    cbRouteConfig.SelectedIndex = cbRouteConfig.Items.Count - 1;
+        //    RideDataEntry rideDataEntryForm = new RideDataEntry();
+        //    rideDataEntryForm.AddRouteDataEntry(routeString);
+        //    ChartForm chartForm = new ChartForm();
+        //    chartForm.cbRoutesChart.Items.Add(routeString);
 
-            RefreshRoutes();
-            Logger.Log("Adding a Route entry to the Configuration:" + routeString, logSetting, 0);
-        }
+        //    RefreshRoutes();
+        //    Logger.Log("Adding a Route entry to the Configuration:" + routeString, logSetting, 0);
+        //}
 
         private void AddDefautRoute()
         {
@@ -1585,10 +1588,10 @@ namespace CyclingLogApplication
                 routeString
             };
             RunStoredProcedure(objectValues, "Route_Add");
-
+            List<string> routeList = new List<string>();
+            routeList.Add(routeString);
+            SetRoutes(routeList);
             RideDataEntry rideDataEntryForm = new RideDataEntry();
-            cbRouteConfig.Items.Add(routeString);
-            cbRouteConfig.SelectedIndex = cbRouteConfig.Items.Count - 1;
             rideDataEntryForm.AddRouteDataEntry(routeString);
 
             ChartForm chartForm = new ChartForm();
@@ -1692,9 +1695,7 @@ namespace CyclingLogApplication
             // Add a new bike:
             if (bikeType.Equals("Add"))
             {
-                cbBikeConfig.Items.Add(bikeName);
                 cbBikeMaint.Items.Add(tbConfigMilesNotInLog.Text);
-                cbBikeConfig.SelectedIndex = cbBikeConfig.Items.Count - 1;
                 rideDataEntryForm.AddBikeDataEntry(bikeName);
                 totalMiles = notInMiles + logMiles;
 
@@ -1845,13 +1846,13 @@ namespace CyclingLogApplication
             }
         }
 
-        private void CbRouteConfig_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbRouteConfig.SelectedItem != null)
-            {
-                tbRouteConfig.Text = cbRouteConfig.SelectedItem.ToString();
-            }
-        }
+        //private void CbRouteConfig_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (cbRouteConfig.SelectedItem != null)
+        //    {
+        //        tbRouteConfig.Text = cbRouteConfig.SelectedItem.ToString();
+        //    }
+        //}
 
 
         //=============================================================================
@@ -2919,262 +2920,264 @@ namespace CyclingLogApplication
             }
         }
 
+        //TODO: NEEDS TO BE UPDATED BEFORE IT CAN BE RUN:
+        //NEED TO REENABLE - this.button11.Click += new System.EventHandler(this.ImportFromExcelLog) in designer.cs
         //This option is currently not visable:
-        public void ImportFromExcelLog(object sender, EventArgs e)
-        {
-            int logIndex;
+        //public void ImportFromExcelLog(object sender, EventArgs e)
+        //{
+        //    int logIndex;
 
-            //window to selct the index:
-            using (LegacyImport legacyImport = new LegacyImport())
-            {
-                legacyImport.ShowDialog();
+        //    //window to selct the index:
+        //    using (LegacyImport legacyImport = new LegacyImport())
+        //    {
+        //        legacyImport.ShowDialog();
 
-                logIndex = LegacyImport.GetLegacyIndexSelection() + 1;
+        //        logIndex = LegacyImport.GetLegacyIndexSelection() + 1;
 
-                if (logIndex < 1)
-                {
-                    return;
-                }
-            }
+        //        if (logIndex < 1)
+        //        {
+        //            return;
+        //        }
+        //    }
 
-            List<object> objectValues = new List<object>();
-            DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
-            Calendar cal = dfi.Calendar;
+        //    List<object> objectValues = new List<object>();
+        //    DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+        //    Calendar cal = dfi.Calendar;
 
-            using (OpenFileDialog openfileDialog = new OpenFileDialog() { Filter = "CSV|*.csv", Multiselect = false })
-            {
-                if (openfileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string line;
-                    //Check if the file is used by another process
-                    try
-                    {
-                        using (StreamReader file = new StreamReader(openfileDialog.FileName))
-                        {
-                            int rowCount = 0;
+        //    using (OpenFileDialog openfileDialog = new OpenFileDialog() { Filter = "CSV|*.csv", Multiselect = false })
+        //    {
+        //        if (openfileDialog.ShowDialog() == DialogResult.OK)
+        //        {
+        //            string line;
+        //            //Check if the file is used by another process
+        //            try
+        //            {
+        //                using (StreamReader file = new StreamReader(openfileDialog.FileName))
+        //                {
+        //                    int rowCount = 0;
 
-                            while ((line = file.ReadLine()) != null)
-                            {
-                                var tempList = line.Split(',');
+        //                    while ((line = file.ReadLine()) != null)
+        //                    {
+        //                        var tempList = line.Split(',');
 
-                                if (rowCount == 0)
-                                {
-                                    //Line 1 is the headings                  
-                                    //MessageBox.Show(headingList[0]);
-                                }
-                                else
-                                {
-                                    //MessageBox.Show(line);
-                                    objectValues.Clear();
-                                    string[] splitList = line.Split(',');
+        //                        if (rowCount == 0)
+        //                        {
+        //                            //Line 1 is the headings                  
+        //                            //MessageBox.Show(headingList[0]);
+        //                        }
+        //                        else
+        //                        {
+        //                            //MessageBox.Show(line);
+        //                            objectValues.Clear();
+        //                            string[] splitList = line.Split(',');
 
-                                    objectValues.Add(splitList[1]);     //Moving Time:
-                                    objectValues.Add(splitList[2]);     //Ride Distance:
-                                    objectValues.Add(splitList[3]);     //Average Speed:
-                                    objectValues.Add(splitList[4]);     //Bike:
-                                    objectValues.Add(splitList[5]);     //Ride Type:                            
-                                    objectValues.Add(splitList[7]);     //Wind:
-                                    objectValues.Add(splitList[8]);     //Temp:
-                                    objectValues.Add(splitList[0]);     //Date:
-                                    objectValues.Add(splitList[9]);     //Average Cadence:
-                                    objectValues.Add(splitList[10]);     //Average Heart Rate:
-                                    objectValues.Add(splitList[11]);     //Max Heart Rate:
-                                    objectValues.Add(splitList[15]);     //Calories:
-                                    objectValues.Add(splitList[12]);     //Total Ascent:
-                                    objectValues.Add(splitList[13]);     //Total Descent:
-                                    objectValues.Add(splitList[16]);     //Max Speed:
-                                    objectValues.Add(null);              //Average Power:
-                                    objectValues.Add(null);              //Max Power:
-                                    objectValues.Add(splitList[17]);     //Route:
+        //                            objectValues.Add(splitList[1]);     //Moving Time:
+        //                            objectValues.Add(splitList[2]);     //Ride Distance:
+        //                            objectValues.Add(splitList[3]);     //Average Speed:
+        //                            objectValues.Add(splitList[4]);     //Bike:
+        //                            objectValues.Add(splitList[5]);     //Ride Type:                            
+        //                            objectValues.Add(splitList[7]);     //Wind:
+        //                            objectValues.Add(splitList[8]);     //Temp:
+        //                            objectValues.Add(splitList[0]);     //Date:
+        //                            objectValues.Add(splitList[9]);     //Average Cadence:
+        //                            objectValues.Add(splitList[10]);     //Average Heart Rate:
+        //                            objectValues.Add(splitList[11]);     //Max Heart Rate:
+        //                            objectValues.Add(splitList[15]);     //Calories:
+        //                            objectValues.Add(splitList[12]);     //Total Ascent:
+        //                            objectValues.Add(splitList[13]);     //Total Descent:
+        //                            objectValues.Add(splitList[16]);     //Max Speed:
+        //                            objectValues.Add(null);              //Average Power:
+        //                            objectValues.Add(null);              //Max Power:
+        //                            objectValues.Add(splitList[17]);     //Route:
 
-                                    string comment = "";
-                                    if (splitList.Length > 19)
-                                    {
-                                        //Get the total:
-                                        int arraySize = splitList.Length;
-                                        for (int index = 18; index < arraySize; index++)
-                                        {
-                                            comment += splitList[index];
-                                        }
-                                    }
+        //                            string comment = "";
+        //                            if (splitList.Length > 19)
+        //                            {
+        //                                //Get the total:
+        //                                int arraySize = splitList.Length;
+        //                                for (int index = 18; index < arraySize; index++)
+        //                                {
+        //                                    comment += splitList[index];
+        //                                }
+        //                            }
 
-                                    objectValues.Add(comment);     //Comments:
-                                    objectValues.Add(logIndex);         //LogYear index:
+        //                            objectValues.Add(comment);     //Comments:
+        //                            objectValues.Add(logIndex);         //LogYear index:
 
-                                    //Need to figure out the week from the ride date:
-                                    DateTime rideDate = Convert.ToDateTime(splitList[0]);
-                                    string firstDay = GetFirstDayOfWeek();
-                                    int weekValue = 0;
+        //                            //Need to figure out the week from the ride date:
+        //                            DateTime rideDate = Convert.ToDateTime(splitList[0]);
+        //                            string firstDay = GetFirstDayOfWeek();
+        //                            int weekValue = 0;
 
-                                    if (firstDay.Equals("Sunday"))
-                                    {
-                                        weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, DayOfWeek.Sunday);
-                                    }
-                                    else
-                                    {
-                                        weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, DayOfWeek.Monday);
-                                    }
-                                    objectValues.Add(weekValue);        //Week number:
-                                    objectValues.Add(splitList[14]);     //Location:
-                                    objectValues.Add(null);     //Windchill:
-                                    objectValues.Add(splitList[6]);     //Effort:
+        //                            if (firstDay.Equals("Sunday"))
+        //                            {
+        //                                weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, DayOfWeek.Sunday);
+        //                            }
+        //                            else
+        //                            {
+        //                                weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, DayOfWeek.Monday);
+        //                            }
+        //                            objectValues.Add(weekValue);        //Week number:
+        //                            objectValues.Add(splitList[14]);     //Location:
+        //                            objectValues.Add(null);     //Windchill:
+        //                            objectValues.Add(splitList[6]);     //Effort:
 
-                                    using (var results = ExecuteSimpleQueryConnection("Ride_Information_Add", objectValues))
-                                    {
-                                        //string ToReturn = "";
-                                        //if (results.HasRows)
-                                        //    while (results.Read())
-                                        //        ToReturn = results.GetString(results.GetOrdinal("field1"));
-                                    }
-                                }
+        //                            using (var results = ExecuteSimpleQueryConnection("Ride_Information_Add", objectValues))
+        //                            {
+        //                                //string ToReturn = "";
+        //                                //if (results.HasRows)
+        //                                //    while (results.Read())
+        //                                //        ToReturn = results.GetString(results.GetOrdinal("field1"));
+        //                            }
+        //                        }
 
-                                rowCount++;
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.LogError("[ERROR]: Exception while trying to read the .CVS file." + ex.Message.ToString());
-                        MessageBox.Show("[ERROR] An error occured while reading the .CVS file. \n\n");
-                        return;
-                    }
-                }
-            }
+        //                        rowCount++;
+        //                    }
+        //                }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                Logger.LogError("[ERROR]: Exception while trying to read the .CVS file." + ex.Message.ToString());
+        //                MessageBox.Show("[ERROR] An error occured while reading the .CVS file. \n\n");
+        //                return;
+        //            }
+        //        }
+        //    }
 
-            //Go through list of Routes and see if any of them need to be added to the Routes table:
-            List<string> currentRouteList = new List<string>();
-            for (int index = 0; index < cbRouteConfig.Items.Count; index++)
-            {
-                currentRouteList.Add(cbRouteConfig.GetItemText(cbRouteConfig.Items[index]));
-            }
+        //    //Go through list of Routes and see if any of them need to be added to the Routes table:
+        //    List<string> currentRouteList = new List<string>();
+        //    for (int index = 0; index < cbRouteConfig.Items.Count; index++)
+        //    {
+        //        currentRouteList.Add(cbRouteConfig.GetItemText(cbRouteConfig.Items[index]));
+        //    }
 
-            List<string> routeList = ReadDataNames("Table_Ride_Information", "Route");
-            foreach (var route in routeList)
-            {
-                if (!currentRouteList.Contains(route))
-                {
-                    currentRouteList.Add(route);
-                    cbRouteConfig.Items.Add(route);
-                    RideDataEntry rideDataEntryForm = new RideDataEntry();
-                    rideDataEntryForm.cbRouteDataEntry.Items.Add(route);
+        //    List<string> routeList = ReadDataNames("Table_Ride_Information", "Route");
+        //    foreach (var route in routeList)
+        //    {
+        //        if (!currentRouteList.Contains(route))
+        //        {
+        //            currentRouteList.Add(route);
+        //            cbRouteConfig.Items.Add(route);
+        //            RideDataEntry rideDataEntryForm = new RideDataEntry();
+        //            rideDataEntryForm.cbRouteDataEntry.Items.Add(route);
 
-                    //Add new entry to the Route Table:
-                    List<object> routeObjectValues = new List<object>();
-                    routeObjectValues.Add(route);
-                    RunStoredProcedure(routeObjectValues, "Route_Add");
-                }
-            }
+        //            //Add new entry to the Route Table:
+        //            List<object> routeObjectValues = new List<object>();
+        //            routeObjectValues.Add(route);
+        //            RunStoredProcedure(routeObjectValues, "Route_Add");
+        //        }
+        //    }
 
-            //Now go through the list of Bikes and see if any of them need to be added to the Bike table:
-            List<string> currentBikeList = new List<string>();
-            for (int index = 0; index < cbBikeConfig.Items.Count; index++)
-            {
-                currentBikeList.Add(cbBikeConfig.GetItemText(cbBikeConfig.Items[index]));
-            }
+        //    //Now go through the list of Bikes and see if any of them need to be added to the Bike table:
+        //    List<string> currentBikeList = new List<string>();
+        //    for (int index = 0; index < cbBikeConfig.Items.Count; index++)
+        //    {
+        //        currentBikeList.Add(cbBikeConfig.GetItemText(cbBikeConfig.Items[index]));
+        //    }
 
-            List<string> bikeList = ReadDataNames("Table_Ride_Information", "Bike");
-            foreach (var bike in bikeList)
-            {
-                if (!currentBikeList.Contains(bike))
-                {
-                    currentBikeList.Add(bike);
-                    cbBikeConfig.Items.Add(bike);
-                    RideDataEntry rideDataEntryForm = new RideDataEntry();
-                    rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(bike);
+        //    List<string> bikeList = ReadDataNames("Table_Ride_Information", "Bike");
+        //    foreach (var bike in bikeList)
+        //    {
+        //        if (!currentBikeList.Contains(bike))
+        //        {
+        //            currentBikeList.Add(bike);
+        //            cbBikeConfig.Items.Add(bike);
+        //            RideDataEntry rideDataEntryForm = new RideDataEntry();
+        //            rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(bike);
 
-                    //Add new entry to the Route Table:
-                    List<object> bikeObjectValues = new List<object>();
-                    bikeObjectValues.Add(bike);
-                    RunStoredProcedure(bikeObjectValues, "Bike_Add");
-                }
-            }
+        //            //Add new entry to the Route Table:
+        //            List<object> bikeObjectValues = new List<object>();
+        //            bikeObjectValues.Add(bike);
+        //            RunStoredProcedure(bikeObjectValues, "Bike_Add");
+        //        }
+        //    }
 
-            MessageBox.Show("Data Import successful.");
-        }
+        //    MessageBox.Show("Data Import successful.");
+        //}
 
-        private void CbRenameRoute(object sender, EventArgs e)
-        {
-            RideDataEntry rideDataEntryForm = new RideDataEntry();
-            //Read selected index and update the value for that index:
-            string newValue = tbRouteConfig.Text;
-            string oldValue = cbRouteConfig.SelectedItem.ToString();
+        //private void CbRenameRoute(object sender, EventArgs e)
+        //{
+        //    RideDataEntry rideDataEntryForm = new RideDataEntry();
+        //    //Read selected index and update the value for that index:
+        //    string newValue = tbRouteConfig.Text;
+        //    string oldValue = cbRouteConfig.SelectedItem.ToString();
 
-            List<object> objectValues = new List<object>();
-            objectValues.Add(newValue);
-            objectValues.Add(oldValue);
+        //    List<object> objectValues = new List<object>();
+        //    objectValues.Add(newValue);
+        //    objectValues.Add(oldValue);
 
-            try
-            {
-                //ExecuteScalarFunction
-                using (var results = ExecuteSimpleQueryConnection("Route_Update", objectValues))
-                {
+        //    try
+        //    {
+        //        //ExecuteScalarFunction
+        //        using (var results = ExecuteSimpleQueryConnection("Route_Update", objectValues))
+        //        {
 
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError("[ERROR]: Exception while trying to rename Route." + ex.Message.ToString());
-            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.LogError("[ERROR]: Exception while trying to rename Route." + ex.Message.ToString());
+        //    }
 
-            List<string> tempList = new List<string>();
-            int selectedIndex = cbRouteConfig.SelectedIndex;
+        //    List<string> tempList = new List<string>();
+        //    int selectedIndex = cbRouteConfig.SelectedIndex;
 
-            for (int i = 0; i < cbRouteConfig.Items.Count; i++)
-            {
-                tempList.Add(cbRouteConfig.Items[i].ToString());
-            }
+        //    for (int i = 0; i < cbRouteConfig.Items.Count; i++)
+        //    {
+        //        tempList.Add(cbRouteConfig.Items[i].ToString());
+        //    }
 
-            ChartForm chartForm = new ChartForm();
+        //    ChartForm chartForm = new ChartForm();
 
-            for (int i = 0; i < tempList.Count; i++)
-            {
-                if (selectedIndex == i)
-                {
-                    cbRouteConfig.Items.Remove(oldValue);
-                    cbRouteConfig.Items.Add(newValue);
+        //    for (int i = 0; i < tempList.Count; i++)
+        //    {
+        //        if (selectedIndex == i)
+        //        {
+        //            cbRouteConfig.Items.Remove(oldValue);
+        //            cbRouteConfig.Items.Add(newValue);
 
-                    rideDataEntryForm.cbRouteDataEntry.Items.Remove(oldValue);
-                    rideDataEntryForm.cbRouteDataEntry.Items.Add(newValue);
+        //            rideDataEntryForm.cbRouteDataEntry.Items.Remove(oldValue);
+        //            rideDataEntryForm.cbRouteDataEntry.Items.Add(newValue);
 
-                    chartForm.cbRoutesChart.Items.Remove(oldValue);
-                    chartForm.cbRoutesChart.Items.Add(newValue);
-                }
-            }
+        //            chartForm.cbRoutesChart.Items.Remove(oldValue);
+        //            chartForm.cbRoutesChart.Items.Add(newValue);
+        //        }
+        //    }
 
-            cbRouteConfig.Sorted = true;
-            chartForm.cbRoutesChart.Sorted = true;
-            rideDataEntryForm.cbRouteDataEntry.Sorted = true;
-            cbRouteConfig.SelectedIndex = selectedIndex;
+        //    cbRouteConfig.Sorted = true;
+        //    chartForm.cbRoutesChart.Sorted = true;
+        //    rideDataEntryForm.cbRouteDataEntry.Sorted = true;
+        //    cbRouteConfig.SelectedIndex = selectedIndex;
 
-            //Update the route name in the database for each row:
-            SqlDataReader reader = null;
+        //    //Update the route name in the database for each row:
+        //    SqlDataReader reader = null;
 
-            try
-            {
-                sqlConnection.Open();
+        //    try
+        //    {
+        //        sqlConnection.Open();
 
-                // declare command object with parameter
-                using (SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET Route=@NewValue WHERE [Route]=@OldValue", sqlConnection))
-                {
-                    // setcbStatistic1 parameters
-                    cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = newValue;
-                    cmd.Parameters.Add("@OldValue", SqlDbType.NVarChar).Value = oldValue;
+        //        // declare command object with parameter
+        //        using (SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET Route=@NewValue WHERE [Route]=@OldValue", sqlConnection))
+        //        {
+        //            // setcbStatistic1 parameters
+        //            cmd.Parameters.Add("@NewValue", SqlDbType.NVarChar).Value = newValue;
+        //            cmd.Parameters.Add("@OldValue", SqlDbType.NVarChar).Value = oldValue;
 
-                    // get data stream
-                    reader = cmd.ExecuteReader();
-                }
-            }
-            finally
-            {
-                // close reader
-                reader?.Close();
+        //            // get data stream
+        //            reader = cmd.ExecuteReader();
+        //        }
+        //    }
+        //    finally
+        //    {
+        //        // close reader
+        //        reader?.Close();
 
-                // close connection
-                sqlConnection?.Close();
+        //        // close connection
+        //        sqlConnection?.Close();
 
-                RefreshRoutes();
-            }
-        }
+        //        RefreshRoutes();
+        //    }
+        //}
 
         private void BRenameLogYear_Click(object sender, EventArgs e)
         {
@@ -3534,65 +3537,65 @@ namespace CyclingLogApplication
             }
         }
 
-        private void CbBikeConfig_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            double notInMiles = 0;
-            double logMiles = 0;
-            double totalMiles = 0;
+        //private void CbBikeConfig_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    double notInMiles = 0;
+        //    double logMiles = 0;
+        //    double totalMiles = 0;
 
-            //Load miles from the database:
-            try
-            {
-                List<object> objectValues = new List<object>();
+        //    //Load miles from the database:
+        //    try
+        //    {
+        //        List<object> objectValues = new List<object>();
 
-                if (cbBikeConfig.SelectedItem == null)
-                {
-                    cbBikeConfig.SelectedIndex = 0;
-                    //bikeName = cbBikeConfig.SelectedItem.ToString();
+        //        if (cbBikeConfig.SelectedItem == null)
+        //        {
+        //            cbBikeConfig.SelectedIndex = 0;
+        //            //bikeName = cbBikeConfig.SelectedItem.ToString();
 
-                    objectValues.Add(tbBikeConfig.Text);
+        //            objectValues.Add(tbBikeConfig.Text);
 
-                }
-                else
-                {
-                    objectValues.Add(cbBikeConfig.SelectedItem.ToString());
-                    tbBikeConfig.Text = cbBikeConfig.SelectedItem.ToString();
-                }
+        //        }
+        //        else
+        //        {
+        //            objectValues.Add(cbBikeConfig.SelectedItem.ToString());
+        //            tbBikeConfig.Text = cbBikeConfig.SelectedItem.ToString();
+        //        }
 
-                //ExecuteScalarFunction
-                //Get Notinmiles
-                using (var results = ExecuteSimpleQueryConnection("Bike_GetMiles", objectValues))
-                {
-                    if (results.HasRows)
-                    {
-                        while (results.Read())
-                        {
-                            notInMiles = float.Parse(results[0].ToString());
-                            logMiles = float.Parse(results[1].ToString());
-                            totalMiles = float.Parse(results[2].ToString());
+        //        //ExecuteScalarFunction
+        //        //Get Notinmiles
+        //        using (var results = ExecuteSimpleQueryConnection("Bike_GetMiles", objectValues))
+        //        {
+        //            if (results.HasRows)
+        //            {
+        //                while (results.Read())
+        //                {
+        //                    notInMiles = float.Parse(results[0].ToString());
+        //                    logMiles = float.Parse(results[1].ToString());
+        //                    totalMiles = float.Parse(results[2].ToString());
 
-                            notInMiles = Math.Round(notInMiles, 1);
-                            logMiles = Math.Round(logMiles, 1);
-                            totalMiles = Math.Round(totalMiles, 1);
+        //                    notInMiles = Math.Round(notInMiles, 1);
+        //                    logMiles = Math.Round(logMiles, 1);
+        //                    totalMiles = Math.Round(totalMiles, 1);
 
-                            tbConfigMilesNotInLog.Text = notInMiles.ToString();
-                            tbBikeLogMiles.Text = logMiles.ToString();
-                            tbBikeTotalMiles.Text = totalMiles.ToString();
-                        }
-                    }
-                    else
-                    {
-                        //MessageBox.Show("\"No entry found for the selected Bike and Date.");
-                        Logger.LogError("WARNING: No entry found for the selected Bike and Date.");
-                        return;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError("[ERROR]: Exception while trying to retrive Bike miles data." + ex.Message.ToString());
-            }
-        }
+        //                    tbConfigMilesNotInLog.Text = notInMiles.ToString();
+        //                    tbBikeLogMiles.Text = logMiles.ToString();
+        //                    tbBikeTotalMiles.Text = totalMiles.ToString();
+        //                }
+        //            }
+        //            else
+        //            {
+        //                //MessageBox.Show("\"No entry found for the selected Bike and Date.");
+        //                Logger.LogError("WARNING: No entry found for the selected Bike and Date.");
+        //                return;
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.LogError("[ERROR]: Exception while trying to retrive Bike miles data." + ex.Message.ToString());
+        //    }
+        //}
 
         private void BtDeleteAllData_Click(object sender, EventArgs e)
         {
@@ -3682,11 +3685,11 @@ namespace CyclingLogApplication
             SetcbStatistic3("0");
             SetcbStatistic4("0");
             SetcbStatistic5("0");
-            SetLastLogFilterSelected(-1);
+            SetLastLogFilterSelected(0);
             SetLastBikeSelected(-1);
-            SetLastLogSelected(-1);
-            SetLastLogYearChartSelected(-1);
-            SetLastMonthlyLogSelected(-1);
+            SetLastLogSelected(0);
+            SetLastLogYearChartSelected(0);
+            SetLastMonthlyLogSelected(0);
             SetLicenseAgreement("0");
 
             MessageBox.Show("Close the program and reopen before entering any data.");
@@ -5513,7 +5516,7 @@ namespace CyclingLogApplication
 
             try
             {
-                List<string> routeList = ReadDataNames("Table_Routes", "Name");
+                List<string> routeList = GetRoutes();
 
                 dataGridViewRoutes.ColumnCount = 2;
                 dataGridViewRoutes.Name = "Route Listing And Counts";

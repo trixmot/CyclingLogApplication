@@ -20,6 +20,7 @@ using static DGVPrinterHelper.DGVPrinter;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using System.Threading;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace CyclingLogApplication
 {
@@ -78,6 +79,7 @@ namespace CyclingLogApplication
             //cbRideTypeDataEntry.Items.Add("Race");
 
             List<string> routeList = MainForm.GetRoutes();
+
             for (int i = 0; i < routeList.Count; i++)
             {
                 cbRouteDataEntry.Items.Add(routeList.ElementAt(i));
@@ -776,6 +778,18 @@ namespace CyclingLogApplication
                     lbRideDataEntryError.Show();
                     return;
                 }
+                if (tbRideDataEntryDistance.Text.Equals("") || tbRideDataEntryDistance.Text.Equals("0"))
+                {
+                    lbRideDataEntryError.Text = "A Ride Distance value must be entered.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (tbRideDataEntryAvgSpeed.Text.Equals("") || tbRideDataEntryAvgSpeed.Text.Equals("0"))
+                {
+                    lbRideDataEntryError.Text = "An Average Speed value must be entered.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
 
                 //===============================
                 string year = "";
@@ -867,16 +881,118 @@ namespace CyclingLogApplication
                     }
                 }
 
+                //*****************************************************************************
+                //*************  VERIFY INPUT DATA IS IN CORRECT FORMAT ***********************
+                //*****************************************************************************
+                double doubleValue = 0;
+                int intValue = 0;
+                if (!double.TryParse(tbRideDataEntryDistance.Text, out doubleValue))
+                {
+                    lbRideDataEntryError.Text = "The Ride Distance value is incorrect.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (!double.TryParse(tbRideDataEntryAvgSpeed.Text, out doubleValue))
+                {
+                    lbRideDataEntryError.Text = "The Average Speed value is incorrect.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (!max_speed.Text.Equals("") && !double.TryParse(tbRideDataEntryAvgSpeed.Text, out doubleValue))
+                {
+                    lbRideDataEntryError.Text = "The Max Speed value is incorrect.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (!avg_cadence.Text.Equals("") && !int.TryParse(avg_cadence.Text, out intValue))
+                {
+                    lbRideDataEntryError.Text = "The Average Cadenace value is incorrect.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (!tbMaxCadence.Text.Equals("") && !int.TryParse(tbMaxCadence.Text, out intValue))
+                {
+                    lbRideDataEntryError.Text = "The Max Cadenace value is incorrect.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (!calories.Text.Equals("") && !int.TryParse(calories.Text, out intValue))
+                {
+                    lbRideDataEntryError.Text = "The Calories value is incorrect.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (!tbRideDataEntryWind.Text.Equals("") && !double.TryParse(tbRideDataEntryWind.Text, out doubleValue))
+                {
+                    lbRideDataEntryError.Text = "The Wind value is incorrect.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (!tbRideEntryTemp.Text.Equals("") && !double.TryParse(tbRideEntryTemp.Text, out doubleValue))
+                {
+                    lbRideDataEntryError.Text = "The Temperture value is incorrect.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (!avg_heart_rate.Text.Equals("") && !int.TryParse(avg_heart_rate.Text, out intValue))
+                {
+                    lbRideDataEntryError.Text = "The Average Heart Rate value is incorrect.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (!max_heart_rate.Text.Equals("") && !int.TryParse(max_heart_rate.Text, out intValue))
+                {
+                    lbRideDataEntryError.Text = "The Max Heart Rate value is incorrect.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (!total_ascent.Text.Equals("") && !int.TryParse(total_ascent.Text, out intValue))
+                {
+                    lbRideDataEntryError.Text = "The Total Ascent value is incorrect.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (!total_descent.Text.Equals("") && !int.TryParse(total_descent.Text, out intValue))
+                {
+                    lbRideDataEntryError.Text = "The Total Descent value is incorrect.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (!avg_power.Text.Equals("") && !int.TryParse(avg_power.Text, out intValue))
+                {
+                    lbRideDataEntryError.Text = "The Average Power value is incorrect.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+                if (!max_power.Text.Equals("") && !int.TryParse(max_power.Text, out intValue))
+                {
+                    lbRideDataEntryError.Text = "The Max Power value is incorrect.";
+                    lbRideDataEntryError.Show();
+                    return;
+                }
+
+
+                //*****************************************************************************
+                //*****************************************************************************
+
                 List<object> objectValues = new List<object>();
                 objectValues.Add(dtpTimeRideDataEntry.Value);                           //Moving Time:
-                objectValues.Add(tbRideDataEntryDistance.Text);                       //Ride Distance:
-                objectValues.Add(tbRideDataEntryAvgSpeed.Text);                                 //Average Speed:
+                objectValues.Add(tbRideDataEntryDistance.Text);                         //Ride Distance:
+                objectValues.Add(tbRideDataEntryAvgSpeed.Text);                         //Average Speed:
                 objectValues.Add(cbBikeDataEntrySelection.SelectedItem.ToString());     //Bike:
                 objectValues.Add(cbRideTypeDataEntry.SelectedItem.ToString());          //Ride Type:
-                float windspeed = float.Parse(tbRideDataEntryWind.Text);                          //----
+                float windspeed;
+                if (tbRideDataEntryWind.Text.Equals(""))
+                {
+                    windspeed = 0;
+                } else
+                {
+                    windspeed = float.Parse(tbRideDataEntryWind.Text);                  
+                }
+                
                 objectValues.Add(windspeed);                                            //Wind:
-                float temp = float.Parse(tbRideEntryTemp.Text);                               //--
-                objectValues.Add(Math.Round(temp, 1));                                   //Temp:
+                float temp = float.Parse(tbRideEntryTemp.Text);                               
+                objectValues.Add(Math.Round(temp, 1));                                  //Temp:
                 objectValues.Add(dtpRideDate.Value);                                    //Date:
 
                 if (avg_cadence.Text.Equals("") || avg_cadence.Text.Equals("--"))       //Average Cadence:
@@ -888,7 +1004,7 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(avg_cadence.Text));
                 }
 
-                if (tbMaxCadence.Text.Equals("") || tbMaxCadence.Text.Equals("--"))       //Max Cadence:
+                if (tbMaxCadence.Text.Equals("") || tbMaxCadence.Text.Equals("--"))     //Max Cadence:
                 {
                     objectValues.Add(0);
                 }
@@ -897,7 +1013,7 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(tbMaxCadence.Text));
                 }
 
-                if (avg_heart_rate.Text.Equals("") || avg_heart_rate.Text.Equals("--")) //Average Heart Rate:
+                if (avg_heart_rate.Text.Equals("") || avg_heart_rate.Text.Equals("--"))     //Average Heart Rate:
                 {
                     objectValues.Add(0);
                 }
@@ -1049,7 +1165,8 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to update ride information." + ex.Message.ToString());
+                Logger.LogError("[ERROR]: Exception while trying to update ride information. " + ex.Message.ToString());
+                MessageBox.Show("[ERROR] There was a problem adding or updating the ride.");
             }
         }
 
@@ -1151,6 +1268,7 @@ namespace CyclingLogApplication
                                     {
                                         string dataValue = splitList[i];
                                         dataValue = dataValue.Replace("\"", string.Empty);
+                                        dataValue = dataValue.Replace(",", "");
                                         garminDataDictionary[headingList[i]] = dataValue;
                                     }
                                 }
@@ -1673,8 +1791,6 @@ namespace CyclingLogApplication
 
             //Hide items not used from this location:
             groupBoxRetrieveDate.Visible = false;
-            btAddDataEntry.Visible = false;
-            btUpdateRideDateEntry.Visible = false;
             btImportDataEntry.Visible = false;
             btDeleteRideDataEntry.Visible = false;
             btClearDataEntry.Visible = false;
