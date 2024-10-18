@@ -830,7 +830,7 @@ namespace CyclingLogApplication
                 using (MainForm mainForm = new MainForm(""))
                 {
                     logSetting = MainForm.GetLogLevel();
-                    logIndex = MainForm.GetLogYearIndex(cbLogYearDataEntry.SelectedItem.ToString());
+                    logIndex = MainForm.GetLogYearIndex_ByName(cbLogYearDataEntry.SelectedItem.ToString());
                 }
 
                 // Run check to see if a record exists for this date:

@@ -193,7 +193,7 @@ namespace CyclingLogApplication
             using (MainForm mainForm = new MainForm(""))
             {
                 logSetting = MainForm.GetLogLevel();
-                logIndex = MainForm.GetLogYearIndex(cbLogYearChart.SelectedItem.ToString());
+                logIndex = MainForm.GetLogYearIndex_ByName(cbLogYearChart.SelectedItem.ToString());
             }
 
             //Average Speed:

@@ -144,17 +144,20 @@ namespace CyclingLogApplication
         public void CloseConnection()
         {
             try { 
-                this.CloseDataReader(); 
+                CloseDataReader(); 
             }
             catch { }
 
             try {
-                this.Connection?.Close();
+                if (Connection != null && Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
             }
             catch { }
 
             try { 
-                SqlConnection.ClearPool(this.Connection); 
+                SqlConnection.ClearPool(Connection); 
             }
             catch { }
         }

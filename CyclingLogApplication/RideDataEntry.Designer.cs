@@ -176,7 +176,7 @@
             // 
             // btRideDisplayUpdate
             // 
-            this.btRideDisplayUpdate.Location = new System.Drawing.Point(372, 66);
+            this.btRideDisplayUpdate.Location = new System.Drawing.Point(380, 64);
             this.btRideDisplayUpdate.Name = "btRideDisplayUpdate";
             this.btRideDisplayUpdate.Size = new System.Drawing.Size(85, 34);
             this.btRideDisplayUpdate.TabIndex = 4;
