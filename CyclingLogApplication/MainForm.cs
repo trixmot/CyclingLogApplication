@@ -1286,7 +1286,9 @@ namespace CyclingLogApplication
 
             for (int i = 0; i < nameIDdict.Count; i++)
             {
-                if (nameIDdict.ElementAt(i).Value.Equals(logYearName))
+                string logName = nameIDdict.Keys.ElementAt(i);
+                //string keyValue = nameIDdict.Keys.ElementAt(i);
+                if (logName.Equals(logYearName))
                 {
                     logYearIndex = i; break;
                 }
@@ -6232,6 +6234,8 @@ namespace CyclingLogApplication
             {
                 SetTextRoute("False");
             }
+
+            MessageBox.Show("Color save complete.");
         }
 
         private void cbMaintColors_SelectedIndexChanged(object sender, EventArgs e)

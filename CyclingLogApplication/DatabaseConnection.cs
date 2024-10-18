@@ -149,10 +149,17 @@ namespace CyclingLogApplication
             catch { }
 
             try {
-                if (Connection != null && Connection.State == ConnectionState.Open)
+                string databaseString = this.Connection.Database.ToString();
+                if (databaseString.Equals("")) {
+                    string test = "";
+                } else
                 {
-                    Connection.Close();
+                    if (!object.ReferenceEquals(this.Connection, null) || Connection != null && Connection.State == ConnectionState.Open)
+                    {
+                        Connection.Close();
+                    }
                 }
+                
             }
             catch { }
 
