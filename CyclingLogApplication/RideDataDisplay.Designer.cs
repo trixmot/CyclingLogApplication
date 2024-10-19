@@ -78,7 +78,7 @@
             this.cbFilterField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFilterField.FormattingEnabled = true;
             this.cbFilterField.Items.AddRange(new object[] {
-            "NONE",
+            "-- No Filter --",
             "Bike",
             "Location",
             "Longest",

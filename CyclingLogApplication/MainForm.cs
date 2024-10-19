@@ -1229,6 +1229,7 @@ namespace CyclingLogApplication
                 //Need to remove all data for this log from the database:
                 RemoveLogYearData(logYearIndex);
                 cbLogYearConfig.SelectedIndex = 0;
+                tbLogYearConfig.Text = "";
 
                 //Update log comboboxes index to 0 that match the one being deleted:
                 if (chartIndex == deleteLogIndex)
@@ -1562,25 +1563,33 @@ namespace CyclingLogApplication
 
         private void AddDefautRoute()
         {
-            string routeString = "Miscellaneous Route";
+            RideDataEntry rideDataEntryForm = new RideDataEntry();
+            ChartForm chartForm = new ChartForm();
+            string routeString1 = "Miscellaneous Route";
+            string routeString2 = "--Indoor Training--";
             int logSetting = GetLogLevel();
 
-            List<object> objectValues = new List<object>
+            //Route1:
+            List<object> objectValues1 = new List<object>
             {
-                routeString
+                routeString1
             };
-            RunStoredProcedure(objectValues, "Route_Add");
-            List<string> routeList = new List<string>();
-            routeList.Add(routeString);
-            SetRoutes(routeList);
-            RideDataEntry rideDataEntryForm = new RideDataEntry();
-            rideDataEntryForm.AddRouteDataEntry(routeString);
+            RunStoredProcedure(objectValues1, "Route_Add");
+            //Route2:
+            List<object> objectValues2 = new List<object>
+            {
+                routeString2
+            };
+            RunStoredProcedure(objectValues2, "Route_Add");
 
-            ChartForm chartForm = new ChartForm();
-            chartForm.cbRoutesChart.Items.Add(routeString);
+            rideDataEntryForm.AddRouteDataEntry(routeString1);
+            rideDataEntryForm.AddRouteDataEntry(routeString2);
 
+            chartForm.cbRoutesChart.Items.Add(routeString1);
+            chartForm.cbRoutesChart.Items.Add(routeString2);
+
+            SetRoutes(ReadDataNames("Table_Routes", "Name"));
             RefreshRoutes();
-            Logger.Log("Adding a Route entry to the Configuration:" + routeString, logSetting, 0);
         }
 
         private void BtRemoveRouteConfig(object sender, EventArgs e)
@@ -3522,6 +3531,7 @@ namespace CyclingLogApplication
 
             AddDefautRoute();
             Logger.Log("Adding a Route entry to the Configuration:" + "Miscellaneous Route:", 0, 0);
+            Logger.Log("Adding a Route entry to the Configuration:" + "-- Indoor Training --:", 0, 0);
 
             SetCustomField1("");
             SetCustomField2("");
