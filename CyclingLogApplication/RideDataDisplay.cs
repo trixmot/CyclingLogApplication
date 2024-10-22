@@ -16,6 +16,12 @@ using static DGVPrinterHelper.DGVPrinter;
 using System.IO;
 using System.Xml.Linq;
 using System.Threading;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Threading.Tasks;
+using System.CodeDom.Compiler;
+using System.Windows.Threading;
+using System.Reflection.Emit;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CyclingLogApplication
 {
@@ -23,7 +29,12 @@ namespace CyclingLogApplication
     {
         private SqlConnection sqlConnection;
         private DatabaseConnection databaseConnection;
-
+        int min = 0;// Minimum value for progress range
+        int max = 100;// Maximum value for progress range
+        int val = 0;// Current progress
+        Color BarColor = Color.Blue;// Color of progress meter
+        //public int s = 0;
+        //System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
 
         public RideDataDisplay()
         {
@@ -112,6 +123,17 @@ namespace CyclingLogApplication
                 {
                     heightCLB = 364;
                 }
+
+                string gridOrder = MainForm.GetGridOrder();
+                if (gridOrder.Equals("ASC"))
+                {
+                    rbAscendingOrder.Checked = true;
+                    rbDescendingOrder.Checked = false;
+                } else
+                {
+                    rbAscendingOrder.Checked = false;
+                    rbDescendingOrder.Checked = true;
+                }
                 
                 checkedListBox.Height = heightCLB;
                 //sqlConnection.Close();
@@ -188,6 +210,8 @@ namespace CyclingLogApplication
 
         private void BFilter_Click(object sender, EventArgs e)
         {
+            ProgressBar progressBar = new ProgressBar();
+
             if (cbLogYearFilter.SelectedIndex < 1)
             {
                 MessageBox.Show("In order to view data a log must be selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -330,9 +354,9 @@ namespace CyclingLogApplication
                 string logYearIDQuery = "";
 
                 //Get the Logyear ID:
-                if (cbLogYearFilter.SelectedIndex < 2)
+                if (cbLogYearFilter.SelectedIndex == 1)
                 {
-                    logYearID = 1;
+                    logYearID = 0;
                 }
                 else
                 {
@@ -479,6 +503,11 @@ namespace CyclingLogApplication
                     }
                     else
                     {
+
+                        //BeginInvoke((Action)(() => progressBar.ShowDialog()));
+                        //await RunAllLogsAsync(fieldString);
+                        //progressBar.Close();
+                        //return;
                         sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information ORDER BY [Date] ASC", sqlConnection);
                     }
                 }
@@ -571,7 +600,7 @@ namespace CyclingLogApplication
                     }
                 }
 
-                dataGridView1.Refresh();
+                //dataGridView1.Refresh();
             }
             catch (Exception ex)
             {
@@ -583,7 +612,434 @@ namespace CyclingLogApplication
             {
                 // close connection
                 sqlConnection?.Close();
+                progressBar.Close();
             }
+        }
+
+        private async Task LoadingMessage()
+        {
+            tbLoadingMessage.Visible = true;
+            tbLoadingMessage.Refresh();
+        }
+
+        private async Task RunGridUpdate()
+        {
+            await LoadingMessage();
+            RunDataGrid();
+        }
+
+        private void RunDataGrid()
+        {
+            string gridOrder;
+            if (rbAscendingOrder.Checked)
+            {
+                gridOrder = "ASC";
+            } else
+            {
+                gridOrder = "DESC";
+            }
+
+            if (cbLogYearFilter.SelectedIndex < 1)
+            {
+                MessageBox.Show("In order to view data a log must be selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            SqlConnection conn = null;
+
+            try
+            {
+                dataGridView1.DataSource = null;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to Clear ride data." + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred.  Review the log for more information.");
+            }
+            finally
+            {
+                // close connection
+                conn?.Close();
+            }
+
+            string custom1 = MainForm.GetCustomField1();
+            string custom2 = MainForm.GetCustomField2();
+            bool customDataField1 = false;
+            bool customDataField2 = false;
+
+            bool customDataField1Checked = false;
+            bool customDataField2Checked = false;
+
+            string fieldName;
+
+            if (!custom1.Equals(""))
+            {
+                customDataField1 = true;
+            }
+            if (!custom2.Equals(""))
+            {
+                customDataField2 = true;
+            }
+
+            string fieldString = "[Id],[Date]";
+
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
+            {
+                string nameValue = checkedListBox.Items[i].ToString();
+                if (nameValue.Equals(custom1))
+                {
+                    customDataField1Checked = checkedListBox.GetItemChecked(i);
+                }
+                if (nameValue.Equals(custom2))
+                {
+                    customDataField2Checked = checkedListBox.GetItemChecked(i);
+                }
+
+                if (checkedListBox.GetItemChecked(i))
+                {
+                    fieldName = checkedListBox.Items[i].ToString();
+                    if (fieldName.Equals("Week Number"))
+                    {
+                        fieldName = "WeekNumber";
+                    }
+                    else if (fieldName.Equals("Moving Time"))
+                    {
+                        fieldName = "MovingTime";
+                    }
+                    else if (fieldName.Equals("Ride Distance"))
+                    {
+                        fieldName = "RideDistance";
+                    }
+                    else if (fieldName.Equals("Avg Speed"))
+                    {
+                        fieldName = "AvgSpeed";
+                    }
+                    else if (fieldName.Equals("Ride Type"))
+                    {
+                        fieldName = "RideType";
+                    }
+                    else if (fieldName.Equals("Avg Cadence"))
+                    {
+                        fieldName = "AvgCadence";
+                    }
+                    else if (fieldName.Equals("Max Cadence"))
+                    {
+                        fieldName = "MaxCadence";
+                    }
+                    else if (fieldName.Equals("Avg Heart Rate"))
+                    {
+                        fieldName = "AvgHeartRate";
+                    }
+                    else if (fieldName.Equals("Max Heart Rate"))
+                    {
+                        fieldName = "MaxHeartRate";
+                    }
+                    else if (fieldName.Equals("Total Ascent"))
+                    {
+                        fieldName = "TotalAscent";
+
+                    }
+                    else if (fieldName.Equals("Total Descent"))
+                    {
+                        fieldName = "TotalDescent";
+                    }
+                    else if (fieldName.Equals("Max Speed"))
+                    {
+                        fieldName = "MaxSpeed";
+                    }
+                    else if (fieldName.Equals("Avg Power"))
+                    {
+                        fieldName = "AveragePower";
+                    }
+                    else if (fieldName.Equals("Max Power"))
+                    {
+                        fieldName = "MaxPower";
+                    }
+                    else if (fieldName.Equals("Wind Chill"))
+                    {
+                        fieldName = "Windchill";
+                    }
+                    else if (fieldName.Equals(custom1))
+                    {
+                        fieldName = "Custom1";
+                    }
+                    else if (fieldName.Equals(custom2))
+                    {
+                        fieldName = "Custom2";
+                    }
+
+                    fieldString += ",[" + fieldName + "]";
+
+                }
+            }
+
+            try
+            {
+                sqlConnection.Open();
+                SqlDataAdapter sqlDataAdapter = null;
+                int logYearID = -1;
+                string logYearIDQuery = "";
+
+                //Get the Logyear ID:
+                if (cbLogYearFilter.SelectedIndex == 1)
+                {
+                    logYearID = 0;
+                }
+                else
+                {
+                    logYearID = MainForm.GetLogYearIndexByName(cbLogYearFilter.SelectedItem.ToString());
+                    logYearIDQuery = " and [LogYearID]=@logyearID";
+                }
+
+                //WeekNumber, Bike, RideType, route
+                if (cbFilterField.SelectedItem.Equals("WeekNumber"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @WeekNumber LIKE WeekNumber" + logYearIDQuery, sqlConnection)
+                    };
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@WeekNumber", SqlDbType.BigInt, 5);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@WeekNumber", cbFilterValue.Text);
+
+                    if (logYearID != 0)
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    }
+
+                    //sqlDataAdapter = new SqlDataAdapter("select [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Comments] from Table_Ride_Information WHERE WeekNumber LIKE " + cbFilter.Text + "%", conn);
+                }
+                else if (cbFilterField.SelectedItem.Equals("Bike"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @Bike LIKE Bike" + logYearIDQuery, sqlConnection)
+                    };
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@Bike", SqlDbType.NVarChar, 50);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Bike", cbFilterValue.Text);
+
+                    if (logYearID != 0)
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    }
+                }
+                else if (cbFilterField.SelectedItem.Equals("RideType"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @RideType LIKE RideType" + logYearIDQuery, sqlConnection)
+                    };
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@RideType", SqlDbType.NVarChar, 50);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@RideType", cbFilterValue.Text);
+
+                    if (logYearID != 0)
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    }
+                }
+                else if (cbFilterField.SelectedItem.Equals("Route"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @Route LIKE Route" + logYearIDQuery, sqlConnection)
+                    };
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Route", cbFilterValue.Text);
+
+                    if (logYearID != 0)
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    }
+                }
+                else if (cbFilterField.SelectedItem.Equals("Location"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @Location LIKE Location" + logYearIDQuery, sqlConnection)
+                    };
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Location", cbFilterValue.Text);
+
+                    if (logYearID != 0)
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    }
+                }
+                else if (cbFilterField.SelectedItem.Equals("Longest"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter();
+
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
+
+                    if (logYearID != 0)
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [LogYearID]=@logyearID ORDER BY[RideDistance] " + gridOrder, sqlConnection);
+                    }
+                    else
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information ORDER BY[RideDistance] " + gridOrder, sqlConnection);
+                    }
+                }
+                else if (cbFilterField.SelectedItem.Equals("Temperature"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter();
+
+                    //index 0 = "Below 30":
+                    //index 1 = "30-49":
+                    //index 2 = "50-69":
+                    //index 3 = "70-89":
+                    //index 4 = "Above 90":
+
+                    if (cbFilterValue.SelectedIndex == 0)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [Temperature] < " + 30 + " " + logYearIDQuery + " ORDER BY[Temperature] " + gridOrder, sqlConnection);
+                    }
+                    else if (cbFilterValue.SelectedIndex == 1)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [Temperature] >= " + 30 + " and [Temperature] < " + 50 + " " + logYearIDQuery + " ORDER BY[Temperature] " + gridOrder, sqlConnection);
+                    }
+                    else if (cbFilterValue.SelectedIndex == 2)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [Temperature] >= " + 50 + " and [Temperature] < " + 70 + " " + logYearIDQuery + " ORDER BY[Temperature] " + gridOrder, sqlConnection);
+                    }
+                    else if (cbFilterValue.SelectedIndex == 3)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [Temperature] >= " + 70 + " and [Temperature] < " + 90 + " " + logYearIDQuery + " ORDER BY[Temperature] " + gridOrder, sqlConnection);
+                    }
+                    else if (cbFilterValue.SelectedIndex == 4)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [Temperature] >= " + 90 + " " + logYearIDQuery, sqlConnection);
+                    }
+                    //sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [Temperature] > " + temp_value + " " + logYearIDQuery, sqlConnection);
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
+                    //sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Temperature", temp_value);
+
+                    if (logYearID != 0)
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    }
+                }
+                else
+                {
+                    sqlDataAdapter = new SqlDataAdapter();
+                    if (logYearID != 0)
+                    {
+                        //sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Id],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [LogYearID]=@logyearID ORDER BY [Date] ASC", sqlConnection);
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [LogYearID]=@logyearID ORDER BY [Date] " + gridOrder, sqlConnection);
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    }
+                    else
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information ORDER BY [Date] " + gridOrder, sqlConnection);
+                    }
+                }
+
+                DataTable dataTable = new DataTable();
+                dataTable.Columns.Add(new DataColumn("Item", typeof(int)));
+                //Set AutoIncrement True for the First Column.
+                dataTable.Columns["Item"].AutoIncrement = true;
+                //Set the Starting or Seed value.
+                dataTable.Columns["Item"].AutoIncrementSeed = 1;
+                //Set the Increment value.
+                dataTable.Columns["Item"].AutoIncrementStep = 1;
+                sqlDataAdapter.Fill(dataTable);
+
+                if (customDataField1Checked && customDataField1)
+                {
+                    if (custom1.Equals(""))
+                    {
+                        //dataTable.Columns["Custom1"].ColumnName = "Custom1";
+                    }
+                    else
+                    {
+                        dataTable.Columns["Custom1"].ColumnName = custom1;
+                    }
+                }
+
+                if (customDataField2Checked && customDataField2)
+                {
+                    if (custom2.Equals(""))
+                    {
+                        //dataTable.Columns["Custom2"].ColumnName = "Custom2";
+                    }
+                    else
+                    {
+                        dataTable.Columns["Custom2"].ColumnName = custom2;
+                    }
+                }
+
+                dataGridView1.DataSource = dataTable;
+                dataGridView1.Columns["AvgSpeed"].DefaultCellStyle.Format = "0.00";
+                dataGridView1.Columns["RideDistance"].DefaultCellStyle.Format = "0.0";
+
+                // Resize the master DataGridView columns to fit the newly loaded data.
+                dataGridView1.AutoResizeColumns();
+                dataGridView1.AllowUserToOrderColumns = true;
+                // Configure the details DataGridView so that its columns automatically adjust their widths when the data changes.
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridView1.AllowUserToAddRows = false;
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+                dataGridView1.ReadOnly = true;
+                dataGridView1.EnableHeadersVisualStyles = false;
+                dataGridView1.AllowUserToResizeRows = false;
+                dataGridView1.AllowUserToResizeColumns = false;
+                dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+                dataGridView1.ColumnHeadersHeight = 30;
+                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(MainForm.GetDisplayDataColor());
+
+                string idColumnValue = MainForm.GetIDColumnValue();
+                //Determine if ID field should appear in the Data Display grid output:
+                if (idColumnValue.Equals("0"))
+                {
+                    dataGridView1.Columns["Id"].Visible = false;
+                }
+                else
+                {
+                    dataGridView1.Columns["Id"].Visible = true;
+                }
+
+                string textValue = MainForm.GetTextDisplay();
+                int rowCount = dataGridView1.Rows.Count;
+                for (int i = 0; i < rowCount; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        //is even
+                    }
+                    else
+                    {
+                        //is odd
+                        if (textValue.Equals("True"))
+                        {
+                            dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                        }
+                        else
+                        {
+                            dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                        }
+                    }
+                }
+
+                //dataGridView1.Refresh();
+            }
+            catch (Exception ex)
+            {
+
+                Logger.LogError("[ERROR]: Exception while trying to run query ride data: " + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred while quering ride data.  Review the log for more information.");
+                return;
+            }
+            finally
+            {
+                // close connection
+                sqlConnection?.Close();
+            }
+
+            tbLoadingMessage.Visible = false;
+
+            return;
         }
 
         private void BtClear_Click(object sender, EventArgs e)
@@ -1241,5 +1697,597 @@ namespace CyclingLogApplication
 
         //    rideDataEntryForm.ShowDialog();
         //}
+
+        protected override void OnResize(EventArgs e)
+        {
+            // Invalidate the control to get a repaint.
+            this.Invalidate();
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            SolidBrush brush = new SolidBrush(BarColor);
+            float percent = (float)(val - min) / (float)(max - min);
+            Rectangle rect = this.ClientRectangle;
+
+            // Calculate area for drawing the progress.
+            rect.Width = (int)((float)rect.Width * percent);
+
+            // Draw the progress meter.
+            g.FillRectangle(brush, rect);
+
+            // Draw a three-dimensional border around the control.
+            Draw3DBorder(g);
+
+            // Clean up.
+            brush.Dispose();
+            g.Dispose();
+        }
+
+        public int Minimum
+        {
+            get
+            {
+                return min;
+            }
+
+            set
+            {
+                // Prevent a negative value.
+                if (value < 0)
+                {
+                    value = 0;
+                }
+
+                // Make sure that the minimum value is never set higher than the maximum value.
+                if (value > max)
+                {
+                    max = value;
+                }
+
+                min = value;
+
+                // Ensure value is still in range
+                if (val < min)
+                {
+                    val = min;
+                }
+
+                // Invalidate the control to get a repaint.
+                this.Invalidate();
+            }
+        }
+
+        public int Maximum
+        {
+            get
+            {
+                return max;
+            }
+
+            set
+            {
+                // Make sure that the maximum value is never set lower than the minimum value.
+                if (value < min)
+                {
+                    min = value;
+                }
+
+                max = value;
+
+                // Make sure that value is still in range.
+                if (val > max)
+                {
+                    val = max;
+                }
+
+                // Invalidate the control to get a repaint.
+                this.Invalidate();
+            }
+        }
+
+        public int Value
+        {
+            get
+            {
+                return val;
+            }
+
+            set
+            {
+                int oldValue = val;
+
+                // Make sure that the value does not stray outside the valid range.
+                if (value < min)
+                {
+                    val = min;
+                }
+                else if (value > max)
+                {
+                    val = max;
+                }
+                else
+                {
+                    val = value;
+                }
+
+                // Invalidate only the changed area.
+                float percent;
+
+                Rectangle newValueRect = this.ClientRectangle;
+                Rectangle oldValueRect = this.ClientRectangle;
+
+                // Use a new value to calculate the rectangle for progress.
+                percent = (float)(val - min) / (float)(max - min);
+                newValueRect.Width = (int)((float)newValueRect.Width * percent);
+
+                // Use an old value to calculate the rectangle for progress.
+                percent = (float)(oldValue - min) / (float)(max - min);
+                oldValueRect.Width = (int)((float)oldValueRect.Width * percent);
+
+                Rectangle updateRect = new Rectangle();
+
+                // Find only the part of the screen that must be updated.
+                if (newValueRect.Width > oldValueRect.Width)
+                {
+                    updateRect.X = oldValueRect.Size.Width;
+                    updateRect.Width = newValueRect.Width - oldValueRect.Width;
+                }
+                else
+                {
+                    updateRect.X = newValueRect.Size.Width;
+                    updateRect.Width = oldValueRect.Width - newValueRect.Width;
+                }
+
+                updateRect.Height = this.Height;
+
+                // Invalidate the intersection region only.
+                this.Invalidate(updateRect);
+            }
+        }
+
+        public Color ProgressBarColor
+        {
+            get
+            {
+                return BarColor;
+            }
+
+            set
+            {
+                BarColor = value;
+
+                // Invalidate the control to get a repaint.
+                this.Invalidate();
+            }
+        }
+
+        private void Draw3DBorder(Graphics g)
+        {
+            int PenWidth = (int)Pens.White.Width;
+
+            g.DrawLine(Pens.DarkGray,
+            new Point(this.ClientRectangle.Left, this.ClientRectangle.Top),
+            new Point(this.ClientRectangle.Width - PenWidth, this.ClientRectangle.Top));
+            g.DrawLine(Pens.DarkGray,
+            new Point(this.ClientRectangle.Left, this.ClientRectangle.Top),
+            new Point(this.ClientRectangle.Left, this.ClientRectangle.Height - PenWidth));
+            g.DrawLine(Pens.White,
+            new Point(this.ClientRectangle.Left, this.ClientRectangle.Height - PenWidth),
+            new Point(this.ClientRectangle.Width - PenWidth, this.ClientRectangle.Height - PenWidth));
+            g.DrawLine(Pens.White,
+            new Point(this.ClientRectangle.Width - PenWidth, this.ClientRectangle.Top),
+            new Point(this.ClientRectangle.Width - PenWidth, this.ClientRectangle.Height - PenWidth));
+        }
+
+
+
+        private void RunGrid_BACKUP(object sender, EventArgs e)
+        {
+            if (cbLogYearFilter.SelectedIndex < 1)
+            {
+                MessageBox.Show("In order to view data a log must be selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            SqlConnection conn = null;
+
+            try
+            {
+                dataGridView1.DataSource = null;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to Clear ride data." + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred.  Review the log for more information.");
+            }
+            finally
+            {
+                // close connection
+                conn?.Close();
+            }
+
+            string custom1 = MainForm.GetCustomField1();
+            string custom2 = MainForm.GetCustomField2();
+            bool customDataField1 = false;
+            bool customDataField2 = false;
+
+            bool customDataField1Checked = false;
+            bool customDataField2Checked = false;
+
+            string fieldName;
+
+            if (!custom1.Equals(""))
+            {
+                customDataField1 = true;
+            }
+            if (!custom2.Equals(""))
+            {
+                customDataField2 = true;
+            }
+
+            string fieldString = "[Id],[Date]";
+
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
+            {
+                string nameValue = checkedListBox.Items[i].ToString();
+                if (nameValue.Equals(custom1))
+                {
+                    customDataField1Checked = checkedListBox.GetItemChecked(i);
+                }
+                if (nameValue.Equals(custom2))
+                {
+                    customDataField2Checked = checkedListBox.GetItemChecked(i);
+                }
+
+                if (checkedListBox.GetItemChecked(i))
+                {
+                    fieldName = checkedListBox.Items[i].ToString();
+                    if (fieldName.Equals("Week Number"))
+                    {
+                        fieldName = "WeekNumber";
+                    }
+                    else if (fieldName.Equals("Moving Time"))
+                    {
+                        fieldName = "MovingTime";
+                    }
+                    else if (fieldName.Equals("Ride Distance"))
+                    {
+                        fieldName = "RideDistance";
+                    }
+                    else if (fieldName.Equals("Avg Speed"))
+                    {
+                        fieldName = "AvgSpeed";
+                    }
+                    else if (fieldName.Equals("Ride Type"))
+                    {
+                        fieldName = "RideType";
+                    }
+                    else if (fieldName.Equals("Avg Cadence"))
+                    {
+                        fieldName = "AvgCadence";
+                    }
+                    else if (fieldName.Equals("Max Cadence"))
+                    {
+                        fieldName = "MaxCadence";
+                    }
+                    else if (fieldName.Equals("Avg Heart Rate"))
+                    {
+                        fieldName = "AvgHeartRate";
+                    }
+                    else if (fieldName.Equals("Max Heart Rate"))
+                    {
+                        fieldName = "MaxHeartRate";
+                    }
+                    else if (fieldName.Equals("Total Ascent"))
+                    {
+                        fieldName = "TotalAscent";
+
+                    }
+                    else if (fieldName.Equals("Total Descent"))
+                    {
+                        fieldName = "TotalDescent";
+                    }
+                    else if (fieldName.Equals("Max Speed"))
+                    {
+                        fieldName = "MaxSpeed";
+                    }
+                    else if (fieldName.Equals("Avg Power"))
+                    {
+                        fieldName = "AveragePower";
+                    }
+                    else if (fieldName.Equals("Max Power"))
+                    {
+                        fieldName = "MaxPower";
+                    }
+                    else if (fieldName.Equals("Wind Chill"))
+                    {
+                        fieldName = "Windchill";
+                    }
+                    else if (fieldName.Equals(custom1))
+                    {
+                        fieldName = "Custom1";
+                    }
+                    else if (fieldName.Equals(custom2))
+                    {
+                        fieldName = "Custom2";
+                    }
+
+                    fieldString += ",[" + fieldName + "]";
+
+                }
+            }
+
+            try
+            {
+                sqlConnection.Open();
+                SqlDataAdapter sqlDataAdapter = null;
+                int logYearID = -1;
+                string logYearIDQuery = "";
+
+                //Get the Logyear ID:
+                if (cbLogYearFilter.SelectedIndex == 1)
+                {
+                    logYearID = 0;
+                }
+                else
+                {
+                    logYearID = MainForm.GetLogYearIndexByName(cbLogYearFilter.SelectedItem.ToString());
+                    logYearIDQuery = " and [LogYearID]=@logyearID";
+                }
+
+                //WeekNumber, Bike, RideType, route
+                if (cbFilterField.SelectedItem.Equals("WeekNumber"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @WeekNumber LIKE WeekNumber" + logYearIDQuery, sqlConnection)
+                    };
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@WeekNumber", SqlDbType.BigInt, 5);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@WeekNumber", cbFilterValue.Text);
+
+                    if (logYearID != 0)
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    }
+
+                    //sqlDataAdapter = new SqlDataAdapter("select [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Comments] from Table_Ride_Information WHERE WeekNumber LIKE " + cbFilter.Text + "%", conn);
+                }
+                else if (cbFilterField.SelectedItem.Equals("Bike"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @Bike LIKE Bike" + logYearIDQuery, sqlConnection)
+                    };
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@Bike", SqlDbType.NVarChar, 50);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Bike", cbFilterValue.Text);
+
+                    if (logYearID != 0)
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    }
+                }
+                else if (cbFilterField.SelectedItem.Equals("RideType"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @RideType LIKE RideType" + logYearIDQuery, sqlConnection)
+                    };
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@RideType", SqlDbType.NVarChar, 50);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@RideType", cbFilterValue.Text);
+
+                    if (logYearID != 0)
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    }
+                }
+                else if (cbFilterField.SelectedItem.Equals("Route"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @Route LIKE Route" + logYearIDQuery, sqlConnection)
+                    };
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Route", cbFilterValue.Text);
+
+                    if (logYearID != 0)
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    }
+                }
+                else if (cbFilterField.SelectedItem.Equals("Location"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter
+                    {
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @Location LIKE Location" + logYearIDQuery, sqlConnection)
+                    };
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
+                    sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Location", cbFilterValue.Text);
+
+                    if (logYearID != 0)
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    }
+                }
+                else if (cbFilterField.SelectedItem.Equals("Longest"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter();
+
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
+
+                    if (logYearID != 0)
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [LogYearID]=@logyearID ORDER BY[RideDistance] DESC", sqlConnection);
+                    }
+                    else
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information ORDER BY[RideDistance] DESC", sqlConnection);
+                    }
+                }
+                else if (cbFilterField.SelectedItem.Equals("Temperature"))
+                {
+                    sqlDataAdapter = new SqlDataAdapter();
+
+                    //index 0 = "Below 30":
+                    //index 1 = "30-49":
+                    //index 2 = "50-69":
+                    //index 3 = "70-89":
+                    //index 4 = "Above 90":
+
+                    if (cbFilterValue.SelectedIndex == 0)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [Temperature] < " + 30 + " " + logYearIDQuery + " ORDER BY[Temperature] DESC", sqlConnection);
+                    }
+                    else if (cbFilterValue.SelectedIndex == 1)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [Temperature] >= " + 30 + " and [Temperature] < " + 50 + " " + logYearIDQuery + " ORDER BY[Temperature] DESC", sqlConnection);
+                    }
+                    else if (cbFilterValue.SelectedIndex == 2)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [Temperature] >= " + 50 + " and [Temperature] < " + 70 + " " + logYearIDQuery + " ORDER BY[Temperature] DESC", sqlConnection);
+                    }
+                    else if (cbFilterValue.SelectedIndex == 3)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [Temperature] >= " + 70 + " and [Temperature] < " + 90 + " " + logYearIDQuery + " ORDER BY[Temperature] DESC", sqlConnection);
+                    }
+                    else if (cbFilterValue.SelectedIndex == 4)
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [Temperature] >= " + 90 + " " + logYearIDQuery, sqlConnection);
+                    }
+                    //sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [Temperature] > " + temp_value + " " + logYearIDQuery, sqlConnection);
+                    //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
+                    //sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Temperature", temp_value);
+
+                    if (logYearID != 0)
+                    {
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    }
+                }
+                else
+                {
+                    sqlDataAdapter = new SqlDataAdapter();
+                    if (logYearID != 0)
+                    {
+                        //sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Id],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [LogYearID]=@logyearID ORDER BY [Date] ASC", sqlConnection);
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [LogYearID]=@logyearID ORDER BY [Date] DESC", sqlConnection);
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    }
+                    else
+                    {
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information ORDER BY [Date] DESC", sqlConnection);
+                    }
+                }
+
+                DataTable dataTable = new DataTable();
+                dataTable.Columns.Add(new DataColumn("Item", typeof(int)));
+                //Set AutoIncrement True for the First Column.
+                dataTable.Columns["Item"].AutoIncrement = true;
+                //Set the Starting or Seed value.
+                dataTable.Columns["Item"].AutoIncrementSeed = 1;
+                //Set the Increment value.
+                dataTable.Columns["Item"].AutoIncrementStep = 1;
+                sqlDataAdapter.Fill(dataTable);
+
+                if (customDataField1Checked && customDataField1)
+                {
+                    if (custom1.Equals(""))
+                    {
+                        //dataTable.Columns["Custom1"].ColumnName = "Custom1";
+                    }
+                    else
+                    {
+                        dataTable.Columns["Custom1"].ColumnName = custom1;
+                    }
+                }
+
+                if (customDataField2Checked && customDataField2)
+                {
+                    if (custom2.Equals(""))
+                    {
+                        //dataTable.Columns["Custom2"].ColumnName = "Custom2";
+                    }
+                    else
+                    {
+                        dataTable.Columns["Custom2"].ColumnName = custom2;
+                    }
+                }
+
+                dataGridView1.DataSource = dataTable;
+                dataGridView1.Columns["AvgSpeed"].DefaultCellStyle.Format = "0.00";
+                dataGridView1.Columns["RideDistance"].DefaultCellStyle.Format = "0.0";
+
+                // Resize the master DataGridView columns to fit the newly loaded data.
+                dataGridView1.AutoResizeColumns();
+                dataGridView1.AllowUserToOrderColumns = true;
+                // Configure the details DataGridView so that its columns automatically adjust their widths when the data changes.
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridView1.AllowUserToAddRows = false;
+                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+                dataGridView1.ReadOnly = true;
+                dataGridView1.EnableHeadersVisualStyles = false;
+                dataGridView1.AllowUserToResizeRows = false;
+                dataGridView1.AllowUserToResizeColumns = false;
+                dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+                dataGridView1.ColumnHeadersHeight = 30;
+                dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(MainForm.GetDisplayDataColor());
+
+                string idColumnValue = MainForm.GetIDColumnValue();
+                //Determine if ID field should appear in the Data Display grid output:
+                if (idColumnValue.Equals("0"))
+                {
+                    dataGridView1.Columns["Id"].Visible = false;
+                }
+                else
+                {
+                    dataGridView1.Columns["Id"].Visible = true;
+                }
+
+                string textValue = MainForm.GetTextDisplay();
+                int rowCount = dataGridView1.Rows.Count;
+                for (int i = 0; i < rowCount; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        //is even
+                    }
+                    else
+                    {
+                        //is odd
+                        if (textValue.Equals("True"))
+                        {
+                            dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                        }
+                        else
+                        {
+                            dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                        }
+                    }
+                }
+
+                //dataGridView1.Refresh();
+            }
+            catch (Exception ex)
+            {
+
+                Logger.LogError("[ERROR]: Exception while trying to run query ride data: " + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred while quering ride data.  Review the log for more information.");
+            }
+            finally
+            {
+                // close connection
+                sqlConnection?.Close();
+            }
+
+            //testlabel.Visible = false;
+        }
+
+        private void bFilter_Click_1(object sender, EventArgs e)
+        {
+            RunGridUpdate();
+        }
     }
 }

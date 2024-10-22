@@ -518,10 +518,6 @@
             // cbComfortRideDataEntry
             // 
             this.cbComfortRideDataEntry.FormattingEnabled = true;
-            this.cbComfortRideDataEntry.Items.AddRange(new object[] {
-            "Weak/Tight",
-            "Average",
-            "Strong"});
             this.cbComfortRideDataEntry.Location = new System.Drawing.Point(380, 135);
             this.cbComfortRideDataEntry.Name = "cbComfortRideDataEntry";
             this.cbComfortRideDataEntry.Size = new System.Drawing.Size(77, 21);

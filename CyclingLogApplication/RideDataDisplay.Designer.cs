@@ -48,6 +48,9 @@
             this.DownPictureBox = new System.Windows.Forms.PictureBox();
             this.btSaveMoves = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbLoadingMessage = new System.Windows.Forms.TextBox();
+            this.rbAscendingOrder = new System.Windows.Forms.RadioButton();
+            this.rbDescendingOrder = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DownPictureBox)).BeginInit();
@@ -112,13 +115,13 @@
             // 
             // bFilter
             // 
-            this.bFilter.Location = new System.Drawing.Point(1026, 25);
+            this.bFilter.Location = new System.Drawing.Point(725, 20);
             this.bFilter.Name = "bFilter";
-            this.bFilter.Size = new System.Drawing.Size(75, 23);
+            this.bFilter.Size = new System.Drawing.Size(75, 22);
             this.bFilter.TabIndex = 6;
             this.bFilter.Text = "Run";
             this.bFilter.UseVisualStyleBackColor = true;
-            this.bFilter.Click += new System.EventHandler(this.BFilter_Click);
+            this.bFilter.Click += new System.EventHandler(this.bFilter_Click_1);
             // 
             // label1
             // 
@@ -141,7 +144,7 @@
             // 
             // btClear
             // 
-            this.btClear.Location = new System.Drawing.Point(800, 25);
+            this.btClear.Location = new System.Drawing.Point(1114, 19);
             this.btClear.Name = "btClear";
             this.btClear.Size = new System.Drawing.Size(75, 23);
             this.btClear.TabIndex = 9;
@@ -195,7 +198,7 @@
             // 
             // btPrint
             // 
-            this.btPrint.Location = new System.Drawing.Point(719, 25);
+            this.btPrint.Location = new System.Drawing.Point(1195, 19);
             this.btPrint.Name = "btPrint";
             this.btPrint.Size = new System.Drawing.Size(75, 23);
             this.btPrint.TabIndex = 16;
@@ -206,7 +209,7 @@
             // cbUpdateValues
             // 
             this.cbUpdateValues.AutoSize = true;
-            this.cbUpdateValues.Location = new System.Drawing.Point(890, 27);
+            this.cbUpdateValues.Location = new System.Drawing.Point(828, 20);
             this.cbUpdateValues.Name = "cbUpdateValues";
             this.cbUpdateValues.Size = new System.Drawing.Size(116, 17);
             this.cbUpdateValues.TabIndex = 17;
@@ -260,11 +263,49 @@
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             // 
+            // tbLoadingMessage
+            // 
+            this.tbLoadingMessage.BackColor = System.Drawing.SystemColors.WindowText;
+            this.tbLoadingMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbLoadingMessage.ForeColor = System.Drawing.SystemColors.Window;
+            this.tbLoadingMessage.Location = new System.Drawing.Point(332, 311);
+            this.tbLoadingMessage.Name = "tbLoadingMessage";
+            this.tbLoadingMessage.Size = new System.Drawing.Size(450, 44);
+            this.tbLoadingMessage.TabIndex = 25;
+            this.tbLoadingMessage.Text = "Loading Data, Please wait...";
+            this.tbLoadingMessage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbLoadingMessage.Visible = false;
+            // 
+            // rbAscendingOrder
+            // 
+            this.rbAscendingOrder.AutoSize = true;
+            this.rbAscendingOrder.Location = new System.Drawing.Point(966, 11);
+            this.rbAscendingOrder.Name = "rbAscendingOrder";
+            this.rbAscendingOrder.Size = new System.Drawing.Size(104, 17);
+            this.rbAscendingOrder.TabIndex = 26;
+            this.rbAscendingOrder.TabStop = true;
+            this.rbAscendingOrder.Text = "Ascending Order";
+            this.rbAscendingOrder.UseVisualStyleBackColor = true;
+            // 
+            // rbDescendingOrder
+            // 
+            this.rbDescendingOrder.AutoSize = true;
+            this.rbDescendingOrder.Location = new System.Drawing.Point(966, 31);
+            this.rbDescendingOrder.Name = "rbDescendingOrder";
+            this.rbDescendingOrder.Size = new System.Drawing.Size(111, 17);
+            this.rbDescendingOrder.TabIndex = 27;
+            this.rbDescendingOrder.TabStop = true;
+            this.rbDescendingOrder.Text = "Descending Order";
+            this.rbDescendingOrder.UseVisualStyleBackColor = true;
+            // 
             // RideDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1287, 726);
+            this.Controls.Add(this.rbDescendingOrder);
+            this.Controls.Add(this.rbAscendingOrder);
+            this.Controls.Add(this.tbLoadingMessage);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cbUpdateValues);
             this.Controls.Add(this.btPrint);
@@ -317,5 +358,8 @@
         private System.Windows.Forms.PictureBox DownPictureBox;
         private System.Windows.Forms.Button btSaveMoves;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox tbLoadingMessage;
+        private System.Windows.Forms.RadioButton rbAscendingOrder;
+        private System.Windows.Forms.RadioButton rbDescendingOrder;
     }
 }

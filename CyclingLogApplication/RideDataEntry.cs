@@ -21,6 +21,7 @@ using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using System.Threading;
 using System.Runtime.InteropServices.ComTypes;
+using System.IdentityModel.Claims;
 
 namespace CyclingLogApplication
 {
@@ -120,6 +121,13 @@ namespace CyclingLogApplication
             numericUpDown2.Maximum = 1;
             numericUpDown2.Minimum = 1;
             numericUpDown2.Enabled = false;
+
+            if (cbComfortRideDataEntry.Items.Count < 3)
+            {
+                cbComfortRideDataEntry.Items.Add("Weak/Tight");
+                cbComfortRideDataEntry.Items.Add("Average");
+                cbComfortRideDataEntry.Items.Add("Strong"); 
+            }
 
             ConfigurationFile configurationFile = new ConfigurationFile();
             ConfigurationFile.ReadConfigFile(false);
@@ -1064,7 +1072,8 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    objectValues.Add(float.Parse(max_speed.Text));
+                    float maxSpeed1 = float.Parse(max_speed.Text);
+                    objectValues.Add(Math.Round(maxSpeed1));
                 }
 
                 if (avg_power.Text.Equals("") || avg_power.Text.Equals("--"))           //Average Power:

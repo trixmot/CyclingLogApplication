@@ -29,6 +29,7 @@ namespace CyclingLogApplication
 
         private static readonly string logVersion = "0.9.1";
         private static int logLevel = 0;
+        private static string gridOrder;
         private static string cbStatistic1 = "-1";
         private static string cbStatistic2 = "-1";
         private static string cbStatistic3 = "-1";
@@ -567,6 +568,16 @@ namespace CyclingLogApplication
         public static string GetLogVersion()
         {
             return logVersion;
+        }
+
+        public static string GetGridOrder()
+        {
+            return gridOrder;
+        }
+
+        public static void SetGridOrder(string gridOrderString)
+        {
+            gridOrder = gridOrderString;
         }
 
         public static string GetIDColumnValue()
@@ -1291,7 +1302,9 @@ namespace CyclingLogApplication
                 //string keyValue = nameIDdict.Keys.ElementAt(i);
                 if (logName.Equals(logYearName))
                 {
-                    logYearIndex = i; break;
+                    string test = nameIDdict.Values.ElementAt(i);
+                    logYearIndex = int.Parse(nameIDdict.Values.ElementAt(i)); 
+                    break;
                 }
             }
 

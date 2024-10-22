@@ -151,7 +151,7 @@ namespace CyclingLogApplication
             try {
                 string databaseString = this.Connection.Database.ToString();
                 if (databaseString.Equals("")) {
-                    string test = "";
+              
                 } else
                 {
                     if (!object.ReferenceEquals(this.Connection, null) || Connection != null && Connection.State == ConnectionState.Open)

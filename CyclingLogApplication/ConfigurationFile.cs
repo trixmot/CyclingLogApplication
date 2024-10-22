@@ -76,6 +76,7 @@ namespace CyclingLogApplication
             string cbStatistic5 = nodes.Item(0).SelectSingleNode("cbStatistic5").InnerText;
             string firstDayOfWeek = nodes.Item(0).SelectSingleNode("FIRSTDAY").InnerText;
             string license = nodes.Item(0).SelectSingleNode("LICENSE").InnerText;
+            string gridOrder = nodes.Item(0).SelectSingleNode("GRIDORDER").InnerText;
             string idColumnValue = nodes.Item(0).SelectSingleNode("IDCOLUMN").InnerText;
             string customDataField1 = nodes.Item(0).SelectSingleNode("CUSTOMFIELD1").InnerText;
             string customDataField2 = nodes.Item(0).SelectSingleNode("CUSTOMFIELD2").InnerText;
@@ -215,6 +216,7 @@ namespace CyclingLogApplication
             MainForm.SetLicenseAgreement(license);
             MainForm.SetIDColumn(idColumnValue);
             MainForm.SetLogLevel(logLevel);
+            MainForm.SetGridOrder(gridOrder);
             MainForm.SetFirstDayOfWeek(firstDayOfWeek);
             MainForm.SetCustomField1(customDataField1);
             MainForm.SetCustomField2(customDataField2);
@@ -253,6 +255,7 @@ namespace CyclingLogApplication
                 Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, 0, 0);
                 Logger.Log("Configuration Read: LOGLEVEL : " + logLevel, 0, 0);
                 //Logger.Log("Configuration Read: VERSION : " + verison, 0, 0);
+                Logger.Log("Configuration Read: GRIDORDER : " + gridOrder, 0, 0);
                 Logger.Log("Configuration Read: IDCOLUMN : " + idColumnValue, 0, 0);
                 Logger.Log("Configuration Read: cbStatistic1 : " + cbStatistic1, 0, 0);
                 Logger.Log("Configuration Read: cbStatistic2 : " + cbStatistic2, 0, 0);
@@ -619,6 +622,10 @@ namespace CyclingLogApplication
                     logLevelNode.InnerText = "0";
                     rootNode.AppendChild(logLevelNode);
 
+                    XmlNode gridOrderNode = xmlDoc.CreateElement("GRIDORDER");
+                    gridOrderNode.InnerText = "DESC";
+                    rootNode.AppendChild(gridOrderNode);
+
                     XmlNode cbStatistic1Node = xmlDoc.CreateElement("cbStatistic1");
                     cbStatistic1Node.InnerText = "0";
                     rootNode.AppendChild(cbStatistic1Node);
@@ -691,6 +698,7 @@ namespace CyclingLogApplication
 
                     string idColumnValue = MainForm.GetIDColumnValue();
                     string version = MainForm.GetLogVersion();
+                    string gridOrder = MainForm.GetGridOrder();
                     string firstDay = MainForm.GetFirstDayOfWeek();
                     string license = MainForm.GetLicenseAgreement();
                     string customField1 = MainForm.GetCustomField1();
@@ -724,6 +732,7 @@ namespace CyclingLogApplication
                     xmlDoc.SelectSingleNode("/Config/IDCOLUMN").InnerText = idColumnValue;
                     xmlDoc.SelectSingleNode("/Config/FIRSTDAY").InnerText = firstDay;
                     xmlDoc.SelectSingleNode("/Config/LICENSE").InnerText = license;
+                    xmlDoc.SelectSingleNode("/Config/GRIDORDER").InnerText = gridOrder;
                     xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD1").InnerText = customField1;
                     xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD2").InnerText = customField2;
                     xmlDoc.SelectSingleNode("/Config/COLORMAINT").InnerText = colorMaint;
@@ -811,6 +820,7 @@ namespace CyclingLogApplication
                     xmlDoc.SelectSingleNode("/Config/LastLogSelectedDataEntry").InnerText = lastLogSelectedDataEntry.ToString();
 
                     Logger.Log("Write Config Values: VERSION written:" + version, logSetting, 0);
+                    Logger.Log("Write Config Values: GRIDORDER written:" + gridOrder, logSetting, 0);
                     Logger.Log("Write Config Values: IDCOLUMN written:" + idColumnValue, logSetting, 0);
                     Logger.Log("Write Config Values: FIRSTDAY written:" + firstDay, logSetting, 0);
                     Logger.Log("Write Config Values: LICENSE written:" + license, logSetting, 0);
