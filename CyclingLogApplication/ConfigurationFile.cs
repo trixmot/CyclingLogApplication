@@ -87,12 +87,16 @@ namespace CyclingLogApplication
             string customDataField2 = nodes.Item(0).SelectSingleNode("CUSTOMFIELD2").InnerText;
             string colorMaint = nodes.Item(0).SelectSingleNode("COLORMAINT").InnerText;
             string colorWeekly = nodes.Item(0).SelectSingleNode("COLORWEEKLY").InnerText;
+            string colorMonthly = nodes.Item(0).SelectSingleNode("COLORMONTHLY").InnerText;
+            string colorYearly = nodes.Item(0).SelectSingleNode("COLORYEARLY").InnerText;
             string colorDisplayData = nodes.Item(0).SelectSingleNode("COLORDISPLAYDATA").InnerText;
             string colorBike = nodes.Item(0).SelectSingleNode("COLORBIKE").InnerText;
             string colorRoute = nodes.Item(0).SelectSingleNode("COLORROUTE").InnerText;
 
             string textMaint = nodes.Item(0).SelectSingleNode("COLORMAINTTEXT").InnerText;
             string textWeekly = nodes.Item(0).SelectSingleNode("COLORWEEKLYTEXT").InnerText;
+            string textMonthly = nodes.Item(0).SelectSingleNode("COLORMONTHLYTEXT").InnerText;
+            string textYearly = nodes.Item(0).SelectSingleNode("COLORYEARLYTEXT").InnerText;
             string textDisplay = nodes.Item(0).SelectSingleNode("COLORDISPLAYTEXT").InnerText;
             string textBike = nodes.Item(0).SelectSingleNode("COLORBIKETEXT").InnerText;
             string textRoute = nodes.Item(0).SelectSingleNode("COLORROUTETEXT").InnerText;
@@ -227,12 +231,16 @@ namespace CyclingLogApplication
             MainForm.SetCustomField2(customDataField2);
             MainForm.SetMaintColor(colorMaint);
             MainForm.SetWeeklyColor(colorWeekly);
+            MainForm.SetMonthlyColor(colorMonthly);
+            MainForm.SetYearlyColor(colorYearly);
             MainForm.SetDisplayDataColor(colorDisplayData);
             MainForm.SetBikeColor(colorBike);
             MainForm.SetRouteColor(colorRoute);
 
             MainForm.SetTextMaint(textMaint);
             MainForm.SetTextWeekly(textWeekly);
+            MainForm.SetTextMonthly(textMonthly);
+            MainForm.SetTextYearly(textYearly);
             MainForm.SetTextDisplay(textDisplay);
             MainForm.SetTextBike(textBike);
             MainForm.SetTextRoute(textRoute);
@@ -281,12 +289,16 @@ namespace CyclingLogApplication
                 Logger.Log("Configuration Read: custom2 : " + customDataField2, 0, 0);
                 Logger.Log("Configuration Read: color maint : " + colorMaint, 0, 0);
                 Logger.Log("Configuration Read: color weekly : " + colorWeekly, 0, 0);
+                Logger.Log("Configuration Read: color monthly : " + colorMonthly, 0, 0);
+                Logger.Log("Configuration Read: color yearly : " + colorYearly, 0, 0);
                 Logger.Log("Configuration Read: color display data : " + colorDisplayData, 0, 0);
                 Logger.Log("Configuration Read: color bike : " + colorBike, 0, 0);
                 Logger.Log("Configuration Read: color route : " + colorRoute, 0, 0);
 
                 Logger.Log("Configuration Read: text maint : " + textMaint, 0, 0);
                 Logger.Log("Configuration Read: text weekly : " + textWeekly, 0, 0);
+                Logger.Log("Configuration Read: text monthly : " + textMonthly, 0, 0);
+                Logger.Log("Configuration Read: text yearly : " + textYearly, 0, 0);
                 Logger.Log("Configuration Read: text display : " + textDisplay, 0, 0);
                 Logger.Log("Configuration Read: text bike : " + textBike, 0, 0);
                 Logger.Log("Configuration Read: text route : " + textRoute, 0, 0);
@@ -391,6 +403,14 @@ namespace CyclingLogApplication
                     colorWeeklyNode.InnerText = "Beige";
                     rootNode.AppendChild(colorWeeklyNode);
 
+                    XmlNode colorMonthlyNode = xmlDoc.CreateElement("COLORMONTHLY");
+                    colorMonthlyNode.InnerText = "Beige";
+                    rootNode.AppendChild(colorMonthlyNode);
+
+                    XmlNode colorYearlyNode = xmlDoc.CreateElement("COLORYEARLY");
+                    colorYearlyNode.InnerText = "Beige";
+                    rootNode.AppendChild(colorYearlyNode);
+
                     XmlNode displayDataColorNode = xmlDoc.CreateElement("COLORDISPLAYDATA");
                     displayDataColorNode.InnerText = "Beige";
                     rootNode.AppendChild(displayDataColorNode);
@@ -411,6 +431,14 @@ namespace CyclingLogApplication
                     XmlNode colorWeeklyTextNode = xmlDoc.CreateElement("COLORWEEKLYTEXT");
                     colorWeeklyTextNode.InnerText = "True";
                     rootNode.AppendChild(colorWeeklyTextNode);
+
+                    XmlNode colorMonthlyTextNode = xmlDoc.CreateElement("COLORMONTHLYTEXT");
+                    colorMonthlyTextNode.InnerText = "True";
+                    rootNode.AppendChild(colorMonthlyTextNode);
+
+                    XmlNode colorYearlyTextNode = xmlDoc.CreateElement("COLORYEARLYTEXT");
+                    colorYearlyTextNode.InnerText = "True";
+                    rootNode.AppendChild(colorYearlyTextNode);
 
                     XmlNode colorDisplayTextNode = xmlDoc.CreateElement("COLORDISPLAYTEXT");
                     colorDisplayTextNode.InnerText = "True";
@@ -745,11 +773,15 @@ namespace CyclingLogApplication
                     string customField2 = MainForm.GetCustomField2();
                     string colorMaint = MainForm.GetMaintColor();
                     string colorWeekly = MainForm.GetWeeklyColor();
+                    string colorMonthly = MainForm.GetMonthlyColor();
+                    string colorYearly = MainForm.GetYearlyColor();
                     string colorDisplayData = MainForm.GetDisplayDataColor();
                     string colorBike = MainForm.GetBikeColor();
                     string colorRoute = MainForm.GetRouteColor();
                     string textMaint = MainForm.GetTextMaint();
                     string textWeekly = MainForm.GetTextWeekly();
+                    string textMonthly = MainForm.GetTextMonthly();
+                    string textYearly = MainForm.GetTextYearly();
                     string textDisplay = MainForm.GetTextDisplay();
                     string textBike = MainForm.GetTextBike();
                     string textRoute = MainForm.GetTextRoute();
@@ -777,12 +809,16 @@ namespace CyclingLogApplication
                     xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD2").InnerText = customField2;
                     xmlDoc.SelectSingleNode("/Config/COLORMAINT").InnerText = colorMaint;
                     xmlDoc.SelectSingleNode("/Config/COLORWEEKLY").InnerText = colorWeekly;
+                    xmlDoc.SelectSingleNode("/Config/COLORMONTHLY").InnerText = colorMonthly;
+                    xmlDoc.SelectSingleNode("/Config/COLORYEARLY").InnerText = colorYearly;
                     xmlDoc.SelectSingleNode("/Config/COLORDISPLAYDATA").InnerText = colorDisplayData;
                     xmlDoc.SelectSingleNode("/Config/COLORBIKE").InnerText = colorBike;
                     xmlDoc.SelectSingleNode("/Config/COLORROUTE").InnerText = colorRoute;
 
                     xmlDoc.SelectSingleNode("/Config/COLORMAINTTEXT").InnerText = textMaint;
                     xmlDoc.SelectSingleNode("/Config/COLORWEEKLYTEXT").InnerText = textWeekly;
+                    xmlDoc.SelectSingleNode("/Config/COLORMONTHLYTEXT").InnerText = textMonthly;
+                    xmlDoc.SelectSingleNode("/Config/COLORYEARLYTEXT").InnerText = textYearly;
                     xmlDoc.SelectSingleNode("/Config/COLORDISPLAYTEXT").InnerText = textDisplay;
                     xmlDoc.SelectSingleNode("/Config/COLORBIKETEXT").InnerText = textBike;
                     xmlDoc.SelectSingleNode("/Config/COLORROUTETEXT").InnerText = textRoute;
@@ -876,9 +912,14 @@ namespace CyclingLogApplication
                     Logger.Log("Write Config Values: COLORDISPLAYDATA written:" + colorDisplayData, logSetting, 0);
                     Logger.Log("Write Config Values: COLORBIKE written:" + colorBike, logSetting, 0);
                     Logger.Log("Write Config Values: COLORROUTE written:" + colorRoute, logSetting, 0);
+                    Logger.Log("Write Config Values: COLORWEEKLY written:" + colorWeekly, logSetting, 0);
+                    Logger.Log("Write Config Values: COLORMONTHLY written:" + colorMonthly, logSetting, 0);
+                    Logger.Log("Write Config Values: COLORYEARLY written:" + colorYearly, logSetting, 0);
 
                     Logger.Log("Write Config Values: COLORMAINTTEXT written:" + textMaint, logSetting, 0);
                     Logger.Log("Write Config Values: COLORWEEKLYTEXT written:" + textWeekly, logSetting, 0);
+                    Logger.Log("Write Config Values: COLORMONTHLYTEXT written:" + textMonthly, logSetting, 0);
+                    Logger.Log("Write Config Values: COLORYEARLYTEXT written:" + textYearly, logSetting, 0);
                     Logger.Log("Write Config Values: COLORDISPLAYTEXT written:" + textDisplay, logSetting, 0);
                     Logger.Log("Write Config Values: COLORBIKETEXT written:" + textBike, logSetting, 0);
                     Logger.Log("Write Config Values: COLORROUTETEXT written:" + textRoute, logSetting, 0);

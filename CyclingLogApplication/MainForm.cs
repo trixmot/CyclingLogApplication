@@ -59,12 +59,16 @@ namespace CyclingLogApplication
         private static int heightCLB;
         private static string gridMaintColor;
         private static string gridWeeklyColor;
+        private static string gridMonthlyColor;
+        private static string gridYearlyColor;
         private static string gridDisplayDataColor;
         private static string gridBikeColor;
         private static string gridRouteColor;
 
         private static string gridMaintTextColor;
         private static string gridWeeklyTextColor;
+        private static string gridMonthlyTextColor;
+        private static string gridYearlyTextColor;
         private static string gridDisplayTextColor;
         private static string gridBikeTextColor;
         private static string gridRouteTextColor;
@@ -214,8 +218,85 @@ namespace CyclingLogApplication
                     rbHideIDColumn.Checked = false;
                 }
 
+                if (GetTextMaint().Equals("True"))
+                {
+                    cbMaintTextColor.Checked = true;
+                    tbColorMaint.ForeColor = Color.Black;
+                }
+                else
+                {
+                    cbMaintTextColor.Checked = false;
+                    tbColorMaint.ForeColor = Color.White;
+                }
+
+                if (GetTextWeekly().Equals("True"))
+                {
+                    cbWeeklyTextColor.Checked = true;
+                    tbColorWeekly.ForeColor = Color.Black;
+                }
+                else
+                {
+                    cbWeeklyTextColor.Checked = false;
+                    tbColorWeekly.ForeColor = Color.White;
+                }
+
+                if (GetTextMonthly().Equals("True"))
+                {
+                    cbMonthlyTextColor.Checked = true;
+                    tbColorMonthly.ForeColor = Color.Black;
+                }
+                else
+                {
+                    cbMonthlyTextColor.Checked = false;
+                    tbColorMonthly.ForeColor = Color.White;
+                }
+
+                if (GetTextYearly().Equals("True"))
+                {
+                    cbYearlyTextColor.Checked = true;
+                    tbColorYearly.ForeColor = Color.Black;
+                }
+                else
+                {
+                    cbYearlyTextColor.Checked = false;
+                    tbColorYearly.ForeColor = Color.White;
+                }
+
+                if (GetTextDisplay().Equals("True"))
+                {
+                    cbDisplayDataTextColor.Checked = true;
+                    tbColorDisplayData.ForeColor = Color.Black;
+                }
+                else
+                {
+                    cbDisplayDataTextColor.Checked = false;
+                    tbColorDisplayData.ForeColor = Color.White;
+                }
+
+                if (GetTextBike().Equals("True"))
+                {
+                    cbBikeTextColor.Checked = true;
+                    tbBikeColor.ForeColor = Color.Black;
+                }
+                else
+                {
+                    cbBikeTextColor.Checked = false;
+                    tbBikeColor.ForeColor = Color.White;
+                }
+
+                if (GetTextRoute().Equals("True"))
+                {
+                    cbRouteTextColor.Checked = true;
+                    tbRouteColor.ForeColor = Color.Black;
+                }
+                else
+                {
+                    cbRouteTextColor.Checked = false;
+                    tbRouteColor.ForeColor = Color.White;
+                }
+
                 //Get all values and load the comboboxes:
-                List<string> logYearList = ReadDataNames("Table_Log_year", "Name");
+                List<string> logYearList = ReadDataNamesDESC("Table_Log_year", "Name");
                 List<string> routeList = ReadDataNames("Table_Routes", "Name");
                 SetRoutes(routeList);
                 List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
@@ -343,62 +424,11 @@ namespace CyclingLogApplication
                 //tabControl1.SelectedTab = tabControl1.TabPages["Main"];
                 cbMaintColors.SelectedIndex = cbMaintColors.FindStringExact(gridMaintColor);
                 cbWeeklyColors.SelectedIndex = cbWeeklyColors.FindStringExact(gridWeeklyColor);
+                cbMonthlyColors.SelectedIndex = cbMonthlyColors.FindStringExact(gridMonthlyColor);
+                cbYearlyColors.SelectedIndex = cbYearlyColors.FindStringExact(gridYearlyColor);
                 cbDisplayDataColors.SelectedIndex = cbDisplayDataColors.FindStringExact(gridDisplayDataColor);
                 cbBikeColors.SelectedIndex = cbBikeColors.FindStringExact(gridBikeColor);
                 cbRouteColors.SelectedIndex = cbRouteColors.FindStringExact(gridRouteColor);
-
-                if (GetTextMaint().Equals("True")){
-                    cbMaintTextColor.Checked = true;
-                    tbColorMaint.ForeColor = Color.Black;
-                } else
-                {
-                    cbMaintTextColor.Checked = false;
-                    tbColorMaint.ForeColor = Color.White;
-                }
-
-                if (GetTextMaint().Equals("True"))
-                {
-                    cbWeeklyTextColor.Checked = true;
-                    tbColorWeekly.ForeColor = Color.Black;
-                }
-                else
-                {
-                    cbWeeklyTextColor.Checked = false;
-                    tbColorWeekly.ForeColor = Color.White;
-                }
-
-                if (GetTextMaint().Equals("True"))
-                {
-                    cbDisplayDataTextColor.Checked = true;
-                    tbColorDisplayData.ForeColor = Color.Black;
-                }
-                else
-                {
-                    cbDisplayDataTextColor.Checked = false;
-                    tbColorDisplayData.ForeColor = Color.White;
-                }
-
-                if (GetTextMaint().Equals("True"))
-                {
-                    cbBikeTextColor.Checked = true;
-                    tbBikeColor.ForeColor = Color.Black;
-                }
-                else
-                {
-                    cbBikeTextColor.Checked = false;
-                    tbBikeColor.ForeColor = Color.White;
-                }
-
-                if (GetTextMaint().Equals("True"))
-                {
-                    cbRouteTextColor.Checked = true;
-                    tbRouteColor.ForeColor = Color.Black;
-                }
-                else
-                {
-                    cbRouteTextColor.Checked = false;
-                    tbRouteColor.ForeColor = Color.White;
-                }
 
                 RefreshData();
                 formloading = false;
@@ -494,6 +524,16 @@ namespace CyclingLogApplication
             gridWeeklyTextColor = text;
         }
 
+        public static void SetTextMonthly(string text)
+        {
+            gridMonthlyTextColor = text;
+        }
+
+        public static void SetTextYearly(string text)
+        {
+            gridYearlyTextColor = text;
+        }
+
         public static void SetTextDisplay(string text)
         {
             gridDisplayTextColor = text;
@@ -517,6 +557,16 @@ namespace CyclingLogApplication
         public static string GetTextWeekly()
         {
             return gridWeeklyTextColor;
+        }
+
+        public static string GetTextMonthly()
+        {
+            return gridMonthlyTextColor;
+        }
+
+        public static string GetTextYearly()
+        {
+            return gridYearlyTextColor;
         }
 
         public static string GetTextDisplay()
@@ -547,6 +597,26 @@ namespace CyclingLogApplication
         public static void SetWeeklyColor(string color)
         {
             gridWeeklyColor = color;
+        }
+
+        public static string GetMonthlyColor()
+        {
+            return gridMonthlyColor;
+        }
+
+        public static void SetMonthlyColor(string color)
+        {
+            gridMonthlyColor = color;
+        }
+
+        public static string GetYearlyColor()
+        {
+            return gridYearlyColor;
+        }
+
+        public static void SetYearlyColor(string color)
+        {
+            gridYearlyColor = color;
         }
 
         public static string GetWeeklyColor()
@@ -967,6 +1037,42 @@ namespace CyclingLogApplication
 
                 // 1. declare command object with parameter
                 using (SqlCommand cmd = new SqlCommand("SELECT " + columnName + " FROM " + tableName + " ORDER BY " + columnName + " ASC", sqlConnection))
+                {
+                    reader = cmd.ExecuteReader();
+                }
+
+                // write each record
+                while (reader.Read())
+                {
+                    string returnValue = reader[0].ToString();
+                    nameList.Add(returnValue);
+                    Logger.Log("Reading data from the database: columnName:" + returnValue, logSetting, 1);
+                }
+            }
+            finally
+            {
+                // close reader
+                reader?.Close();
+
+                // close connection
+                sqlConnection?.Close();
+            }
+
+            return nameList;
+        }
+
+        public static List<string> ReadDataNamesDESC(string tableName, string columnName)
+        {
+            SqlDataReader reader = null;
+            List<string> nameList = new List<string>();
+            int logSetting = GetLogLevel();
+
+            try
+            {
+                sqlConnection.Open();
+
+                // 1. declare command object with parameter
+                using (SqlCommand cmd = new SqlCommand("SELECT " + columnName + " FROM " + tableName + " ORDER BY " + columnName + " DESC", sqlConnection))
                 {
                     reader = cmd.ExecuteReader();
                 }
@@ -4375,9 +4481,9 @@ namespace CyclingLogApplication
                 dataGridViewMonthly.AllowUserToResizeRows = false;
                 dataGridViewMonthly.AllowUserToResizeColumns = false;
                 //dataGridViewMonthly.CurrentCell = dataGridViewWeekly.Rows[0].Cells[4];
-                dataGridViewMonthly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetWeeklyColor());
+                dataGridViewMonthly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetMonthlyColor());
 
-                string textValue = GetTextWeekly();
+                string textValue = GetTextMonthly();
                 int rowCount = dataGridViewMonthly.Rows.Count;
                 for (int i = 0; i < rowCount; i++)
                 {
@@ -4877,9 +4983,9 @@ namespace CyclingLogApplication
                 dataGridViewYearly.AllowUserToResizeRows = false;
                 dataGridViewYearly.AllowUserToResizeColumns = false;
                 //dataGridViewYearly.CurrentCell = dataGridViewWeekly.Rows[0].Cells[4];
-                dataGridViewYearly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetWeeklyColor());
+                dataGridViewYearly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetYearlyColor());
 
-                string textValue = GetTextWeekly();
+                string textValue = GetTextYearly();
                 int rowCount = dataGridViewYearly.Rows.Count;
                 for (int i = 0; i < rowCount; i++)
                 {
@@ -7539,6 +7645,16 @@ namespace CyclingLogApplication
             dataGridViewWeekly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetWeeklyColor());
             dataGridViewWeekly.Refresh();
 
+            //Monthly Stat Grid:
+            SetMonthlyColor(cbMonthlyColors.SelectedItem.ToString());
+            dataGridViewMonthly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetMonthlyColor());
+            dataGridViewMonthly.Refresh();
+
+            //Yearly Stat Grid:
+            SetYearlyColor(cbYearlyColors.SelectedItem.ToString());
+            dataGridViewYearly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetYearlyColor());
+            dataGridViewYearly.Refresh();
+
             //Display Data Grid:
             SetDisplayDataColor(cbDisplayDataColors.SelectedItem.ToString());
 
@@ -7567,6 +7683,24 @@ namespace CyclingLogApplication
             else
             {
                 SetTextWeekly("False");
+            }
+
+            if (cbMonthlyTextColor.Checked)
+            {
+                SetTextMonthly("True");
+            }
+            else
+            {
+                SetTextMonthly("False");
+            }
+
+            if (cbYearlyTextColor.Checked)
+            {
+                SetTextYearly("True");
+            }
+            else
+            {
+                SetTextYearly("False");
             }
 
             if (cbDisplayDataTextColor.Checked)
@@ -7607,6 +7741,16 @@ namespace CyclingLogApplication
         private void cbWeeklyColors_SelectedIndexChanged(object sender, EventArgs e)
         {
             tbColorWeekly.BackColor = Color.FromName(cbWeeklyColors.SelectedItem.ToString());
+        }
+
+        private void cbMonthlyColors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbColorMonthly.BackColor = Color.FromName(cbMonthlyColors.SelectedItem.ToString());
+        }
+
+        private void cbYearlyColors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tbColorYearly.BackColor = Color.FromName(cbYearlyColors.SelectedItem.ToString());
         }
 
         private void cbDisplayDataColors_SelectedIndexChanged(object sender, EventArgs e)
