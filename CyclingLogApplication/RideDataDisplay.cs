@@ -33,11 +33,12 @@ namespace CyclingLogApplication
         int max = 100;// Maximum value for progress range
         int val = 0;// Current progress
         Color BarColor = Color.Blue;// Color of progress meter
-        //public int s = 0;
-        //System.Windows.Forms.Timer t = new System.Windows.Forms.Timer();
+        Boolean formloading = false;
 
         public RideDataDisplay()
         {
+            formloading = true;
+
             try
             {
                 InitializeComponent();
@@ -142,6 +143,8 @@ namespace CyclingLogApplication
             {
                 Logger.LogError("[ERROR]: Exception while trying to load RideDataDisplay form. " + ex.Message.ToString());
             }
+
+            formloading = false;
         }
 
         private void CloseForm(object sender, EventArgs e)
@@ -626,6 +629,20 @@ namespace CyclingLogApplication
         {
             await LoadingMessage();
             RunDataGrid();
+
+            //if (!formloading)
+            //{
+            //    using (RefreshingForm refreshingForm = new RefreshingForm())
+            //    {
+            //        // Display form modelessly
+            //        refreshingForm.Show();
+            //        //  ALlow main UI thread to properly display please wait form.
+            //        System.Windows.Forms.Application.DoEvents();
+            //        //this.ShowDialog();
+            //        RunDataGrid();
+            //        refreshingForm.Hide();
+            //    }
+            //}
         }
 
         private void RunDataGrid()
@@ -796,7 +813,7 @@ namespace CyclingLogApplication
                 {
                     sqlDataAdapter = new SqlDataAdapter
                     {
-                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @WeekNumber LIKE WeekNumber" + logYearIDQuery, sqlConnection)
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @WeekNumber LIKE WeekNumber " + logYearIDQuery + " ORDER BY[Date] " + gridOrder, sqlConnection)
                     };
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@WeekNumber", SqlDbType.BigInt, 5);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@WeekNumber", cbFilterValue.Text);
@@ -812,7 +829,7 @@ namespace CyclingLogApplication
                 {
                     sqlDataAdapter = new SqlDataAdapter
                     {
-                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @Bike LIKE Bike" + logYearIDQuery, sqlConnection)
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @Bike LIKE Bike" + logYearIDQuery + " ORDER BY[Date] " + gridOrder, sqlConnection)
                     };
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@Bike", SqlDbType.NVarChar, 50);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Bike", cbFilterValue.Text);
@@ -826,7 +843,7 @@ namespace CyclingLogApplication
                 {
                     sqlDataAdapter = new SqlDataAdapter
                     {
-                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @RideType LIKE RideType" + logYearIDQuery, sqlConnection)
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @RideType LIKE RideType" + logYearIDQuery + " ORDER BY[Date] " + gridOrder, sqlConnection)
                     };
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@RideType", SqlDbType.NVarChar, 50);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@RideType", cbFilterValue.Text);
@@ -840,7 +857,7 @@ namespace CyclingLogApplication
                 {
                     sqlDataAdapter = new SqlDataAdapter
                     {
-                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @Route LIKE Route" + logYearIDQuery, sqlConnection)
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @Route LIKE Route" + logYearIDQuery + " ORDER BY[Date] " + gridOrder, sqlConnection)
                     };
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Route", cbFilterValue.Text);
@@ -854,7 +871,7 @@ namespace CyclingLogApplication
                 {
                     sqlDataAdapter = new SqlDataAdapter
                     {
-                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @Location LIKE Location" + logYearIDQuery, sqlConnection)
+                        SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE @Location LIKE Location" + logYearIDQuery + " ORDER BY[Date] " + gridOrder, sqlConnection)
                     };
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
                     sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Location", cbFilterValue.Text);
@@ -868,14 +885,11 @@ namespace CyclingLogApplication
                 {
                     sqlDataAdapter = new SqlDataAdapter();
 
-                    //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
-
                     if (logYearID != 0)
                     {
-                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
                         sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [LogYearID]=@logyearID ORDER BY[RideDistance] " + gridOrder, sqlConnection);
-                    }
-                    else
+                        sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+                    } else
                     {
                         sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information ORDER BY[RideDistance] " + gridOrder, sqlConnection);
                     }
@@ -892,7 +906,7 @@ namespace CyclingLogApplication
 
                     if (cbFilterValue.SelectedIndex == 0)
                     {
-                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [Temperature] < " + 30 + " " + logYearIDQuery + " ORDER BY[Temperature] " + gridOrder, sqlConnection);
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [Temperature] > " + 0 + " and [Temperature] < " + 30 + " " + logYearIDQuery + " ORDER BY[Temperature] " + gridOrder, sqlConnection);
                     }
                     else if (cbFilterValue.SelectedIndex == 1)
                     {
@@ -908,7 +922,7 @@ namespace CyclingLogApplication
                     }
                     else if (cbFilterValue.SelectedIndex == 4)
                     {
-                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [Temperature] >= " + 90 + " " + logYearIDQuery, sqlConnection);
+                        sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [Temperature] >= " + 90 + " " + logYearIDQuery + " ORDER BY[Temperature] " + gridOrder, sqlConnection);
                     }
                     //sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [Temperature] > " + temp_value + " " + logYearIDQuery, sqlConnection);
                     //sqlDataAdapter.SelectCommand.Parameters.Add("@Route", SqlDbType.NVarChar, 50);
@@ -1245,6 +1259,10 @@ namespace CyclingLogApplication
 
             int rowindex = dataGridView1.CurrentCell.RowIndex;
             //int columnindex = dataGridView1.CurrentCell.ColumnIndex;
+            if (rowindex == 0)
+            {
+                return;
+            }
 
             var dataGridViewColumn = dataGridView1.Columns["Id"];
             int index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
@@ -2288,6 +2306,15 @@ namespace CyclingLogApplication
         private void bFilter_Click_1(object sender, EventArgs e)
         {
             RunGridUpdate();
+
+            if (rbAscendingOrder.Checked)
+            {
+                MainForm.SetGridOrder("ASC");
+            }
+            else
+            {
+                MainForm.SetGridOrder("DESC");
+            }
         }
     }
 }

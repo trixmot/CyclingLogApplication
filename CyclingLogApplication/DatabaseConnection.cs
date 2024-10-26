@@ -149,8 +149,8 @@ namespace CyclingLogApplication
             catch { }
 
             try {
-                string databaseString = this.Connection.Database.ToString();
-                if (databaseString.Equals("")) {
+                //string databaseString = this.Connection.Database.ToString();
+                if (this.Connection.Database != null) {
               
                 } else
                 {

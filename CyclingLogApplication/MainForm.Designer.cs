@@ -76,209 +76,17 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.tbTimeYearly5 = new System.Windows.Forms.TextBox();
-            this.tbTimeYearly4 = new System.Windows.Forms.TextBox();
-            this.tbTimeYearly3 = new System.Windows.Forms.TextBox();
-            this.tbTimeYearly2 = new System.Windows.Forms.TextBox();
-            this.tbTimeYearly1 = new System.Windows.Forms.TextBox();
-            this.label77 = new System.Windows.Forms.Label();
-            this.tbElevGainYearly5 = new System.Windows.Forms.TextBox();
-            this.tbElevGainYearly4 = new System.Windows.Forms.TextBox();
-            this.tbElevGainYearly3 = new System.Windows.Forms.TextBox();
-            this.tbElevGainYearly2 = new System.Windows.Forms.TextBox();
-            this.tbElevGainYearly1 = new System.Windows.Forms.TextBox();
-            this.label73 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
-            this.tb3Log5 = new System.Windows.Forms.TextBox();
-            this.tb7Log5 = new System.Windows.Forms.TextBox();
             this.cbLogYear5 = new System.Windows.Forms.ComboBox();
-            this.tb6Log5 = new System.Windows.Forms.TextBox();
-            this.tb1Log5 = new System.Windows.Forms.TextBox();
-            this.tb5Log5 = new System.Windows.Forms.TextBox();
-            this.tb2Log5 = new System.Windows.Forms.TextBox();
-            this.tb4Log5 = new System.Windows.Forms.TextBox();
-            this.tb3Log4 = new System.Windows.Forms.TextBox();
-            this.tb7Log4 = new System.Windows.Forms.TextBox();
             this.cbLogYear4 = new System.Windows.Forms.ComboBox();
-            this.tb6Log4 = new System.Windows.Forms.TextBox();
-            this.tb1Log4 = new System.Windows.Forms.TextBox();
-            this.tb5Log4 = new System.Windows.Forms.TextBox();
-            this.tb2Log4 = new System.Windows.Forms.TextBox();
-            this.tb4Log4 = new System.Windows.Forms.TextBox();
-            this.tb3Log3 = new System.Windows.Forms.TextBox();
-            this.tb7Log3 = new System.Windows.Forms.TextBox();
             this.cbLogYear3 = new System.Windows.Forms.ComboBox();
-            this.tb6Log3 = new System.Windows.Forms.TextBox();
-            this.tb1Log3 = new System.Windows.Forms.TextBox();
-            this.tb5Log3 = new System.Windows.Forms.TextBox();
-            this.tb2Log3 = new System.Windows.Forms.TextBox();
-            this.tb4Log3 = new System.Windows.Forms.TextBox();
-            this.tb3Log2 = new System.Windows.Forms.TextBox();
-            this.tb7Log2 = new System.Windows.Forms.TextBox();
             this.cbLogYear2 = new System.Windows.Forms.ComboBox();
-            this.tb6Log2 = new System.Windows.Forms.TextBox();
-            this.tb1Log2 = new System.Windows.Forms.TextBox();
-            this.tb5Log2 = new System.Windows.Forms.TextBox();
-            this.tb2Log2 = new System.Windows.Forms.TextBox();
-            this.tb4Log2 = new System.Windows.Forms.TextBox();
-            this.tb3Log1 = new System.Windows.Forms.TextBox();
-            this.tb7Log1 = new System.Windows.Forms.TextBox();
             this.cbLogYear1 = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tb6Log1 = new System.Windows.Forms.TextBox();
-            this.tb1Log1 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tb5Log1 = new System.Windows.Forms.TextBox();
-            this.tb2Log1 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tb4Log1 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tbTimeMonthly12 = new System.Windows.Forms.TextBox();
-            this.tbTimeMonthly11 = new System.Windows.Forms.TextBox();
-            this.tbTimeMonthly10 = new System.Windows.Forms.TextBox();
-            this.tbTimeMonthly9 = new System.Windows.Forms.TextBox();
-            this.tbTimeMonthly8 = new System.Windows.Forms.TextBox();
-            this.tbTimeMonthly7 = new System.Windows.Forms.TextBox();
-            this.label79 = new System.Windows.Forms.Label();
-            this.tbTimeMonthly6 = new System.Windows.Forms.TextBox();
-            this.tbTimeMonthly5 = new System.Windows.Forms.TextBox();
-            this.tbTimeMonthly4 = new System.Windows.Forms.TextBox();
-            this.tbTimeMonthly3 = new System.Windows.Forms.TextBox();
-            this.tbTimeMonthly2 = new System.Windows.Forms.TextBox();
-            this.tbTimeMonthly1 = new System.Windows.Forms.TextBox();
-            this.label78 = new System.Windows.Forms.Label();
-            this.tbElevGainMonthly12 = new System.Windows.Forms.TextBox();
-            this.tbElevGainMonthly11 = new System.Windows.Forms.TextBox();
-            this.tbElevGainMonthly10 = new System.Windows.Forms.TextBox();
-            this.tbElevGainMonthly9 = new System.Windows.Forms.TextBox();
-            this.tbElevGainMonthly8 = new System.Windows.Forms.TextBox();
-            this.tbElevGainMonthly7 = new System.Windows.Forms.TextBox();
-            this.label72 = new System.Windows.Forms.Label();
-            this.tbElevGainMonthly6 = new System.Windows.Forms.TextBox();
-            this.tbElevGainMonthly5 = new System.Windows.Forms.TextBox();
-            this.tbElevGainMonthly4 = new System.Windows.Forms.TextBox();
-            this.tbElevGainMonthly3 = new System.Windows.Forms.TextBox();
-            this.tbElevGainMonthly2 = new System.Windows.Forms.TextBox();
-            this.tbElevGainMonthly1 = new System.Windows.Forms.TextBox();
-            this.label71 = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.month12R3 = new System.Windows.Forms.TextBox();
-            this.month12R7 = new System.Windows.Forms.TextBox();
-            this.month12R6 = new System.Windows.Forms.TextBox();
-            this.month12R1 = new System.Windows.Forms.TextBox();
-            this.month12R5 = new System.Windows.Forms.TextBox();
-            this.month12R2 = new System.Windows.Forms.TextBox();
-            this.month12R4 = new System.Windows.Forms.TextBox();
-            this.label46 = new System.Windows.Forms.Label();
-            this.month11R3 = new System.Windows.Forms.TextBox();
-            this.month11R7 = new System.Windows.Forms.TextBox();
-            this.month11R6 = new System.Windows.Forms.TextBox();
-            this.month11R1 = new System.Windows.Forms.TextBox();
-            this.month11R5 = new System.Windows.Forms.TextBox();
-            this.month11R2 = new System.Windows.Forms.TextBox();
-            this.month11R4 = new System.Windows.Forms.TextBox();
-            this.label47 = new System.Windows.Forms.Label();
-            this.month10R3 = new System.Windows.Forms.TextBox();
-            this.month10R7 = new System.Windows.Forms.TextBox();
-            this.month10R6 = new System.Windows.Forms.TextBox();
-            this.month10R1 = new System.Windows.Forms.TextBox();
-            this.month10R5 = new System.Windows.Forms.TextBox();
-            this.month10R2 = new System.Windows.Forms.TextBox();
-            this.month10R4 = new System.Windows.Forms.TextBox();
-            this.label48 = new System.Windows.Forms.Label();
-            this.month9R3 = new System.Windows.Forms.TextBox();
-            this.month9R7 = new System.Windows.Forms.TextBox();
-            this.month9R6 = new System.Windows.Forms.TextBox();
-            this.month9R1 = new System.Windows.Forms.TextBox();
-            this.month9R5 = new System.Windows.Forms.TextBox();
-            this.month9R2 = new System.Windows.Forms.TextBox();
-            this.month9R4 = new System.Windows.Forms.TextBox();
-            this.label49 = new System.Windows.Forms.Label();
-            this.month8R3 = new System.Windows.Forms.TextBox();
-            this.month8R7 = new System.Windows.Forms.TextBox();
-            this.month8R6 = new System.Windows.Forms.TextBox();
-            this.month8R1 = new System.Windows.Forms.TextBox();
-            this.month8R5 = new System.Windows.Forms.TextBox();
-            this.month8R2 = new System.Windows.Forms.TextBox();
-            this.month8R4 = new System.Windows.Forms.TextBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.month7R3 = new System.Windows.Forms.TextBox();
-            this.month7R7 = new System.Windows.Forms.TextBox();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.month7R6 = new System.Windows.Forms.TextBox();
-            this.month7R1 = new System.Windows.Forms.TextBox();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.month7R5 = new System.Windows.Forms.TextBox();
-            this.month7R2 = new System.Windows.Forms.TextBox();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
-            this.month7R4 = new System.Windows.Forms.TextBox();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.month6R3 = new System.Windows.Forms.TextBox();
-            this.month6R7 = new System.Windows.Forms.TextBox();
-            this.month6R6 = new System.Windows.Forms.TextBox();
-            this.month6R1 = new System.Windows.Forms.TextBox();
-            this.month6R5 = new System.Windows.Forms.TextBox();
-            this.month6R2 = new System.Windows.Forms.TextBox();
-            this.month6R4 = new System.Windows.Forms.TextBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.month5R3 = new System.Windows.Forms.TextBox();
-            this.month5R7 = new System.Windows.Forms.TextBox();
-            this.month5R6 = new System.Windows.Forms.TextBox();
-            this.month5R1 = new System.Windows.Forms.TextBox();
-            this.month5R5 = new System.Windows.Forms.TextBox();
-            this.month5R2 = new System.Windows.Forms.TextBox();
-            this.month5R4 = new System.Windows.Forms.TextBox();
-            this.label42 = new System.Windows.Forms.Label();
-            this.month4R3 = new System.Windows.Forms.TextBox();
-            this.month4R7 = new System.Windows.Forms.TextBox();
-            this.month4R6 = new System.Windows.Forms.TextBox();
-            this.month4R1 = new System.Windows.Forms.TextBox();
-            this.month4R5 = new System.Windows.Forms.TextBox();
-            this.month4R2 = new System.Windows.Forms.TextBox();
-            this.month4R4 = new System.Windows.Forms.TextBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.month3R3 = new System.Windows.Forms.TextBox();
-            this.month3R7 = new System.Windows.Forms.TextBox();
-            this.month3R6 = new System.Windows.Forms.TextBox();
-            this.month3R1 = new System.Windows.Forms.TextBox();
-            this.month3R5 = new System.Windows.Forms.TextBox();
-            this.month3R2 = new System.Windows.Forms.TextBox();
-            this.month3R4 = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.month2R3 = new System.Windows.Forms.TextBox();
-            this.month2R7 = new System.Windows.Forms.TextBox();
-            this.month2R6 = new System.Windows.Forms.TextBox();
-            this.month2R1 = new System.Windows.Forms.TextBox();
-            this.month2R5 = new System.Windows.Forms.TextBox();
-            this.month2R2 = new System.Windows.Forms.TextBox();
-            this.month2R4 = new System.Windows.Forms.TextBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.month1R3 = new System.Windows.Forms.TextBox();
-            this.month1R7 = new System.Windows.Forms.TextBox();
             this.cbStatMonthlyLogYear = new System.Windows.Forms.ComboBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.month1R6 = new System.Windows.Forms.TextBox();
-            this.month1R1 = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.month1R5 = new System.Windows.Forms.TextBox();
-            this.month1R2 = new System.Windows.Forms.TextBox();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.month1R4 = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -286,6 +94,7 @@
             this.label65 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tbMaintDateCheck = new System.Windows.Forms.TextBox();
+            this.tbMaintID = new System.Windows.Forms.TextBox();
             this.lbMaintError = new System.Windows.Forms.Label();
             this.tbMaintAddUpdate = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -397,9 +206,17 @@
             this.label83 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.tbMaintID = new System.Windows.Forms.TextBox();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label90 = new System.Windows.Forms.Label();
+            this.tbHighAscentWeekAll = new System.Windows.Forms.TextBox();
+            this.dataGridViewMonthly = new System.Windows.Forms.DataGridView();
+            this.dataGridViewYearly = new System.Windows.Forms.DataGridView();
+            this.cbLogYear10 = new System.Windows.Forms.ComboBox();
+            this.cbLogYear9 = new System.Windows.Forms.ComboBox();
+            this.cbLogYear8 = new System.Windows.Forms.ComboBox();
+            this.cbLogYear7 = new System.Windows.Forms.ComboBox();
+            this.cbLogYear6 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -439,6 +256,8 @@
             this.groupBox10.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonthly)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewYearly)).BeginInit();
             this.SuspendLayout();
             // 
             // cbLogYearConfig
@@ -521,6 +340,8 @@
             // 
             // groupBox19
             // 
+            this.groupBox19.Controls.Add(this.label90);
+            this.groupBox19.Controls.Add(this.tbHighAscentWeekAll);
             this.groupBox19.Controls.Add(this.label20);
             this.groupBox19.Controls.Add(this.tbHighWeekAll);
             this.groupBox19.Controls.Add(this.label82);
@@ -547,7 +368,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(30, 238);
+            this.label20.Location = new System.Drawing.Point(42, 218);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(61, 13);
             this.label20.TabIndex = 86;
@@ -555,7 +376,7 @@
             // 
             // tbHighWeekAll
             // 
-            this.tbHighWeekAll.Location = new System.Drawing.Point(97, 235);
+            this.tbHighWeekAll.Location = new System.Drawing.Point(110, 215);
             this.tbHighWeekAll.Name = "tbHighWeekAll";
             this.tbHighWeekAll.ReadOnly = true;
             this.tbHighWeekAll.Size = new System.Drawing.Size(97, 20);
@@ -566,7 +387,7 @@
             // label82
             // 
             this.label82.AutoSize = true;
-            this.label82.Location = new System.Drawing.Point(20, 212);
+            this.label82.Location = new System.Drawing.Point(32, 192);
             this.label82.Name = "label82";
             this.label82.Size = new System.Drawing.Size(71, 13);
             this.label82.TabIndex = 84;
@@ -574,7 +395,7 @@
             // 
             // tbLongestTimeAll
             // 
-            this.tbLongestTimeAll.Location = new System.Drawing.Point(97, 209);
+            this.tbLongestTimeAll.Location = new System.Drawing.Point(110, 189);
             this.tbLongestTimeAll.Name = "tbLongestTimeAll";
             this.tbLongestTimeAll.ReadOnly = true;
             this.tbLongestTimeAll.Size = new System.Drawing.Size(97, 20);
@@ -585,15 +406,15 @@
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(12, 186);
+            this.label61.Location = new System.Drawing.Point(40, 163);
             this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(79, 13);
+            this.label61.Size = new System.Drawing.Size(63, 13);
             this.label61.TabIndex = 82;
-            this.label61.Text = "Most Elev Ride";
+            this.label61.Text = "Max Ascent";
             // 
             // tbMostElevationAll
             // 
-            this.tbMostElevationAll.Location = new System.Drawing.Point(97, 183);
+            this.tbMostElevationAll.Location = new System.Drawing.Point(110, 163);
             this.tbMostElevationAll.Name = "tbMostElevationAll";
             this.tbMostElevationAll.ReadOnly = true;
             this.tbMostElevationAll.Size = new System.Drawing.Size(97, 20);
@@ -603,7 +424,7 @@
             // 
             // tbStatisticsTotalMiles
             // 
-            this.tbStatisticsTotalMiles.Location = new System.Drawing.Point(97, 52);
+            this.tbStatisticsTotalMiles.Location = new System.Drawing.Point(110, 32);
             this.tbStatisticsTotalMiles.Name = "tbStatisticsTotalMiles";
             this.tbStatisticsTotalMiles.ReadOnly = true;
             this.tbStatisticsTotalMiles.Size = new System.Drawing.Size(97, 20);
@@ -614,7 +435,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(60, 56);
+            this.label23.Location = new System.Drawing.Point(72, 36);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(31, 13);
             this.label23.TabIndex = 53;
@@ -622,7 +443,7 @@
             // 
             // tbLongestRide
             // 
-            this.tbLongestRide.Location = new System.Drawing.Point(97, 79);
+            this.tbLongestRide.Location = new System.Drawing.Point(110, 59);
             this.tbLongestRide.Name = "tbLongestRide";
             this.tbLongestRide.ReadOnly = true;
             this.tbLongestRide.Size = new System.Drawing.Size(97, 20);
@@ -632,7 +453,7 @@
             // 
             // tbTotalRides
             // 
-            this.tbTotalRides.Location = new System.Drawing.Point(97, 105);
+            this.tbTotalRides.Location = new System.Drawing.Point(110, 85);
             this.tbTotalRides.Name = "tbTotalRides";
             this.tbTotalRides.ReadOnly = true;
             this.tbTotalRides.Size = new System.Drawing.Size(97, 20);
@@ -643,7 +464,7 @@
             // label80
             // 
             this.label80.AutoSize = true;
-            this.label80.Location = new System.Drawing.Point(61, 160);
+            this.label80.Location = new System.Drawing.Point(73, 140);
             this.label80.Name = "label80";
             this.label80.Size = new System.Drawing.Size(30, 13);
             this.label80.TabIndex = 80;
@@ -651,7 +472,7 @@
             // 
             // tbTotalElevGain
             // 
-            this.tbTotalElevGain.Location = new System.Drawing.Point(97, 131);
+            this.tbTotalElevGain.Location = new System.Drawing.Point(110, 111);
             this.tbTotalElevGain.Name = "tbTotalElevGain";
             this.tbTotalElevGain.ReadOnly = true;
             this.tbTotalElevGain.Size = new System.Drawing.Size(97, 20);
@@ -661,7 +482,7 @@
             // 
             // tbTotalTime
             // 
-            this.tbTotalTime.Location = new System.Drawing.Point(97, 157);
+            this.tbTotalTime.Location = new System.Drawing.Point(110, 137);
             this.tbTotalTime.Name = "tbTotalTime";
             this.tbTotalTime.ReadOnly = true;
             this.tbTotalTime.Size = new System.Drawing.Size(97, 20);
@@ -672,7 +493,7 @@
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(21, 80);
+            this.label58.Location = new System.Drawing.Point(33, 60);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(70, 13);
             this.label58.TabIndex = 56;
@@ -681,7 +502,7 @@
             // label59
             // 
             this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(32, 105);
+            this.label59.Location = new System.Drawing.Point(44, 85);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(59, 13);
             this.label59.TabIndex = 58;
@@ -690,11 +511,11 @@
             // label75
             // 
             this.label75.AutoSize = true;
-            this.label75.Location = new System.Drawing.Point(38, 131);
+            this.label75.Location = new System.Drawing.Point(36, 112);
             this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(53, 13);
+            this.label75.Size = new System.Drawing.Size(67, 13);
             this.label75.TabIndex = 71;
-            this.label75.Text = "Elev Gain";
+            this.label75.Text = "Total Ascent";
             // 
             // groupBox17
             // 
@@ -940,667 +761,88 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.tbTimeYearly5);
-            this.groupBox4.Controls.Add(this.tbTimeYearly4);
-            this.groupBox4.Controls.Add(this.tbTimeYearly3);
-            this.groupBox4.Controls.Add(this.tbTimeYearly2);
-            this.groupBox4.Controls.Add(this.tbTimeYearly1);
-            this.groupBox4.Controls.Add(this.label77);
-            this.groupBox4.Controls.Add(this.tbElevGainYearly5);
-            this.groupBox4.Controls.Add(this.tbElevGainYearly4);
-            this.groupBox4.Controls.Add(this.tbElevGainYearly3);
-            this.groupBox4.Controls.Add(this.tbElevGainYearly2);
-            this.groupBox4.Controls.Add(this.tbElevGainYearly1);
-            this.groupBox4.Controls.Add(this.label73);
+            this.groupBox4.Controls.Add(this.cbLogYear10);
+            this.groupBox4.Controls.Add(this.cbLogYear9);
+            this.groupBox4.Controls.Add(this.cbLogYear8);
+            this.groupBox4.Controls.Add(this.cbLogYear7);
+            this.groupBox4.Controls.Add(this.cbLogYear6);
+            this.groupBox4.Controls.Add(this.dataGridViewYearly);
             this.groupBox4.Controls.Add(this.label62);
-            this.groupBox4.Controls.Add(this.tb3Log5);
-            this.groupBox4.Controls.Add(this.tb7Log5);
             this.groupBox4.Controls.Add(this.cbLogYear5);
-            this.groupBox4.Controls.Add(this.tb6Log5);
-            this.groupBox4.Controls.Add(this.tb1Log5);
-            this.groupBox4.Controls.Add(this.tb5Log5);
-            this.groupBox4.Controls.Add(this.tb2Log5);
-            this.groupBox4.Controls.Add(this.tb4Log5);
-            this.groupBox4.Controls.Add(this.tb3Log4);
-            this.groupBox4.Controls.Add(this.tb7Log4);
             this.groupBox4.Controls.Add(this.cbLogYear4);
-            this.groupBox4.Controls.Add(this.tb6Log4);
-            this.groupBox4.Controls.Add(this.tb1Log4);
-            this.groupBox4.Controls.Add(this.tb5Log4);
-            this.groupBox4.Controls.Add(this.tb2Log4);
-            this.groupBox4.Controls.Add(this.tb4Log4);
-            this.groupBox4.Controls.Add(this.tb3Log3);
-            this.groupBox4.Controls.Add(this.tb7Log3);
             this.groupBox4.Controls.Add(this.cbLogYear3);
-            this.groupBox4.Controls.Add(this.tb6Log3);
-            this.groupBox4.Controls.Add(this.tb1Log3);
-            this.groupBox4.Controls.Add(this.tb5Log3);
-            this.groupBox4.Controls.Add(this.tb2Log3);
-            this.groupBox4.Controls.Add(this.tb4Log3);
-            this.groupBox4.Controls.Add(this.tb3Log2);
-            this.groupBox4.Controls.Add(this.tb7Log2);
             this.groupBox4.Controls.Add(this.cbLogYear2);
-            this.groupBox4.Controls.Add(this.tb6Log2);
-            this.groupBox4.Controls.Add(this.tb1Log2);
-            this.groupBox4.Controls.Add(this.tb5Log2);
-            this.groupBox4.Controls.Add(this.tb2Log2);
-            this.groupBox4.Controls.Add(this.tb4Log2);
-            this.groupBox4.Controls.Add(this.tb3Log1);
-            this.groupBox4.Controls.Add(this.tb7Log1);
             this.groupBox4.Controls.Add(this.cbLogYear1);
-            this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Controls.Add(this.label6);
-            this.groupBox4.Controls.Add(this.tb6Log1);
-            this.groupBox4.Controls.Add(this.tb1Log1);
-            this.groupBox4.Controls.Add(this.label11);
-            this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Controls.Add(this.tb5Log1);
-            this.groupBox4.Controls.Add(this.tb2Log1);
-            this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.tb4Log1);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Location = new System.Drawing.Point(55, 54);
+            this.groupBox4.Location = new System.Drawing.Point(33, 20);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(798, 457);
+            this.groupBox4.Size = new System.Drawing.Size(855, 491);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
-            // 
-            // tbTimeYearly5
-            // 
-            this.tbTimeYearly5.Location = new System.Drawing.Point(608, 298);
-            this.tbTimeYearly5.Name = "tbTimeYearly5";
-            this.tbTimeYearly5.ReadOnly = true;
-            this.tbTimeYearly5.Size = new System.Drawing.Size(110, 20);
-            this.tbTimeYearly5.TabIndex = 78;
-            this.tbTimeYearly5.TabStop = false;
-            this.tbTimeYearly5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbTimeYearly4
-            // 
-            this.tbTimeYearly4.Location = new System.Drawing.Point(492, 298);
-            this.tbTimeYearly4.Name = "tbTimeYearly4";
-            this.tbTimeYearly4.ReadOnly = true;
-            this.tbTimeYearly4.Size = new System.Drawing.Size(110, 20);
-            this.tbTimeYearly4.TabIndex = 77;
-            this.tbTimeYearly4.TabStop = false;
-            this.tbTimeYearly4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbTimeYearly3
-            // 
-            this.tbTimeYearly3.Location = new System.Drawing.Point(376, 298);
-            this.tbTimeYearly3.Name = "tbTimeYearly3";
-            this.tbTimeYearly3.ReadOnly = true;
-            this.tbTimeYearly3.Size = new System.Drawing.Size(110, 20);
-            this.tbTimeYearly3.TabIndex = 76;
-            this.tbTimeYearly3.TabStop = false;
-            this.tbTimeYearly3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbTimeYearly2
-            // 
-            this.tbTimeYearly2.Location = new System.Drawing.Point(260, 298);
-            this.tbTimeYearly2.Name = "tbTimeYearly2";
-            this.tbTimeYearly2.ReadOnly = true;
-            this.tbTimeYearly2.Size = new System.Drawing.Size(110, 20);
-            this.tbTimeYearly2.TabIndex = 75;
-            this.tbTimeYearly2.TabStop = false;
-            this.tbTimeYearly2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbTimeYearly1
-            // 
-            this.tbTimeYearly1.Location = new System.Drawing.Point(144, 298);
-            this.tbTimeYearly1.Name = "tbTimeYearly1";
-            this.tbTimeYearly1.ReadOnly = true;
-            this.tbTimeYearly1.Size = new System.Drawing.Size(110, 20);
-            this.tbTimeYearly1.TabIndex = 74;
-            this.tbTimeYearly1.TabStop = false;
-            this.tbTimeYearly1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label77
-            // 
-            this.label77.AutoSize = true;
-            this.label77.Location = new System.Drawing.Point(68, 301);
-            this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(68, 13);
-            this.label77.TabIndex = 73;
-            this.label77.Text = "Moving Time";
-            // 
-            // tbElevGainYearly5
-            // 
-            this.tbElevGainYearly5.Location = new System.Drawing.Point(608, 275);
-            this.tbElevGainYearly5.Name = "tbElevGainYearly5";
-            this.tbElevGainYearly5.ReadOnly = true;
-            this.tbElevGainYearly5.Size = new System.Drawing.Size(110, 20);
-            this.tbElevGainYearly5.TabIndex = 69;
-            this.tbElevGainYearly5.TabStop = false;
-            this.tbElevGainYearly5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbElevGainYearly4
-            // 
-            this.tbElevGainYearly4.Location = new System.Drawing.Point(492, 275);
-            this.tbElevGainYearly4.Name = "tbElevGainYearly4";
-            this.tbElevGainYearly4.ReadOnly = true;
-            this.tbElevGainYearly4.Size = new System.Drawing.Size(110, 20);
-            this.tbElevGainYearly4.TabIndex = 68;
-            this.tbElevGainYearly4.TabStop = false;
-            this.tbElevGainYearly4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbElevGainYearly3
-            // 
-            this.tbElevGainYearly3.Location = new System.Drawing.Point(376, 275);
-            this.tbElevGainYearly3.Name = "tbElevGainYearly3";
-            this.tbElevGainYearly3.ReadOnly = true;
-            this.tbElevGainYearly3.Size = new System.Drawing.Size(110, 20);
-            this.tbElevGainYearly3.TabIndex = 67;
-            this.tbElevGainYearly3.TabStop = false;
-            this.tbElevGainYearly3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbElevGainYearly2
-            // 
-            this.tbElevGainYearly2.Location = new System.Drawing.Point(260, 275);
-            this.tbElevGainYearly2.Name = "tbElevGainYearly2";
-            this.tbElevGainYearly2.ReadOnly = true;
-            this.tbElevGainYearly2.Size = new System.Drawing.Size(110, 20);
-            this.tbElevGainYearly2.TabIndex = 66;
-            this.tbElevGainYearly2.TabStop = false;
-            this.tbElevGainYearly2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbElevGainYearly1
-            // 
-            this.tbElevGainYearly1.Location = new System.Drawing.Point(144, 275);
-            this.tbElevGainYearly1.Name = "tbElevGainYearly1";
-            this.tbElevGainYearly1.ReadOnly = true;
-            this.tbElevGainYearly1.Size = new System.Drawing.Size(110, 20);
-            this.tbElevGainYearly1.TabIndex = 65;
-            this.tbElevGainYearly1.TabStop = false;
-            this.tbElevGainYearly1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label73
-            // 
-            this.label73.AutoSize = true;
-            this.label73.Location = new System.Drawing.Point(75, 278);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(53, 13);
-            this.label73.TabIndex = 64;
-            this.label73.Text = "Elev Gain";
             // 
             // label62
             // 
             this.label62.AutoSize = true;
             this.label62.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.Location = new System.Drawing.Point(235, 40);
+            this.label62.Location = new System.Drawing.Point(238, 28);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(309, 28);
             this.label62.TabIndex = 63;
             this.label62.Text = "Statistics Yearly Log Data";
-            // 
-            // tb3Log5
-            // 
-            this.tb3Log5.Location = new System.Drawing.Point(608, 172);
-            this.tb3Log5.Name = "tb3Log5";
-            this.tb3Log5.ReadOnly = true;
-            this.tb3Log5.Size = new System.Drawing.Size(110, 20);
-            this.tb3Log5.TabIndex = 42;
-            this.tb3Log5.TabStop = false;
-            this.tb3Log5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb7Log5
-            // 
-            this.tb7Log5.Location = new System.Drawing.Point(608, 252);
-            this.tb7Log5.Name = "tb7Log5";
-            this.tb7Log5.ReadOnly = true;
-            this.tb7Log5.Size = new System.Drawing.Size(110, 20);
-            this.tb7Log5.TabIndex = 46;
-            this.tb7Log5.TabStop = false;
-            this.tb7Log5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cbLogYear5
             // 
             this.cbLogYear5.BackColor = System.Drawing.Color.Silver;
             this.cbLogYear5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYear5.FormattingEnabled = true;
-            this.cbLogYear5.Location = new System.Drawing.Point(608, 102);
+            this.cbLogYear5.Location = new System.Drawing.Point(27, 277);
             this.cbLogYear5.Name = "cbLogYear5";
             this.cbLogYear5.Size = new System.Drawing.Size(110, 21);
             this.cbLogYear5.TabIndex = 4;
             this.cbLogYear5.SelectedIndexChanged += new System.EventHandler(this.Cb5LogYear_changed);
-            // 
-            // tb6Log5
-            // 
-            this.tb6Log5.Location = new System.Drawing.Point(608, 232);
-            this.tb6Log5.Name = "tb6Log5";
-            this.tb6Log5.ReadOnly = true;
-            this.tb6Log5.Size = new System.Drawing.Size(110, 20);
-            this.tb6Log5.TabIndex = 45;
-            this.tb6Log5.TabStop = false;
-            this.tb6Log5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb1Log5
-            // 
-            this.tb1Log5.Location = new System.Drawing.Point(608, 132);
-            this.tb1Log5.Name = "tb1Log5";
-            this.tb1Log5.ReadOnly = true;
-            this.tb1Log5.Size = new System.Drawing.Size(110, 20);
-            this.tb1Log5.TabIndex = 40;
-            this.tb1Log5.TabStop = false;
-            this.tb1Log5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb5Log5
-            // 
-            this.tb5Log5.Location = new System.Drawing.Point(608, 212);
-            this.tb5Log5.Name = "tb5Log5";
-            this.tb5Log5.ReadOnly = true;
-            this.tb5Log5.Size = new System.Drawing.Size(110, 20);
-            this.tb5Log5.TabIndex = 44;
-            this.tb5Log5.TabStop = false;
-            this.tb5Log5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb2Log5
-            // 
-            this.tb2Log5.Location = new System.Drawing.Point(608, 152);
-            this.tb2Log5.Name = "tb2Log5";
-            this.tb2Log5.ReadOnly = true;
-            this.tb2Log5.Size = new System.Drawing.Size(110, 20);
-            this.tb2Log5.TabIndex = 41;
-            this.tb2Log5.TabStop = false;
-            this.tb2Log5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb4Log5
-            // 
-            this.tb4Log5.Location = new System.Drawing.Point(608, 192);
-            this.tb4Log5.Name = "tb4Log5";
-            this.tb4Log5.ReadOnly = true;
-            this.tb4Log5.Size = new System.Drawing.Size(110, 20);
-            this.tb4Log5.TabIndex = 43;
-            this.tb4Log5.TabStop = false;
-            this.tb4Log5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb3Log4
-            // 
-            this.tb3Log4.Location = new System.Drawing.Point(492, 172);
-            this.tb3Log4.Name = "tb3Log4";
-            this.tb3Log4.ReadOnly = true;
-            this.tb3Log4.Size = new System.Drawing.Size(110, 20);
-            this.tb3Log4.TabIndex = 34;
-            this.tb3Log4.TabStop = false;
-            this.tb3Log4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb7Log4
-            // 
-            this.tb7Log4.Location = new System.Drawing.Point(492, 252);
-            this.tb7Log4.Name = "tb7Log4";
-            this.tb7Log4.ReadOnly = true;
-            this.tb7Log4.Size = new System.Drawing.Size(110, 20);
-            this.tb7Log4.TabIndex = 38;
-            this.tb7Log4.TabStop = false;
-            this.tb7Log4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cbLogYear4
             // 
             this.cbLogYear4.BackColor = System.Drawing.Color.Silver;
             this.cbLogYear4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYear4.FormattingEnabled = true;
-            this.cbLogYear4.Location = new System.Drawing.Point(492, 102);
+            this.cbLogYear4.Location = new System.Drawing.Point(27, 245);
             this.cbLogYear4.Name = "cbLogYear4";
             this.cbLogYear4.Size = new System.Drawing.Size(110, 21);
             this.cbLogYear4.TabIndex = 3;
             this.cbLogYear4.SelectedIndexChanged += new System.EventHandler(this.Cb4LogYear_changed);
-            // 
-            // tb6Log4
-            // 
-            this.tb6Log4.Location = new System.Drawing.Point(492, 232);
-            this.tb6Log4.Name = "tb6Log4";
-            this.tb6Log4.ReadOnly = true;
-            this.tb6Log4.Size = new System.Drawing.Size(110, 20);
-            this.tb6Log4.TabIndex = 37;
-            this.tb6Log4.TabStop = false;
-            this.tb6Log4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb1Log4
-            // 
-            this.tb1Log4.Location = new System.Drawing.Point(492, 132);
-            this.tb1Log4.Name = "tb1Log4";
-            this.tb1Log4.ReadOnly = true;
-            this.tb1Log4.Size = new System.Drawing.Size(110, 20);
-            this.tb1Log4.TabIndex = 32;
-            this.tb1Log4.TabStop = false;
-            this.tb1Log4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb5Log4
-            // 
-            this.tb5Log4.Location = new System.Drawing.Point(492, 212);
-            this.tb5Log4.Name = "tb5Log4";
-            this.tb5Log4.ReadOnly = true;
-            this.tb5Log4.Size = new System.Drawing.Size(110, 20);
-            this.tb5Log4.TabIndex = 36;
-            this.tb5Log4.TabStop = false;
-            this.tb5Log4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb2Log4
-            // 
-            this.tb2Log4.Location = new System.Drawing.Point(492, 152);
-            this.tb2Log4.Name = "tb2Log4";
-            this.tb2Log4.ReadOnly = true;
-            this.tb2Log4.Size = new System.Drawing.Size(110, 20);
-            this.tb2Log4.TabIndex = 33;
-            this.tb2Log4.TabStop = false;
-            this.tb2Log4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb4Log4
-            // 
-            this.tb4Log4.Location = new System.Drawing.Point(492, 192);
-            this.tb4Log4.Name = "tb4Log4";
-            this.tb4Log4.ReadOnly = true;
-            this.tb4Log4.Size = new System.Drawing.Size(110, 20);
-            this.tb4Log4.TabIndex = 35;
-            this.tb4Log4.TabStop = false;
-            this.tb4Log4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb3Log3
-            // 
-            this.tb3Log3.Location = new System.Drawing.Point(376, 172);
-            this.tb3Log3.Name = "tb3Log3";
-            this.tb3Log3.ReadOnly = true;
-            this.tb3Log3.Size = new System.Drawing.Size(110, 20);
-            this.tb3Log3.TabIndex = 26;
-            this.tb3Log3.TabStop = false;
-            this.tb3Log3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb7Log3
-            // 
-            this.tb7Log3.Location = new System.Drawing.Point(376, 252);
-            this.tb7Log3.Name = "tb7Log3";
-            this.tb7Log3.ReadOnly = true;
-            this.tb7Log3.Size = new System.Drawing.Size(110, 20);
-            this.tb7Log3.TabIndex = 30;
-            this.tb7Log3.TabStop = false;
-            this.tb7Log3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cbLogYear3
             // 
             this.cbLogYear3.BackColor = System.Drawing.Color.Silver;
             this.cbLogYear3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYear3.FormattingEnabled = true;
-            this.cbLogYear3.Location = new System.Drawing.Point(376, 102);
+            this.cbLogYear3.Location = new System.Drawing.Point(27, 212);
             this.cbLogYear3.Name = "cbLogYear3";
             this.cbLogYear3.Size = new System.Drawing.Size(110, 21);
             this.cbLogYear3.TabIndex = 2;
             this.cbLogYear3.SelectedIndexChanged += new System.EventHandler(this.Cb3LogYear_changed);
-            // 
-            // tb6Log3
-            // 
-            this.tb6Log3.Location = new System.Drawing.Point(376, 232);
-            this.tb6Log3.Name = "tb6Log3";
-            this.tb6Log3.ReadOnly = true;
-            this.tb6Log3.Size = new System.Drawing.Size(110, 20);
-            this.tb6Log3.TabIndex = 29;
-            this.tb6Log3.TabStop = false;
-            this.tb6Log3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb1Log3
-            // 
-            this.tb1Log3.Location = new System.Drawing.Point(376, 132);
-            this.tb1Log3.Name = "tb1Log3";
-            this.tb1Log3.ReadOnly = true;
-            this.tb1Log3.Size = new System.Drawing.Size(110, 20);
-            this.tb1Log3.TabIndex = 24;
-            this.tb1Log3.TabStop = false;
-            this.tb1Log3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb5Log3
-            // 
-            this.tb5Log3.Location = new System.Drawing.Point(376, 212);
-            this.tb5Log3.Name = "tb5Log3";
-            this.tb5Log3.ReadOnly = true;
-            this.tb5Log3.Size = new System.Drawing.Size(110, 20);
-            this.tb5Log3.TabIndex = 28;
-            this.tb5Log3.TabStop = false;
-            this.tb5Log3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb2Log3
-            // 
-            this.tb2Log3.Location = new System.Drawing.Point(376, 152);
-            this.tb2Log3.Name = "tb2Log3";
-            this.tb2Log3.ReadOnly = true;
-            this.tb2Log3.Size = new System.Drawing.Size(110, 20);
-            this.tb2Log3.TabIndex = 25;
-            this.tb2Log3.TabStop = false;
-            this.tb2Log3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb4Log3
-            // 
-            this.tb4Log3.Location = new System.Drawing.Point(376, 192);
-            this.tb4Log3.Name = "tb4Log3";
-            this.tb4Log3.ReadOnly = true;
-            this.tb4Log3.Size = new System.Drawing.Size(110, 20);
-            this.tb4Log3.TabIndex = 27;
-            this.tb4Log3.TabStop = false;
-            this.tb4Log3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb3Log2
-            // 
-            this.tb3Log2.Location = new System.Drawing.Point(260, 172);
-            this.tb3Log2.Name = "tb3Log2";
-            this.tb3Log2.ReadOnly = true;
-            this.tb3Log2.Size = new System.Drawing.Size(110, 20);
-            this.tb3Log2.TabIndex = 18;
-            this.tb3Log2.TabStop = false;
-            this.tb3Log2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb7Log2
-            // 
-            this.tb7Log2.Location = new System.Drawing.Point(260, 252);
-            this.tb7Log2.Name = "tb7Log2";
-            this.tb7Log2.ReadOnly = true;
-            this.tb7Log2.Size = new System.Drawing.Size(110, 20);
-            this.tb7Log2.TabIndex = 22;
-            this.tb7Log2.TabStop = false;
-            this.tb7Log2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cbLogYear2
             // 
             this.cbLogYear2.BackColor = System.Drawing.Color.Silver;
             this.cbLogYear2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYear2.FormattingEnabled = true;
-            this.cbLogYear2.Location = new System.Drawing.Point(260, 102);
+            this.cbLogYear2.Location = new System.Drawing.Point(27, 180);
             this.cbLogYear2.Name = "cbLogYear2";
             this.cbLogYear2.Size = new System.Drawing.Size(110, 21);
             this.cbLogYear2.TabIndex = 1;
             this.cbLogYear2.SelectedIndexChanged += new System.EventHandler(this.Cb2LogYear_changed);
-            // 
-            // tb6Log2
-            // 
-            this.tb6Log2.Location = new System.Drawing.Point(260, 232);
-            this.tb6Log2.Name = "tb6Log2";
-            this.tb6Log2.ReadOnly = true;
-            this.tb6Log2.Size = new System.Drawing.Size(110, 20);
-            this.tb6Log2.TabIndex = 21;
-            this.tb6Log2.TabStop = false;
-            this.tb6Log2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb1Log2
-            // 
-            this.tb1Log2.Location = new System.Drawing.Point(260, 132);
-            this.tb1Log2.Name = "tb1Log2";
-            this.tb1Log2.ReadOnly = true;
-            this.tb1Log2.Size = new System.Drawing.Size(110, 20);
-            this.tb1Log2.TabIndex = 16;
-            this.tb1Log2.TabStop = false;
-            this.tb1Log2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb5Log2
-            // 
-            this.tb5Log2.Location = new System.Drawing.Point(260, 212);
-            this.tb5Log2.Name = "tb5Log2";
-            this.tb5Log2.ReadOnly = true;
-            this.tb5Log2.Size = new System.Drawing.Size(110, 20);
-            this.tb5Log2.TabIndex = 20;
-            this.tb5Log2.TabStop = false;
-            this.tb5Log2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb2Log2
-            // 
-            this.tb2Log2.Location = new System.Drawing.Point(260, 152);
-            this.tb2Log2.Name = "tb2Log2";
-            this.tb2Log2.ReadOnly = true;
-            this.tb2Log2.Size = new System.Drawing.Size(110, 20);
-            this.tb2Log2.TabIndex = 17;
-            this.tb2Log2.TabStop = false;
-            this.tb2Log2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb4Log2
-            // 
-            this.tb4Log2.Location = new System.Drawing.Point(260, 192);
-            this.tb4Log2.Name = "tb4Log2";
-            this.tb4Log2.ReadOnly = true;
-            this.tb4Log2.Size = new System.Drawing.Size(110, 20);
-            this.tb4Log2.TabIndex = 19;
-            this.tb4Log2.TabStop = false;
-            this.tb4Log2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb3Log1
-            // 
-            this.tb3Log1.Location = new System.Drawing.Point(144, 172);
-            this.tb3Log1.Name = "tb3Log1";
-            this.tb3Log1.ReadOnly = true;
-            this.tb3Log1.Size = new System.Drawing.Size(110, 20);
-            this.tb3Log1.TabIndex = 6;
-            this.tb3Log1.TabStop = false;
-            this.tb3Log1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb7Log1
-            // 
-            this.tb7Log1.Location = new System.Drawing.Point(144, 252);
-            this.tb7Log1.Name = "tb7Log1";
-            this.tb7Log1.ReadOnly = true;
-            this.tb7Log1.Size = new System.Drawing.Size(110, 20);
-            this.tb7Log1.TabIndex = 14;
-            this.tb7Log1.TabStop = false;
-            this.tb7Log1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cbLogYear1
             // 
             this.cbLogYear1.BackColor = System.Drawing.Color.Silver;
             this.cbLogYear1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYear1.FormattingEnabled = true;
-            this.cbLogYear1.Location = new System.Drawing.Point(144, 102);
+            this.cbLogYear1.Location = new System.Drawing.Point(27, 147);
             this.cbLogYear1.Name = "cbLogYear1";
             this.cbLogYear1.Size = new System.Drawing.Size(110, 21);
             this.cbLogYear1.TabIndex = 0;
             this.cbLogYear1.SelectedIndexChanged += new System.EventHandler(this.Cb1LogYear_changed);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(68, 255);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(70, 13);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "Longest Ride";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(75, 135);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 13);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Yearly Miles";
-            // 
-            // tb6Log1
-            // 
-            this.tb6Log1.Location = new System.Drawing.Point(144, 232);
-            this.tb6Log1.Name = "tb6Log1";
-            this.tb6Log1.ReadOnly = true;
-            this.tb6Log1.Size = new System.Drawing.Size(110, 20);
-            this.tb6Log1.TabIndex = 12;
-            this.tb6Log1.TabStop = false;
-            this.tb6Log1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb1Log1
-            // 
-            this.tb1Log1.Location = new System.Drawing.Point(144, 132);
-            this.tb1Log1.Name = "tb1Log1";
-            this.tb1Log1.ReadOnly = true;
-            this.tb1Log1.Size = new System.Drawing.Size(110, 20);
-            this.tb1Log1.TabIndex = 2;
-            this.tb1Log1.TabStop = false;
-            this.tb1Log1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(35, 235);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(103, 13);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "High Week Milelage";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(52, 155);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(86, 13);
-            this.label7.TabIndex = 3;
-            this.label7.Text = "Number of Rides";
-            // 
-            // tb5Log1
-            // 
-            this.tb5Log1.Location = new System.Drawing.Point(144, 212);
-            this.tb5Log1.Name = "tb5Log1";
-            this.tb5Log1.ReadOnly = true;
-            this.tb5Log1.Size = new System.Drawing.Size(110, 20);
-            this.tb5Log1.TabIndex = 10;
-            this.tb5Log1.TabStop = false;
-            this.tb5Log1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tb2Log1
-            // 
-            this.tb2Log1.Location = new System.Drawing.Point(144, 152);
-            this.tb2Log1.Name = "tb2Log1";
-            this.tb2Log1.ReadOnly = true;
-            this.tb2Log1.Size = new System.Drawing.Size(110, 20);
-            this.tb2Log1.TabIndex = 4;
-            this.tb2Log1.TabStop = false;
-            this.tb2Log1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(42, 215);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(96, 13);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "Avg Miles per Ride";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(35, 175);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(103, 13);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "Avg Rides per week";
-            // 
-            // tb4Log1
-            // 
-            this.tb4Log1.Location = new System.Drawing.Point(144, 192);
-            this.tb4Log1.Name = "tb4Log1";
-            this.tb4Log1.ReadOnly = true;
-            this.tb4Log1.Size = new System.Drawing.Size(110, 20);
-            this.tb4Log1.TabIndex = 8;
-            this.tb4Log1.TabStop = false;
-            this.tb4Log1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(38, 195);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(100, 13);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "Avg Miles per week";
             // 
             // tabPage7
             // 
@@ -1624,426 +866,13 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.tbTimeMonthly12);
-            this.panel1.Controls.Add(this.tbTimeMonthly11);
-            this.panel1.Controls.Add(this.tbTimeMonthly10);
-            this.panel1.Controls.Add(this.tbTimeMonthly9);
-            this.panel1.Controls.Add(this.tbTimeMonthly8);
-            this.panel1.Controls.Add(this.tbTimeMonthly7);
-            this.panel1.Controls.Add(this.label79);
-            this.panel1.Controls.Add(this.tbTimeMonthly6);
-            this.panel1.Controls.Add(this.tbTimeMonthly5);
-            this.panel1.Controls.Add(this.tbTimeMonthly4);
-            this.panel1.Controls.Add(this.tbTimeMonthly3);
-            this.panel1.Controls.Add(this.tbTimeMonthly2);
-            this.panel1.Controls.Add(this.tbTimeMonthly1);
-            this.panel1.Controls.Add(this.label78);
-            this.panel1.Controls.Add(this.tbElevGainMonthly12);
-            this.panel1.Controls.Add(this.tbElevGainMonthly11);
-            this.panel1.Controls.Add(this.tbElevGainMonthly10);
-            this.panel1.Controls.Add(this.tbElevGainMonthly9);
-            this.panel1.Controls.Add(this.tbElevGainMonthly8);
-            this.panel1.Controls.Add(this.tbElevGainMonthly7);
-            this.panel1.Controls.Add(this.label72);
-            this.panel1.Controls.Add(this.tbElevGainMonthly6);
-            this.panel1.Controls.Add(this.tbElevGainMonthly5);
-            this.panel1.Controls.Add(this.tbElevGainMonthly4);
-            this.panel1.Controls.Add(this.tbElevGainMonthly3);
-            this.panel1.Controls.Add(this.tbElevGainMonthly2);
-            this.panel1.Controls.Add(this.tbElevGainMonthly1);
-            this.panel1.Controls.Add(this.label71);
+            this.panel1.Controls.Add(this.dataGridViewMonthly);
             this.panel1.Controls.Add(this.label63);
-            this.panel1.Controls.Add(this.label45);
-            this.panel1.Controls.Add(this.month12R3);
-            this.panel1.Controls.Add(this.month12R7);
-            this.panel1.Controls.Add(this.month12R6);
-            this.panel1.Controls.Add(this.month12R1);
-            this.panel1.Controls.Add(this.month12R5);
-            this.panel1.Controls.Add(this.month12R2);
-            this.panel1.Controls.Add(this.month12R4);
-            this.panel1.Controls.Add(this.label46);
-            this.panel1.Controls.Add(this.month11R3);
-            this.panel1.Controls.Add(this.month11R7);
-            this.panel1.Controls.Add(this.month11R6);
-            this.panel1.Controls.Add(this.month11R1);
-            this.panel1.Controls.Add(this.month11R5);
-            this.panel1.Controls.Add(this.month11R2);
-            this.panel1.Controls.Add(this.month11R4);
-            this.panel1.Controls.Add(this.label47);
-            this.panel1.Controls.Add(this.month10R3);
-            this.panel1.Controls.Add(this.month10R7);
-            this.panel1.Controls.Add(this.month10R6);
-            this.panel1.Controls.Add(this.month10R1);
-            this.panel1.Controls.Add(this.month10R5);
-            this.panel1.Controls.Add(this.month10R2);
-            this.panel1.Controls.Add(this.month10R4);
-            this.panel1.Controls.Add(this.label48);
-            this.panel1.Controls.Add(this.month9R3);
-            this.panel1.Controls.Add(this.month9R7);
-            this.panel1.Controls.Add(this.month9R6);
-            this.panel1.Controls.Add(this.month9R1);
-            this.panel1.Controls.Add(this.month9R5);
-            this.panel1.Controls.Add(this.month9R2);
-            this.panel1.Controls.Add(this.month9R4);
-            this.panel1.Controls.Add(this.label49);
-            this.panel1.Controls.Add(this.month8R3);
-            this.panel1.Controls.Add(this.month8R7);
-            this.panel1.Controls.Add(this.month8R6);
-            this.panel1.Controls.Add(this.month8R1);
-            this.panel1.Controls.Add(this.month8R5);
-            this.panel1.Controls.Add(this.month8R2);
-            this.panel1.Controls.Add(this.month8R4);
-            this.panel1.Controls.Add(this.label50);
-            this.panel1.Controls.Add(this.month7R3);
-            this.panel1.Controls.Add(this.month7R7);
-            this.panel1.Controls.Add(this.label51);
-            this.panel1.Controls.Add(this.label52);
-            this.panel1.Controls.Add(this.month7R6);
-            this.panel1.Controls.Add(this.month7R1);
-            this.panel1.Controls.Add(this.label53);
-            this.panel1.Controls.Add(this.label54);
-            this.panel1.Controls.Add(this.month7R5);
-            this.panel1.Controls.Add(this.month7R2);
-            this.panel1.Controls.Add(this.label55);
-            this.panel1.Controls.Add(this.label56);
-            this.panel1.Controls.Add(this.month7R4);
-            this.panel1.Controls.Add(this.label57);
-            this.panel1.Controls.Add(this.label44);
-            this.panel1.Controls.Add(this.month6R3);
-            this.panel1.Controls.Add(this.month6R7);
-            this.panel1.Controls.Add(this.month6R6);
-            this.panel1.Controls.Add(this.month6R1);
-            this.panel1.Controls.Add(this.month6R5);
-            this.panel1.Controls.Add(this.month6R2);
-            this.panel1.Controls.Add(this.month6R4);
-            this.panel1.Controls.Add(this.label43);
-            this.panel1.Controls.Add(this.month5R3);
-            this.panel1.Controls.Add(this.month5R7);
-            this.panel1.Controls.Add(this.month5R6);
-            this.panel1.Controls.Add(this.month5R1);
-            this.panel1.Controls.Add(this.month5R5);
-            this.panel1.Controls.Add(this.month5R2);
-            this.panel1.Controls.Add(this.month5R4);
-            this.panel1.Controls.Add(this.label42);
-            this.panel1.Controls.Add(this.month4R3);
-            this.panel1.Controls.Add(this.month4R7);
-            this.panel1.Controls.Add(this.month4R6);
-            this.panel1.Controls.Add(this.month4R1);
-            this.panel1.Controls.Add(this.month4R5);
-            this.panel1.Controls.Add(this.month4R2);
-            this.panel1.Controls.Add(this.month4R4);
-            this.panel1.Controls.Add(this.label41);
-            this.panel1.Controls.Add(this.month3R3);
-            this.panel1.Controls.Add(this.month3R7);
-            this.panel1.Controls.Add(this.month3R6);
-            this.panel1.Controls.Add(this.month3R1);
-            this.panel1.Controls.Add(this.month3R5);
-            this.panel1.Controls.Add(this.month3R2);
-            this.panel1.Controls.Add(this.month3R4);
-            this.panel1.Controls.Add(this.label40);
-            this.panel1.Controls.Add(this.month2R3);
-            this.panel1.Controls.Add(this.month2R7);
-            this.panel1.Controls.Add(this.month2R6);
-            this.panel1.Controls.Add(this.month2R1);
-            this.panel1.Controls.Add(this.month2R5);
-            this.panel1.Controls.Add(this.month2R2);
-            this.panel1.Controls.Add(this.month2R4);
-            this.panel1.Controls.Add(this.label39);
-            this.panel1.Controls.Add(this.month1R3);
-            this.panel1.Controls.Add(this.month1R7);
             this.panel1.Controls.Add(this.cbStatMonthlyLogYear);
-            this.panel1.Controls.Add(this.label32);
-            this.panel1.Controls.Add(this.label33);
-            this.panel1.Controls.Add(this.month1R6);
-            this.panel1.Controls.Add(this.month1R1);
-            this.panel1.Controls.Add(this.label34);
-            this.panel1.Controls.Add(this.label35);
-            this.panel1.Controls.Add(this.month1R5);
-            this.panel1.Controls.Add(this.month1R2);
-            this.panel1.Controls.Add(this.label36);
-            this.panel1.Controls.Add(this.label37);
-            this.panel1.Controls.Add(this.month1R4);
-            this.panel1.Controls.Add(this.label38);
             this.panel1.Location = new System.Drawing.Point(44, 19);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(822, 522);
             this.panel1.TabIndex = 0;
-            // 
-            // tbTimeMonthly12
-            // 
-            this.tbTimeMonthly12.Location = new System.Drawing.Point(608, 487);
-            this.tbTimeMonthly12.Name = "tbTimeMonthly12";
-            this.tbTimeMonthly12.ReadOnly = true;
-            this.tbTimeMonthly12.Size = new System.Drawing.Size(63, 20);
-            this.tbTimeMonthly12.TabIndex = 156;
-            this.tbTimeMonthly12.TabStop = false;
-            this.tbTimeMonthly12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbTimeMonthly11
-            // 
-            this.tbTimeMonthly11.Location = new System.Drawing.Point(539, 487);
-            this.tbTimeMonthly11.Name = "tbTimeMonthly11";
-            this.tbTimeMonthly11.ReadOnly = true;
-            this.tbTimeMonthly11.Size = new System.Drawing.Size(63, 20);
-            this.tbTimeMonthly11.TabIndex = 155;
-            this.tbTimeMonthly11.TabStop = false;
-            this.tbTimeMonthly11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbTimeMonthly10
-            // 
-            this.tbTimeMonthly10.Location = new System.Drawing.Point(470, 487);
-            this.tbTimeMonthly10.Name = "tbTimeMonthly10";
-            this.tbTimeMonthly10.ReadOnly = true;
-            this.tbTimeMonthly10.Size = new System.Drawing.Size(63, 20);
-            this.tbTimeMonthly10.TabIndex = 154;
-            this.tbTimeMonthly10.TabStop = false;
-            this.tbTimeMonthly10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbTimeMonthly9
-            // 
-            this.tbTimeMonthly9.Location = new System.Drawing.Point(401, 487);
-            this.tbTimeMonthly9.Name = "tbTimeMonthly9";
-            this.tbTimeMonthly9.ReadOnly = true;
-            this.tbTimeMonthly9.Size = new System.Drawing.Size(63, 20);
-            this.tbTimeMonthly9.TabIndex = 153;
-            this.tbTimeMonthly9.TabStop = false;
-            this.tbTimeMonthly9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbTimeMonthly8
-            // 
-            this.tbTimeMonthly8.Location = new System.Drawing.Point(332, 487);
-            this.tbTimeMonthly8.Name = "tbTimeMonthly8";
-            this.tbTimeMonthly8.ReadOnly = true;
-            this.tbTimeMonthly8.Size = new System.Drawing.Size(63, 20);
-            this.tbTimeMonthly8.TabIndex = 152;
-            this.tbTimeMonthly8.TabStop = false;
-            this.tbTimeMonthly8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbTimeMonthly7
-            // 
-            this.tbTimeMonthly7.Location = new System.Drawing.Point(263, 487);
-            this.tbTimeMonthly7.Name = "tbTimeMonthly7";
-            this.tbTimeMonthly7.ReadOnly = true;
-            this.tbTimeMonthly7.Size = new System.Drawing.Size(63, 20);
-            this.tbTimeMonthly7.TabIndex = 151;
-            this.tbTimeMonthly7.TabStop = false;
-            this.tbTimeMonthly7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label79
-            // 
-            this.label79.AutoSize = true;
-            this.label79.Location = new System.Drawing.Point(185, 490);
-            this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(68, 13);
-            this.label79.TabIndex = 150;
-            this.label79.Text = "Moving Time";
-            // 
-            // tbTimeMonthly6
-            // 
-            this.tbTimeMonthly6.Location = new System.Drawing.Point(607, 254);
-            this.tbTimeMonthly6.Name = "tbTimeMonthly6";
-            this.tbTimeMonthly6.ReadOnly = true;
-            this.tbTimeMonthly6.Size = new System.Drawing.Size(63, 20);
-            this.tbTimeMonthly6.TabIndex = 149;
-            this.tbTimeMonthly6.TabStop = false;
-            this.tbTimeMonthly6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbTimeMonthly5
-            // 
-            this.tbTimeMonthly5.Location = new System.Drawing.Point(538, 254);
-            this.tbTimeMonthly5.Name = "tbTimeMonthly5";
-            this.tbTimeMonthly5.ReadOnly = true;
-            this.tbTimeMonthly5.Size = new System.Drawing.Size(63, 20);
-            this.tbTimeMonthly5.TabIndex = 148;
-            this.tbTimeMonthly5.TabStop = false;
-            this.tbTimeMonthly5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbTimeMonthly4
-            // 
-            this.tbTimeMonthly4.Location = new System.Drawing.Point(469, 254);
-            this.tbTimeMonthly4.Name = "tbTimeMonthly4";
-            this.tbTimeMonthly4.ReadOnly = true;
-            this.tbTimeMonthly4.Size = new System.Drawing.Size(63, 20);
-            this.tbTimeMonthly4.TabIndex = 147;
-            this.tbTimeMonthly4.TabStop = false;
-            this.tbTimeMonthly4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbTimeMonthly3
-            // 
-            this.tbTimeMonthly3.Location = new System.Drawing.Point(400, 254);
-            this.tbTimeMonthly3.Name = "tbTimeMonthly3";
-            this.tbTimeMonthly3.ReadOnly = true;
-            this.tbTimeMonthly3.Size = new System.Drawing.Size(63, 20);
-            this.tbTimeMonthly3.TabIndex = 146;
-            this.tbTimeMonthly3.TabStop = false;
-            this.tbTimeMonthly3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbTimeMonthly2
-            // 
-            this.tbTimeMonthly2.Location = new System.Drawing.Point(331, 254);
-            this.tbTimeMonthly2.Name = "tbTimeMonthly2";
-            this.tbTimeMonthly2.ReadOnly = true;
-            this.tbTimeMonthly2.Size = new System.Drawing.Size(63, 20);
-            this.tbTimeMonthly2.TabIndex = 145;
-            this.tbTimeMonthly2.TabStop = false;
-            this.tbTimeMonthly2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbTimeMonthly1
-            // 
-            this.tbTimeMonthly1.Location = new System.Drawing.Point(262, 254);
-            this.tbTimeMonthly1.Name = "tbTimeMonthly1";
-            this.tbTimeMonthly1.ReadOnly = true;
-            this.tbTimeMonthly1.Size = new System.Drawing.Size(63, 20);
-            this.tbTimeMonthly1.TabIndex = 144;
-            this.tbTimeMonthly1.TabStop = false;
-            this.tbTimeMonthly1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label78
-            // 
-            this.label78.AutoSize = true;
-            this.label78.Location = new System.Drawing.Point(185, 257);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(68, 13);
-            this.label78.TabIndex = 143;
-            this.label78.Text = "Moving Time";
-            // 
-            // tbElevGainMonthly12
-            // 
-            this.tbElevGainMonthly12.Location = new System.Drawing.Point(607, 464);
-            this.tbElevGainMonthly12.Name = "tbElevGainMonthly12";
-            this.tbElevGainMonthly12.ReadOnly = true;
-            this.tbElevGainMonthly12.Size = new System.Drawing.Size(63, 20);
-            this.tbElevGainMonthly12.TabIndex = 142;
-            this.tbElevGainMonthly12.TabStop = false;
-            this.tbElevGainMonthly12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbElevGainMonthly11
-            // 
-            this.tbElevGainMonthly11.Location = new System.Drawing.Point(538, 464);
-            this.tbElevGainMonthly11.Name = "tbElevGainMonthly11";
-            this.tbElevGainMonthly11.ReadOnly = true;
-            this.tbElevGainMonthly11.Size = new System.Drawing.Size(63, 20);
-            this.tbElevGainMonthly11.TabIndex = 141;
-            this.tbElevGainMonthly11.TabStop = false;
-            this.tbElevGainMonthly11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbElevGainMonthly10
-            // 
-            this.tbElevGainMonthly10.Location = new System.Drawing.Point(469, 464);
-            this.tbElevGainMonthly10.Name = "tbElevGainMonthly10";
-            this.tbElevGainMonthly10.ReadOnly = true;
-            this.tbElevGainMonthly10.Size = new System.Drawing.Size(63, 20);
-            this.tbElevGainMonthly10.TabIndex = 140;
-            this.tbElevGainMonthly10.TabStop = false;
-            this.tbElevGainMonthly10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbElevGainMonthly9
-            // 
-            this.tbElevGainMonthly9.Location = new System.Drawing.Point(400, 464);
-            this.tbElevGainMonthly9.Name = "tbElevGainMonthly9";
-            this.tbElevGainMonthly9.ReadOnly = true;
-            this.tbElevGainMonthly9.Size = new System.Drawing.Size(63, 20);
-            this.tbElevGainMonthly9.TabIndex = 139;
-            this.tbElevGainMonthly9.TabStop = false;
-            this.tbElevGainMonthly9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbElevGainMonthly8
-            // 
-            this.tbElevGainMonthly8.Location = new System.Drawing.Point(331, 464);
-            this.tbElevGainMonthly8.Name = "tbElevGainMonthly8";
-            this.tbElevGainMonthly8.ReadOnly = true;
-            this.tbElevGainMonthly8.Size = new System.Drawing.Size(63, 20);
-            this.tbElevGainMonthly8.TabIndex = 138;
-            this.tbElevGainMonthly8.TabStop = false;
-            this.tbElevGainMonthly8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbElevGainMonthly7
-            // 
-            this.tbElevGainMonthly7.Location = new System.Drawing.Point(262, 464);
-            this.tbElevGainMonthly7.Name = "tbElevGainMonthly7";
-            this.tbElevGainMonthly7.ReadOnly = true;
-            this.tbElevGainMonthly7.Size = new System.Drawing.Size(63, 20);
-            this.tbElevGainMonthly7.TabIndex = 137;
-            this.tbElevGainMonthly7.TabStop = false;
-            this.tbElevGainMonthly7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label72
-            // 
-            this.label72.AutoSize = true;
-            this.label72.Location = new System.Drawing.Point(186, 467);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(53, 13);
-            this.label72.TabIndex = 136;
-            this.label72.Text = "Elev Gain";
-            // 
-            // tbElevGainMonthly6
-            // 
-            this.tbElevGainMonthly6.Location = new System.Drawing.Point(607, 231);
-            this.tbElevGainMonthly6.Name = "tbElevGainMonthly6";
-            this.tbElevGainMonthly6.ReadOnly = true;
-            this.tbElevGainMonthly6.Size = new System.Drawing.Size(63, 20);
-            this.tbElevGainMonthly6.TabIndex = 135;
-            this.tbElevGainMonthly6.TabStop = false;
-            this.tbElevGainMonthly6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbElevGainMonthly5
-            // 
-            this.tbElevGainMonthly5.Location = new System.Drawing.Point(538, 231);
-            this.tbElevGainMonthly5.Name = "tbElevGainMonthly5";
-            this.tbElevGainMonthly5.ReadOnly = true;
-            this.tbElevGainMonthly5.Size = new System.Drawing.Size(63, 20);
-            this.tbElevGainMonthly5.TabIndex = 134;
-            this.tbElevGainMonthly5.TabStop = false;
-            this.tbElevGainMonthly5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbElevGainMonthly4
-            // 
-            this.tbElevGainMonthly4.Location = new System.Drawing.Point(469, 231);
-            this.tbElevGainMonthly4.Name = "tbElevGainMonthly4";
-            this.tbElevGainMonthly4.ReadOnly = true;
-            this.tbElevGainMonthly4.Size = new System.Drawing.Size(63, 20);
-            this.tbElevGainMonthly4.TabIndex = 133;
-            this.tbElevGainMonthly4.TabStop = false;
-            this.tbElevGainMonthly4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbElevGainMonthly3
-            // 
-            this.tbElevGainMonthly3.Location = new System.Drawing.Point(400, 231);
-            this.tbElevGainMonthly3.Name = "tbElevGainMonthly3";
-            this.tbElevGainMonthly3.ReadOnly = true;
-            this.tbElevGainMonthly3.Size = new System.Drawing.Size(63, 20);
-            this.tbElevGainMonthly3.TabIndex = 132;
-            this.tbElevGainMonthly3.TabStop = false;
-            this.tbElevGainMonthly3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbElevGainMonthly2
-            // 
-            this.tbElevGainMonthly2.Location = new System.Drawing.Point(331, 231);
-            this.tbElevGainMonthly2.Name = "tbElevGainMonthly2";
-            this.tbElevGainMonthly2.ReadOnly = true;
-            this.tbElevGainMonthly2.Size = new System.Drawing.Size(63, 20);
-            this.tbElevGainMonthly2.TabIndex = 131;
-            this.tbElevGainMonthly2.TabStop = false;
-            this.tbElevGainMonthly2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // tbElevGainMonthly1
-            // 
-            this.tbElevGainMonthly1.Location = new System.Drawing.Point(262, 231);
-            this.tbElevGainMonthly1.Name = "tbElevGainMonthly1";
-            this.tbElevGainMonthly1.ReadOnly = true;
-            this.tbElevGainMonthly1.Size = new System.Drawing.Size(63, 20);
-            this.tbElevGainMonthly1.TabIndex = 130;
-            this.tbElevGainMonthly1.TabStop = false;
-            this.tbElevGainMonthly1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label71
-            // 
-            this.label71.AutoSize = true;
-            this.label71.Location = new System.Drawing.Point(187, 234);
-            this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(53, 13);
-            this.label71.TabIndex = 129;
-            this.label71.Text = "Elev Gain";
             // 
             // label63
             // 
@@ -2055,967 +884,6 @@
             this.label63.TabIndex = 127;
             this.label63.Text = "Statistics Monthly Log Data";
             // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(615, 297);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(56, 13);
-            this.label45.TabIndex = 125;
-            this.label45.Text = "December";
-            // 
-            // month12R3
-            // 
-            this.month12R3.Location = new System.Drawing.Point(607, 362);
-            this.month12R3.Name = "month12R3";
-            this.month12R3.ReadOnly = true;
-            this.month12R3.Size = new System.Drawing.Size(63, 20);
-            this.month12R3.TabIndex = 120;
-            this.month12R3.TabStop = false;
-            this.month12R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month12R7
-            // 
-            this.month12R7.Location = new System.Drawing.Point(607, 442);
-            this.month12R7.Name = "month12R7";
-            this.month12R7.ReadOnly = true;
-            this.month12R7.Size = new System.Drawing.Size(63, 20);
-            this.month12R7.TabIndex = 124;
-            this.month12R7.TabStop = false;
-            this.month12R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month12R6
-            // 
-            this.month12R6.Location = new System.Drawing.Point(607, 422);
-            this.month12R6.Name = "month12R6";
-            this.month12R6.ReadOnly = true;
-            this.month12R6.Size = new System.Drawing.Size(63, 20);
-            this.month12R6.TabIndex = 123;
-            this.month12R6.TabStop = false;
-            this.month12R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month12R1
-            // 
-            this.month12R1.Location = new System.Drawing.Point(607, 322);
-            this.month12R1.Name = "month12R1";
-            this.month12R1.ReadOnly = true;
-            this.month12R1.Size = new System.Drawing.Size(63, 20);
-            this.month12R1.TabIndex = 118;
-            this.month12R1.TabStop = false;
-            this.month12R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month12R5
-            // 
-            this.month12R5.Location = new System.Drawing.Point(607, 402);
-            this.month12R5.Name = "month12R5";
-            this.month12R5.ReadOnly = true;
-            this.month12R5.Size = new System.Drawing.Size(63, 20);
-            this.month12R5.TabIndex = 122;
-            this.month12R5.TabStop = false;
-            this.month12R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month12R2
-            // 
-            this.month12R2.Location = new System.Drawing.Point(607, 342);
-            this.month12R2.Name = "month12R2";
-            this.month12R2.ReadOnly = true;
-            this.month12R2.Size = new System.Drawing.Size(63, 20);
-            this.month12R2.TabIndex = 119;
-            this.month12R2.TabStop = false;
-            this.month12R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month12R4
-            // 
-            this.month12R4.Location = new System.Drawing.Point(607, 382);
-            this.month12R4.Name = "month12R4";
-            this.month12R4.ReadOnly = true;
-            this.month12R4.Size = new System.Drawing.Size(63, 20);
-            this.month12R4.TabIndex = 121;
-            this.month12R4.TabStop = false;
-            this.month12R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(546, 297);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(56, 13);
-            this.label46.TabIndex = 117;
-            this.label46.Text = "November";
-            // 
-            // month11R3
-            // 
-            this.month11R3.Location = new System.Drawing.Point(538, 362);
-            this.month11R3.Name = "month11R3";
-            this.month11R3.ReadOnly = true;
-            this.month11R3.Size = new System.Drawing.Size(63, 20);
-            this.month11R3.TabIndex = 112;
-            this.month11R3.TabStop = false;
-            this.month11R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month11R7
-            // 
-            this.month11R7.Location = new System.Drawing.Point(538, 442);
-            this.month11R7.Name = "month11R7";
-            this.month11R7.ReadOnly = true;
-            this.month11R7.Size = new System.Drawing.Size(63, 20);
-            this.month11R7.TabIndex = 116;
-            this.month11R7.TabStop = false;
-            this.month11R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month11R6
-            // 
-            this.month11R6.Location = new System.Drawing.Point(538, 422);
-            this.month11R6.Name = "month11R6";
-            this.month11R6.ReadOnly = true;
-            this.month11R6.Size = new System.Drawing.Size(63, 20);
-            this.month11R6.TabIndex = 115;
-            this.month11R6.TabStop = false;
-            this.month11R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month11R1
-            // 
-            this.month11R1.Location = new System.Drawing.Point(538, 322);
-            this.month11R1.Name = "month11R1";
-            this.month11R1.ReadOnly = true;
-            this.month11R1.Size = new System.Drawing.Size(63, 20);
-            this.month11R1.TabIndex = 110;
-            this.month11R1.TabStop = false;
-            this.month11R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month11R5
-            // 
-            this.month11R5.Location = new System.Drawing.Point(538, 402);
-            this.month11R5.Name = "month11R5";
-            this.month11R5.ReadOnly = true;
-            this.month11R5.Size = new System.Drawing.Size(63, 20);
-            this.month11R5.TabIndex = 114;
-            this.month11R5.TabStop = false;
-            this.month11R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month11R2
-            // 
-            this.month11R2.Location = new System.Drawing.Point(538, 342);
-            this.month11R2.Name = "month11R2";
-            this.month11R2.ReadOnly = true;
-            this.month11R2.Size = new System.Drawing.Size(63, 20);
-            this.month11R2.TabIndex = 111;
-            this.month11R2.TabStop = false;
-            this.month11R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month11R4
-            // 
-            this.month11R4.Location = new System.Drawing.Point(538, 382);
-            this.month11R4.Name = "month11R4";
-            this.month11R4.ReadOnly = true;
-            this.month11R4.Size = new System.Drawing.Size(63, 20);
-            this.month11R4.TabIndex = 113;
-            this.month11R4.TabStop = false;
-            this.month11R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(477, 297);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(45, 13);
-            this.label47.TabIndex = 109;
-            this.label47.Text = "October";
-            // 
-            // month10R3
-            // 
-            this.month10R3.Location = new System.Drawing.Point(469, 362);
-            this.month10R3.Name = "month10R3";
-            this.month10R3.ReadOnly = true;
-            this.month10R3.Size = new System.Drawing.Size(63, 20);
-            this.month10R3.TabIndex = 104;
-            this.month10R3.TabStop = false;
-            this.month10R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month10R7
-            // 
-            this.month10R7.Location = new System.Drawing.Point(469, 442);
-            this.month10R7.Name = "month10R7";
-            this.month10R7.ReadOnly = true;
-            this.month10R7.Size = new System.Drawing.Size(63, 20);
-            this.month10R7.TabIndex = 108;
-            this.month10R7.TabStop = false;
-            this.month10R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month10R6
-            // 
-            this.month10R6.Location = new System.Drawing.Point(469, 422);
-            this.month10R6.Name = "month10R6";
-            this.month10R6.ReadOnly = true;
-            this.month10R6.Size = new System.Drawing.Size(63, 20);
-            this.month10R6.TabIndex = 107;
-            this.month10R6.TabStop = false;
-            this.month10R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month10R1
-            // 
-            this.month10R1.Location = new System.Drawing.Point(469, 322);
-            this.month10R1.Name = "month10R1";
-            this.month10R1.ReadOnly = true;
-            this.month10R1.Size = new System.Drawing.Size(63, 20);
-            this.month10R1.TabIndex = 102;
-            this.month10R1.TabStop = false;
-            this.month10R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month10R5
-            // 
-            this.month10R5.Location = new System.Drawing.Point(469, 402);
-            this.month10R5.Name = "month10R5";
-            this.month10R5.ReadOnly = true;
-            this.month10R5.Size = new System.Drawing.Size(63, 20);
-            this.month10R5.TabIndex = 106;
-            this.month10R5.TabStop = false;
-            this.month10R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month10R2
-            // 
-            this.month10R2.Location = new System.Drawing.Point(469, 342);
-            this.month10R2.Name = "month10R2";
-            this.month10R2.ReadOnly = true;
-            this.month10R2.Size = new System.Drawing.Size(63, 20);
-            this.month10R2.TabIndex = 103;
-            this.month10R2.TabStop = false;
-            this.month10R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month10R4
-            // 
-            this.month10R4.Location = new System.Drawing.Point(469, 382);
-            this.month10R4.Name = "month10R4";
-            this.month10R4.ReadOnly = true;
-            this.month10R4.Size = new System.Drawing.Size(63, 20);
-            this.month10R4.TabIndex = 105;
-            this.month10R4.TabStop = false;
-            this.month10R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(408, 297);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(58, 13);
-            this.label48.TabIndex = 101;
-            this.label48.Text = "September";
-            // 
-            // month9R3
-            // 
-            this.month9R3.Location = new System.Drawing.Point(400, 362);
-            this.month9R3.Name = "month9R3";
-            this.month9R3.ReadOnly = true;
-            this.month9R3.Size = new System.Drawing.Size(63, 20);
-            this.month9R3.TabIndex = 96;
-            this.month9R3.TabStop = false;
-            this.month9R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month9R7
-            // 
-            this.month9R7.Location = new System.Drawing.Point(400, 442);
-            this.month9R7.Name = "month9R7";
-            this.month9R7.ReadOnly = true;
-            this.month9R7.Size = new System.Drawing.Size(63, 20);
-            this.month9R7.TabIndex = 100;
-            this.month9R7.TabStop = false;
-            this.month9R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month9R6
-            // 
-            this.month9R6.Location = new System.Drawing.Point(400, 422);
-            this.month9R6.Name = "month9R6";
-            this.month9R6.ReadOnly = true;
-            this.month9R6.Size = new System.Drawing.Size(63, 20);
-            this.month9R6.TabIndex = 99;
-            this.month9R6.TabStop = false;
-            this.month9R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month9R1
-            // 
-            this.month9R1.Location = new System.Drawing.Point(400, 322);
-            this.month9R1.Name = "month9R1";
-            this.month9R1.ReadOnly = true;
-            this.month9R1.Size = new System.Drawing.Size(63, 20);
-            this.month9R1.TabIndex = 94;
-            this.month9R1.TabStop = false;
-            this.month9R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month9R5
-            // 
-            this.month9R5.Location = new System.Drawing.Point(400, 402);
-            this.month9R5.Name = "month9R5";
-            this.month9R5.ReadOnly = true;
-            this.month9R5.Size = new System.Drawing.Size(63, 20);
-            this.month9R5.TabIndex = 98;
-            this.month9R5.TabStop = false;
-            this.month9R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month9R2
-            // 
-            this.month9R2.Location = new System.Drawing.Point(400, 342);
-            this.month9R2.Name = "month9R2";
-            this.month9R2.ReadOnly = true;
-            this.month9R2.Size = new System.Drawing.Size(63, 20);
-            this.month9R2.TabIndex = 95;
-            this.month9R2.TabStop = false;
-            this.month9R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month9R4
-            // 
-            this.month9R4.Location = new System.Drawing.Point(400, 382);
-            this.month9R4.Name = "month9R4";
-            this.month9R4.ReadOnly = true;
-            this.month9R4.Size = new System.Drawing.Size(63, 20);
-            this.month9R4.TabIndex = 97;
-            this.month9R4.TabStop = false;
-            this.month9R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(340, 297);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(40, 13);
-            this.label49.TabIndex = 93;
-            this.label49.Text = "August";
-            // 
-            // month8R3
-            // 
-            this.month8R3.Location = new System.Drawing.Point(331, 362);
-            this.month8R3.Name = "month8R3";
-            this.month8R3.ReadOnly = true;
-            this.month8R3.Size = new System.Drawing.Size(63, 20);
-            this.month8R3.TabIndex = 88;
-            this.month8R3.TabStop = false;
-            this.month8R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month8R7
-            // 
-            this.month8R7.Location = new System.Drawing.Point(331, 442);
-            this.month8R7.Name = "month8R7";
-            this.month8R7.ReadOnly = true;
-            this.month8R7.Size = new System.Drawing.Size(63, 20);
-            this.month8R7.TabIndex = 92;
-            this.month8R7.TabStop = false;
-            this.month8R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month8R6
-            // 
-            this.month8R6.Location = new System.Drawing.Point(331, 422);
-            this.month8R6.Name = "month8R6";
-            this.month8R6.ReadOnly = true;
-            this.month8R6.Size = new System.Drawing.Size(63, 20);
-            this.month8R6.TabIndex = 91;
-            this.month8R6.TabStop = false;
-            this.month8R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month8R1
-            // 
-            this.month8R1.Location = new System.Drawing.Point(331, 322);
-            this.month8R1.Name = "month8R1";
-            this.month8R1.ReadOnly = true;
-            this.month8R1.Size = new System.Drawing.Size(63, 20);
-            this.month8R1.TabIndex = 86;
-            this.month8R1.TabStop = false;
-            this.month8R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month8R5
-            // 
-            this.month8R5.Location = new System.Drawing.Point(331, 402);
-            this.month8R5.Name = "month8R5";
-            this.month8R5.ReadOnly = true;
-            this.month8R5.Size = new System.Drawing.Size(63, 20);
-            this.month8R5.TabIndex = 90;
-            this.month8R5.TabStop = false;
-            this.month8R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month8R2
-            // 
-            this.month8R2.Location = new System.Drawing.Point(331, 342);
-            this.month8R2.Name = "month8R2";
-            this.month8R2.ReadOnly = true;
-            this.month8R2.Size = new System.Drawing.Size(63, 20);
-            this.month8R2.TabIndex = 87;
-            this.month8R2.TabStop = false;
-            this.month8R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month8R4
-            // 
-            this.month8R4.Location = new System.Drawing.Point(331, 382);
-            this.month8R4.Name = "month8R4";
-            this.month8R4.ReadOnly = true;
-            this.month8R4.Size = new System.Drawing.Size(63, 20);
-            this.month8R4.TabIndex = 89;
-            this.month8R4.TabStop = false;
-            this.month8R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(280, 297);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(25, 13);
-            this.label50.TabIndex = 85;
-            this.label50.Text = "July";
-            // 
-            // month7R3
-            // 
-            this.month7R3.Location = new System.Drawing.Point(262, 362);
-            this.month7R3.Name = "month7R3";
-            this.month7R3.ReadOnly = true;
-            this.month7R3.Size = new System.Drawing.Size(63, 20);
-            this.month7R3.TabIndex = 76;
-            this.month7R3.TabStop = false;
-            this.month7R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month7R7
-            // 
-            this.month7R7.Location = new System.Drawing.Point(262, 442);
-            this.month7R7.Name = "month7R7";
-            this.month7R7.ReadOnly = true;
-            this.month7R7.Size = new System.Drawing.Size(63, 20);
-            this.month7R7.TabIndex = 84;
-            this.month7R7.TabStop = false;
-            this.month7R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(186, 445);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(70, 13);
-            this.label51.TabIndex = 83;
-            this.label51.Text = "Longest Ride";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(185, 325);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(71, 13);
-            this.label52.TabIndex = 71;
-            this.label52.Text = "Monthly Miles";
-            // 
-            // month7R6
-            // 
-            this.month7R6.Location = new System.Drawing.Point(262, 422);
-            this.month7R6.Name = "month7R6";
-            this.month7R6.ReadOnly = true;
-            this.month7R6.Size = new System.Drawing.Size(63, 20);
-            this.month7R6.TabIndex = 82;
-            this.month7R6.TabStop = false;
-            this.month7R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month7R1
-            // 
-            this.month7R1.Location = new System.Drawing.Point(262, 322);
-            this.month7R1.Name = "month7R1";
-            this.month7R1.ReadOnly = true;
-            this.month7R1.Size = new System.Drawing.Size(63, 20);
-            this.month7R1.TabIndex = 72;
-            this.month7R1.TabStop = false;
-            this.month7R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(153, 425);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(103, 13);
-            this.label53.TabIndex = 81;
-            this.label53.Text = "High Week Milelage";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(170, 345);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(86, 13);
-            this.label54.TabIndex = 73;
-            this.label54.Text = "Number of Rides";
-            // 
-            // month7R5
-            // 
-            this.month7R5.Location = new System.Drawing.Point(262, 402);
-            this.month7R5.Name = "month7R5";
-            this.month7R5.ReadOnly = true;
-            this.month7R5.Size = new System.Drawing.Size(63, 20);
-            this.month7R5.TabIndex = 80;
-            this.month7R5.TabStop = false;
-            this.month7R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month7R2
-            // 
-            this.month7R2.Location = new System.Drawing.Point(262, 342);
-            this.month7R2.Name = "month7R2";
-            this.month7R2.ReadOnly = true;
-            this.month7R2.Size = new System.Drawing.Size(63, 20);
-            this.month7R2.TabIndex = 74;
-            this.month7R2.TabStop = false;
-            this.month7R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(160, 405);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(96, 13);
-            this.label55.TabIndex = 79;
-            this.label55.Text = "Avg Miles per Ride";
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(153, 365);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(103, 13);
-            this.label56.TabIndex = 75;
-            this.label56.Text = "Avg Rides per week";
-            // 
-            // month7R4
-            // 
-            this.month7R4.Location = new System.Drawing.Point(262, 382);
-            this.month7R4.Name = "month7R4";
-            this.month7R4.ReadOnly = true;
-            this.month7R4.Size = new System.Drawing.Size(63, 20);
-            this.month7R4.TabIndex = 78;
-            this.month7R4.TabStop = false;
-            this.month7R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(156, 385);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(100, 13);
-            this.label57.TabIndex = 77;
-            this.label57.Text = "Avg Miles per week";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(624, 63);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(30, 13);
-            this.label44.TabIndex = 70;
-            this.label44.Text = "June";
-            // 
-            // month6R3
-            // 
-            this.month6R3.Location = new System.Drawing.Point(608, 128);
-            this.month6R3.Name = "month6R3";
-            this.month6R3.ReadOnly = true;
-            this.month6R3.Size = new System.Drawing.Size(63, 20);
-            this.month6R3.TabIndex = 65;
-            this.month6R3.TabStop = false;
-            this.month6R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month6R7
-            // 
-            this.month6R7.Location = new System.Drawing.Point(608, 208);
-            this.month6R7.Name = "month6R7";
-            this.month6R7.ReadOnly = true;
-            this.month6R7.Size = new System.Drawing.Size(63, 20);
-            this.month6R7.TabIndex = 69;
-            this.month6R7.TabStop = false;
-            this.month6R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month6R6
-            // 
-            this.month6R6.Location = new System.Drawing.Point(608, 188);
-            this.month6R6.Name = "month6R6";
-            this.month6R6.ReadOnly = true;
-            this.month6R6.Size = new System.Drawing.Size(63, 20);
-            this.month6R6.TabIndex = 68;
-            this.month6R6.TabStop = false;
-            this.month6R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month6R1
-            // 
-            this.month6R1.Location = new System.Drawing.Point(608, 88);
-            this.month6R1.Name = "month6R1";
-            this.month6R1.ReadOnly = true;
-            this.month6R1.Size = new System.Drawing.Size(63, 20);
-            this.month6R1.TabIndex = 63;
-            this.month6R1.TabStop = false;
-            this.month6R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month6R5
-            // 
-            this.month6R5.Location = new System.Drawing.Point(608, 168);
-            this.month6R5.Name = "month6R5";
-            this.month6R5.ReadOnly = true;
-            this.month6R5.Size = new System.Drawing.Size(63, 20);
-            this.month6R5.TabIndex = 67;
-            this.month6R5.TabStop = false;
-            this.month6R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month6R2
-            // 
-            this.month6R2.Location = new System.Drawing.Point(608, 108);
-            this.month6R2.Name = "month6R2";
-            this.month6R2.ReadOnly = true;
-            this.month6R2.Size = new System.Drawing.Size(63, 20);
-            this.month6R2.TabIndex = 64;
-            this.month6R2.TabStop = false;
-            this.month6R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month6R4
-            // 
-            this.month6R4.Location = new System.Drawing.Point(608, 148);
-            this.month6R4.Name = "month6R4";
-            this.month6R4.ReadOnly = true;
-            this.month6R4.Size = new System.Drawing.Size(63, 20);
-            this.month6R4.TabIndex = 66;
-            this.month6R4.TabStop = false;
-            this.month6R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(555, 63);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(27, 13);
-            this.label43.TabIndex = 62;
-            this.label43.Text = "May";
-            // 
-            // month5R3
-            // 
-            this.month5R3.Location = new System.Drawing.Point(539, 128);
-            this.month5R3.Name = "month5R3";
-            this.month5R3.ReadOnly = true;
-            this.month5R3.Size = new System.Drawing.Size(63, 20);
-            this.month5R3.TabIndex = 57;
-            this.month5R3.TabStop = false;
-            this.month5R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month5R7
-            // 
-            this.month5R7.Location = new System.Drawing.Point(539, 208);
-            this.month5R7.Name = "month5R7";
-            this.month5R7.ReadOnly = true;
-            this.month5R7.Size = new System.Drawing.Size(63, 20);
-            this.month5R7.TabIndex = 61;
-            this.month5R7.TabStop = false;
-            this.month5R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month5R6
-            // 
-            this.month5R6.Location = new System.Drawing.Point(539, 188);
-            this.month5R6.Name = "month5R6";
-            this.month5R6.ReadOnly = true;
-            this.month5R6.Size = new System.Drawing.Size(63, 20);
-            this.month5R6.TabIndex = 60;
-            this.month5R6.TabStop = false;
-            this.month5R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month5R1
-            // 
-            this.month5R1.Location = new System.Drawing.Point(539, 88);
-            this.month5R1.Name = "month5R1";
-            this.month5R1.ReadOnly = true;
-            this.month5R1.Size = new System.Drawing.Size(63, 20);
-            this.month5R1.TabIndex = 55;
-            this.month5R1.TabStop = false;
-            this.month5R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month5R5
-            // 
-            this.month5R5.Location = new System.Drawing.Point(539, 168);
-            this.month5R5.Name = "month5R5";
-            this.month5R5.ReadOnly = true;
-            this.month5R5.Size = new System.Drawing.Size(63, 20);
-            this.month5R5.TabIndex = 59;
-            this.month5R5.TabStop = false;
-            this.month5R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month5R2
-            // 
-            this.month5R2.Location = new System.Drawing.Point(539, 108);
-            this.month5R2.Name = "month5R2";
-            this.month5R2.ReadOnly = true;
-            this.month5R2.Size = new System.Drawing.Size(63, 20);
-            this.month5R2.TabIndex = 56;
-            this.month5R2.TabStop = false;
-            this.month5R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month5R4
-            // 
-            this.month5R4.Location = new System.Drawing.Point(539, 148);
-            this.month5R4.Name = "month5R4";
-            this.month5R4.ReadOnly = true;
-            this.month5R4.Size = new System.Drawing.Size(63, 20);
-            this.month5R4.TabIndex = 58;
-            this.month5R4.TabStop = false;
-            this.month5R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(486, 63);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(27, 13);
-            this.label42.TabIndex = 54;
-            this.label42.Text = "April";
-            // 
-            // month4R3
-            // 
-            this.month4R3.Location = new System.Drawing.Point(470, 128);
-            this.month4R3.Name = "month4R3";
-            this.month4R3.ReadOnly = true;
-            this.month4R3.Size = new System.Drawing.Size(63, 20);
-            this.month4R3.TabIndex = 49;
-            this.month4R3.TabStop = false;
-            this.month4R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month4R7
-            // 
-            this.month4R7.Location = new System.Drawing.Point(470, 208);
-            this.month4R7.Name = "month4R7";
-            this.month4R7.ReadOnly = true;
-            this.month4R7.Size = new System.Drawing.Size(63, 20);
-            this.month4R7.TabIndex = 53;
-            this.month4R7.TabStop = false;
-            this.month4R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month4R6
-            // 
-            this.month4R6.Location = new System.Drawing.Point(470, 188);
-            this.month4R6.Name = "month4R6";
-            this.month4R6.ReadOnly = true;
-            this.month4R6.Size = new System.Drawing.Size(63, 20);
-            this.month4R6.TabIndex = 52;
-            this.month4R6.TabStop = false;
-            this.month4R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month4R1
-            // 
-            this.month4R1.Location = new System.Drawing.Point(470, 88);
-            this.month4R1.Name = "month4R1";
-            this.month4R1.ReadOnly = true;
-            this.month4R1.Size = new System.Drawing.Size(63, 20);
-            this.month4R1.TabIndex = 47;
-            this.month4R1.TabStop = false;
-            this.month4R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month4R5
-            // 
-            this.month4R5.Location = new System.Drawing.Point(470, 168);
-            this.month4R5.Name = "month4R5";
-            this.month4R5.ReadOnly = true;
-            this.month4R5.Size = new System.Drawing.Size(63, 20);
-            this.month4R5.TabIndex = 51;
-            this.month4R5.TabStop = false;
-            this.month4R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month4R2
-            // 
-            this.month4R2.Location = new System.Drawing.Point(470, 108);
-            this.month4R2.Name = "month4R2";
-            this.month4R2.ReadOnly = true;
-            this.month4R2.Size = new System.Drawing.Size(63, 20);
-            this.month4R2.TabIndex = 48;
-            this.month4R2.TabStop = false;
-            this.month4R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month4R4
-            // 
-            this.month4R4.Location = new System.Drawing.Point(470, 148);
-            this.month4R4.Name = "month4R4";
-            this.month4R4.ReadOnly = true;
-            this.month4R4.Size = new System.Drawing.Size(63, 20);
-            this.month4R4.TabIndex = 50;
-            this.month4R4.TabStop = false;
-            this.month4R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(417, 63);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(37, 13);
-            this.label41.TabIndex = 46;
-            this.label41.Text = "March";
-            // 
-            // month3R3
-            // 
-            this.month3R3.Location = new System.Drawing.Point(401, 128);
-            this.month3R3.Name = "month3R3";
-            this.month3R3.ReadOnly = true;
-            this.month3R3.Size = new System.Drawing.Size(63, 20);
-            this.month3R3.TabIndex = 41;
-            this.month3R3.TabStop = false;
-            this.month3R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month3R7
-            // 
-            this.month3R7.Location = new System.Drawing.Point(401, 208);
-            this.month3R7.Name = "month3R7";
-            this.month3R7.ReadOnly = true;
-            this.month3R7.Size = new System.Drawing.Size(63, 20);
-            this.month3R7.TabIndex = 45;
-            this.month3R7.TabStop = false;
-            this.month3R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month3R6
-            // 
-            this.month3R6.Location = new System.Drawing.Point(401, 188);
-            this.month3R6.Name = "month3R6";
-            this.month3R6.ReadOnly = true;
-            this.month3R6.Size = new System.Drawing.Size(63, 20);
-            this.month3R6.TabIndex = 44;
-            this.month3R6.TabStop = false;
-            this.month3R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month3R1
-            // 
-            this.month3R1.Location = new System.Drawing.Point(401, 88);
-            this.month3R1.Name = "month3R1";
-            this.month3R1.ReadOnly = true;
-            this.month3R1.Size = new System.Drawing.Size(63, 20);
-            this.month3R1.TabIndex = 39;
-            this.month3R1.TabStop = false;
-            this.month3R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month3R5
-            // 
-            this.month3R5.Location = new System.Drawing.Point(401, 168);
-            this.month3R5.Name = "month3R5";
-            this.month3R5.ReadOnly = true;
-            this.month3R5.Size = new System.Drawing.Size(63, 20);
-            this.month3R5.TabIndex = 43;
-            this.month3R5.TabStop = false;
-            this.month3R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month3R2
-            // 
-            this.month3R2.Location = new System.Drawing.Point(401, 108);
-            this.month3R2.Name = "month3R2";
-            this.month3R2.ReadOnly = true;
-            this.month3R2.Size = new System.Drawing.Size(63, 20);
-            this.month3R2.TabIndex = 40;
-            this.month3R2.TabStop = false;
-            this.month3R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month3R4
-            // 
-            this.month3R4.Location = new System.Drawing.Point(401, 148);
-            this.month3R4.Name = "month3R4";
-            this.month3R4.ReadOnly = true;
-            this.month3R4.Size = new System.Drawing.Size(63, 20);
-            this.month3R4.TabIndex = 42;
-            this.month3R4.TabStop = false;
-            this.month3R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(340, 63);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(48, 13);
-            this.label40.TabIndex = 38;
-            this.label40.Text = "February";
-            // 
-            // month2R3
-            // 
-            this.month2R3.Location = new System.Drawing.Point(332, 128);
-            this.month2R3.Name = "month2R3";
-            this.month2R3.ReadOnly = true;
-            this.month2R3.Size = new System.Drawing.Size(63, 20);
-            this.month2R3.TabIndex = 33;
-            this.month2R3.TabStop = false;
-            this.month2R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month2R7
-            // 
-            this.month2R7.Location = new System.Drawing.Point(332, 208);
-            this.month2R7.Name = "month2R7";
-            this.month2R7.ReadOnly = true;
-            this.month2R7.Size = new System.Drawing.Size(63, 20);
-            this.month2R7.TabIndex = 37;
-            this.month2R7.TabStop = false;
-            this.month2R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month2R6
-            // 
-            this.month2R6.Location = new System.Drawing.Point(332, 188);
-            this.month2R6.Name = "month2R6";
-            this.month2R6.ReadOnly = true;
-            this.month2R6.Size = new System.Drawing.Size(63, 20);
-            this.month2R6.TabIndex = 36;
-            this.month2R6.TabStop = false;
-            this.month2R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month2R1
-            // 
-            this.month2R1.Location = new System.Drawing.Point(332, 88);
-            this.month2R1.Name = "month2R1";
-            this.month2R1.ReadOnly = true;
-            this.month2R1.Size = new System.Drawing.Size(63, 20);
-            this.month2R1.TabIndex = 31;
-            this.month2R1.TabStop = false;
-            this.month2R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month2R5
-            // 
-            this.month2R5.Location = new System.Drawing.Point(332, 168);
-            this.month2R5.Name = "month2R5";
-            this.month2R5.ReadOnly = true;
-            this.month2R5.Size = new System.Drawing.Size(63, 20);
-            this.month2R5.TabIndex = 35;
-            this.month2R5.TabStop = false;
-            this.month2R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month2R2
-            // 
-            this.month2R2.Location = new System.Drawing.Point(332, 108);
-            this.month2R2.Name = "month2R2";
-            this.month2R2.ReadOnly = true;
-            this.month2R2.Size = new System.Drawing.Size(63, 20);
-            this.month2R2.TabIndex = 32;
-            this.month2R2.TabStop = false;
-            this.month2R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month2R4
-            // 
-            this.month2R4.Location = new System.Drawing.Point(332, 148);
-            this.month2R4.Name = "month2R4";
-            this.month2R4.ReadOnly = true;
-            this.month2R4.Size = new System.Drawing.Size(63, 20);
-            this.month2R4.TabIndex = 34;
-            this.month2R4.TabStop = false;
-            this.month2R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(271, 63);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(44, 13);
-            this.label39.TabIndex = 30;
-            this.label39.Text = "January";
-            // 
-            // month1R3
-            // 
-            this.month1R3.Location = new System.Drawing.Point(263, 128);
-            this.month1R3.Name = "month1R3";
-            this.month1R3.ReadOnly = true;
-            this.month1R3.Size = new System.Drawing.Size(63, 20);
-            this.month1R3.TabIndex = 21;
-            this.month1R3.TabStop = false;
-            this.month1R3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month1R7
-            // 
-            this.month1R7.Location = new System.Drawing.Point(263, 208);
-            this.month1R7.Name = "month1R7";
-            this.month1R7.ReadOnly = true;
-            this.month1R7.Size = new System.Drawing.Size(63, 20);
-            this.month1R7.TabIndex = 29;
-            this.month1R7.TabStop = false;
-            this.month1R7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // cbStatMonthlyLogYear
             // 
             this.cbStatMonthlyLogYear.BackColor = System.Drawing.Color.Silver;
@@ -3026,119 +894,6 @@
             this.cbStatMonthlyLogYear.Size = new System.Drawing.Size(136, 21);
             this.cbStatMonthlyLogYear.TabIndex = 0;
             this.cbStatMonthlyLogYear.SelectedIndexChanged += new System.EventHandler(this.CbStatMonthlyLogYear_changed);
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(187, 211);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(70, 13);
-            this.label32.TabIndex = 28;
-            this.label32.Text = "Longest Ride";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(186, 91);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(71, 13);
-            this.label33.TabIndex = 16;
-            this.label33.Text = "Monthly Miles";
-            // 
-            // month1R6
-            // 
-            this.month1R6.Location = new System.Drawing.Point(263, 188);
-            this.month1R6.Name = "month1R6";
-            this.month1R6.ReadOnly = true;
-            this.month1R6.Size = new System.Drawing.Size(63, 20);
-            this.month1R6.TabIndex = 27;
-            this.month1R6.TabStop = false;
-            this.month1R6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month1R1
-            // 
-            this.month1R1.Location = new System.Drawing.Point(263, 88);
-            this.month1R1.Name = "month1R1";
-            this.month1R1.ReadOnly = true;
-            this.month1R1.Size = new System.Drawing.Size(63, 20);
-            this.month1R1.TabIndex = 17;
-            this.month1R1.TabStop = false;
-            this.month1R1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(154, 191);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(103, 13);
-            this.label34.TabIndex = 26;
-            this.label34.Text = "High Week Milelage";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(171, 111);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(86, 13);
-            this.label35.TabIndex = 18;
-            this.label35.Text = "Number of Rides";
-            // 
-            // month1R5
-            // 
-            this.month1R5.Location = new System.Drawing.Point(263, 168);
-            this.month1R5.Name = "month1R5";
-            this.month1R5.ReadOnly = true;
-            this.month1R5.Size = new System.Drawing.Size(63, 20);
-            this.month1R5.TabIndex = 25;
-            this.month1R5.TabStop = false;
-            this.month1R5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // month1R2
-            // 
-            this.month1R2.Location = new System.Drawing.Point(263, 108);
-            this.month1R2.Name = "month1R2";
-            this.month1R2.ReadOnly = true;
-            this.month1R2.Size = new System.Drawing.Size(63, 20);
-            this.month1R2.TabIndex = 19;
-            this.month1R2.TabStop = false;
-            this.month1R2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(161, 171);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(96, 13);
-            this.label36.TabIndex = 24;
-            this.label36.Text = "Avg Miles per Ride";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(154, 131);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(103, 13);
-            this.label37.TabIndex = 20;
-            this.label37.Text = "Avg Rides per week";
-            // 
-            // month1R4
-            // 
-            this.month1R4.Location = new System.Drawing.Point(263, 148);
-            this.month1R4.Name = "month1R4";
-            this.month1R4.ReadOnly = true;
-            this.month1R4.Size = new System.Drawing.Size(63, 20);
-            this.month1R4.TabIndex = 23;
-            this.month1R4.TabStop = false;
-            this.month1R4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(157, 151);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(100, 13);
-            this.label38.TabIndex = 22;
-            this.label38.Text = "Avg Miles per week";
             // 
             // tabPage8
             // 
@@ -3173,7 +928,7 @@
             this.dataGridViewWeekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewWeekly.Location = new System.Drawing.Point(76, 72);
             this.dataGridViewWeekly.Name = "dataGridViewWeekly";
-            this.dataGridViewWeekly.Size = new System.Drawing.Size(624, 333);
+            this.dataGridViewWeekly.Size = new System.Drawing.Size(624, 353);
             this.dataGridViewWeekly.TabIndex = 177;
             // 
             // label65
@@ -3218,6 +973,15 @@
             this.tbMaintDateCheck.Size = new System.Drawing.Size(47, 20);
             this.tbMaintDateCheck.TabIndex = 19;
             this.tbMaintDateCheck.Visible = false;
+            // 
+            // tbMaintID
+            // 
+            this.tbMaintID.Location = new System.Drawing.Point(834, 8);
+            this.tbMaintID.Name = "tbMaintID";
+            this.tbMaintID.Size = new System.Drawing.Size(47, 20);
+            this.tbMaintID.TabIndex = 12;
+            this.tbMaintID.TabStop = false;
+            this.tbMaintID.Visible = false;
             // 
             // lbMaintError
             // 
@@ -5022,15 +2786,6 @@
             this.label29.TabIndex = 2;
             this.label29.Text = "By: John T Flynn";
             // 
-            // tbMaintID
-            // 
-            this.tbMaintID.Location = new System.Drawing.Point(834, 8);
-            this.tbMaintID.Name = "tbMaintID";
-            this.tbMaintID.Size = new System.Drawing.Size(47, 20);
-            this.tbMaintID.TabIndex = 12;
-            this.tbMaintID.TabStop = false;
-            this.tbMaintID.Visible = false;
-            // 
             // lbVersion
             // 
             this.lbVersion.AutoSize = true;
@@ -5050,6 +2805,96 @@
             this.label1.Size = new System.Drawing.Size(287, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
+            // 
+            // label90
+            // 
+            this.label90.AutoSize = true;
+            this.label90.Location = new System.Drawing.Point(6, 244);
+            this.label90.Name = "label90";
+            this.label90.Size = new System.Drawing.Size(97, 13);
+            this.label90.TabIndex = 88;
+            this.label90.Text = "High Ascent Week";
+            // 
+            // tbHighAscentWeekAll
+            // 
+            this.tbHighAscentWeekAll.Location = new System.Drawing.Point(110, 241);
+            this.tbHighAscentWeekAll.Name = "tbHighAscentWeekAll";
+            this.tbHighAscentWeekAll.ReadOnly = true;
+            this.tbHighAscentWeekAll.Size = new System.Drawing.Size(97, 20);
+            this.tbHighAscentWeekAll.TabIndex = 87;
+            this.tbHighAscentWeekAll.TabStop = false;
+            this.tbHighAscentWeekAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // dataGridViewMonthly
+            // 
+            this.dataGridViewMonthly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMonthly.Location = new System.Drawing.Point(15, 65);
+            this.dataGridViewMonthly.Name = "dataGridViewMonthly";
+            this.dataGridViewMonthly.Size = new System.Drawing.Size(791, 440);
+            this.dataGridViewMonthly.TabIndex = 157;
+            // 
+            // dataGridViewYearly
+            // 
+            this.dataGridViewYearly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewYearly.Location = new System.Drawing.Point(143, 101);
+            this.dataGridViewYearly.Name = "dataGridViewYearly";
+            this.dataGridViewYearly.Size = new System.Drawing.Size(706, 364);
+            this.dataGridViewYearly.TabIndex = 91;
+            // 
+            // cbLogYear10
+            // 
+            this.cbLogYear10.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear10.FormattingEnabled = true;
+            this.cbLogYear10.Location = new System.Drawing.Point(27, 438);
+            this.cbLogYear10.Name = "cbLogYear10";
+            this.cbLogYear10.Size = new System.Drawing.Size(110, 21);
+            this.cbLogYear10.TabIndex = 96;
+            this.cbLogYear10.SelectedIndexChanged += new System.EventHandler(this.Cb10LogYear_changed);
+            // 
+            // cbLogYear9
+            // 
+            this.cbLogYear9.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear9.FormattingEnabled = true;
+            this.cbLogYear9.Location = new System.Drawing.Point(27, 408);
+            this.cbLogYear9.Name = "cbLogYear9";
+            this.cbLogYear9.Size = new System.Drawing.Size(110, 21);
+            this.cbLogYear9.TabIndex = 95;
+            this.cbLogYear9.SelectedIndexChanged += new System.EventHandler(this.Cb9LogYear_changed);
+            // 
+            // cbLogYear8
+            // 
+            this.cbLogYear8.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear8.FormattingEnabled = true;
+            this.cbLogYear8.Location = new System.Drawing.Point(27, 375);
+            this.cbLogYear8.Name = "cbLogYear8";
+            this.cbLogYear8.Size = new System.Drawing.Size(110, 21);
+            this.cbLogYear8.TabIndex = 94;
+            this.cbLogYear8.SelectedIndexChanged += new System.EventHandler(this.Cb8LogYear_changed);
+            // 
+            // cbLogYear7
+            // 
+            this.cbLogYear7.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear7.FormattingEnabled = true;
+            this.cbLogYear7.Location = new System.Drawing.Point(27, 343);
+            this.cbLogYear7.Name = "cbLogYear7";
+            this.cbLogYear7.Size = new System.Drawing.Size(110, 21);
+            this.cbLogYear7.TabIndex = 93;
+            this.cbLogYear7.SelectedIndexChanged += new System.EventHandler(this.Cb7LogYear_changed);
+            // 
+            // cbLogYear6
+            // 
+            this.cbLogYear6.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear6.FormattingEnabled = true;
+            this.cbLogYear6.Location = new System.Drawing.Point(27, 311);
+            this.cbLogYear6.Name = "cbLogYear6";
+            this.cbLogYear6.Size = new System.Drawing.Size(110, 21);
+            this.cbLogYear6.TabIndex = 92;
+            this.cbLogYear6.SelectedIndexChanged += new System.EventHandler(this.Cb6LogYear_changed);
             // 
             // MainForm
             // 
@@ -5123,6 +2968,8 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonthly)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewYearly)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -5150,55 +2997,13 @@
         private System.Windows.Forms.TextBox tbBikeConfig;
         private System.Windows.Forms.Button btRemoveBikeConfig;
         private System.Windows.Forms.Button btAddBikeConfig;
-        private System.Windows.Forms.TextBox tb7Log1;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox tb6Log1;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox tb5Log1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox tb4Log1;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox tb3Log1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox tb2Log1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox tb1Log1;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbLogYear1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btDeleteAllData;
-        private System.Windows.Forms.TextBox tb3Log5;
-        private System.Windows.Forms.TextBox tb7Log5;
         private System.Windows.Forms.ComboBox cbLogYear5;
-        private System.Windows.Forms.TextBox tb6Log5;
-        private System.Windows.Forms.TextBox tb1Log5;
-        private System.Windows.Forms.TextBox tb5Log5;
-        private System.Windows.Forms.TextBox tb2Log5;
-        private System.Windows.Forms.TextBox tb4Log5;
-        private System.Windows.Forms.TextBox tb3Log4;
-        private System.Windows.Forms.TextBox tb7Log4;
         private System.Windows.Forms.ComboBox cbLogYear4;
-        private System.Windows.Forms.TextBox tb6Log4;
-        private System.Windows.Forms.TextBox tb1Log4;
-        private System.Windows.Forms.TextBox tb5Log4;
-        private System.Windows.Forms.TextBox tb2Log4;
-        private System.Windows.Forms.TextBox tb4Log4;
-        private System.Windows.Forms.TextBox tb3Log3;
-        private System.Windows.Forms.TextBox tb7Log3;
         private System.Windows.Forms.ComboBox cbLogYear3;
-        private System.Windows.Forms.TextBox tb6Log3;
-        private System.Windows.Forms.TextBox tb1Log3;
-        private System.Windows.Forms.TextBox tb5Log3;
-        private System.Windows.Forms.TextBox tb2Log3;
-        private System.Windows.Forms.TextBox tb4Log3;
-        private System.Windows.Forms.TextBox tb3Log2;
-        private System.Windows.Forms.TextBox tb7Log2;
         private System.Windows.Forms.ComboBox cbLogYear2;
-        private System.Windows.Forms.TextBox tb6Log2;
-        private System.Windows.Forms.TextBox tb1Log2;
-        private System.Windows.Forms.TextBox tb5Log2;
-        private System.Windows.Forms.TextBox tb2Log2;
-        private System.Windows.Forms.TextBox tb4Log2;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox tbDayCount;
@@ -5237,117 +3042,7 @@
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox month1R3;
-        private System.Windows.Forms.TextBox month1R7;
         private System.Windows.Forms.ComboBox cbStatMonthlyLogYear;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox month1R6;
-        private System.Windows.Forms.TextBox month1R1;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.TextBox month1R5;
-        private System.Windows.Forms.TextBox month1R2;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.TextBox month1R4;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.TextBox month12R3;
-        private System.Windows.Forms.TextBox month12R7;
-        private System.Windows.Forms.TextBox month12R6;
-        private System.Windows.Forms.TextBox month12R1;
-        private System.Windows.Forms.TextBox month12R5;
-        private System.Windows.Forms.TextBox month12R2;
-        private System.Windows.Forms.TextBox month12R4;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.TextBox month11R3;
-        private System.Windows.Forms.TextBox month11R7;
-        private System.Windows.Forms.TextBox month11R6;
-        private System.Windows.Forms.TextBox month11R1;
-        private System.Windows.Forms.TextBox month11R5;
-        private System.Windows.Forms.TextBox month11R2;
-        private System.Windows.Forms.TextBox month11R4;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.TextBox month10R3;
-        private System.Windows.Forms.TextBox month10R7;
-        private System.Windows.Forms.TextBox month10R6;
-        private System.Windows.Forms.TextBox month10R1;
-        private System.Windows.Forms.TextBox month10R5;
-        private System.Windows.Forms.TextBox month10R2;
-        private System.Windows.Forms.TextBox month10R4;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.TextBox month9R3;
-        private System.Windows.Forms.TextBox month9R7;
-        private System.Windows.Forms.TextBox month9R6;
-        private System.Windows.Forms.TextBox month9R1;
-        private System.Windows.Forms.TextBox month9R5;
-        private System.Windows.Forms.TextBox month9R2;
-        private System.Windows.Forms.TextBox month9R4;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.TextBox month8R3;
-        private System.Windows.Forms.TextBox month8R7;
-        private System.Windows.Forms.TextBox month8R6;
-        private System.Windows.Forms.TextBox month8R1;
-        private System.Windows.Forms.TextBox month8R5;
-        private System.Windows.Forms.TextBox month8R2;
-        private System.Windows.Forms.TextBox month8R4;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.TextBox month7R3;
-        private System.Windows.Forms.TextBox month7R7;
-        private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.TextBox month7R6;
-        private System.Windows.Forms.TextBox month7R1;
-        private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.Label label54;
-        private System.Windows.Forms.TextBox month7R5;
-        private System.Windows.Forms.TextBox month7R2;
-        private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.Label label56;
-        private System.Windows.Forms.TextBox month7R4;
-        private System.Windows.Forms.Label label57;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.TextBox month6R3;
-        private System.Windows.Forms.TextBox month6R7;
-        private System.Windows.Forms.TextBox month6R6;
-        private System.Windows.Forms.TextBox month6R1;
-        private System.Windows.Forms.TextBox month6R5;
-        private System.Windows.Forms.TextBox month6R2;
-        private System.Windows.Forms.TextBox month6R4;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.TextBox month5R3;
-        private System.Windows.Forms.TextBox month5R7;
-        private System.Windows.Forms.TextBox month5R6;
-        private System.Windows.Forms.TextBox month5R1;
-        private System.Windows.Forms.TextBox month5R5;
-        private System.Windows.Forms.TextBox month5R2;
-        private System.Windows.Forms.TextBox month5R4;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.TextBox month4R3;
-        private System.Windows.Forms.TextBox month4R7;
-        private System.Windows.Forms.TextBox month4R6;
-        private System.Windows.Forms.TextBox month4R1;
-        private System.Windows.Forms.TextBox month4R5;
-        private System.Windows.Forms.TextBox month4R2;
-        private System.Windows.Forms.TextBox month4R4;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.TextBox month3R3;
-        private System.Windows.Forms.TextBox month3R7;
-        private System.Windows.Forms.TextBox month3R6;
-        private System.Windows.Forms.TextBox month3R1;
-        private System.Windows.Forms.TextBox month3R5;
-        private System.Windows.Forms.TextBox month3R2;
-        private System.Windows.Forms.TextBox month3R4;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.TextBox month2R3;
-        private System.Windows.Forms.TextBox month2R7;
-        private System.Windows.Forms.TextBox month2R6;
-        private System.Windows.Forms.TextBox month2R1;
-        private System.Windows.Forms.TextBox month2R5;
-        private System.Windows.Forms.TextBox month2R2;
-        private System.Windows.Forms.TextBox month2R4;
         private System.Windows.Forms.Label label62;
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.Label label59;
@@ -5360,49 +3055,9 @@
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox tbElevGainMonthly12;
-        private System.Windows.Forms.TextBox tbElevGainMonthly11;
-        private System.Windows.Forms.TextBox tbElevGainMonthly10;
-        private System.Windows.Forms.TextBox tbElevGainMonthly9;
-        private System.Windows.Forms.TextBox tbElevGainMonthly8;
-        private System.Windows.Forms.TextBox tbElevGainMonthly7;
-        private System.Windows.Forms.Label label72;
-        private System.Windows.Forms.TextBox tbElevGainMonthly6;
-        private System.Windows.Forms.TextBox tbElevGainMonthly5;
-        private System.Windows.Forms.TextBox tbElevGainMonthly4;
-        private System.Windows.Forms.TextBox tbElevGainMonthly3;
-        private System.Windows.Forms.TextBox tbElevGainMonthly2;
-        private System.Windows.Forms.TextBox tbElevGainMonthly1;
-        private System.Windows.Forms.Label label71;
-        private System.Windows.Forms.TextBox tbElevGainYearly5;
-        private System.Windows.Forms.TextBox tbElevGainYearly4;
-        private System.Windows.Forms.TextBox tbElevGainYearly3;
-        private System.Windows.Forms.TextBox tbElevGainYearly2;
-        private System.Windows.Forms.TextBox tbElevGainYearly1;
-        private System.Windows.Forms.Label label73;
         private System.Windows.Forms.Label label74;
         private System.Windows.Forms.Label label75;
         private System.Windows.Forms.TextBox tbTotalElevGain;
-        private System.Windows.Forms.TextBox tbTimeYearly5;
-        private System.Windows.Forms.TextBox tbTimeYearly4;
-        private System.Windows.Forms.TextBox tbTimeYearly3;
-        private System.Windows.Forms.TextBox tbTimeYearly2;
-        private System.Windows.Forms.TextBox tbTimeYearly1;
-        private System.Windows.Forms.Label label77;
-        private System.Windows.Forms.TextBox tbTimeMonthly12;
-        private System.Windows.Forms.TextBox tbTimeMonthly11;
-        private System.Windows.Forms.TextBox tbTimeMonthly10;
-        private System.Windows.Forms.TextBox tbTimeMonthly9;
-        private System.Windows.Forms.TextBox tbTimeMonthly8;
-        private System.Windows.Forms.TextBox tbTimeMonthly7;
-        private System.Windows.Forms.Label label79;
-        private System.Windows.Forms.TextBox tbTimeMonthly6;
-        private System.Windows.Forms.TextBox tbTimeMonthly5;
-        private System.Windows.Forms.TextBox tbTimeMonthly4;
-        private System.Windows.Forms.TextBox tbTimeMonthly3;
-        private System.Windows.Forms.TextBox tbTimeMonthly2;
-        private System.Windows.Forms.TextBox tbTimeMonthly1;
-        private System.Windows.Forms.Label label78;
         private System.Windows.Forms.Label label80;
         private System.Windows.Forms.TextBox tbTotalTime;
         private System.Windows.Forms.GroupBox groupBox7;
@@ -5499,6 +3154,15 @@
         private System.Windows.Forms.Label label69;
         private System.Windows.Forms.Button btLogTitleSave;
         private System.Windows.Forms.Button btLogTitleClear;
+        private System.Windows.Forms.Label label90;
+        private System.Windows.Forms.TextBox tbHighAscentWeekAll;
+        private System.Windows.Forms.DataGridView dataGridViewMonthly;
+        private System.Windows.Forms.DataGridView dataGridViewYearly;
+        private System.Windows.Forms.ComboBox cbLogYear10;
+        private System.Windows.Forms.ComboBox cbLogYear9;
+        private System.Windows.Forms.ComboBox cbLogYear8;
+        private System.Windows.Forms.ComboBox cbLogYear7;
+        private System.Windows.Forms.ComboBox cbLogYear6;
     }
 }
 

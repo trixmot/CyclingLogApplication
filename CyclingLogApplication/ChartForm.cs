@@ -20,7 +20,7 @@ namespace CyclingLogApplication
         public ChartForm()
         {
             InitializeComponent();
-            labelChartError.Hide();
+            //labelChartError.Hide();
             //MainForm mainForm = new MainForm("");
             sqlConnection = MainForm.GetsqlConnectionString();
             //chart1.Series["Series1"].XValueMember = "Date";
@@ -31,11 +31,36 @@ namespace CyclingLogApplication
             //DataManipulator myDataManip = chart1.DataManipulator;
             //myDataManip.Filter(CompareMethod.EqualTo, 0, "LogYearID");
 
+            //checkBoxRouteOption.Checked = false;
+            //cbRoutesChart.Enabled = false;
+            //rbChartTypeColumn.Checked = true;
+
+            //List<string> logList = MainForm.ReadDataNames("Table_Log_year", "Name");
+
+            //cbLogYearChart.Items.Add("--Select Value--");
+            //for (int i = 0; i < logList.Count; i++)
+            //{
+            //    cbLogYearChart.Items.Add(logList[i]);
+            //}
+
+            //List<string> routeList = MainForm.GetRoutes();
+
+            //for (int i = 0; i < routeList.Count; i++)
+            //{
+            //    cbRoutesChart.Items.Add(routeList[i]);
+            //}
+        }
+
+        private void ChartForm_Load(object sender, EventArgs e)
+        {
+            // NOTE: This line of code loads data into the 'cyclingLogDatabaseDataSet.Table_Ride_Information' table. You can move, or remove it, as needed.
+            //this.table_Ride_InformationTableAdapter.Fill(this.cyclingLogDatabaseDataSet.Table_Ride_Information);
+
+            labelChartError.Hide();
             checkBoxRouteOption.Checked = false;
             cbRoutesChart.Enabled = false;
             rbChartTypeColumn.Checked = true;
 
-            //MainForm mainform = new MainForm();
             List<string> logList = MainForm.ReadDataNames("Table_Log_year", "Name");
 
             cbLogYearChart.Items.Add("--Select Value--");
@@ -50,14 +75,7 @@ namespace CyclingLogApplication
             {
                 cbRoutesChart.Items.Add(routeList[i]);
             }
-        }
 
-        private void ChartForm_Load(object sender, EventArgs e)
-        {
-            // NOTE: This line of code loads data into the 'cyclingLogDatabaseDataSet.Table_Ride_Information' table. You can move, or remove it, as needed.
-            this.table_Ride_InformationTableAdapter.Fill(this.cyclingLogDatabaseDataSet.Table_Ride_Information);
-
-            //MainForm mainForm = new MainForm();
             try
             {
                 cbLogYearChart.SelectedIndex = MainForm.GetLastLogYearChartSelected();
