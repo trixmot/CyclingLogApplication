@@ -585,6 +585,8 @@ namespace CyclingLogApplication
                 int rowCount = dataGridView1.Rows.Count;
                 for (int i = 0; i < rowCount; i++)
                 {
+                    dataGridView1.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
                     if (i % 2 == 0)
                     {
                         //is even
@@ -683,6 +685,7 @@ namespace CyclingLogApplication
             string custom2 = MainForm.GetCustomField2();
             bool customDataField1 = false;
             bool customDataField2 = false;
+            bool commentField = false;
 
             bool customDataField1Checked = false;
             bool customDataField2Checked = false;
@@ -754,7 +757,6 @@ namespace CyclingLogApplication
                     else if (fieldName.Equals("Total Ascent"))
                     {
                         fieldName = "TotalAscent";
-
                     }
                     else if (fieldName.Equals("Total Descent"))
                     {
@@ -783,6 +785,10 @@ namespace CyclingLogApplication
                     else if (fieldName.Equals(custom2))
                     {
                         fieldName = "Custom2";
+                    }
+                    else if (fieldName.Equals("Comments"))
+                    {
+                        commentField = true;
                     }
 
                     fieldString += ",[" + fieldName + "]";
@@ -1014,6 +1020,25 @@ namespace CyclingLogApplication
                 else
                 {
                     dataGridView1.Columns["Id"].Visible = true;
+                }
+
+                int commentColNumber = -1;
+                if (commentField)
+                {
+                    commentColNumber = dataGridView1.Columns["Comments"].Index;
+                }
+
+                int colCount = dataGridView1.ColumnCount;
+                for (int i = 0; i < colCount; i++)
+                {
+                    if (commentField && i == commentColNumber)
+                    {
+
+                    } else
+                    {
+                        dataGridView1.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        dataGridView1.Columns[i].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }                  
                 }
 
                 string textValue = MainForm.GetTextDisplay();

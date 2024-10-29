@@ -1053,24 +1053,24 @@
             // 
             this.panel2.Controls.Add(this.dataGridViewWeekly);
             this.panel2.Controls.Add(this.label65);
-            this.panel2.Location = new System.Drawing.Point(22, 31);
+            this.panel2.Location = new System.Drawing.Point(22, 19);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(775, 444);
+            this.panel2.Size = new System.Drawing.Size(775, 476);
             this.panel2.TabIndex = 129;
             // 
             // dataGridViewWeekly
             // 
             this.dataGridViewWeekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewWeekly.Location = new System.Drawing.Point(29, 72);
+            this.dataGridViewWeekly.Location = new System.Drawing.Point(29, 62);
             this.dataGridViewWeekly.Name = "dataGridViewWeekly";
-            this.dataGridViewWeekly.Size = new System.Drawing.Size(719, 323);
+            this.dataGridViewWeekly.Size = new System.Drawing.Size(719, 391);
             this.dataGridViewWeekly.TabIndex = 177;
             // 
             // label65
             // 
             this.label65.AutoSize = true;
             this.label65.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label65.Location = new System.Drawing.Point(308, 30);
+            this.label65.Location = new System.Drawing.Point(297, 19);
             this.label65.Name = "label65";
             this.label65.Size = new System.Drawing.Size(206, 28);
             this.label65.TabIndex = 128;
