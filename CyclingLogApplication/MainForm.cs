@@ -403,11 +403,11 @@ namespace CyclingLogApplication
                 cbLogYear3.SelectedIndex = int.Parse(GetcbStatistic3());
                 cbLogYear4.SelectedIndex = int.Parse(GetcbStatistic4());
                 cbLogYear5.SelectedIndex = int.Parse(GetcbStatistic5());
-                cbLogYear6.SelectedIndex = int.Parse(GetcbStatistic1());
-                cbLogYear7.SelectedIndex = int.Parse(GetcbStatistic1());
-                cbLogYear8.SelectedIndex = int.Parse(GetcbStatistic1());
-                cbLogYear9.SelectedIndex = int.Parse(GetcbStatistic1());
-                cbLogYear10.SelectedIndex = int.Parse(GetcbStatistic1());
+                cbLogYear6.SelectedIndex = int.Parse(GetcbStatistic6());
+                cbLogYear7.SelectedIndex = int.Parse(GetcbStatistic7());
+                cbLogYear8.SelectedIndex = int.Parse(GetcbStatistic8());
+                cbLogYear9.SelectedIndex = int.Parse(GetcbStatistic9());
+                cbLogYear10.SelectedIndex = int.Parse(GetcbStatistic10());
 
                 cbStatMonthlyLogYear.SelectedIndex = GetLastMonthlyLogSelected();
 
@@ -987,7 +987,7 @@ namespace CyclingLogApplication
         public static List<string> GetLogYears()
         {
             MainForm mainform = new MainForm();
-            List<string> logYearsList = MainForm.ReadDataNames("Table_Log_year", "Name");
+            List<string> logYearsList = MainForm.ReadDataNamesDESC("Table_Log_year", "Name");
 
             for (int i = 0; i < mainform.cbLogYearConfig.Items.Count; i++)
             {
@@ -3010,6 +3010,50 @@ namespace CyclingLogApplication
             tbLongestTimeAll.Text = GetLongestRideTimeAllLogs();
             tbHighWeekAll.Text = GetMonthlyHighMileageWeekNumberAll().ToString();
             tbHighAscentWeekAll.Text = GetHighAscentWeekAll().ToString("N0");
+            tbMaxYearlyMilesAllLogs.Text = GetMaxYearlyMilesAll().ToString("N0");
+        }
+
+        private double GetMaxYearlyMilesAll()
+        {
+            double maxMilesTemp = 0;
+            double miles = 0;
+
+            //TODO:
+            //Get list of logs to iterate over
+            List<string> logIDList = ReadDataNames("Table_Log_year", "LogYearID");
+
+            for (int i = 0; i < logIDList.Count; i++)
+            {
+                List<object> objectValues = new List<object>();
+                objectValues.Add(logIDList[i]);
+
+                //ExecuteScalarFunction
+                using (var results = ExecuteSimpleQueryConnection("GetTotalMiles", objectValues))
+                {
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            string temp = results[0].ToString();
+                            if (temp.Equals(""))
+                            {
+                                maxMilesTemp = 0;
+                            }
+                            else
+                            {
+                                maxMilesTemp = double.Parse(temp);
+                            }
+                        }
+                    }
+
+                    if (maxMilesTemp > miles)
+                    {
+                        miles = maxMilesTemp;
+                    }
+                }
+            }
+
+            return miles;
         }
 
         private static double GetLongestRide()
@@ -3291,35 +3335,35 @@ namespace CyclingLogApplication
         private void Cb6LogYear_changed(object sender, EventArgs e)
         {
             int logYearIndex = GetLogYearIndex_ByName(cbLogYear6.SelectedItem.ToString());
-            SetcbStatistic1(cbLogYear6.SelectedIndex.ToString());
+            SetcbStatistic6(cbLogYear6.SelectedIndex.ToString());
             RunYearlyStatisticsGrid();
         }
 
         private void Cb7LogYear_changed(object sender, EventArgs e)
         {
             int logYearIndex = GetLogYearIndex_ByName(cbLogYear7.SelectedItem.ToString());
-            SetcbStatistic1(cbLogYear7.SelectedIndex.ToString());
+            SetcbStatistic7(cbLogYear7.SelectedIndex.ToString());
             RunYearlyStatisticsGrid();
         }
 
         private void Cb8LogYear_changed(object sender, EventArgs e)
         {
             int logYearIndex = GetLogYearIndex_ByName(cbLogYear8.SelectedItem.ToString());
-            SetcbStatistic1(cbLogYear8.SelectedIndex.ToString());
+            SetcbStatistic8(cbLogYear8.SelectedIndex.ToString());
             RunYearlyStatisticsGrid();
         }
 
         private void Cb9LogYear_changed(object sender, EventArgs e)
         {
             int logYearIndex = GetLogYearIndex_ByName(cbLogYear9.SelectedItem.ToString());
-            SetcbStatistic1(cbLogYear9.SelectedIndex.ToString());
+            SetcbStatistic9(cbLogYear9.SelectedIndex.ToString());
             RunYearlyStatisticsGrid();
         }
 
         private void Cb10LogYear_changed(object sender, EventArgs e)
         {
             int logYearIndex = GetLogYearIndex_ByName(cbLogYear10.SelectedItem.ToString());
-            SetcbStatistic1(cbLogYear10.SelectedIndex.ToString());
+            SetcbStatistic10(cbLogYear10.SelectedIndex.ToString());
             RunYearlyStatisticsGrid();
         }
 
@@ -3689,6 +3733,10 @@ namespace CyclingLogApplication
                     dgvMaint.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
                     dgvMaint.AllowUserToAddRows = false;
                     dgvMaint.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetMaintColor());
+
+                    //dgvMaint.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                   // dgvMaint.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
 
                     string testValue = GetTextMaint();
                     int rowCount = dgvMaint.Rows.Count;
@@ -4411,17 +4459,27 @@ namespace CyclingLogApplication
                 dataGridViewMonthly.ReadOnly = true;
                 dataGridViewMonthly.EnableHeadersVisualStyles = false;
 
-                //dataGridViewMonthly.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                //dataGridViewMonthly.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                //dataGridViewMonthly.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                //dataGridViewMonthly.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                //dataGridViewMonthly.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewMonthly.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewMonthly.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewMonthly.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewMonthly.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewMonthly.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewMonthly.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewMonthly.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewMonthly.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewMonthly.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewMonthly.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                //dataGridViewMonthly.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewMonthly.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewMonthly.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewMonthly.Columns[3].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewMonthly.Columns[4].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewMonthly.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewMonthly.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewMonthly.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewMonthly.Columns[3].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewMonthly.Columns[4].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewMonthly.Columns[5].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewMonthly.Columns[6].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewMonthly.Columns[7].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewMonthly.Columns[8].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewMonthly.Columns[9].SortMode = DataGridViewColumnSortMode.NotSortable;
 
                 // Resize the master DataGridView columns to fit the newly loaded data.
                 //dataGridViewMonthly.AutoResizeColumns();
@@ -4480,7 +4538,7 @@ namespace CyclingLogApplication
 
                 dataGridViewMonthly.AllowUserToResizeRows = false;
                 dataGridViewMonthly.AllowUserToResizeColumns = false;
-                //dataGridViewMonthly.CurrentCell = dataGridViewWeekly.Rows[0].Cells[4];
+                //dataGridViewMonthly.CurrentCell = dataGridViewMonthly.Rows[0].Cells[4];
                 dataGridViewMonthly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetMonthlyColor());
 
                 string textValue = GetTextMonthly();
@@ -4894,10 +4952,10 @@ namespace CyclingLogApplication
             {
                 dataGridViewYearly.DataSource = null;
                 dataGridViewYearly.Rows.Clear();
-                dataGridViewYearly.ColumnCount = 10;
+                dataGridViewYearly.ColumnCount = 11;
                 //dataGridViewYearly.RowCount = 12;
                 dataGridViewYearly.Name = "Yearly Stats";
-                dataGridViewYearly.Columns[0].Name = "Yearly Miles";
+                dataGridViewYearly.Columns[0].Name = "Total Miles";
                 dataGridViewYearly.Columns[1].Name = "Total Rides";
                 dataGridViewYearly.Columns[2].Name = "Avg Rides/week";
                 dataGridViewYearly.Columns[3].Name = "Avg Miles/week";
@@ -4906,18 +4964,38 @@ namespace CyclingLogApplication
                 dataGridViewYearly.Columns[6].Name = "Longest Ride";
                 dataGridViewYearly.Columns[7].Name = "Total Ascent";
                 dataGridViewYearly.Columns[8].Name = "Max Ascent";
-                dataGridViewYearly.Columns[9].Name = "Moving Time";
+                dataGridViewYearly.Columns[9].Name = "High Week Ascent";
+                dataGridViewYearly.Columns[10].Name = "Moving Time";
 
                 dataGridViewYearly.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 dataGridViewYearly.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
                 dataGridViewYearly.ReadOnly = true;
                 dataGridViewYearly.EnableHeadersVisualStyles = false;
 
-                //dataGridViewYearly.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                //dataGridViewYearly.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                //dataGridViewYearly.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                //dataGridViewYearly.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                //dataGridViewYearly.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewYearly.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewYearly.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewYearly.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewYearly.Columns[3].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewYearly.Columns[4].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewYearly.Columns[5].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewYearly.Columns[6].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewYearly.Columns[7].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewYearly.Columns[8].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewYearly.Columns[9].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewYearly.Columns[10].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+
+                dataGridViewYearly.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewYearly.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewYearly.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewYearly.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewYearly.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewYearly.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewYearly.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewYearly.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewYearly.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewYearly.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewYearly.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 // Resize the master DataGridView columns to fit the newly loaded data.
                 //dataGridViewYearly.AutoResizeColumns();
@@ -4930,10 +5008,10 @@ namespace CyclingLogApplication
                 dataGridViewYearly.RowHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 //dataGridViewYearly.RowHeadersVisible = false;
 
-                dataGridViewYearly.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-                dataGridViewYearly.ColumnHeadersHeight = 40;
+                //dataGridViewYearly.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+                dataGridViewYearly.ColumnHeadersHeight = 44;
                 dataGridViewYearly.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-                dataGridViewYearly.RowHeadersVisible = true;
+                dataGridViewYearly.RowHeadersVisible = false;
 
                 //dataGridViewYearly.Rows.Add(totalMilesYearly1, totalMilesYearly2, totalMilesYearly3, totalMilesYearly4, totalMilesYearly5);
                 //dataGridViewYearly.Rows.Add(tb2Log1, tb2Log2, tb2Log3, tb2Log4, tb2Log5);
@@ -4946,16 +5024,16 @@ namespace CyclingLogApplication
                 //dataGridViewYearly.Rows.Add(tbMaxElevYearly1, tbMaxElevYearly2, tbMaxElevYearly3, tbMaxElevYearly4, tbMaxElevYearly5);
                 //dataGridViewYearly.Rows.Add(tbHighAscentWeek1, tbHighAscentWeek2, tbHighAscentWeek3, tbHighAscentWeek4, tbHighAscentWeek5);
 
-                dataGridViewYearly.Rows.Add(totalMilesYearly1, tb2Log1, tb3Log1, tb4Log1, tb5Log1, tb6Log1, tb7Log1, tbElevGainYearly1, tbMaxElevYearly1, tbHighAscentWeek1);
-                dataGridViewYearly.Rows.Add(totalMilesYearly2, tb2Log2, tb3Log2, tb4Log2, tb5Log2, tb6Log2, tb7Log2, tbElevGainYearly2, tbMaxElevYearly2, tbHighAscentWeek2);
-                dataGridViewYearly.Rows.Add(totalMilesYearly3, tb2Log3, tb3Log3, tb4Log3, tb5Log3, tb6Log3, tb7Log3, tbElevGainYearly3, tbMaxElevYearly3, tbHighAscentWeek3);
-                dataGridViewYearly.Rows.Add(totalMilesYearly4, tb2Log4, tb3Log4, tb4Log4, tb5Log4, tb6Log4, tb7Log4, tbElevGainYearly4, tbMaxElevYearly4, tbHighAscentWeek4);
-                dataGridViewYearly.Rows.Add(totalMilesYearly5, tb2Log5, tb3Log5, tb4Log5, tb5Log5, tb6Log5, tb7Log5, tbElevGainYearly5, tbMaxElevYearly5, tbHighAscentWeek5);
-                dataGridViewYearly.Rows.Add(totalMilesYearly6, tb2Log6, tb3Log6, tb4Log6, tb5Log6, tb6Log6, tb7Log6, tbElevGainYearly6, tbMaxElevYearly6, tbHighAscentWeek6);
-                dataGridViewYearly.Rows.Add(totalMilesYearly7, tb2Log7, tb3Log7, tb4Log7, tb5Log7, tb6Log7, tb7Log7, tbElevGainYearly7, tbMaxElevYearly7, tbHighAscentWeek7);
-                dataGridViewYearly.Rows.Add(totalMilesYearly8, tb2Log8, tb3Log8, tb4Log8, tb5Log8, tb6Log8, tb7Log8, tbElevGainYearly8, tbMaxElevYearly8, tbHighAscentWeek8);
-                dataGridViewYearly.Rows.Add(totalMilesYearly9, tb2Log9, tb3Log9, tb4Log9, tb5Log9, tb6Log9, tb7Log9, tbElevGainYearly9, tbMaxElevYearly9, tbHighAscentWeek9);
-                dataGridViewYearly.Rows.Add(totalMilesYearly10, tb2Log10, tb3Log10, tb4Log10, tb5Log10, tb6Log10, tb7Log10, tbElevGainYearly10, tbMaxElevYearly10, tbHighAscentWeek10);
+                dataGridViewYearly.Rows.Add(totalMilesYearly1, tb2Log1, tb3Log1, tb4Log1, tb5Log1, tb6Log1, tb7Log1, tbElevGainYearly1, tbMaxElevYearly1, tbHighAscentWeek1, tbTimeYearly1);
+                dataGridViewYearly.Rows.Add(totalMilesYearly2, tb2Log2, tb3Log2, tb4Log2, tb5Log2, tb6Log2, tb7Log2, tbElevGainYearly2, tbMaxElevYearly2, tbHighAscentWeek2, tbTimeYearly2);
+                dataGridViewYearly.Rows.Add(totalMilesYearly3, tb2Log3, tb3Log3, tb4Log3, tb5Log3, tb6Log3, tb7Log3, tbElevGainYearly3, tbMaxElevYearly3, tbHighAscentWeek3, tbTimeYearly3);
+                dataGridViewYearly.Rows.Add(totalMilesYearly4, tb2Log4, tb3Log4, tb4Log4, tb5Log4, tb6Log4, tb7Log4, tbElevGainYearly4, tbMaxElevYearly4, tbHighAscentWeek4, tbTimeYearly4);
+                dataGridViewYearly.Rows.Add(totalMilesYearly5, tb2Log5, tb3Log5, tb4Log5, tb5Log5, tb6Log5, tb7Log5, tbElevGainYearly5, tbMaxElevYearly5, tbHighAscentWeek5, tbTimeYearly5);
+                dataGridViewYearly.Rows.Add(totalMilesYearly6, tb2Log6, tb3Log6, tb4Log6, tb5Log6, tb6Log6, tb7Log6, tbElevGainYearly6, tbMaxElevYearly6, tbHighAscentWeek6, tbTimeYearly6);
+                dataGridViewYearly.Rows.Add(totalMilesYearly7, tb2Log7, tb3Log7, tb4Log7, tb5Log7, tb6Log7, tb7Log7, tbElevGainYearly7, tbMaxElevYearly7, tbHighAscentWeek7, tbTimeYearly7);
+                dataGridViewYearly.Rows.Add(totalMilesYearly8, tb2Log8, tb3Log8, tb4Log8, tb5Log8, tb6Log8, tb7Log8, tbElevGainYearly8, tbMaxElevYearly8, tbHighAscentWeek8, tbTimeYearly8);
+                dataGridViewYearly.Rows.Add(totalMilesYearly9, tb2Log9, tb3Log9, tb4Log9, tb5Log9, tb6Log9, tb7Log9, tbElevGainYearly9, tbMaxElevYearly9, tbHighAscentWeek9, tbTimeYearly9);
+                dataGridViewYearly.Rows.Add(totalMilesYearly10, tb2Log10, tb3Log10, tb4Log10, tb5Log10, tb6Log10, tb7Log10, tbElevGainYearly10, tbMaxElevYearly10, tbHighAscentWeek10, tbTimeYearly10);
 
                 dataGridViewYearly.Rows[0].Height = 32;
                 dataGridViewYearly.Rows[1].Height = 32;
@@ -4982,7 +5060,7 @@ namespace CyclingLogApplication
 
                 dataGridViewYearly.AllowUserToResizeRows = false;
                 dataGridViewYearly.AllowUserToResizeColumns = false;
-                //dataGridViewYearly.CurrentCell = dataGridViewWeekly.Rows[0].Cells[4];
+                //dataGridViewYearly.CurrentCell = dataGridViewYearly.Rows[0].Cells[4];
                 dataGridViewYearly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetYearlyColor());
 
                 string textValue = GetTextYearly();
@@ -6822,6 +6900,11 @@ namespace CyclingLogApplication
 
         private string GetAvgMilesPerRide(string distance, string rides)
         {
+            if (int.Parse(rides) == 0)
+            {
+                return "0";
+            }
+
             double avg_miles;
             avg_miles = double.Parse(distance)/double.Parse(rides);
             avg_miles = Math.Round(avg_miles, 1);
@@ -6898,6 +6981,39 @@ namespace CyclingLogApplication
             string tbAvgPace5 = "0";
             string tbHighestElev5 = "0";
             string tbAvgMilesPerRide5 = "0";
+
+            string tbDistanceWeek6 = "0";
+            string lbweek6 = "0";
+            string tbLongestRideWeek6 = "0";
+            string tbElevGainWeek6 = "0";
+            string tbNumRidesWeek6 = "0";
+            string tbAvgSpeedWeek6 = "0";
+            string tbTotalTimeWeekly6 = "0";
+            string tbAvgPace6 = "0";
+            string tbHighestElev6 = "0";
+            string tbAvgMilesPerRide6 = "0";
+
+            string tbDistanceWeek7 = "0";
+            string lbweek7 = "0";
+            string tbLongestRideWeek7 = "0";
+            string tbElevGainWeek7 = "0";
+            string tbNumRidesWeek7 = "0";
+            string tbAvgSpeedWeek7 = "0";
+            string tbTotalTimeWeekly7 = "0";
+            string tbAvgPace7 = "0";
+            string tbHighestElev7 = "0";
+            string tbAvgMilesPerRide7 = "0";
+
+            string tbDistanceWeek8 = "0";
+            string lbweek8 = "0";
+            string tbLongestRideWeek8 = "0";
+            string tbElevGainWeek8 = "0";
+            string tbNumRidesWeek8 = "0";
+            string tbAvgSpeedWeek8 = "0";
+            string tbTotalTimeWeekly8 = "0";
+            string tbAvgPace8 = "0";
+            string tbHighestElev8 = "0";
+            string tbAvgMilesPerRide8 = "0";
 
 
             // This first if handles when only one year log exists:
@@ -7004,6 +7120,81 @@ namespace CyclingLogApplication
                     tbAvgPace5 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek5).ToString();
                     tbHighestElev5 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
                     tbAvgMilesPerRide5 = GetAvgMilesPerRide(tbDistanceWeek5, tbNumRidesWeek5);
+                }
+                //Current week -5(6):
+                if (weekNumber - 5 <= 0)
+                {
+                    tbDistanceWeek6 = "0";
+                    tbLongestRideWeek6 = "0";
+                    tbElevGainWeek6 = "0";
+                    tbNumRidesWeek6 = "0";
+                    tbAvgSpeedWeek6 = "0";
+                    tbTotalTimeWeekly6 = "0";
+                    tbAvgPace6 = "0";
+                    tbHighestElev6 = "0";
+                    tbAvgMilesPerRide6 = "0";
+                }
+                else
+                {
+                    tbDistanceWeek6 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+                    tbLongestRideWeek6 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+                    tbElevGainWeek6 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+                    tbNumRidesWeek6 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
+                    tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
+                    tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+                    tbAvgPace6 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek6).ToString();
+                    tbHighestElev6 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
+                    tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
+                }
+                //Current week -6(7):
+                if (weekNumber - 6 <= 0)
+                {
+                    tbDistanceWeek7 = "0";
+                    tbLongestRideWeek7 = "0";
+                    tbElevGainWeek7 = "0";
+                    tbNumRidesWeek7 = "0";
+                    tbAvgSpeedWeek7 = "0";
+                    tbTotalTimeWeekly7 = "0";
+                    tbAvgPace7 = "0";
+                    tbHighestElev7 = "0";
+                    tbAvgMilesPerRide7 = "0";
+                }
+                else
+                {
+                    tbDistanceWeek7 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+                    tbLongestRideWeek7 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+                    tbElevGainWeek7 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+                    tbNumRidesWeek7 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
+                    tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
+                    tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+                    tbAvgPace7 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek7).ToString();
+                    tbHighestElev7 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
+                    tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+                }
+                //Current week -7(8):
+                if (weekNumber - 7 <= 0)
+                {
+                    tbDistanceWeek8 = "0";
+                    tbLongestRideWeek8 = "0";
+                    tbElevGainWeek8 = "0";
+                    tbNumRidesWeek8 = "0";
+                    tbAvgSpeedWeek8 = "0";
+                    tbTotalTimeWeekly8 = "0";
+                    tbAvgPace8 = "0";
+                    tbHighestElev8 = "0";
+                    tbAvgMilesPerRide8 = "0";
+                }
+                else
+                {
+                    tbDistanceWeek8 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+                    tbLongestRideWeek8 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+                    tbElevGainWeek8 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+                    tbNumRidesWeek8 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
+                    tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
+                    tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+                    tbAvgPace8 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek8).ToString();
+                    tbHighestElev8 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
+                    tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
                 }
             }
             else
@@ -7207,23 +7398,325 @@ namespace CyclingLogApplication
                     tbHighestElev5 = GetHighestElevWeekly(logIndex, weekNumber5).ToString();
                     tbAvgMilesPerRide5 = GetAvgMilesPerRide(tbDistanceWeek5, tbNumRidesWeek5);
                 }
+
+                //Current week -5(6):
+                if (weekNumber - 5 <= 0)
+                {
+                    if (weekNumber == 1)
+                    {
+                        lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 48).ToString("MM/dd/yyyy");
+                        tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 48).ToString();
+                        tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 48).ToString();
+                        tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 48).ToString();
+                        tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 48).ToString();
+                        tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 48).ToString();
+                        tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 48).ToString();
+                        tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 48, tbDistanceWeek6).ToString();
+                        tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 48).ToString();
+                        tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
+                    }
+                    else if (weekNumber == 2)
+                    {
+                        lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
+                        tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
+                        tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
+                        tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
+                        tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
+                        tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
+                        tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
+                        tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek6).ToString();
+                        tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
+                        tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
+                    }
+                    else if (weekNumber == 3)
+                    {
+                        lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
+                        tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
+                        tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
+                        tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
+                        tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
+                        tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
+                        tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
+                        tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek6).ToString();
+                        tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
+                        tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
+                    }
+                    else if (weekNumber == 4)
+                    {
+                        lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
+                        tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
+                        tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
+                        tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
+                        tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
+                        tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
+                        tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
+                        tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek6).ToString();
+                        tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
+                        tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
+                    }
+                    else if (weekNumber == 5)
+                    {
+                        lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+                        tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+                        tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+                        tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+                        tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
+                        tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
+                        tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+                        tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek6).ToString();
+                        tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
+                        tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
+                    }
+                }
+                else
+                {
+                    int weekNumber6 = weekNumber - 5;
+                    tbDistanceWeek6 = GetTotalMilesWeekly(logIndex, weekNumber6).ToString();
+                    lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber6).ToString("MM/dd/yyyy");
+                    tbLongestRideWeek6 = GetLongestRideWeekly(logIndex, weekNumber6).ToString();
+                    tbElevGainWeek6 = GetTotalElevGainWeekly(logIndex, weekNumber6).ToString();
+                    tbNumRidesWeek6 = GetTotalRidesWeekly(logIndex, weekNumber6).ToString();
+                    tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndex, weekNumber6).ToString();
+                    tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndex, weekNumber6).ToString();
+                    tbAvgPace6 = GetAveragePaceWeekly(logIndex, weekNumber6, tbDistanceWeek6).ToString();
+                    tbHighestElev6 = GetHighestElevWeekly(logIndex, weekNumber6).ToString();
+                    tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
+                }
+
+                //Current week -6(7):
+                if (weekNumber - 6 <= 0)
+                {
+                    if (weekNumber == 1)
+                    {
+                        lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 47).ToString("MM/dd/yyyy");
+                        tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 47).ToString();
+                        tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 47).ToString();
+                        tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 47).ToString();
+                        tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 47).ToString();
+                        tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 47).ToString();
+                        tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 47).ToString();
+                        tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 47, tbDistanceWeek7).ToString();
+                        tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 47).ToString();
+                        tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+                    }
+                    else if (weekNumber == 2)
+                    {
+                        lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 48).ToString("MM/dd/yyyy");
+                        tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 48).ToString();
+                        tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 48).ToString();
+                        tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 48).ToString();
+                        tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 48).ToString();
+                        tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 48).ToString();
+                        tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 48).ToString();
+                        tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 48, tbDistanceWeek7).ToString();
+                        tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 48).ToString();
+                        tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+                    }
+                    else if (weekNumber == 3)
+                    {
+                        lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
+                        tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
+                        tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
+                        tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
+                        tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
+                        tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
+                        tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
+                        tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek7).ToString();
+                        tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
+                        tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+                    }
+                    else if (weekNumber == 4)
+                    {
+                        lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
+                        tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
+                        tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
+                        tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
+                        tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
+                        tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
+                        tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
+                        tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek7).ToString();
+                        tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
+                        tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+                    }
+                    else if (weekNumber == 5)
+                    {
+                        lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
+                        tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
+                        tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
+                        tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
+                        tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
+                        tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
+                        tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
+                        tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek7).ToString();
+                        tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
+                        tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+                    }
+                    else if (weekNumber == 6)
+                    {
+                        lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+                        tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+                        tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+                        tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+                        tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
+                        tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
+                        tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+                        tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek7).ToString();
+                        tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
+                        tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+                    }
+                }
+                else
+                {
+                    int weekNumber7 = weekNumber - 6;
+                    tbDistanceWeek7 = GetTotalMilesWeekly(logIndex, weekNumber7).ToString();
+                    lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber7).ToString("MM/dd/yyyy");
+                    tbLongestRideWeek7 = GetLongestRideWeekly(logIndex, weekNumber7).ToString();
+                    tbElevGainWeek7 = GetTotalElevGainWeekly(logIndex, weekNumber7).ToString();
+                    tbNumRidesWeek7 = GetTotalRidesWeekly(logIndex, weekNumber7).ToString();
+                    tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndex, weekNumber7).ToString();
+                    tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndex, weekNumber7).ToString();
+                    tbAvgPace7 = GetAveragePaceWeekly(logIndex, weekNumber7, tbDistanceWeek7).ToString();
+                    tbHighestElev7 = GetHighestElevWeekly(logIndex, weekNumber7).ToString();
+                    tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+                }
+
+                //Current week -7(8):
+                if (weekNumber - 7 <= 0)
+                {
+                    if (weekNumber == 1)
+                    {
+                        lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 46).ToString("MM/dd/yyyy");
+                        tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 46).ToString();
+                        tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 46).ToString();
+                        tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 46).ToString();
+                        tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 46).ToString();
+                        tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 46).ToString();
+                        tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 46).ToString();
+                        tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 46, tbDistanceWeek8).ToString();
+                        tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 46).ToString();
+                        tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+                    }
+                    else if (weekNumber == 2)
+                    {
+                        lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 47).ToString("MM/dd/yyyy");
+                        tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 47).ToString();
+                        tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 47).ToString();
+                        tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 47).ToString();
+                        tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 47).ToString();
+                        tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 47).ToString();
+                        tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 47).ToString();
+                        tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 47, tbDistanceWeek8).ToString();
+                        tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 47).ToString();
+                        tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+                    }
+                    else if (weekNumber == 3)
+                    {
+                        lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 48).ToString("MM/dd/yyyy");
+                        tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 48).ToString();
+                        tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 48).ToString();
+                        tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 48).ToString();
+                        tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 48).ToString();
+                        tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 48).ToString();
+                        tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 48).ToString();
+                        tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 48, tbDistanceWeek8).ToString();
+                        tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 48).ToString();
+                        tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+                    }
+                    else if (weekNumber == 4)
+                    {
+                        lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
+                        tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
+                        tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
+                        tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
+                        tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
+                        tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
+                        tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
+                        tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek8).ToString();
+                        tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
+                        tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+                    }
+                    else if (weekNumber == 5)
+                    {
+                        lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
+                        tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
+                        tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
+                        tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
+                        tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
+                        tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
+                        tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
+                        tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek8).ToString();
+                        tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
+                        tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+                    }
+                    else if (weekNumber == 6)
+                    {
+                        lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
+                        tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
+                        tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
+                        tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
+                        tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
+                        tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
+                        tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
+                        tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek8).ToString();
+                        tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
+                        tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+                    }
+                    else if (weekNumber == 7)
+                    {
+                        lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+                        tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+                        tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+                        tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+                        tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
+                        tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
+                        tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+                        tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek8).ToString();
+                        tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
+                        tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+                    }
+                }
+                else
+                {
+                    int weekNumber8 = weekNumber - 7;
+                    tbDistanceWeek8 = GetTotalMilesWeekly(logIndex, weekNumber8).ToString();
+                    lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber8).ToString("MM/dd/yyyy");
+                    tbLongestRideWeek8 = GetLongestRideWeekly(logIndex, weekNumber8).ToString();
+                    tbElevGainWeek8 = GetTotalElevGainWeekly(logIndex, weekNumber8).ToString();
+                    tbNumRidesWeek8 = GetTotalRidesWeekly(logIndex, weekNumber8).ToString();
+                    tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndex, weekNumber8).ToString();
+                    tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndex, weekNumber8).ToString();
+                    tbAvgPace8 = GetAveragePaceWeekly(logIndex, weekNumber8, tbDistanceWeek8).ToString();
+                    tbHighestElev8 = GetHighestElevWeekly(logIndex, weekNumber8).ToString();
+                    tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+                }
             }
 
             try
             {
                 dataGridViewWeekly.DataSource = null;
                 dataGridViewWeekly.Rows.Clear();
-                dataGridViewWeekly.ColumnCount = 5;
+                dataGridViewWeekly.ColumnCount = 9;
                 //dataGridViewWeekly.RowCount = 7;
                 dataGridViewWeekly.Name = "Weekly Stats";
-                dataGridViewWeekly.Columns[0].Name = lbweek1;
-                dataGridViewWeekly.Columns[1].Name = lbweek2;
-                dataGridViewWeekly.Columns[2].Name = lbweek3;
-                dataGridViewWeekly.Columns[3].Name = lbweek4;
-                dataGridViewWeekly.Columns[4].Name = lbweek5;
 
-                dataGridViewWeekly.Columns[0].ValueType = typeof(double);
-                dataGridViewWeekly.Columns[1].ValueType = typeof(double);
+                //dataGridViewWeekly.Columns[0].Name = lbweek5;
+                //dataGridViewWeekly.Columns[1].Name = lbweek4;
+                //dataGridViewWeekly.Columns[2].Name = lbweek3;
+                //dataGridViewWeekly.Columns[3].Name = lbweek2;
+                //dataGridViewWeekly.Columns[4].Name = lbweek1;
+
+                dataGridViewWeekly.Columns[0].Name = "Total Miles";
+                dataGridViewWeekly.Columns[1].Name = "Total Rides";
+                dataGridViewWeekly.Columns[2].Name = "Avg Miles/Ride";
+                dataGridViewWeekly.Columns[3].Name = "Longest Ride";
+                dataGridViewWeekly.Columns[4].Name = "Total Ascent";
+                dataGridViewWeekly.Columns[5].Name = "Max Ascent";
+                dataGridViewWeekly.Columns[6].Name = "Moving Time";
+                dataGridViewWeekly.Columns[7].Name = "Avg Speed";
+                dataGridViewWeekly.Columns[8].Name = "Avg Pace";
+
+                //dataGridViewWeekly.Columns[0].ValueType = typeof(double);
+                //dataGridViewWeekly.Columns[1].ValueType = typeof(double);
                 dataGridViewWeekly.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 dataGridViewWeekly.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
 
@@ -7246,12 +7739,20 @@ namespace CyclingLogApplication
                 dataGridViewWeekly.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridViewWeekly.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridViewWeekly.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewWeekly.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewWeekly.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewWeekly.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewWeekly.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 dataGridViewWeekly.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridViewWeekly.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridViewWeekly.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridViewWeekly.Columns[3].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridViewWeekly.Columns[4].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewWeekly.Columns[5].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewWeekly.Columns[6].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewWeekly.Columns[7].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewWeekly.Columns[8].SortMode = DataGridViewColumnSortMode.NotSortable;
 
                 // Resize the master DataGridView columns to fit the newly loaded data.
                 //dataGridViewWeekly.AutoResizeColumns();
@@ -7263,21 +7764,30 @@ namespace CyclingLogApplication
                 //dataGridViewRoutes.DefaultCellStyle.SelectionForeColor = Color.White;
                 dataGridViewWeekly.RowHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 //dataGridViewRoutes.RowHeadersVisible = false;
-
+                dataGridViewWeekly.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dataGridViewWeekly.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
                 dataGridViewWeekly.ColumnHeadersHeight = 40;
                 dataGridViewWeekly.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
                 dataGridViewWeekly.RowHeadersVisible = true;
 
-                dataGridViewWeekly.Rows.Add(tbDistanceWeek5, tbDistanceWeek4, tbDistanceWeek3, tbDistanceWeek2, tbDistanceWeek1);
-                dataGridViewWeekly.Rows.Add(tbLongestRideWeek5, tbLongestRideWeek4, tbLongestRideWeek3, tbLongestRideWeek2, tbLongestRideWeek1);
-                dataGridViewWeekly.Rows.Add(tbElevGainWeek5, tbElevGainWeek4, tbElevGainWeek3, tbElevGainWeek2, tbElevGainWeek1);
-                dataGridViewWeekly.Rows.Add(tbHighestElev5, tbHighestElev4, tbHighestElev3, tbHighestElev2, tbHighestElev1);
-                dataGridViewWeekly.Rows.Add(tbNumRidesWeek5, tbNumRidesWeek4, tbNumRidesWeek3, tbNumRidesWeek2, tbNumRidesWeek1);
-                dataGridViewWeekly.Rows.Add(tbAvgSpeedWeek5, tbAvgSpeedWeek4, tbAvgSpeedWeek3, tbAvgSpeedWeek2, tbAvgSpeedWeek1);
-                dataGridViewWeekly.Rows.Add(tbTotalTimeWeekly5, tbTotalTimeWeekly4, tbTotalTimeWeekly3, tbTotalTimeWeekly2, tbTotalTimeWeekly1);
-                dataGridViewWeekly.Rows.Add(tbAvgPace5, tbAvgPace4, tbAvgPace3, tbAvgPace2, tbAvgPace1);
-                dataGridViewWeekly.Rows.Add(tbAvgMilesPerRide5, tbAvgMilesPerRide4, tbAvgMilesPerRide3, tbAvgMilesPerRide2, tbAvgMilesPerRide1);
+                //dataGridViewWeekly.Rows.Add(tbDistanceWeek5, tbDistanceWeek4, tbDistanceWeek3, tbDistanceWeek2, tbDistanceWeek1);
+                //dataGridViewWeekly.Rows.Add(tbNumRidesWeek5, tbNumRidesWeek4, tbNumRidesWeek3, tbNumRidesWeek2, tbNumRidesWeek1);
+                //dataGridViewWeekly.Rows.Add(tbAvgMilesPerRide5, tbAvgMilesPerRide4, tbAvgMilesPerRide3, tbAvgMilesPerRide2, tbAvgMilesPerRide1);               
+                //dataGridViewWeekly.Rows.Add(tbLongestRideWeek5, tbLongestRideWeek4, tbLongestRideWeek3, tbLongestRideWeek2, tbLongestRideWeek1);
+                //dataGridViewWeekly.Rows.Add(tbElevGainWeek5, tbElevGainWeek4, tbElevGainWeek3, tbElevGainWeek2, tbElevGainWeek1);
+                //dataGridViewWeekly.Rows.Add(tbHighestElev5, tbHighestElev4, tbHighestElev3, tbHighestElev2, tbHighestElev1);
+                //dataGridViewWeekly.Rows.Add(tbTotalTimeWeekly5, tbTotalTimeWeekly4, tbTotalTimeWeekly3, tbTotalTimeWeekly2, tbTotalTimeWeekly1);
+                //dataGridViewWeekly.Rows.Add(tbAvgSpeedWeek5, tbAvgSpeedWeek4, tbAvgSpeedWeek3, tbAvgSpeedWeek2, tbAvgSpeedWeek1);
+                //dataGridViewWeekly.Rows.Add(tbAvgPace5, tbAvgPace4, tbAvgPace3, tbAvgPace2, tbAvgPace1);
+
+                dataGridViewWeekly.Rows.Add(tbDistanceWeek8, tbNumRidesWeek8, tbAvgMilesPerRide8, tbLongestRideWeek8, tbElevGainWeek8, tbHighestElev8, tbTotalTimeWeekly8, tbAvgSpeedWeek8, tbAvgPace8);
+                dataGridViewWeekly.Rows.Add(tbDistanceWeek7, tbNumRidesWeek7, tbAvgMilesPerRide7, tbLongestRideWeek7, tbElevGainWeek7, tbHighestElev7, tbTotalTimeWeekly7, tbAvgSpeedWeek7, tbAvgPace7);
+                dataGridViewWeekly.Rows.Add(tbDistanceWeek6, tbNumRidesWeek6, tbAvgMilesPerRide6, tbLongestRideWeek6, tbElevGainWeek6, tbHighestElev6, tbTotalTimeWeekly6, tbAvgSpeedWeek6, tbAvgPace6);
+                dataGridViewWeekly.Rows.Add(tbDistanceWeek5, tbNumRidesWeek5, tbAvgMilesPerRide5, tbLongestRideWeek5, tbElevGainWeek5, tbHighestElev5, tbTotalTimeWeekly5, tbAvgSpeedWeek5, tbAvgPace5);
+                dataGridViewWeekly.Rows.Add(tbDistanceWeek4, tbNumRidesWeek4, tbAvgMilesPerRide4, tbLongestRideWeek4, tbElevGainWeek4, tbHighestElev4, tbTotalTimeWeekly4, tbAvgSpeedWeek4, tbAvgPace4);
+                dataGridViewWeekly.Rows.Add(tbDistanceWeek3, tbNumRidesWeek3, tbAvgMilesPerRide3, tbLongestRideWeek3, tbElevGainWeek3, tbHighestElev3, tbTotalTimeWeekly3, tbAvgSpeedWeek3, tbAvgPace3);
+                dataGridViewWeekly.Rows.Add(tbDistanceWeek2, tbNumRidesWeek2, tbAvgMilesPerRide2, tbLongestRideWeek2, tbElevGainWeek2, tbHighestElev2, tbTotalTimeWeekly2, tbAvgSpeedWeek2, tbAvgPace2);
+                dataGridViewWeekly.Rows.Add(tbDistanceWeek1, tbNumRidesWeek1, tbAvgMilesPerRide1, tbLongestRideWeek1, tbElevGainWeek1, tbHighestElev1, tbTotalTimeWeekly1, tbAvgSpeedWeek1, tbAvgPace1);
 
                 dataGridViewWeekly.Rows[0].Height = 34;
                 dataGridViewWeekly.Rows[1].Height = 34;
@@ -7287,21 +7797,36 @@ namespace CyclingLogApplication
                 dataGridViewWeekly.Rows[5].Height = 34;
                 dataGridViewWeekly.Rows[6].Height = 34;
                 dataGridViewWeekly.Rows[7].Height = 34;
-                dataGridViewWeekly.Rows[8].Height = 34;
+                //dataGridViewWeekly.Rows[8].Height = 34;
 
-                dataGridViewWeekly.Rows[0].HeaderCell.Value = "Total Miles";
-                dataGridViewWeekly.Rows[1].HeaderCell.Value = "Longest Ride";
-                dataGridViewWeekly.Rows[2].HeaderCell.Value = "Total Ascent";
-                dataGridViewWeekly.Rows[3].HeaderCell.Value = "Max Ascent";
-                dataGridViewWeekly.Rows[4].HeaderCell.Value = "Num Rides";
-                dataGridViewWeekly.Rows[5].HeaderCell.Value = "Avg Speed";
-                dataGridViewWeekly.Rows[6].HeaderCell.Value = "Moving Time";
-                dataGridViewWeekly.Rows[7].HeaderCell.Value = "Avg Pace";
-                dataGridViewWeekly.Rows[8].HeaderCell.Value = "Avg Miles/Ride";
+                //dataGridViewWeekly.Columns[0].Name = lbweek5;
+                //dataGridViewWeekly.Columns[1].Name = lbweek4;
+                //dataGridViewWeekly.Columns[2].Name = lbweek3;
+                //dataGridViewWeekly.Columns[3].Name = lbweek2;
+                //dataGridViewWeekly.Columns[4].Name = lbweek1;
+
+                dataGridViewWeekly.Rows[0].HeaderCell.Value = lbweek8;
+                dataGridViewWeekly.Rows[1].HeaderCell.Value = lbweek7;
+                dataGridViewWeekly.Rows[2].HeaderCell.Value = lbweek6;
+                dataGridViewWeekly.Rows[3].HeaderCell.Value = lbweek5;
+                dataGridViewWeekly.Rows[4].HeaderCell.Value = lbweek4;
+                dataGridViewWeekly.Rows[5].HeaderCell.Value = lbweek3;
+                dataGridViewWeekly.Rows[6].HeaderCell.Value = lbweek2;
+                dataGridViewWeekly.Rows[7].HeaderCell.Value = lbweek1;
+
+                //dataGridViewWeekly.Rows[0].HeaderCell.Value = "Total Miles";
+                //dataGridViewWeekly.Rows[1].HeaderCell.Value = "Total Rides";
+                //dataGridViewWeekly.Rows[2].HeaderCell.Value = "Avg Miles/Ride";
+                //dataGridViewWeekly.Rows[3].HeaderCell.Value = "Longest Ride";
+                //dataGridViewWeekly.Rows[4].HeaderCell.Value = "Total Ascent";
+                //dataGridViewWeekly.Rows[5].HeaderCell.Value = "Max Ascent";
+                //dataGridViewWeekly.Rows[6].HeaderCell.Value = "Moving Time";
+                //dataGridViewWeekly.Rows[7].HeaderCell.Value = "Avg Speed";              
+                //dataGridViewWeekly.Rows[8].HeaderCell.Value = "Avg Pace";
 
                 dataGridViewWeekly.AllowUserToResizeRows = false;
                 dataGridViewWeekly.AllowUserToResizeColumns = false;
-                dataGridViewWeekly.CurrentCell = dataGridViewWeekly.Rows[0].Cells[4];
+                dataGridViewWeekly.CurrentCell = dataGridViewWeekly.Rows[7].Cells[0];
                 dataGridViewWeekly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetWeeklyColor());
 
                 string textValue = GetTextWeekly();
@@ -7612,6 +8137,8 @@ namespace CyclingLogApplication
                 }
             }
 
+            //dgvMaint.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            //dgvMaint.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             tbMaintDateCheck.Text = dgvMaint.Rows[rowindex].Cells[0].Value.ToString();
             dateTimePicker1.Value = DateTime.Parse(dgvMaint.Rows[rowindex].Cells[0].Value.ToString());
             cbBikeMaint.SelectedIndex = bikeIndex + 1; // Add 1 to account for --select value--:
@@ -7735,37 +8262,51 @@ namespace CyclingLogApplication
 
         private void cbMaintColors_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tbColorMaint.BackColor = Color.FromName(cbMaintColors.SelectedItem.ToString());
+            string color = cbMaintColors.SelectedItem.ToString();
+            color = color.Replace("\t", "");
+            tbColorMaint.BackColor = Color.FromName(color);
         }
 
         private void cbWeeklyColors_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tbColorWeekly.BackColor = Color.FromName(cbWeeklyColors.SelectedItem.ToString());
+            string color = cbWeeklyColors.SelectedItem.ToString();
+            color = color.Replace("\t", "");
+            tbColorWeekly.BackColor = Color.FromName(color);
         }
 
         private void cbMonthlyColors_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tbColorMonthly.BackColor = Color.FromName(cbMonthlyColors.SelectedItem.ToString());
+            string color = cbMonthlyColors.SelectedItem.ToString();
+            color = color.Replace("\t", "");
+            tbColorMonthly.BackColor = Color.FromName(color);
         }
 
         private void cbYearlyColors_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tbColorYearly.BackColor = Color.FromName(cbYearlyColors.SelectedItem.ToString());
+            string color = cbYearlyColors.SelectedItem.ToString();
+            color = color.Replace("\t", "");
+            tbColorYearly.BackColor = Color.FromName(color);
         }
 
         private void cbDisplayDataColors_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tbColorDisplayData.BackColor = Color.FromName(cbDisplayDataColors.SelectedItem.ToString());
+            string color = cbDisplayDataColors.SelectedItem.ToString();
+            color = color.Replace("\t", "");
+            tbColorDisplayData.BackColor = Color.FromName(color);
         }
 
         private void cbBikeColors_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tbBikeColor.BackColor = Color.FromName(cbBikeColors.SelectedItem.ToString());
+            string color = cbBikeColors.SelectedItem.ToString();
+            color = color.Replace("\t", "");
+            tbBikeColor.BackColor = Color.FromName(color);
         }
 
         private void cbRouteColors_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tbRouteColor.BackColor = Color.FromName(cbRouteColors.SelectedItem.ToString());
+            string color = cbRouteColors.SelectedItem.ToString();
+            color = color.Replace("\t", "");
+            tbRouteColor.BackColor = Color.FromName(color);
         }
 
         private void cbMaintTextColor_CheckedChanged(object sender, EventArgs e)
@@ -7791,6 +8332,29 @@ namespace CyclingLogApplication
             }
         }
 
+        private void cbMonthlyTextColor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbMonthlyTextColor.Checked)
+            {
+                tbColorMonthly.ForeColor = Color.Black;
+            }
+            else
+            {
+                tbColorMonthly.ForeColor = Color.White;
+            }
+        }
+
+        private void cbYearlyTextColor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbYearlyTextColor.Checked)
+            {
+                tbColorYearly.ForeColor = Color.Black;
+            }
+            else
+            {
+                tbColorYearly.ForeColor = Color.White;
+            }
+        }
         private void cbDisplayDataTextColor_CheckedChanged(object sender, EventArgs e)
         {
             if (cbDisplayDataTextColor.Checked)
@@ -8044,5 +8608,6 @@ namespace CyclingLogApplication
             tbLogYearConfig.Text = string.Empty;
             cbLogYear.SelectedIndex = 0;
         }
+
     }
 }

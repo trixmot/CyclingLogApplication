@@ -61,7 +61,7 @@ namespace CyclingLogApplication
             cbRoutesChart.Enabled = false;
             rbChartTypeColumn.Checked = true;
 
-            List<string> logList = MainForm.ReadDataNames("Table_Log_year", "Name");
+            List<string> logList = MainForm.ReadDataNamesDESC("Table_Log_year", "Name");
 
             cbLogYearChart.Items.Add("--Select Value--");
             for (int i = 0; i < logList.Count; i++)

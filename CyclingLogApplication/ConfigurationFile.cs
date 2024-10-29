@@ -16,7 +16,7 @@ namespace CyclingLogApplication
 
         private static int logsRead;
 
-        public static bool ReadConfigFile(Boolean logBool)
+        public static bool ReadConfigFile()
         {            
             //This will give us the full name path of the executable file:
             //i.e. C:\Program Files\MyApplication\MyApplication.exe
@@ -267,58 +267,56 @@ namespace CyclingLogApplication
             MainForm.SetLastMonthlyLogSelected(Convert.ToInt32(lastMonthlyLogYearSelected));
             MainForm.SetLastLogSelectedDataEntry(Convert.ToInt32(lastLogYearSelectedDataEntry));
 
-            if (logBool)
-            {
-                //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
-                Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, 0, 0);
-                Logger.Log("Configuration Read: LOGLEVEL : " + logLevel, 0, 0);
-                //Logger.Log("Configuration Read: VERSION : " + verison, 0, 0);
-                Logger.Log("Configuration Read: GRIDORDER : " + gridOrder, 0, 0);
-                Logger.Log("Configuration Read: IDCOLUMN : " + idColumnValue, 0, 0);
-                Logger.Log("Configuration Read: cbStatistic1 : " + cbStatistic1, 0, 0);
-                Logger.Log("Configuration Read: cbStatistic2 : " + cbStatistic2, 0, 0);
-                Logger.Log("Configuration Read: cbStatistic3 : " + cbStatistic3, 0, 0);
-                Logger.Log("Configuration Read: cbStatistic4 : " + cbStatistic4, 0, 0);
-                Logger.Log("Configuration Read: cbStatistic5 : " + cbStatistic5, 0, 0);
-                Logger.Log("Configuration Read: cbStatistic6 : " + cbStatistic6, 0, 0);
-                Logger.Log("Configuration Read: cbStatistic7 : " + cbStatistic7, 0, 0);
-                Logger.Log("Configuration Read: cbStatistic8 : " + cbStatistic8, 0, 0);
-                Logger.Log("Configuration Read: cbStatistic9 : " + cbStatistic9, 0, 0);
-                Logger.Log("Configuration Read: cbStatistic10 : " + cbStatistic10, 0, 0);
-                Logger.Log("Configuration Read: custom1 : " + customDataField1, 0, 0);
-                Logger.Log("Configuration Read: custom2 : " + customDataField2, 0, 0);
-                Logger.Log("Configuration Read: color maint : " + colorMaint, 0, 0);
-                Logger.Log("Configuration Read: color weekly : " + colorWeekly, 0, 0);
-                Logger.Log("Configuration Read: color monthly : " + colorMonthly, 0, 0);
-                Logger.Log("Configuration Read: color yearly : " + colorYearly, 0, 0);
-                Logger.Log("Configuration Read: color display data : " + colorDisplayData, 0, 0);
-                Logger.Log("Configuration Read: color bike : " + colorBike, 0, 0);
-                Logger.Log("Configuration Read: color route : " + colorRoute, 0, 0);
+            //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
+            Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, logLevel, 0);
+            Logger.Log("Configuration Read: LOGLEVEL : " + logLevel, logLevel, 0);
+            //Logger.Log("Configuration Read: VERSION : " + verison, logLevel, 0);
+            Logger.Log("Configuration Read: GRIDORDER : " + gridOrder, logLevel, 0);
+            Logger.Log("Configuration Read: IDCOLUMN : " + idColumnValue, logLevel, 0);
+            Logger.Log("Configuration Read: cbStatistic1 : " + cbStatistic1, logLevel, 0);
+            Logger.Log("Configuration Read: cbStatistic2 : " + cbStatistic2, logLevel, 0);
+            Logger.Log("Configuration Read: cbStatistic3 : " + cbStatistic3, logLevel, 0);
+            Logger.Log("Configuration Read: cbStatistic4 : " + cbStatistic4, logLevel, 0);
+            Logger.Log("Configuration Read: cbStatistic5 : " + cbStatistic5, logLevel, 0);
+            Logger.Log("Configuration Read: cbStatistic6 : " + cbStatistic6, logLevel, 0);
+            Logger.Log("Configuration Read: cbStatistic7 : " + cbStatistic7, logLevel, 0);
+            Logger.Log("Configuration Read: cbStatistic8 : " + cbStatistic8, logLevel, 0);
+            Logger.Log("Configuration Read: cbStatistic9 : " + cbStatistic9, logLevel, 0);
+            Logger.Log("Configuration Read: cbStatistic10 : " + cbStatistic10, logLevel, 0);
+            Logger.Log("Configuration Read: custom1 : " + customDataField1, logLevel, 0);
+            Logger.Log("Configuration Read: custom2 : " + customDataField2, logLevel, 0);
+            Logger.Log("Configuration Read: color maint : " + colorMaint, logLevel, 0);
+            Logger.Log("Configuration Read: color weekly : " + colorWeekly, logLevel, 0);
+            Logger.Log("Configuration Read: color monthly : " + colorMonthly, logLevel, 0);
+            Logger.Log("Configuration Read: color yearly : " + colorYearly, logLevel, 0);
+            Logger.Log("Configuration Read: color display data : " + colorDisplayData, 0, 0);
+            Logger.Log("Configuration Read: color bike : " + colorBike, logLevel, 0);
+            Logger.Log("Configuration Read: color route : " + colorRoute, logLevel, 0);
 
-                Logger.Log("Configuration Read: text maint : " + textMaint, 0, 0);
-                Logger.Log("Configuration Read: text weekly : " + textWeekly, 0, 0);
-                Logger.Log("Configuration Read: text monthly : " + textMonthly, 0, 0);
-                Logger.Log("Configuration Read: text yearly : " + textYearly, 0, 0);
-                Logger.Log("Configuration Read: text display : " + textDisplay, 0, 0);
-                Logger.Log("Configuration Read: text bike : " + textBike, 0, 0);
-                Logger.Log("Configuration Read: text route : " + textRoute, 0, 0);
+            Logger.Log("Configuration Read: text maint : " + textMaint, logLevel, 0);
+            Logger.Log("Configuration Read: text weekly : " + textWeekly, logLevel, 0);
+            Logger.Log("Configuration Read: text monthly : " + textMonthly, logLevel, 0);
+            Logger.Log("Configuration Read: text yearly : " + textYearly, logLevel, 0);
+            Logger.Log("Configuration Read: text display : " + textDisplay, logLevel, 0);
+            Logger.Log("Configuration Read: text bike : " + textBike, logLevel, 0);
+            Logger.Log("Configuration Read: text route : " + textRoute, logLevel, 0);
 
-                Logger.Log("Configuration Read: lastLogYearFilterSelected : " + lastLogYearFilterSelected, 0, 0);
-                Logger.Log("Configuration Read: lastLogYearSelected : " + lastLogYearSelected, 0, 0);
-                Logger.Log("Configuration Read: lastBikeSelected : " + lastBikeSelected, 0, 0);
+            Logger.Log("Configuration Read: lastLogYearFilterSelected : " + lastLogYearFilterSelected, logLevel, 0);
+            Logger.Log("Configuration Read: lastLogYearSelected : " + lastLogYearSelected, logLevel, 0);
+            Logger.Log("Configuration Read: lastBikeSelected : " + lastBikeSelected, logLevel, 0);
 
-                Logger.Log("Configuration Read: chartLogYearSelected : " + chartLogYearSelected, 0, 0);
-                Logger.Log("Configuration Read: chartRouteSelected : " + chartRouteSelected, 0, 0);
-                Logger.Log("Configuration Read: chartTypeSelected : " + chartTypeSelected, 0, 0);
-                Logger.Log("Configuration Read: chartTimeTypeSelected : " + chartTimeTypeSelected, 0, 0);
+            Logger.Log("Configuration Read: chartLogYearSelected : " + chartLogYearSelected, logLevel, 0);
+            Logger.Log("Configuration Read: chartRouteSelected : " + chartRouteSelected, logLevel, 0);
+            Logger.Log("Configuration Read: chartTypeSelected : " + chartTypeSelected, logLevel, 0);
+            Logger.Log("Configuration Read: chartTimeTypeSelected : " + chartTimeTypeSelected, logLevel, 0);
 
-                Logger.Log("Configuration Read: lastMonthlyLogYearSelected : " + lastMonthlyLogYearSelected, 0, 0);
-                Logger.Log("Configuration Read: lastLogYearSelectedDataEntry : " + lastLogYearSelectedDataEntry, 0, 0);
+            Logger.Log("Configuration Read: lastMonthlyLogYearSelected : " + lastMonthlyLogYearSelected, logLevel, 0);
+            Logger.Log("Configuration Read: lastLogYearSelectedDataEntry : " + lastLogYearSelectedDataEntry, logLevel, 0);
 
-                Logger.Log("Configuration Read: license : " + license, 0, 0);
-                Logger.Log("Configuration Read: custom1 : " + customDataField1, 0, 0);
-                Logger.Log("Configuration Read: custom2 : " + customDataField2, 0, 0);
-            }
+            Logger.Log("Configuration Read: license : " + license, logLevel, 0);
+            Logger.Log("Configuration Read: custom1 : " + customDataField1, logLevel, 0);
+            Logger.Log("Configuration Read: custom2 : " + customDataField2, logLevel, 0);
+
 
             returnStatus = true;           
 

@@ -130,7 +130,7 @@ namespace CyclingLogApplication
             }
 
             ConfigurationFile configurationFile = new ConfigurationFile();
-            ConfigurationFile.ReadConfigFile(false);
+            ConfigurationFile.ReadConfigFile();
             string customField1 = MainForm.GetCustomField1();
             string customField2 = MainForm.GetCustomField2();
 

@@ -54,7 +54,7 @@ namespace CyclingLogApplication
                 Boolean custom2Skipped = false;
                 int numberRemoved = 0;
 
-                List<string> logList = MainForm.ReadDataNames("Table_Log_year", "Name");
+                List<string> logList = MainForm.ReadDataNamesDESC("Table_Log_year", "Name");
                 int checkListBoxIndex = 0;
                 
                 cbLogYearFilter.Items.Add("--Select Value--");
@@ -981,6 +981,8 @@ namespace CyclingLogApplication
                         dataTable.Columns["Custom2"].ColumnName = custom2;
                     }
                 }
+
+                dataTable.Columns["WeekNumber"].ColumnName = "Week#";
 
                 dataGridView1.DataSource = dataTable;
                 dataGridView1.Columns["AvgSpeed"].DefaultCellStyle.Format = "0.00";

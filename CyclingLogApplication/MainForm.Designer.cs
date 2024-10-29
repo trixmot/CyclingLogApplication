@@ -37,6 +37,10 @@
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tbMaxYearlyMilesAllLogs = new System.Windows.Forms.TextBox();
+            this.label90 = new System.Windows.Forms.Label();
+            this.tbHighAscentWeekAll = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.tbHighWeekAll = new System.Windows.Forms.TextBox();
             this.label82 = new System.Windows.Forms.Label();
@@ -76,15 +80,23 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label62 = new System.Windows.Forms.Label();
-            this.cbLogYear5 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear4 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear3 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear2 = new System.Windows.Forms.ComboBox();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
             this.cbLogYear1 = new System.Windows.Forms.ComboBox();
+            this.cbLogYear10 = new System.Windows.Forms.ComboBox();
+            this.cbLogYear2 = new System.Windows.Forms.ComboBox();
+            this.cbLogYear9 = new System.Windows.Forms.ComboBox();
+            this.cbLogYear3 = new System.Windows.Forms.ComboBox();
+            this.cbLogYear8 = new System.Windows.Forms.ComboBox();
+            this.cbLogYear4 = new System.Windows.Forms.ComboBox();
+            this.cbLogYear7 = new System.Windows.Forms.ComboBox();
+            this.cbLogYear5 = new System.Windows.Forms.ComboBox();
+            this.cbLogYear6 = new System.Windows.Forms.ComboBox();
+            this.dataGridViewYearly = new System.Windows.Forms.DataGridView();
+            this.label62 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridViewMonthly = new System.Windows.Forms.DataGridView();
             this.label63 = new System.Windows.Forms.Label();
             this.cbStatMonthlyLogYear = new System.Windows.Forms.ComboBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
@@ -145,7 +157,19 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
+            this.cbMonthlyTextColor = new System.Windows.Forms.CheckBox();
+            this.tbWhiteMonthly = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbColorMonthly = new System.Windows.Forms.TextBox();
+            this.cbMonthlyColors = new System.Windows.Forms.ComboBox();
+            this.cbYearlyTextColor = new System.Windows.Forms.CheckBox();
+            this.tbWhiteYearly = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbColorYearly = new System.Windows.Forms.TextBox();
+            this.cbYearlyColors = new System.Windows.Forms.ComboBox();
             this.cbRouteTextColor = new System.Windows.Forms.CheckBox();
             this.cbBikeTextColor = new System.Windows.Forms.CheckBox();
             this.cbDisplayDataTextColor = new System.Windows.Forms.CheckBox();
@@ -177,8 +201,6 @@
             this.btHideShowIDColumn = new System.Windows.Forms.Button();
             this.rbHideIDColumn = new System.Windows.Forms.RadioButton();
             this.rbShowIDColumn = new System.Windows.Forms.RadioButton();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.btFirstDay = new System.Windows.Forms.Button();
             this.rbFirstDayMonday = new System.Windows.Forms.RadioButton();
@@ -207,26 +229,6 @@
             this.label29 = new System.Windows.Forms.Label();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label90 = new System.Windows.Forms.Label();
-            this.tbHighAscentWeekAll = new System.Windows.Forms.TextBox();
-            this.dataGridViewMonthly = new System.Windows.Forms.DataGridView();
-            this.dataGridViewYearly = new System.Windows.Forms.DataGridView();
-            this.cbLogYear10 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear9 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear8 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear7 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear6 = new System.Windows.Forms.ComboBox();
-            this.cbYearlyTextColor = new System.Windows.Forms.CheckBox();
-            this.tbWhiteYearly = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbColorYearly = new System.Windows.Forms.TextBox();
-            this.cbYearlyColors = new System.Windows.Forms.ComboBox();
-            this.cbMonthlyTextColor = new System.Windows.Forms.CheckBox();
-            this.tbWhiteMonthly = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tbColorMonthly = new System.Windows.Forms.TextBox();
-            this.cbMonthlyColors = new System.Windows.Forms.ComboBox();
-            this.groupBox20 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -238,9 +240,12 @@
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox20.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewYearly)).BeginInit();
             this.tabPage7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonthly)).BeginInit();
             this.tabPage8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -265,9 +270,6 @@
             this.groupBox10.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonthly)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewYearly)).BeginInit();
-            this.groupBox20.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbLogYearConfig
@@ -342,7 +344,7 @@
             this.groupBox1.Controls.Add(this.label30);
             this.groupBox1.Controls.Add(this.label74);
             this.groupBox1.Controls.Add(this.label60);
-            this.groupBox1.Location = new System.Drawing.Point(62, 42);
+            this.groupBox1.Location = new System.Drawing.Point(61, 34);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(792, 473);
             this.groupBox1.TabIndex = 10;
@@ -350,6 +352,8 @@
             // 
             // groupBox19
             // 
+            this.groupBox19.Controls.Add(this.label8);
+            this.groupBox19.Controls.Add(this.tbMaxYearlyMilesAllLogs);
             this.groupBox19.Controls.Add(this.label90);
             this.groupBox19.Controls.Add(this.tbHighAscentWeekAll);
             this.groupBox19.Controls.Add(this.label20);
@@ -368,12 +372,50 @@
             this.groupBox19.Controls.Add(this.label58);
             this.groupBox19.Controls.Add(this.label59);
             this.groupBox19.Controls.Add(this.label75);
-            this.groupBox19.Location = new System.Drawing.Point(280, 125);
+            this.groupBox19.Location = new System.Drawing.Point(276, 111);
             this.groupBox19.Name = "groupBox19";
-            this.groupBox19.Size = new System.Drawing.Size(224, 291);
+            this.groupBox19.Size = new System.Drawing.Size(224, 314);
             this.groupBox19.TabIndex = 82;
             this.groupBox19.TabStop = false;
             this.groupBox19.Text = "Statistics-All";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(17, 270);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(86, 13);
+            this.label8.TabIndex = 90;
+            this.label8.Text = "Max Yearly Miles";
+            // 
+            // tbMaxYearlyMilesAllLogs
+            // 
+            this.tbMaxYearlyMilesAllLogs.Location = new System.Drawing.Point(110, 267);
+            this.tbMaxYearlyMilesAllLogs.Name = "tbMaxYearlyMilesAllLogs";
+            this.tbMaxYearlyMilesAllLogs.ReadOnly = true;
+            this.tbMaxYearlyMilesAllLogs.Size = new System.Drawing.Size(97, 20);
+            this.tbMaxYearlyMilesAllLogs.TabIndex = 89;
+            this.tbMaxYearlyMilesAllLogs.TabStop = false;
+            this.tbMaxYearlyMilesAllLogs.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label90
+            // 
+            this.label90.AutoSize = true;
+            this.label90.Location = new System.Drawing.Point(6, 244);
+            this.label90.Name = "label90";
+            this.label90.Size = new System.Drawing.Size(97, 13);
+            this.label90.TabIndex = 88;
+            this.label90.Text = "High Ascent Week";
+            // 
+            // tbHighAscentWeekAll
+            // 
+            this.tbHighAscentWeekAll.Location = new System.Drawing.Point(110, 241);
+            this.tbHighAscentWeekAll.Name = "tbHighAscentWeekAll";
+            this.tbHighAscentWeekAll.ReadOnly = true;
+            this.tbHighAscentWeekAll.Size = new System.Drawing.Size(97, 20);
+            this.tbHighAscentWeekAll.TabIndex = 87;
+            this.tbHighAscentWeekAll.TabStop = false;
+            this.tbHighAscentWeekAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label20
             // 
@@ -434,7 +476,7 @@
             // 
             // tbStatisticsTotalMiles
             // 
-            this.tbStatisticsTotalMiles.Location = new System.Drawing.Point(110, 32);
+            this.tbStatisticsTotalMiles.Location = new System.Drawing.Point(109, 29);
             this.tbStatisticsTotalMiles.Name = "tbStatisticsTotalMiles";
             this.tbStatisticsTotalMiles.ReadOnly = true;
             this.tbStatisticsTotalMiles.Size = new System.Drawing.Size(97, 20);
@@ -531,7 +573,7 @@
             // 
             this.groupBox17.BackColor = System.Drawing.Color.DimGray;
             this.groupBox17.Controls.Add(this.groupBox8);
-            this.groupBox17.Location = new System.Drawing.Point(37, 156);
+            this.groupBox17.Location = new System.Drawing.Point(33, 142);
             this.groupBox17.Name = "groupBox17";
             this.groupBox17.Size = new System.Drawing.Size(215, 208);
             this.groupBox17.TabIndex = 57;
@@ -548,6 +590,7 @@
             this.groupBox8.Controls.Add(this.label14);
             this.groupBox8.Controls.Add(this.label15);
             this.groupBox8.Controls.Add(this.tbWeekCount);
+            this.groupBox8.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.groupBox8.Location = new System.Drawing.Point(6, 5);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(203, 197);
@@ -629,7 +672,7 @@
             // groupBox16
             // 
             this.groupBox16.Controls.Add(this.button1);
-            this.groupBox16.Location = new System.Drawing.Point(530, 353);
+            this.groupBox16.Location = new System.Drawing.Point(526, 339);
             this.groupBox16.Name = "groupBox16";
             this.groupBox16.Size = new System.Drawing.Size(223, 86);
             this.groupBox16.TabIndex = 56;
@@ -651,7 +694,7 @@
             // groupBox15
             // 
             this.groupBox15.Controls.Add(this.button5);
-            this.groupBox15.Location = new System.Drawing.Point(530, 262);
+            this.groupBox15.Location = new System.Drawing.Point(526, 248);
             this.groupBox15.Name = "groupBox15";
             this.groupBox15.Size = new System.Drawing.Size(223, 85);
             this.groupBox15.TabIndex = 55;
@@ -662,7 +705,7 @@
             // 
             this.groupBox14.Controls.Add(this.btRefreshData);
             this.groupBox14.Controls.Add(this.button7);
-            this.groupBox14.Location = new System.Drawing.Point(530, 125);
+            this.groupBox14.Location = new System.Drawing.Point(526, 111);
             this.groupBox14.Name = "groupBox14";
             this.groupBox14.Size = new System.Drawing.Size(223, 131);
             this.groupBox14.TabIndex = 54;
@@ -694,7 +737,7 @@
             // label74
             // 
             this.label74.AutoSize = true;
-            this.label74.Location = new System.Drawing.Point(581, 407);
+            this.label74.Location = new System.Drawing.Point(577, 393);
             this.label74.Name = "label74";
             this.label74.Size = new System.Drawing.Size(0, 13);
             this.label74.TabIndex = 72;
@@ -702,7 +745,7 @@
             // label60
             // 
             this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(403, 403);
+            this.label60.Location = new System.Drawing.Point(399, 389);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(0, 13);
             this.label60.TabIndex = 60;
@@ -721,7 +764,7 @@
             // btDeleteAllData
             // 
             this.btDeleteAllData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btDeleteAllData.Location = new System.Drawing.Point(36, 61);
+            this.btDeleteAllData.Location = new System.Drawing.Point(39, 51);
             this.btDeleteAllData.Name = "btDeleteAllData";
             this.btDeleteAllData.Size = new System.Drawing.Size(92, 21);
             this.btDeleteAllData.TabIndex = 3;
@@ -774,76 +817,159 @@
             this.groupBox4.Controls.Add(this.groupBox20);
             this.groupBox4.Controls.Add(this.dataGridViewYearly);
             this.groupBox4.Controls.Add(this.label62);
-            this.groupBox4.Location = new System.Drawing.Point(23, 20);
+            this.groupBox4.Location = new System.Drawing.Point(6, 20);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(871, 491);
+            this.groupBox4.Size = new System.Drawing.Size(903, 491);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             // 
-            // label62
+            // groupBox20
             // 
-            this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.Location = new System.Drawing.Point(238, 28);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(309, 28);
-            this.label62.TabIndex = 63;
-            this.label62.Text = "Statistics Yearly Log Data";
-            // 
-            // cbLogYear5
-            // 
-            this.cbLogYear5.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear5.FormattingEnabled = true;
-            this.cbLogYear5.Location = new System.Drawing.Point(17, 180);
-            this.cbLogYear5.Name = "cbLogYear5";
-            this.cbLogYear5.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear5.TabIndex = 4;
-            this.cbLogYear5.SelectedIndexChanged += new System.EventHandler(this.Cb5LogYear_changed);
-            // 
-            // cbLogYear4
-            // 
-            this.cbLogYear4.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear4.FormattingEnabled = true;
-            this.cbLogYear4.Location = new System.Drawing.Point(17, 148);
-            this.cbLogYear4.Name = "cbLogYear4";
-            this.cbLogYear4.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear4.TabIndex = 3;
-            this.cbLogYear4.SelectedIndexChanged += new System.EventHandler(this.Cb4LogYear_changed);
-            // 
-            // cbLogYear3
-            // 
-            this.cbLogYear3.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear3.FormattingEnabled = true;
-            this.cbLogYear3.Location = new System.Drawing.Point(17, 115);
-            this.cbLogYear3.Name = "cbLogYear3";
-            this.cbLogYear3.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear3.TabIndex = 2;
-            this.cbLogYear3.SelectedIndexChanged += new System.EventHandler(this.Cb3LogYear_changed);
-            // 
-            // cbLogYear2
-            // 
-            this.cbLogYear2.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear2.FormattingEnabled = true;
-            this.cbLogYear2.Location = new System.Drawing.Point(17, 83);
-            this.cbLogYear2.Name = "cbLogYear2";
-            this.cbLogYear2.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear2.TabIndex = 1;
-            this.cbLogYear2.SelectedIndexChanged += new System.EventHandler(this.Cb2LogYear_changed);
+            this.groupBox20.BackColor = System.Drawing.Color.Gainsboro;
+            this.groupBox20.Controls.Add(this.cbLogYear1);
+            this.groupBox20.Controls.Add(this.cbLogYear10);
+            this.groupBox20.Controls.Add(this.cbLogYear2);
+            this.groupBox20.Controls.Add(this.cbLogYear9);
+            this.groupBox20.Controls.Add(this.cbLogYear3);
+            this.groupBox20.Controls.Add(this.cbLogYear8);
+            this.groupBox20.Controls.Add(this.cbLogYear4);
+            this.groupBox20.Controls.Add(this.cbLogYear7);
+            this.groupBox20.Controls.Add(this.cbLogYear5);
+            this.groupBox20.Controls.Add(this.cbLogYear6);
+            this.groupBox20.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.groupBox20.Location = new System.Drawing.Point(9, 95);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(124, 371);
+            this.groupBox20.TabIndex = 97;
+            this.groupBox20.TabStop = false;
             // 
             // cbLogYear1
             // 
             this.cbLogYear1.BackColor = System.Drawing.Color.Silver;
             this.cbLogYear1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYear1.FormattingEnabled = true;
-            this.cbLogYear1.Location = new System.Drawing.Point(17, 50);
+            this.cbLogYear1.Location = new System.Drawing.Point(6, 49);
             this.cbLogYear1.Name = "cbLogYear1";
             this.cbLogYear1.Size = new System.Drawing.Size(110, 21);
             this.cbLogYear1.TabIndex = 0;
             this.cbLogYear1.SelectedIndexChanged += new System.EventHandler(this.Cb1LogYear_changed);
+            // 
+            // cbLogYear10
+            // 
+            this.cbLogYear10.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear10.FormattingEnabled = true;
+            this.cbLogYear10.Location = new System.Drawing.Point(6, 340);
+            this.cbLogYear10.Name = "cbLogYear10";
+            this.cbLogYear10.Size = new System.Drawing.Size(110, 21);
+            this.cbLogYear10.TabIndex = 96;
+            this.cbLogYear10.SelectedIndexChanged += new System.EventHandler(this.Cb10LogYear_changed);
+            // 
+            // cbLogYear2
+            // 
+            this.cbLogYear2.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear2.FormattingEnabled = true;
+            this.cbLogYear2.Location = new System.Drawing.Point(6, 82);
+            this.cbLogYear2.Name = "cbLogYear2";
+            this.cbLogYear2.Size = new System.Drawing.Size(110, 21);
+            this.cbLogYear2.TabIndex = 1;
+            this.cbLogYear2.SelectedIndexChanged += new System.EventHandler(this.Cb2LogYear_changed);
+            // 
+            // cbLogYear9
+            // 
+            this.cbLogYear9.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear9.FormattingEnabled = true;
+            this.cbLogYear9.Location = new System.Drawing.Point(6, 310);
+            this.cbLogYear9.Name = "cbLogYear9";
+            this.cbLogYear9.Size = new System.Drawing.Size(110, 21);
+            this.cbLogYear9.TabIndex = 95;
+            this.cbLogYear9.SelectedIndexChanged += new System.EventHandler(this.Cb9LogYear_changed);
+            // 
+            // cbLogYear3
+            // 
+            this.cbLogYear3.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear3.FormattingEnabled = true;
+            this.cbLogYear3.Location = new System.Drawing.Point(6, 114);
+            this.cbLogYear3.Name = "cbLogYear3";
+            this.cbLogYear3.Size = new System.Drawing.Size(110, 21);
+            this.cbLogYear3.TabIndex = 2;
+            this.cbLogYear3.SelectedIndexChanged += new System.EventHandler(this.Cb3LogYear_changed);
+            // 
+            // cbLogYear8
+            // 
+            this.cbLogYear8.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear8.FormattingEnabled = true;
+            this.cbLogYear8.Location = new System.Drawing.Point(6, 277);
+            this.cbLogYear8.Name = "cbLogYear8";
+            this.cbLogYear8.Size = new System.Drawing.Size(110, 21);
+            this.cbLogYear8.TabIndex = 94;
+            this.cbLogYear8.SelectedIndexChanged += new System.EventHandler(this.Cb8LogYear_changed);
+            // 
+            // cbLogYear4
+            // 
+            this.cbLogYear4.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear4.FormattingEnabled = true;
+            this.cbLogYear4.Location = new System.Drawing.Point(6, 147);
+            this.cbLogYear4.Name = "cbLogYear4";
+            this.cbLogYear4.Size = new System.Drawing.Size(110, 21);
+            this.cbLogYear4.TabIndex = 3;
+            this.cbLogYear4.SelectedIndexChanged += new System.EventHandler(this.Cb4LogYear_changed);
+            // 
+            // cbLogYear7
+            // 
+            this.cbLogYear7.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear7.FormattingEnabled = true;
+            this.cbLogYear7.Location = new System.Drawing.Point(6, 245);
+            this.cbLogYear7.Name = "cbLogYear7";
+            this.cbLogYear7.Size = new System.Drawing.Size(110, 21);
+            this.cbLogYear7.TabIndex = 93;
+            this.cbLogYear7.SelectedIndexChanged += new System.EventHandler(this.Cb7LogYear_changed);
+            // 
+            // cbLogYear5
+            // 
+            this.cbLogYear5.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear5.FormattingEnabled = true;
+            this.cbLogYear5.Location = new System.Drawing.Point(6, 179);
+            this.cbLogYear5.Name = "cbLogYear5";
+            this.cbLogYear5.Size = new System.Drawing.Size(110, 21);
+            this.cbLogYear5.TabIndex = 4;
+            this.cbLogYear5.SelectedIndexChanged += new System.EventHandler(this.Cb5LogYear_changed);
+            // 
+            // cbLogYear6
+            // 
+            this.cbLogYear6.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYear6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear6.FormattingEnabled = true;
+            this.cbLogYear6.Location = new System.Drawing.Point(6, 213);
+            this.cbLogYear6.Name = "cbLogYear6";
+            this.cbLogYear6.Size = new System.Drawing.Size(110, 21);
+            this.cbLogYear6.TabIndex = 92;
+            this.cbLogYear6.SelectedIndexChanged += new System.EventHandler(this.Cb6LogYear_changed);
+            // 
+            // dataGridViewYearly
+            // 
+            this.dataGridViewYearly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewYearly.Location = new System.Drawing.Point(139, 95);
+            this.dataGridViewYearly.Name = "dataGridViewYearly";
+            this.dataGridViewYearly.Size = new System.Drawing.Size(758, 372);
+            this.dataGridViewYearly.TabIndex = 91;
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Location = new System.Drawing.Point(353, 37);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(309, 28);
+            this.label62.TabIndex = 63;
+            this.label62.Text = "Statistics Yearly Log Data";
             // 
             // tabPage7
             // 
@@ -875,6 +1001,14 @@
             this.panel1.Size = new System.Drawing.Size(822, 522);
             this.panel1.TabIndex = 0;
             // 
+            // dataGridViewMonthly
+            // 
+            this.dataGridViewMonthly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMonthly.Location = new System.Drawing.Point(15, 65);
+            this.dataGridViewMonthly.Name = "dataGridViewMonthly";
+            this.dataGridViewMonthly.Size = new System.Drawing.Size(791, 436);
+            this.dataGridViewMonthly.TabIndex = 157;
+            // 
             // label63
             // 
             this.label63.AutoSize = true;
@@ -890,7 +1024,7 @@
             this.cbStatMonthlyLogYear.BackColor = System.Drawing.Color.Silver;
             this.cbStatMonthlyLogYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatMonthlyLogYear.FormattingEnabled = true;
-            this.cbStatMonthlyLogYear.Location = new System.Drawing.Point(45, 22);
+            this.cbStatMonthlyLogYear.Location = new System.Drawing.Point(15, 22);
             this.cbStatMonthlyLogYear.Name = "cbStatMonthlyLogYear";
             this.cbStatMonthlyLogYear.Size = new System.Drawing.Size(136, 21);
             this.cbStatMonthlyLogYear.TabIndex = 0;
@@ -909,9 +1043,9 @@
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.panel2);
-            this.groupBox7.Location = new System.Drawing.Point(56, 33);
+            this.groupBox7.Location = new System.Drawing.Point(56, 17);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(815, 499);
+            this.groupBox7.Size = new System.Drawing.Size(815, 515);
             this.groupBox7.TabIndex = 130;
             this.groupBox7.TabStop = false;
             // 
@@ -927,9 +1061,9 @@
             // dataGridViewWeekly
             // 
             this.dataGridViewWeekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewWeekly.Location = new System.Drawing.Point(76, 72);
+            this.dataGridViewWeekly.Location = new System.Drawing.Point(29, 72);
             this.dataGridViewWeekly.Name = "dataGridViewWeekly";
-            this.dataGridViewWeekly.Size = new System.Drawing.Size(624, 353);
+            this.dataGridViewWeekly.Size = new System.Drawing.Size(719, 323);
             this.dataGridViewWeekly.TabIndex = 177;
             // 
             // label65
@@ -1023,7 +1157,7 @@
             // 
             // btMaintRemove
             // 
-            this.btMaintRemove.Location = new System.Drawing.Point(721, 44);
+            this.btMaintRemove.Location = new System.Drawing.Point(717, 30);
             this.btMaintRemove.Name = "btMaintRemove";
             this.btMaintRemove.Size = new System.Drawing.Size(75, 23);
             this.btMaintRemove.TabIndex = 4;
@@ -1074,7 +1208,7 @@
             // 
             // btMaintAdd
             // 
-            this.btMaintAdd.Location = new System.Drawing.Point(627, 44);
+            this.btMaintAdd.Location = new System.Drawing.Point(625, 30);
             this.btMaintAdd.Name = "btMaintAdd";
             this.btMaintAdd.Size = new System.Drawing.Size(75, 23);
             this.btMaintAdd.TabIndex = 3;
@@ -1159,7 +1293,7 @@
             // label68
             // 
             this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(59, 113);
+            this.label68.Location = new System.Drawing.Point(27, 113);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(29, 13);
             this.label68.TabIndex = 29;
@@ -1168,7 +1302,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(65, 94);
+            this.label26.Location = new System.Drawing.Point(33, 94);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(23, 13);
             this.label26.TabIndex = 28;
@@ -1176,7 +1310,7 @@
             // 
             // tbBikeOldName
             // 
-            this.tbBikeOldName.Location = new System.Drawing.Point(94, 87);
+            this.tbBikeOldName.Location = new System.Drawing.Point(62, 87);
             this.tbBikeOldName.Name = "tbBikeOldName";
             this.tbBikeOldName.ReadOnly = true;
             this.tbBikeOldName.Size = new System.Drawing.Size(141, 20);
@@ -1231,7 +1365,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(91, 16);
+            this.label28.Location = new System.Drawing.Point(78, 20);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(101, 13);
             this.label28.TabIndex = 21;
@@ -1249,7 +1383,7 @@
             // 
             // tbBikeAllMilesTotal
             // 
-            this.tbBikeAllMilesTotal.Location = new System.Drawing.Point(94, 32);
+            this.tbBikeAllMilesTotal.Location = new System.Drawing.Point(89, 36);
             this.tbBikeAllMilesTotal.Name = "tbBikeAllMilesTotal";
             this.tbBikeAllMilesTotal.ReadOnly = true;
             this.tbBikeAllMilesTotal.Size = new System.Drawing.Size(80, 20);
@@ -1269,7 +1403,7 @@
             // 
             // tbBikeConfig
             // 
-            this.tbBikeConfig.Location = new System.Drawing.Point(94, 110);
+            this.tbBikeConfig.Location = new System.Drawing.Point(62, 110);
             this.tbBikeConfig.Name = "tbBikeConfig";
             this.tbBikeConfig.Size = new System.Drawing.Size(141, 20);
             this.tbBikeConfig.TabIndex = 11;
@@ -1277,7 +1411,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(110, 71);
+            this.label5.Location = new System.Drawing.Point(78, 71);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 16;
@@ -1462,8 +1596,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.groupBox23);
             this.groupBox2.Controls.Add(this.groupBox22);
             this.groupBox2.Controls.Add(this.groupBox18);
@@ -1476,6 +1608,27 @@
             this.groupBox2.Size = new System.Drawing.Size(780, 518);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
+            // 
+            // button4
+            // 
+            this.button4.Enabled = false;
+            this.button4.Location = new System.Drawing.Point(99, 87);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 75;
+            this.button4.Text = "Restore";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(18, 87);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 74;
+            this.button3.Text = "Backup";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // groupBox23
             // 
@@ -1523,1560 +1676,6 @@
             this.groupBox23.TabStop = false;
             this.groupBox23.Text = "Grid Colors";
             // 
-            // cbRouteTextColor
-            // 
-            this.cbRouteTextColor.AutoSize = true;
-            this.cbRouteTextColor.Location = new System.Drawing.Point(165, 336);
-            this.cbRouteTextColor.Name = "cbRouteTextColor";
-            this.cbRouteTextColor.Size = new System.Drawing.Size(15, 14);
-            this.cbRouteTextColor.TabIndex = 100;
-            this.cbRouteTextColor.UseVisualStyleBackColor = true;
-            this.cbRouteTextColor.CheckedChanged += new System.EventHandler(this.cbRouteTextColor_CheckedChanged);
-            // 
-            // cbBikeTextColor
-            // 
-            this.cbBikeTextColor.AutoSize = true;
-            this.cbBikeTextColor.Location = new System.Drawing.Point(165, 293);
-            this.cbBikeTextColor.Name = "cbBikeTextColor";
-            this.cbBikeTextColor.Size = new System.Drawing.Size(15, 14);
-            this.cbBikeTextColor.TabIndex = 99;
-            this.cbBikeTextColor.UseVisualStyleBackColor = true;
-            this.cbBikeTextColor.CheckedChanged += new System.EventHandler(this.cbBikeTextColor_CheckedChanged);
-            // 
-            // cbDisplayDataTextColor
-            // 
-            this.cbDisplayDataTextColor.AutoSize = true;
-            this.cbDisplayDataTextColor.Location = new System.Drawing.Point(165, 247);
-            this.cbDisplayDataTextColor.Name = "cbDisplayDataTextColor";
-            this.cbDisplayDataTextColor.Size = new System.Drawing.Size(15, 14);
-            this.cbDisplayDataTextColor.TabIndex = 98;
-            this.cbDisplayDataTextColor.UseVisualStyleBackColor = true;
-            this.cbDisplayDataTextColor.CheckedChanged += new System.EventHandler(this.cbDisplayDataTextColor_CheckedChanged);
-            // 
-            // cbWeeklyTextColor
-            // 
-            this.cbWeeklyTextColor.AutoSize = true;
-            this.cbWeeklyTextColor.Location = new System.Drawing.Point(165, 156);
-            this.cbWeeklyTextColor.Name = "cbWeeklyTextColor";
-            this.cbWeeklyTextColor.Size = new System.Drawing.Size(15, 14);
-            this.cbWeeklyTextColor.TabIndex = 97;
-            this.cbWeeklyTextColor.UseVisualStyleBackColor = true;
-            this.cbWeeklyTextColor.CheckedChanged += new System.EventHandler(this.cbWeeklyTextColor_CheckedChanged);
-            // 
-            // cbMaintTextColor
-            // 
-            this.cbMaintTextColor.AutoSize = true;
-            this.cbMaintTextColor.Location = new System.Drawing.Point(165, 199);
-            this.cbMaintTextColor.Name = "cbMaintTextColor";
-            this.cbMaintTextColor.Size = new System.Drawing.Size(15, 14);
-            this.cbMaintTextColor.TabIndex = 96;
-            this.cbMaintTextColor.UseVisualStyleBackColor = true;
-            this.cbMaintTextColor.CheckedChanged += new System.EventHandler(this.cbMaintTextColor_CheckedChanged);
-            // 
-            // label88
-            // 
-            this.label88.AutoSize = true;
-            this.label88.Location = new System.Drawing.Point(140, 29);
-            this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(58, 13);
-            this.label88.TabIndex = 95;
-            this.label88.Text = "Text Black";
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(198, 319);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(65, 20);
-            this.textBox6.TabIndex = 94;
-            this.textBox6.Text = "White Row";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(198, 277);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(65, 20);
-            this.textBox5.TabIndex = 93;
-            this.textBox5.Text = "White Row";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(196, 228);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(65, 20);
-            this.textBox4.TabIndex = 92;
-            this.textBox4.Text = "White Row";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(196, 138);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(65, 20);
-            this.textBox3.TabIndex = 91;
-            this.textBox3.Text = "White Row";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(196, 182);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(65, 20);
-            this.textBox2.TabIndex = 90;
-            this.textBox2.Text = "White Row";
-            // 
-            // cbRoutesColor
-            // 
-            this.cbRoutesColor.AutoSize = true;
-            this.cbRoutesColor.Location = new System.Drawing.Point(20, 316);
-            this.cbRoutesColor.Name = "cbRoutesColor";
-            this.cbRoutesColor.Size = new System.Drawing.Size(63, 13);
-            this.cbRoutesColor.TabIndex = 89;
-            this.cbRoutesColor.Text = "Routes Grid";
-            // 
-            // tbRouteColor
-            // 
-            this.tbRouteColor.Location = new System.Drawing.Point(198, 336);
-            this.tbRouteColor.Name = "tbRouteColor";
-            this.tbRouteColor.Size = new System.Drawing.Size(65, 20);
-            this.tbRouteColor.TabIndex = 88;
-            this.tbRouteColor.Text = "Color Row";
-            // 
-            // cbRouteColors
-            // 
-            this.cbRouteColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbRouteColors.FormattingEnabled = true;
-            this.cbRouteColors.Items.AddRange(new object[] {
-            "AliceBlue",
-            "AntiqueWhite",
-            "Aqua",
-            "Aquamarine",
-            "Azure",
-            "Beige",
-            "Bisque",
-            "Black",
-            "BlanchedAlmond",
-            "Blue",
-            "BlueViolet",
-            "Brown",
-            "BurlyWood",
-            "CadetBlue",
-            "Chartreuse",
-            "Chocolate",
-            "Coral",
-            "CornflowerBlue",
-            "Cornsilk",
-            "Crimson",
-            "Cyan",
-            "DarkBlue\t",
-            "DarkCyan\t",
-            "DarkGoldenrod\t",
-            "DarkGray\t",
-            "DarkGreen\t",
-            "DarkKhaki\t",
-            "DarkMagenta\t",
-            "DarkOliveGreen\t",
-            "DarkOrange\t",
-            "DarkOrchid\t",
-            "DarkRed\t",
-            "DarkSalmon\t",
-            "DarkSeaGreen\t",
-            "DarkSlateBlue\t",
-            "DarkSlateGray\t",
-            "DarkTurquoise\t",
-            "DarkViolet\t",
-            "DeepPink\t",
-            "DeepSkyBlue",
-            "DimGray",
-            "DodgerBlue",
-            "Firebrick",
-            "FloralWhite",
-            "ForestGreen",
-            "Fuchsia",
-            "Gainsboro",
-            "Gold",
-            "Goldenrod",
-            "Gray",
-            "Green",
-            "GreenYellow",
-            "Honeydew",
-            "HotPink",
-            "IndianRed",
-            "Indigo",
-            "Ivory",
-            "Khaki",
-            "Lavender",
-            "LavenderBlush",
-            "LawnGreen",
-            "LemonChiffon",
-            "LightBlue",
-            "LightCoral",
-            "LightCyan",
-            "LightGoldenrodYellow",
-            "LightGray",
-            "LightGreen",
-            "LightPink",
-            "LightSalmon",
-            "LightSeaGreen",
-            "LightSkyBlue",
-            "LightSlateGray",
-            "LightSteelBlue",
-            "LightYellow",
-            "Lime",
-            "LimeGreen",
-            "Linen",
-            "Magenta",
-            "Maroon",
-            "MediumAquamarine",
-            "MediumOrchid",
-            "MediumPurple",
-            "MediumSeaGreen",
-            "MediumSlateBlue",
-            "MediumSpringGreen",
-            "MediumTurquoise",
-            "MintCream",
-            "MistyRose",
-            "Moccasin",
-            "NavajoWhite",
-            "OldLace",
-            "Olive",
-            "OliveDrab",
-            "Orange",
-            "OrangeRed",
-            "Orchid",
-            "PaleGoldenrod",
-            "PaleGreen",
-            "PaleTurquoise",
-            "PaleVioletRed",
-            "PapayaWhip",
-            "PeachPuff",
-            "Peru",
-            "Pink",
-            "Plum",
-            "PowderBlue",
-            "Purple",
-            "RebeccaPurple",
-            "Red",
-            "RosyBrown",
-            "RoyalBlue",
-            "SaddleBrown",
-            "Salmon",
-            "SandyBrown",
-            "SeaGreen",
-            "SeaShell",
-            "Sienna",
-            "Silver",
-            "SkyBlue",
-            "SlateBlue",
-            "SlateGray",
-            "Snow",
-            "SpringGreen",
-            "SteelBlue",
-            "Tan",
-            "Thistle",
-            "Tomato",
-            "Transparent",
-            "Turquoise",
-            "Violet",
-            "Wheat",
-            "White",
-            "WhiteSmoke",
-            "Yellow",
-            "YellowGreen"});
-            this.cbRouteColors.Location = new System.Drawing.Point(23, 332);
-            this.cbRouteColors.Name = "cbRouteColors";
-            this.cbRouteColors.Size = new System.Drawing.Size(111, 21);
-            this.cbRouteColors.TabIndex = 87;
-            this.cbRouteColors.SelectedIndexChanged += new System.EventHandler(this.cbRouteColors_SelectedIndexChanged);
-            // 
-            // cbBikesColor
-            // 
-            this.cbBikesColor.AutoSize = true;
-            this.cbBikesColor.Location = new System.Drawing.Point(22, 274);
-            this.cbBikesColor.Name = "cbBikesColor";
-            this.cbBikesColor.Size = new System.Drawing.Size(55, 13);
-            this.cbBikesColor.TabIndex = 86;
-            this.cbBikesColor.Text = "Bikes Grid";
-            // 
-            // tbBikeColor
-            // 
-            this.tbBikeColor.Location = new System.Drawing.Point(198, 294);
-            this.tbBikeColor.Name = "tbBikeColor";
-            this.tbBikeColor.Size = new System.Drawing.Size(65, 20);
-            this.tbBikeColor.TabIndex = 85;
-            this.tbBikeColor.Text = "Color Row";
-            // 
-            // cbBikeColors
-            // 
-            this.cbBikeColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBikeColors.FormattingEnabled = true;
-            this.cbBikeColors.Items.AddRange(new object[] {
-            "AliceBlue",
-            "AntiqueWhite",
-            "Aqua",
-            "Aquamarine",
-            "Azure",
-            "Beige",
-            "Bisque",
-            "Black",
-            "BlanchedAlmond",
-            "Blue",
-            "BlueViolet",
-            "Brown",
-            "BurlyWood",
-            "CadetBlue",
-            "Chartreuse",
-            "Chocolate",
-            "Coral",
-            "CornflowerBlue",
-            "Cornsilk",
-            "Crimson",
-            "Cyan",
-            "DarkBlue\t",
-            "DarkCyan\t",
-            "DarkGoldenrod\t",
-            "DarkGray\t",
-            "DarkGreen\t",
-            "DarkKhaki\t",
-            "DarkMagenta\t",
-            "DarkOliveGreen\t",
-            "DarkOrange\t",
-            "DarkOrchid\t",
-            "DarkRed\t",
-            "DarkSalmon\t",
-            "DarkSeaGreen\t",
-            "DarkSlateBlue\t",
-            "DarkSlateGray\t",
-            "DarkTurquoise\t",
-            "DarkViolet\t",
-            "DeepPink\t",
-            "DeepSkyBlue",
-            "DimGray",
-            "DodgerBlue",
-            "Firebrick",
-            "FloralWhite",
-            "ForestGreen",
-            "Fuchsia",
-            "Gainsboro",
-            "Gold",
-            "Goldenrod",
-            "Gray",
-            "Green",
-            "GreenYellow",
-            "Honeydew",
-            "HotPink",
-            "IndianRed",
-            "Indigo",
-            "Ivory",
-            "Khaki",
-            "Lavender",
-            "LavenderBlush",
-            "LawnGreen",
-            "LemonChiffon",
-            "LightBlue",
-            "LightCoral",
-            "LightCyan",
-            "LightGoldenrodYellow",
-            "LightGray",
-            "LightGreen",
-            "LightPink",
-            "LightSalmon",
-            "LightSeaGreen",
-            "LightSkyBlue",
-            "LightSlateGray",
-            "LightSteelBlue",
-            "LightYellow",
-            "Lime",
-            "LimeGreen",
-            "Linen",
-            "Magenta",
-            "Maroon",
-            "MediumAquamarine",
-            "MediumOrchid",
-            "MediumPurple",
-            "MediumSeaGreen",
-            "MediumSlateBlue",
-            "MediumSpringGreen",
-            "MediumTurquoise",
-            "MintCream",
-            "MistyRose",
-            "Moccasin",
-            "NavajoWhite",
-            "OldLace",
-            "Olive",
-            "OliveDrab",
-            "Orange",
-            "OrangeRed",
-            "Orchid",
-            "PaleGoldenrod",
-            "PaleGreen",
-            "PaleTurquoise",
-            "PaleVioletRed",
-            "PapayaWhip",
-            "PeachPuff",
-            "Peru",
-            "Pink",
-            "Plum",
-            "PowderBlue",
-            "Purple",
-            "RebeccaPurple",
-            "Red",
-            "RosyBrown",
-            "RoyalBlue",
-            "SaddleBrown",
-            "Salmon",
-            "SandyBrown",
-            "SeaGreen",
-            "SeaShell",
-            "Sienna",
-            "Silver",
-            "SkyBlue",
-            "SlateBlue",
-            "SlateGray",
-            "Snow",
-            "SpringGreen",
-            "SteelBlue",
-            "Tan",
-            "Thistle",
-            "Tomato",
-            "Transparent",
-            "Turquoise",
-            "Violet",
-            "Wheat",
-            "White",
-            "WhiteSmoke",
-            "Yellow",
-            "YellowGreen"});
-            this.cbBikeColors.Location = new System.Drawing.Point(23, 290);
-            this.cbBikeColors.Name = "cbBikeColors";
-            this.cbBikeColors.Size = new System.Drawing.Size(111, 21);
-            this.cbBikeColors.TabIndex = 84;
-            this.cbBikeColors.SelectedIndexChanged += new System.EventHandler(this.cbBikeColors_SelectedIndexChanged);
-            // 
-            // label81
-            // 
-            this.label81.AutoSize = true;
-            this.label81.Location = new System.Drawing.Point(22, 231);
-            this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(89, 13);
-            this.label81.TabIndex = 83;
-            this.label81.Text = "Display Data Grid";
-            // 
-            // tbColorDisplayData
-            // 
-            this.tbColorDisplayData.Location = new System.Drawing.Point(196, 248);
-            this.tbColorDisplayData.Name = "tbColorDisplayData";
-            this.tbColorDisplayData.Size = new System.Drawing.Size(65, 20);
-            this.tbColorDisplayData.TabIndex = 82;
-            this.tbColorDisplayData.Text = "Color Row";
-            // 
-            // cbDisplayDataColors
-            // 
-            this.cbDisplayDataColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbDisplayDataColors.FormattingEnabled = true;
-            this.cbDisplayDataColors.Items.AddRange(new object[] {
-            "AliceBlue",
-            "AntiqueWhite",
-            "Aqua",
-            "Aquamarine",
-            "Azure",
-            "Beige",
-            "Bisque",
-            "Black",
-            "BlanchedAlmond",
-            "Blue",
-            "BlueViolet",
-            "Brown",
-            "BurlyWood",
-            "CadetBlue",
-            "Chartreuse",
-            "Chocolate",
-            "Coral",
-            "CornflowerBlue",
-            "Cornsilk",
-            "Crimson",
-            "Cyan",
-            "DarkBlue\t",
-            "DarkCyan\t",
-            "DarkGoldenrod\t",
-            "DarkGray\t",
-            "DarkGreen\t",
-            "DarkKhaki\t",
-            "DarkMagenta\t",
-            "DarkOliveGreen\t",
-            "DarkOrange\t",
-            "DarkOrchid\t",
-            "DarkRed\t",
-            "DarkSalmon\t",
-            "DarkSeaGreen\t",
-            "DarkSlateBlue\t",
-            "DarkSlateGray\t",
-            "DarkTurquoise\t",
-            "DarkViolet\t",
-            "DeepPink\t",
-            "DeepSkyBlue",
-            "DimGray",
-            "DodgerBlue",
-            "Firebrick",
-            "FloralWhite",
-            "ForestGreen",
-            "Fuchsia",
-            "Gainsboro",
-            "Gold",
-            "Goldenrod",
-            "Gray",
-            "Green",
-            "GreenYellow",
-            "Honeydew",
-            "HotPink",
-            "IndianRed",
-            "Indigo",
-            "Ivory",
-            "Khaki",
-            "Lavender",
-            "LavenderBlush",
-            "LawnGreen",
-            "LemonChiffon",
-            "LightBlue",
-            "LightCoral",
-            "LightCyan",
-            "LightGoldenrodYellow",
-            "LightGray",
-            "LightGreen",
-            "LightPink",
-            "LightSalmon",
-            "LightSeaGreen",
-            "LightSkyBlue",
-            "LightSlateGray",
-            "LightSteelBlue",
-            "LightYellow",
-            "Lime",
-            "LimeGreen",
-            "Linen",
-            "Magenta",
-            "Maroon",
-            "MediumAquamarine",
-            "MediumOrchid",
-            "MediumPurple",
-            "MediumSeaGreen",
-            "MediumSlateBlue",
-            "MediumSpringGreen",
-            "MediumTurquoise",
-            "MintCream",
-            "MistyRose",
-            "Moccasin",
-            "NavajoWhite",
-            "OldLace",
-            "Olive",
-            "OliveDrab",
-            "Orange",
-            "OrangeRed",
-            "Orchid",
-            "PaleGoldenrod",
-            "PaleGreen",
-            "PaleTurquoise",
-            "PaleVioletRed",
-            "PapayaWhip",
-            "PeachPuff",
-            "Peru",
-            "Pink",
-            "Plum",
-            "PowderBlue",
-            "Purple",
-            "RebeccaPurple",
-            "Red",
-            "RosyBrown",
-            "RoyalBlue",
-            "SaddleBrown",
-            "Salmon",
-            "SandyBrown",
-            "SeaGreen",
-            "SeaShell",
-            "Sienna",
-            "Silver",
-            "SkyBlue",
-            "SlateBlue",
-            "SlateGray",
-            "Snow",
-            "SpringGreen",
-            "SteelBlue",
-            "Tan",
-            "Thistle",
-            "Tomato",
-            "Transparent",
-            "Turquoise",
-            "Violet",
-            "Wheat",
-            "White",
-            "WhiteSmoke",
-            "Yellow",
-            "YellowGreen"});
-            this.cbDisplayDataColors.Location = new System.Drawing.Point(23, 247);
-            this.cbDisplayDataColors.Name = "cbDisplayDataColors";
-            this.cbDisplayDataColors.Size = new System.Drawing.Size(111, 21);
-            this.cbDisplayDataColors.TabIndex = 81;
-            this.cbDisplayDataColors.SelectedIndexChanged += new System.EventHandler(this.cbDisplayDataColors_SelectedIndexChanged);
-            // 
-            // label76
-            // 
-            this.label76.AutoSize = true;
-            this.label76.Location = new System.Drawing.Point(22, 138);
-            this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(87, 13);
-            this.label76.TabIndex = 80;
-            this.label76.Text = "Weekly Stat Grid";
-            // 
-            // tbColorWeekly
-            // 
-            this.tbColorWeekly.Location = new System.Drawing.Point(196, 157);
-            this.tbColorWeekly.Name = "tbColorWeekly";
-            this.tbColorWeekly.Size = new System.Drawing.Size(65, 20);
-            this.tbColorWeekly.TabIndex = 79;
-            this.tbColorWeekly.Text = "Color Row";
-            // 
-            // cbWeeklyColors
-            // 
-            this.cbWeeklyColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbWeeklyColors.FormattingEnabled = true;
-            this.cbWeeklyColors.Items.AddRange(new object[] {
-            "AliceBlue",
-            "AntiqueWhite",
-            "Aqua",
-            "Aquamarine",
-            "Azure",
-            "Beige",
-            "Bisque",
-            "Black",
-            "BlanchedAlmond",
-            "Blue",
-            "BlueViolet",
-            "Brown",
-            "BurlyWood",
-            "CadetBlue",
-            "Chartreuse",
-            "Chocolate",
-            "Coral",
-            "CornflowerBlue",
-            "Cornsilk",
-            "Crimson",
-            "Cyan",
-            "DarkBlue\t",
-            "DarkCyan\t",
-            "DarkGoldenrod\t",
-            "DarkGray\t",
-            "DarkGreen\t",
-            "DarkKhaki\t",
-            "DarkMagenta\t",
-            "DarkOliveGreen\t",
-            "DarkOrange\t",
-            "DarkOrchid\t",
-            "DarkRed\t",
-            "DarkSalmon\t",
-            "DarkSeaGreen\t",
-            "DarkSlateBlue\t",
-            "DarkSlateGray\t",
-            "DarkTurquoise\t",
-            "DarkViolet\t",
-            "DeepPink\t",
-            "DeepSkyBlue",
-            "DimGray",
-            "DodgerBlue",
-            "Firebrick",
-            "FloralWhite",
-            "ForestGreen",
-            "Fuchsia",
-            "Gainsboro",
-            "Gold",
-            "Goldenrod",
-            "Gray",
-            "Green",
-            "GreenYellow",
-            "Honeydew",
-            "HotPink",
-            "IndianRed",
-            "Indigo",
-            "Ivory",
-            "Khaki",
-            "Lavender",
-            "LavenderBlush",
-            "LawnGreen",
-            "LemonChiffon",
-            "LightBlue",
-            "LightCoral",
-            "LightCyan",
-            "LightGoldenrodYellow",
-            "LightGray",
-            "LightGreen",
-            "LightPink",
-            "LightSalmon",
-            "LightSeaGreen",
-            "LightSkyBlue",
-            "LightSlateGray",
-            "LightSteelBlue",
-            "LightYellow",
-            "Lime",
-            "LimeGreen",
-            "Linen",
-            "Magenta",
-            "Maroon",
-            "MediumAquamarine",
-            "MediumOrchid",
-            "MediumPurple",
-            "MediumSeaGreen",
-            "MediumSlateBlue",
-            "MediumSpringGreen",
-            "MediumTurquoise",
-            "MintCream",
-            "MistyRose",
-            "Moccasin",
-            "NavajoWhite",
-            "OldLace",
-            "Olive",
-            "OliveDrab",
-            "Orange",
-            "OrangeRed",
-            "Orchid",
-            "PaleGoldenrod",
-            "PaleGreen",
-            "PaleTurquoise",
-            "PaleVioletRed",
-            "PapayaWhip",
-            "PeachPuff",
-            "Peru",
-            "Pink",
-            "Plum",
-            "PowderBlue",
-            "Purple",
-            "RebeccaPurple",
-            "Red",
-            "RosyBrown",
-            "RoyalBlue",
-            "SaddleBrown",
-            "Salmon",
-            "SandyBrown",
-            "SeaGreen",
-            "SeaShell",
-            "Sienna",
-            "Silver",
-            "SkyBlue",
-            "SlateBlue",
-            "SlateGray",
-            "Snow",
-            "SpringGreen",
-            "SteelBlue",
-            "Tan",
-            "Thistle",
-            "Tomato",
-            "Transparent",
-            "Turquoise",
-            "Violet",
-            "Wheat",
-            "White",
-            "WhiteSmoke",
-            "Yellow",
-            "YellowGreen"});
-            this.cbWeeklyColors.Location = new System.Drawing.Point(23, 153);
-            this.cbWeeklyColors.Name = "cbWeeklyColors";
-            this.cbWeeklyColors.Size = new System.Drawing.Size(111, 21);
-            this.cbWeeklyColors.TabIndex = 78;
-            this.cbWeeklyColors.SelectedIndexChanged += new System.EventHandler(this.cbWeeklyColors_SelectedIndexChanged);
-            // 
-            // label70
-            // 
-            this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(22, 182);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(91, 13);
-            this.label70.TabIndex = 77;
-            this.label70.Text = "Maintenance Grid";
-            // 
-            // tbColorMaint
-            // 
-            this.tbColorMaint.Location = new System.Drawing.Point(196, 199);
-            this.tbColorMaint.Name = "tbColorMaint";
-            this.tbColorMaint.Size = new System.Drawing.Size(65, 20);
-            this.tbColorMaint.TabIndex = 76;
-            this.tbColorMaint.Text = "Color Row";
-            // 
-            // btSetColors
-            // 
-            this.btSetColors.Location = new System.Drawing.Point(105, 396);
-            this.btSetColors.Name = "btSetColors";
-            this.btSetColors.Size = new System.Drawing.Size(75, 23);
-            this.btSetColors.TabIndex = 75;
-            this.btSetColors.Text = "Save";
-            this.btSetColors.UseVisualStyleBackColor = true;
-            this.btSetColors.Click += new System.EventHandler(this.btSetColors_Click);
-            // 
-            // cbMaintColors
-            // 
-            this.cbMaintColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbMaintColors.FormattingEnabled = true;
-            this.cbMaintColors.Items.AddRange(new object[] {
-            "AliceBlue",
-            "AntiqueWhite",
-            "Aqua",
-            "Aquamarine",
-            "Azure",
-            "Beige",
-            "Bisque",
-            "Black",
-            "BlanchedAlmond",
-            "Blue",
-            "BlueViolet",
-            "Brown",
-            "BurlyWood",
-            "CadetBlue",
-            "Chartreuse",
-            "Chocolate",
-            "Coral",
-            "CornflowerBlue",
-            "Cornsilk",
-            "Crimson",
-            "Cyan",
-            "DarkBlue\t",
-            "DarkCyan\t",
-            "DarkGoldenrod\t",
-            "DarkGray\t",
-            "DarkGreen\t",
-            "DarkKhaki\t",
-            "DarkMagenta\t",
-            "DarkOliveGreen\t",
-            "DarkOrange\t",
-            "DarkOrchid\t",
-            "DarkRed\t",
-            "DarkSalmon\t",
-            "DarkSeaGreen\t",
-            "DarkSlateBlue\t",
-            "DarkSlateGray\t",
-            "DarkTurquoise\t",
-            "DarkViolet\t",
-            "DeepPink\t",
-            "DeepSkyBlue",
-            "DimGray",
-            "DodgerBlue",
-            "Firebrick",
-            "FloralWhite",
-            "ForestGreen",
-            "Fuchsia",
-            "Gainsboro",
-            "Gold",
-            "Goldenrod",
-            "Gray",
-            "Green",
-            "GreenYellow",
-            "Honeydew",
-            "HotPink",
-            "IndianRed",
-            "Indigo",
-            "Ivory",
-            "Khaki",
-            "Lavender",
-            "LavenderBlush",
-            "LawnGreen",
-            "LemonChiffon",
-            "LightBlue",
-            "LightCoral",
-            "LightCyan",
-            "LightGoldenrodYellow",
-            "LightGray",
-            "LightGreen",
-            "LightPink",
-            "LightSalmon",
-            "LightSeaGreen",
-            "LightSkyBlue",
-            "LightSlateGray",
-            "LightSteelBlue",
-            "LightYellow",
-            "Lime",
-            "LimeGreen",
-            "Linen",
-            "Magenta",
-            "Maroon",
-            "MediumAquamarine",
-            "MediumOrchid",
-            "MediumPurple",
-            "MediumSeaGreen",
-            "MediumSlateBlue",
-            "MediumSpringGreen",
-            "MediumTurquoise",
-            "MintCream",
-            "MistyRose",
-            "Moccasin",
-            "NavajoWhite",
-            "OldLace",
-            "Olive",
-            "OliveDrab",
-            "Orange",
-            "OrangeRed",
-            "Orchid",
-            "PaleGoldenrod",
-            "PaleGreen",
-            "PaleTurquoise",
-            "PaleVioletRed",
-            "PapayaWhip",
-            "PeachPuff",
-            "Peru",
-            "Pink",
-            "Plum",
-            "PowderBlue",
-            "Purple",
-            "RebeccaPurple",
-            "Red",
-            "RosyBrown",
-            "RoyalBlue",
-            "SaddleBrown",
-            "Salmon",
-            "SandyBrown",
-            "SeaGreen",
-            "SeaShell",
-            "Sienna",
-            "Silver",
-            "SkyBlue",
-            "SlateBlue",
-            "SlateGray",
-            "Snow",
-            "SpringGreen",
-            "SteelBlue",
-            "Tan",
-            "Thistle",
-            "Tomato",
-            "Transparent",
-            "Turquoise",
-            "Violet",
-            "Wheat",
-            "White",
-            "WhiteSmoke",
-            "Yellow",
-            "YellowGreen"});
-            this.cbMaintColors.Location = new System.Drawing.Point(23, 195);
-            this.cbMaintColors.Name = "cbMaintColors";
-            this.cbMaintColors.Size = new System.Drawing.Size(111, 21);
-            this.cbMaintColors.TabIndex = 1;
-            this.cbMaintColors.SelectedIndexChanged += new System.EventHandler(this.cbMaintColors_SelectedIndexChanged);
-            // 
-            // groupBox22
-            // 
-            this.groupBox22.Controls.Add(this.btHideShowIDColumn);
-            this.groupBox22.Controls.Add(this.rbHideIDColumn);
-            this.groupBox22.Controls.Add(this.rbShowIDColumn);
-            this.groupBox22.Location = new System.Drawing.Point(535, 308);
-            this.groupBox22.Name = "groupBox22";
-            this.groupBox22.Size = new System.Drawing.Size(212, 107);
-            this.groupBox22.TabIndex = 77;
-            this.groupBox22.TabStop = false;
-            this.groupBox22.Text = "Ride Display ID Column";
-            // 
-            // btHideShowIDColumn
-            // 
-            this.btHideShowIDColumn.Location = new System.Drawing.Point(113, 53);
-            this.btHideShowIDColumn.Name = "btHideShowIDColumn";
-            this.btHideShowIDColumn.Size = new System.Drawing.Size(75, 23);
-            this.btHideShowIDColumn.TabIndex = 29;
-            this.btHideShowIDColumn.Text = "Save";
-            this.btHideShowIDColumn.UseVisualStyleBackColor = true;
-            this.btHideShowIDColumn.Click += new System.EventHandler(this.btHideShowIDColumn_Click);
-            // 
-            // rbHideIDColumn
-            // 
-            this.rbHideIDColumn.AutoSize = true;
-            this.rbHideIDColumn.Location = new System.Drawing.Point(38, 66);
-            this.rbHideIDColumn.Name = "rbHideIDColumn";
-            this.rbHideIDColumn.Size = new System.Drawing.Size(47, 17);
-            this.rbHideIDColumn.TabIndex = 1;
-            this.rbHideIDColumn.TabStop = true;
-            this.rbHideIDColumn.Text = "Hide";
-            this.rbHideIDColumn.UseVisualStyleBackColor = true;
-            // 
-            // rbShowIDColumn
-            // 
-            this.rbShowIDColumn.AutoSize = true;
-            this.rbShowIDColumn.Location = new System.Drawing.Point(38, 43);
-            this.rbShowIDColumn.Name = "rbShowIDColumn";
-            this.rbShowIDColumn.Size = new System.Drawing.Size(52, 17);
-            this.rbShowIDColumn.TabIndex = 0;
-            this.rbShowIDColumn.TabStop = true;
-            this.rbShowIDColumn.Text = "Show";
-            this.rbShowIDColumn.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(494, 25);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 74;
-            this.button3.Text = "Backup";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
-            // 
-            // button4
-            // 
-            this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(584, 25);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 75;
-            this.button4.Text = "Restore";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // groupBox18
-            // 
-            this.groupBox18.Controls.Add(this.btFirstDay);
-            this.groupBox18.Controls.Add(this.rbFirstDayMonday);
-            this.groupBox18.Controls.Add(this.rbFirstDaySunday);
-            this.groupBox18.Location = new System.Drawing.Point(535, 421);
-            this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(212, 78);
-            this.groupBox18.TabIndex = 73;
-            this.groupBox18.TabStop = false;
-            this.groupBox18.Text = "First Day Of Week";
-            // 
-            // btFirstDay
-            // 
-            this.btFirstDay.Location = new System.Drawing.Point(113, 37);
-            this.btFirstDay.Name = "btFirstDay";
-            this.btFirstDay.Size = new System.Drawing.Size(75, 23);
-            this.btFirstDay.TabIndex = 28;
-            this.btFirstDay.Text = "Save";
-            this.btFirstDay.UseVisualStyleBackColor = true;
-            this.btFirstDay.Click += new System.EventHandler(this.BtFirstDay_Click);
-            // 
-            // rbFirstDayMonday
-            // 
-            this.rbFirstDayMonday.AutoSize = true;
-            this.rbFirstDayMonday.Location = new System.Drawing.Point(38, 49);
-            this.rbFirstDayMonday.Name = "rbFirstDayMonday";
-            this.rbFirstDayMonday.Size = new System.Drawing.Size(63, 17);
-            this.rbFirstDayMonday.TabIndex = 27;
-            this.rbFirstDayMonday.TabStop = true;
-            this.rbFirstDayMonday.Text = "Monday";
-            this.rbFirstDayMonday.UseVisualStyleBackColor = true;
-            // 
-            // rbFirstDaySunday
-            // 
-            this.rbFirstDaySunday.AutoSize = true;
-            this.rbFirstDaySunday.Location = new System.Drawing.Point(38, 29);
-            this.rbFirstDaySunday.Name = "rbFirstDaySunday";
-            this.rbFirstDaySunday.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rbFirstDaySunday.Size = new System.Drawing.Size(61, 17);
-            this.rbFirstDaySunday.TabIndex = 26;
-            this.rbFirstDaySunday.TabStop = true;
-            this.rbFirstDaySunday.Text = "Sunday";
-            this.rbFirstDaySunday.UseVisualStyleBackColor = true;
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.label2);
-            this.groupBox13.Controls.Add(this.btDeleteAllData);
-            this.groupBox13.Location = new System.Drawing.Point(31, 380);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(187, 119);
-            this.groupBox13.TabIndex = 72;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "Delete All Data";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 13);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Delete All Data in the app";
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.tbCustomDataField2);
-            this.groupBox9.Controls.Add(this.tbCustomDataField1);
-            this.groupBox9.Controls.Add(this.label85);
-            this.groupBox9.Controls.Add(this.label84);
-            this.groupBox9.Controls.Add(this.btCustomDataField1);
-            this.groupBox9.Location = new System.Drawing.Point(535, 68);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(212, 227);
-            this.groupBox9.TabIndex = 68;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Custom Data Field Name";
-            // 
-            // tbCustomDataField2
-            // 
-            this.tbCustomDataField2.Location = new System.Drawing.Point(49, 107);
-            this.tbCustomDataField2.Name = "tbCustomDataField2";
-            this.tbCustomDataField2.Size = new System.Drawing.Size(121, 20);
-            this.tbCustomDataField2.TabIndex = 35;
-            // 
-            // tbCustomDataField1
-            // 
-            this.tbCustomDataField1.Location = new System.Drawing.Point(49, 47);
-            this.tbCustomDataField1.Name = "tbCustomDataField1";
-            this.tbCustomDataField1.Size = new System.Drawing.Size(121, 20);
-            this.tbCustomDataField1.TabIndex = 34;
-            // 
-            // label85
-            // 
-            this.label85.AutoSize = true;
-            this.label85.Location = new System.Drawing.Point(70, 91);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(76, 13);
-            this.label85.TabIndex = 30;
-            this.label85.Text = "Custom Field 2";
-            // 
-            // label84
-            // 
-            this.label84.AutoSize = true;
-            this.label84.Location = new System.Drawing.Point(70, 31);
-            this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(76, 13);
-            this.label84.TabIndex = 29;
-            this.label84.Text = "Custom Field 1";
-            // 
-            // btCustomDataField1
-            // 
-            this.btCustomDataField1.Location = new System.Drawing.Point(71, 170);
-            this.btCustomDataField1.Name = "btCustomDataField1";
-            this.btCustomDataField1.Size = new System.Drawing.Size(75, 23);
-            this.btCustomDataField1.TabIndex = 27;
-            this.btCustomDataField1.Text = "Save";
-            this.btCustomDataField1.UseVisualStyleBackColor = true;
-            this.btCustomDataField1.Click += new System.EventHandler(this.BtCustomDataField1_Click);
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.btLogTitleClear);
-            this.groupBox10.Controls.Add(this.btLogTitleSave);
-            this.groupBox10.Controls.Add(this.label31);
-            this.groupBox10.Controls.Add(this.cbLogYearConfig);
-            this.groupBox10.Controls.Add(this.btRemoveLogYear);
-            this.groupBox10.Controls.Add(this.tbLogYearConfig);
-            this.groupBox10.Controls.Add(this.cbLogYear);
-            this.groupBox10.Controls.Add(this.label3);
-            this.groupBox10.Controls.Add(this.label24);
-            this.groupBox10.Location = new System.Drawing.Point(31, 68);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(187, 285);
-            this.groupBox10.TabIndex = 69;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "LOGS";
-            // 
-            // btLogTitleClear
-            // 
-            this.btLogTitleClear.Location = new System.Drawing.Point(56, 222);
-            this.btLogTitleClear.Name = "btLogTitleClear";
-            this.btLogTitleClear.Size = new System.Drawing.Size(75, 23);
-            this.btLogTitleClear.TabIndex = 26;
-            this.btLogTitleClear.Text = "Clear";
-            this.btLogTitleClear.UseVisualStyleBackColor = true;
-            this.btLogTitleClear.Click += new System.EventHandler(this.btLogTitleClear_Click);
-            // 
-            // btLogTitleSave
-            // 
-            this.btLogTitleSave.Location = new System.Drawing.Point(56, 193);
-            this.btLogTitleSave.Name = "btLogTitleSave";
-            this.btLogTitleSave.Size = new System.Drawing.Size(75, 23);
-            this.btLogTitleSave.TabIndex = 25;
-            this.btLogTitleSave.Text = "Save";
-            this.btLogTitleSave.UseVisualStyleBackColor = true;
-            this.btLogTitleSave.Click += new System.EventHandler(this.btLogTitleSave_Click);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(15, 127);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(83, 13);
-            this.label31.TabIndex = 24;
-            this.label31.Text = "Year for the Log";
-            // 
-            // cbLogYear
-            // 
-            this.cbLogYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear.FormattingEnabled = true;
-            this.cbLogYear.Location = new System.Drawing.Point(18, 146);
-            this.cbLogYear.Name = "cbLogYear";
-            this.cbLogYear.Size = new System.Drawing.Size(140, 21);
-            this.cbLogYear.TabIndex = 23;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 77);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(116, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Log Title (Add/Update)";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(15, 28);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(48, 13);
-            this.label24.TabIndex = 18;
-            this.label24.Text = "Log Title";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label64.Location = new System.Drawing.Point(305, 25);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(107, 28);
-            this.label64.TabIndex = 64;
-            this.label64.Text = "Settings";
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.groupBox3);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(915, 565);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "About";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.label83);
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Controls.Add(this.label29);
-            this.groupBox3.Controls.Add(this.button11);
-            this.groupBox3.Controls.Add(this.lbVersion);
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Location = new System.Drawing.Point(77, 60);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(764, 427);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(541, 123);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(108, 30);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "User\'s Guide";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // label83
-            // 
-            this.label83.AutoSize = true;
-            this.label83.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label83.Location = new System.Drawing.Point(295, 141);
-            this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(144, 12);
-            this.label83.TabIndex = 13;
-            this.label83.Text = "john_t_flynn@yahoo.com";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(41, 180);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(665, 215);
-            this.textBox1.TabIndex = 7;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(309, 112);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(95, 12);
-            this.label29.TabIndex = 2;
-            this.label29.Text = "By: John T Flynn";
-            // 
-            // lbVersion
-            // 
-            this.lbVersion.AutoSize = true;
-            this.lbVersion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVersion.Location = new System.Drawing.Point(309, 79);
-            this.lbVersion.Name = "lbVersion";
-            this.lbVersion.Size = new System.Drawing.Size(87, 12);
-            this.lbVersion.TabIndex = 1;
-            this.lbVersion.Text = "Version:  xxxxx";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(229, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(287, 28);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Cycling Log Application";
-            // 
-            // label90
-            // 
-            this.label90.AutoSize = true;
-            this.label90.Location = new System.Drawing.Point(6, 244);
-            this.label90.Name = "label90";
-            this.label90.Size = new System.Drawing.Size(97, 13);
-            this.label90.TabIndex = 88;
-            this.label90.Text = "High Ascent Week";
-            // 
-            // tbHighAscentWeekAll
-            // 
-            this.tbHighAscentWeekAll.Location = new System.Drawing.Point(110, 241);
-            this.tbHighAscentWeekAll.Name = "tbHighAscentWeekAll";
-            this.tbHighAscentWeekAll.ReadOnly = true;
-            this.tbHighAscentWeekAll.Size = new System.Drawing.Size(97, 20);
-            this.tbHighAscentWeekAll.TabIndex = 87;
-            this.tbHighAscentWeekAll.TabStop = false;
-            this.tbHighAscentWeekAll.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // dataGridViewMonthly
-            // 
-            this.dataGridViewMonthly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMonthly.Location = new System.Drawing.Point(15, 65);
-            this.dataGridViewMonthly.Name = "dataGridViewMonthly";
-            this.dataGridViewMonthly.Size = new System.Drawing.Size(791, 440);
-            this.dataGridViewMonthly.TabIndex = 157;
-            // 
-            // dataGridViewYearly
-            // 
-            this.dataGridViewYearly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewYearly.Location = new System.Drawing.Point(149, 95);
-            this.dataGridViewYearly.Name = "dataGridViewYearly";
-            this.dataGridViewYearly.Size = new System.Drawing.Size(706, 364);
-            this.dataGridViewYearly.TabIndex = 91;
-            // 
-            // cbLogYear10
-            // 
-            this.cbLogYear10.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear10.FormattingEnabled = true;
-            this.cbLogYear10.Location = new System.Drawing.Point(17, 341);
-            this.cbLogYear10.Name = "cbLogYear10";
-            this.cbLogYear10.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear10.TabIndex = 96;
-            this.cbLogYear10.SelectedIndexChanged += new System.EventHandler(this.Cb10LogYear_changed);
-            // 
-            // cbLogYear9
-            // 
-            this.cbLogYear9.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear9.FormattingEnabled = true;
-            this.cbLogYear9.Location = new System.Drawing.Point(17, 311);
-            this.cbLogYear9.Name = "cbLogYear9";
-            this.cbLogYear9.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear9.TabIndex = 95;
-            this.cbLogYear9.SelectedIndexChanged += new System.EventHandler(this.Cb9LogYear_changed);
-            // 
-            // cbLogYear8
-            // 
-            this.cbLogYear8.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear8.FormattingEnabled = true;
-            this.cbLogYear8.Location = new System.Drawing.Point(17, 278);
-            this.cbLogYear8.Name = "cbLogYear8";
-            this.cbLogYear8.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear8.TabIndex = 94;
-            this.cbLogYear8.SelectedIndexChanged += new System.EventHandler(this.Cb8LogYear_changed);
-            // 
-            // cbLogYear7
-            // 
-            this.cbLogYear7.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear7.FormattingEnabled = true;
-            this.cbLogYear7.Location = new System.Drawing.Point(17, 246);
-            this.cbLogYear7.Name = "cbLogYear7";
-            this.cbLogYear7.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear7.TabIndex = 93;
-            this.cbLogYear7.SelectedIndexChanged += new System.EventHandler(this.Cb7LogYear_changed);
-            // 
-            // cbLogYear6
-            // 
-            this.cbLogYear6.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear6.FormattingEnabled = true;
-            this.cbLogYear6.Location = new System.Drawing.Point(17, 214);
-            this.cbLogYear6.Name = "cbLogYear6";
-            this.cbLogYear6.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear6.TabIndex = 92;
-            this.cbLogYear6.SelectedIndexChanged += new System.EventHandler(this.Cb6LogYear_changed);
-            // 
-            // cbYearlyTextColor
-            // 
-            this.cbYearlyTextColor.AutoSize = true;
-            this.cbYearlyTextColor.Location = new System.Drawing.Point(165, 61);
-            this.cbYearlyTextColor.Name = "cbYearlyTextColor";
-            this.cbYearlyTextColor.Size = new System.Drawing.Size(15, 14);
-            this.cbYearlyTextColor.TabIndex = 105;
-            this.cbYearlyTextColor.UseVisualStyleBackColor = true;
-            // 
-            // tbWhiteYearly
-            // 
-            this.tbWhiteYearly.Location = new System.Drawing.Point(198, 43);
-            this.tbWhiteYearly.Name = "tbWhiteYearly";
-            this.tbWhiteYearly.Size = new System.Drawing.Size(65, 20);
-            this.tbWhiteYearly.TabIndex = 104;
-            this.tbWhiteYearly.Text = "White Row";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 40);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 13);
-            this.label6.TabIndex = 103;
-            this.label6.Text = "Yearly Stat Grid";
-            // 
-            // tbColorYearly
-            // 
-            this.tbColorYearly.Location = new System.Drawing.Point(198, 60);
-            this.tbColorYearly.Name = "tbColorYearly";
-            this.tbColorYearly.Size = new System.Drawing.Size(65, 20);
-            this.tbColorYearly.TabIndex = 102;
-            this.tbColorYearly.Text = "Color Row";
-            // 
-            // cbYearlyColors
-            // 
-            this.cbYearlyColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbYearlyColors.FormattingEnabled = true;
-            this.cbYearlyColors.Items.AddRange(new object[] {
-            "AliceBlue",
-            "AntiqueWhite",
-            "Aqua",
-            "Aquamarine",
-            "Azure",
-            "Beige",
-            "Bisque",
-            "Black",
-            "BlanchedAlmond",
-            "Blue",
-            "BlueViolet",
-            "Brown",
-            "BurlyWood",
-            "CadetBlue",
-            "Chartreuse",
-            "Chocolate",
-            "Coral",
-            "CornflowerBlue",
-            "Cornsilk",
-            "Crimson",
-            "Cyan",
-            "DarkBlue\t",
-            "DarkCyan\t",
-            "DarkGoldenrod\t",
-            "DarkGray\t",
-            "DarkGreen\t",
-            "DarkKhaki\t",
-            "DarkMagenta\t",
-            "DarkOliveGreen\t",
-            "DarkOrange\t",
-            "DarkOrchid\t",
-            "DarkRed\t",
-            "DarkSalmon\t",
-            "DarkSeaGreen\t",
-            "DarkSlateBlue\t",
-            "DarkSlateGray\t",
-            "DarkTurquoise\t",
-            "DarkViolet\t",
-            "DeepPink\t",
-            "DeepSkyBlue",
-            "DimGray",
-            "DodgerBlue",
-            "Firebrick",
-            "FloralWhite",
-            "ForestGreen",
-            "Fuchsia",
-            "Gainsboro",
-            "Gold",
-            "Goldenrod",
-            "Gray",
-            "Green",
-            "GreenYellow",
-            "Honeydew",
-            "HotPink",
-            "IndianRed",
-            "Indigo",
-            "Ivory",
-            "Khaki",
-            "Lavender",
-            "LavenderBlush",
-            "LawnGreen",
-            "LemonChiffon",
-            "LightBlue",
-            "LightCoral",
-            "LightCyan",
-            "LightGoldenrodYellow",
-            "LightGray",
-            "LightGreen",
-            "LightPink",
-            "LightSalmon",
-            "LightSeaGreen",
-            "LightSkyBlue",
-            "LightSlateGray",
-            "LightSteelBlue",
-            "LightYellow",
-            "Lime",
-            "LimeGreen",
-            "Linen",
-            "Magenta",
-            "Maroon",
-            "MediumAquamarine",
-            "MediumOrchid",
-            "MediumPurple",
-            "MediumSeaGreen",
-            "MediumSlateBlue",
-            "MediumSpringGreen",
-            "MediumTurquoise",
-            "MintCream",
-            "MistyRose",
-            "Moccasin",
-            "NavajoWhite",
-            "OldLace",
-            "Olive",
-            "OliveDrab",
-            "Orange",
-            "OrangeRed",
-            "Orchid",
-            "PaleGoldenrod",
-            "PaleGreen",
-            "PaleTurquoise",
-            "PaleVioletRed",
-            "PapayaWhip",
-            "PeachPuff",
-            "Peru",
-            "Pink",
-            "Plum",
-            "PowderBlue",
-            "Purple",
-            "RebeccaPurple",
-            "Red",
-            "RosyBrown",
-            "RoyalBlue",
-            "SaddleBrown",
-            "Salmon",
-            "SandyBrown",
-            "SeaGreen",
-            "SeaShell",
-            "Sienna",
-            "Silver",
-            "SkyBlue",
-            "SlateBlue",
-            "SlateGray",
-            "Snow",
-            "SpringGreen",
-            "SteelBlue",
-            "Tan",
-            "Thistle",
-            "Tomato",
-            "Transparent",
-            "Turquoise",
-            "Violet",
-            "Wheat",
-            "White",
-            "WhiteSmoke",
-            "Yellow",
-            "YellowGreen"});
-            this.cbYearlyColors.Location = new System.Drawing.Point(23, 56);
-            this.cbYearlyColors.Name = "cbYearlyColors";
-            this.cbYearlyColors.Size = new System.Drawing.Size(111, 21);
-            this.cbYearlyColors.TabIndex = 101;
-            // 
             // cbMonthlyTextColor
             // 
             this.cbMonthlyTextColor.AutoSize = true;
@@ -3085,6 +1684,7 @@
             this.cbMonthlyTextColor.Size = new System.Drawing.Size(15, 14);
             this.cbMonthlyTextColor.TabIndex = 110;
             this.cbMonthlyTextColor.UseVisualStyleBackColor = true;
+            this.cbMonthlyTextColor.CheckedChanged += new System.EventHandler(this.cbMonthlyTextColor_CheckedChanged);
             // 
             // tbWhiteMonthly
             // 
@@ -3244,7 +1844,6 @@
             "Tan",
             "Thistle",
             "Tomato",
-            "Transparent",
             "Turquoise",
             "Violet",
             "Wheat",
@@ -3256,25 +1855,1448 @@
             this.cbMonthlyColors.Name = "cbMonthlyColors";
             this.cbMonthlyColors.Size = new System.Drawing.Size(111, 21);
             this.cbMonthlyColors.TabIndex = 106;
+            this.cbMonthlyColors.SelectedIndexChanged += new System.EventHandler(this.cbMonthlyColors_SelectedIndexChanged);
             // 
-            // groupBox20
+            // cbYearlyTextColor
             // 
-            this.groupBox20.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.groupBox20.Controls.Add(this.cbLogYear1);
-            this.groupBox20.Controls.Add(this.cbLogYear10);
-            this.groupBox20.Controls.Add(this.cbLogYear2);
-            this.groupBox20.Controls.Add(this.cbLogYear9);
-            this.groupBox20.Controls.Add(this.cbLogYear3);
-            this.groupBox20.Controls.Add(this.cbLogYear8);
-            this.groupBox20.Controls.Add(this.cbLogYear4);
-            this.groupBox20.Controls.Add(this.cbLogYear7);
-            this.groupBox20.Controls.Add(this.cbLogYear5);
-            this.groupBox20.Controls.Add(this.cbLogYear6);
-            this.groupBox20.Location = new System.Drawing.Point(9, 88);
-            this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(136, 371);
-            this.groupBox20.TabIndex = 97;
-            this.groupBox20.TabStop = false;
+            this.cbYearlyTextColor.AutoSize = true;
+            this.cbYearlyTextColor.Location = new System.Drawing.Point(165, 61);
+            this.cbYearlyTextColor.Name = "cbYearlyTextColor";
+            this.cbYearlyTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbYearlyTextColor.TabIndex = 105;
+            this.cbYearlyTextColor.UseVisualStyleBackColor = true;
+            this.cbYearlyTextColor.CheckedChanged += new System.EventHandler(this.cbYearlyTextColor_CheckedChanged);
+            // 
+            // tbWhiteYearly
+            // 
+            this.tbWhiteYearly.Location = new System.Drawing.Point(198, 43);
+            this.tbWhiteYearly.Name = "tbWhiteYearly";
+            this.tbWhiteYearly.Size = new System.Drawing.Size(65, 20);
+            this.tbWhiteYearly.TabIndex = 104;
+            this.tbWhiteYearly.Text = "White Row";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(20, 40);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 13);
+            this.label6.TabIndex = 103;
+            this.label6.Text = "Yearly Stat Grid";
+            // 
+            // tbColorYearly
+            // 
+            this.tbColorYearly.Location = new System.Drawing.Point(198, 60);
+            this.tbColorYearly.Name = "tbColorYearly";
+            this.tbColorYearly.Size = new System.Drawing.Size(65, 20);
+            this.tbColorYearly.TabIndex = 102;
+            this.tbColorYearly.Text = "Color Row";
+            // 
+            // cbYearlyColors
+            // 
+            this.cbYearlyColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbYearlyColors.FormattingEnabled = true;
+            this.cbYearlyColors.Items.AddRange(new object[] {
+            "AliceBlue",
+            "AntiqueWhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "BlanchedAlmond",
+            "Blue",
+            "BlueViolet",
+            "Brown",
+            "BurlyWood",
+            "CadetBlue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "CornflowerBlue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "DarkBlue\t",
+            "DarkCyan\t",
+            "DarkGoldenrod\t",
+            "DarkGray\t",
+            "DarkGreen\t",
+            "DarkKhaki\t",
+            "DarkMagenta\t",
+            "DarkOliveGreen\t",
+            "DarkOrange\t",
+            "DarkOrchid\t",
+            "DarkRed\t",
+            "DarkSalmon\t",
+            "DarkSeaGreen\t",
+            "DarkSlateBlue\t",
+            "DarkSlateGray\t",
+            "DarkTurquoise\t",
+            "DarkViolet\t",
+            "DeepPink\t",
+            "DeepSkyBlue",
+            "DimGray",
+            "DodgerBlue",
+            "Firebrick",
+            "FloralWhite",
+            "ForestGreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "GreenYellow",
+            "Honeydew",
+            "HotPink",
+            "IndianRed",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "LavenderBlush",
+            "LawnGreen",
+            "LemonChiffon",
+            "LightBlue",
+            "LightCoral",
+            "LightCyan",
+            "LightGoldenrodYellow",
+            "LightGray",
+            "LightGreen",
+            "LightPink",
+            "LightSalmon",
+            "LightSeaGreen",
+            "LightSkyBlue",
+            "LightSlateGray",
+            "LightSteelBlue",
+            "LightYellow",
+            "Lime",
+            "LimeGreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "MediumAquamarine",
+            "MediumOrchid",
+            "MediumPurple",
+            "MediumSeaGreen",
+            "MediumSlateBlue",
+            "MediumSpringGreen",
+            "MediumTurquoise",
+            "MintCream",
+            "MistyRose",
+            "Moccasin",
+            "NavajoWhite",
+            "OldLace",
+            "Olive",
+            "OliveDrab",
+            "Orange",
+            "OrangeRed",
+            "Orchid",
+            "PaleGoldenrod",
+            "PaleGreen",
+            "PaleTurquoise",
+            "PaleVioletRed",
+            "PapayaWhip",
+            "PeachPuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "PowderBlue",
+            "Purple",
+            "RebeccaPurple",
+            "Red",
+            "RosyBrown",
+            "RoyalBlue",
+            "SaddleBrown",
+            "Salmon",
+            "SandyBrown",
+            "SeaGreen",
+            "SeaShell",
+            "Sienna",
+            "Silver",
+            "SkyBlue",
+            "SlateBlue",
+            "SlateGray",
+            "Snow",
+            "SpringGreen",
+            "SteelBlue",
+            "Tan",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "WhiteSmoke",
+            "Yellow",
+            "YellowGreen"});
+            this.cbYearlyColors.Location = new System.Drawing.Point(23, 56);
+            this.cbYearlyColors.Name = "cbYearlyColors";
+            this.cbYearlyColors.Size = new System.Drawing.Size(111, 21);
+            this.cbYearlyColors.TabIndex = 101;
+            this.cbYearlyColors.SelectedIndexChanged += new System.EventHandler(this.cbYearlyColors_SelectedIndexChanged);
+            // 
+            // cbRouteTextColor
+            // 
+            this.cbRouteTextColor.AutoSize = true;
+            this.cbRouteTextColor.Location = new System.Drawing.Point(165, 336);
+            this.cbRouteTextColor.Name = "cbRouteTextColor";
+            this.cbRouteTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbRouteTextColor.TabIndex = 100;
+            this.cbRouteTextColor.UseVisualStyleBackColor = true;
+            this.cbRouteTextColor.CheckedChanged += new System.EventHandler(this.cbRouteTextColor_CheckedChanged);
+            // 
+            // cbBikeTextColor
+            // 
+            this.cbBikeTextColor.AutoSize = true;
+            this.cbBikeTextColor.Location = new System.Drawing.Point(165, 293);
+            this.cbBikeTextColor.Name = "cbBikeTextColor";
+            this.cbBikeTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbBikeTextColor.TabIndex = 99;
+            this.cbBikeTextColor.UseVisualStyleBackColor = true;
+            this.cbBikeTextColor.CheckedChanged += new System.EventHandler(this.cbBikeTextColor_CheckedChanged);
+            // 
+            // cbDisplayDataTextColor
+            // 
+            this.cbDisplayDataTextColor.AutoSize = true;
+            this.cbDisplayDataTextColor.Location = new System.Drawing.Point(165, 247);
+            this.cbDisplayDataTextColor.Name = "cbDisplayDataTextColor";
+            this.cbDisplayDataTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbDisplayDataTextColor.TabIndex = 98;
+            this.cbDisplayDataTextColor.UseVisualStyleBackColor = true;
+            this.cbDisplayDataTextColor.CheckedChanged += new System.EventHandler(this.cbDisplayDataTextColor_CheckedChanged);
+            // 
+            // cbWeeklyTextColor
+            // 
+            this.cbWeeklyTextColor.AutoSize = true;
+            this.cbWeeklyTextColor.Location = new System.Drawing.Point(165, 156);
+            this.cbWeeklyTextColor.Name = "cbWeeklyTextColor";
+            this.cbWeeklyTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbWeeklyTextColor.TabIndex = 97;
+            this.cbWeeklyTextColor.UseVisualStyleBackColor = true;
+            this.cbWeeklyTextColor.CheckedChanged += new System.EventHandler(this.cbWeeklyTextColor_CheckedChanged);
+            // 
+            // cbMaintTextColor
+            // 
+            this.cbMaintTextColor.AutoSize = true;
+            this.cbMaintTextColor.Location = new System.Drawing.Point(165, 199);
+            this.cbMaintTextColor.Name = "cbMaintTextColor";
+            this.cbMaintTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbMaintTextColor.TabIndex = 96;
+            this.cbMaintTextColor.UseVisualStyleBackColor = true;
+            this.cbMaintTextColor.CheckedChanged += new System.EventHandler(this.cbMaintTextColor_CheckedChanged);
+            // 
+            // label88
+            // 
+            this.label88.AutoSize = true;
+            this.label88.Location = new System.Drawing.Point(140, 29);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(58, 13);
+            this.label88.TabIndex = 95;
+            this.label88.Text = "Text Black";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(198, 319);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(65, 20);
+            this.textBox6.TabIndex = 94;
+            this.textBox6.Text = "White Row";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(198, 277);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(65, 20);
+            this.textBox5.TabIndex = 93;
+            this.textBox5.Text = "White Row";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(196, 228);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(65, 20);
+            this.textBox4.TabIndex = 92;
+            this.textBox4.Text = "White Row";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(196, 138);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(65, 20);
+            this.textBox3.TabIndex = 91;
+            this.textBox3.Text = "White Row";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(196, 182);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(65, 20);
+            this.textBox2.TabIndex = 90;
+            this.textBox2.Text = "White Row";
+            // 
+            // cbRoutesColor
+            // 
+            this.cbRoutesColor.AutoSize = true;
+            this.cbRoutesColor.Location = new System.Drawing.Point(20, 313);
+            this.cbRoutesColor.Name = "cbRoutesColor";
+            this.cbRoutesColor.Size = new System.Drawing.Size(63, 13);
+            this.cbRoutesColor.TabIndex = 89;
+            this.cbRoutesColor.Text = "Routes Grid";
+            // 
+            // tbRouteColor
+            // 
+            this.tbRouteColor.Location = new System.Drawing.Point(198, 336);
+            this.tbRouteColor.Name = "tbRouteColor";
+            this.tbRouteColor.Size = new System.Drawing.Size(65, 20);
+            this.tbRouteColor.TabIndex = 88;
+            this.tbRouteColor.Text = "Color Row";
+            // 
+            // cbRouteColors
+            // 
+            this.cbRouteColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRouteColors.FormattingEnabled = true;
+            this.cbRouteColors.Items.AddRange(new object[] {
+            "AliceBlue",
+            "AntiqueWhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "BlanchedAlmond",
+            "Blue",
+            "BlueViolet",
+            "Brown",
+            "BurlyWood",
+            "CadetBlue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "CornflowerBlue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "DarkBlue\t",
+            "DarkCyan\t",
+            "DarkGoldenrod\t",
+            "DarkGray\t",
+            "DarkGreen\t",
+            "DarkKhaki\t",
+            "DarkMagenta\t",
+            "DarkOliveGreen\t",
+            "DarkOrange\t",
+            "DarkOrchid\t",
+            "DarkRed\t",
+            "DarkSalmon\t",
+            "DarkSeaGreen\t",
+            "DarkSlateBlue\t",
+            "DarkSlateGray\t",
+            "DarkTurquoise\t",
+            "DarkViolet\t",
+            "DeepPink\t",
+            "DeepSkyBlue",
+            "DimGray",
+            "DodgerBlue",
+            "Firebrick",
+            "FloralWhite",
+            "ForestGreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "GreenYellow",
+            "Honeydew",
+            "HotPink",
+            "IndianRed",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "LavenderBlush",
+            "LawnGreen",
+            "LemonChiffon",
+            "LightBlue",
+            "LightCoral",
+            "LightCyan",
+            "LightGoldenrodYellow",
+            "LightGray",
+            "LightGreen",
+            "LightPink",
+            "LightSalmon",
+            "LightSeaGreen",
+            "LightSkyBlue",
+            "LightSlateGray",
+            "LightSteelBlue",
+            "LightYellow",
+            "Lime",
+            "LimeGreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "MediumAquamarine",
+            "MediumOrchid",
+            "MediumPurple",
+            "MediumSeaGreen",
+            "MediumSlateBlue",
+            "MediumSpringGreen",
+            "MediumTurquoise",
+            "MintCream",
+            "MistyRose",
+            "Moccasin",
+            "NavajoWhite",
+            "OldLace",
+            "Olive",
+            "OliveDrab",
+            "Orange",
+            "OrangeRed",
+            "Orchid",
+            "PaleGoldenrod",
+            "PaleGreen",
+            "PaleTurquoise",
+            "PaleVioletRed",
+            "PapayaWhip",
+            "PeachPuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "PowderBlue",
+            "Purple",
+            "RebeccaPurple",
+            "Red",
+            "RosyBrown",
+            "RoyalBlue",
+            "SaddleBrown",
+            "Salmon",
+            "SandyBrown",
+            "SeaGreen",
+            "SeaShell",
+            "Sienna",
+            "Silver",
+            "SkyBlue",
+            "SlateBlue",
+            "SlateGray",
+            "Snow",
+            "SpringGreen",
+            "SteelBlue",
+            "Tan",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "WhiteSmoke",
+            "Yellow",
+            "YellowGreen"});
+            this.cbRouteColors.Location = new System.Drawing.Point(23, 329);
+            this.cbRouteColors.Name = "cbRouteColors";
+            this.cbRouteColors.Size = new System.Drawing.Size(111, 21);
+            this.cbRouteColors.TabIndex = 87;
+            this.cbRouteColors.SelectedIndexChanged += new System.EventHandler(this.cbRouteColors_SelectedIndexChanged);
+            // 
+            // cbBikesColor
+            // 
+            this.cbBikesColor.AutoSize = true;
+            this.cbBikesColor.Location = new System.Drawing.Point(22, 271);
+            this.cbBikesColor.Name = "cbBikesColor";
+            this.cbBikesColor.Size = new System.Drawing.Size(55, 13);
+            this.cbBikesColor.TabIndex = 86;
+            this.cbBikesColor.Text = "Bikes Grid";
+            // 
+            // tbBikeColor
+            // 
+            this.tbBikeColor.Location = new System.Drawing.Point(198, 294);
+            this.tbBikeColor.Name = "tbBikeColor";
+            this.tbBikeColor.Size = new System.Drawing.Size(65, 20);
+            this.tbBikeColor.TabIndex = 85;
+            this.tbBikeColor.Text = "Color Row";
+            // 
+            // cbBikeColors
+            // 
+            this.cbBikeColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBikeColors.FormattingEnabled = true;
+            this.cbBikeColors.Items.AddRange(new object[] {
+            "AliceBlue",
+            "AntiqueWhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "BlanchedAlmond",
+            "Blue",
+            "BlueViolet",
+            "Brown",
+            "BurlyWood",
+            "CadetBlue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "CornflowerBlue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "DarkBlue\t",
+            "DarkCyan\t",
+            "DarkGoldenrod\t",
+            "DarkGray\t",
+            "DarkGreen\t",
+            "DarkKhaki\t",
+            "DarkMagenta\t",
+            "DarkOliveGreen\t",
+            "DarkOrange\t",
+            "DarkOrchid\t",
+            "DarkRed\t",
+            "DarkSalmon\t",
+            "DarkSeaGreen\t",
+            "DarkSlateBlue\t",
+            "DarkSlateGray\t",
+            "DarkTurquoise\t",
+            "DarkViolet\t",
+            "DeepPink\t",
+            "DeepSkyBlue",
+            "DimGray",
+            "DodgerBlue",
+            "Firebrick",
+            "FloralWhite",
+            "ForestGreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "GreenYellow",
+            "Honeydew",
+            "HotPink",
+            "IndianRed",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "LavenderBlush",
+            "LawnGreen",
+            "LemonChiffon",
+            "LightBlue",
+            "LightCoral",
+            "LightCyan",
+            "LightGoldenrodYellow",
+            "LightGray",
+            "LightGreen",
+            "LightPink",
+            "LightSalmon",
+            "LightSeaGreen",
+            "LightSkyBlue",
+            "LightSlateGray",
+            "LightSteelBlue",
+            "LightYellow",
+            "Lime",
+            "LimeGreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "MediumAquamarine",
+            "MediumOrchid",
+            "MediumPurple",
+            "MediumSeaGreen",
+            "MediumSlateBlue",
+            "MediumSpringGreen",
+            "MediumTurquoise",
+            "MintCream",
+            "MistyRose",
+            "Moccasin",
+            "NavajoWhite",
+            "OldLace",
+            "Olive",
+            "OliveDrab",
+            "Orange",
+            "OrangeRed",
+            "Orchid",
+            "PaleGoldenrod",
+            "PaleGreen",
+            "PaleTurquoise",
+            "PaleVioletRed",
+            "PapayaWhip",
+            "PeachPuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "PowderBlue",
+            "Purple",
+            "RebeccaPurple",
+            "Red",
+            "RosyBrown",
+            "RoyalBlue",
+            "SaddleBrown",
+            "Salmon",
+            "SandyBrown",
+            "SeaGreen",
+            "SeaShell",
+            "Sienna",
+            "Silver",
+            "SkyBlue",
+            "SlateBlue",
+            "SlateGray",
+            "Snow",
+            "SpringGreen",
+            "SteelBlue",
+            "Tan",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "WhiteSmoke",
+            "Yellow",
+            "YellowGreen"});
+            this.cbBikeColors.Location = new System.Drawing.Point(23, 287);
+            this.cbBikeColors.Name = "cbBikeColors";
+            this.cbBikeColors.Size = new System.Drawing.Size(111, 21);
+            this.cbBikeColors.TabIndex = 84;
+            this.cbBikeColors.SelectedIndexChanged += new System.EventHandler(this.cbBikeColors_SelectedIndexChanged);
+            // 
+            // label81
+            // 
+            this.label81.AutoSize = true;
+            this.label81.Location = new System.Drawing.Point(22, 228);
+            this.label81.Name = "label81";
+            this.label81.Size = new System.Drawing.Size(89, 13);
+            this.label81.TabIndex = 83;
+            this.label81.Text = "Display Data Grid";
+            // 
+            // tbColorDisplayData
+            // 
+            this.tbColorDisplayData.Location = new System.Drawing.Point(196, 248);
+            this.tbColorDisplayData.Name = "tbColorDisplayData";
+            this.tbColorDisplayData.Size = new System.Drawing.Size(65, 20);
+            this.tbColorDisplayData.TabIndex = 82;
+            this.tbColorDisplayData.Text = "Color Row";
+            // 
+            // cbDisplayDataColors
+            // 
+            this.cbDisplayDataColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDisplayDataColors.FormattingEnabled = true;
+            this.cbDisplayDataColors.Items.AddRange(new object[] {
+            "AliceBlue",
+            "AntiqueWhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "BlanchedAlmond",
+            "Blue",
+            "BlueViolet",
+            "Brown",
+            "BurlyWood",
+            "CadetBlue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "CornflowerBlue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "DarkBlue\t",
+            "DarkCyan\t",
+            "DarkGoldenrod\t",
+            "DarkGray\t",
+            "DarkGreen\t",
+            "DarkKhaki\t",
+            "DarkMagenta\t",
+            "DarkOliveGreen\t",
+            "DarkOrange\t",
+            "DarkOrchid\t",
+            "DarkRed\t",
+            "DarkSalmon\t",
+            "DarkSeaGreen\t",
+            "DarkSlateBlue\t",
+            "DarkSlateGray\t",
+            "DarkTurquoise\t",
+            "DarkViolet\t",
+            "DeepPink\t",
+            "DeepSkyBlue",
+            "DimGray",
+            "DodgerBlue",
+            "Firebrick",
+            "FloralWhite",
+            "ForestGreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "GreenYellow",
+            "Honeydew",
+            "HotPink",
+            "IndianRed",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "LavenderBlush",
+            "LawnGreen",
+            "LemonChiffon",
+            "LightBlue",
+            "LightCoral",
+            "LightCyan",
+            "LightGoldenrodYellow",
+            "LightGray",
+            "LightGreen",
+            "LightPink",
+            "LightSalmon",
+            "LightSeaGreen",
+            "LightSkyBlue",
+            "LightSlateGray",
+            "LightSteelBlue",
+            "LightYellow",
+            "Lime",
+            "LimeGreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "MediumAquamarine",
+            "MediumOrchid",
+            "MediumPurple",
+            "MediumSeaGreen",
+            "MediumSlateBlue",
+            "MediumSpringGreen",
+            "MediumTurquoise",
+            "MintCream",
+            "MistyRose",
+            "Moccasin",
+            "NavajoWhite",
+            "OldLace",
+            "Olive",
+            "OliveDrab",
+            "Orange",
+            "OrangeRed",
+            "Orchid",
+            "PaleGoldenrod",
+            "PaleGreen",
+            "PaleTurquoise",
+            "PaleVioletRed",
+            "PapayaWhip",
+            "PeachPuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "PowderBlue",
+            "Purple",
+            "RebeccaPurple",
+            "Red",
+            "RosyBrown",
+            "RoyalBlue",
+            "SaddleBrown",
+            "Salmon",
+            "SandyBrown",
+            "SeaGreen",
+            "SeaShell",
+            "Sienna",
+            "Silver",
+            "SkyBlue",
+            "SlateBlue",
+            "SlateGray",
+            "Snow",
+            "SpringGreen",
+            "SteelBlue",
+            "Tan",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "WhiteSmoke",
+            "Yellow",
+            "YellowGreen"});
+            this.cbDisplayDataColors.Location = new System.Drawing.Point(23, 244);
+            this.cbDisplayDataColors.Name = "cbDisplayDataColors";
+            this.cbDisplayDataColors.Size = new System.Drawing.Size(111, 21);
+            this.cbDisplayDataColors.TabIndex = 81;
+            this.cbDisplayDataColors.SelectedIndexChanged += new System.EventHandler(this.cbDisplayDataColors_SelectedIndexChanged);
+            // 
+            // label76
+            // 
+            this.label76.AutoSize = true;
+            this.label76.Location = new System.Drawing.Point(22, 138);
+            this.label76.Name = "label76";
+            this.label76.Size = new System.Drawing.Size(87, 13);
+            this.label76.TabIndex = 80;
+            this.label76.Text = "Weekly Stat Grid";
+            // 
+            // tbColorWeekly
+            // 
+            this.tbColorWeekly.Location = new System.Drawing.Point(196, 157);
+            this.tbColorWeekly.Name = "tbColorWeekly";
+            this.tbColorWeekly.Size = new System.Drawing.Size(65, 20);
+            this.tbColorWeekly.TabIndex = 79;
+            this.tbColorWeekly.Text = "Color Row";
+            // 
+            // cbWeeklyColors
+            // 
+            this.cbWeeklyColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWeeklyColors.FormattingEnabled = true;
+            this.cbWeeklyColors.Items.AddRange(new object[] {
+            "AliceBlue",
+            "AntiqueWhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "BlanchedAlmond",
+            "Blue",
+            "BlueViolet",
+            "Brown",
+            "BurlyWood",
+            "CadetBlue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "CornflowerBlue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "DarkBlue\t",
+            "DarkCyan\t",
+            "DarkGoldenrod\t",
+            "DarkGray\t",
+            "DarkGreen\t",
+            "DarkKhaki\t",
+            "DarkMagenta\t",
+            "DarkOliveGreen\t",
+            "DarkOrange\t",
+            "DarkOrchid\t",
+            "DarkRed\t",
+            "DarkSalmon\t",
+            "DarkSeaGreen\t",
+            "DarkSlateBlue\t",
+            "DarkSlateGray\t",
+            "DarkTurquoise\t",
+            "DarkViolet\t",
+            "DeepPink\t",
+            "DeepSkyBlue",
+            "DimGray",
+            "DodgerBlue",
+            "Firebrick",
+            "FloralWhite",
+            "ForestGreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "GreenYellow",
+            "Honeydew",
+            "HotPink",
+            "IndianRed",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "LavenderBlush",
+            "LawnGreen",
+            "LemonChiffon",
+            "LightBlue",
+            "LightCoral",
+            "LightCyan",
+            "LightGoldenrodYellow",
+            "LightGray",
+            "LightGreen",
+            "LightPink",
+            "LightSalmon",
+            "LightSeaGreen",
+            "LightSkyBlue",
+            "LightSlateGray",
+            "LightSteelBlue",
+            "LightYellow",
+            "Lime",
+            "LimeGreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "MediumAquamarine",
+            "MediumOrchid",
+            "MediumPurple",
+            "MediumSeaGreen",
+            "MediumSlateBlue",
+            "MediumSpringGreen",
+            "MediumTurquoise",
+            "MintCream",
+            "MistyRose",
+            "Moccasin",
+            "NavajoWhite",
+            "OldLace",
+            "Olive",
+            "OliveDrab",
+            "Orange",
+            "OrangeRed",
+            "Orchid",
+            "PaleGoldenrod",
+            "PaleGreen",
+            "PaleTurquoise",
+            "PaleVioletRed",
+            "PapayaWhip",
+            "PeachPuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "PowderBlue",
+            "Purple",
+            "RebeccaPurple",
+            "Red",
+            "RosyBrown",
+            "RoyalBlue",
+            "SaddleBrown",
+            "Salmon",
+            "SandyBrown",
+            "SeaGreen",
+            "SeaShell",
+            "Sienna",
+            "Silver",
+            "SkyBlue",
+            "SlateBlue",
+            "SlateGray",
+            "Snow",
+            "SpringGreen",
+            "SteelBlue",
+            "Tan",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "WhiteSmoke",
+            "Yellow",
+            "YellowGreen"});
+            this.cbWeeklyColors.Location = new System.Drawing.Point(23, 153);
+            this.cbWeeklyColors.Name = "cbWeeklyColors";
+            this.cbWeeklyColors.Size = new System.Drawing.Size(111, 21);
+            this.cbWeeklyColors.TabIndex = 78;
+            this.cbWeeklyColors.SelectedIndexChanged += new System.EventHandler(this.cbWeeklyColors_SelectedIndexChanged);
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(22, 182);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(91, 13);
+            this.label70.TabIndex = 77;
+            this.label70.Text = "Maintenance Grid";
+            // 
+            // tbColorMaint
+            // 
+            this.tbColorMaint.Location = new System.Drawing.Point(196, 199);
+            this.tbColorMaint.Name = "tbColorMaint";
+            this.tbColorMaint.Size = new System.Drawing.Size(65, 20);
+            this.tbColorMaint.TabIndex = 76;
+            this.tbColorMaint.Text = "Color Row";
+            // 
+            // btSetColors
+            // 
+            this.btSetColors.Location = new System.Drawing.Point(105, 390);
+            this.btSetColors.Name = "btSetColors";
+            this.btSetColors.Size = new System.Drawing.Size(75, 23);
+            this.btSetColors.TabIndex = 75;
+            this.btSetColors.Text = "Save";
+            this.btSetColors.UseVisualStyleBackColor = true;
+            this.btSetColors.Click += new System.EventHandler(this.btSetColors_Click);
+            // 
+            // cbMaintColors
+            // 
+            this.cbMaintColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMaintColors.FormattingEnabled = true;
+            this.cbMaintColors.Items.AddRange(new object[] {
+            "AliceBlue",
+            "AntiqueWhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "BlanchedAlmond",
+            "Blue",
+            "BlueViolet",
+            "Brown",
+            "BurlyWood",
+            "CadetBlue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "CornflowerBlue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "DarkBlue\t",
+            "DarkCyan\t",
+            "DarkGoldenrod\t",
+            "DarkGray\t",
+            "DarkGreen\t",
+            "DarkKhaki\t",
+            "DarkMagenta\t",
+            "DarkOliveGreen\t",
+            "DarkOrange\t",
+            "DarkOrchid\t",
+            "DarkRed\t",
+            "DarkSalmon\t",
+            "DarkSeaGreen\t",
+            "DarkSlateBlue\t",
+            "DarkSlateGray\t",
+            "DarkTurquoise\t",
+            "DarkViolet\t",
+            "DeepPink\t",
+            "DeepSkyBlue",
+            "DimGray",
+            "DodgerBlue",
+            "Firebrick",
+            "FloralWhite",
+            "ForestGreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "GreenYellow",
+            "Honeydew",
+            "HotPink",
+            "IndianRed",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "LavenderBlush",
+            "LawnGreen",
+            "LemonChiffon",
+            "LightBlue",
+            "LightCoral",
+            "LightCyan",
+            "LightGoldenrodYellow",
+            "LightGray",
+            "LightGreen",
+            "LightPink",
+            "LightSalmon",
+            "LightSeaGreen",
+            "LightSkyBlue",
+            "LightSlateGray",
+            "LightSteelBlue",
+            "LightYellow",
+            "Lime",
+            "LimeGreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "MediumAquamarine",
+            "MediumOrchid",
+            "MediumPurple",
+            "MediumSeaGreen",
+            "MediumSlateBlue",
+            "MediumSpringGreen",
+            "MediumTurquoise",
+            "MintCream",
+            "MistyRose",
+            "Moccasin",
+            "NavajoWhite",
+            "OldLace",
+            "Olive",
+            "OliveDrab",
+            "Orange",
+            "OrangeRed",
+            "Orchid",
+            "PaleGoldenrod",
+            "PaleGreen",
+            "PaleTurquoise",
+            "PaleVioletRed",
+            "PapayaWhip",
+            "PeachPuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "PowderBlue",
+            "Purple",
+            "RebeccaPurple",
+            "Red",
+            "RosyBrown",
+            "RoyalBlue",
+            "SaddleBrown",
+            "Salmon",
+            "SandyBrown",
+            "SeaGreen",
+            "SeaShell",
+            "Sienna",
+            "Silver",
+            "SkyBlue",
+            "SlateBlue",
+            "SlateGray",
+            "Snow",
+            "SpringGreen",
+            "SteelBlue",
+            "Tan",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "WhiteSmoke",
+            "Yellow",
+            "YellowGreen"});
+            this.cbMaintColors.Location = new System.Drawing.Point(23, 195);
+            this.cbMaintColors.Name = "cbMaintColors";
+            this.cbMaintColors.Size = new System.Drawing.Size(111, 21);
+            this.cbMaintColors.TabIndex = 1;
+            this.cbMaintColors.SelectedIndexChanged += new System.EventHandler(this.cbMaintColors_SelectedIndexChanged);
+            // 
+            // groupBox22
+            // 
+            this.groupBox22.Controls.Add(this.btHideShowIDColumn);
+            this.groupBox22.Controls.Add(this.rbHideIDColumn);
+            this.groupBox22.Controls.Add(this.rbShowIDColumn);
+            this.groupBox22.Location = new System.Drawing.Point(535, 308);
+            this.groupBox22.Name = "groupBox22";
+            this.groupBox22.Size = new System.Drawing.Size(212, 107);
+            this.groupBox22.TabIndex = 77;
+            this.groupBox22.TabStop = false;
+            this.groupBox22.Text = "Ride Display ID Column";
+            // 
+            // btHideShowIDColumn
+            // 
+            this.btHideShowIDColumn.Location = new System.Drawing.Point(113, 48);
+            this.btHideShowIDColumn.Name = "btHideShowIDColumn";
+            this.btHideShowIDColumn.Size = new System.Drawing.Size(75, 23);
+            this.btHideShowIDColumn.TabIndex = 29;
+            this.btHideShowIDColumn.Text = "Save";
+            this.btHideShowIDColumn.UseVisualStyleBackColor = true;
+            this.btHideShowIDColumn.Click += new System.EventHandler(this.btHideShowIDColumn_Click);
+            // 
+            // rbHideIDColumn
+            // 
+            this.rbHideIDColumn.AutoSize = true;
+            this.rbHideIDColumn.Location = new System.Drawing.Point(38, 61);
+            this.rbHideIDColumn.Name = "rbHideIDColumn";
+            this.rbHideIDColumn.Size = new System.Drawing.Size(47, 17);
+            this.rbHideIDColumn.TabIndex = 1;
+            this.rbHideIDColumn.TabStop = true;
+            this.rbHideIDColumn.Text = "Hide";
+            this.rbHideIDColumn.UseVisualStyleBackColor = true;
+            // 
+            // rbShowIDColumn
+            // 
+            this.rbShowIDColumn.AutoSize = true;
+            this.rbShowIDColumn.Location = new System.Drawing.Point(38, 38);
+            this.rbShowIDColumn.Name = "rbShowIDColumn";
+            this.rbShowIDColumn.Size = new System.Drawing.Size(52, 17);
+            this.rbShowIDColumn.TabIndex = 0;
+            this.rbShowIDColumn.TabStop = true;
+            this.rbShowIDColumn.Text = "Show";
+            this.rbShowIDColumn.UseVisualStyleBackColor = true;
+            // 
+            // groupBox18
+            // 
+            this.groupBox18.Controls.Add(this.btFirstDay);
+            this.groupBox18.Controls.Add(this.rbFirstDayMonday);
+            this.groupBox18.Controls.Add(this.rbFirstDaySunday);
+            this.groupBox18.Location = new System.Drawing.Point(535, 421);
+            this.groupBox18.Name = "groupBox18";
+            this.groupBox18.Size = new System.Drawing.Size(212, 78);
+            this.groupBox18.TabIndex = 73;
+            this.groupBox18.TabStop = false;
+            this.groupBox18.Text = "First Day Of Week";
+            // 
+            // btFirstDay
+            // 
+            this.btFirstDay.Location = new System.Drawing.Point(113, 37);
+            this.btFirstDay.Name = "btFirstDay";
+            this.btFirstDay.Size = new System.Drawing.Size(75, 23);
+            this.btFirstDay.TabIndex = 28;
+            this.btFirstDay.Text = "Save";
+            this.btFirstDay.UseVisualStyleBackColor = true;
+            this.btFirstDay.Click += new System.EventHandler(this.BtFirstDay_Click);
+            // 
+            // rbFirstDayMonday
+            // 
+            this.rbFirstDayMonday.AutoSize = true;
+            this.rbFirstDayMonday.Location = new System.Drawing.Point(38, 49);
+            this.rbFirstDayMonday.Name = "rbFirstDayMonday";
+            this.rbFirstDayMonday.Size = new System.Drawing.Size(63, 17);
+            this.rbFirstDayMonday.TabIndex = 27;
+            this.rbFirstDayMonday.TabStop = true;
+            this.rbFirstDayMonday.Text = "Monday";
+            this.rbFirstDayMonday.UseVisualStyleBackColor = true;
+            // 
+            // rbFirstDaySunday
+            // 
+            this.rbFirstDaySunday.AutoSize = true;
+            this.rbFirstDaySunday.Location = new System.Drawing.Point(38, 29);
+            this.rbFirstDaySunday.Name = "rbFirstDaySunday";
+            this.rbFirstDaySunday.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.rbFirstDaySunday.Size = new System.Drawing.Size(61, 17);
+            this.rbFirstDaySunday.TabIndex = 26;
+            this.rbFirstDaySunday.TabStop = true;
+            this.rbFirstDaySunday.Text = "Sunday";
+            this.rbFirstDaySunday.UseVisualStyleBackColor = true;
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.button4);
+            this.groupBox13.Controls.Add(this.label2);
+            this.groupBox13.Controls.Add(this.button3);
+            this.groupBox13.Controls.Add(this.btDeleteAllData);
+            this.groupBox13.Location = new System.Drawing.Point(31, 380);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(187, 119);
+            this.groupBox13.TabIndex = 72;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Delete All Data";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(36, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(128, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Delete All Data in the app";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.tbCustomDataField2);
+            this.groupBox9.Controls.Add(this.tbCustomDataField1);
+            this.groupBox9.Controls.Add(this.label85);
+            this.groupBox9.Controls.Add(this.label84);
+            this.groupBox9.Controls.Add(this.btCustomDataField1);
+            this.groupBox9.Location = new System.Drawing.Point(535, 68);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(212, 227);
+            this.groupBox9.TabIndex = 68;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Custom Data Field Name";
+            // 
+            // tbCustomDataField2
+            // 
+            this.tbCustomDataField2.Location = new System.Drawing.Point(49, 107);
+            this.tbCustomDataField2.Name = "tbCustomDataField2";
+            this.tbCustomDataField2.Size = new System.Drawing.Size(121, 20);
+            this.tbCustomDataField2.TabIndex = 35;
+            // 
+            // tbCustomDataField1
+            // 
+            this.tbCustomDataField1.Location = new System.Drawing.Point(49, 47);
+            this.tbCustomDataField1.Name = "tbCustomDataField1";
+            this.tbCustomDataField1.Size = new System.Drawing.Size(121, 20);
+            this.tbCustomDataField1.TabIndex = 34;
+            // 
+            // label85
+            // 
+            this.label85.AutoSize = true;
+            this.label85.Location = new System.Drawing.Point(70, 91);
+            this.label85.Name = "label85";
+            this.label85.Size = new System.Drawing.Size(76, 13);
+            this.label85.TabIndex = 30;
+            this.label85.Text = "Custom Field 2";
+            // 
+            // label84
+            // 
+            this.label84.AutoSize = true;
+            this.label84.Location = new System.Drawing.Point(70, 31);
+            this.label84.Name = "label84";
+            this.label84.Size = new System.Drawing.Size(76, 13);
+            this.label84.TabIndex = 29;
+            this.label84.Text = "Custom Field 1";
+            // 
+            // btCustomDataField1
+            // 
+            this.btCustomDataField1.Location = new System.Drawing.Point(71, 170);
+            this.btCustomDataField1.Name = "btCustomDataField1";
+            this.btCustomDataField1.Size = new System.Drawing.Size(75, 23);
+            this.btCustomDataField1.TabIndex = 27;
+            this.btCustomDataField1.Text = "Save";
+            this.btCustomDataField1.UseVisualStyleBackColor = true;
+            this.btCustomDataField1.Click += new System.EventHandler(this.BtCustomDataField1_Click);
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.btLogTitleClear);
+            this.groupBox10.Controls.Add(this.btLogTitleSave);
+            this.groupBox10.Controls.Add(this.label31);
+            this.groupBox10.Controls.Add(this.cbLogYearConfig);
+            this.groupBox10.Controls.Add(this.btRemoveLogYear);
+            this.groupBox10.Controls.Add(this.tbLogYearConfig);
+            this.groupBox10.Controls.Add(this.cbLogYear);
+            this.groupBox10.Controls.Add(this.label3);
+            this.groupBox10.Controls.Add(this.label24);
+            this.groupBox10.Location = new System.Drawing.Point(31, 68);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(187, 297);
+            this.groupBox10.TabIndex = 69;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "LOGS";
+            // 
+            // btLogTitleClear
+            // 
+            this.btLogTitleClear.Location = new System.Drawing.Point(56, 222);
+            this.btLogTitleClear.Name = "btLogTitleClear";
+            this.btLogTitleClear.Size = new System.Drawing.Size(75, 23);
+            this.btLogTitleClear.TabIndex = 26;
+            this.btLogTitleClear.Text = "Clear";
+            this.btLogTitleClear.UseVisualStyleBackColor = true;
+            this.btLogTitleClear.Click += new System.EventHandler(this.btLogTitleClear_Click);
+            // 
+            // btLogTitleSave
+            // 
+            this.btLogTitleSave.Location = new System.Drawing.Point(56, 193);
+            this.btLogTitleSave.Name = "btLogTitleSave";
+            this.btLogTitleSave.Size = new System.Drawing.Size(75, 23);
+            this.btLogTitleSave.TabIndex = 25;
+            this.btLogTitleSave.Text = "Save";
+            this.btLogTitleSave.UseVisualStyleBackColor = true;
+            this.btLogTitleSave.Click += new System.EventHandler(this.btLogTitleSave_Click);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(15, 127);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(83, 13);
+            this.label31.TabIndex = 24;
+            this.label31.Text = "Year for the Log";
+            // 
+            // cbLogYear
+            // 
+            this.cbLogYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYear.FormattingEnabled = true;
+            this.cbLogYear.Location = new System.Drawing.Point(18, 146);
+            this.cbLogYear.Name = "cbLogYear";
+            this.cbLogYear.Size = new System.Drawing.Size(140, 21);
+            this.cbLogYear.TabIndex = 23;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(15, 77);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(116, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Log Title (Add/Update)";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(15, 28);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(48, 13);
+            this.label24.TabIndex = 18;
+            this.label24.Text = "Log Title";
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label64.Location = new System.Drawing.Point(305, 25);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(107, 28);
+            this.label64.TabIndex = 64;
+            this.label64.Text = "Settings";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(915, 565);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "About";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.label83);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.label29);
+            this.groupBox3.Controls.Add(this.button11);
+            this.groupBox3.Controls.Add(this.lbVersion);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Location = new System.Drawing.Point(77, 60);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(764, 427);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(541, 123);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(108, 30);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "User\'s Guide";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // label83
+            // 
+            this.label83.AutoSize = true;
+            this.label83.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label83.Location = new System.Drawing.Point(295, 141);
+            this.label83.Name = "label83";
+            this.label83.Size = new System.Drawing.Size(144, 12);
+            this.label83.TabIndex = 13;
+            this.label83.Text = "john_t_flynn@yahoo.com";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(41, 180);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(665, 215);
+            this.textBox1.TabIndex = 7;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(309, 112);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(95, 12);
+            this.label29.TabIndex = 2;
+            this.label29.Text = "By: John T Flynn";
+            // 
+            // lbVersion
+            // 
+            this.lbVersion.AutoSize = true;
+            this.lbVersion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVersion.Location = new System.Drawing.Point(309, 79);
+            this.lbVersion.Name = "lbVersion";
+            this.lbVersion.Size = new System.Drawing.Size(87, 12);
+            this.lbVersion.TabIndex = 1;
+            this.lbVersion.Text = "Version:  xxxxx";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(229, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(287, 28);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Cycling Log Application";
             // 
             // MainForm
             // 
@@ -3305,10 +3327,13 @@
             this.tabPage4.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox20.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewYearly)).EndInit();
             this.tabPage7.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonthly)).EndInit();
             this.tabPage8.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -3347,9 +3372,6 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonthly)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewYearly)).EndInit();
-            this.groupBox20.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -3553,6 +3575,8 @@
         private System.Windows.Forms.TextBox tbColorYearly;
         private System.Windows.Forms.ComboBox cbYearlyColors;
         private System.Windows.Forms.GroupBox groupBox20;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tbMaxYearlyMilesAllLogs;
     }
 }
 
