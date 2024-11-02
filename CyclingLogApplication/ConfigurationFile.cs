@@ -213,7 +213,7 @@ namespace CyclingLogApplication
             string lastLogYearSelected = nodes.Item(0).SelectSingleNode("LastLogSelected").InnerText;
             string lastBikeSelected = nodes.Item(0).SelectSingleNode("LastBikeSelected").InnerText;
             string lastLogYearFilterSelected = nodes.Item(0).SelectSingleNode("LastLogFilterSelected").InnerText;
-
+            string lastLogSelectedWeekly = nodes.Item(0).SelectSingleNode("LastLogSelectedWeekly").InnerText;
             string chartLogYearSelected = nodes.Item(0).SelectSingleNode("ChartLogYear").InnerText;
             string chartRouteSelected = nodes.Item(0).SelectSingleNode("ChartRoute").InnerText;
             string chartTypeSelected = nodes.Item(0).SelectSingleNode("ChartType").InnerText;
@@ -258,7 +258,7 @@ namespace CyclingLogApplication
             MainForm.SetLastLogFilterSelected(Convert.ToInt32(lastLogYearFilterSelected));
             MainForm.SetLastBikeSelected(Convert.ToInt32(lastBikeSelected));
             MainForm.SetLastLogSelected(Convert.ToInt32(lastLogYearSelected));
-
+            MainForm.SetLastLogYearWeeklySelected(Convert.ToInt32(lastLogSelectedWeekly));
             MainForm.SetLastLogYearChartSelected(Convert.ToInt32(chartLogYearSelected));
             MainForm.SetLastRouteChartSelected(Convert.ToInt32(chartRouteSelected));
             MainForm.SetLastTypeChartSelected(Convert.ToInt32(chartTypeSelected));
@@ -304,7 +304,7 @@ namespace CyclingLogApplication
             Logger.Log("Configuration Read: lastLogYearFilterSelected : " + lastLogYearFilterSelected, logLevel, 0);
             Logger.Log("Configuration Read: lastLogYearSelected : " + lastLogYearSelected, logLevel, 0);
             Logger.Log("Configuration Read: lastBikeSelected : " + lastBikeSelected, logLevel, 0);
-
+            Logger.Log("Configuration Read: lastLogSelectedWeekly : " + lastLogSelectedWeekly, logLevel, 0);
             Logger.Log("Configuration Read: chartLogYearSelected : " + chartLogYearSelected, logLevel, 0);
             Logger.Log("Configuration Read: chartRouteSelected : " + chartRouteSelected, logLevel, 0);
             Logger.Log("Configuration Read: chartTypeSelected : " + chartTypeSelected, logLevel, 0);
@@ -715,6 +715,10 @@ namespace CyclingLogApplication
                     lastLogSelectedNode.InnerText = "-1";
                     rootNode.AppendChild(lastLogSelectedNode);
 
+                    XmlNode lastLogSelectedWeeklyNode = xmlDoc.CreateElement("LastLogSelectedWeekly");
+                    lastLogSelectedWeeklyNode.InnerText = "0";
+                    rootNode.AppendChild(lastLogSelectedWeeklyNode);
+
                     XmlNode lastLogFilterSelectedNode = xmlDoc.CreateElement("LastLogFilterSelected"); //Display form logyear
                     lastLogFilterSelectedNode.InnerText = "0";
                     rootNode.AppendChild(lastLogFilterSelectedNode);
@@ -790,6 +794,7 @@ namespace CyclingLogApplication
                     int lastBikeSelected = MainForm.GetLastBikeSelected();
                     int lastLogFilterSelected = MainForm.GetLastLogFilterSelected();
 
+                    int lastLogYearWeeklySelected = MainForm.GetLastLogYearWeeklySelected();
                     int lastLogYearChartSelected = MainForm.GetLastLogYearChartSelected();
                     int lastRouteChartSelected = MainForm.GetLastRouteChartSelected();
                     int lastTypeChartSelected = MainForm.GetLastTypeChartSelected();
@@ -889,7 +894,7 @@ namespace CyclingLogApplication
                     xmlDoc.SelectSingleNode("/Config/LastLogSelected").InnerText = lastLogSelected.ToString();
                     xmlDoc.SelectSingleNode("/Config/LastBikeSelected").InnerText = lastBikeSelected.ToString();
                     xmlDoc.SelectSingleNode("/Config/LastLogFilterSelected").InnerText = lastLogFilterSelected.ToString();
-
+                    xmlDoc.SelectSingleNode("/Config/LastLogSelectedWeekly").InnerText = lastLogYearWeeklySelected.ToString();
                     xmlDoc.SelectSingleNode("/Config/ChartLogYear").InnerText = lastLogYearChartSelected.ToString();
                     xmlDoc.SelectSingleNode("/Config/ChartRoute").InnerText = lastRouteChartSelected.ToString();
                     xmlDoc.SelectSingleNode("/Config/ChartType").InnerText = lastTypeChartSelected.ToString();
@@ -935,7 +940,7 @@ namespace CyclingLogApplication
                     Logger.Log("Write Config Values: lastLogSelected written:" + lastLogSelected, logSetting, 0);
                     Logger.Log("Write Config Values: lastBikeSelected written:" + lastBikeSelected, logSetting, 0);
                     Logger.Log("Write Config Values: lastLogFilterSelected written:" + lastLogFilterSelected, logSetting, 0);
-
+                    Logger.Log("Write Config Values: LastLogSelectedWeekly written:" + lastLogYearWeeklySelected, logSetting, 0);
                     Logger.Log("Write Config Values: lastLogYearChartSelected written:" + lastLogYearChartSelected, logSetting, 0);
                     Logger.Log("Write Config Values: lastRouteChartSelected written:" + lastRouteChartSelected, logSetting, 0);
                     Logger.Log("Write Config Values: lastTypeChartSelected written:" + lastTypeChartSelected, logSetting, 0);

@@ -49,8 +49,9 @@ namespace CyclingLogApplication
         private static int lastRouteChart = -1;
         private static int lastTypeChart = -1;
         private static int lastTypeTimeChart = -1;
-        private static int lastMonthlyLogSelected = -1;
-        private static int lastLogSelectedDataEntry = -1;
+        private static int lastMonthlyLogSelected = 0;
+        private static int lastLogYearWeekly = 0;
+        private static int lastLogSelectedDataEntry = 0;
         private static string idColumn = "0";
         private static string firstDayOfWeek;
         private static string license;
@@ -131,7 +132,7 @@ namespace CyclingLogApplication
             GetConnectionStrings();
             int logSetting = GetLogLevel();
 
-            tbWeekCount.Text = GetCurrentWeekCount().ToString();
+            tbWeekCount.Text = GetCurrentWeekCount().ToString(); //For current year only:
             tbDayCount.Text = GetCurrentDayCount().ToString();
             tbTimeChange.Text = GetDaysToNextTimeChange().ToString();
 
@@ -391,10 +392,12 @@ namespace CyclingLogApplication
 
                 //Set first option of 'None':
                 cbStatMonthlyLogYear.Items.Add("--Select Value--");
+                cbLogYearWeekly.Items.Add("--Select Value--");
                 //Load LogYear Monthly values:
                 foreach (string val in logYearList)
                 {
                     cbStatMonthlyLogYear.Items.Add(val);
+                    cbLogYearWeekly.Items.Add(val);
                 }
 
                 //Load Statistic combo index values:
@@ -410,6 +413,7 @@ namespace CyclingLogApplication
                 cbLogYear10.SelectedIndex = int.Parse(GetcbStatistic10());
 
                 cbStatMonthlyLogYear.SelectedIndex = GetLastMonthlyLogSelected();
+                cbLogYearWeekly.SelectedIndex = GetLastLogYearWeeklySelected();
 
                 int currentYear = DateTime.Now.Year;
 
@@ -852,6 +856,16 @@ namespace CyclingLogApplication
         public static int GetLastLogYearChartSelected()
         {
             return lastLogYearChart;
+        }
+
+        public static int GetLastLogYearWeeklySelected()
+        {
+            return lastLogYearWeekly;
+        }
+
+        public static void SetLastLogYearWeeklySelected(int logIndex)
+        {
+            lastLogYearWeekly = logIndex;
         }
 
         public static void SetLastRouteChartSelected(int logIndex)
@@ -2344,6 +2358,7 @@ namespace CyclingLogApplication
             float avgRides = 0;
 
             //Need to determine if the current year matches the log year and if not use 52 as the weekValue:
+            //Old logs need to include the entire year.  For the current year, only up to the current week #:
             int logYear = GetLogYearByIndex(logIndex);
 
             if (logYear == DateTime.Today.Year)
@@ -2374,7 +2389,8 @@ namespace CyclingLogApplication
             //Calendar cal = dfi.Calendar;
             int weekValue;
 
-            //Need to determine if the current year matches the log year and if not use 52 (full year) as the weekValue:
+            //Need to determine if the current year matches the log year and if not use 52 as the weekValue:
+            //Old logs need to include the entire year.  For the current year, only up to the current week #:
             int logYear = GetLogYearByIndex(logIndex);
 
             if (logYear == DateTime.Today.Year)
@@ -2869,6 +2885,42 @@ namespace CyclingLogApplication
             else
             {
                 weekValue = cal.GetWeekOfYear(DateTime.Now, dfi.CalendarWeekRule, DayOfWeek.Monday);
+            }
+
+            //Seen cases where week 53 is returned which is only for leap years?
+            if (weekValue == 53)
+            {
+                if (!DateTime.IsLeapYear(DateTime.Now.Year))
+                {
+                    weekValue = 1;
+                }
+            }
+
+            return weekValue;
+        }
+
+        private static int GetCurrentWeekCountByYear(DateTime dateValue)
+        {
+            DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+            Calendar cal = dfi.Calendar;
+            int weekValue;
+            string firstDay = GetFirstDayOfWeek() ?? "Monday";
+            if (firstDay.Equals("Sunday"))
+            {
+                weekValue = cal.GetWeekOfYear(dateValue, dfi.CalendarWeekRule, DayOfWeek.Sunday);
+            }
+            else
+            {
+                weekValue = cal.GetWeekOfYear(dateValue, dfi.CalendarWeekRule, DayOfWeek.Monday);
+            }
+
+            //Seen cases where week 53 is returned which is only for leap years?
+            if (weekValue == 53)
+            {
+                if (!DateTime.IsLeapYear(dateValue.Year))
+                {
+                    weekValue = 1;
+                }
             }
 
             return weekValue;
@@ -6912,1156 +6964,80 @@ namespace CyclingLogApplication
             return avg_miles.ToString();
         }
 
+        private int GetLog_Year(string logYearName)
+        {
+            List<object> objectValues = new List<object>();
+            objectValues.Add(logYearName);
+            int year = 0;
+
+            try
+            {
+                //ExecuteScalarFunction
+                using (var results = ExecuteSimpleQueryConnection("Log_Year_Get", objectValues))
+                {
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            year = int.Parse(results[0].ToString());
+                        }
+                    }
+                    else
+                    {
+                        // lbMaintError.Text = "No entry found for the selected Bike and Date.";
+                        return 0;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to retrive maintenance data." + ex.Message.ToString());
+            }
+
+            return year;
+        }
+
         private void RefreshWeekly()
         {
-            int logIndex;
-            int logIndexPrevious;
-
-            int logYear = DateTime.Now.Year;
-            logIndex = GetLogYearIndex(logYear);
-            int logYearPrevious = logYear - 1;
-            logIndexPrevious = GetLogYearIndex(logYearPrevious);
-
-            int weekNumber = GetCurrentWeekCount();
-            //Current week plus 4 prior weeks
-
-            //Total Miles Weekly:
-            //Current week:
-            string tbDistanceWeek1 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
-            string lbweek1 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber).ToString("MM/dd/yyyy");
-            string tbLongestRideWeek1 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
-            string tbElevGainWeek1 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
-            string tbNumRidesWeek1 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
-            string tbAvgSpeedWeek1 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
-            string tbTotalTimeWeekly1 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
-            string tbAvgPace1 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek1).ToString();
-            string tbHighestElev1 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
-            string tbAvgMilesPerRide1 = GetAvgMilesPerRide(tbDistanceWeek1, tbNumRidesWeek1);
-
-            string tbDistanceWeek2;
-            string lbweek2;
-            string tbLongestRideWeek2;
-            string tbElevGainWeek2;
-            string tbNumRidesWeek2;
-            string tbAvgSpeedWeek2;
-            string tbTotalTimeWeekly2;
-            string tbAvgPace2;
-            string tbHighestElev2;
-            string tbAvgMilesPerRide2;
-
-            string tbDistanceWeek3 = "0";
-            string lbweek3 = "0";
-            string tbLongestRideWeek3 = "0";
-            string tbElevGainWeek3 = "0";
-            string tbNumRidesWeek3 = "0";
-            string tbAvgSpeedWeek3 = "0";
-            string tbTotalTimeWeekly3 = "0";
-            string tbAvgPace3 = "0";
-            string tbHighestElev3 = "0";
-            string tbAvgMilesPerRide3 = "0";
-
-            string tbDistanceWeek4 = "0";
-            string lbweek4 = "0";
-            string tbLongestRideWeek4 = "0";
-            string tbElevGainWeek4 = "0";
-            string tbNumRidesWeek4 = "0";
-            string tbAvgSpeedWeek4 = "0";
-            string tbTotalTimeWeekly4 = "0";
-            string tbAvgPace4 = "0";
-            string tbHighestElev4 = "0";
-            string tbAvgMilesPerRide4 = "0";
-
-            string tbDistanceWeek5 = "0";
-            string lbweek5 = "0";
-            string tbLongestRideWeek5 = "0";
-            string tbElevGainWeek5 = "0";
-            string tbNumRidesWeek5 = "0";
-            string tbAvgSpeedWeek5 = "0";
-            string tbTotalTimeWeekly5 = "0";
-            string tbAvgPace5 = "0";
-            string tbHighestElev5 = "0";
-            string tbAvgMilesPerRide5 = "0";
-
-            string tbDistanceWeek6 = "0";
-            string lbweek6 = "0";
-            string tbLongestRideWeek6 = "0";
-            string tbElevGainWeek6 = "0";
-            string tbNumRidesWeek6 = "0";
-            string tbAvgSpeedWeek6 = "0";
-            string tbTotalTimeWeekly6 = "0";
-            string tbAvgPace6 = "0";
-            string tbHighestElev6 = "0";
-            string tbAvgMilesPerRide6 = "0";
-
-            string tbDistanceWeek7 = "0";
-            string lbweek7 = "0";
-            string tbLongestRideWeek7 = "0";
-            string tbElevGainWeek7 = "0";
-            string tbNumRidesWeek7 = "0";
-            string tbAvgSpeedWeek7 = "0";
-            string tbTotalTimeWeekly7 = "0";
-            string tbAvgPace7 = "0";
-            string tbHighestElev7 = "0";
-            string tbAvgMilesPerRide7 = "0";
-
-            string tbDistanceWeek8 = "0";
-            string lbweek8 = "0";
-            string tbLongestRideWeek8 = "0";
-            string tbElevGainWeek8 = "0";
-            string tbNumRidesWeek8 = "0";
-            string tbAvgSpeedWeek8 = "0";
-            string tbTotalTimeWeekly8 = "0";
-            string tbAvgPace8 = "0";
-            string tbHighestElev8 = "0";
-            string tbAvgMilesPerRide8 = "0";
-
-            string tbDistanceWeek9 = "0";
-            string lbweek9 = "0";
-            string tbLongestRideWeek9 = "0";
-            string tbElevGainWeek9 = "0";
-            string tbNumRidesWeek9 = "0";
-            string tbAvgSpeedWeek9 = "0";
-            string tbTotalTimeWeekly9 = "0";
-            string tbAvgPace9 = "0";
-            string tbHighestElev9 = "0";
-            string tbAvgMilesPerRide9 = "0";
-
-            string tbDistanceWeek10 = "0";
-            string lbweek10 = "0";
-            string tbLongestRideWeek10 = "0";
-            string tbElevGainWeek10 = "0";
-            string tbNumRidesWeek10 = "0";
-            string tbAvgSpeedWeek10 = "0";
-            string tbTotalTimeWeekly10 = "0";
-            string tbAvgPace10 = "0";
-            string tbHighestElev10 = "0";
-            string tbAvgMilesPerRide10 = "0";
-
-
-            // This first if handles when only one year log exists:
-            if (logIndex == 1)
+            string logYearName = cbLogYearWeekly.SelectedItem.ToString();
+            if (logYearName.Equals("--Select Value--"))
             {
-                //Current week -1(2):
-                if (weekNumber - 1 <= 0)
-                {
-                    tbDistanceWeek2 = "0";
-                    tbLongestRideWeek2 = "0";
-                    tbElevGainWeek2 = "0";
-                    tbNumRidesWeek2 = "0";
-                    tbAvgSpeedWeek2 = "0";
-                    tbTotalTimeWeekly2 = "0";
-                    tbAvgPace2 = "0";
-                    lbweek2 = "0";
-                    tbHighestElev2 = "0";
-                    tbAvgMilesPerRide2 = "0";
-                }
-                else
-                {
-                    tbDistanceWeek2 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
-                    tbLongestRideWeek2 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
-                    tbElevGainWeek2 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
-                    tbNumRidesWeek2 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
-                    tbAvgSpeedWeek2 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
-                    tbTotalTimeWeekly2 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
-                    tbAvgPace2 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek2).ToString();
-                    lbweek2 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber).ToString("MM/dd/yyyy");
-                    tbHighestElev2 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
-                    tbAvgMilesPerRide2 = GetAvgMilesPerRide(tbDistanceWeek2, tbNumRidesWeek2);
-                }
-                //Current week -2(3):
-                if (weekNumber - 2 <= 0)
-                {
-                    tbDistanceWeek3 = "0";
-                    tbLongestRideWeek3 = "0";
-                    tbElevGainWeek3 = "0";
-                    tbNumRidesWeek3 = "0";
-                    tbAvgSpeedWeek3 = "0";
-                    tbTotalTimeWeekly3 = "0";
-                    tbAvgPace3 = "0";
-                    tbHighestElev3 = "0";
-                    tbAvgMilesPerRide3 = "0";
-                }
-                else
-                {
-                    tbDistanceWeek3 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
-                    tbLongestRideWeek3 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
-                    tbElevGainWeek3 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
-                    tbNumRidesWeek3 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
-                    tbAvgSpeedWeek3 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
-                    tbTotalTimeWeekly3 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
-                    tbAvgPace3 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek3).ToString();
-                    tbHighestElev3 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
-                    tbAvgMilesPerRide3 = GetAvgMilesPerRide(tbDistanceWeek3, tbNumRidesWeek3);
-                }
-                //Current week -3(4):
-                if (weekNumber - 3 <= 0)
-                {
-                    tbDistanceWeek4 = "0";
-                    tbLongestRideWeek4 = "0";
-                    tbElevGainWeek4 = "0";
-                    tbNumRidesWeek4 = "0";
-                    tbAvgSpeedWeek4 = "0";
-                    tbTotalTimeWeekly4 = "0";
-                    tbAvgPace4 = "0";
-                    tbHighestElev4 = "0";
-                    tbAvgMilesPerRide4 = "0";
-                }
-                else
-                {
-                    tbDistanceWeek4 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
-                    tbLongestRideWeek4 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
-                    tbElevGainWeek4 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
-                    tbNumRidesWeek4 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
-                    tbAvgSpeedWeek4 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
-                    tbTotalTimeWeekly4 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
-                    tbAvgPace4 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek4).ToString();
-                    tbHighestElev4 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
-                    tbAvgMilesPerRide4 = GetAvgMilesPerRide(tbDistanceWeek4, tbNumRidesWeek4);
-                }
-                //Current week -4(5):
-                if (weekNumber - 4 <= 0)
-                {
-                    tbDistanceWeek5 = "0";
-                    tbLongestRideWeek5 = "0";
-                    tbElevGainWeek5 = "0";
-                    tbNumRidesWeek5 = "0";
-                    tbAvgSpeedWeek5 = "0";
-                    tbTotalTimeWeekly5 = "0";
-                    tbAvgPace5 = "0";
-                    tbHighestElev5 = "0";
-                    tbAvgMilesPerRide5 = "0";
-                }
-                else
-                {
-                    tbDistanceWeek5 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
-                    tbLongestRideWeek5 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
-                    tbElevGainWeek5 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
-                    tbNumRidesWeek5 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
-                    tbAvgSpeedWeek5 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
-                    tbTotalTimeWeekly5 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
-                    tbAvgPace5 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek5).ToString();
-                    tbHighestElev5 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
-                    tbAvgMilesPerRide5 = GetAvgMilesPerRide(tbDistanceWeek5, tbNumRidesWeek5);
-                }
-                //Current week -5(6):
-                if (weekNumber - 5 <= 0)
-                {
-                    tbDistanceWeek6 = "0";
-                    tbLongestRideWeek6 = "0";
-                    tbElevGainWeek6 = "0";
-                    tbNumRidesWeek6 = "0";
-                    tbAvgSpeedWeek6 = "0";
-                    tbTotalTimeWeekly6 = "0";
-                    tbAvgPace6 = "0";
-                    tbHighestElev6 = "0";
-                    tbAvgMilesPerRide6 = "0";
-                }
-                else
-                {
-                    tbDistanceWeek6 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
-                    tbLongestRideWeek6 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
-                    tbElevGainWeek6 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
-                    tbNumRidesWeek6 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
-                    tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
-                    tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
-                    tbAvgPace6 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek6).ToString();
-                    tbHighestElev6 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
-                    tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
-                }
-                //Current week -6(7):
-                if (weekNumber - 6 <= 0)
-                {
-                    tbDistanceWeek7 = "0";
-                    tbLongestRideWeek7 = "0";
-                    tbElevGainWeek7 = "0";
-                    tbNumRidesWeek7 = "0";
-                    tbAvgSpeedWeek7 = "0";
-                    tbTotalTimeWeekly7 = "0";
-                    tbAvgPace7 = "0";
-                    tbHighestElev7 = "0";
-                    tbAvgMilesPerRide7 = "0";
-                }
-                else
-                {
-                    tbDistanceWeek7 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
-                    tbLongestRideWeek7 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
-                    tbElevGainWeek7 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
-                    tbNumRidesWeek7 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
-                    tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
-                    tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
-                    tbAvgPace7 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek7).ToString();
-                    tbHighestElev7 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
-                    tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
-                }
-                //Current week -7(8):
-                if (weekNumber - 7 <= 0)
-                {
-                    tbDistanceWeek8 = "0";
-                    tbLongestRideWeek8 = "0";
-                    tbElevGainWeek8 = "0";
-                    tbNumRidesWeek8 = "0";
-                    tbAvgSpeedWeek8 = "0";
-                    tbTotalTimeWeekly8 = "0";
-                    tbAvgPace8 = "0";
-                    tbHighestElev8 = "0";
-                    tbAvgMilesPerRide8 = "0";
-                }
-                else
-                {
-                    tbDistanceWeek8 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
-                    tbLongestRideWeek8 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
-                    tbElevGainWeek8 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
-                    tbNumRidesWeek8 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
-                    tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
-                    tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
-                    tbAvgPace8 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek8).ToString();
-                    tbHighestElev8 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
-                    tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
-                }
-
-                //Current week -8(9):
-                if (weekNumber - 8 <= 0)
-                {
-                    tbDistanceWeek9 = "0";
-                    tbLongestRideWeek9 = "0";
-                    tbElevGainWeek9 = "0";
-                    tbNumRidesWeek9 = "0";
-                    tbAvgSpeedWeek9 = "0";
-                    tbTotalTimeWeekly9 = "0";
-                    tbAvgPace9 = "0";
-                    tbHighestElev9 = "0";
-                    tbAvgMilesPerRide9 = "0";
-                }
-                else
-                {
-                    tbDistanceWeek9 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
-                    tbLongestRideWeek9 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
-                    tbElevGainWeek9 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
-                    tbNumRidesWeek9 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
-                    tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
-                    tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
-                    tbAvgPace9 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek9).ToString();
-                    tbHighestElev9 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
-                    tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
-                }
-
-                //Current week -9(10):
-                if (weekNumber - 9 <= 0)
-                {
-                    tbDistanceWeek10 = "0";
-                    tbLongestRideWeek10 = "0";
-                    tbElevGainWeek10 = "0";
-                    tbNumRidesWeek10 = "0";
-                    tbAvgSpeedWeek10 = "0";
-                    tbTotalTimeWeekly10 = "0";
-                    tbAvgPace10 = "0";
-                    tbHighestElev10 = "0";
-                    tbAvgMilesPerRide10 = "0";
-                }
-                else
-                {
-                    tbDistanceWeek10 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
-                    tbLongestRideWeek10 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
-                    tbElevGainWeek10 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
-                    tbNumRidesWeek10 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
-                    tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
-                    tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
-                    tbAvgPace10 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek10).ToString();
-                    tbHighestElev10 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
-                    tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
-                }
+                return;
             }
-            else
+
+            int logYearIndex = GetLogYearIndex_ByName(logYearName);
+            int currentWeekNumber = GetCurrentWeekCount();
+            int logYear = GetLog_Year(logYearName);
+            int currentYear = DateTime.Now.Year;
+            Boolean bCurrentYear = false;
+
+            if (logYear == currentYear)
             {
-                //Current week -1(2):
-                if (weekNumber - 1 <= 0)
-                {
-                    tbDistanceWeek2 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
-                    lbweek2 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
-                    tbLongestRideWeek2 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
-                    tbElevGainWeek2 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
-                    tbNumRidesWeek2 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
-                    tbAvgSpeedWeek2 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
-                    tbTotalTimeWeekly2 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
-                    tbAvgPace2 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek2).ToString();
-                    tbHighestElev2 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
-                    tbAvgMilesPerRide2 = GetAvgMilesPerRide(tbDistanceWeek2, tbNumRidesWeek2);
-                }
-                else
-                {
-                    int weekNumber2 = weekNumber - 1;
-                    tbDistanceWeek2 = GetTotalMilesWeekly(logIndex, weekNumber2).ToString();
-                    lbweek2 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber2).ToString("MM/dd/yyyy");
-                    tbLongestRideWeek2 = GetLongestRideWeekly(logIndex, weekNumber2).ToString();
-                    tbElevGainWeek2 = GetTotalElevGainWeekly(logIndex, weekNumber2).ToString();
-                    tbNumRidesWeek2 = GetTotalRidesWeekly(logIndex, weekNumber2).ToString();
-                    tbAvgSpeedWeek2 = GetAvgSpeedWeekly(logIndex, weekNumber2).ToString();
-                    tbTotalTimeWeekly2 = GetTotalMovingTimeWeekly(logIndex, weekNumber2).ToString();
-                    tbAvgPace2 = GetAveragePaceWeekly(logIndex, weekNumber2, tbDistanceWeek2).ToString();
-                    tbHighestElev2 = GetHighestElevWeekly(logIndex, weekNumber2).ToString();
-                    tbAvgMilesPerRide2 = GetAvgMilesPerRide(tbDistanceWeek2, tbNumRidesWeek2);
-                }
-                //Current week -2(3):
-                if (weekNumber - 2 <= 0)
-                {
-                    if (weekNumber == 1)
-                    {
-                        lbweek3 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
-                        tbDistanceWeek3 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
-                        tbLongestRideWeek3 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
-                        tbElevGainWeek3 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
-                        tbNumRidesWeek3 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgSpeedWeek3 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
-                        tbTotalTimeWeekly3 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgPace3 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek3).ToString();
-                        tbHighestElev3 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgMilesPerRide3 = GetAvgMilesPerRide(tbDistanceWeek3, tbNumRidesWeek3);
-                    }
-                    else if (weekNumber == 2)
-                    {
-                        lbweek3 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
-                        tbDistanceWeek3 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
-                        tbLongestRideWeek3 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
-                        tbElevGainWeek3 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
-                        tbNumRidesWeek3 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgSpeedWeek3 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
-                        tbTotalTimeWeekly3 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgPace3 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek3).ToString();
-                        tbHighestElev3 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgMilesPerRide3 = GetAvgMilesPerRide(tbDistanceWeek3, tbNumRidesWeek3);
-                    }
-                }
-                else
-                {
-                    int weekNumber3 = weekNumber - 2;
-                    tbDistanceWeek3 = GetTotalMilesWeekly(logIndex, weekNumber3).ToString();
-                    lbweek3 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber3).ToString("MM/dd/yyyy");
-                    tbLongestRideWeek3 = GetLongestRideWeekly(logIndex, weekNumber3).ToString();
-                    tbElevGainWeek3 = GetTotalElevGainWeekly(logIndex, weekNumber3).ToString();
-                    tbNumRidesWeek3 = GetTotalRidesWeekly(logIndex, weekNumber3).ToString();
-                    tbAvgSpeedWeek3 = GetAvgSpeedWeekly(logIndex, weekNumber3).ToString();
-                    tbTotalTimeWeekly3 = GetTotalMovingTimeWeekly(logIndex, weekNumber3).ToString();
-                    tbAvgPace3 = GetAveragePaceWeekly(logIndex, weekNumber3, tbDistanceWeek3).ToString();
-                    tbHighestElev3 = GetHighestElevWeekly(logIndex, weekNumber3).ToString();
-                    tbAvgMilesPerRide3 = GetAvgMilesPerRide(tbDistanceWeek3, tbNumRidesWeek3);
-                }
-                //Current week -3(4):
-                if (weekNumber - 3 <= 0)
-                {
-                    if (weekNumber == 1)
-                    {
-                        lbweek4 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
-                        tbDistanceWeek4 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
-                        tbLongestRideWeek4 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
-                        tbElevGainWeek4 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
-                        tbNumRidesWeek4 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgSpeedWeek4 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
-                        tbTotalTimeWeekly4 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgPace4 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek4).ToString();
-                        tbHighestElev4 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgMilesPerRide4 = GetAvgMilesPerRide(tbDistanceWeek4, tbNumRidesWeek4);
-                    }
-                    else if (weekNumber == 2)
-                    {
-                        lbweek4 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
-                        tbDistanceWeek4 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
-                        tbLongestRideWeek4 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
-                        tbElevGainWeek4 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
-                        tbNumRidesWeek4 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgSpeedWeek4 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
-                        tbTotalTimeWeekly4 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgPace4 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek4).ToString();
-                        tbHighestElev4 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgMilesPerRide4 = GetAvgMilesPerRide(tbDistanceWeek4, tbNumRidesWeek4);
-                    }
-                    else if (weekNumber == 3)
-                    {
-                        lbweek4 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
-                        tbDistanceWeek4 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
-                        tbLongestRideWeek4 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
-                        tbElevGainWeek4 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
-                        tbNumRidesWeek4 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgSpeedWeek4 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
-                        tbTotalTimeWeekly4 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgPace4 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek4).ToString();
-                        tbHighestElev4 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgMilesPerRide4 = GetAvgMilesPerRide(tbDistanceWeek4, tbNumRidesWeek4);
-                    }
-                }
-                else
-                {
-                    int weekNumber4 = weekNumber - 3;
-                    tbDistanceWeek4 = GetTotalMilesWeekly(logIndex, weekNumber4).ToString();
-                    tbLongestRideWeek4 = GetLongestRideWeekly(logIndex, weekNumber4).ToString();
-                    lbweek4 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber4).ToString("MM/dd/yyyy");
-                    tbElevGainWeek4 = GetTotalElevGainWeekly(logIndex, weekNumber4).ToString();
-                    tbNumRidesWeek4 = GetTotalRidesWeekly(logIndex, weekNumber4).ToString();
-                    tbAvgSpeedWeek4 = GetAvgSpeedWeekly(logIndex, weekNumber4).ToString();
-                    tbTotalTimeWeekly4 = GetTotalMovingTimeWeekly(logIndex, weekNumber4).ToString();
-                    tbAvgPace4 = GetAveragePaceWeekly(logIndex, weekNumber4, tbDistanceWeek4).ToString();
-                    tbHighestElev4 = GetHighestElevWeekly(logIndex, weekNumber4).ToString();
-                    tbAvgMilesPerRide4 = GetAvgMilesPerRide(tbDistanceWeek4, tbNumRidesWeek4);
-                }
-                //Current week -4(5):
-                if (weekNumber - 4 <= 0)
-                {
-                    if (weekNumber == 1)
-                    {
-                        lbweek5 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
-                        tbDistanceWeek5 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
-                        tbLongestRideWeek5 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
-                        tbElevGainWeek5 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
-                        tbNumRidesWeek5 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgSpeedWeek5 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
-                        tbTotalTimeWeekly5 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgPace5 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek5).ToString();
-                        tbHighestElev5 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgMilesPerRide5 = GetAvgMilesPerRide(tbDistanceWeek5, tbNumRidesWeek5);
-                    }
-                    else if (weekNumber == 2)
-                    {
-                        lbweek5 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
-                        tbDistanceWeek5 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
-                        tbLongestRideWeek5 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
-                        tbElevGainWeek5 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
-                        tbNumRidesWeek5 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgSpeedWeek5 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
-                        tbTotalTimeWeekly5 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgPace5 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek5).ToString();
-                        tbHighestElev5 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgMilesPerRide5 = GetAvgMilesPerRide(tbDistanceWeek5, tbNumRidesWeek5);
-                    }
-                    else if (weekNumber == 3)
-                    {
-                        lbweek5 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
-                        tbDistanceWeek5 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
-                        tbLongestRideWeek5 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
-                        tbElevGainWeek5 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
-                        tbNumRidesWeek5 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgSpeedWeek5 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
-                        tbTotalTimeWeekly5 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgPace5 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek5).ToString();
-                        tbHighestElev5 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgMilesPerRide5 = GetAvgMilesPerRide(tbDistanceWeek5, tbNumRidesWeek5);
-                    }
-                    else if (weekNumber == 4)
-                    {
-                        lbweek5 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
-                        tbDistanceWeek5 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
-                        tbLongestRideWeek5 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
-                        tbElevGainWeek5 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
-                        tbNumRidesWeek5 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgSpeedWeek5 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
-                        tbTotalTimeWeekly5 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgPace5 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek5).ToString();
-                        tbHighestElev5 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgMilesPerRide5 = GetAvgMilesPerRide(tbDistanceWeek5, tbNumRidesWeek5);
-                    }
-                }
-                else
-                {
-                    int weekNumber5 = weekNumber - 4;
-                    tbDistanceWeek5 = GetTotalMilesWeekly(logIndex, weekNumber5).ToString();
-                    lbweek5 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber5).ToString("MM/dd/yyyy");
-                    tbLongestRideWeek5 = GetLongestRideWeekly(logIndex, weekNumber5).ToString();
-                    tbElevGainWeek5 = GetTotalElevGainWeekly(logIndex, weekNumber5).ToString();
-                    tbNumRidesWeek5 = GetTotalRidesWeekly(logIndex, weekNumber5).ToString();
-                    tbAvgSpeedWeek5 = GetAvgSpeedWeekly(logIndex, weekNumber5).ToString();
-                    tbTotalTimeWeekly5 = GetTotalMovingTimeWeekly(logIndex, weekNumber5).ToString();
-                    tbAvgPace5 = GetAveragePaceWeekly(logIndex, weekNumber5, tbDistanceWeek5).ToString();
-                    tbHighestElev5 = GetHighestElevWeekly(logIndex, weekNumber5).ToString();
-                    tbAvgMilesPerRide5 = GetAvgMilesPerRide(tbDistanceWeek5, tbNumRidesWeek5);
-                }
-
-                //Current week -5(6):
-                if (weekNumber - 5 <= 0)
-                {
-                    if (weekNumber == 1)
-                    {
-                        lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 48).ToString("MM/dd/yyyy");
-                        tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 48).ToString();
-                        tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 48).ToString();
-                        tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 48).ToString();
-                        tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 48).ToString();
-                        tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 48, tbDistanceWeek6).ToString();
-                        tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
-                    }
-                    else if (weekNumber == 2)
-                    {
-                        lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
-                        tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
-                        tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
-                        tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
-                        tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
-                        tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek6).ToString();
-                        tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
-                    }
-                    else if (weekNumber == 3)
-                    {
-                        lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
-                        tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
-                        tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
-                        tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
-                        tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
-                        tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek6).ToString();
-                        tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
-                    }
-                    else if (weekNumber == 4)
-                    {
-                        lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
-                        tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
-                        tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
-                        tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
-                        tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
-                        tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek6).ToString();
-                        tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
-                    }
-                    else if (weekNumber == 5)
-                    {
-                        lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
-                        tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
-                        tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
-                        tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
-                        tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
-                        tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek6).ToString();
-                        tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
-                    }
-                }
-                else
-                {
-                    int weekNumber6 = weekNumber - 5;
-                    tbDistanceWeek6 = GetTotalMilesWeekly(logIndex, weekNumber6).ToString();
-                    lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber6).ToString("MM/dd/yyyy");
-                    tbLongestRideWeek6 = GetLongestRideWeekly(logIndex, weekNumber6).ToString();
-                    tbElevGainWeek6 = GetTotalElevGainWeekly(logIndex, weekNumber6).ToString();
-                    tbNumRidesWeek6 = GetTotalRidesWeekly(logIndex, weekNumber6).ToString();
-                    tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndex, weekNumber6).ToString();
-                    tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndex, weekNumber6).ToString();
-                    tbAvgPace6 = GetAveragePaceWeekly(logIndex, weekNumber6, tbDistanceWeek6).ToString();
-                    tbHighestElev6 = GetHighestElevWeekly(logIndex, weekNumber6).ToString();
-                    tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
-                }
-
-                //Current week -6(7):
-                if (weekNumber - 6 <= 0)
-                {
-                    if (weekNumber == 1)
-                    {
-                        lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 47).ToString("MM/dd/yyyy");
-                        tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 47).ToString();
-                        tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 47).ToString();
-                        tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 47).ToString();
-                        tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 47).ToString();
-                        tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 47).ToString();
-                        tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 47).ToString();
-                        tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 47, tbDistanceWeek7).ToString();
-                        tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 47).ToString();
-                        tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
-                    }
-                    else if (weekNumber == 2)
-                    {
-                        lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 48).ToString("MM/dd/yyyy");
-                        tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 48).ToString();
-                        tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 48).ToString();
-                        tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 48).ToString();
-                        tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 48).ToString();
-                        tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 48, tbDistanceWeek7).ToString();
-                        tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
-                    }
-                    else if (weekNumber == 3)
-                    {
-                        lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
-                        tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
-                        tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
-                        tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
-                        tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
-                        tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek7).ToString();
-                        tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
-                    }
-                    else if (weekNumber == 4)
-                    {
-                        lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
-                        tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
-                        tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
-                        tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
-                        tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
-                        tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek7).ToString();
-                        tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
-                    }
-                    else if (weekNumber == 5)
-                    {
-                        lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
-                        tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
-                        tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
-                        tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
-                        tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
-                        tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek7).ToString();
-                        tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
-                    }
-                    else if (weekNumber == 6)
-                    {
-                        lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
-                        tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
-                        tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
-                        tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
-                        tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
-                        tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek7).ToString();
-                        tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
-                    }
-                }
-                else
-                {
-                    int weekNumber7 = weekNumber - 6;
-                    tbDistanceWeek7 = GetTotalMilesWeekly(logIndex, weekNumber7).ToString();
-                    lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber7).ToString("MM/dd/yyyy");
-                    tbLongestRideWeek7 = GetLongestRideWeekly(logIndex, weekNumber7).ToString();
-                    tbElevGainWeek7 = GetTotalElevGainWeekly(logIndex, weekNumber7).ToString();
-                    tbNumRidesWeek7 = GetTotalRidesWeekly(logIndex, weekNumber7).ToString();
-                    tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndex, weekNumber7).ToString();
-                    tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndex, weekNumber7).ToString();
-                    tbAvgPace7 = GetAveragePaceWeekly(logIndex, weekNumber7, tbDistanceWeek7).ToString();
-                    tbHighestElev7 = GetHighestElevWeekly(logIndex, weekNumber7).ToString();
-                    tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
-                }
-
-                //Current week -7(8):
-                if (weekNumber - 7 <= 0)
-                {
-                    if (weekNumber == 1)
-                    {
-                        lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 46).ToString("MM/dd/yyyy");
-                        tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 46).ToString();
-                        tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 46).ToString();
-                        tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 46).ToString();
-                        tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 46).ToString();
-                        tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 46).ToString();
-                        tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 46).ToString();
-                        tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 46, tbDistanceWeek8).ToString();
-                        tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 46).ToString();
-                        tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
-                    }
-                    else if (weekNumber == 2)
-                    {
-                        lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 47).ToString("MM/dd/yyyy");
-                        tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 47).ToString();
-                        tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 47).ToString();
-                        tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 47).ToString();
-                        tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 47).ToString();
-                        tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 47).ToString();
-                        tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 47).ToString();
-                        tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 47, tbDistanceWeek8).ToString();
-                        tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 47).ToString();
-                        tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
-                    }
-                    else if (weekNumber == 3)
-                    {
-                        lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 48).ToString("MM/dd/yyyy");
-                        tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 48).ToString();
-                        tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 48).ToString();
-                        tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 48).ToString();
-                        tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 48).ToString();
-                        tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 48, tbDistanceWeek8).ToString();
-                        tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
-                    }
-                    else if (weekNumber == 4)
-                    {
-                        lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
-                        tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
-                        tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
-                        tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
-                        tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
-                        tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek8).ToString();
-                        tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
-                    }
-                    else if (weekNumber == 5)
-                    {
-                        lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
-                        tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
-                        tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
-                        tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
-                        tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
-                        tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek8).ToString();
-                        tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
-                    }
-                    else if (weekNumber == 6)
-                    {
-                        lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
-                        tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
-                        tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
-                        tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
-                        tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
-                        tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek8).ToString();
-                        tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
-                    }
-                    else if (weekNumber == 7)
-                    {
-                        lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
-                        tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
-                        tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
-                        tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
-                        tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
-                        tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek8).ToString();
-                        tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
-                    }
-                }
-                else
-                {
-                    int weekNumber8 = weekNumber - 7;
-                    tbDistanceWeek8 = GetTotalMilesWeekly(logIndex, weekNumber8).ToString();
-                    lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber8).ToString("MM/dd/yyyy");
-                    tbLongestRideWeek8 = GetLongestRideWeekly(logIndex, weekNumber8).ToString();
-                    tbElevGainWeek8 = GetTotalElevGainWeekly(logIndex, weekNumber8).ToString();
-                    tbNumRidesWeek8 = GetTotalRidesWeekly(logIndex, weekNumber8).ToString();
-                    tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndex, weekNumber8).ToString();
-                    tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndex, weekNumber8).ToString();
-                    tbAvgPace8 = GetAveragePaceWeekly(logIndex, weekNumber8, tbDistanceWeek8).ToString();
-                    tbHighestElev8 = GetHighestElevWeekly(logIndex, weekNumber8).ToString();
-                    tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
-                }
-                //Current week -8(9):
-                if (weekNumber - 8 <= 0)
-                {
-                    if (weekNumber == 1)
-                    {
-                        lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 45).ToString("MM/dd/yyyy");
-                        tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 45).ToString();
-                        tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 45).ToString();
-                        tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 45).ToString();
-                        tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 45).ToString();
-                        tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndexPrevious, 45).ToString();
-                        tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 45).ToString();
-                        tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 45, tbDistanceWeek9).ToString();
-                        tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 45).ToString();
-                        tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
-                    }
-                    else if (weekNumber == 2)
-                    {
-                        lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 46).ToString("MM/dd/yyyy");
-                        tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 46).ToString();
-                        tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 46).ToString();
-                        tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 46).ToString();
-                        tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 46).ToString();
-                        tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndexPrevious, 46).ToString();
-                        tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 46).ToString();
-                        tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 46, tbDistanceWeek9).ToString();
-                        tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 46).ToString();
-                        tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
-                    }
-                    else if (weekNumber == 3)
-                    {
-                        lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 47).ToString("MM/dd/yyyy");
-                        tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 47).ToString();
-                        tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 47).ToString();
-                        tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 47).ToString();
-                        tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 47).ToString();
-                        tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndexPrevious, 47).ToString();
-                        tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 47).ToString();
-                        tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 47, tbDistanceWeek9).ToString();
-                        tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 47).ToString();
-                        tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
-                    }
-                    else if (weekNumber == 4)
-                    {
-                        lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 48).ToString("MM/dd/yyyy");
-                        tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 48).ToString();
-                        tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 48).ToString();
-                        tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 48).ToString();
-                        tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndexPrevious, 48).ToString();
-                        tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 48, tbDistanceWeek9).ToString();
-                        tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
-                    }
-                    else if (weekNumber == 5)
-                    {
-                        lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
-                        tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
-                        tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
-                        tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
-                        tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
-                        tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek9).ToString();
-                        tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
-                    }
-                    else if (weekNumber == 6)
-                    {
-                        lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
-                        tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
-                        tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
-                        tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
-                        tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
-                        tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek9).ToString();
-                        tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
-                    }
-                    else if (weekNumber == 7)
-                    {
-                        lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
-                        tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
-                        tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
-                        tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
-                        tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgSpeedWeek9= GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
-                        tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek9).ToString();
-                        tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
-                    }
-                    else if (weekNumber == 8)
-                    {
-                        lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
-                        tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
-                        tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
-                        tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
-                        tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
-                        tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek9).ToString();
-                        tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
-                    }
-                }
-                else
-                {
-                    int weekNumber9 = weekNumber - 8;
-                    tbDistanceWeek9 = GetTotalMilesWeekly(logIndex, weekNumber9).ToString();
-                    lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber9).ToString("MM/dd/yyyy");
-                    tbLongestRideWeek9 = GetLongestRideWeekly(logIndex, weekNumber9).ToString();
-                    tbElevGainWeek9 = GetTotalElevGainWeekly(logIndex, weekNumber9).ToString();
-                    tbNumRidesWeek9 = GetTotalRidesWeekly(logIndex, weekNumber9).ToString();
-                    tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndex, weekNumber9).ToString();
-                    tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndex, weekNumber9).ToString();
-                    tbAvgPace9 = GetAveragePaceWeekly(logIndex, weekNumber9, tbDistanceWeek9).ToString();
-                    tbHighestElev9 = GetHighestElevWeekly(logIndex, weekNumber9).ToString();
-                    tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
-                }
-                //Current week -9(10):
-                if (weekNumber - 9 <= 0)
-                {
-                    if (weekNumber == 1)
-                    {
-                        lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 45).ToString("MM/dd/yyyy");
-                        tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 45).ToString();
-                        tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 45).ToString();
-                        tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 45).ToString();
-                        tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 45).ToString();
-                        tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 45).ToString();
-                        tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 45).ToString();
-                        tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 45, tbDistanceWeek10).ToString();
-                        tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 45).ToString();
-                        tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
-                    }
-                    else if (weekNumber == 2)
-                    {
-                        lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 45).ToString("MM/dd/yyyy");
-                        tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 45).ToString();
-                        tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 45).ToString();
-                        tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 45).ToString();
-                        tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 45).ToString();
-                        tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 45).ToString();
-                        tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 45).ToString();
-                        tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 45, tbDistanceWeek10).ToString();
-                        tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 45).ToString();
-                        tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
-                    }
-                    else if (weekNumber == 3)
-                    {
-                        lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 46).ToString("MM/dd/yyyy");
-                        tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 46).ToString();
-                        tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 46).ToString();
-                        tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 46).ToString();
-                        tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 46).ToString();
-                        tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 46).ToString();
-                        tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 46).ToString();
-                        tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 46, tbDistanceWeek10).ToString();
-                        tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 46).ToString();
-                        tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
-                    }
-                    else if (weekNumber == 4)
-                    {
-                        lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 47).ToString("MM/dd/yyyy");
-                        tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 47).ToString();
-                        tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 47).ToString();
-                        tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 47).ToString();
-                        tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 47).ToString();
-                        tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 47).ToString();
-                        tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 47).ToString();
-                        tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 47, tbDistanceWeek10).ToString();
-                        tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 47).ToString();
-                        tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
-                    }
-                    else if (weekNumber == 5)
-                    {
-                        lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 48).ToString("MM/dd/yyyy");
-                        tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 48).ToString();
-                        tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 48).ToString();
-                        tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 48).ToString();
-                        tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 48).ToString();
-                        tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 48, tbDistanceWeek10).ToString();
-                        tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 48).ToString();
-                        tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
-                    }
-                    else if (weekNumber == 6)
-                    {
-                        lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
-                        tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
-                        tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
-                        tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
-                        tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
-                        tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek10).ToString();
-                        tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
-                        tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
-                    }
-                    else if (weekNumber == 7)
-                    {
-                        lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
-                        tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
-                        tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
-                        tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
-                        tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
-                        tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek10).ToString();
-                        tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
-                        tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
-                    }
-                    else if (weekNumber == 8)
-                    {
-                        lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
-                        tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
-                        tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
-                        tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
-                        tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
-                        tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek10).ToString();
-                        tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
-                        tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
-                    }
-                    else if (weekNumber == 9)
-                    {
-                        lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
-                        tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
-                        tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
-                        tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
-                        tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
-                        tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek10).ToString();
-                        tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
-                        tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
-                    }
-                }
-                else
-                {
-                    int weekNumber10 = weekNumber - 9;
-                    tbDistanceWeek10 = GetTotalMilesWeekly(logIndex, weekNumber10).ToString();
-                    lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber10).ToString("MM/dd/yyyy");
-                    tbLongestRideWeek10 = GetLongestRideWeekly(logIndex, weekNumber10).ToString();
-                    tbElevGainWeek10 = GetTotalElevGainWeekly(logIndex, weekNumber10).ToString();
-                    tbNumRidesWeek10 = GetTotalRidesWeekly(logIndex, weekNumber10).ToString();
-                    tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndex, weekNumber10).ToString();
-                    tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndex, weekNumber10).ToString();
-                    tbAvgPace10 = GetAveragePaceWeekly(logIndex, weekNumber10, tbDistanceWeek10).ToString();
-                    tbHighestElev10 = GetHighestElevWeekly(logIndex, weekNumber10).ToString();
-                    tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
-                }
+                bCurrentYear = true;
             }
 
             try
             {
                 dataGridViewWeekly.DataSource = null;
                 dataGridViewWeekly.Rows.Clear();
-                dataGridViewWeekly.ColumnCount = 9;
+                dataGridViewWeekly.ColumnCount = 10;
                 //dataGridViewWeekly.RowCount = 7;
                 dataGridViewWeekly.Name = "Weekly Stats";
 
-                //dataGridViewWeekly.Columns[0].Name = lbweek5;
-                //dataGridViewWeekly.Columns[1].Name = lbweek4;
-                //dataGridViewWeekly.Columns[2].Name = lbweek3;
-                //dataGridViewWeekly.Columns[3].Name = lbweek2;
-                //dataGridViewWeekly.Columns[4].Name = lbweek1;
+                dataGridViewWeekly.Columns[0].Name = "Week #";
+                dataGridViewWeekly.Columns[1].Name = "Total Miles";
+                dataGridViewWeekly.Columns[2].Name = "Total Rides";
+                dataGridViewWeekly.Columns[3].Name = "Avg Miles/Ride";
+                dataGridViewWeekly.Columns[4].Name = "Longest Ride";
+                dataGridViewWeekly.Columns[5].Name = "Total Ascent";
+                dataGridViewWeekly.Columns[6].Name = "Max Ascent";
+                dataGridViewWeekly.Columns[7].Name = "Moving Time";
+                dataGridViewWeekly.Columns[8].Name = "Avg Speed";
+                dataGridViewWeekly.Columns[9].Name = "Avg Pace";
 
-                dataGridViewWeekly.Columns[0].Name = "Total Miles";
-                dataGridViewWeekly.Columns[1].Name = "Total Rides";
-                dataGridViewWeekly.Columns[2].Name = "Avg Miles/Ride";
-                dataGridViewWeekly.Columns[3].Name = "Longest Ride";
-                dataGridViewWeekly.Columns[4].Name = "Total Ascent";
-                dataGridViewWeekly.Columns[5].Name = "Max Ascent";
-                dataGridViewWeekly.Columns[6].Name = "Moving Time";
-                dataGridViewWeekly.Columns[7].Name = "Avg Speed";
-                dataGridViewWeekly.Columns[8].Name = "Avg Pace";
-
-                //dataGridViewWeekly.Columns[0].ValueType = typeof(double);
-                //dataGridViewWeekly.Columns[1].ValueType = typeof(double);
                 dataGridViewWeekly.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 dataGridViewWeekly.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
-
-                //dataGridViewWeekly.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells; 
-                //dataGridViewWeekly.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                //dataGridViewWeekly.Columns[0].FillWeight = 20;
-                //dataGridViewWeekly.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                //dataGridViewWeekly.Columns[1].FillWeight = 20;
-                //dataGridViewWeekly.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                //dataGridViewWeekly.Columns[2].FillWeight = 20;
-                //dataGridViewWeekly.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                //dataGridViewWeekly.Columns[3].FillWeight = 20;
-                //dataGridViewWeekly.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                //dataGridViewWeekly.Columns[4].FillWeight = 20;
                 dataGridViewWeekly.ReadOnly = true;
                 dataGridViewWeekly.EnableHeadersVisualStyles = false;
 
@@ -8074,6 +7050,7 @@ namespace CyclingLogApplication
                 dataGridViewWeekly.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridViewWeekly.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridViewWeekly.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewWeekly.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 dataGridViewWeekly.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridViewWeekly.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -8084,86 +7061,55 @@ namespace CyclingLogApplication
                 dataGridViewWeekly.Columns[6].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridViewWeekly.Columns[7].SortMode = DataGridViewColumnSortMode.NotSortable;
                 dataGridViewWeekly.Columns[8].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridViewWeekly.Columns[9].SortMode = DataGridViewColumnSortMode.NotSortable;
 
-                // Resize the master DataGridView columns to fit the newly loaded data.
-                //dataGridViewWeekly.AutoResizeColumns();
                 dataGridViewWeekly.AllowUserToOrderColumns = false;
-                // Configure the details DataGridView so that its columns automatically adjust their widths when the data changes.
-                //dataGridViewWeekly.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 dataGridViewWeekly.AllowUserToAddRows = false;
-                //dataGridViewRoutes.DefaultCellStyle.SelectionBackColor = Color.LightGray;
-                //dataGridViewRoutes.DefaultCellStyle.SelectionForeColor = Color.White;
                 dataGridViewWeekly.RowHeadersDefaultCellStyle.BackColor = Color.LightGray;
-                //dataGridViewRoutes.RowHeadersVisible = false;
                 dataGridViewWeekly.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dataGridViewWeekly.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
                 dataGridViewWeekly.ColumnHeadersHeight = 40;
                 dataGridViewWeekly.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
                 dataGridViewWeekly.RowHeadersVisible = true;
 
-                //dataGridViewWeekly.Rows.Add(tbDistanceWeek5, tbDistanceWeek4, tbDistanceWeek3, tbDistanceWeek2, tbDistanceWeek1);
-                //dataGridViewWeekly.Rows.Add(tbNumRidesWeek5, tbNumRidesWeek4, tbNumRidesWeek3, tbNumRidesWeek2, tbNumRidesWeek1);
-                //dataGridViewWeekly.Rows.Add(tbAvgMilesPerRide5, tbAvgMilesPerRide4, tbAvgMilesPerRide3, tbAvgMilesPerRide2, tbAvgMilesPerRide1);               
-                //dataGridViewWeekly.Rows.Add(tbLongestRideWeek5, tbLongestRideWeek4, tbLongestRideWeek3, tbLongestRideWeek2, tbLongestRideWeek1);
-                //dataGridViewWeekly.Rows.Add(tbElevGainWeek5, tbElevGainWeek4, tbElevGainWeek3, tbElevGainWeek2, tbElevGainWeek1);
-                //dataGridViewWeekly.Rows.Add(tbHighestElev5, tbHighestElev4, tbHighestElev3, tbHighestElev2, tbHighestElev1);
-                //dataGridViewWeekly.Rows.Add(tbTotalTimeWeekly5, tbTotalTimeWeekly4, tbTotalTimeWeekly3, tbTotalTimeWeekly2, tbTotalTimeWeekly1);
-                //dataGridViewWeekly.Rows.Add(tbAvgSpeedWeek5, tbAvgSpeedWeek4, tbAvgSpeedWeek3, tbAvgSpeedWeek2, tbAvgSpeedWeek1);
-                //dataGridViewWeekly.Rows.Add(tbAvgPace5, tbAvgPace4, tbAvgPace3, tbAvgPace2, tbAvgPace1);
+                //If on the current year, get current week:
 
-                dataGridViewWeekly.Rows.Add(tbDistanceWeek10, tbNumRidesWeek10, tbAvgMilesPerRide10, tbLongestRideWeek10, tbElevGainWeek10, tbHighestElev10, tbTotalTimeWeekly10, tbAvgSpeedWeek10, tbAvgPace10);
-                dataGridViewWeekly.Rows.Add(tbDistanceWeek9, tbNumRidesWeek9, tbAvgMilesPerRide9, tbLongestRideWeek9, tbElevGainWeek9, tbHighestElev9, tbTotalTimeWeekly9, tbAvgSpeedWeek9, tbAvgPace9);
-                dataGridViewWeekly.Rows.Add(tbDistanceWeek8, tbNumRidesWeek8, tbAvgMilesPerRide8, tbLongestRideWeek8, tbElevGainWeek8, tbHighestElev8, tbTotalTimeWeekly8, tbAvgSpeedWeek8, tbAvgPace8);
-                dataGridViewWeekly.Rows.Add(tbDistanceWeek7, tbNumRidesWeek7, tbAvgMilesPerRide7, tbLongestRideWeek7, tbElevGainWeek7, tbHighestElev7, tbTotalTimeWeekly7, tbAvgSpeedWeek7, tbAvgPace7);
-                dataGridViewWeekly.Rows.Add(tbDistanceWeek6, tbNumRidesWeek6, tbAvgMilesPerRide6, tbLongestRideWeek6, tbElevGainWeek6, tbHighestElev6, tbTotalTimeWeekly6, tbAvgSpeedWeek6, tbAvgPace6);
-                dataGridViewWeekly.Rows.Add(tbDistanceWeek5, tbNumRidesWeek5, tbAvgMilesPerRide5, tbLongestRideWeek5, tbElevGainWeek5, tbHighestElev5, tbTotalTimeWeekly5, tbAvgSpeedWeek5, tbAvgPace5);
-                dataGridViewWeekly.Rows.Add(tbDistanceWeek4, tbNumRidesWeek4, tbAvgMilesPerRide4, tbLongestRideWeek4, tbElevGainWeek4, tbHighestElev4, tbTotalTimeWeekly4, tbAvgSpeedWeek4, tbAvgPace4);
-                dataGridViewWeekly.Rows.Add(tbDistanceWeek3, tbNumRidesWeek3, tbAvgMilesPerRide3, tbLongestRideWeek3, tbElevGainWeek3, tbHighestElev3, tbTotalTimeWeekly3, tbAvgSpeedWeek3, tbAvgPace3);
-                dataGridViewWeekly.Rows.Add(tbDistanceWeek2, tbNumRidesWeek2, tbAvgMilesPerRide2, tbLongestRideWeek2, tbElevGainWeek2, tbHighestElev2, tbTotalTimeWeekly2, tbAvgSpeedWeek2, tbAvgPace2);
-                dataGridViewWeekly.Rows.Add(tbDistanceWeek1, tbNumRidesWeek1, tbAvgMilesPerRide1, tbLongestRideWeek1, tbElevGainWeek1, tbHighestElev1, tbTotalTimeWeekly1, tbAvgSpeedWeek1, tbAvgPace1);
+                //Loop through each week:
+                for (int weekNumber = 1; weekNumber < 54; weekNumber++)
+                {
+                    //Hide future
+                    if (bCurrentYear && currentWeekNumber < weekNumber)
+                    {
+                        dataGridViewWeekly.CurrentCell = dataGridViewWeekly.Rows[weekNumber-2].Cells[0];
+                        break;
+                    } else
+                    {
+                        if (weekNumber == 53)
+                        {
+                            if (!DateTime.IsLeapYear(logYear))
+                            {
+                                break;
+                            }
+                            
+                            DateTime currentDate = GetDateFromWeekNumber(logYear, weekNumber);
+                            int currentYearValue = currentDate.Year;
 
-                dataGridViewWeekly.Rows[0].Height = 34;
-                dataGridViewWeekly.Rows[1].Height = 34;
-                dataGridViewWeekly.Rows[2].Height = 34;
-                dataGridViewWeekly.Rows[3].Height = 34;
-                dataGridViewWeekly.Rows[4].Height = 34;
-                dataGridViewWeekly.Rows[5].Height = 34;
-                dataGridViewWeekly.Rows[6].Height = 34;
-                dataGridViewWeekly.Rows[7].Height = 34;
-                dataGridViewWeekly.Rows[8].Height = 34;
-                dataGridViewWeekly.Rows[9].Height = 34;
-                //dataGridViewWeekly.Rows[8].Height = 34;
-
-                //dataGridViewWeekly.Columns[0].Name = lbweek5;
-                //dataGridViewWeekly.Columns[1].Name = lbweek4;
-                //dataGridViewWeekly.Columns[2].Name = lbweek3;
-                //dataGridViewWeekly.Columns[3].Name = lbweek2;
-                //dataGridViewWeekly.Columns[4].Name = lbweek1;
-
-                dataGridViewWeekly.Rows[0].HeaderCell.Value = lbweek10;
-                dataGridViewWeekly.Rows[1].HeaderCell.Value = lbweek9;
-                dataGridViewWeekly.Rows[2].HeaderCell.Value = lbweek8;
-                dataGridViewWeekly.Rows[3].HeaderCell.Value = lbweek7;
-                dataGridViewWeekly.Rows[4].HeaderCell.Value = lbweek6;
-                dataGridViewWeekly.Rows[5].HeaderCell.Value = lbweek5;
-                dataGridViewWeekly.Rows[6].HeaderCell.Value = lbweek4;
-                dataGridViewWeekly.Rows[7].HeaderCell.Value = lbweek3;
-                dataGridViewWeekly.Rows[8].HeaderCell.Value = lbweek2;
-                dataGridViewWeekly.Rows[9].HeaderCell.Value = lbweek1;
-
-                //dataGridViewWeekly.Rows[0].HeaderCell.Value = "Total Miles";
-                //dataGridViewWeekly.Rows[1].HeaderCell.Value = "Total Rides";
-                //dataGridViewWeekly.Rows[2].HeaderCell.Value = "Avg Miles/Ride";
-                //dataGridViewWeekly.Rows[3].HeaderCell.Value = "Longest Ride";
-                //dataGridViewWeekly.Rows[4].HeaderCell.Value = "Total Ascent";
-                //dataGridViewWeekly.Rows[5].HeaderCell.Value = "Max Ascent";
-                //dataGridViewWeekly.Rows[6].HeaderCell.Value = "Moving Time";
-                //dataGridViewWeekly.Rows[7].HeaderCell.Value = "Avg Speed";              
-                //dataGridViewWeekly.Rows[8].HeaderCell.Value = "Avg Pace";
+                            if (currentYearValue > logYear)
+                            {
+                                break;
+                            }
+                        }
+                        
+                        string tbDistanceWeek0 = GetTotalMilesWeekly(logYearIndex, weekNumber).ToString();
+                        string tbNumRidesWeek0 = GetTotalRidesWeekly(logYearIndex, weekNumber).ToString();
+                        dataGridViewWeekly.Rows.Add(weekNumber, tbDistanceWeek0, tbNumRidesWeek0, GetAvgMilesPerRide(tbDistanceWeek0, tbNumRidesWeek0), GetLongestRideWeekly(logYearIndex, weekNumber).ToString(), GetTotalElevGainWeekly(logYearIndex, weekNumber).ToString(), GetHighestElevWeekly(logYearIndex, weekNumber).ToString(), GetTotalMovingTimeWeekly(logYearIndex, weekNumber).ToString(), GetAvgSpeedWeekly(logYearIndex, weekNumber).ToString(), GetAveragePaceWeekly(logYearIndex, weekNumber, tbDistanceWeek0).ToString());
+                        dataGridViewWeekly.Rows[weekNumber - 1].HeaderCell.Value = GetDateFromWeekNumber(logYear, weekNumber).ToString("MM/dd/yyyy");
+                        dataGridViewWeekly.Rows[weekNumber - 1].Height = 34;
+                    }                  
+                }
 
                 dataGridViewWeekly.AllowUserToResizeRows = false;
-                dataGridViewWeekly.AllowUserToResizeColumns = false;
-                dataGridViewWeekly.CurrentCell = dataGridViewWeekly.Rows[7].Cells[0];
+                dataGridViewWeekly.AllowUserToResizeColumns = false;  
                 dataGridViewWeekly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetWeeklyColor());
 
                 string textValue = GetTextWeekly();
@@ -8194,7 +7140,1292 @@ namespace CyclingLogApplication
                 Logger.LogError("[ERROR]: Exception while trying to run query Weekly Stats: " + ex.Message.ToString());
                 MessageBox.Show("An exception error has occurred while quering Weekly Stats.  Review the log for more information.");
             }
+
         }
+
+        //private void RefreshWeekly_backup()
+        //{
+        //    int logIndex;
+        //    int logIndexPrevious;
+
+        //    int logYear = DateTime.Now.Year;
+        //    logIndex = GetLogYearIndex(logYear);
+        //    int logYearPrevious = logYear - 1;
+        //    logIndexPrevious = GetLogYearIndex(logYearPrevious);
+
+        //    int weekNumber = GetCurrentWeekCount();
+        //    //Current week plus 4 prior weeks
+
+        //    //Total Miles Weekly:
+        //    //Current week:
+        //    string tbDistanceWeek1 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+        //    string lbweek1 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber).ToString("MM/dd/yyyy");
+        //    string tbLongestRideWeek1 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+        //    string tbElevGainWeek1 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+        //    string tbNumRidesWeek1 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
+        //    string tbAvgSpeedWeek1 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
+        //    string tbTotalTimeWeekly1 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+        //    string tbAvgPace1 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek1).ToString();
+        //    string tbHighestElev1 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
+        //    string tbAvgMilesPerRide1 = GetAvgMilesPerRide(tbDistanceWeek1, tbNumRidesWeek1);
+
+        //    string tbDistanceWeek2;
+        //    string lbweek2;
+        //    string tbLongestRideWeek2;
+        //    string tbElevGainWeek2;
+        //    string tbNumRidesWeek2;
+        //    string tbAvgSpeedWeek2;
+        //    string tbTotalTimeWeekly2;
+        //    string tbAvgPace2;
+        //    string tbHighestElev2;
+        //    string tbAvgMilesPerRide2;
+
+        //    string tbDistanceWeek3 = "0";
+        //    string lbweek3 = "0";
+        //    string tbLongestRideWeek3 = "0";
+        //    string tbElevGainWeek3 = "0";
+        //    string tbNumRidesWeek3 = "0";
+        //    string tbAvgSpeedWeek3 = "0";
+        //    string tbTotalTimeWeekly3 = "0";
+        //    string tbAvgPace3 = "0";
+        //    string tbHighestElev3 = "0";
+        //    string tbAvgMilesPerRide3 = "0";
+
+        //    string tbDistanceWeek4 = "0";
+        //    string lbweek4 = "0";
+        //    string tbLongestRideWeek4 = "0";
+        //    string tbElevGainWeek4 = "0";
+        //    string tbNumRidesWeek4 = "0";
+        //    string tbAvgSpeedWeek4 = "0";
+        //    string tbTotalTimeWeekly4 = "0";
+        //    string tbAvgPace4 = "0";
+        //    string tbHighestElev4 = "0";
+        //    string tbAvgMilesPerRide4 = "0";
+
+        //    string tbDistanceWeek5 = "0";
+        //    string lbweek5 = "0";
+        //    string tbLongestRideWeek5 = "0";
+        //    string tbElevGainWeek5 = "0";
+        //    string tbNumRidesWeek5 = "0";
+        //    string tbAvgSpeedWeek5 = "0";
+        //    string tbTotalTimeWeekly5 = "0";
+        //    string tbAvgPace5 = "0";
+        //    string tbHighestElev5 = "0";
+        //    string tbAvgMilesPerRide5 = "0";
+
+        //    string tbDistanceWeek6 = "0";
+        //    string lbweek6 = "0";
+        //    string tbLongestRideWeek6 = "0";
+        //    string tbElevGainWeek6 = "0";
+        //    string tbNumRidesWeek6 = "0";
+        //    string tbAvgSpeedWeek6 = "0";
+        //    string tbTotalTimeWeekly6 = "0";
+        //    string tbAvgPace6 = "0";
+        //    string tbHighestElev6 = "0";
+        //    string tbAvgMilesPerRide6 = "0";
+
+        //    string tbDistanceWeek7 = "0";
+        //    string lbweek7 = "0";
+        //    string tbLongestRideWeek7 = "0";
+        //    string tbElevGainWeek7 = "0";
+        //    string tbNumRidesWeek7 = "0";
+        //    string tbAvgSpeedWeek7 = "0";
+        //    string tbTotalTimeWeekly7 = "0";
+        //    string tbAvgPace7 = "0";
+        //    string tbHighestElev7 = "0";
+        //    string tbAvgMilesPerRide7 = "0";
+
+        //    string tbDistanceWeek8 = "0";
+        //    string lbweek8 = "0";
+        //    string tbLongestRideWeek8 = "0";
+        //    string tbElevGainWeek8 = "0";
+        //    string tbNumRidesWeek8 = "0";
+        //    string tbAvgSpeedWeek8 = "0";
+        //    string tbTotalTimeWeekly8 = "0";
+        //    string tbAvgPace8 = "0";
+        //    string tbHighestElev8 = "0";
+        //    string tbAvgMilesPerRide8 = "0";
+
+        //    string tbDistanceWeek9 = "0";
+        //    string lbweek9 = "0";
+        //    string tbLongestRideWeek9 = "0";
+        //    string tbElevGainWeek9 = "0";
+        //    string tbNumRidesWeek9 = "0";
+        //    string tbAvgSpeedWeek9 = "0";
+        //    string tbTotalTimeWeekly9 = "0";
+        //    string tbAvgPace9 = "0";
+        //    string tbHighestElev9 = "0";
+        //    string tbAvgMilesPerRide9 = "0";
+
+        //    string tbDistanceWeek10 = "0";
+        //    string lbweek10 = "0";
+        //    string tbLongestRideWeek10 = "0";
+        //    string tbElevGainWeek10 = "0";
+        //    string tbNumRidesWeek10 = "0";
+        //    string tbAvgSpeedWeek10 = "0";
+        //    string tbTotalTimeWeekly10 = "0";
+        //    string tbAvgPace10 = "0";
+        //    string tbHighestElev10 = "0";
+        //    string tbAvgMilesPerRide10 = "0";
+
+
+        //    // This first if handles when only one year log exists:
+        //    if (logIndex == 1)
+        //    {
+        //        //Current week -1(2):
+        //        if (weekNumber - 1 <= 0)
+        //        {
+        //            tbDistanceWeek2 = "0";
+        //            tbLongestRideWeek2 = "0";
+        //            tbElevGainWeek2 = "0";
+        //            tbNumRidesWeek2 = "0";
+        //            tbAvgSpeedWeek2 = "0";
+        //            tbTotalTimeWeekly2 = "0";
+        //            tbAvgPace2 = "0";
+        //            lbweek2 = "0";
+        //            tbHighestElev2 = "0";
+        //            tbAvgMilesPerRide2 = "0";
+        //        }
+        //        else
+        //        {
+        //            tbDistanceWeek2 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+        //            tbLongestRideWeek2 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+        //            tbElevGainWeek2 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+        //            tbNumRidesWeek2 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgSpeedWeek2 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
+        //            tbTotalTimeWeekly2 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgPace2 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek2).ToString();
+        //            lbweek2 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber).ToString("MM/dd/yyyy");
+        //            tbHighestElev2 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgMilesPerRide2 = GetAvgMilesPerRide(tbDistanceWeek2, tbNumRidesWeek2);
+        //        }
+        //        //Current week -2(3):
+        //        if (weekNumber - 2 <= 0)
+        //        {
+        //            tbDistanceWeek3 = "0";
+        //            tbLongestRideWeek3 = "0";
+        //            tbElevGainWeek3 = "0";
+        //            tbNumRidesWeek3 = "0";
+        //            tbAvgSpeedWeek3 = "0";
+        //            tbTotalTimeWeekly3 = "0";
+        //            tbAvgPace3 = "0";
+        //            tbHighestElev3 = "0";
+        //            tbAvgMilesPerRide3 = "0";
+        //        }
+        //        else
+        //        {
+        //            tbDistanceWeek3 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+        //            tbLongestRideWeek3 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+        //            tbElevGainWeek3 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+        //            tbNumRidesWeek3 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgSpeedWeek3 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
+        //            tbTotalTimeWeekly3 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgPace3 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek3).ToString();
+        //            tbHighestElev3 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgMilesPerRide3 = GetAvgMilesPerRide(tbDistanceWeek3, tbNumRidesWeek3);
+        //        }
+        //        //Current week -3(4):
+        //        if (weekNumber - 3 <= 0)
+        //        {
+        //            tbDistanceWeek4 = "0";
+        //            tbLongestRideWeek4 = "0";
+        //            tbElevGainWeek4 = "0";
+        //            tbNumRidesWeek4 = "0";
+        //            tbAvgSpeedWeek4 = "0";
+        //            tbTotalTimeWeekly4 = "0";
+        //            tbAvgPace4 = "0";
+        //            tbHighestElev4 = "0";
+        //            tbAvgMilesPerRide4 = "0";
+        //        }
+        //        else
+        //        {
+        //            tbDistanceWeek4 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+        //            tbLongestRideWeek4 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+        //            tbElevGainWeek4 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+        //            tbNumRidesWeek4 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgSpeedWeek4 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
+        //            tbTotalTimeWeekly4 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgPace4 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek4).ToString();
+        //            tbHighestElev4 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgMilesPerRide4 = GetAvgMilesPerRide(tbDistanceWeek4, tbNumRidesWeek4);
+        //        }
+        //        //Current week -4(5):
+        //        if (weekNumber - 4 <= 0)
+        //        {
+        //            tbDistanceWeek5 = "0";
+        //            tbLongestRideWeek5 = "0";
+        //            tbElevGainWeek5 = "0";
+        //            tbNumRidesWeek5 = "0";
+        //            tbAvgSpeedWeek5 = "0";
+        //            tbTotalTimeWeekly5 = "0";
+        //            tbAvgPace5 = "0";
+        //            tbHighestElev5 = "0";
+        //            tbAvgMilesPerRide5 = "0";
+        //        }
+        //        else
+        //        {
+        //            tbDistanceWeek5 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+        //            tbLongestRideWeek5 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+        //            tbElevGainWeek5 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+        //            tbNumRidesWeek5 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgSpeedWeek5 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
+        //            tbTotalTimeWeekly5 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgPace5 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek5).ToString();
+        //            tbHighestElev5 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgMilesPerRide5 = GetAvgMilesPerRide(tbDistanceWeek5, tbNumRidesWeek5);
+        //        }
+        //        //Current week -5(6):
+        //        if (weekNumber - 5 <= 0)
+        //        {
+        //            tbDistanceWeek6 = "0";
+        //            tbLongestRideWeek6 = "0";
+        //            tbElevGainWeek6 = "0";
+        //            tbNumRidesWeek6 = "0";
+        //            tbAvgSpeedWeek6 = "0";
+        //            tbTotalTimeWeekly6 = "0";
+        //            tbAvgPace6 = "0";
+        //            tbHighestElev6 = "0";
+        //            tbAvgMilesPerRide6 = "0";
+        //        }
+        //        else
+        //        {
+        //            tbDistanceWeek6 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+        //            tbLongestRideWeek6 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+        //            tbElevGainWeek6 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+        //            tbNumRidesWeek6 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
+        //            tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgPace6 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek6).ToString();
+        //            tbHighestElev6 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
+        //        }
+        //        //Current week -6(7):
+        //        if (weekNumber - 6 <= 0)
+        //        {
+        //            tbDistanceWeek7 = "0";
+        //            tbLongestRideWeek7 = "0";
+        //            tbElevGainWeek7 = "0";
+        //            tbNumRidesWeek7 = "0";
+        //            tbAvgSpeedWeek7 = "0";
+        //            tbTotalTimeWeekly7 = "0";
+        //            tbAvgPace7 = "0";
+        //            tbHighestElev7 = "0";
+        //            tbAvgMilesPerRide7 = "0";
+        //        }
+        //        else
+        //        {
+        //            tbDistanceWeek7 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+        //            tbLongestRideWeek7 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+        //            tbElevGainWeek7 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+        //            tbNumRidesWeek7 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
+        //            tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgPace7 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek7).ToString();
+        //            tbHighestElev7 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+        //        }
+        //        //Current week -7(8):
+        //        if (weekNumber - 7 <= 0)
+        //        {
+        //            tbDistanceWeek8 = "0";
+        //            tbLongestRideWeek8 = "0";
+        //            tbElevGainWeek8 = "0";
+        //            tbNumRidesWeek8 = "0";
+        //            tbAvgSpeedWeek8 = "0";
+        //            tbTotalTimeWeekly8 = "0";
+        //            tbAvgPace8 = "0";
+        //            tbHighestElev8 = "0";
+        //            tbAvgMilesPerRide8 = "0";
+        //        }
+        //        else
+        //        {
+        //            tbDistanceWeek8 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+        //            tbLongestRideWeek8 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+        //            tbElevGainWeek8 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+        //            tbNumRidesWeek8 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
+        //            tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgPace8 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek8).ToString();
+        //            tbHighestElev8 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+        //        }
+
+        //        //Current week -8(9):
+        //        if (weekNumber - 8 <= 0)
+        //        {
+        //            tbDistanceWeek9 = "0";
+        //            tbLongestRideWeek9 = "0";
+        //            tbElevGainWeek9 = "0";
+        //            tbNumRidesWeek9 = "0";
+        //            tbAvgSpeedWeek9 = "0";
+        //            tbTotalTimeWeekly9 = "0";
+        //            tbAvgPace9 = "0";
+        //            tbHighestElev9 = "0";
+        //            tbAvgMilesPerRide9 = "0";
+        //        }
+        //        else
+        //        {
+        //            tbDistanceWeek9 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+        //            tbLongestRideWeek9 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+        //            tbElevGainWeek9 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+        //            tbNumRidesWeek9 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
+        //            tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgPace9 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek9).ToString();
+        //            tbHighestElev9 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
+        //        }
+
+        //        //Current week -9(10):
+        //        if (weekNumber - 9 <= 0)
+        //        {
+        //            tbDistanceWeek10 = "0";
+        //            tbLongestRideWeek10 = "0";
+        //            tbElevGainWeek10 = "0";
+        //            tbNumRidesWeek10 = "0";
+        //            tbAvgSpeedWeek10 = "0";
+        //            tbTotalTimeWeekly10 = "0";
+        //            tbAvgPace10 = "0";
+        //            tbHighestElev10 = "0";
+        //            tbAvgMilesPerRide10 = "0";
+        //        }
+        //        else
+        //        {
+        //            tbDistanceWeek10 = GetTotalMilesWeekly(logIndex, weekNumber).ToString();
+        //            tbLongestRideWeek10 = GetLongestRideWeekly(logIndex, weekNumber).ToString();
+        //            tbElevGainWeek10 = GetTotalElevGainWeekly(logIndex, weekNumber).ToString();
+        //            tbNumRidesWeek10 = GetTotalRidesWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndex, weekNumber).ToString();
+        //            tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgPace10 = GetAveragePaceWeekly(logIndex, weekNumber, tbDistanceWeek10).ToString();
+        //            tbHighestElev10 = GetHighestElevWeekly(logIndex, weekNumber).ToString();
+        //            tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        //Current week -1(2):
+        //        if (weekNumber - 1 <= 0)
+        //        {
+        //            tbDistanceWeek2 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+        //            lbweek2 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+        //            tbLongestRideWeek2 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+        //            tbElevGainWeek2 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+        //            tbNumRidesWeek2 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
+        //            tbAvgSpeedWeek2 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
+        //            tbTotalTimeWeekly2 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+        //            tbAvgPace2 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek2).ToString();
+        //            tbHighestElev2 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
+        //            tbAvgMilesPerRide2 = GetAvgMilesPerRide(tbDistanceWeek2, tbNumRidesWeek2);
+        //        }
+        //        else
+        //        {
+        //            int weekNumber2 = weekNumber - 1;
+        //            tbDistanceWeek2 = GetTotalMilesWeekly(logIndex, weekNumber2).ToString();
+        //            lbweek2 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber2).ToString("MM/dd/yyyy");
+        //            tbLongestRideWeek2 = GetLongestRideWeekly(logIndex, weekNumber2).ToString();
+        //            tbElevGainWeek2 = GetTotalElevGainWeekly(logIndex, weekNumber2).ToString();
+        //            tbNumRidesWeek2 = GetTotalRidesWeekly(logIndex, weekNumber2).ToString();
+        //            tbAvgSpeedWeek2 = GetAvgSpeedWeekly(logIndex, weekNumber2).ToString();
+        //            tbTotalTimeWeekly2 = GetTotalMovingTimeWeekly(logIndex, weekNumber2).ToString();
+        //            tbAvgPace2 = GetAveragePaceWeekly(logIndex, weekNumber2, tbDistanceWeek2).ToString();
+        //            tbHighestElev2 = GetHighestElevWeekly(logIndex, weekNumber2).ToString();
+        //            tbAvgMilesPerRide2 = GetAvgMilesPerRide(tbDistanceWeek2, tbNumRidesWeek2);
+        //        }
+        //        //Current week -2(3):
+        //        if (weekNumber - 2 <= 0)
+        //        {
+        //            if (weekNumber == 1)
+        //            {
+        //                lbweek3 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek3 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
+        //                tbLongestRideWeek3 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
+        //                tbElevGainWeek3 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
+        //                tbNumRidesWeek3 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgSpeedWeek3 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
+        //                tbTotalTimeWeekly3 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgPace3 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek3).ToString();
+        //                tbHighestElev3 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgMilesPerRide3 = GetAvgMilesPerRide(tbDistanceWeek3, tbNumRidesWeek3);
+        //            }
+        //            else if (weekNumber == 2)
+        //            {
+        //                lbweek3 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek3 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+        //                tbLongestRideWeek3 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+        //                tbElevGainWeek3 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+        //                tbNumRidesWeek3 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgSpeedWeek3 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
+        //                tbTotalTimeWeekly3 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgPace3 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek3).ToString();
+        //                tbHighestElev3 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgMilesPerRide3 = GetAvgMilesPerRide(tbDistanceWeek3, tbNumRidesWeek3);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            int weekNumber3 = weekNumber - 2;
+        //            tbDistanceWeek3 = GetTotalMilesWeekly(logIndex, weekNumber3).ToString();
+        //            lbweek3 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber3).ToString("MM/dd/yyyy");
+        //            tbLongestRideWeek3 = GetLongestRideWeekly(logIndex, weekNumber3).ToString();
+        //            tbElevGainWeek3 = GetTotalElevGainWeekly(logIndex, weekNumber3).ToString();
+        //            tbNumRidesWeek3 = GetTotalRidesWeekly(logIndex, weekNumber3).ToString();
+        //            tbAvgSpeedWeek3 = GetAvgSpeedWeekly(logIndex, weekNumber3).ToString();
+        //            tbTotalTimeWeekly3 = GetTotalMovingTimeWeekly(logIndex, weekNumber3).ToString();
+        //            tbAvgPace3 = GetAveragePaceWeekly(logIndex, weekNumber3, tbDistanceWeek3).ToString();
+        //            tbHighestElev3 = GetHighestElevWeekly(logIndex, weekNumber3).ToString();
+        //            tbAvgMilesPerRide3 = GetAvgMilesPerRide(tbDistanceWeek3, tbNumRidesWeek3);
+        //        }
+        //        //Current week -3(4):
+        //        if (weekNumber - 3 <= 0)
+        //        {
+        //            if (weekNumber == 1)
+        //            {
+        //                lbweek4 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek4 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
+        //                tbLongestRideWeek4 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
+        //                tbElevGainWeek4 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
+        //                tbNumRidesWeek4 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgSpeedWeek4 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
+        //                tbTotalTimeWeekly4 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgPace4 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek4).ToString();
+        //                tbHighestElev4 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgMilesPerRide4 = GetAvgMilesPerRide(tbDistanceWeek4, tbNumRidesWeek4);
+        //            }
+        //            else if (weekNumber == 2)
+        //            {
+        //                lbweek4 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek4 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
+        //                tbLongestRideWeek4 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
+        //                tbElevGainWeek4 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
+        //                tbNumRidesWeek4 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgSpeedWeek4 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
+        //                tbTotalTimeWeekly4 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgPace4 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek4).ToString();
+        //                tbHighestElev4 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgMilesPerRide4 = GetAvgMilesPerRide(tbDistanceWeek4, tbNumRidesWeek4);
+        //            }
+        //            else if (weekNumber == 3)
+        //            {
+        //                lbweek4 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek4 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+        //                tbLongestRideWeek4 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+        //                tbElevGainWeek4 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+        //                tbNumRidesWeek4 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgSpeedWeek4 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
+        //                tbTotalTimeWeekly4 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgPace4 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek4).ToString();
+        //                tbHighestElev4 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgMilesPerRide4 = GetAvgMilesPerRide(tbDistanceWeek4, tbNumRidesWeek4);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            int weekNumber4 = weekNumber - 3;
+        //            tbDistanceWeek4 = GetTotalMilesWeekly(logIndex, weekNumber4).ToString();
+        //            tbLongestRideWeek4 = GetLongestRideWeekly(logIndex, weekNumber4).ToString();
+        //            lbweek4 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber4).ToString("MM/dd/yyyy");
+        //            tbElevGainWeek4 = GetTotalElevGainWeekly(logIndex, weekNumber4).ToString();
+        //            tbNumRidesWeek4 = GetTotalRidesWeekly(logIndex, weekNumber4).ToString();
+        //            tbAvgSpeedWeek4 = GetAvgSpeedWeekly(logIndex, weekNumber4).ToString();
+        //            tbTotalTimeWeekly4 = GetTotalMovingTimeWeekly(logIndex, weekNumber4).ToString();
+        //            tbAvgPace4 = GetAveragePaceWeekly(logIndex, weekNumber4, tbDistanceWeek4).ToString();
+        //            tbHighestElev4 = GetHighestElevWeekly(logIndex, weekNumber4).ToString();
+        //            tbAvgMilesPerRide4 = GetAvgMilesPerRide(tbDistanceWeek4, tbNumRidesWeek4);
+        //        }
+        //        //Current week -4(5):
+        //        if (weekNumber - 4 <= 0)
+        //        {
+        //            if (weekNumber == 1)
+        //            {
+        //                lbweek5 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek5 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
+        //                tbLongestRideWeek5 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
+        //                tbElevGainWeek5 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
+        //                tbNumRidesWeek5 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgSpeedWeek5 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
+        //                tbTotalTimeWeekly5 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgPace5 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek5).ToString();
+        //                tbHighestElev5 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgMilesPerRide5 = GetAvgMilesPerRide(tbDistanceWeek5, tbNumRidesWeek5);
+        //            }
+        //            else if (weekNumber == 2)
+        //            {
+        //                lbweek5 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek5 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
+        //                tbLongestRideWeek5 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
+        //                tbElevGainWeek5 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
+        //                tbNumRidesWeek5 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgSpeedWeek5 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
+        //                tbTotalTimeWeekly5 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgPace5 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek5).ToString();
+        //                tbHighestElev5 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgMilesPerRide5 = GetAvgMilesPerRide(tbDistanceWeek5, tbNumRidesWeek5);
+        //            }
+        //            else if (weekNumber == 3)
+        //            {
+        //                lbweek5 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek5 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
+        //                tbLongestRideWeek5 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
+        //                tbElevGainWeek5 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
+        //                tbNumRidesWeek5 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgSpeedWeek5 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
+        //                tbTotalTimeWeekly5 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgPace5 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek5).ToString();
+        //                tbHighestElev5 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgMilesPerRide5 = GetAvgMilesPerRide(tbDistanceWeek5, tbNumRidesWeek5);
+        //            }
+        //            else if (weekNumber == 4)
+        //            {
+        //                lbweek5 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek5 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+        //                tbLongestRideWeek5 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+        //                tbElevGainWeek5 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+        //                tbNumRidesWeek5 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgSpeedWeek5 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
+        //                tbTotalTimeWeekly5 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgPace5 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek5).ToString();
+        //                tbHighestElev5 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgMilesPerRide5 = GetAvgMilesPerRide(tbDistanceWeek5, tbNumRidesWeek5);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            int weekNumber5 = weekNumber - 4;
+        //            tbDistanceWeek5 = GetTotalMilesWeekly(logIndex, weekNumber5).ToString();
+        //            lbweek5 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber5).ToString("MM/dd/yyyy");
+        //            tbLongestRideWeek5 = GetLongestRideWeekly(logIndex, weekNumber5).ToString();
+        //            tbElevGainWeek5 = GetTotalElevGainWeekly(logIndex, weekNumber5).ToString();
+        //            tbNumRidesWeek5 = GetTotalRidesWeekly(logIndex, weekNumber5).ToString();
+        //            tbAvgSpeedWeek5 = GetAvgSpeedWeekly(logIndex, weekNumber5).ToString();
+        //            tbTotalTimeWeekly5 = GetTotalMovingTimeWeekly(logIndex, weekNumber5).ToString();
+        //            tbAvgPace5 = GetAveragePaceWeekly(logIndex, weekNumber5, tbDistanceWeek5).ToString();
+        //            tbHighestElev5 = GetHighestElevWeekly(logIndex, weekNumber5).ToString();
+        //            tbAvgMilesPerRide5 = GetAvgMilesPerRide(tbDistanceWeek5, tbNumRidesWeek5);
+        //        }
+
+        //        //Current week -5(6):
+        //        if (weekNumber - 5 <= 0)
+        //        {
+        //            if (weekNumber == 1)
+        //            {
+        //                lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 48).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 48).ToString();
+        //                tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 48).ToString();
+        //                tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 48).ToString();
+        //                tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 48).ToString();
+        //                tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 48, tbDistanceWeek6).ToString();
+        //                tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
+        //            }
+        //            else if (weekNumber == 2)
+        //            {
+        //                lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
+        //                tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
+        //                tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
+        //                tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
+        //                tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek6).ToString();
+        //                tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
+        //            }
+        //            else if (weekNumber == 3)
+        //            {
+        //                lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
+        //                tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
+        //                tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
+        //                tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
+        //                tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek6).ToString();
+        //                tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
+        //            }
+        //            else if (weekNumber == 4)
+        //            {
+        //                lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
+        //                tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
+        //                tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
+        //                tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
+        //                tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek6).ToString();
+        //                tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
+        //            }
+        //            else if (weekNumber == 5)
+        //            {
+        //                lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek6 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+        //                tbLongestRideWeek6 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+        //                tbElevGainWeek6 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+        //                tbNumRidesWeek6 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
+        //                tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgPace6 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek6).ToString();
+        //                tbHighestElev6 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            int weekNumber6 = weekNumber - 5;
+        //            tbDistanceWeek6 = GetTotalMilesWeekly(logIndex, weekNumber6).ToString();
+        //            lbweek6 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber6).ToString("MM/dd/yyyy");
+        //            tbLongestRideWeek6 = GetLongestRideWeekly(logIndex, weekNumber6).ToString();
+        //            tbElevGainWeek6 = GetTotalElevGainWeekly(logIndex, weekNumber6).ToString();
+        //            tbNumRidesWeek6 = GetTotalRidesWeekly(logIndex, weekNumber6).ToString();
+        //            tbAvgSpeedWeek6 = GetAvgSpeedWeekly(logIndex, weekNumber6).ToString();
+        //            tbTotalTimeWeekly6 = GetTotalMovingTimeWeekly(logIndex, weekNumber6).ToString();
+        //            tbAvgPace6 = GetAveragePaceWeekly(logIndex, weekNumber6, tbDistanceWeek6).ToString();
+        //            tbHighestElev6 = GetHighestElevWeekly(logIndex, weekNumber6).ToString();
+        //            tbAvgMilesPerRide6 = GetAvgMilesPerRide(tbDistanceWeek6, tbNumRidesWeek6);
+        //        }
+
+        //        //Current week -6(7):
+        //        if (weekNumber - 6 <= 0)
+        //        {
+        //            if (weekNumber == 1)
+        //            {
+        //                lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 47).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 47).ToString();
+        //                tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 47).ToString();
+        //                tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 47).ToString();
+        //                tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 47).ToString();
+        //                tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 47).ToString();
+        //                tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 47).ToString();
+        //                tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 47, tbDistanceWeek7).ToString();
+        //                tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 47).ToString();
+        //                tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+        //            }
+        //            else if (weekNumber == 2)
+        //            {
+        //                lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 48).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 48).ToString();
+        //                tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 48).ToString();
+        //                tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 48).ToString();
+        //                tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 48).ToString();
+        //                tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 48, tbDistanceWeek7).ToString();
+        //                tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+        //            }
+        //            else if (weekNumber == 3)
+        //            {
+        //                lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
+        //                tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
+        //                tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
+        //                tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
+        //                tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek7).ToString();
+        //                tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+        //            }
+        //            else if (weekNumber == 4)
+        //            {
+        //                lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
+        //                tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
+        //                tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
+        //                tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
+        //                tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek7).ToString();
+        //                tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+        //            }
+        //            else if (weekNumber == 5)
+        //            {
+        //                lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
+        //                tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
+        //                tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
+        //                tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
+        //                tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek7).ToString();
+        //                tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+        //            }
+        //            else if (weekNumber == 6)
+        //            {
+        //                lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek7 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+        //                tbLongestRideWeek7 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+        //                tbElevGainWeek7 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+        //                tbNumRidesWeek7 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
+        //                tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgPace7 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek7).ToString();
+        //                tbHighestElev7 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            int weekNumber7 = weekNumber - 6;
+        //            tbDistanceWeek7 = GetTotalMilesWeekly(logIndex, weekNumber7).ToString();
+        //            lbweek7 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber7).ToString("MM/dd/yyyy");
+        //            tbLongestRideWeek7 = GetLongestRideWeekly(logIndex, weekNumber7).ToString();
+        //            tbElevGainWeek7 = GetTotalElevGainWeekly(logIndex, weekNumber7).ToString();
+        //            tbNumRidesWeek7 = GetTotalRidesWeekly(logIndex, weekNumber7).ToString();
+        //            tbAvgSpeedWeek7 = GetAvgSpeedWeekly(logIndex, weekNumber7).ToString();
+        //            tbTotalTimeWeekly7 = GetTotalMovingTimeWeekly(logIndex, weekNumber7).ToString();
+        //            tbAvgPace7 = GetAveragePaceWeekly(logIndex, weekNumber7, tbDistanceWeek7).ToString();
+        //            tbHighestElev7 = GetHighestElevWeekly(logIndex, weekNumber7).ToString();
+        //            tbAvgMilesPerRide7 = GetAvgMilesPerRide(tbDistanceWeek7, tbNumRidesWeek7);
+        //        }
+
+        //        //Current week -7(8):
+        //        if (weekNumber - 7 <= 0)
+        //        {
+        //            if (weekNumber == 1)
+        //            {
+        //                lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 46).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 46).ToString();
+        //                tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 46).ToString();
+        //                tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 46).ToString();
+        //                tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 46).ToString();
+        //                tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 46).ToString();
+        //                tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 46).ToString();
+        //                tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 46, tbDistanceWeek8).ToString();
+        //                tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 46).ToString();
+        //                tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+        //            }
+        //            else if (weekNumber == 2)
+        //            {
+        //                lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 47).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 47).ToString();
+        //                tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 47).ToString();
+        //                tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 47).ToString();
+        //                tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 47).ToString();
+        //                tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 47).ToString();
+        //                tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 47).ToString();
+        //                tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 47, tbDistanceWeek8).ToString();
+        //                tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 47).ToString();
+        //                tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+        //            }
+        //            else if (weekNumber == 3)
+        //            {
+        //                lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 48).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 48).ToString();
+        //                tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 48).ToString();
+        //                tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 48).ToString();
+        //                tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 48).ToString();
+        //                tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 48, tbDistanceWeek8).ToString();
+        //                tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+        //            }
+        //            else if (weekNumber == 4)
+        //            {
+        //                lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
+        //                tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
+        //                tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
+        //                tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
+        //                tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek8).ToString();
+        //                tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+        //            }
+        //            else if (weekNumber == 5)
+        //            {
+        //                lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
+        //                tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
+        //                tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
+        //                tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
+        //                tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek8).ToString();
+        //                tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+        //            }
+        //            else if (weekNumber == 6)
+        //            {
+        //                lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
+        //                tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
+        //                tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
+        //                tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
+        //                tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek8).ToString();
+        //                tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+        //            }
+        //            else if (weekNumber == 7)
+        //            {
+        //                lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek8 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+        //                tbLongestRideWeek8 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+        //                tbElevGainWeek8 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+        //                tbNumRidesWeek8 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
+        //                tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgPace8 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek8).ToString();
+        //                tbHighestElev8 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            int weekNumber8 = weekNumber - 7;
+        //            tbDistanceWeek8 = GetTotalMilesWeekly(logIndex, weekNumber8).ToString();
+        //            lbweek8 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber8).ToString("MM/dd/yyyy");
+        //            tbLongestRideWeek8 = GetLongestRideWeekly(logIndex, weekNumber8).ToString();
+        //            tbElevGainWeek8 = GetTotalElevGainWeekly(logIndex, weekNumber8).ToString();
+        //            tbNumRidesWeek8 = GetTotalRidesWeekly(logIndex, weekNumber8).ToString();
+        //            tbAvgSpeedWeek8 = GetAvgSpeedWeekly(logIndex, weekNumber8).ToString();
+        //            tbTotalTimeWeekly8 = GetTotalMovingTimeWeekly(logIndex, weekNumber8).ToString();
+        //            tbAvgPace8 = GetAveragePaceWeekly(logIndex, weekNumber8, tbDistanceWeek8).ToString();
+        //            tbHighestElev8 = GetHighestElevWeekly(logIndex, weekNumber8).ToString();
+        //            tbAvgMilesPerRide8 = GetAvgMilesPerRide(tbDistanceWeek8, tbNumRidesWeek8);
+        //        }
+        //        //Current week -8(9):
+        //        if (weekNumber - 8 <= 0)
+        //        {
+        //            if (weekNumber == 1)
+        //            {
+        //                lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 45).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 45).ToString();
+        //                tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 45).ToString();
+        //                tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 45).ToString();
+        //                tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 45).ToString();
+        //                tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndexPrevious, 45).ToString();
+        //                tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 45).ToString();
+        //                tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 45, tbDistanceWeek9).ToString();
+        //                tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 45).ToString();
+        //                tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
+        //            }
+        //            else if (weekNumber == 2)
+        //            {
+        //                lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 46).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 46).ToString();
+        //                tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 46).ToString();
+        //                tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 46).ToString();
+        //                tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 46).ToString();
+        //                tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndexPrevious, 46).ToString();
+        //                tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 46).ToString();
+        //                tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 46, tbDistanceWeek9).ToString();
+        //                tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 46).ToString();
+        //                tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
+        //            }
+        //            else if (weekNumber == 3)
+        //            {
+        //                lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 47).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 47).ToString();
+        //                tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 47).ToString();
+        //                tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 47).ToString();
+        //                tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 47).ToString();
+        //                tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndexPrevious, 47).ToString();
+        //                tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 47).ToString();
+        //                tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 47, tbDistanceWeek9).ToString();
+        //                tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 47).ToString();
+        //                tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
+        //            }
+        //            else if (weekNumber == 4)
+        //            {
+        //                lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 48).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 48).ToString();
+        //                tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 48).ToString();
+        //                tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 48).ToString();
+        //                tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndexPrevious, 48).ToString();
+        //                tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 48, tbDistanceWeek9).ToString();
+        //                tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
+        //            }
+        //            else if (weekNumber == 5)
+        //            {
+        //                lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
+        //                tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
+        //                tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
+        //                tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
+        //                tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek9).ToString();
+        //                tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
+        //            }
+        //            else if (weekNumber == 6)
+        //            {
+        //                lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
+        //                tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
+        //                tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
+        //                tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
+        //                tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek9).ToString();
+        //                tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
+        //            }
+        //            else if (weekNumber == 7)
+        //            {
+        //                lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
+        //                tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
+        //                tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
+        //                tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgSpeedWeek9= GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
+        //                tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek9).ToString();
+        //                tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
+        //            }
+        //            else if (weekNumber == 8)
+        //            {
+        //                lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek9 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+        //                tbLongestRideWeek9 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+        //                tbElevGainWeek9 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+        //                tbNumRidesWeek9 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
+        //                tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgPace9 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek9).ToString();
+        //                tbHighestElev9 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            int weekNumber9 = weekNumber - 8;
+        //            tbDistanceWeek9 = GetTotalMilesWeekly(logIndex, weekNumber9).ToString();
+        //            lbweek9 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber9).ToString("MM/dd/yyyy");
+        //            tbLongestRideWeek9 = GetLongestRideWeekly(logIndex, weekNumber9).ToString();
+        //            tbElevGainWeek9 = GetTotalElevGainWeekly(logIndex, weekNumber9).ToString();
+        //            tbNumRidesWeek9 = GetTotalRidesWeekly(logIndex, weekNumber9).ToString();
+        //            tbAvgSpeedWeek9 = GetAvgSpeedWeekly(logIndex, weekNumber9).ToString();
+        //            tbTotalTimeWeekly9 = GetTotalMovingTimeWeekly(logIndex, weekNumber9).ToString();
+        //            tbAvgPace9 = GetAveragePaceWeekly(logIndex, weekNumber9, tbDistanceWeek9).ToString();
+        //            tbHighestElev9 = GetHighestElevWeekly(logIndex, weekNumber9).ToString();
+        //            tbAvgMilesPerRide9 = GetAvgMilesPerRide(tbDistanceWeek9, tbNumRidesWeek9);
+        //        }
+        //        //Current week -9(10):
+        //        if (weekNumber - 9 <= 0)
+        //        {
+        //            if (weekNumber == 1)
+        //            {
+        //                lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 45).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 45).ToString();
+        //                tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 45).ToString();
+        //                tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 45).ToString();
+        //                tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 45).ToString();
+        //                tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 45).ToString();
+        //                tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 45).ToString();
+        //                tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 45, tbDistanceWeek10).ToString();
+        //                tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 45).ToString();
+        //                tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
+        //            }
+        //            else if (weekNumber == 2)
+        //            {
+        //                lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 45).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 45).ToString();
+        //                tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 45).ToString();
+        //                tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 45).ToString();
+        //                tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 45).ToString();
+        //                tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 45).ToString();
+        //                tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 45).ToString();
+        //                tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 45, tbDistanceWeek10).ToString();
+        //                tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 45).ToString();
+        //                tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
+        //            }
+        //            else if (weekNumber == 3)
+        //            {
+        //                lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 46).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 46).ToString();
+        //                tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 46).ToString();
+        //                tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 46).ToString();
+        //                tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 46).ToString();
+        //                tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 46).ToString();
+        //                tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 46).ToString();
+        //                tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 46, tbDistanceWeek10).ToString();
+        //                tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 46).ToString();
+        //                tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
+        //            }
+        //            else if (weekNumber == 4)
+        //            {
+        //                lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 47).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 47).ToString();
+        //                tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 47).ToString();
+        //                tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 47).ToString();
+        //                tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 47).ToString();
+        //                tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 47).ToString();
+        //                tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 47).ToString();
+        //                tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 47, tbDistanceWeek10).ToString();
+        //                tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 47).ToString();
+        //                tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
+        //            }
+        //            else if (weekNumber == 5)
+        //            {
+        //                lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 48).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 48).ToString();
+        //                tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 48).ToString();
+        //                tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 48).ToString();
+        //                tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 48).ToString();
+        //                tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 48, tbDistanceWeek10).ToString();
+        //                tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 48).ToString();
+        //                tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
+        //            }
+        //            else if (weekNumber == 6)
+        //            {
+        //                lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 49).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 49).ToString();
+        //                tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 49).ToString();
+        //                tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 49).ToString();
+        //                tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 49).ToString();
+        //                tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 49, tbDistanceWeek10).ToString();
+        //                tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 49).ToString();
+        //                tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
+        //            }
+        //            else if (weekNumber == 7)
+        //            {
+        //                lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 50).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 50).ToString();
+        //                tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 50).ToString();
+        //                tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 50).ToString();
+        //                tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 50).ToString();
+        //                tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 50, tbDistanceWeek10).ToString();
+        //                tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 50).ToString();
+        //                tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
+        //            }
+        //            else if (weekNumber == 8)
+        //            {
+        //                lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 51).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 51).ToString();
+        //                tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 51).ToString();
+        //                tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 51).ToString();
+        //                tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 51).ToString();
+        //                tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 51, tbDistanceWeek10).ToString();
+        //                tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 51).ToString();
+        //                tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
+        //            }
+        //            else if (weekNumber == 9)
+        //            {
+        //                lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year - 1, 52).ToString("MM/dd/yyyy");
+        //                tbDistanceWeek10 = GetTotalMilesWeekly(logIndexPrevious, 52).ToString();
+        //                tbLongestRideWeek10 = GetLongestRideWeekly(logIndexPrevious, 52).ToString();
+        //                tbElevGainWeek10 = GetTotalElevGainWeekly(logIndexPrevious, 52).ToString();
+        //                tbNumRidesWeek10 = GetTotalRidesWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndexPrevious, 52).ToString();
+        //                tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgPace10 = GetAveragePaceWeekly(logIndexPrevious, 52, tbDistanceWeek10).ToString();
+        //                tbHighestElev10 = GetHighestElevWeekly(logIndexPrevious, 52).ToString();
+        //                tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            int weekNumber10 = weekNumber - 9;
+        //            tbDistanceWeek10 = GetTotalMilesWeekly(logIndex, weekNumber10).ToString();
+        //            lbweek10 = GetDateFromWeekNumber(DateTime.Now.Year, weekNumber10).ToString("MM/dd/yyyy");
+        //            tbLongestRideWeek10 = GetLongestRideWeekly(logIndex, weekNumber10).ToString();
+        //            tbElevGainWeek10 = GetTotalElevGainWeekly(logIndex, weekNumber10).ToString();
+        //            tbNumRidesWeek10 = GetTotalRidesWeekly(logIndex, weekNumber10).ToString();
+        //            tbAvgSpeedWeek10 = GetAvgSpeedWeekly(logIndex, weekNumber10).ToString();
+        //            tbTotalTimeWeekly10 = GetTotalMovingTimeWeekly(logIndex, weekNumber10).ToString();
+        //            tbAvgPace10 = GetAveragePaceWeekly(logIndex, weekNumber10, tbDistanceWeek10).ToString();
+        //            tbHighestElev10 = GetHighestElevWeekly(logIndex, weekNumber10).ToString();
+        //            tbAvgMilesPerRide10 = GetAvgMilesPerRide(tbDistanceWeek10, tbNumRidesWeek10);
+        //        }
+        //    }
+
+        //    try
+        //    {
+        //        dataGridViewWeekly.DataSource = null;
+        //        dataGridViewWeekly.Rows.Clear();
+        //        dataGridViewWeekly.ColumnCount = 9;
+        //        //dataGridViewWeekly.RowCount = 7;
+        //        dataGridViewWeekly.Name = "Weekly Stats";
+
+        //        //dataGridViewWeekly.Columns[0].Name = lbweek5;
+        //        //dataGridViewWeekly.Columns[1].Name = lbweek4;
+        //        //dataGridViewWeekly.Columns[2].Name = lbweek3;
+        //        //dataGridViewWeekly.Columns[3].Name = lbweek2;
+        //        //dataGridViewWeekly.Columns[4].Name = lbweek1;
+
+        //        dataGridViewWeekly.Columns[0].Name = "Total Miles";
+        //        dataGridViewWeekly.Columns[1].Name = "Total Rides";
+        //        dataGridViewWeekly.Columns[2].Name = "Avg Miles/Ride";
+        //        dataGridViewWeekly.Columns[3].Name = "Longest Ride";
+        //        dataGridViewWeekly.Columns[4].Name = "Total Ascent";
+        //        dataGridViewWeekly.Columns[5].Name = "Max Ascent";
+        //        dataGridViewWeekly.Columns[6].Name = "Moving Time";
+        //        dataGridViewWeekly.Columns[7].Name = "Avg Speed";
+        //        dataGridViewWeekly.Columns[8].Name = "Avg Pace";
+
+        //        //dataGridViewWeekly.Columns[0].ValueType = typeof(double);
+        //        //dataGridViewWeekly.Columns[1].ValueType = typeof(double);
+        //        dataGridViewWeekly.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+        //        dataGridViewWeekly.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+
+        //        //dataGridViewWeekly.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells; 
+        //        //dataGridViewWeekly.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        //        //dataGridViewWeekly.Columns[0].FillWeight = 20;
+        //        //dataGridViewWeekly.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        //        //dataGridViewWeekly.Columns[1].FillWeight = 20;
+        //        //dataGridViewWeekly.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        //        //dataGridViewWeekly.Columns[2].FillWeight = 20;
+        //        //dataGridViewWeekly.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        //        //dataGridViewWeekly.Columns[3].FillWeight = 20;
+        //        //dataGridViewWeekly.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        //        //dataGridViewWeekly.Columns[4].FillWeight = 20;
+        //        dataGridViewWeekly.ReadOnly = true;
+        //        dataGridViewWeekly.EnableHeadersVisualStyles = false;
+
+        //        dataGridViewWeekly.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        //        dataGridViewWeekly.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        //        dataGridViewWeekly.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        //        dataGridViewWeekly.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        //        dataGridViewWeekly.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        //        dataGridViewWeekly.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        //        dataGridViewWeekly.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        //        dataGridViewWeekly.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        //        dataGridViewWeekly.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+        //        dataGridViewWeekly.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
+        //        dataGridViewWeekly.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
+        //        dataGridViewWeekly.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
+        //        dataGridViewWeekly.Columns[3].SortMode = DataGridViewColumnSortMode.NotSortable;
+        //        dataGridViewWeekly.Columns[4].SortMode = DataGridViewColumnSortMode.NotSortable;
+        //        dataGridViewWeekly.Columns[5].SortMode = DataGridViewColumnSortMode.NotSortable;
+        //        dataGridViewWeekly.Columns[6].SortMode = DataGridViewColumnSortMode.NotSortable;
+        //        dataGridViewWeekly.Columns[7].SortMode = DataGridViewColumnSortMode.NotSortable;
+        //        dataGridViewWeekly.Columns[8].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+        //        // Resize the master DataGridView columns to fit the newly loaded data.
+        //        //dataGridViewWeekly.AutoResizeColumns();
+        //        dataGridViewWeekly.AllowUserToOrderColumns = false;
+        //        // Configure the details DataGridView so that its columns automatically adjust their widths when the data changes.
+        //        //dataGridViewWeekly.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        //        dataGridViewWeekly.AllowUserToAddRows = false;
+        //        //dataGridViewRoutes.DefaultCellStyle.SelectionBackColor = Color.LightGray;
+        //        //dataGridViewRoutes.DefaultCellStyle.SelectionForeColor = Color.White;
+        //        dataGridViewWeekly.RowHeadersDefaultCellStyle.BackColor = Color.LightGray;
+        //        //dataGridViewRoutes.RowHeadersVisible = false;
+        //        dataGridViewWeekly.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        //        dataGridViewWeekly.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+        //        dataGridViewWeekly.ColumnHeadersHeight = 40;
+        //        dataGridViewWeekly.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+        //        dataGridViewWeekly.RowHeadersVisible = true;
+
+        //        //dataGridViewWeekly.Rows.Add(tbDistanceWeek5, tbDistanceWeek4, tbDistanceWeek3, tbDistanceWeek2, tbDistanceWeek1);
+        //        //dataGridViewWeekly.Rows.Add(tbNumRidesWeek5, tbNumRidesWeek4, tbNumRidesWeek3, tbNumRidesWeek2, tbNumRidesWeek1);
+        //        //dataGridViewWeekly.Rows.Add(tbAvgMilesPerRide5, tbAvgMilesPerRide4, tbAvgMilesPerRide3, tbAvgMilesPerRide2, tbAvgMilesPerRide1);               
+        //        //dataGridViewWeekly.Rows.Add(tbLongestRideWeek5, tbLongestRideWeek4, tbLongestRideWeek3, tbLongestRideWeek2, tbLongestRideWeek1);
+        //        //dataGridViewWeekly.Rows.Add(tbElevGainWeek5, tbElevGainWeek4, tbElevGainWeek3, tbElevGainWeek2, tbElevGainWeek1);
+        //        //dataGridViewWeekly.Rows.Add(tbHighestElev5, tbHighestElev4, tbHighestElev3, tbHighestElev2, tbHighestElev1);
+        //        //dataGridViewWeekly.Rows.Add(tbTotalTimeWeekly5, tbTotalTimeWeekly4, tbTotalTimeWeekly3, tbTotalTimeWeekly2, tbTotalTimeWeekly1);
+        //        //dataGridViewWeekly.Rows.Add(tbAvgSpeedWeek5, tbAvgSpeedWeek4, tbAvgSpeedWeek3, tbAvgSpeedWeek2, tbAvgSpeedWeek1);
+        //        //dataGridViewWeekly.Rows.Add(tbAvgPace5, tbAvgPace4, tbAvgPace3, tbAvgPace2, tbAvgPace1);
+
+        //        dataGridViewWeekly.Rows.Add(tbDistanceWeek10, tbNumRidesWeek10, tbAvgMilesPerRide10, tbLongestRideWeek10, tbElevGainWeek10, tbHighestElev10, tbTotalTimeWeekly10, tbAvgSpeedWeek10, tbAvgPace10);
+        //        dataGridViewWeekly.Rows.Add(tbDistanceWeek9, tbNumRidesWeek9, tbAvgMilesPerRide9, tbLongestRideWeek9, tbElevGainWeek9, tbHighestElev9, tbTotalTimeWeekly9, tbAvgSpeedWeek9, tbAvgPace9);
+        //        dataGridViewWeekly.Rows.Add(tbDistanceWeek8, tbNumRidesWeek8, tbAvgMilesPerRide8, tbLongestRideWeek8, tbElevGainWeek8, tbHighestElev8, tbTotalTimeWeekly8, tbAvgSpeedWeek8, tbAvgPace8);
+        //        dataGridViewWeekly.Rows.Add(tbDistanceWeek7, tbNumRidesWeek7, tbAvgMilesPerRide7, tbLongestRideWeek7, tbElevGainWeek7, tbHighestElev7, tbTotalTimeWeekly7, tbAvgSpeedWeek7, tbAvgPace7);
+        //        dataGridViewWeekly.Rows.Add(tbDistanceWeek6, tbNumRidesWeek6, tbAvgMilesPerRide6, tbLongestRideWeek6, tbElevGainWeek6, tbHighestElev6, tbTotalTimeWeekly6, tbAvgSpeedWeek6, tbAvgPace6);
+        //        dataGridViewWeekly.Rows.Add(tbDistanceWeek5, tbNumRidesWeek5, tbAvgMilesPerRide5, tbLongestRideWeek5, tbElevGainWeek5, tbHighestElev5, tbTotalTimeWeekly5, tbAvgSpeedWeek5, tbAvgPace5);
+        //        dataGridViewWeekly.Rows.Add(tbDistanceWeek4, tbNumRidesWeek4, tbAvgMilesPerRide4, tbLongestRideWeek4, tbElevGainWeek4, tbHighestElev4, tbTotalTimeWeekly4, tbAvgSpeedWeek4, tbAvgPace4);
+        //        dataGridViewWeekly.Rows.Add(tbDistanceWeek3, tbNumRidesWeek3, tbAvgMilesPerRide3, tbLongestRideWeek3, tbElevGainWeek3, tbHighestElev3, tbTotalTimeWeekly3, tbAvgSpeedWeek3, tbAvgPace3);
+        //        dataGridViewWeekly.Rows.Add(tbDistanceWeek2, tbNumRidesWeek2, tbAvgMilesPerRide2, tbLongestRideWeek2, tbElevGainWeek2, tbHighestElev2, tbTotalTimeWeekly2, tbAvgSpeedWeek2, tbAvgPace2);
+        //        dataGridViewWeekly.Rows.Add(tbDistanceWeek1, tbNumRidesWeek1, tbAvgMilesPerRide1, tbLongestRideWeek1, tbElevGainWeek1, tbHighestElev1, tbTotalTimeWeekly1, tbAvgSpeedWeek1, tbAvgPace1);
+
+        //        dataGridViewWeekly.Rows[0].Height = 34;
+        //        dataGridViewWeekly.Rows[1].Height = 34;
+        //        dataGridViewWeekly.Rows[2].Height = 34;
+        //        dataGridViewWeekly.Rows[3].Height = 34;
+        //        dataGridViewWeekly.Rows[4].Height = 34;
+        //        dataGridViewWeekly.Rows[5].Height = 34;
+        //        dataGridViewWeekly.Rows[6].Height = 34;
+        //        dataGridViewWeekly.Rows[7].Height = 34;
+        //        dataGridViewWeekly.Rows[8].Height = 34;
+        //        dataGridViewWeekly.Rows[9].Height = 34;
+        //        //dataGridViewWeekly.Rows[8].Height = 34;
+
+        //        //dataGridViewWeekly.Columns[0].Name = lbweek5;
+        //        //dataGridViewWeekly.Columns[1].Name = lbweek4;
+        //        //dataGridViewWeekly.Columns[2].Name = lbweek3;
+        //        //dataGridViewWeekly.Columns[3].Name = lbweek2;
+        //        //dataGridViewWeekly.Columns[4].Name = lbweek1;
+
+        //        dataGridViewWeekly.Rows[0].HeaderCell.Value = lbweek10;
+        //        dataGridViewWeekly.Rows[1].HeaderCell.Value = lbweek9;
+        //        dataGridViewWeekly.Rows[2].HeaderCell.Value = lbweek8;
+        //        dataGridViewWeekly.Rows[3].HeaderCell.Value = lbweek7;
+        //        dataGridViewWeekly.Rows[4].HeaderCell.Value = lbweek6;
+        //        dataGridViewWeekly.Rows[5].HeaderCell.Value = lbweek5;
+        //        dataGridViewWeekly.Rows[6].HeaderCell.Value = lbweek4;
+        //        dataGridViewWeekly.Rows[7].HeaderCell.Value = lbweek3;
+        //        dataGridViewWeekly.Rows[8].HeaderCell.Value = lbweek2;
+        //        dataGridViewWeekly.Rows[9].HeaderCell.Value = lbweek1;
+
+        //        //dataGridViewWeekly.Rows[0].HeaderCell.Value = "Total Miles";
+        //        //dataGridViewWeekly.Rows[1].HeaderCell.Value = "Total Rides";
+        //        //dataGridViewWeekly.Rows[2].HeaderCell.Value = "Avg Miles/Ride";
+        //        //dataGridViewWeekly.Rows[3].HeaderCell.Value = "Longest Ride";
+        //        //dataGridViewWeekly.Rows[4].HeaderCell.Value = "Total Ascent";
+        //        //dataGridViewWeekly.Rows[5].HeaderCell.Value = "Max Ascent";
+        //        //dataGridViewWeekly.Rows[6].HeaderCell.Value = "Moving Time";
+        //        //dataGridViewWeekly.Rows[7].HeaderCell.Value = "Avg Speed";              
+        //        //dataGridViewWeekly.Rows[8].HeaderCell.Value = "Avg Pace";
+
+        //        dataGridViewWeekly.AllowUserToResizeRows = false;
+        //        dataGridViewWeekly.AllowUserToResizeColumns = false;
+        //        dataGridViewWeekly.CurrentCell = dataGridViewWeekly.Rows[9].Cells[0];
+        //        dataGridViewWeekly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetWeeklyColor());
+
+        //        string textValue = GetTextWeekly();
+        //        int rowCount = dataGridViewWeekly.Rows.Count;
+        //        for (int i = 0; i < rowCount; i++)
+        //        {
+        //            if (i % 2 == 0)
+        //            {
+        //                //is even
+        //            }
+        //            else
+        //            {
+        //                //is odd
+        //                if (textValue.Equals("True"))
+        //                {
+        //                    dataGridViewWeekly.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+        //                }
+        //                else
+        //                {
+        //                    dataGridViewWeekly.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        Logger.LogError("[ERROR]: Exception while trying to run query Weekly Stats: " + ex.Message.ToString());
+        //        MessageBox.Show("An exception error has occurred while quering Weekly Stats.  Review the log for more information.");
+        //    }
+        //}
 
         public static void Backup()
         {
@@ -8946,5 +9177,10 @@ namespace CyclingLogApplication
             cbLogYear.SelectedIndex = 0;
         }
 
+        private void RefreshWeekly(object sender, EventArgs e)
+        {
+            SetLastLogYearWeeklySelected(cbLogYearWeekly.SelectedIndex);
+            RefreshWeekly();
+        }
     }
 }

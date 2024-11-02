@@ -157,8 +157,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
             this.cbMonthlyTextColor = new System.Windows.Forms.CheckBox();
             this.tbWhiteMonthly = new System.Windows.Forms.TextBox();
@@ -206,7 +204,9 @@
             this.rbFirstDayMonday = new System.Windows.Forms.RadioButton();
             this.rbFirstDaySunday = new System.Windows.Forms.RadioButton();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.tbCustomDataField2 = new System.Windows.Forms.TextBox();
             this.tbCustomDataField1 = new System.Windows.Forms.TextBox();
@@ -229,6 +229,7 @@
             this.label29 = new System.Windows.Forms.Label();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbLogYearWeekly = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -1045,25 +1046,26 @@
             this.groupBox7.Controls.Add(this.panel2);
             this.groupBox7.Location = new System.Drawing.Point(56, 17);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(815, 515);
+            this.groupBox7.Size = new System.Drawing.Size(815, 529);
             this.groupBox7.TabIndex = 130;
             this.groupBox7.TabStop = false;
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.cbLogYearWeekly);
             this.panel2.Controls.Add(this.dataGridViewWeekly);
             this.panel2.Controls.Add(this.label65);
             this.panel2.Location = new System.Drawing.Point(22, 19);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(775, 476);
+            this.panel2.Size = new System.Drawing.Size(775, 488);
             this.panel2.TabIndex = 129;
             // 
             // dataGridViewWeekly
             // 
             this.dataGridViewWeekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewWeekly.Location = new System.Drawing.Point(29, 62);
+            this.dataGridViewWeekly.Location = new System.Drawing.Point(20, 62);
             this.dataGridViewWeekly.Name = "dataGridViewWeekly";
-            this.dataGridViewWeekly.Size = new System.Drawing.Size(719, 391);
+            this.dataGridViewWeekly.Size = new System.Drawing.Size(739, 407);
             this.dataGridViewWeekly.TabIndex = 177;
             // 
             // label65
@@ -1608,27 +1610,6 @@
             this.groupBox2.Size = new System.Drawing.Size(780, 518);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
-            // 
-            // button4
-            // 
-            this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(99, 87);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 75;
-            this.button4.Text = "Restore";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(18, 87);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 74;
-            this.button3.Text = "Backup";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // groupBox23
             // 
@@ -3064,6 +3045,17 @@
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Delete All Data";
             // 
+            // button4
+            // 
+            this.button4.Enabled = false;
+            this.button4.Location = new System.Drawing.Point(99, 87);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 75;
+            this.button4.Text = "Restore";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -3072,6 +3064,16 @@
             this.label2.Size = new System.Drawing.Size(128, 13);
             this.label2.TabIndex = 19;
             this.label2.Text = "Delete All Data in the app";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(18, 87);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 74;
+            this.button3.Text = "Backup";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // groupBox9
             // 
@@ -3297,6 +3299,17 @@
             this.label1.Size = new System.Drawing.Size(287, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
+            // 
+            // cbLogYearWeekly
+            // 
+            this.cbLogYearWeekly.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYearWeekly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYearWeekly.FormattingEnabled = true;
+            this.cbLogYearWeekly.Location = new System.Drawing.Point(29, 28);
+            this.cbLogYearWeekly.Name = "cbLogYearWeekly";
+            this.cbLogYearWeekly.Size = new System.Drawing.Size(136, 21);
+            this.cbLogYearWeekly.TabIndex = 178;
+            this.cbLogYearWeekly.SelectedIndexChanged += new System.EventHandler(this.RefreshWeekly);
             // 
             // MainForm
             // 
@@ -3577,6 +3590,7 @@
         private System.Windows.Forms.GroupBox groupBox20;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tbMaxYearlyMilesAllLogs;
+        private System.Windows.Forms.ComboBox cbLogYearWeekly;
     }
 }
 

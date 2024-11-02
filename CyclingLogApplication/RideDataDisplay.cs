@@ -674,11 +674,9 @@ namespace CyclingLogApplication
             {
                 Logger.LogError("[ERROR]: Exception while trying to Clear ride data." + ex.Message.ToString());
                 MessageBox.Show("An exception error has occurred.  Review the log for more information.");
-            }
-            finally
-            {
-                // close connection
                 conn?.Close();
+
+                return;
             }
 
             string custom1 = MainForm.GetCustomField1();
@@ -1028,18 +1026,20 @@ namespace CyclingLogApplication
                     commentColNumber = dataGridView1.Columns["Comments"].Index;
                 }
 
-                int colCount = dataGridView1.ColumnCount;
-                for (int i = 0; i < colCount; i++)
-                {
-                    if (commentField && i == commentColNumber)
-                    {
+                //****************  This causes the load time to be very long  ************************
+                // This is to center align all data:
+                //int colCount = dataGridView1.ColumnCount;
+                //for (int i = 0; i < colCount; i++)
+                //{
+                //    if (commentField && i == commentColNumber)
+                //    {
 
-                    } else
-                    {
-                        dataGridView1.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        dataGridView1.Columns[i].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    }                  
-                }
+                //    } else
+                //    {
+                //        dataGridView1.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                //        dataGridView1.Columns[i].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                //    }                  
+                //}
 
                 string textValue = MainForm.GetTextDisplay();
                 int rowCount = dataGridView1.Rows.Count;
