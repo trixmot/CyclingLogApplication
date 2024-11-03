@@ -68,17 +68,6 @@ namespace CyclingLogApplication
             string daysToKeepLogs = nodes.Item(0).SelectSingleNode("DAYSTOKEEPLOGS").InnerText;
             //string verison = nodes.Item(0).SelectSingleNode("VERSION").InnerText;
             int logLevel = Convert.ToInt32(nodes.Item(0).SelectSingleNode("LOGLEVEL").InnerText);
-
-            string cbStatistic1 = nodes.Item(0).SelectSingleNode("cbStatistic1").InnerText;
-            string cbStatistic2 = nodes.Item(0).SelectSingleNode("cbStatistic2").InnerText;
-            string cbStatistic3 = nodes.Item(0).SelectSingleNode("cbStatistic3").InnerText;
-            string cbStatistic4 = nodes.Item(0).SelectSingleNode("cbStatistic4").InnerText;
-            string cbStatistic5 = nodes.Item(0).SelectSingleNode("cbStatistic5").InnerText;
-            string cbStatistic6 = nodes.Item(0).SelectSingleNode("cbStatistic6").InnerText;
-            string cbStatistic7 = nodes.Item(0).SelectSingleNode("cbStatistic7").InnerText;
-            string cbStatistic8 = nodes.Item(0).SelectSingleNode("cbStatistic8").InnerText;
-            string cbStatistic9 = nodes.Item(0).SelectSingleNode("cbStatistic9").InnerText;
-            string cbStatistic10 = nodes.Item(0).SelectSingleNode("cbStatistic10").InnerText;
             string firstDayOfWeek = nodes.Item(0).SelectSingleNode("FIRSTDAY").InnerText;
             string license = nodes.Item(0).SelectSingleNode("LICENSE").InnerText;
             string gridOrder = nodes.Item(0).SelectSingleNode("GRIDORDER").InnerText;
@@ -245,16 +234,6 @@ namespace CyclingLogApplication
             MainForm.SetTextBike(textBike);
             MainForm.SetTextRoute(textRoute);
 
-            MainForm.SetcbStatistic1(cbStatistic1);
-            MainForm.SetcbStatistic2(cbStatistic2);
-            MainForm.SetcbStatistic3(cbStatistic3);
-            MainForm.SetcbStatistic4(cbStatistic4);
-            MainForm.SetcbStatistic5(cbStatistic5);
-            MainForm.SetcbStatistic6(cbStatistic6);
-            MainForm.SetcbStatistic7(cbStatistic7);
-            MainForm.SetcbStatistic8(cbStatistic8);
-            MainForm.SetcbStatistic9(cbStatistic9);
-            MainForm.SetcbStatistic10(cbStatistic10);
             MainForm.SetLastLogFilterSelected(Convert.ToInt32(lastLogYearFilterSelected));
             MainForm.SetLastBikeSelected(Convert.ToInt32(lastBikeSelected));
             MainForm.SetLastLogSelected(Convert.ToInt32(lastLogYearSelected));
@@ -273,16 +252,6 @@ namespace CyclingLogApplication
             //Logger.Log("Configuration Read: VERSION : " + verison, logLevel, 0);
             Logger.Log("Configuration Read: GRIDORDER : " + gridOrder, logLevel, 0);
             Logger.Log("Configuration Read: IDCOLUMN : " + idColumnValue, logLevel, 0);
-            Logger.Log("Configuration Read: cbStatistic1 : " + cbStatistic1, logLevel, 0);
-            Logger.Log("Configuration Read: cbStatistic2 : " + cbStatistic2, logLevel, 0);
-            Logger.Log("Configuration Read: cbStatistic3 : " + cbStatistic3, logLevel, 0);
-            Logger.Log("Configuration Read: cbStatistic4 : " + cbStatistic4, logLevel, 0);
-            Logger.Log("Configuration Read: cbStatistic5 : " + cbStatistic5, logLevel, 0);
-            Logger.Log("Configuration Read: cbStatistic6 : " + cbStatistic6, logLevel, 0);
-            Logger.Log("Configuration Read: cbStatistic7 : " + cbStatistic7, logLevel, 0);
-            Logger.Log("Configuration Read: cbStatistic8 : " + cbStatistic8, logLevel, 0);
-            Logger.Log("Configuration Read: cbStatistic9 : " + cbStatistic9, logLevel, 0);
-            Logger.Log("Configuration Read: cbStatistic10 : " + cbStatistic10, logLevel, 0);
             Logger.Log("Configuration Read: custom1 : " + customDataField1, logLevel, 0);
             Logger.Log("Configuration Read: custom2 : " + customDataField2, logLevel, 0);
             Logger.Log("Configuration Read: color maint : " + colorMaint, logLevel, 0);
@@ -667,46 +636,6 @@ namespace CyclingLogApplication
                     gridOrderNode.InnerText = "DESC";
                     rootNode.AppendChild(gridOrderNode);
 
-                    XmlNode cbStatistic1Node = xmlDoc.CreateElement("cbStatistic1");
-                    cbStatistic1Node.InnerText = "0";
-                    rootNode.AppendChild(cbStatistic1Node);
-
-                    XmlNode cbStatistic2Node = xmlDoc.CreateElement("cbStatistic2");
-                    cbStatistic2Node.InnerText = "0";
-                    rootNode.AppendChild(cbStatistic2Node);
-
-                    XmlNode cbStatistic3Node = xmlDoc.CreateElement("cbStatistic3");
-                    cbStatistic3Node.InnerText = "0";
-                    rootNode.AppendChild(cbStatistic3Node);
-
-                    XmlNode cbStatistic4Node = xmlDoc.CreateElement("cbStatistic4");
-                    cbStatistic4Node.InnerText = "0";
-                    rootNode.AppendChild(cbStatistic4Node);
-
-                    XmlNode cbStatistic5Node = xmlDoc.CreateElement("cbStatistic5");
-                    cbStatistic5Node.InnerText = "0";
-                    rootNode.AppendChild(cbStatistic5Node);
-
-                    XmlNode cbStatistic6Node = xmlDoc.CreateElement("cbStatistic6");
-                    cbStatistic6Node.InnerText = "0";
-                    rootNode.AppendChild(cbStatistic6Node);
-
-                    XmlNode cbStatistic7Node = xmlDoc.CreateElement("cbStatistic7");
-                    cbStatistic7Node.InnerText = "0";
-                    rootNode.AppendChild(cbStatistic7Node);
-
-                    XmlNode cbStatistic8Node = xmlDoc.CreateElement("cbStatistic8");
-                    cbStatistic8Node.InnerText = "0";
-                    rootNode.AppendChild(cbStatistic8Node);
-
-                    XmlNode cbStatistic9Node = xmlDoc.CreateElement("cbStatistic9");
-                    cbStatistic9Node.InnerText = "0";
-                    rootNode.AppendChild(cbStatistic9Node);
-
-                    XmlNode cbStatistic10Node = xmlDoc.CreateElement("cbStatistic10");
-                    cbStatistic10Node.InnerText = "0";
-                    rootNode.AppendChild(cbStatistic10Node);
-
                     XmlNode lastBikeSelectedNode = xmlDoc.CreateElement("LastBikeSelected");
                     lastBikeSelectedNode.InnerText = "-1";
                     rootNode.AppendChild(lastBikeSelectedNode);
@@ -754,17 +683,6 @@ namespace CyclingLogApplication
                 {
                     XmlDocument xmlDoc = new XmlDocument();
                     xmlDoc.Load(pathFile);
-
-                    string cbStatistic1 = MainForm.GetcbStatistic1();
-                    string cbStatistic2 = MainForm.GetcbStatistic2();
-                    string cbStatistic3 = MainForm.GetcbStatistic3();
-                    string cbStatistic4 = MainForm.GetcbStatistic4();
-                    string cbStatistic5 = MainForm.GetcbStatistic5();
-                    string cbStatistic6 = MainForm.GetcbStatistic6();
-                    string cbStatistic7 = MainForm.GetcbStatistic7();
-                    string cbStatistic8 = MainForm.GetcbStatistic8();
-                    string cbStatistic9 = MainForm.GetcbStatistic9();
-                    string cbStatistic10 = MainForm.GetcbStatistic10();
 
                     string idColumnValue = MainForm.GetIDColumnValue();
                     string version = MainForm.GetLogVersion();
@@ -880,17 +798,6 @@ namespace CyclingLogApplication
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME24").InnerText = fieldDictionary.Keys.ElementAt(24);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME25").InnerText = fieldDictionary.Keys.ElementAt(25);
 
-                    xmlDoc.SelectSingleNode("/Config/cbStatistic1").InnerText = cbStatistic1;
-                    xmlDoc.SelectSingleNode("/Config/cbStatistic2").InnerText = cbStatistic2;
-                    xmlDoc.SelectSingleNode("/Config/cbStatistic3").InnerText = cbStatistic3;
-                    xmlDoc.SelectSingleNode("/Config/cbStatistic4").InnerText = cbStatistic4;
-                    xmlDoc.SelectSingleNode("/Config/cbStatistic5").InnerText = cbStatistic5;
-                    xmlDoc.SelectSingleNode("/Config/cbStatistic6").InnerText = cbStatistic6;
-                    xmlDoc.SelectSingleNode("/Config/cbStatistic7").InnerText = cbStatistic7;
-                    xmlDoc.SelectSingleNode("/Config/cbStatistic8").InnerText = cbStatistic8;
-                    xmlDoc.SelectSingleNode("/Config/cbStatistic9").InnerText = cbStatistic9;
-                    xmlDoc.SelectSingleNode("/Config/cbStatistic10").InnerText = cbStatistic10;
-
                     xmlDoc.SelectSingleNode("/Config/LastLogSelected").InnerText = lastLogSelected.ToString();
                     xmlDoc.SelectSingleNode("/Config/LastBikeSelected").InnerText = lastBikeSelected.ToString();
                     xmlDoc.SelectSingleNode("/Config/LastLogFilterSelected").InnerText = lastLogFilterSelected.ToString();
@@ -927,16 +834,6 @@ namespace CyclingLogApplication
                     Logger.Log("Write Config Values: COLORBIKETEXT written:" + textBike, logSetting, 0);
                     Logger.Log("Write Config Values: COLORROUTETEXT written:" + textRoute, logSetting, 0);
 
-                    Logger.Log("Write Config Values: cbStatistic1 written:" + cbStatistic1, logSetting, 0);
-                    Logger.Log("Write Config Values: cbStatistic2 written:" + cbStatistic2, logSetting, 0);
-                    Logger.Log("Write Config Values: cbStatistic3 written:" + cbStatistic3, logSetting, 0);
-                    Logger.Log("Write Config Values: cbStatistic4 written:" + cbStatistic4, logSetting, 0);
-                    Logger.Log("Write Config Values: cbStatistic5 written:" + cbStatistic5, logSetting, 0);
-                    Logger.Log("Write Config Values: cbStatistic6 written:" + cbStatistic6, logSetting, 0);
-                    Logger.Log("Write Config Values: cbStatistic7 written:" + cbStatistic7, logSetting, 0);
-                    Logger.Log("Write Config Values: cbStatistic8 written:" + cbStatistic8, logSetting, 0);
-                    Logger.Log("Write Config Values: cbStatistic9 written:" + cbStatistic9, logSetting, 0);
-                    Logger.Log("Write Config Values: cbStatistic10 written:" + cbStatistic10, logSetting, 0);
                     Logger.Log("Write Config Values: lastLogSelected written:" + lastLogSelected, logSetting, 0);
                     Logger.Log("Write Config Values: lastBikeSelected written:" + lastBikeSelected, logSetting, 0);
                     Logger.Log("Write Config Values: lastLogFilterSelected written:" + lastLogFilterSelected, logSetting, 0);
