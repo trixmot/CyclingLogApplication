@@ -80,28 +80,19 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox20 = new System.Windows.Forms.GroupBox();
-            this.cbLogYear1 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear10 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear2 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear9 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear3 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear8 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear4 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear7 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear5 = new System.Windows.Forms.ComboBox();
-            this.cbLogYear6 = new System.Windows.Forms.ComboBox();
             this.dataGridViewYearly = new System.Windows.Forms.DataGridView();
             this.label62 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btMonthlyStatReset = new System.Windows.Forms.Button();
             this.dataGridViewMonthly = new System.Windows.Forms.DataGridView();
             this.label63 = new System.Windows.Forms.Label();
             this.cbStatMonthlyLogYear = new System.Windows.Forms.ComboBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbLogYearWeekly = new System.Windows.Forms.ComboBox();
             this.dataGridViewWeekly = new System.Windows.Forms.DataGridView();
             this.label65 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -229,7 +220,7 @@
             this.label29 = new System.Windows.Forms.Label();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbLogYearWeekly = new System.Windows.Forms.ComboBox();
+            this.btYearlyStatReset = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -241,7 +232,6 @@
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewYearly)).BeginInit();
             this.tabPage7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -815,158 +805,28 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.groupBox20);
+            this.groupBox4.Controls.Add(this.btYearlyStatReset);
             this.groupBox4.Controls.Add(this.dataGridViewYearly);
             this.groupBox4.Controls.Add(this.label62);
             this.groupBox4.Location = new System.Drawing.Point(6, 20);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(903, 491);
+            this.groupBox4.Size = new System.Drawing.Size(903, 518);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
-            // 
-            // groupBox20
-            // 
-            this.groupBox20.BackColor = System.Drawing.Color.Gainsboro;
-            this.groupBox20.Controls.Add(this.cbLogYear1);
-            this.groupBox20.Controls.Add(this.cbLogYear10);
-            this.groupBox20.Controls.Add(this.cbLogYear2);
-            this.groupBox20.Controls.Add(this.cbLogYear9);
-            this.groupBox20.Controls.Add(this.cbLogYear3);
-            this.groupBox20.Controls.Add(this.cbLogYear8);
-            this.groupBox20.Controls.Add(this.cbLogYear4);
-            this.groupBox20.Controls.Add(this.cbLogYear7);
-            this.groupBox20.Controls.Add(this.cbLogYear5);
-            this.groupBox20.Controls.Add(this.cbLogYear6);
-            this.groupBox20.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.groupBox20.Location = new System.Drawing.Point(9, 95);
-            this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(124, 371);
-            this.groupBox20.TabIndex = 97;
-            this.groupBox20.TabStop = false;
-            // 
-            // cbLogYear1
-            // 
-            this.cbLogYear1.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear1.FormattingEnabled = true;
-            this.cbLogYear1.Location = new System.Drawing.Point(6, 49);
-            this.cbLogYear1.Name = "cbLogYear1";
-            this.cbLogYear1.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear1.TabIndex = 0;
-            this.cbLogYear1.SelectedIndexChanged += new System.EventHandler(this.Cb1LogYear_changed);
-            // 
-            // cbLogYear10
-            // 
-            this.cbLogYear10.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear10.FormattingEnabled = true;
-            this.cbLogYear10.Location = new System.Drawing.Point(6, 340);
-            this.cbLogYear10.Name = "cbLogYear10";
-            this.cbLogYear10.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear10.TabIndex = 96;
-            this.cbLogYear10.SelectedIndexChanged += new System.EventHandler(this.Cb10LogYear_changed);
-            // 
-            // cbLogYear2
-            // 
-            this.cbLogYear2.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear2.FormattingEnabled = true;
-            this.cbLogYear2.Location = new System.Drawing.Point(6, 82);
-            this.cbLogYear2.Name = "cbLogYear2";
-            this.cbLogYear2.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear2.TabIndex = 1;
-            this.cbLogYear2.SelectedIndexChanged += new System.EventHandler(this.Cb2LogYear_changed);
-            // 
-            // cbLogYear9
-            // 
-            this.cbLogYear9.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear9.FormattingEnabled = true;
-            this.cbLogYear9.Location = new System.Drawing.Point(6, 310);
-            this.cbLogYear9.Name = "cbLogYear9";
-            this.cbLogYear9.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear9.TabIndex = 95;
-            this.cbLogYear9.SelectedIndexChanged += new System.EventHandler(this.Cb9LogYear_changed);
-            // 
-            // cbLogYear3
-            // 
-            this.cbLogYear3.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear3.FormattingEnabled = true;
-            this.cbLogYear3.Location = new System.Drawing.Point(6, 114);
-            this.cbLogYear3.Name = "cbLogYear3";
-            this.cbLogYear3.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear3.TabIndex = 2;
-            this.cbLogYear3.SelectedIndexChanged += new System.EventHandler(this.Cb3LogYear_changed);
-            // 
-            // cbLogYear8
-            // 
-            this.cbLogYear8.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear8.FormattingEnabled = true;
-            this.cbLogYear8.Location = new System.Drawing.Point(6, 277);
-            this.cbLogYear8.Name = "cbLogYear8";
-            this.cbLogYear8.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear8.TabIndex = 94;
-            this.cbLogYear8.SelectedIndexChanged += new System.EventHandler(this.Cb8LogYear_changed);
-            // 
-            // cbLogYear4
-            // 
-            this.cbLogYear4.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear4.FormattingEnabled = true;
-            this.cbLogYear4.Location = new System.Drawing.Point(6, 147);
-            this.cbLogYear4.Name = "cbLogYear4";
-            this.cbLogYear4.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear4.TabIndex = 3;
-            this.cbLogYear4.SelectedIndexChanged += new System.EventHandler(this.Cb4LogYear_changed);
-            // 
-            // cbLogYear7
-            // 
-            this.cbLogYear7.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear7.FormattingEnabled = true;
-            this.cbLogYear7.Location = new System.Drawing.Point(6, 245);
-            this.cbLogYear7.Name = "cbLogYear7";
-            this.cbLogYear7.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear7.TabIndex = 93;
-            this.cbLogYear7.SelectedIndexChanged += new System.EventHandler(this.Cb7LogYear_changed);
-            // 
-            // cbLogYear5
-            // 
-            this.cbLogYear5.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear5.FormattingEnabled = true;
-            this.cbLogYear5.Location = new System.Drawing.Point(6, 179);
-            this.cbLogYear5.Name = "cbLogYear5";
-            this.cbLogYear5.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear5.TabIndex = 4;
-            this.cbLogYear5.SelectedIndexChanged += new System.EventHandler(this.Cb5LogYear_changed);
-            // 
-            // cbLogYear6
-            // 
-            this.cbLogYear6.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYear6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYear6.FormattingEnabled = true;
-            this.cbLogYear6.Location = new System.Drawing.Point(6, 213);
-            this.cbLogYear6.Name = "cbLogYear6";
-            this.cbLogYear6.Size = new System.Drawing.Size(110, 21);
-            this.cbLogYear6.TabIndex = 92;
-            this.cbLogYear6.SelectedIndexChanged += new System.EventHandler(this.Cb6LogYear_changed);
             // 
             // dataGridViewYearly
             // 
             this.dataGridViewYearly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewYearly.Location = new System.Drawing.Point(139, 95);
+            this.dataGridViewYearly.Location = new System.Drawing.Point(19, 60);
             this.dataGridViewYearly.Name = "dataGridViewYearly";
-            this.dataGridViewYearly.Size = new System.Drawing.Size(758, 372);
+            this.dataGridViewYearly.Size = new System.Drawing.Size(878, 436);
             this.dataGridViewYearly.TabIndex = 91;
             // 
             // label62
             // 
             this.label62.AutoSize = true;
             this.label62.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.Location = new System.Drawing.Point(353, 37);
+            this.label62.Location = new System.Drawing.Point(259, 16);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(309, 28);
             this.label62.TabIndex = 63;
@@ -994,6 +854,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btMonthlyStatReset);
             this.panel1.Controls.Add(this.dataGridViewMonthly);
             this.panel1.Controls.Add(this.label63);
             this.panel1.Controls.Add(this.cbStatMonthlyLogYear);
@@ -1001,6 +862,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(822, 522);
             this.panel1.TabIndex = 0;
+            // 
+            // btMonthlyStatReset
+            // 
+            this.btMonthlyStatReset.Location = new System.Drawing.Point(700, 22);
+            this.btMonthlyStatReset.Name = "btMonthlyStatReset";
+            this.btMonthlyStatReset.Size = new System.Drawing.Size(56, 23);
+            this.btMonthlyStatReset.TabIndex = 158;
+            this.btMonthlyStatReset.Text = "Reset";
+            this.btMonthlyStatReset.UseVisualStyleBackColor = true;
+            this.btMonthlyStatReset.Click += new System.EventHandler(this.btMonthlyStatReset_Click);
             // 
             // dataGridViewMonthly
             // 
@@ -1059,6 +930,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(775, 488);
             this.panel2.TabIndex = 129;
+            // 
+            // cbLogYearWeekly
+            // 
+            this.cbLogYearWeekly.BackColor = System.Drawing.Color.Silver;
+            this.cbLogYearWeekly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogYearWeekly.FormattingEnabled = true;
+            this.cbLogYearWeekly.Location = new System.Drawing.Point(29, 28);
+            this.cbLogYearWeekly.Name = "cbLogYearWeekly";
+            this.cbLogYearWeekly.Size = new System.Drawing.Size(136, 21);
+            this.cbLogYearWeekly.TabIndex = 178;
+            this.cbLogYearWeekly.SelectedIndexChanged += new System.EventHandler(this.RefreshWeekly);
             // 
             // dataGridViewWeekly
             // 
@@ -3300,16 +3182,15 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
-            // cbLogYearWeekly
+            // btYearlyStatReset
             // 
-            this.cbLogYearWeekly.BackColor = System.Drawing.Color.Silver;
-            this.cbLogYearWeekly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbLogYearWeekly.FormattingEnabled = true;
-            this.cbLogYearWeekly.Location = new System.Drawing.Point(29, 28);
-            this.cbLogYearWeekly.Name = "cbLogYearWeekly";
-            this.cbLogYearWeekly.Size = new System.Drawing.Size(136, 21);
-            this.cbLogYearWeekly.TabIndex = 178;
-            this.cbLogYearWeekly.SelectedIndexChanged += new System.EventHandler(this.RefreshWeekly);
+            this.btYearlyStatReset.Location = new System.Drawing.Point(779, 21);
+            this.btYearlyStatReset.Name = "btYearlyStatReset";
+            this.btYearlyStatReset.Size = new System.Drawing.Size(56, 23);
+            this.btYearlyStatReset.TabIndex = 159;
+            this.btYearlyStatReset.Text = "Reset";
+            this.btYearlyStatReset.UseVisualStyleBackColor = true;
+            this.btYearlyStatReset.Click += new System.EventHandler(this.btYearlyStatReset_Click);
             // 
             // MainForm
             // 
@@ -3340,7 +3221,6 @@
             this.tabPage4.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.groupBox20.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewYearly)).EndInit();
             this.tabPage7.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
@@ -3412,13 +3292,8 @@
         private System.Windows.Forms.TextBox tbBikeConfig;
         private System.Windows.Forms.Button btRemoveBikeConfig;
         private System.Windows.Forms.Button btAddBikeConfig;
-        private System.Windows.Forms.ComboBox cbLogYear1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btDeleteAllData;
-        private System.Windows.Forms.ComboBox cbLogYear5;
-        private System.Windows.Forms.ComboBox cbLogYear4;
-        private System.Windows.Forms.ComboBox cbLogYear3;
-        private System.Windows.Forms.ComboBox cbLogYear2;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox tbDayCount;
@@ -3572,11 +3447,6 @@
         private System.Windows.Forms.TextBox tbHighAscentWeekAll;
         private System.Windows.Forms.DataGridView dataGridViewMonthly;
         private System.Windows.Forms.DataGridView dataGridViewYearly;
-        private System.Windows.Forms.ComboBox cbLogYear10;
-        private System.Windows.Forms.ComboBox cbLogYear9;
-        private System.Windows.Forms.ComboBox cbLogYear8;
-        private System.Windows.Forms.ComboBox cbLogYear7;
-        private System.Windows.Forms.ComboBox cbLogYear6;
         private System.Windows.Forms.CheckBox cbMonthlyTextColor;
         private System.Windows.Forms.TextBox tbWhiteMonthly;
         private System.Windows.Forms.Label label7;
@@ -3587,10 +3457,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbColorYearly;
         private System.Windows.Forms.ComboBox cbYearlyColors;
-        private System.Windows.Forms.GroupBox groupBox20;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tbMaxYearlyMilesAllLogs;
         private System.Windows.Forms.ComboBox cbLogYearWeekly;
+        private System.Windows.Forms.Button btMonthlyStatReset;
+        private System.Windows.Forms.Button btYearlyStatReset;
     }
 }
 
