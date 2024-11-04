@@ -6250,5 +6250,6 @@ namespace CyclingLogApplication
         {
             RunYearlyStatisticsGrid();
         }
+
     }
 }

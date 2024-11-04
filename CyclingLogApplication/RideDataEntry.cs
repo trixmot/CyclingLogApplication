@@ -557,7 +557,9 @@ namespace CyclingLogApplication
                                 avgSpeed = results[2].ToString();
                                 bike = results[3].ToString();
                                 rideType = results[4].ToString();
-                                wind = results[5].ToString();
+                                double windTemp = double.Parse(results[5].ToString());
+                                windTemp = Math.Round(windTemp, 1);
+                                wind = windTemp.ToString();
                                 temp = results[6].ToString();
                                 avgCadence = results[7].ToString();
                                 maxCadence = results[8].ToString();

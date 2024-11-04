@@ -621,11 +621,11 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(62, 261);
+            this.label17.Location = new System.Drawing.Point(39, 261);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(32, 13);
+            this.label17.Size = new System.Drawing.Size(55, 13);
             this.label17.TabIndex = 32;
-            this.label17.Text = "Wind";
+            this.label17.Text = "Max Wind";
             // 
             // label15
             // 
@@ -829,11 +829,12 @@
             // 
             this.cbRideTypeDataEntry.FormattingEnabled = true;
             this.cbRideTypeDataEntry.Items.AddRange(new object[] {
-            "Recovery",
             "Base",
             "Distance",
+            "Race",
+            "Recovery",
             "Speed",
-            "Race"});
+            "Tour"});
             this.cbRideTypeDataEntry.Location = new System.Drawing.Point(380, 53);
             this.cbRideTypeDataEntry.Name = "cbRideTypeDataEntry";
             this.cbRideTypeDataEntry.Size = new System.Drawing.Size(77, 21);

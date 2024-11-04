@@ -476,7 +476,7 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(checkedItemNode13);
 
                     XmlNode checkedItemNode14 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME14");
-                    checkedItemNode14.InnerText = "Wind";
+                    checkedItemNode14.InnerText = "Max Wind";
                     rootNode.AppendChild(checkedItemNode14);
 
                     XmlNode checkedItemNode15 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME15");

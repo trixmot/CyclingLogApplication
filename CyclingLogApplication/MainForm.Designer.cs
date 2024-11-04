@@ -80,20 +80,19 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btYearlyStatReset = new System.Windows.Forms.Button();
             this.dataGridViewYearly = new System.Windows.Forms.DataGridView();
             this.label62 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.btMonthlyStatReset = new System.Windows.Forms.Button();
             this.dataGridViewMonthly = new System.Windows.Forms.DataGridView();
-            this.label63 = new System.Windows.Forms.Label();
             this.cbStatMonthlyLogYear = new System.Windows.Forms.ComboBox();
+            this.label63 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.cbLogYearWeekly = new System.Windows.Forms.ComboBox();
             this.dataGridViewWeekly = new System.Windows.Forms.DataGridView();
+            this.cbLogYearWeekly = new System.Windows.Forms.ComboBox();
             this.label65 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tbMaintDateCheck = new System.Windows.Forms.TextBox();
@@ -113,7 +112,7 @@
             this.dgvMaint = new System.Windows.Forms.DataGridView();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.dataGridViewBikes = new System.Windows.Forms.DataGridView();
+            this.label21 = new System.Windows.Forms.Label();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.label68 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -131,11 +130,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.tbConfigMilesNotInLog = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
+            this.dataGridViewBikes = new System.Windows.Forms.DataGridView();
             this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.groupBox21 = new System.Windows.Forms.GroupBox();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
             this.label86 = new System.Windows.Forms.Label();
-            this.dataGridViewRoutes = new System.Windows.Forms.DataGridView();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.label69 = new System.Windows.Forms.Label();
             this.tbRouteOldName = new System.Windows.Forms.TextBox();
@@ -146,6 +144,7 @@
             this.btRemoveRoute = new System.Windows.Forms.Button();
             this.tbRouteConfig = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.dataGridViewRoutes = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
@@ -220,7 +219,6 @@
             this.label29 = new System.Windows.Forms.Label();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btYearlyStatReset = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -235,22 +233,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewYearly)).BeginInit();
             this.tabPage7.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonthly)).BeginInit();
             this.tabPage8.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWeekly)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaint)).BeginInit();
             this.tabPage6.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBikes)).BeginInit();
             this.groupBox12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBikes)).BeginInit();
             this.tabPage9.SuspendLayout();
-            this.groupBox21.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRoutes)).BeginInit();
+            this.groupBox20.SuspendLayout();
             this.groupBox11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRoutes)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox23.SuspendLayout();
@@ -777,7 +773,7 @@
             this.tabControl1.Location = new System.Drawing.Point(34, 30);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(923, 591);
+            this.tabControl1.Size = new System.Drawing.Size(958, 591);
             this.tabControl1.TabIndex = 11;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
@@ -787,7 +783,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(915, 565);
+            this.tabPage1.Size = new System.Drawing.Size(950, 565);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Main";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -798,7 +794,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(915, 565);
+            this.tabPage4.Size = new System.Drawing.Size(950, 565);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Statistics-Yearly";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -808,11 +804,21 @@
             this.groupBox4.Controls.Add(this.btYearlyStatReset);
             this.groupBox4.Controls.Add(this.dataGridViewYearly);
             this.groupBox4.Controls.Add(this.label62);
-            this.groupBox4.Location = new System.Drawing.Point(6, 20);
+            this.groupBox4.Location = new System.Drawing.Point(29, 28);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(903, 518);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
+            // 
+            // btYearlyStatReset
+            // 
+            this.btYearlyStatReset.Location = new System.Drawing.Point(805, 23);
+            this.btYearlyStatReset.Name = "btYearlyStatReset";
+            this.btYearlyStatReset.Size = new System.Drawing.Size(56, 23);
+            this.btYearlyStatReset.TabIndex = 159;
+            this.btYearlyStatReset.Text = "Reset";
+            this.btYearlyStatReset.UseVisualStyleBackColor = true;
+            this.btYearlyStatReset.Click += new System.EventHandler(this.btYearlyStatReset_Click);
             // 
             // dataGridViewYearly
             // 
@@ -838,37 +844,29 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(915, 565);
+            this.tabPage7.Size = new System.Drawing.Size(950, 565);
             this.tabPage7.TabIndex = 5;
             this.tabPage7.Text = "Statistics-Monthly";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.panel1);
-            this.groupBox6.Location = new System.Drawing.Point(6, 6);
+            this.groupBox6.Controls.Add(this.btMonthlyStatReset);
+            this.groupBox6.Controls.Add(this.dataGridViewMonthly);
+            this.groupBox6.Controls.Add(this.cbStatMonthlyLogYear);
+            this.groupBox6.Controls.Add(this.label63);
+            this.groupBox6.Location = new System.Drawing.Point(46, 6);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(913, 558);
+            this.groupBox6.Size = new System.Drawing.Size(857, 558);
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btMonthlyStatReset);
-            this.panel1.Controls.Add(this.dataGridViewMonthly);
-            this.panel1.Controls.Add(this.label63);
-            this.panel1.Controls.Add(this.cbStatMonthlyLogYear);
-            this.panel1.Location = new System.Drawing.Point(44, 19);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(822, 522);
-            this.panel1.TabIndex = 0;
-            // 
             // btMonthlyStatReset
             // 
-            this.btMonthlyStatReset.Location = new System.Drawing.Point(700, 22);
+            this.btMonthlyStatReset.Location = new System.Drawing.Point(737, 50);
             this.btMonthlyStatReset.Name = "btMonthlyStatReset";
             this.btMonthlyStatReset.Size = new System.Drawing.Size(56, 23);
-            this.btMonthlyStatReset.TabIndex = 158;
+            this.btMonthlyStatReset.TabIndex = 160;
             this.btMonthlyStatReset.Text = "Reset";
             this.btMonthlyStatReset.UseVisualStyleBackColor = true;
             this.btMonthlyStatReset.Click += new System.EventHandler(this.btMonthlyStatReset_Click);
@@ -876,85 +874,77 @@
             // dataGridViewMonthly
             // 
             this.dataGridViewMonthly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMonthly.Location = new System.Drawing.Point(15, 65);
+            this.dataGridViewMonthly.Location = new System.Drawing.Point(23, 90);
             this.dataGridViewMonthly.Name = "dataGridViewMonthly";
             this.dataGridViewMonthly.Size = new System.Drawing.Size(791, 436);
             this.dataGridViewMonthly.TabIndex = 157;
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label63.Location = new System.Drawing.Point(267, 13);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(325, 28);
-            this.label63.TabIndex = 127;
-            this.label63.Text = "Statistics Monthly Log Data";
             // 
             // cbStatMonthlyLogYear
             // 
             this.cbStatMonthlyLogYear.BackColor = System.Drawing.Color.Silver;
             this.cbStatMonthlyLogYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatMonthlyLogYear.FormattingEnabled = true;
-            this.cbStatMonthlyLogYear.Location = new System.Drawing.Point(15, 22);
+            this.cbStatMonthlyLogYear.Location = new System.Drawing.Point(23, 52);
             this.cbStatMonthlyLogYear.Name = "cbStatMonthlyLogYear";
             this.cbStatMonthlyLogYear.Size = new System.Drawing.Size(136, 21);
             this.cbStatMonthlyLogYear.TabIndex = 0;
             this.cbStatMonthlyLogYear.SelectedIndexChanged += new System.EventHandler(this.CbStatMonthlyLogYear_changed);
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label63.Location = new System.Drawing.Point(326, 16);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(325, 28);
+            this.label63.TabIndex = 127;
+            this.label63.Text = "Statistics Monthly Log Data";
             // 
             // tabPage8
             // 
             this.tabPage8.Controls.Add(this.groupBox7);
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(915, 565);
+            this.tabPage8.Size = new System.Drawing.Size(950, 565);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Statistics-Weekly";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.panel2);
-            this.groupBox7.Location = new System.Drawing.Point(56, 17);
+            this.groupBox7.Controls.Add(this.dataGridViewWeekly);
+            this.groupBox7.Controls.Add(this.cbLogYearWeekly);
+            this.groupBox7.Controls.Add(this.label65);
+            this.groupBox7.Location = new System.Drawing.Point(69, 17);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(815, 529);
             this.groupBox7.TabIndex = 130;
             this.groupBox7.TabStop = false;
             // 
-            // panel2
+            // dataGridViewWeekly
             // 
-            this.panel2.Controls.Add(this.cbLogYearWeekly);
-            this.panel2.Controls.Add(this.dataGridViewWeekly);
-            this.panel2.Controls.Add(this.label65);
-            this.panel2.Location = new System.Drawing.Point(22, 19);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(775, 488);
-            this.panel2.TabIndex = 129;
+            this.dataGridViewWeekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewWeekly.Location = new System.Drawing.Point(40, 96);
+            this.dataGridViewWeekly.Name = "dataGridViewWeekly";
+            this.dataGridViewWeekly.Size = new System.Drawing.Size(739, 407);
+            this.dataGridViewWeekly.TabIndex = 177;
             // 
             // cbLogYearWeekly
             // 
             this.cbLogYearWeekly.BackColor = System.Drawing.Color.Silver;
             this.cbLogYearWeekly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogYearWeekly.FormattingEnabled = true;
-            this.cbLogYearWeekly.Location = new System.Drawing.Point(29, 28);
+            this.cbLogYearWeekly.Location = new System.Drawing.Point(40, 59);
             this.cbLogYearWeekly.Name = "cbLogYearWeekly";
             this.cbLogYearWeekly.Size = new System.Drawing.Size(136, 21);
             this.cbLogYearWeekly.TabIndex = 178;
             this.cbLogYearWeekly.SelectedIndexChanged += new System.EventHandler(this.RefreshWeekly);
             // 
-            // dataGridViewWeekly
-            // 
-            this.dataGridViewWeekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewWeekly.Location = new System.Drawing.Point(20, 62);
-            this.dataGridViewWeekly.Name = "dataGridViewWeekly";
-            this.dataGridViewWeekly.Size = new System.Drawing.Size(739, 407);
-            this.dataGridViewWeekly.TabIndex = 177;
-            // 
             // label65
             // 
             this.label65.AutoSize = true;
             this.label65.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label65.Location = new System.Drawing.Point(297, 19);
+            this.label65.Location = new System.Drawing.Point(314, 30);
             this.label65.Name = "label65";
             this.label65.Size = new System.Drawing.Size(206, 28);
             this.label65.TabIndex = 128;
@@ -980,14 +970,14 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(915, 565);
+            this.tabPage5.Size = new System.Drawing.Size(950, 565);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Maintenance";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // tbMaintDateCheck
             // 
-            this.tbMaintDateCheck.Location = new System.Drawing.Point(834, 59);
+            this.tbMaintDateCheck.Location = new System.Drawing.Point(883, 59);
             this.tbMaintDateCheck.Name = "tbMaintDateCheck";
             this.tbMaintDateCheck.Size = new System.Drawing.Size(47, 20);
             this.tbMaintDateCheck.TabIndex = 19;
@@ -995,7 +985,7 @@
             // 
             // tbMaintID
             // 
-            this.tbMaintID.Location = new System.Drawing.Point(834, 8);
+            this.tbMaintID.Location = new System.Drawing.Point(883, 8);
             this.tbMaintID.Name = "tbMaintID";
             this.tbMaintID.Size = new System.Drawing.Size(47, 20);
             this.tbMaintID.TabIndex = 12;
@@ -1014,7 +1004,7 @@
             // 
             // tbMaintAddUpdate
             // 
-            this.tbMaintAddUpdate.Location = new System.Drawing.Point(834, 34);
+            this.tbMaintAddUpdate.Location = new System.Drawing.Point(883, 34);
             this.tbMaintAddUpdate.Name = "tbMaintAddUpdate";
             this.tbMaintAddUpdate.Size = new System.Drawing.Size(47, 20);
             this.tbMaintAddUpdate.TabIndex = 18;
@@ -1041,7 +1031,7 @@
             // 
             // btMaintRemove
             // 
-            this.btMaintRemove.Location = new System.Drawing.Point(717, 30);
+            this.btMaintRemove.Location = new System.Drawing.Point(802, 34);
             this.btMaintRemove.Name = "btMaintRemove";
             this.btMaintRemove.Size = new System.Drawing.Size(75, 23);
             this.btMaintRemove.TabIndex = 4;
@@ -1086,13 +1076,13 @@
             // 
             this.rtbMaintComments.Location = new System.Drawing.Point(57, 92);
             this.rtbMaintComments.Name = "rtbMaintComments";
-            this.rtbMaintComments.Size = new System.Drawing.Size(798, 68);
+            this.rtbMaintComments.Size = new System.Drawing.Size(823, 68);
             this.rtbMaintComments.TabIndex = 10;
             this.rtbMaintComments.Text = "";
             // 
             // btMaintAdd
             // 
-            this.btMaintAdd.Location = new System.Drawing.Point(625, 30);
+            this.btMaintAdd.Location = new System.Drawing.Point(710, 34);
             this.btMaintAdd.Name = "btMaintAdd";
             this.btMaintAdd.Size = new System.Drawing.Size(75, 23);
             this.btMaintAdd.TabIndex = 3;
@@ -1115,7 +1105,7 @@
             this.dgvMaint.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMaint.Location = new System.Drawing.Point(57, 166);
             this.dgvMaint.Name = "dgvMaint";
-            this.dgvMaint.Size = new System.Drawing.Size(798, 366);
+            this.dgvMaint.Size = new System.Drawing.Size(823, 366);
             this.dgvMaint.TabIndex = 0;
             this.dgvMaint.Click += new System.EventHandler(this.dgvMaint_Click);
             // 
@@ -1125,30 +1115,31 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(915, 565);
+            this.tabPage6.Size = new System.Drawing.Size(950, 565);
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "Bikes";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.dataGridViewBikes);
-            this.groupBox5.Controls.Add(this.groupBox12);
             this.groupBox5.Controls.Add(this.label21);
-            this.groupBox5.Location = new System.Drawing.Point(65, 34);
+            this.groupBox5.Controls.Add(this.groupBox12);
+            this.groupBox5.Controls.Add(this.dataGridViewBikes);
+            this.groupBox5.Location = new System.Drawing.Point(43, 36);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(783, 484);
-            this.groupBox5.TabIndex = 0;
+            this.groupBox5.Size = new System.Drawing.Size(864, 486);
+            this.groupBox5.TabIndex = 72;
             this.groupBox5.TabStop = false;
             // 
-            // dataGridViewBikes
+            // label21
             // 
-            this.dataGridViewBikes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewBikes.Location = new System.Drawing.Point(20, 69);
-            this.dataGridViewBikes.Name = "dataGridViewBikes";
-            this.dataGridViewBikes.Size = new System.Drawing.Size(467, 355);
-            this.dataGridViewBikes.TabIndex = 33;
-            this.dataGridViewBikes.Click += new System.EventHandler(this.dataGridViewBikes_Click);
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(366, 16);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(77, 28);
+            this.label21.TabIndex = 19;
+            this.label21.Text = "Bikes";
             // 
             // groupBox12
             // 
@@ -1168,16 +1159,16 @@
             this.groupBox12.Controls.Add(this.label5);
             this.groupBox12.Controls.Add(this.label27);
             this.groupBox12.Controls.Add(this.tbConfigMilesNotInLog);
-            this.groupBox12.Location = new System.Drawing.Point(511, 69);
+            this.groupBox12.Location = new System.Drawing.Point(544, 77);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(254, 358);
+            this.groupBox12.Size = new System.Drawing.Size(254, 364);
             this.groupBox12.TabIndex = 71;
             this.groupBox12.TabStop = false;
             // 
             // label68
             // 
             this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(27, 113);
+            this.label68.Location = new System.Drawing.Point(34, 114);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(29, 13);
             this.label68.TabIndex = 29;
@@ -1186,7 +1177,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(33, 94);
+            this.label26.Location = new System.Drawing.Point(40, 95);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(23, 13);
             this.label26.TabIndex = 28;
@@ -1194,7 +1185,7 @@
             // 
             // tbBikeOldName
             // 
-            this.tbBikeOldName.Location = new System.Drawing.Point(62, 87);
+            this.tbBikeOldName.Location = new System.Drawing.Point(69, 88);
             this.tbBikeOldName.Name = "tbBikeOldName";
             this.tbBikeOldName.ReadOnly = true;
             this.tbBikeOldName.Size = new System.Drawing.Size(141, 20);
@@ -1213,7 +1204,7 @@
             // label67
             // 
             this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(36, 180);
+            this.label67.Location = new System.Drawing.Point(43, 181);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(52, 13);
             this.label67.TabIndex = 25;
@@ -1221,7 +1212,7 @@
             // 
             // tbBikeLogMiles
             // 
-            this.tbBikeLogMiles.Location = new System.Drawing.Point(94, 177);
+            this.tbBikeLogMiles.Location = new System.Drawing.Point(101, 178);
             this.tbBikeLogMiles.Name = "tbBikeLogMiles";
             this.tbBikeLogMiles.ReadOnly = true;
             this.tbBikeLogMiles.Size = new System.Drawing.Size(81, 20);
@@ -1231,7 +1222,7 @@
             // label66
             // 
             this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(30, 209);
+            this.label66.Location = new System.Drawing.Point(37, 210);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(58, 13);
             this.label66.TabIndex = 23;
@@ -1239,7 +1230,7 @@
             // 
             // tbBikeTotalMiles
             // 
-            this.tbBikeTotalMiles.Location = new System.Drawing.Point(94, 206);
+            this.tbBikeTotalMiles.Location = new System.Drawing.Point(101, 207);
             this.tbBikeTotalMiles.Name = "tbBikeTotalMiles";
             this.tbBikeTotalMiles.ReadOnly = true;
             this.tbBikeTotalMiles.Size = new System.Drawing.Size(81, 20);
@@ -1249,7 +1240,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(78, 20);
+            this.label28.Location = new System.Drawing.Point(90, 20);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(101, 13);
             this.label28.TabIndex = 21;
@@ -1267,7 +1258,7 @@
             // 
             // tbBikeAllMilesTotal
             // 
-            this.tbBikeAllMilesTotal.Location = new System.Drawing.Point(89, 36);
+            this.tbBikeAllMilesTotal.Location = new System.Drawing.Point(101, 36);
             this.tbBikeAllMilesTotal.Name = "tbBikeAllMilesTotal";
             this.tbBikeAllMilesTotal.ReadOnly = true;
             this.tbBikeAllMilesTotal.Size = new System.Drawing.Size(80, 20);
@@ -1287,7 +1278,7 @@
             // 
             // tbBikeConfig
             // 
-            this.tbBikeConfig.Location = new System.Drawing.Point(62, 110);
+            this.tbBikeConfig.Location = new System.Drawing.Point(69, 111);
             this.tbBikeConfig.Name = "tbBikeConfig";
             this.tbBikeConfig.Size = new System.Drawing.Size(141, 20);
             this.tbBikeConfig.TabIndex = 11;
@@ -1295,7 +1286,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(78, 71);
+            this.label5.Location = new System.Drawing.Point(85, 72);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 16;
@@ -1304,7 +1295,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(12, 154);
+            this.label27.Location = new System.Drawing.Point(19, 155);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(77, 13);
             this.label27.TabIndex = 21;
@@ -1312,62 +1303,52 @@
             // 
             // tbConfigMilesNotInLog
             // 
-            this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(94, 151);
+            this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(101, 152);
             this.tbConfigMilesNotInLog.Name = "tbConfigMilesNotInLog";
             this.tbConfigMilesNotInLog.Size = new System.Drawing.Size(81, 20);
             this.tbConfigMilesNotInLog.TabIndex = 17;
             this.tbConfigMilesNotInLog.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label21
+            // dataGridViewBikes
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(208, 29);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(77, 28);
-            this.label21.TabIndex = 19;
-            this.label21.Text = "Bikes";
+            this.dataGridViewBikes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewBikes.Location = new System.Drawing.Point(53, 86);
+            this.dataGridViewBikes.Name = "dataGridViewBikes";
+            this.dataGridViewBikes.Size = new System.Drawing.Size(467, 355);
+            this.dataGridViewBikes.TabIndex = 33;
+            this.dataGridViewBikes.Click += new System.EventHandler(this.dataGridViewBikes_Click);
             // 
             // tabPage9
             // 
-            this.tabPage9.Controls.Add(this.groupBox21);
+            this.tabPage9.Controls.Add(this.groupBox20);
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(915, 565);
+            this.tabPage9.Size = new System.Drawing.Size(950, 565);
             this.tabPage9.TabIndex = 7;
             this.tabPage9.Text = "Routes";
             this.tabPage9.UseVisualStyleBackColor = true;
             // 
-            // groupBox21
+            // groupBox20
             // 
-            this.groupBox21.Controls.Add(this.label86);
-            this.groupBox21.Controls.Add(this.dataGridViewRoutes);
-            this.groupBox21.Controls.Add(this.groupBox11);
-            this.groupBox21.Location = new System.Drawing.Point(59, 33);
-            this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(801, 490);
-            this.groupBox21.TabIndex = 0;
-            this.groupBox21.TabStop = false;
+            this.groupBox20.Controls.Add(this.label86);
+            this.groupBox20.Controls.Add(this.groupBox11);
+            this.groupBox20.Controls.Add(this.dataGridViewRoutes);
+            this.groupBox20.Location = new System.Drawing.Point(46, 38);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(861, 492);
+            this.groupBox20.TabIndex = 74;
+            this.groupBox20.TabStop = false;
             // 
             // label86
             // 
             this.label86.AutoSize = true;
             this.label86.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label86.Location = new System.Drawing.Point(197, 30);
+            this.label86.Location = new System.Drawing.Point(362, 16);
             this.label86.Name = "label86";
             this.label86.Size = new System.Drawing.Size(92, 28);
             this.label86.TabIndex = 73;
             this.label86.Text = "Routes";
-            // 
-            // dataGridViewRoutes
-            // 
-            this.dataGridViewRoutes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewRoutes.Location = new System.Drawing.Point(31, 67);
-            this.dataGridViewRoutes.Name = "dataGridViewRoutes";
-            this.dataGridViewRoutes.Size = new System.Drawing.Size(449, 384);
-            this.dataGridViewRoutes.TabIndex = 71;
-            this.dataGridViewRoutes.Click += new System.EventHandler(this.dataGridViewRoutes_Click);
             // 
             // groupBox11
             // 
@@ -1380,9 +1361,9 @@
             this.groupBox11.Controls.Add(this.btRemoveRoute);
             this.groupBox11.Controls.Add(this.tbRouteConfig);
             this.groupBox11.Controls.Add(this.label4);
-            this.groupBox11.Location = new System.Drawing.Point(522, 67);
+            this.groupBox11.Location = new System.Drawing.Point(537, 68);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(241, 384);
+            this.groupBox11.Size = new System.Drawing.Size(241, 393);
             this.groupBox11.TabIndex = 70;
             this.groupBox11.TabStop = false;
             // 
@@ -1467,13 +1448,22 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Old Route Label";
             // 
+            // dataGridViewRoutes
+            // 
+            this.dataGridViewRoutes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRoutes.Location = new System.Drawing.Point(64, 77);
+            this.dataGridViewRoutes.Name = "dataGridViewRoutes";
+            this.dataGridViewRoutes.Size = new System.Drawing.Size(449, 384);
+            this.dataGridViewRoutes.TabIndex = 71;
+            this.dataGridViewRoutes.Click += new System.EventHandler(this.dataGridViewRoutes_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(915, 565);
+            this.tabPage2.Size = new System.Drawing.Size(950, 565);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Settings";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1487,7 +1477,7 @@
             this.groupBox2.Controls.Add(this.groupBox9);
             this.groupBox2.Controls.Add(this.groupBox10);
             this.groupBox2.Controls.Add(this.label64);
-            this.groupBox2.Location = new System.Drawing.Point(71, 23);
+            this.groupBox2.Location = new System.Drawing.Point(79, 23);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(780, 518);
             this.groupBox2.TabIndex = 0;
@@ -3103,7 +3093,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(915, 565);
+            this.tabPage3.Size = new System.Drawing.Size(950, 565);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "About";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -3117,7 +3107,7 @@
             this.groupBox3.Controls.Add(this.button11);
             this.groupBox3.Controls.Add(this.lbVersion);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Location = new System.Drawing.Point(77, 60);
+            this.groupBox3.Location = new System.Drawing.Point(90, 62);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(764, 427);
             this.groupBox3.TabIndex = 0;
@@ -3182,21 +3172,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
-            // btYearlyStatReset
-            // 
-            this.btYearlyStatReset.Location = new System.Drawing.Point(779, 21);
-            this.btYearlyStatReset.Name = "btYearlyStatReset";
-            this.btYearlyStatReset.Size = new System.Drawing.Size(56, 23);
-            this.btYearlyStatReset.TabIndex = 159;
-            this.btYearlyStatReset.Text = "Reset";
-            this.btYearlyStatReset.UseVisualStyleBackColor = true;
-            this.btYearlyStatReset.Click += new System.EventHandler(this.btYearlyStatReset_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(992, 724);
+            this.ClientSize = new System.Drawing.Size(1037, 724);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -3224,13 +3204,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewYearly)).EndInit();
             this.tabPage7.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonthly)).EndInit();
             this.tabPage8.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWeekly)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
@@ -3238,15 +3216,15 @@
             this.tabPage6.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBikes)).EndInit();
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBikes)).EndInit();
             this.tabPage9.ResumeLayout(false);
-            this.groupBox21.ResumeLayout(false);
-            this.groupBox21.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRoutes)).EndInit();
+            this.groupBox20.ResumeLayout(false);
+            this.groupBox20.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRoutes)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -3314,7 +3292,6 @@
         private System.Windows.Forms.TextBox tbMaintMiles;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TabPage tabPage6;
-        private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button btMaintRemove;
         private System.Windows.Forms.Label lbMaintError;
         private System.Windows.Forms.TextBox tbStatisticsTotalMiles;
@@ -3331,7 +3308,6 @@
         private System.Windows.Forms.ComboBox cbLogYear;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox cbStatMonthlyLogYear;
         private System.Windows.Forms.Label label62;
         private System.Windows.Forms.Label label60;
@@ -3344,7 +3320,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.Label label65;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label74;
         private System.Windows.Forms.Label label75;
         private System.Windows.Forms.TextBox tbTotalElevGain;
@@ -3380,10 +3355,8 @@
         private System.Windows.Forms.Button btRefreshData;
         private System.Windows.Forms.Button btCustomDataField1;
         private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.GroupBox groupBox21;
         private System.Windows.Forms.Label label85;
         private System.Windows.Forms.Label label84;
-        private System.Windows.Forms.DataGridView dataGridViewRoutes;
         private System.Windows.Forms.Label label86;
         private System.Windows.Forms.Label label87;
         private System.Windows.Forms.TextBox tbTotalRoutes;
@@ -3460,8 +3433,11 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tbMaxYearlyMilesAllLogs;
         private System.Windows.Forms.ComboBox cbLogYearWeekly;
-        private System.Windows.Forms.Button btMonthlyStatReset;
         private System.Windows.Forms.Button btYearlyStatReset;
+        private System.Windows.Forms.DataGridView dataGridViewRoutes;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox20;
+        private System.Windows.Forms.Button btMonthlyStatReset;
     }
 }
 

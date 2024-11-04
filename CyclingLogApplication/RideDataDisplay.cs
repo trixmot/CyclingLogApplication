@@ -343,6 +343,10 @@ namespace CyclingLogApplication
                     {
                         fieldName = "Custom2";
                     }
+                    else if (fieldName.Equals("Max Wind"))
+                    {
+                        fieldName = "Wind";
+                    }
 
                     fieldString += ",[" + fieldName + "]";              
                     
@@ -687,6 +691,7 @@ namespace CyclingLogApplication
 
             bool customDataField1Checked = false;
             bool customDataField2Checked = false;
+            bool windFieldChecked = false;
 
             string fieldName;
 
@@ -787,6 +792,11 @@ namespace CyclingLogApplication
                     else if (fieldName.Equals("Comments"))
                     {
                         commentField = true;
+                    }
+                    else if (fieldName.Equals("Max Wind"))
+                    {
+                        fieldName = "Wind";
+                        windFieldChecked = true;
                     }
 
                     fieldString += ",[" + fieldName + "]";
@@ -987,6 +997,11 @@ namespace CyclingLogApplication
                 }
 
                 dataTable.Columns["WeekNumber"].ColumnName = "Week#";
+                
+                if (windFieldChecked)
+                {
+                    dataTable.Columns["Wind"].ColumnName = "Max Wind";
+                }               
 
                 dataGridView1.DataSource = dataTable;
                 dataGridView1.Columns["AvgSpeed"].DefaultCellStyle.Format = "0.00";
@@ -2057,6 +2072,10 @@ namespace CyclingLogApplication
                     else if (fieldName.Equals(custom2))
                     {
                         fieldName = "Custom2";
+                    }
+                    else if (fieldName.Equals("Max Wind"))
+                    {
+                        fieldName = "Wind";
                     }
 
                     fieldString += ",[" + fieldName + "]";
