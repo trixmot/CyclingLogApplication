@@ -390,18 +390,17 @@ namespace CyclingLogApplication
                 cbBikeColors.SelectedIndex = cbBikeColors.FindStringExact(gridBikeColor);
                 cbRouteColors.SelectedIndex = cbRouteColors.FindStringExact(gridRouteColor);
 
-                RefreshData();
-                formloading = false;
-
-                tbMaintAddUpdate.Text = "Add";
-
                 RunYearlyStatisticsGrid();
-
                 int logYearIndex = GetLogYearIndex_ByName(cbStatMonthlyLogYear.SelectedItem.ToString());
                 RunMonthlyStatisticsGrid(logYearIndex);
-
+                RefreshWeekly();
+                RefreshBikes();
+                RefreshRoutes();
+                GetMaintLog();
                 UpdateStatsAllLogs();
 
+                formloading = false;
+                tbMaintAddUpdate.Text = "Add";
             }
             catch (Exception ex)
             {
@@ -2153,6 +2152,33 @@ namespace CyclingLogApplication
             return weeklyMax;
         }
 
+        private static double GetHighMileageMonthNumber(int logIndex)
+        {
+            List<object> objectValues = new List<object>();
+            objectValues.Add(logIndex);
+            double maxMonthlyMiles = 0;
+            double temp = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetTotalMiles_MonthlyForYear", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        temp = double.Parse(results[0].ToString());
+                        string testTemp = results[1].ToString();
+                        if (temp > maxMonthlyMiles)
+                        {
+                            maxMonthlyMiles = temp;
+                        }
+                    }
+                }
+            }
+
+            return maxMonthlyMiles;
+        }
+
         //Get the highest ascent for a week value:
         private static int GetHighAscentWeekNumber(int logIndex)
         {
@@ -3067,135 +3093,16 @@ namespace CyclingLogApplication
         private void RunMonthlyStatisticsGrid(int logYearIndex)
         {
 
-            string month1R1 = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 1).ToString();
-            string month2R1 = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 2).ToString();
-            string month3R1 = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 3).ToString();
-            string month4R1 = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 4).ToString();
-            string month5R1 = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 5).ToString();
-            string month6R1 = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 6).ToString();
-            string month7R1 = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 7).ToString();
-            string month8R1 = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 8).ToString();
-            string month9R1 = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 9).ToString();
-            string month10R1 = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 10).ToString();
-            string month11R1 = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 11).ToString();
-            string month12R1 = GetTotalMilesMonthlyForSelectedLog(logYearIndex, 12).ToString();
-
-            string month1R2 = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 1).ToString();
-            string month2R2 = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 2).ToString();
-            string month3R2 = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 3).ToString();
-            string month4R2 = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 4).ToString();
-            string month5R2 = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 5).ToString();
-            string month6R2 = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 6).ToString();
-            string month7R2 = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 7).ToString();
-            string month8R2 = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 8).ToString();
-            string month9R2 = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 9).ToString();
-            string month10R2 = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 10).ToString();
-            string month11R2 = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 11).ToString();
-            string month12R2 = GetTotalRidesMonthlyForSelectedLog(logYearIndex, 12).ToString();
-
-            string month1R3 = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 1).ToString();
-            string month2R3 = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 2).ToString();
-            string month3R3 = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 3).ToString();
-            string month4R3 = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 4).ToString();
-            string month5R3 = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 5).ToString();
-            string month6R3 = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 6).ToString();
-            string month7R3 = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 7).ToString();
-            string month8R3 = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 8).ToString();
-            string month9R3 = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 9).ToString();
-            string month10R3 = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 10).ToString();
-            string month11R3 = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 11).ToString();
-            string month12R3 = GetAvgMonthlyRidesForSelectedLog(logYearIndex, 12).ToString();
-
-            string month1R4 = GetAverageMonthlyMilesPerWeek(logYearIndex, 1).ToString();
-            string month2R4 = GetAverageMonthlyMilesPerWeek(logYearIndex, 2).ToString();
-            string month3R4 = GetAverageMonthlyMilesPerWeek(logYearIndex, 3).ToString();
-            string month4R4 = GetAverageMonthlyMilesPerWeek(logYearIndex, 4).ToString();
-            string month5R4 = GetAverageMonthlyMilesPerWeek(logYearIndex, 5).ToString();
-            string month6R4 = GetAverageMonthlyMilesPerWeek(logYearIndex, 6).ToString();
-            string month7R4 = GetAverageMonthlyMilesPerWeek(logYearIndex, 7).ToString();
-            string month8R4 = GetAverageMonthlyMilesPerWeek(logYearIndex, 8).ToString();
-            string month9R4 = GetAverageMonthlyMilesPerWeek(logYearIndex, 9).ToString();
-            string month10R4 = GetAverageMonthlyMilesPerWeek(logYearIndex, 10).ToString();
-            string month11R4 = GetAverageMonthlyMilesPerWeek(logYearIndex, 11).ToString();
-            string month12R4 = GetAverageMonthlyMilesPerWeek(logYearIndex, 12).ToString();
-
-            string month1R5 = GetAverageMonthlyMilesPerRide(logYearIndex, 1).ToString();
-            string month2R5 = GetAverageMonthlyMilesPerRide(logYearIndex, 2).ToString();
-            string month3R5 = GetAverageMonthlyMilesPerRide(logYearIndex, 3).ToString();
-            string month4R5 = GetAverageMonthlyMilesPerRide(logYearIndex, 4).ToString();
-            string month5R5 = GetAverageMonthlyMilesPerRide(logYearIndex, 5).ToString();
-            string month6R5 = GetAverageMonthlyMilesPerRide(logYearIndex, 6).ToString();
-            string month7R5 = GetAverageMonthlyMilesPerRide(logYearIndex, 7).ToString();
-            string month8R5 = GetAverageMonthlyMilesPerRide(logYearIndex, 8).ToString();
-            string month9R5 = GetAverageMonthlyMilesPerRide(logYearIndex, 9).ToString();
-            string month10R5 = GetAverageMonthlyMilesPerRide(logYearIndex, 10).ToString();
-            string month11R5 = GetAverageMonthlyMilesPerRide(logYearIndex, 11).ToString();
-            string month12R5 = GetAverageMonthlyMilesPerRide(logYearIndex, 12).ToString();
-
-            string month1R6 = GetMonthlyHighMileageWeekNumber(logYearIndex, 1).ToString();
-            string month2R6 = GetMonthlyHighMileageWeekNumber(logYearIndex, 2).ToString();
-            string month3R6 = GetMonthlyHighMileageWeekNumber(logYearIndex, 3).ToString();
-            string month4R6 = GetMonthlyHighMileageWeekNumber(logYearIndex, 4).ToString();
-            string month5R6 = GetMonthlyHighMileageWeekNumber(logYearIndex, 5).ToString();
-            string month6R6 = GetMonthlyHighMileageWeekNumber(logYearIndex, 6).ToString();
-            string month7R6 = GetMonthlyHighMileageWeekNumber(logYearIndex, 7).ToString();
-            string month8R6 = GetMonthlyHighMileageWeekNumber(logYearIndex, 8).ToString();
-            string month9R6 = GetMonthlyHighMileageWeekNumber(logYearIndex, 9).ToString();
-            string month10R6 = GetMonthlyHighMileageWeekNumber(logYearIndex, 10).ToString();
-            string month11R6 = GetMonthlyHighMileageWeekNumber(logYearIndex, 11).ToString();
-            string month12R6 = GetMonthlyHighMileageWeekNumber(logYearIndex, 12).ToString();
-
-            string month1R7 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 1).ToString();
-            string month2R7 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 2).ToString();
-            string month3R7 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 3).ToString();
-            string month4R7 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 4).ToString();
-            string month5R7 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 5).ToString();
-            string month6R7 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 6).ToString();
-            string month7R7 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 7).ToString();
-            string month8R7 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 8).ToString();
-            string month9R7 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 9).ToString();
-            string month10R7 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 10).ToString();
-            string month11R7 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 11).ToString();
-            string month12R7 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 12).ToString();
-
-            string tbElevGainMonthly1 = GetTotalElevGainMonthly(logYearIndex, 1).ToString();
-            string tbElevGainMonthly2 = GetTotalElevGainMonthly(logYearIndex, 2).ToString();
-            string tbElevGainMonthly3 = GetTotalElevGainMonthly(logYearIndex, 3).ToString();
-            string tbElevGainMonthly4 = GetTotalElevGainMonthly(logYearIndex, 4).ToString();
-            string tbElevGainMonthly5 = GetTotalElevGainMonthly(logYearIndex, 5).ToString();
-            string tbElevGainMonthly6 = GetTotalElevGainMonthly(logYearIndex, 6).ToString();
-            string tbElevGainMonthly7 = GetTotalElevGainMonthly(logYearIndex, 7).ToString();
-            string tbElevGainMonthly8 = GetTotalElevGainMonthly(logYearIndex, 8).ToString();
-            string tbElevGainMonthly9 = GetTotalElevGainMonthly(logYearIndex, 9).ToString();
-            string tbElevGainMonthly10 = GetTotalElevGainMonthly(logYearIndex, 10).ToString();
-            string tbElevGainMonthly11 = GetTotalElevGainMonthly(logYearIndex, 11).ToString();
-            string tbElevGainMonthly12 = GetTotalElevGainMonthly(logYearIndex, 12).ToString();
-
-            string tbTimeMonthly1 = GetTotalMovingTimeMonthly(logYearIndex, 1).ToString();
-            string tbTimeMonthly2 = GetTotalMovingTimeMonthly(logYearIndex, 2).ToString();
-            string tbTimeMonthly3 = GetTotalMovingTimeMonthly(logYearIndex, 3).ToString();
-            string tbTimeMonthly4 = GetTotalMovingTimeMonthly(logYearIndex, 4).ToString();
-            string tbTimeMonthly5 = GetTotalMovingTimeMonthly(logYearIndex, 5).ToString();
-            string tbTimeMonthly6 = GetTotalMovingTimeMonthly(logYearIndex, 6).ToString();
-            string tbTimeMonthly7 = GetTotalMovingTimeMonthly(logYearIndex, 7).ToString();
-            string tbTimeMonthly8 = GetTotalMovingTimeMonthly(logYearIndex, 8).ToString();
-            string tbTimeMonthly9 = GetTotalMovingTimeMonthly(logYearIndex, 9).ToString();
-            string tbTimeMonthly10 = GetTotalMovingTimeMonthly(logYearIndex, 10).ToString();
-            string tbTimeMonthly11 = GetTotalMovingTimeMonthly(logYearIndex, 11).ToString();
-            string tbTimeMonthly12 = GetTotalMovingTimeMonthly(logYearIndex, 12).ToString();
-
-            string maxElevMonthly1 = GetMaxElevMonthlyForSelectedLog(logYearIndex, 1).ToString();
-            string maxElevMonthly2 = GetMaxElevMonthlyForSelectedLog(logYearIndex, 2).ToString();
-            string maxElevMonthly3 = GetMaxElevMonthlyForSelectedLog(logYearIndex, 3).ToString();
-            string maxElevMonthly4 = GetMaxElevMonthlyForSelectedLog(logYearIndex, 4).ToString();
-            string maxElevMonthly5 = GetMaxElevMonthlyForSelectedLog(logYearIndex, 5).ToString();
-            string maxElevMonthly6 = GetMaxElevMonthlyForSelectedLog(logYearIndex, 6).ToString();
-            string maxElevMonthly7 = GetMaxElevMonthlyForSelectedLog(logYearIndex, 7).ToString();
-            string maxElevMonthly8 = GetMaxElevMonthlyForSelectedLog(logYearIndex, 8).ToString();
-            string maxElevMonthly9 = GetMaxElevMonthlyForSelectedLog(logYearIndex, 9).ToString();
-            string maxElevMonthly10 = GetMaxElevMonthlyForSelectedLog(logYearIndex, 10).ToString();
-            string maxElevMonthly11 = GetMaxElevMonthlyForSelectedLog(logYearIndex, 11).ToString();
-            string maxElevMonthly12 = GetMaxElevMonthlyForSelectedLog(logYearIndex, 12).ToString();
+            double totalMiles;
+            int totalRides;
+            double avgRidesPerWeek;
+            double avgMilesPerWeek;
+            double avgMilesPerRide;
+            double hightMileageWeek;
+            double longestRide;
+            int totalElev;          
+            int maxElev;        
+            string movingTime;
 
             try
             {
@@ -3216,8 +3123,6 @@ namespace CyclingLogApplication
                 dataGridViewMonthly.Columns[8].Name = "Max Ascent";
                 dataGridViewMonthly.Columns[9].Name = "Moving Time";
 
-                //dataGridViewMonthly.Columns[0].ValueType = typeof(double);
-                //dataGridViewMonthly.Columns[1].ValueType = typeof(double);
                 dataGridViewMonthly.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 dataGridViewMonthly.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
                 dataGridViewMonthly.ReadOnly = true;
@@ -3233,17 +3138,6 @@ namespace CyclingLogApplication
                 dataGridViewMonthly.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridViewMonthly.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridViewMonthly.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                //dataGridViewMonthly.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewMonthly.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewMonthly.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewMonthly.Columns[3].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewMonthly.Columns[4].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewMonthly.Columns[5].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewMonthly.Columns[6].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewMonthly.Columns[7].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewMonthly.Columns[8].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewMonthly.Columns[9].SortMode = DataGridViewColumnSortMode.NotSortable;
 
                 // Resize the master DataGridView columns to fit the newly loaded data.
                 //dataGridViewMonthly.AutoResizeColumns();
@@ -3272,18 +3166,22 @@ namespace CyclingLogApplication
                 dataGridViewMonthly.Columns[8].ValueType = typeof(int);
                 dataGridViewMonthly.Columns[9].ValueType = typeof(string);
 
-                dataGridViewMonthly.Rows.Add(double.Parse(month1R1), int.Parse(month1R2), double.Parse(month1R3), double.Parse(month1R4), double.Parse(month1R5), double.Parse(month1R6), double.Parse(month1R7), int.Parse(tbElevGainMonthly1), int.Parse(maxElevMonthly1), tbTimeMonthly1);
-                dataGridViewMonthly.Rows.Add(double.Parse(month2R1), int.Parse(month2R2), double.Parse(month2R3), double.Parse(month2R4), double.Parse(month2R5), double.Parse(month2R6), double.Parse(month2R7), int.Parse(tbElevGainMonthly2), int.Parse(maxElevMonthly2), tbTimeMonthly2);
-                dataGridViewMonthly.Rows.Add(double.Parse(month3R1), int.Parse(month3R2), double.Parse(month3R3), double.Parse(month3R4), double.Parse(month3R5), double.Parse(month3R6), double.Parse(month3R7), int.Parse(tbElevGainMonthly3), int.Parse(maxElevMonthly3), tbTimeMonthly3);
-                dataGridViewMonthly.Rows.Add(double.Parse(month4R1), int.Parse(month4R2), double.Parse(month4R3), double.Parse(month4R4), double.Parse(month4R5), double.Parse(month4R6), double.Parse(month4R7), int.Parse(tbElevGainMonthly4), int.Parse(maxElevMonthly4), tbTimeMonthly4);
-                dataGridViewMonthly.Rows.Add(double.Parse(month5R1), int.Parse(month5R2), double.Parse(month5R3), double.Parse(month5R4), double.Parse(month5R5), double.Parse(month5R6), double.Parse(month5R7), int.Parse(tbElevGainMonthly5), int.Parse(maxElevMonthly5), tbTimeMonthly5);
-                dataGridViewMonthly.Rows.Add(double.Parse(month6R1), int.Parse(month6R2), double.Parse(month6R3), double.Parse(month6R4), double.Parse(month6R5), double.Parse(month6R6), double.Parse(month6R7), int.Parse(tbElevGainMonthly6), int.Parse(maxElevMonthly6), tbTimeMonthly6);
-                dataGridViewMonthly.Rows.Add(double.Parse(month7R1), int.Parse(month7R2), double.Parse(month7R3), double.Parse(month7R4), double.Parse(month7R5), double.Parse(month7R6), double.Parse(month7R7), int.Parse(tbElevGainMonthly7), int.Parse(maxElevMonthly7), tbTimeMonthly7);
-                dataGridViewMonthly.Rows.Add(double.Parse(month8R1), int.Parse(month8R2), double.Parse(month8R3), double.Parse(month8R4), double.Parse(month8R5), double.Parse(month8R6), double.Parse(month8R7), int.Parse(tbElevGainMonthly8), int.Parse(maxElevMonthly8), tbTimeMonthly8);
-                dataGridViewMonthly.Rows.Add(double.Parse(month9R1), int.Parse(month9R2), double.Parse(month9R3), double.Parse(month9R4), double.Parse(month9R5), double.Parse(month9R6), double.Parse(month9R7), int.Parse(tbElevGainMonthly9), int.Parse(maxElevMonthly9), tbTimeMonthly9);
-                dataGridViewMonthly.Rows.Add(double.Parse(month10R1), int.Parse(month10R2), double.Parse(month10R3), double.Parse(month10R4), double.Parse(month10R5), double.Parse(month10R6), double.Parse(month10R7), int.Parse(tbElevGainMonthly10), int.Parse(maxElevMonthly10), tbTimeMonthly10);
-                dataGridViewMonthly.Rows.Add(double.Parse(month11R1), int.Parse(month11R2), double.Parse(month11R3), double.Parse(month11R4), double.Parse(month11R5), double.Parse(month11R6), double.Parse(month11R7), int.Parse(tbElevGainMonthly11), int.Parse(maxElevMonthly11), tbTimeMonthly11);
-                dataGridViewMonthly.Rows.Add(double.Parse(month12R1), int.Parse(month12R2), double.Parse(month12R3), double.Parse(month12R4), double.Parse(month12R5), double.Parse(month12R6), double.Parse(month12R7), int.Parse(tbElevGainMonthly12), int.Parse(maxElevMonthly12), tbTimeMonthly12);
+                //Loop through each month for the logindex:
+                for (int i = 1; i < 13; i++)
+                {
+                    totalMiles = double.Parse(GetTotalMilesMonthlyForSelectedLog(logYearIndex, i).ToString());
+                    totalRides = int.Parse(GetTotalRidesMonthlyForSelectedLog(logYearIndex, i).ToString());
+                    avgRidesPerWeek = double.Parse(GetAvgMonthlyRidesForSelectedLog(logYearIndex, i).ToString());
+                    avgMilesPerWeek = double.Parse(GetAverageMonthlyMilesPerWeek(logYearIndex, i).ToString());
+                    avgMilesPerRide = double.Parse(GetAverageMonthlyMilesPerRide(logYearIndex, i).ToString());
+                    hightMileageWeek = double.Parse(GetMonthlyHighMileageWeekNumber(logYearIndex, i).ToString());
+                    longestRide = double.Parse(GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, i).ToString());
+                    totalElev = int.Parse(GetTotalElevGainMonthly(logYearIndex, i).ToString());
+                    maxElev = int.Parse(GetMaxElevMonthlyForSelectedLog(logYearIndex, i).ToString());
+                    movingTime = GetTotalMovingTimeMonthly(logYearIndex, i).ToString();
+
+                    dataGridViewMonthly.Rows.Add(totalMiles, totalRides, avgRidesPerWeek, avgMilesPerWeek, avgMilesPerRide, hightMileageWeek, longestRide, totalElev, maxElev, movingTime);
+                }
 
                 dataGridViewMonthly.Rows[0].Height = 32;
                 dataGridViewMonthly.Rows[1].Height = 32;
@@ -3348,12 +3246,11 @@ namespace CyclingLogApplication
 
         private void RunYearlyStatisticsGrid()
         {
-
             try
             {
                 dataGridViewYearly.DataSource = null;
                 dataGridViewYearly.Rows.Clear();
-                dataGridViewYearly.ColumnCount = 11;
+                dataGridViewYearly.ColumnCount = 12;
                 //dataGridViewYearly.RowCount = 12;
                 dataGridViewYearly.Name = "Yearly Stats";
                 dataGridViewYearly.Columns[0].Name = "Total Miles";
@@ -3361,12 +3258,13 @@ namespace CyclingLogApplication
                 dataGridViewYearly.Columns[2].Name = "Avg Rides/week";
                 dataGridViewYearly.Columns[3].Name = "Avg Miles/week";
                 dataGridViewYearly.Columns[4].Name = "Avg Miles/Ride";
-                dataGridViewYearly.Columns[5].Name = "High Week Miles";
-                dataGridViewYearly.Columns[6].Name = "Longest Ride";
-                dataGridViewYearly.Columns[7].Name = "Total Ascent";
-                dataGridViewYearly.Columns[8].Name = "Max Ascent";
-                dataGridViewYearly.Columns[9].Name = "High Week Ascent";
-                dataGridViewYearly.Columns[10].Name = "Moving Time";
+                dataGridViewYearly.Columns[5].Name = "High Month Miles";
+                dataGridViewYearly.Columns[6].Name = "High Week Miles";
+                dataGridViewYearly.Columns[7].Name = "Longest Ride";
+                dataGridViewYearly.Columns[8].Name = "Total Ascent";
+                dataGridViewYearly.Columns[9].Name = "Max Ascent";
+                dataGridViewYearly.Columns[10].Name = "High Week Ascent";
+                dataGridViewYearly.Columns[11].Name = "Moving Time";
 
                 dataGridViewYearly.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 dataGridViewYearly.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
@@ -3397,6 +3295,7 @@ namespace CyclingLogApplication
                 dataGridViewYearly.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridViewYearly.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridViewYearly.Columns[10].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewYearly.Columns[11].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 // Resize the master DataGridView columns to fit the newly loaded data.
                 //dataGridViewYearly.AutoResizeColumns();
@@ -3417,16 +3316,18 @@ namespace CyclingLogApplication
                 dataGridViewYearly.Columns[4].ValueType = typeof(double);
                 dataGridViewYearly.Columns[5].ValueType = typeof(double);
                 dataGridViewYearly.Columns[6].ValueType = typeof(double);
-                dataGridViewYearly.Columns[7].ValueType = typeof(int);
+                dataGridViewYearly.Columns[7].ValueType = typeof(double);
                 dataGridViewYearly.Columns[8].ValueType = typeof(int);
                 dataGridViewYearly.Columns[9].ValueType = typeof(int);
-                dataGridViewYearly.Columns[10].ValueType = typeof(string);
+                dataGridViewYearly.Columns[10].ValueType = typeof(int);
+                dataGridViewYearly.Columns[11].ValueType = typeof(string);
 
                 double totalMiles;
                 int totalRides;
                 double avgRidesPerWeek;
                 double avgMilesPerWeek;
                 double avgMilesPerRideYearly;
+                double highMilesForMonth;
                 double highMilesForWeek;
                 double highMilesForDay;
                 int totalElevGain;
@@ -3435,44 +3336,33 @@ namespace CyclingLogApplication
                 string totalMovingTime;
 
                 //Get list of logs
-                List<string> logYearIndexList = ReadDataNames("Table_Log_year", "LogYearID");
                 List<string> logYearNameList = ReadDataNames("Table_Log_year", "Name");
 
                 int rowIndex = 0;
 
                 //Loop through each log:
-                for (int i = logYearIndexList.Count -1; i > -1; i--)
+                for (int i = logYearNameList.Count -1; i > -1; i--)
                 {
-                    int logYear = int.Parse(logYearIndexList[i]);
+                    int logIndex = GetLogYearIndexByName(logYearNameList[i]);
 
-                    totalMiles = double.Parse(GetTotalMilesForSelectedLog(logYear));
-                    totalRides = GetTotalRidesForSelectedLog(logYear);
-                    avgRidesPerWeek = Math.Round(GetAverageRidesPerWeek(logYear), 2);
-                    avgMilesPerWeek = Math.Round(GetAverageMilesPerWeek(logYear), 2);
-                    avgMilesPerRideYearly = Math.Round(GetAverageMilesPerRide(logYear), 2);
-                    highMilesForWeek = Math.Round(GetHighMileageWeekNumber(logYear), 2);
-                    highMilesForDay = Math.Round(GetHighMileageDay(logYear), 2);
-                    totalElevGain = int.Parse(GetElevGain_Yearly(logYear));              
-                    maxElev = GetMaxElevYearly(logYear);
-                    totalElevForWeek = GetHighAscentWeekNumber(logYear);
-                    totalMovingTime = GetTotalMovingTimeYearly(logYear).ToString();
+                    totalMiles = double.Parse(GetTotalMilesForSelectedLog(logIndex));
+                    totalRides = GetTotalRidesForSelectedLog(logIndex);
+                    avgRidesPerWeek = Math.Round(GetAverageRidesPerWeek(logIndex), 2);
+                    avgMilesPerWeek = Math.Round(GetAverageMilesPerWeek(logIndex), 2);
+                    avgMilesPerRideYearly = Math.Round(GetAverageMilesPerRide(logIndex), 2);
+                    highMilesForMonth = Math.Round(GetHighMileageMonthNumber(logIndex), 2);
+                    highMilesForWeek = Math.Round(GetHighMileageWeekNumber(logIndex), 2);
+                    highMilesForDay = Math.Round(GetHighMileageDay(logIndex), 2);
+                    totalElevGain = int.Parse(GetElevGain_Yearly(logIndex));              
+                    maxElev = GetMaxElevYearly(logIndex);
+                    totalElevForWeek = GetHighAscentWeekNumber(logIndex);
+                    totalMovingTime = GetTotalMovingTimeYearly(logIndex).ToString();
 
-                    dataGridViewYearly.Rows.Add(totalMiles, totalRides, avgRidesPerWeek, avgMilesPerWeek, avgMilesPerRideYearly, highMilesForWeek, highMilesForDay, totalElevGain, maxElev, totalElevForWeek, totalMovingTime);
+                    dataGridViewYearly.Rows.Add(totalMiles, totalRides, avgRidesPerWeek, avgMilesPerWeek, avgMilesPerRideYearly, highMilesForMonth, highMilesForWeek, highMilesForDay, totalElevGain, maxElev, totalElevForWeek, totalMovingTime);
                     dataGridViewYearly.Rows[rowIndex].HeaderCell.Value = logYearNameList[i];
                     dataGridViewYearly.Rows[rowIndex].Height = 34;
                     rowIndex++;
                 }
-
-                dataGridViewYearly.Rows[0].Height = 32;
-                dataGridViewYearly.Rows[1].Height = 32;
-                dataGridViewYearly.Rows[2].Height = 32;
-                dataGridViewYearly.Rows[3].Height = 32;
-                dataGridViewYearly.Rows[4].Height = 32;
-                dataGridViewYearly.Rows[5].Height = 32;
-                dataGridViewYearly.Rows[6].Height = 32;
-                dataGridViewYearly.Rows[7].Height = 32;
-                dataGridViewYearly.Rows[8].Height = 32;
-                dataGridViewYearly.Rows[9].Height = 32;
 
                 dataGridViewYearly.AllowUserToResizeRows = false;
                 dataGridViewYearly.AllowUserToResizeColumns = false;
@@ -3514,8 +3404,8 @@ namespace CyclingLogApplication
             int logYearIndex = GetLogYearIndex_ByName(cbStatMonthlyLogYear.SelectedItem.ToString());
             MainForm.SetLastMonthlyLogSelected(cbStatMonthlyLogYear.SelectedIndex);
 
-            //if (!formloading)
-            //{
+            if (!formloading)
+            {
                // using (RefreshingForm refreshingForm = new RefreshingForm())
                 //{
                     // Display form modelessly
@@ -3526,7 +3416,7 @@ namespace CyclingLogApplication
                     RunMonthlyStatisticsGrid(logYearIndex);
                     //refreshingForm.Hide();
                // }
-            //}
+            }
         }
 
         //Get total of miles for the selected log:
@@ -5357,7 +5247,7 @@ namespace CyclingLogApplication
                 dataGridViewWeekly.Columns[6].Name = "Max Ascent";
                 dataGridViewWeekly.Columns[7].Name = "Moving Time";
                 dataGridViewWeekly.Columns[8].Name = "Avg Speed";
-                dataGridViewWeekly.Columns[9].Name = "Pave min/mile";
+                dataGridViewWeekly.Columns[9].Name = "Pace min/mile";
 
                 dataGridViewWeekly.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 dataGridViewWeekly.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;

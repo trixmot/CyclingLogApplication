@@ -1024,6 +1024,9 @@ namespace CyclingLogApplication
                 dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
                 dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(MainForm.GetDisplayDataColor());
 
+                dataGridView1.RowsDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
                 string idColumnValue = MainForm.GetIDColumnValue();
                 //Determine if ID field should appear in the Data Display grid output:
                 if (idColumnValue.Equals("0"))
@@ -1301,10 +1304,10 @@ namespace CyclingLogApplication
 
             int rowindex = dataGridView1.CurrentCell.RowIndex;
             //int columnindex = dataGridView1.CurrentCell.ColumnIndex;
-            if (rowindex == 0)
-            {
-                return;
-            }
+            //if (rowindex == 0)
+            //{
+            //    return;
+            //}
 
             var dataGridViewColumn = dataGridView1.Columns["Id"];
             int index = dataGridView1.Columns.IndexOf(dataGridViewColumn);

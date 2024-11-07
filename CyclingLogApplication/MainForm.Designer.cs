@@ -926,7 +926,7 @@
             this.dataGridViewWeekly.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewWeekly.Location = new System.Drawing.Point(40, 96);
             this.dataGridViewWeekly.Name = "dataGridViewWeekly";
-            this.dataGridViewWeekly.Size = new System.Drawing.Size(739, 407);
+            this.dataGridViewWeekly.Size = new System.Drawing.Size(739, 390);
             this.dataGridViewWeekly.TabIndex = 177;
             // 
             // cbLogYearWeekly
@@ -1361,9 +1361,9 @@
             this.groupBox11.Controls.Add(this.btRemoveRoute);
             this.groupBox11.Controls.Add(this.tbRouteConfig);
             this.groupBox11.Controls.Add(this.label4);
-            this.groupBox11.Location = new System.Drawing.Point(537, 68);
+            this.groupBox11.Location = new System.Drawing.Point(516, 68);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(241, 393);
+            this.groupBox11.Size = new System.Drawing.Size(305, 393);
             this.groupBox11.TabIndex = 70;
             this.groupBox11.TabStop = false;
             // 
@@ -1381,12 +1381,12 @@
             this.tbRouteOldName.Location = new System.Drawing.Point(23, 106);
             this.tbRouteOldName.Name = "tbRouteOldName";
             this.tbRouteOldName.ReadOnly = true;
-            this.tbRouteOldName.Size = new System.Drawing.Size(205, 20);
+            this.tbRouteOldName.Size = new System.Drawing.Size(246, 20);
             this.tbRouteOldName.TabIndex = 23;
             // 
             // BtRouteClear
             // 
-            this.BtRouteClear.Location = new System.Drawing.Point(88, 281);
+            this.BtRouteClear.Location = new System.Drawing.Point(113, 282);
             this.BtRouteClear.Name = "BtRouteClear";
             this.BtRouteClear.Size = new System.Drawing.Size(75, 23);
             this.BtRouteClear.TabIndex = 22;
@@ -1414,7 +1414,7 @@
             // 
             // btAddRoute
             // 
-            this.btAddRoute.Location = new System.Drawing.Point(88, 252);
+            this.btAddRoute.Location = new System.Drawing.Point(113, 253);
             this.btAddRoute.Name = "btAddRoute";
             this.btAddRoute.Size = new System.Drawing.Size(75, 23);
             this.btAddRoute.TabIndex = 7;
@@ -1424,7 +1424,7 @@
             // 
             // btRemoveRoute
             // 
-            this.btRemoveRoute.Location = new System.Drawing.Point(88, 310);
+            this.btRemoveRoute.Location = new System.Drawing.Point(113, 311);
             this.btRemoveRoute.Name = "btRemoveRoute";
             this.btRemoveRoute.Size = new System.Drawing.Size(75, 23);
             this.btRemoveRoute.TabIndex = 8;
@@ -1436,7 +1436,7 @@
             // 
             this.tbRouteConfig.Location = new System.Drawing.Point(23, 158);
             this.tbRouteConfig.Name = "tbRouteConfig";
-            this.tbRouteConfig.Size = new System.Drawing.Size(205, 20);
+            this.tbRouteConfig.Size = new System.Drawing.Size(246, 20);
             this.tbRouteConfig.TabIndex = 6;
             // 
             // label4
@@ -1451,7 +1451,7 @@
             // dataGridViewRoutes
             // 
             this.dataGridViewRoutes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewRoutes.Location = new System.Drawing.Point(64, 77);
+            this.dataGridViewRoutes.Location = new System.Drawing.Point(37, 77);
             this.dataGridViewRoutes.Name = "dataGridViewRoutes";
             this.dataGridViewRoutes.Size = new System.Drawing.Size(449, 384);
             this.dataGridViewRoutes.TabIndex = 71;
@@ -2820,16 +2820,16 @@
             this.groupBox22.Controls.Add(this.btHideShowIDColumn);
             this.groupBox22.Controls.Add(this.rbHideIDColumn);
             this.groupBox22.Controls.Add(this.rbShowIDColumn);
-            this.groupBox22.Location = new System.Drawing.Point(535, 308);
+            this.groupBox22.Location = new System.Drawing.Point(535, 258);
             this.groupBox22.Name = "groupBox22";
-            this.groupBox22.Size = new System.Drawing.Size(212, 107);
+            this.groupBox22.Size = new System.Drawing.Size(212, 118);
             this.groupBox22.TabIndex = 77;
             this.groupBox22.TabStop = false;
             this.groupBox22.Text = "Ride Display ID Column";
             // 
             // btHideShowIDColumn
             // 
-            this.btHideShowIDColumn.Location = new System.Drawing.Point(113, 48);
+            this.btHideShowIDColumn.Location = new System.Drawing.Point(113, 55);
             this.btHideShowIDColumn.Name = "btHideShowIDColumn";
             this.btHideShowIDColumn.Size = new System.Drawing.Size(75, 23);
             this.btHideShowIDColumn.TabIndex = 29;
@@ -2840,7 +2840,7 @@
             // rbHideIDColumn
             // 
             this.rbHideIDColumn.AutoSize = true;
-            this.rbHideIDColumn.Location = new System.Drawing.Point(38, 61);
+            this.rbHideIDColumn.Location = new System.Drawing.Point(38, 68);
             this.rbHideIDColumn.Name = "rbHideIDColumn";
             this.rbHideIDColumn.Size = new System.Drawing.Size(47, 17);
             this.rbHideIDColumn.TabIndex = 1;
@@ -2851,7 +2851,7 @@
             // rbShowIDColumn
             // 
             this.rbShowIDColumn.AutoSize = true;
-            this.rbShowIDColumn.Location = new System.Drawing.Point(38, 38);
+            this.rbShowIDColumn.Location = new System.Drawing.Point(38, 45);
             this.rbShowIDColumn.Name = "rbShowIDColumn";
             this.rbShowIDColumn.Size = new System.Drawing.Size(52, 17);
             this.rbShowIDColumn.TabIndex = 0;
@@ -2864,16 +2864,16 @@
             this.groupBox18.Controls.Add(this.btFirstDay);
             this.groupBox18.Controls.Add(this.rbFirstDayMonday);
             this.groupBox18.Controls.Add(this.rbFirstDaySunday);
-            this.groupBox18.Location = new System.Drawing.Point(535, 421);
+            this.groupBox18.Location = new System.Drawing.Point(535, 387);
             this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(212, 78);
+            this.groupBox18.Size = new System.Drawing.Size(212, 112);
             this.groupBox18.TabIndex = 73;
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "First Day Of Week";
             // 
             // btFirstDay
             // 
-            this.btFirstDay.Location = new System.Drawing.Point(113, 37);
+            this.btFirstDay.Location = new System.Drawing.Point(113, 54);
             this.btFirstDay.Name = "btFirstDay";
             this.btFirstDay.Size = new System.Drawing.Size(75, 23);
             this.btFirstDay.TabIndex = 28;
@@ -2884,7 +2884,7 @@
             // rbFirstDayMonday
             // 
             this.rbFirstDayMonday.AutoSize = true;
-            this.rbFirstDayMonday.Location = new System.Drawing.Point(38, 49);
+            this.rbFirstDayMonday.Location = new System.Drawing.Point(38, 66);
             this.rbFirstDayMonday.Name = "rbFirstDayMonday";
             this.rbFirstDayMonday.Size = new System.Drawing.Size(63, 17);
             this.rbFirstDayMonday.TabIndex = 27;
@@ -2895,7 +2895,7 @@
             // rbFirstDaySunday
             // 
             this.rbFirstDaySunday.AutoSize = true;
-            this.rbFirstDaySunday.Location = new System.Drawing.Point(38, 29);
+            this.rbFirstDaySunday.Location = new System.Drawing.Point(38, 46);
             this.rbFirstDaySunday.Name = "rbFirstDaySunday";
             this.rbFirstDaySunday.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.rbFirstDaySunday.Size = new System.Drawing.Size(61, 17);
@@ -2956,14 +2956,14 @@
             this.groupBox9.Controls.Add(this.btCustomDataField1);
             this.groupBox9.Location = new System.Drawing.Point(535, 68);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(212, 227);
+            this.groupBox9.Size = new System.Drawing.Size(212, 177);
             this.groupBox9.TabIndex = 68;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Custom Data Field Name";
             // 
             // tbCustomDataField2
             // 
-            this.tbCustomDataField2.Location = new System.Drawing.Point(49, 107);
+            this.tbCustomDataField2.Location = new System.Drawing.Point(49, 93);
             this.tbCustomDataField2.Name = "tbCustomDataField2";
             this.tbCustomDataField2.Size = new System.Drawing.Size(121, 20);
             this.tbCustomDataField2.TabIndex = 35;
@@ -2978,7 +2978,7 @@
             // label85
             // 
             this.label85.AutoSize = true;
-            this.label85.Location = new System.Drawing.Point(70, 91);
+            this.label85.Location = new System.Drawing.Point(70, 77);
             this.label85.Name = "label85";
             this.label85.Size = new System.Drawing.Size(76, 13);
             this.label85.TabIndex = 30;
@@ -2995,7 +2995,7 @@
             // 
             // btCustomDataField1
             // 
-            this.btCustomDataField1.Location = new System.Drawing.Point(71, 170);
+            this.btCustomDataField1.Location = new System.Drawing.Point(71, 138);
             this.btCustomDataField1.Name = "btCustomDataField1";
             this.btCustomDataField1.Size = new System.Drawing.Size(75, 23);
             this.btCustomDataField1.TabIndex = 27;
