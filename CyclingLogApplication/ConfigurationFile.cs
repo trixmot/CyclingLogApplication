@@ -351,7 +351,7 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(firstDayNode);
 
                     XmlNode licesneNode = xmlDoc.CreateElement("LICENSE");
-                    licesneNode.InnerText = "False";
+                    licesneNode.InnerText = "false";
                     rootNode.AppendChild(licesneNode);
 
                     XmlNode customField1Node = xmlDoc.CreateElement("CUSTOMFIELD1");
@@ -637,11 +637,11 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(gridOrderNode);
 
                     XmlNode lastBikeSelectedNode = xmlDoc.CreateElement("LastBikeSelected");
-                    lastBikeSelectedNode.InnerText = "-1";
+                    lastBikeSelectedNode.InnerText = "0";
                     rootNode.AppendChild(lastBikeSelectedNode);
 
                     XmlNode lastLogSelectedNode = xmlDoc.CreateElement("LastLogSelected");
-                    lastLogSelectedNode.InnerText = "-1";
+                    lastLogSelectedNode.InnerText = "0";
                     rootNode.AppendChild(lastLogSelectedNode);
 
                     XmlNode lastLogSelectedWeeklyNode = xmlDoc.CreateElement("LastLogSelectedWeekly");
@@ -657,7 +657,7 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(lastLogYearChartSelectedNode);
 
                     XmlNode lastRouteChartSelectedNode = xmlDoc.CreateElement("ChartRoute");
-                    lastRouteChartSelectedNode.InnerText = "-1";
+                    lastRouteChartSelectedNode.InnerText = "0";
                     rootNode.AppendChild(lastRouteChartSelectedNode);
 
                     XmlNode lastTypeChartSelectedNode = xmlDoc.CreateElement("ChartType");
@@ -673,10 +673,10 @@ namespace CyclingLogApplication
                     rootNode.AppendChild(lastMonthlyLogYearSelectedNode);
 
                     XmlNode lastLogYearSelectedDataEntryNode = xmlDoc.CreateElement("LastLogSelectedDataEntry");
-                    lastLogYearSelectedDataEntryNode.InnerText = "-0";
+                    lastLogYearSelectedDataEntryNode.InnerText = "0";
                     rootNode.AppendChild(lastLogYearSelectedDataEntryNode);
 
-                    MainForm.SetLicenseAgreement("False");
+                    //MainForm.SetLicenseAgreement("False");
 
                     xmlDoc.Save(pathFile);
                 } else

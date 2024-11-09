@@ -77,24 +77,24 @@
             this.button11 = new System.Windows.Forms.Button();
             this.btDeleteAllData = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.Main = new System.Windows.Forms.TabPage();
+            this.StatisticsYearly = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btYearlyStatReset = new System.Windows.Forms.Button();
             this.dataGridViewYearly = new System.Windows.Forms.DataGridView();
             this.label62 = new System.Windows.Forms.Label();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.StatisticsMonthly = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.btMonthlyStatReset = new System.Windows.Forms.Button();
             this.dataGridViewMonthly = new System.Windows.Forms.DataGridView();
             this.cbStatMonthlyLogYear = new System.Windows.Forms.ComboBox();
             this.label63 = new System.Windows.Forms.Label();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.StatisticsWeekly = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.dataGridViewWeekly = new System.Windows.Forms.DataGridView();
             this.cbLogYearWeekly = new System.Windows.Forms.ComboBox();
             this.label65 = new System.Windows.Forms.Label();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.Maintenance = new System.Windows.Forms.TabPage();
             this.tbMaintDateCheck = new System.Windows.Forms.TextBox();
             this.tbMaintID = new System.Windows.Forms.TextBox();
             this.lbMaintError = new System.Windows.Forms.Label();
@@ -110,7 +110,7 @@
             this.btMaintAdd = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.dgvMaint = new System.Windows.Forms.DataGridView();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.Bikes = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
@@ -131,7 +131,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.tbConfigMilesNotInLog = new System.Windows.Forms.TextBox();
             this.dataGridViewBikes = new System.Windows.Forms.DataGridView();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.Routes = new System.Windows.Forms.TabPage();
             this.groupBox20 = new System.Windows.Forms.GroupBox();
             this.label86 = new System.Windows.Forms.Label();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
@@ -145,7 +145,7 @@
             this.tbRouteConfig = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridViewRoutes = new System.Windows.Forms.DataGridView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.Settings = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
             this.cbMonthlyTextColor = new System.Windows.Forms.CheckBox();
@@ -227,27 +227,27 @@
             this.groupBox15.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.Main.SuspendLayout();
+            this.StatisticsYearly.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewYearly)).BeginInit();
-            this.tabPage7.SuspendLayout();
+            this.StatisticsMonthly.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonthly)).BeginInit();
-            this.tabPage8.SuspendLayout();
+            this.StatisticsWeekly.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWeekly)).BeginInit();
-            this.tabPage5.SuspendLayout();
+            this.Maintenance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaint)).BeginInit();
-            this.tabPage6.SuspendLayout();
+            this.Bikes.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBikes)).BeginInit();
-            this.tabPage9.SuspendLayout();
+            this.Routes.SuspendLayout();
             this.groupBox20.SuspendLayout();
             this.groupBox11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRoutes)).BeginInit();
-            this.tabPage2.SuspendLayout();
+            this.Settings.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox23.SuspendLayout();
             this.groupBox22.SuspendLayout();
@@ -761,43 +761,43 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage7);
-            this.tabControl1.Controls.Add(this.tabPage8);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage9);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.Main);
+            this.tabControl1.Controls.Add(this.StatisticsYearly);
+            this.tabControl1.Controls.Add(this.StatisticsMonthly);
+            this.tabControl1.Controls.Add(this.StatisticsWeekly);
+            this.tabControl1.Controls.Add(this.Maintenance);
+            this.tabControl1.Controls.Add(this.Bikes);
+            this.tabControl1.Controls.Add(this.Routes);
+            this.tabControl1.Controls.Add(this.Settings);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(34, 30);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(958, 591);
-            this.tabControl1.TabIndex = 11;
+            this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
-            // tabPage1
+            // Main
             // 
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(950, 565);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Main";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.Main.Controls.Add(this.groupBox1);
+            this.Main.Location = new System.Drawing.Point(4, 22);
+            this.Main.Name = "Main";
+            this.Main.Padding = new System.Windows.Forms.Padding(3);
+            this.Main.Size = new System.Drawing.Size(950, 565);
+            this.Main.TabIndex = 0;
+            this.Main.Text = "Main";
+            this.Main.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
+            // StatisticsYearly
             // 
-            this.tabPage4.Controls.Add(this.groupBox4);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(950, 565);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Statistics-Yearly";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.StatisticsYearly.Controls.Add(this.groupBox4);
+            this.StatisticsYearly.Location = new System.Drawing.Point(4, 22);
+            this.StatisticsYearly.Name = "StatisticsYearly";
+            this.StatisticsYearly.Padding = new System.Windows.Forms.Padding(3);
+            this.StatisticsYearly.Size = new System.Drawing.Size(950, 565);
+            this.StatisticsYearly.TabIndex = 3;
+            this.StatisticsYearly.Text = "Statistics-Yearly";
+            this.StatisticsYearly.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
@@ -838,16 +838,16 @@
             this.label62.TabIndex = 63;
             this.label62.Text = "Statistics Yearly Log Data";
             // 
-            // tabPage7
+            // StatisticsMonthly
             // 
-            this.tabPage7.Controls.Add(this.groupBox6);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(950, 565);
-            this.tabPage7.TabIndex = 5;
-            this.tabPage7.Text = "Statistics-Monthly";
-            this.tabPage7.UseVisualStyleBackColor = true;
+            this.StatisticsMonthly.Controls.Add(this.groupBox6);
+            this.StatisticsMonthly.Location = new System.Drawing.Point(4, 22);
+            this.StatisticsMonthly.Name = "StatisticsMonthly";
+            this.StatisticsMonthly.Padding = new System.Windows.Forms.Padding(3);
+            this.StatisticsMonthly.Size = new System.Drawing.Size(950, 565);
+            this.StatisticsMonthly.TabIndex = 5;
+            this.StatisticsMonthly.Text = "Statistics-Monthly";
+            this.StatisticsMonthly.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -900,15 +900,15 @@
             this.label63.TabIndex = 127;
             this.label63.Text = "Statistics Monthly Log Data";
             // 
-            // tabPage8
+            // StatisticsWeekly
             // 
-            this.tabPage8.Controls.Add(this.groupBox7);
-            this.tabPage8.Location = new System.Drawing.Point(4, 22);
-            this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(950, 565);
-            this.tabPage8.TabIndex = 7;
-            this.tabPage8.Text = "Statistics-Weekly";
-            this.tabPage8.UseVisualStyleBackColor = true;
+            this.StatisticsWeekly.Controls.Add(this.groupBox7);
+            this.StatisticsWeekly.Location = new System.Drawing.Point(4, 22);
+            this.StatisticsWeekly.Name = "StatisticsWeekly";
+            this.StatisticsWeekly.Size = new System.Drawing.Size(950, 565);
+            this.StatisticsWeekly.TabIndex = 7;
+            this.StatisticsWeekly.Text = "Statistics-Weekly";
+            this.StatisticsWeekly.UseVisualStyleBackColor = true;
             // 
             // groupBox7
             // 
@@ -950,30 +950,30 @@
             this.label65.TabIndex = 128;
             this.label65.Text = "Weekly Log Data";
             // 
-            // tabPage5
+            // Maintenance
             // 
-            this.tabPage5.Controls.Add(this.tbMaintDateCheck);
-            this.tabPage5.Controls.Add(this.tbMaintID);
-            this.tabPage5.Controls.Add(this.lbMaintError);
-            this.tabPage5.Controls.Add(this.tbMaintAddUpdate);
-            this.tabPage5.Controls.Add(this.label18);
-            this.tabPage5.Controls.Add(this.cbBikeMaint);
-            this.tabPage5.Controls.Add(this.btMaintRemove);
-            this.tabPage5.Controls.Add(this.tbMaintMiles);
-            this.tabPage5.Controls.Add(this.label19);
-            this.tabPage5.Controls.Add(this.label17);
-            this.tabPage5.Controls.Add(this.dateTimePicker1);
-            this.tabPage5.Controls.Add(this.rtbMaintComments);
-            this.tabPage5.Controls.Add(this.btMaintAdd);
-            this.tabPage5.Controls.Add(this.label16);
-            this.tabPage5.Controls.Add(this.dgvMaint);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(950, 565);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Maintenance";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.Maintenance.Controls.Add(this.tbMaintDateCheck);
+            this.Maintenance.Controls.Add(this.tbMaintID);
+            this.Maintenance.Controls.Add(this.lbMaintError);
+            this.Maintenance.Controls.Add(this.tbMaintAddUpdate);
+            this.Maintenance.Controls.Add(this.label18);
+            this.Maintenance.Controls.Add(this.cbBikeMaint);
+            this.Maintenance.Controls.Add(this.btMaintRemove);
+            this.Maintenance.Controls.Add(this.tbMaintMiles);
+            this.Maintenance.Controls.Add(this.label19);
+            this.Maintenance.Controls.Add(this.label17);
+            this.Maintenance.Controls.Add(this.dateTimePicker1);
+            this.Maintenance.Controls.Add(this.rtbMaintComments);
+            this.Maintenance.Controls.Add(this.btMaintAdd);
+            this.Maintenance.Controls.Add(this.label16);
+            this.Maintenance.Controls.Add(this.dgvMaint);
+            this.Maintenance.Location = new System.Drawing.Point(4, 22);
+            this.Maintenance.Name = "Maintenance";
+            this.Maintenance.Padding = new System.Windows.Forms.Padding(3);
+            this.Maintenance.Size = new System.Drawing.Size(950, 565);
+            this.Maintenance.TabIndex = 4;
+            this.Maintenance.Text = "Maintenance";
+            this.Maintenance.UseVisualStyleBackColor = true;
             // 
             // tbMaintDateCheck
             // 
@@ -1109,16 +1109,16 @@
             this.dgvMaint.TabIndex = 0;
             this.dgvMaint.Click += new System.EventHandler(this.dgvMaint_Click);
             // 
-            // tabPage6
+            // Bikes
             // 
-            this.tabPage6.Controls.Add(this.groupBox5);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(950, 565);
-            this.tabPage6.TabIndex = 6;
-            this.tabPage6.Text = "Bikes";
-            this.tabPage6.UseVisualStyleBackColor = true;
+            this.Bikes.Controls.Add(this.groupBox5);
+            this.Bikes.Location = new System.Drawing.Point(4, 22);
+            this.Bikes.Name = "Bikes";
+            this.Bikes.Padding = new System.Windows.Forms.Padding(3);
+            this.Bikes.Size = new System.Drawing.Size(950, 565);
+            this.Bikes.TabIndex = 6;
+            this.Bikes.Text = "Bikes";
+            this.Bikes.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
@@ -1318,16 +1318,16 @@
             this.dataGridViewBikes.TabIndex = 33;
             this.dataGridViewBikes.Click += new System.EventHandler(this.dataGridViewBikes_Click);
             // 
-            // tabPage9
+            // Routes
             // 
-            this.tabPage9.Controls.Add(this.groupBox20);
-            this.tabPage9.Location = new System.Drawing.Point(4, 22);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(950, 565);
-            this.tabPage9.TabIndex = 7;
-            this.tabPage9.Text = "Routes";
-            this.tabPage9.UseVisualStyleBackColor = true;
+            this.Routes.Controls.Add(this.groupBox20);
+            this.Routes.Location = new System.Drawing.Point(4, 22);
+            this.Routes.Name = "Routes";
+            this.Routes.Padding = new System.Windows.Forms.Padding(3);
+            this.Routes.Size = new System.Drawing.Size(950, 565);
+            this.Routes.TabIndex = 7;
+            this.Routes.Text = "Routes";
+            this.Routes.UseVisualStyleBackColor = true;
             // 
             // groupBox20
             // 
@@ -1457,16 +1457,16 @@
             this.dataGridViewRoutes.TabIndex = 71;
             this.dataGridViewRoutes.Click += new System.EventHandler(this.dataGridViewRoutes_Click);
             // 
-            // tabPage2
+            // Settings
             // 
-            this.tabPage2.Controls.Add(this.groupBox2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(950, 565);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Settings";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.Settings.Controls.Add(this.groupBox2);
+            this.Settings.Location = new System.Drawing.Point(4, 22);
+            this.Settings.Name = "Settings";
+            this.Settings.Padding = new System.Windows.Forms.Padding(3);
+            this.Settings.Size = new System.Drawing.Size(950, 565);
+            this.Settings.TabIndex = 1;
+            this.Settings.Text = "Settings";
+            this.Settings.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -3197,35 +3197,35 @@
             this.groupBox15.ResumeLayout(false);
             this.groupBox14.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
+            this.Main.ResumeLayout(false);
+            this.StatisticsYearly.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewYearly)).EndInit();
-            this.tabPage7.ResumeLayout(false);
+            this.StatisticsMonthly.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonthly)).EndInit();
-            this.tabPage8.ResumeLayout(false);
+            this.StatisticsWeekly.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWeekly)).EndInit();
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
+            this.Maintenance.ResumeLayout(false);
+            this.Maintenance.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaint)).EndInit();
-            this.tabPage6.ResumeLayout(false);
+            this.Bikes.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBikes)).EndInit();
-            this.tabPage9.ResumeLayout(false);
+            this.Routes.ResumeLayout(false);
             this.groupBox20.ResumeLayout(false);
             this.groupBox20.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRoutes)).EndInit();
-            this.tabPage2.ResumeLayout(false);
+            this.Settings.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox23.ResumeLayout(false);
@@ -3256,8 +3256,8 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage Main;
+        private System.Windows.Forms.TabPage Settings;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -3265,7 +3265,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage StatisticsYearly;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbBikeConfig;
         private System.Windows.Forms.Button btRemoveBikeConfig;
@@ -3279,7 +3279,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox tbTimeChange;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage Maintenance;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox cbBikeMaint;
         private System.Windows.Forms.Label label16;
@@ -3291,7 +3291,7 @@
         private System.Windows.Forms.TextBox tbMaintID;
         private System.Windows.Forms.TextBox tbMaintMiles;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage Bikes;
         private System.Windows.Forms.Button btMaintRemove;
         private System.Windows.Forms.Label lbMaintError;
         private System.Windows.Forms.TextBox tbStatisticsTotalMiles;
@@ -3306,7 +3306,7 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.ComboBox cbLogYear;
-        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TabPage StatisticsMonthly;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.ComboBox cbStatMonthlyLogYear;
         private System.Windows.Forms.Label label62;
@@ -3318,7 +3318,7 @@
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.TabPage StatisticsWeekly;
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.Label label74;
         private System.Windows.Forms.Label label75;
@@ -3354,7 +3354,7 @@
         private System.Windows.Forms.TextBox tbMostElevationAll;
         private System.Windows.Forms.Button btRefreshData;
         private System.Windows.Forms.Button btCustomDataField1;
-        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.TabPage Routes;
         private System.Windows.Forms.Label label85;
         private System.Windows.Forms.Label label84;
         private System.Windows.Forms.Label label86;

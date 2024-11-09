@@ -29,16 +29,16 @@ namespace CyclingLogApplication
         //private static Mutex mutex = null;
         Boolean formloading = false;
 
-        private static readonly string logVersion = "0.9.1";
+        private static string logVersion = "0.9.2";
         private static int logLevel = 0;
         private static string gridOrder;
-        private static int lastLogSelected = -1;
-        private static int lastBikeSelected = -1;
-        private static int lastLogFilterSelected = -1;
-        private static int lastLogYearChart = -1;
-        private static int lastRouteChart = -1;
-        private static int lastTypeChart = -1;
-        private static int lastTypeTimeChart = -1;
+        private static int lastLogSelected = 0;
+        private static int lastBikeSelected = 0;
+        private static int lastLogFilterSelected = 0;
+        private static int lastLogYearChart = 0;
+        private static int lastRouteChart = 0;
+        private static int lastTypeChart = 0;
+        private static int lastTypeTimeChart = 0;
         private static int lastMonthlyLogSelected = 0;
         private static int lastLogYearWeekly = 0;
         private static int lastLogSelectedDataEntry = 0;
@@ -162,11 +162,13 @@ namespace CyclingLogApplication
 
             try
             {
-                RideDataEntry rideDataEntryForm = new RideDataEntry();
+                
                 ConfigurationFile configfile = new ConfigurationFile();
-                //ConfigurationFile.ReadConfigFile(true);
+                ConfigurationFile.ReadConfigFile();
 
-                if (GetLicenseAgreement().Equals("False"))
+                SetLogVersion(logVersion);
+
+                if (GetLicenseAgreement() == null || GetLicenseAgreement().Equals("false"))
                 {
                     DialogResult result = MessageBox.Show("Do you agree with the License Agreement?\n\nThe MIT License Copyright (c) 2024, John T Flynn Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the Software), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.", "License Agreement", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No)
@@ -175,11 +177,12 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        SetLicenseAgreement("True");
-                        //ConfigurationFile.WriteConfigFile();
+                        SetLicenseAgreement("true");
+                        ConfigurationFile.WriteConfigFile();
                     }
                 }
 
+                tabControl1.SelectedTab = tabControl1.TabPages["Main"];
                 int logSetting = GetLogLevel();
 
                 lbVersion.Text = "App Version: " + GetLogVersion();
@@ -293,39 +296,22 @@ namespace CyclingLogApplication
                 List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
 
                 SetLogNameIDDictionary(logYearList);
-
-                //RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
                 ChartForm chartForm = new ChartForm();
 
                 cbLogYearConfig.Items.Add("--Select Value--");
-                //rideDataDisplayForm.cbLogYearFilter.Items.Add("--Select Value--");
+
+                RideDataEntry rideDataEntryForm = new RideDataEntry();
 
                 //Load LogYear values:
                 foreach (string val in logYearList)
                 {
                     cbLogYearConfig.Items.Add(val);
-                    rideDataEntryForm.cbLogYearDataEntry.Items.Add(val);
-                    //rideDataDisplayForm.cbLogYearFilter.Items.Add(val);
-                    chartForm.cbLogYearChart.Items.Add(val);
                     Logger.Log("Data Loading: Log Year: " + val, logSetting, 1);
                 }
 
                 cbLogYearConfig.SelectedIndex = 0;
-
-                if (GetLastLogSelectedDataEntry() != 0)
-                {
-                    rideDataEntryForm.cbLogYearDataEntry.SelectedIndex = GetLastLogSelectedDataEntry();
-                }
-
-                //Load Route values:
-                foreach (var val in routeList)
-                {
-                    rideDataEntryForm.cbRouteDataEntry.Items.Add(val);
-                    chartForm.cbRoutesChart.Items.Add(val);
-                    Logger.Log("Data Loading: Route: " + val, logSetting, 1);
-                }
-
                 cbBikeMaint.Items.Add("--Select Value--");
+
                 //Load Bike values:
                 foreach (var val in bikeList)
                 {
@@ -335,30 +321,26 @@ namespace CyclingLogApplication
 
                 cbBikeMaint.SelectedIndex = 0;
 
-                if (logYearList.Count == 0)
-                {
-                    MessageBox.Show("No Yearly Logs have been added to the database. Please add an entry before continuing.");
-                    tabControl1.SelectedTab = tabControl1.TabPages["Settings"];
-                    return;
-                }
+                int currentYear = DateTime.Now.Year;
 
-                if (routeList.Count == 0)
+                cbLogYear.Items.Add("--Select Value--");
+                //cbLogYear
+                for (int i = 2010; i <= currentYear; i++)
                 {
-                    MessageBox.Show("No Routes have been created yet.");
-                    tabControl1.SelectedTab = tabControl1.TabPages["Routes"];
-                    return;
+                    cbLogYear.Items.Add(i.ToString());
                 }
+                cbLogYear.SelectedIndex = 0;                
 
-                if (bikeList.Count == 0)
-                {
-                    MessageBox.Show("No Bikes have been added yet. Please add an entry for a Bike.");
-                    tabControl1.SelectedTab = tabControl1.TabPages["Bikes"];
-                    return;
-                }
+                cbMaintColors.SelectedIndex = cbMaintColors.FindStringExact(gridMaintColor);
+                cbWeeklyColors.SelectedIndex = cbWeeklyColors.FindStringExact(gridWeeklyColor);
+                cbMonthlyColors.SelectedIndex = cbMonthlyColors.FindStringExact(gridMonthlyColor);
+                cbYearlyColors.SelectedIndex = cbYearlyColors.FindStringExact(gridYearlyColor);
+                cbDisplayDataColors.SelectedIndex = cbDisplayDataColors.FindStringExact(gridDisplayDataColor);
+                cbBikeColors.SelectedIndex = cbBikeColors.FindStringExact(gridBikeColor);
+                cbRouteColors.SelectedIndex = cbRouteColors.FindStringExact(gridRouteColor);
 
                 formloading = true;
 
-                //Set first option of 'None':
                 cbStatMonthlyLogYear.Items.Add("--Select Value--");
                 cbLogYearWeekly.Items.Add("--Select Value--");
                 //Load LogYear Monthly values:
@@ -371,42 +353,53 @@ namespace CyclingLogApplication
                 cbStatMonthlyLogYear.SelectedIndex = GetLastMonthlyLogSelected();
                 cbLogYearWeekly.SelectedIndex = GetLastLogYearWeeklySelected();
 
-                int currentYear = DateTime.Now.Year;
-
-                cbLogYear.Items.Add("--Select Value--");
-                //cbLogYear
-                for (int i = 2010; i <= currentYear; i++)
-                {
-                    cbLogYear.Items.Add(i.ToString());
-                }
-                cbLogYear.SelectedIndex = 0;
-
                 //tabControl1.SelectedTab = tabControl1.TabPages["Main"];
-                cbMaintColors.SelectedIndex = cbMaintColors.FindStringExact(gridMaintColor);
-                cbWeeklyColors.SelectedIndex = cbWeeklyColors.FindStringExact(gridWeeklyColor);
-                cbMonthlyColors.SelectedIndex = cbMonthlyColors.FindStringExact(gridMonthlyColor);
-                cbYearlyColors.SelectedIndex = cbYearlyColors.FindStringExact(gridYearlyColor);
-                cbDisplayDataColors.SelectedIndex = cbDisplayDataColors.FindStringExact(gridDisplayDataColor);
-                cbBikeColors.SelectedIndex = cbBikeColors.FindStringExact(gridBikeColor);
-                cbRouteColors.SelectedIndex = cbRouteColors.FindStringExact(gridRouteColor);
+                RefreshRoutes();
+
+                if (logYearList.Count == 0)
+                {
+                    MessageBox.Show("No Yearly Logs have been added to the database. Please add an entry before continuing.");
+                    tabControl1.SelectedTab = tabControl1.TabPages["Settings"];
+                    formloading = false;
+                    return;
+                }
+
+                if (routeList.Count == 0)
+                {
+                    MessageBox.Show("No Routes have been created yet.");
+                    tabControl1.SelectedTab = tabControl1.TabPages["Routes"];
+                    formloading = false;
+                    return;
+                }
+
+                if (bikeList.Count == 0)
+                {
+                    MessageBox.Show("No Bikes have been added yet. Please add an entry for a Bike.");
+                    tabControl1.SelectedTab = tabControl1.TabPages["Bikes"];
+                    formloading = false;
+                    return;
+                }
 
                 RunYearlyStatisticsGrid();
-                int logYearIndex = GetLogYearIndex_ByName(cbStatMonthlyLogYear.SelectedItem.ToString());
-                RunMonthlyStatisticsGrid(logYearIndex);
+                if (cbStatMonthlyLogYear.SelectedIndex > 0)
+                {
+                    int logYearIndex = GetLogYearIndex_ByName(cbStatMonthlyLogYear.SelectedItem.ToString());
+                    RunMonthlyStatisticsGrid(logYearIndex);
+                }
+                
                 RefreshWeekly();
                 RefreshBikes();
-                RefreshRoutes();
                 GetMaintLog();
-                UpdateStatsAllLogs();
+                UpdateStatsAllLogs(); //Main page stats:
 
-                formloading = false;
                 tbMaintAddUpdate.Text = "Add";
             }
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to load form. " + ex.Message.ToString());
+                Logger.LogError("[ERROR]: Exception while trying to load Main form. " + ex.Message.ToString());
             }
 
+            formloading = false;
         }
 
         private void CloseForm(object sender, EventArgs e)
@@ -626,6 +619,11 @@ namespace CyclingLogApplication
         public static string GetLogVersion()
         {
             return logVersion;
+        }
+
+        public static void SetLogVersion(string version)
+        {
+            logVersion = version;
         }
 
         public static string GetGridOrder()
@@ -891,6 +889,11 @@ namespace CyclingLogApplication
 
         }
 
+        public static void removeRoute(string route)
+        {
+            routeNamesList.Remove(route);
+        }
+
         public static List<string> ReadDataNames(string tableName, string columnName)
         {
             SqlDataReader reader = null;
@@ -1031,6 +1034,7 @@ namespace CyclingLogApplication
                 rideDataDisplayForm.AddLogYearFilter(logYearTitle);
                 chartForm.cbLogYearChart.Items.Add(logYearTitle);
                 cbStatMonthlyLogYear.Items.Add(logYearTitle);
+                cbLogYearWeekly.Items.Add(logYearTitle);
             }
             // Update to an existing log:
             else
@@ -1470,13 +1474,13 @@ namespace CyclingLogApplication
                 int routeIndex = rideDataEntryForm.cbRouteDataEntry.Items.IndexOf(routeOldName);
                 ChartForm chartForm = new ChartForm();
 
-                rideDataEntryForm.cbRouteDataEntry.Items.Remove(routeOldName);
-                rideDataEntryForm.cbRouteDataEntry.Items.Add(routeName);
-                rideDataEntryForm.cbRouteDataEntry.Sorted = true;
+                //rideDataEntryForm.cbRouteDataEntry.Items.Remove(routeOldName);
+                //rideDataEntryForm.cbRouteDataEntry.Items.Add(routeName);
+                //rideDataEntryForm.cbRouteDataEntry.Sorted = true;
 
-                chartForm.cbRoutesChart.Items.Remove(routeOldName);
-                chartForm.cbRoutesChart.Items.Add(routeName);
-                chartForm.cbRoutesChart.Sorted = true;
+                //chartForm.cbRoutesChart.Items.Remove(routeOldName);
+                //chartForm.cbRoutesChart.Items.Add(routeName);
+                //chartForm.cbRoutesChart.Sorted = true;
 
                 //Update the route name in the database for each row:
                 try
@@ -1512,9 +1516,14 @@ namespace CyclingLogApplication
         {
             RideDataEntry rideDataEntryForm = new RideDataEntry();
             ChartForm chartForm = new ChartForm();
-            string routeString1 = "Miscellaneous Route";
-            string routeString2 = "--Indoor Training--";
+            string routeString1 = "--Select Value--";
+            string routeString2 = "Miscellaneous Route";
+            string routeString3 = "*** Indoor Training ***";
             int logSetting = GetLogLevel();
+
+            Logger.Log("Adding a Route entry:  --Select Value--:", 0, 0);
+            Logger.Log("Adding a Route entry:  Miscellaneous Route:", 0, 0);
+            Logger.Log("Adding a Route entry:  *** Indoor Training ***:", 0, 0);
 
             //Route1:
             List<object> objectValues1 = new List<object>
@@ -1522,18 +1531,30 @@ namespace CyclingLogApplication
                 routeString1
             };
             RunStoredProcedure(objectValues1, "Route_Add");
+
             //Route2:
             List<object> objectValues2 = new List<object>
             {
                 routeString2
             };
             RunStoredProcedure(objectValues2, "Route_Add");
+            
+            //Route3:
+            List<object> objectValues3 = new List<object>
+            {
+                routeString3
+            };
+            RunStoredProcedure(objectValues3, "Route_Add");
+
+
 
             rideDataEntryForm.AddRouteDataEntry(routeString1);
             rideDataEntryForm.AddRouteDataEntry(routeString2);
+            rideDataEntryForm.AddRouteDataEntry(routeString3);
 
             chartForm.cbRoutesChart.Items.Add(routeString1);
             chartForm.cbRoutesChart.Items.Add(routeString2);
+            chartForm.cbRoutesChart.Items.Add(routeString3);
 
             SetRoutes(ReadDataNames("Table_Routes", "Name"));
             RefreshRoutes();
@@ -1564,6 +1585,7 @@ namespace CyclingLogApplication
 
                     }
 
+                    removeRoute(deleteValue);
                     RefreshRoutes();
                 }
                 catch (Exception ex)
@@ -1633,7 +1655,7 @@ namespace CyclingLogApplication
             // Add a new bike:
             if (bikeType.Equals("Add"))
             {
-                cbBikeMaint.Items.Add(tbConfigMilesNotInLog.Text);
+                cbBikeMaint.Items.Add(bikeName);
                 rideDataEntryForm.AddBikeDataEntry(bikeName);
                 totalMiles = notInMiles + logMiles;
 
@@ -2793,9 +2815,35 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
+        private static int GetMaintCount()
+        {
+            List<object> objectValues = new List<object>();
+            int count = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetTotalRides_AllLogs", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        count = int.Parse(results[0].ToString());
+                    }
+                }
+            }
+
+            return count;
+        }
+
         private void GetMaintLog()
         {
             lbMaintError.Text = "";
+
+            if (GetMaintCount() < 1)
+            {
+                Logger.Log("[WARNING] No Maintenance items recorded. ", 0, 0);
+                return;
+            }
 
             try
             {
@@ -2852,7 +2900,7 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to Get Maintenance Log entry." + ex.Message.ToString());
+                Logger.LogError("[ERROR]: Exception while trying to Get Maintenance Log entry. " + ex.Message.ToString());
                 //MessageBox.Show(ex.Message);
             }
             finally
@@ -2992,20 +3040,18 @@ namespace CyclingLogApplication
                 fi.MoveTo(path + "\\CyclingLogConfig_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".xml");
             }
 
-            AddDefautRoute();
-            Logger.Log("Adding a Route entry to the Configuration:" + "Miscellaneous Route:", 0, 0);
-            Logger.Log("Adding a Route entry to the Configuration:" + "-- Indoor Training --:", 0, 0);
-
             SetCustomField1("");
             SetCustomField2("");
 
             SetLastLogSelectedDataEntry(0);
             SetLastLogFilterSelected(0);
-            SetLastBikeSelected(-1);
+            SetLastBikeSelected(0);
             SetLastLogSelected(0);
             SetLastLogYearChartSelected(0);
             SetLastMonthlyLogSelected(0);
-            SetLicenseAgreement("0");
+            SetLicenseAgreement("false");
+
+            AddDefautRoute();
 
             MessageBox.Show("Close the program and reopen before entering any data.");
         }
@@ -4904,10 +4950,10 @@ namespace CyclingLogApplication
 
                 dataGridViewRoutes.ColumnCount = 2;
                 dataGridViewRoutes.Name = "Route Listing And Counts";
-                dataGridViewRoutes.Columns[1].Name = "Count";
                 dataGridViewRoutes.Columns[0].Name = "Route Name";
-                dataGridViewRoutes.Columns[1].ValueType = typeof(int);
+                dataGridViewRoutes.Columns[1].Name = "Count";
                 dataGridViewRoutes.Columns[0].ValueType = typeof(string);
+                dataGridViewRoutes.Columns[1].ValueType = typeof(int);
                 dataGridViewRoutes.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 dataGridViewRoutes.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
                 dataGridViewRoutes.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -4934,9 +4980,14 @@ namespace CyclingLogApplication
                 
                 this.dataGridViewRoutes.Rows.Clear();
 
+                if (routeList.Contains("--Select Value--"))
+                {
+                    routeList.Remove("--Select Value--");
+                }
+
+                //MessageBox.Show("Route count: " + routeList.Count);
                 for (int i = 0; i < routeList.Count; i++)
                 {
-                   
                     count = GetRouteCount(routeList[i]);
                     this.dataGridViewRoutes.Rows.Add(routeList[i], count);
                     if (i % 2 == 0)
@@ -5214,7 +5265,7 @@ namespace CyclingLogApplication
         private void RefreshWeekly()
         {
             string logYearName = cbLogYearWeekly.SelectedItem.ToString();
-            if (logYearName.Equals("--Select Value--"))
+            if (cbLogYearWeekly.SelectedIndex == 0 || logYearName.Equals("--Select Value--"))
             {
                 return;
             }
@@ -6014,6 +6065,8 @@ namespace CyclingLogApplication
             //tbMaintMiles.Text = "";
             //rtbMaintComments.Text = "";
             GetMaintLog();
+
+            MessageBox.Show("Maintenance item has been saved.");
         }
 
         private void dataGridViewBikes_Click(object sender, EventArgs e)

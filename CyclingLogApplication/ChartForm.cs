@@ -71,6 +71,7 @@ namespace CyclingLogApplication
 
             List<string> routeList = MainForm.GetRoutes();
 
+            cbRoutesChart.Items.Add("--Select Value--");
             for (int i = 0; i < routeList.Count; i++)
             {
                 cbRoutesChart.Items.Add(routeList[i]);
@@ -79,18 +80,17 @@ namespace CyclingLogApplication
             try
             {
                 cbLogYearChart.SelectedIndex = MainForm.GetLastLogYearChartSelected();
-                cbRoutesChart.SelectedIndex = MainForm.GetLastRouteChartSelected();
                 cbTypeChartData.SelectedIndex = MainForm.GetLastTypeChartSelected();
                 cbTypeTime.SelectedIndex = MainForm.GetLastTypeTimeChartSelected();
             }
             catch
             {
                 cbLogYearChart.SelectedIndex = 0;
-                cbRoutesChart.SelectedIndex = -1;
-                cbTypeChartData.SelectedIndex = -1;
-                cbTypeTime.SelectedIndex = -1;
+                cbTypeChartData.SelectedIndex = 0;
+                cbTypeTime.SelectedIndex = 0;
             }
-            
+
+            cbRoutesChart.SelectedIndex = 0;
         }
 
         private void Chart1_MouseMove(object sender, MouseEventArgs e)
@@ -172,7 +172,7 @@ namespace CyclingLogApplication
             bool averageDataType = false;
 
             //Verify the required values are available before running chart:
-            if (cbTypeTime.SelectedIndex == -1)
+            if (cbTypeTime.SelectedIndex < 1)
             {
                 labelChartError.Text = "Select a Chart time option from the dropdown list.";
                 labelChartError.Show();
@@ -186,7 +186,7 @@ namespace CyclingLogApplication
 
                 return;
             }
-            if (cbRoutesChart.SelectedIndex == -1 && checkBoxRouteOption.Checked)
+            if (cbRoutesChart.SelectedIndex < 1 && checkBoxRouteOption.Checked)
             {
                 labelChartError.Text = "Select a Route option from the dropdown list.";
                 labelChartError.Show();

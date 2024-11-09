@@ -22,6 +22,10 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using System.Threading;
 using System.Runtime.InteropServices.ComTypes;
 using System.IdentityModel.Claims;
+using System.Diagnostics;
+using System.Net.PeerToPeer.Collaboration;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CyclingLogApplication
 {
@@ -80,13 +84,14 @@ namespace CyclingLogApplication
             //cbRideTypeDataEntry.Items.Add("Race");
 
             List<string> routeList = MainForm.GetRoutes();
-
+            cbRouteDataEntry.Items.Add("--Select Value--");
             for (int i = 0; i < routeList.Count; i++)
             {
                 cbRouteDataEntry.Items.Add(routeList.ElementAt(i));
             }
 
             List<string> bikeList = MainForm.ReadDataNames("Table_Bikes", "Name");
+            cbBikeDataEntrySelection.Items.Add("--Select Value--");
             //Load Bike values:
             foreach (var val in bikeList)
             {
@@ -124,10 +129,46 @@ namespace CyclingLogApplication
 
             if (cbComfortRideDataEntry.Items.Count < 3)
             {
+                cbComfortRideDataEntry.Items.Add("--Select Value--");
                 cbComfortRideDataEntry.Items.Add("Weak/Tight");
                 cbComfortRideDataEntry.Items.Add("Average");
-                cbComfortRideDataEntry.Items.Add("Strong"); 
+                cbComfortRideDataEntry.Items.Add("Strong");
             }
+
+            if (cbRideTypeDataEntry.Items.Count < 6)
+            {
+                cbRideTypeDataEntry.Items.Add("--Select Value--");
+                cbRideTypeDataEntry.Items.Add("Base");
+                cbRideTypeDataEntry.Items.Add("Race");
+                cbRideTypeDataEntry.Items.Add("Recovery");
+                cbRideTypeDataEntry.Items.Add("Speed");
+                cbRideTypeDataEntry.Items.Add("Tour");
+            }
+
+            if (cbLocationDataEntry.Items.Count < 5)
+            {
+                cbLocationDataEntry.Items.Add("--Select Value--");
+                cbLocationDataEntry.Items.Add("Road");
+                cbLocationDataEntry.Items.Add("Rollers");
+                cbLocationDataEntry.Items.Add("Trail");
+                cbLocationDataEntry.Items.Add("Trainer");
+            }
+
+            if (cbEffortRideDataEntry.Items.Count < 5)
+            {
+                cbEffortRideDataEntry.Items.Add("--Select Value--");
+                cbEffortRideDataEntry.Items.Add("Easy / Spin");
+                cbEffortRideDataEntry.Items.Add("Moderate");
+                cbEffortRideDataEntry.Items.Add("Hard");
+                cbEffortRideDataEntry.Items.Add("Race");
+            }
+
+            cbRouteDataEntry.SelectedIndex = 0;
+            //cbBikeDataEntrySelection.SelectedIndex = 0;
+            cbRideTypeDataEntry.SelectedIndex = 0;
+            cbLocationDataEntry.SelectedIndex = 0;
+            cbEffortRideDataEntry.SelectedIndex = 0;
+            cbComfortRideDataEntry.SelectedIndex = 0;
 
             ConfigurationFile configurationFile = new ConfigurationFile();
             ConfigurationFile.ReadConfigFile();
@@ -752,37 +793,37 @@ namespace CyclingLogApplication
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (cbRouteDataEntry.SelectedIndex < 0)
+                if (cbRouteDataEntry.SelectedIndex < 1)
                 {
                     lbRideDataEntryError.Text = "A Route must be selected.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (cbBikeDataEntrySelection.SelectedIndex < 0)
+                if (cbBikeDataEntrySelection.SelectedIndex < 1)
                 {
                     lbRideDataEntryError.Text = "A Bike must be selected.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (cbRideTypeDataEntry.SelectedIndex < 0)
+                if (cbRideTypeDataEntry.SelectedIndex < 1)
                 {
                     lbRideDataEntryError.Text = "A Ride Type must be selected.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (cbLocationDataEntry.SelectedIndex < 0)
+                if (cbLocationDataEntry.SelectedIndex < 1)
                 {
                     lbRideDataEntryError.Text = "A Ride Location must be selected.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (cbEffortRideDataEntry.SelectedIndex < 0)
+                if (cbEffortRideDataEntry.SelectedIndex < 1)
                 {
                     lbRideDataEntryError.Text = "An Effort option must be selected.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (cbComfortRideDataEntry.SelectedIndex < 0)
+                if (cbComfortRideDataEntry.SelectedIndex < 1)
                 {
                     lbRideDataEntryError.Text = "An Comfort option must be selected.";
                     lbRideDataEntryError.Show();
