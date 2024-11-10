@@ -705,6 +705,7 @@ namespace CyclingLogApplication
             }
 
             string fieldString = "[Id],[Date]";
+            Boolean checkedItem = false;
 
             for (int i = 0; i < checkedListBox.Items.Count; i++)
             {
@@ -720,6 +721,8 @@ namespace CyclingLogApplication
 
                 if (checkedListBox.GetItemChecked(i))
                 {
+                    checkedItem = true;
+
                     fieldName = checkedListBox.Items[i].ToString();
                     if (fieldName.Equals("Week Number"))
                     {
@@ -802,6 +805,14 @@ namespace CyclingLogApplication
                     fieldString += ",[" + fieldName + "]";
 
                 }
+            }
+
+            if (!checkedItem)
+            {
+                tbLoadingMessage.Visible = false;
+                MessageBox.Show("No data items selected to view.");
+
+                return;
             }
 
             try

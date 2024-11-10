@@ -1025,7 +1025,7 @@
             this.cbBikeMaint.FormattingEnabled = true;
             this.cbBikeMaint.Location = new System.Drawing.Point(280, 30);
             this.cbBikeMaint.Name = "cbBikeMaint";
-            this.cbBikeMaint.Size = new System.Drawing.Size(121, 21);
+            this.cbBikeMaint.Size = new System.Drawing.Size(162, 21);
             this.cbBikeMaint.TabIndex = 1;
             this.cbBikeMaint.SelectedIndexChanged += new System.EventHandler(this.cbBikeMaint_SelectedIndexChanged);
             // 
@@ -1041,7 +1041,7 @@
             // 
             // tbMaintMiles
             // 
-            this.tbMaintMiles.Location = new System.Drawing.Point(415, 31);
+            this.tbMaintMiles.Location = new System.Drawing.Point(465, 31);
             this.tbMaintMiles.Name = "tbMaintMiles";
             this.tbMaintMiles.Size = new System.Drawing.Size(100, 20);
             this.tbMaintMiles.TabIndex = 2;
@@ -1049,7 +1049,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(412, 15);
+            this.label19.Location = new System.Drawing.Point(462, 15);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(31, 13);
             this.label19.TabIndex = 13;

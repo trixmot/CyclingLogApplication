@@ -297,20 +297,20 @@
             // tbYAxis
             // 
             this.tbYAxis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbYAxis.Location = new System.Drawing.Point(145, 51);
+            this.tbYAxis.Location = new System.Drawing.Point(142, 51);
             this.tbYAxis.Name = "tbYAxis";
             this.tbYAxis.ReadOnly = true;
-            this.tbYAxis.Size = new System.Drawing.Size(75, 26);
+            this.tbYAxis.Size = new System.Drawing.Size(88, 26);
             this.tbYAxis.TabIndex = 11;
             this.tbYAxis.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbXAxis
             // 
             this.tbXAxis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbXAxis.Location = new System.Drawing.Point(44, 51);
+            this.tbXAxis.Location = new System.Drawing.Point(35, 51);
             this.tbXAxis.Name = "tbXAxis";
             this.tbXAxis.ReadOnly = true;
-            this.tbXAxis.Size = new System.Drawing.Size(75, 26);
+            this.tbXAxis.Size = new System.Drawing.Size(88, 26);
             this.tbXAxis.TabIndex = 10;
             this.tbXAxis.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
