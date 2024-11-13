@@ -17,7 +17,7 @@ The program requires Windows 10/11 and Microsoft® SQL Server® 2022 Express to 
 ![image](https://github.com/user-attachments/assets/d77cfec9-47d7-4bd6-9ee5-a053da8e09f3)
 
 
-![image](https://github.com/user-attachments/assets/c8531628-9a9b-4a00-869f-8acb97728521)
+![image](https://github.com/user-attachments/assets/acb7ff98-9a36-4f0e-9eb7-438972ba2665)
 
 
 ![image](https://github.com/user-attachments/assets/d103e8fa-05ae-4dff-89c9-69f289e70e67)
