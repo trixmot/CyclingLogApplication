@@ -219,6 +219,16 @@
             this.label29 = new System.Windows.Forms.Label();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btPlanner = new System.Windows.Forms.Button();
+            this.Calendar = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cbCalendarLogs = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cbCalendarMonth = new System.Windows.Forms.ComboBox();
+            this.dataGridViewCalendar = new System.Windows.Forms.DataGridView();
+            this.lbMonth = new System.Windows.Forms.Label();
+            this.btRefresh = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -257,6 +267,9 @@
             this.groupBox10.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.Calendar.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCalendar)).BeginInit();
             this.SuspendLayout();
             // 
             // cbLogYearConfig
@@ -323,6 +336,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btPlanner);
             this.groupBox1.Controls.Add(this.groupBox19);
             this.groupBox1.Controls.Add(this.groupBox17);
             this.groupBox1.Controls.Add(this.groupBox16);
@@ -765,6 +779,7 @@
             this.tabControl1.Controls.Add(this.StatisticsYearly);
             this.tabControl1.Controls.Add(this.StatisticsMonthly);
             this.tabControl1.Controls.Add(this.StatisticsWeekly);
+            this.tabControl1.Controls.Add(this.Calendar);
             this.tabControl1.Controls.Add(this.Maintenance);
             this.tabControl1.Controls.Add(this.Bikes);
             this.tabControl1.Controls.Add(this.Routes);
@@ -3172,10 +3187,123 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
+            // btPlanner
+            // 
+            this.btPlanner.Location = new System.Drawing.Point(85, 402);
+            this.btPlanner.Name = "btPlanner";
+            this.btPlanner.Size = new System.Drawing.Size(75, 23);
+            this.btPlanner.TabIndex = 83;
+            this.btPlanner.Text = "Planner";
+            this.btPlanner.UseVisualStyleBackColor = true;
+            this.btPlanner.Visible = false;
+            this.btPlanner.Click += new System.EventHandler(this.btPlanner_Click);
+            // 
+            // Calendar
+            // 
+            this.Calendar.Controls.Add(this.panel1);
+            this.Calendar.Location = new System.Drawing.Point(4, 22);
+            this.Calendar.Name = "Calendar";
+            this.Calendar.Size = new System.Drawing.Size(950, 565);
+            this.Calendar.TabIndex = 8;
+            this.Calendar.Text = "Calendar";
+            this.Calendar.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btRefresh);
+            this.panel1.Controls.Add(this.lbMonth);
+            this.panel1.Controls.Add(this.dataGridViewCalendar);
+            this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.cbCalendarLogs);
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.cbCalendarMonth);
+            this.panel1.Location = new System.Drawing.Point(21, 17);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(909, 545);
+            this.panel1.TabIndex = 0;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(45, 9);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(25, 13);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "Log";
+            // 
+            // cbCalendarLogs
+            // 
+            this.cbCalendarLogs.FormattingEnabled = true;
+            this.cbCalendarLogs.Location = new System.Drawing.Point(48, 25);
+            this.cbCalendarLogs.Name = "cbCalendarLogs";
+            this.cbCalendarLogs.Size = new System.Drawing.Size(161, 21);
+            this.cbCalendarLogs.TabIndex = 26;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(622, 9);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 13);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Month";
+            // 
+            // cbCalendarMonth
+            // 
+            this.cbCalendarMonth.FormattingEnabled = true;
+            this.cbCalendarMonth.Items.AddRange(new object[] {
+            "--Select Value--",
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"});
+            this.cbCalendarMonth.Location = new System.Drawing.Point(625, 25);
+            this.cbCalendarMonth.Name = "cbCalendarMonth";
+            this.cbCalendarMonth.Size = new System.Drawing.Size(121, 21);
+            this.cbCalendarMonth.TabIndex = 24;
+            this.cbCalendarMonth.SelectedIndexChanged += new System.EventHandler(this.cbCalendarMonth_SelectedIndexChanged);
+            // 
+            // dataGridViewCalendar
+            // 
+            this.dataGridViewCalendar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCalendar.Location = new System.Drawing.Point(44, 72);
+            this.dataGridViewCalendar.Name = "dataGridViewCalendar";
+            this.dataGridViewCalendar.Size = new System.Drawing.Size(831, 470);
+            this.dataGridViewCalendar.TabIndex = 29;
+            // 
+            // lbMonth
+            // 
+            this.lbMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMonth.Location = new System.Drawing.Point(248, 25);
+            this.lbMonth.Name = "lbMonth";
+            this.lbMonth.Size = new System.Drawing.Size(362, 44);
+            this.lbMonth.TabIndex = 30;
+            this.lbMonth.Text = "Month";
+            this.lbMonth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btRefresh
+            // 
+            this.btRefresh.Location = new System.Drawing.Point(783, 25);
+            this.btRefresh.Name = "btRefresh";
+            this.btRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btRefresh.TabIndex = 1;
+            this.btRefresh.Text = "Refresh";
+            this.btRefresh.UseVisualStyleBackColor = true;
+            this.btRefresh.Click += new System.EventHandler(this.btRefresh_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1037, 724);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.tabControl1);
@@ -3243,6 +3371,10 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.Calendar.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCalendar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3438,6 +3570,16 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox20;
         private System.Windows.Forms.Button btMonthlyStatReset;
+        private System.Windows.Forms.Button btPlanner;
+        private System.Windows.Forms.TabPage Calendar;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cbCalendarLogs;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cbCalendarMonth;
+        private System.Windows.Forms.DataGridView dataGridViewCalendar;
+        private System.Windows.Forms.Label lbMonth;
+        private System.Windows.Forms.Button btRefresh;
     }
 }
 

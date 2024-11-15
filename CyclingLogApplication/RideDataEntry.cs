@@ -139,6 +139,7 @@ namespace CyclingLogApplication
             {
                 cbRideTypeDataEntry.Items.Add("--Select Value--");
                 cbRideTypeDataEntry.Items.Add("Base");
+                cbRideTypeDataEntry.Items.Add("Distance");
                 cbRideTypeDataEntry.Items.Add("Race");
                 cbRideTypeDataEntry.Items.Add("Recovery");
                 cbRideTypeDataEntry.Items.Add("Speed");
@@ -579,7 +580,7 @@ namespace CyclingLogApplication
 
             try
             {
-                //ExecuteScalarFunction
+                //Get ride data using the date:
                 using (var results = ExecuteSimpleQueryConnection("GetRideData", objectValues))
                 {
                     //Logger.Log("Results: " + results.FieldCount, 0, logLevel);

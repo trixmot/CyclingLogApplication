@@ -92,3 +92,4 @@ D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplic
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\Cycling_.74E77107.Up2Date
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.exe
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.pdb
+D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.Planner.resources

@@ -353,7 +353,6 @@ namespace CyclingLogApplication
                 cbStatMonthlyLogYear.SelectedIndex = GetLastMonthlyLogSelected();
                 cbLogYearWeekly.SelectedIndex = GetLastLogYearWeeklySelected();
 
-                //tabControl1.SelectedTab = tabControl1.TabPages["Main"];
                 RefreshRoutes();
 
                 if (logYearList.Count == 0)
@@ -387,6 +386,30 @@ namespace CyclingLogApplication
                     RunMonthlyStatisticsGrid(logYearIndex);
                 }
 
+                cbCalendarLogs.Items.Add("--Select Value--");
+                foreach (string val in logYearList)
+                {
+                    cbCalendarLogs.Items.Add(val);
+                    Logger.Log("Data Loading: Log Year: " + val, logSetting, 1);
+                }
+
+                int calLogIndex = GetLogIndexByYear(DateTime.Now.Year);
+                
+
+                if (calLogIndex > 0)
+                {
+                    string logName = GetLogNameByYear(DateTime.Now.Year);
+                    cbCalendarLogs.SelectedIndex = cbCalendarLogs.Items.IndexOf(logName);
+                    string sMonth = DateTime.Now.ToString("MM");
+                    cbCalendarMonth.SelectedIndex = int.Parse(sMonth);
+                    lbMonth.Text = cbCalendarMonth.SelectedItem.ToString();
+                }
+                else
+                {
+                    cbCalendarLogs.SelectedIndex = 0;
+                    cbCalendarMonth.SelectedIndex = 0;
+                }
+                
                 tbCustomDataField1.Text = GetCustomField1();
                 tbCustomDataField2.Text = GetCustomField2();
 
@@ -410,14 +433,7 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to exit?", "Exit Application", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                //RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
-                //ChartForm chartForm = new ChartForm();
-                //chartForm.Close();
-                //RideDataEntry rideDataEntryForm = new RideDataEntry();
                 ConfigurationFile.WriteConfigFile();
-                //rideDataDisplayForm.Dispose();
-                //chartForm.Dispose();
-                //rideDataEntryForm.Dispose();
                 //this.Dispose();
                 Application.Exit();
             }
@@ -830,23 +846,10 @@ namespace CyclingLogApplication
             return logNameIDDict;
         }
 
-        //public static void SetFieldNameList(List<string> fieldNames)
-        //{
-        //    for (int i = 0; i < fieldNames.Count; i++)
-        //    {
-        //        fieldNamesList.Add(fieldNames.ElementAt(i));
-        //    }
-        //}
-
         public static Dictionary<string, string> GetFieldsDictionary()
         {
             return fieldNameDict;
         }
-
-        //public static List<string> GetFieldNamesList()
-        //{
-        //    return fieldNamesList;
-        //}
 
         public static void SetFirstDayOfWeek(string firstdayString)
         {
@@ -973,9 +976,6 @@ namespace CyclingLogApplication
         {
             string logYearTitle = tbLogYearConfig.Text;
             string logType = "Add";
-            //RideDataEntry rideDataEntryForm = new RideDataEntry();
-            //RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
-            //ChartForm chartForm = new ChartForm();
 
             if (logYearTitle.Equals(""))
             {
@@ -1033,9 +1033,6 @@ namespace CyclingLogApplication
 
                 cbLogYearConfig.Items.Add(logYearTitle);
                 cbLogYearConfig.SelectedIndex = cbLogYearConfig.Items.Count - 1;
-                //rideDataEntryForm.AddLogYearDataEntry(logYearTitle);
-                //rideDataDisplayForm.AddLogYearFilter(logYearTitle);
-                //chartForm.cbLogYearChart.Items.Add(logYearTitle);
                 cbStatMonthlyLogYear.Items.Add(logYearTitle);
                 cbLogYearWeekly.Items.Add(logYearTitle);
             }
@@ -1066,9 +1063,6 @@ namespace CyclingLogApplication
 
                 int cbLogYearConfigIndex = cbLogYearConfig.SelectedIndex;
                 int cbStatMonthlyLogYearIndex = cbStatMonthlyLogYear.SelectedIndex;
-                //int rideDataEntryIndex = rideDataEntryForm.cbLogYearDataEntry.SelectedIndex;
-                //int rideDataDisplayFormIndex = rideDataDisplayForm.cbLogYearFilter.SelectedIndex;
-                //int rideDataChartIndex = chartForm.cbLogYearChart.SelectedIndex;
 
                 // Skip first item:
                 for (int i = 1; i < cbLogYearConfig.Items.Count; i++)
@@ -1083,16 +1077,6 @@ namespace CyclingLogApplication
                     {
                         cbLogYearConfig.Items.Remove(oldValue);
                         cbLogYearConfig.Items.Add(newValue);
-
-                        //rideDataEntryForm.cbLogYearDataEntry.Items.Remove(oldValue);
-                        //rideDataEntryForm.cbLogYearDataEntry.Items.Add(newValue);
-
-                        //rideDataDisplayForm.cbLogYearFilter.Items.Remove(oldValue);
-                        //rideDataDisplayForm.cbLogYearFilter.Items.Add(newValue);
-
-                        //chartForm.cbLogYearChart.Items.Remove(oldValue);
-                        //chartForm.cbLogYearChart.Items.Add(newValue);
-
                         cbStatMonthlyLogYear.Items.Remove(oldValue);
                         cbStatMonthlyLogYear.Items.Add(newValue);
 
@@ -1102,15 +1086,8 @@ namespace CyclingLogApplication
                 }
 
                 cbLogYearConfig.Sorted = true;
-                //rideDataEntryForm.cbLogYearDataEntry.Sorted = true;
-                //chartForm.cbLogYearChart.Sorted = true;
                 cbStatMonthlyLogYear.Sorted = true;
-                //rideDataDisplayForm.cbLogYearFilter.Sorted = true;
-
                 cbLogYearConfig.SelectedIndex = cbLogYearConfigIndex;
-                //rideDataEntryForm.cbLogYearDataEntry.SelectedIndex = rideDataEntryIndex;
-                //rideDataDisplayForm.cbLogYearFilter.SelectedIndex = rideDataDisplayFormIndex;
-                //chartForm.cbLogYearChart.SelectedIndex = rideDataChartIndex;
                 cbStatMonthlyLogYear.SelectedIndex = cbStatMonthlyLogYearIndex;
             }
 
@@ -1207,13 +1184,7 @@ namespace CyclingLogApplication
                 int rideDisplay = rideDataDisplayForm.cbLogYearFilter.SelectedIndex;
                 int monthStat = cbStatMonthlyLogYear.SelectedIndex;
 
-                //int chartIndexCount = chartForm.cbLogYearChart.Items.Count;
-                //SetLastLogYearChartSelected(chartIndexCount - 2);
-
                 cbLogYearConfig.Items.Remove(logName);
-                //rideDataEntryForm.cbLogYearDataEntry.Items.Remove(logName);
-                //rideDataDisplayForm.cbLogYearFilter.Items.Remove(logName);
-                //chartForm.cbLogYearChart.Items.Remove(logName);
                 cbStatMonthlyLogYear.Items.Remove(logName);
                 cbLogYearWeekly.Items.Remove(logName);
 
@@ -1449,15 +1420,10 @@ namespace CyclingLogApplication
                 List<object> objectValues = new List<object>();
                 objectValues.Add(routeName);
                 RunStoredProcedure(objectValues, "Route_Add");
-                //RideDataEntry rideDataEntryForm = new RideDataEntry();
-                //rideDataEntryForm.AddRouteDataEntry(routeName);
-                //ChartForm chartForm = new ChartForm();
-                //chartForm.cbRoutesChart.Items.Add(routeName);
             }
             // Update an existing Route:
             else
             {
-                //RideDataEntry rideDataEntryForm = new RideDataEntry();
                 List<object> objectValues = new List<object>();
                 objectValues.Add(routeName);
                 objectValues.Add(routeOldName);
@@ -1474,17 +1440,6 @@ namespace CyclingLogApplication
                 {
                     Logger.LogError("[ERROR]: Exception while trying to update Route." + ex.Message.ToString());
                 }
-
-                //int routeIndex = rideDataEntryForm.cbRouteDataEntry.Items.IndexOf(routeOldName);
-                //ChartForm chartForm = new ChartForm();
-
-                //rideDataEntryForm.cbRouteDataEntry.Items.Remove(routeOldName);
-                //rideDataEntryForm.cbRouteDataEntry.Items.Add(routeName);
-                //rideDataEntryForm.cbRouteDataEntry.Sorted = true;
-
-                //chartForm.cbRoutesChart.Items.Remove(routeOldName);
-                //chartForm.cbRoutesChart.Items.Add(routeName);
-                //chartForm.cbRoutesChart.Sorted = true;
 
                 //Update the route name in the database for each row:
                 try
@@ -1570,12 +1525,6 @@ namespace CyclingLogApplication
             if (result == DialogResult.Yes)
             {
                 string deleteValue = tbRouteConfig.Text;
-                //RideDataEntry rideDataEntryForm = new RideDataEntry();
-                //Note: only removing value as an option, all records using this value are unchanged:
-                //rideDataEntryForm.RemoveRouteDataEntry(deleteValue);
-
-                //ChartForm chartForm = new ChartForm();
-                //chartForm.cbRoutesChart.Items.Remove(deleteValue);
 
                 //Remove the Route from the database table:
                 List<object> objectValues = new List<object>();
@@ -1629,8 +1578,6 @@ namespace CyclingLogApplication
 
             List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
 
-            //RideDataEntry rideDataEntryForm = new RideDataEntry();
-
             //Check to see if the string has already been entered to eliminate duplicates:
             if (bikeList.Contains(bikeOldName))
             {
@@ -1661,7 +1608,6 @@ namespace CyclingLogApplication
             if (bikeType.Equals("Add"))
             {
                 cbBikeMaint.Items.Add(bikeName);
-                //rideDataEntryForm.AddBikeDataEntry(bikeName);
                 totalMiles = notInMiles + logMiles;
 
                 List<object> objectBikesTotals = new List<object>();
@@ -1689,10 +1635,6 @@ namespace CyclingLogApplication
                 cbBikeMaint.Items.RemoveAt(bikeIndex);
                 cbBikeMaint.Items.Add(bikeName);
                 cbBikeMaint.Sorted = true;
-
-                //rideDataEntryForm.cbBikeDataEntrySelection.Items.RemoveAt(bikeIndex);
-                //rideDataEntryForm.cbBikeDataEntrySelection.Items.Add(bikeName);
-                //rideDataEntryForm.cbBikeDataEntrySelection.Sorted = true;
 
                 // Check if the bike names have changed:
                 if (!bikeOldName.Equals(bikeName))
@@ -1733,11 +1675,9 @@ namespace CyclingLogApplication
             if (result == DialogResult.Yes)
             {
                 string bikeName = tbBikeConfig.Text.ToString();
-                //RideDataEntry rideDataEntryForm = new RideDataEntry();
 
                 //Note: only removing value as an option, all records using this value are unchanged:
                 cbBikeMaint.Items.Remove(bikeName);
-                //rideDataEntryForm.RemoveBikeDataEntry(bikeName);
 
                 //Clear entires:
                 tbConfigMilesNotInLog.Text = "";
@@ -2581,7 +2521,7 @@ namespace CyclingLogApplication
             return result;
         }
 
-        private static int GetCurrentWeekCount()
+        public static int GetCurrentWeekCount()
         {
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
             Calendar cal = dfi.Calendar;
@@ -3323,19 +3263,6 @@ namespace CyclingLogApplication
                 dataGridViewYearly.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
                 dataGridViewYearly.ReadOnly = true;
                 dataGridViewYearly.EnableHeadersVisualStyles = false;
-
-                //dataGridViewYearly.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewYearly.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewYearly.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewYearly.Columns[3].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewYearly.Columns[4].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewYearly.Columns[5].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewYearly.Columns[6].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewYearly.Columns[7].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewYearly.Columns[8].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewYearly.Columns[9].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewYearly.Columns[10].SortMode = DataGridViewColumnSortMode.NotSortable;
-
 
                 dataGridViewYearly.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridViewYearly.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -4347,6 +4274,39 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
+        private static float GetMilesByDate(int logIndex, DateTime rideDate)
+        {
+            List<object> objectValues = new List<object>
+            {
+                logIndex,
+                rideDate
+            };
+            float returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetMiles_ByDate", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else
+                        {
+                            returnValue = float.Parse(temp);
+                        }
+
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
         private static double GetLongestRideWeekly(int logIndex, int weekNumber)
         {
             List<object> objectValues = new List<object>
@@ -4631,7 +4591,7 @@ namespace CyclingLogApplication
                 logIndex,
                 weekNumber
             };
-            string returnValue;
+
             string[] splitValues;
 
             int hours = 0;
@@ -4640,7 +4600,6 @@ namespace CyclingLogApplication
             int hr = 0;
             int min = 0;
             double avgPace;
-            string[] splitAsTime;
 
             //ExecuteScalarFunction
             using (var results = ExecuteSimpleQueryConnection("GetTotalMovingTime_Weekly", objectValues))
@@ -4652,7 +4611,7 @@ namespace CyclingLogApplication
                         string temp = results[0].ToString();
                         if (temp.Equals("") || temp.Equals("00:00:00"))
                         {
-                            returnValue = "0:0:0";
+                            return 0;
                         }
                         else
                         {
@@ -5336,15 +5295,6 @@ namespace CyclingLogApplication
                 dataGridViewWeekly.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 //dataGridViewWeekly.Columns[0].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewWeekly.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewWeekly.Columns[2].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewWeekly.Columns[3].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewWeekly.Columns[4].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewWeekly.Columns[5].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewWeekly.Columns[6].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewWeekly.Columns[7].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewWeekly.Columns[8].SortMode = DataGridViewColumnSortMode.NotSortable;
-                //dataGridViewWeekly.Columns[9].SortMode = DataGridViewColumnSortMode.NotSortable;
 
                 dataGridViewWeekly.AllowUserToOrderColumns = false;
                 dataGridViewWeekly.AllowUserToAddRows = false;
@@ -6100,63 +6050,6 @@ namespace CyclingLogApplication
             tbConfigMilesNotInLog.Text = dataGridViewBikes.Rows[rowindex].Cells[4].Value.ToString();
 
             tbBikeOldName.Text = dataGridViewBikes.Rows[rowindex].Cells[0].Value.ToString();
-
-            //double notInMiles = 0;
-            //double logMiles = 0;
-            //double totalMiles = 0;
-
-            //Load miles from the database:
-            //try
-            //{
-            //    List<object> objectValues = new List<object>();
-
-            //    if (cbBikeConfig.SelectedItem == null)
-            //    {
-            //        cbBikeConfig.SelectedIndex = 0;
-            //        //bikeName = cbBikeConfig.SelectedItem.ToString();
-
-            //        objectValues.Add(tbBikeConfig.Text);
-
-            //    }
-            //    else
-            //    {
-            //        objectValues.Add(cbBikeConfig.SelectedItem.ToString());
-            //        tbBikeConfig.Text = cbBikeConfig.SelectedItem.ToString();
-            //    }
-
-            //    //ExecuteScalarFunction
-            //    //Get Notinmiles
-            //    using (var results = ExecuteSimpleQueryConnection("Bike_GetMiles", objectValues))
-            //    {
-            //        if (results.HasRows)
-            //        {
-            //            while (results.Read())
-            //            {
-            //                notInMiles = float.Parse(results[0].ToString());
-            //                logMiles = float.Parse(results[1].ToString());
-            //                totalMiles = float.Parse(results[2].ToString());
-
-            //                notInMiles = Math.Round(notInMiles, 1);
-            //                logMiles = Math.Round(logMiles, 1);
-            //                totalMiles = Math.Round(totalMiles, 1);
-
-            //                tbConfigMilesNotInLog.Text = notInMiles.ToString();
-            //                tbBikeLogMiles.Text = logMiles.ToString();
-            //                tbBikeTotalMiles.Text = totalMiles.ToString();
-            //            }
-            //        }
-            //        else
-            //        {
-            //            //MessageBox.Show("\"No entry found for the selected Bike and Date.");
-            //            Logger.LogError("WARNING: No entry found for the selected Bike and Date.");
-            //            return;
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Logger.LogError("[ERROR]: Exception while trying to retrive Bike miles data." + ex.Message.ToString());
-            //}
         }
 
         private void BtBikeClear_Click(object sender, EventArgs e)
@@ -6218,5 +6111,694 @@ namespace CyclingLogApplication
             RunYearlyStatisticsGrid();
         }
 
+        private void btPlanner_Click(object sender, EventArgs e)
+        {
+            Planner planner = new Planner(); 
+            planner.Show();
+        }
+
+        private static string GetFirstDayForMonth(int month)
+        {
+            DateTime firstDay = new DateTime(DateTime.Now.Year, month, 1);
+            // 'Friday, November 1, 2024'
+
+            return firstDay.DayOfWeek.ToString();
+        }
+
+        public static int GetLogIndexByName(string logName)
+        {
+            List<object> objectValues = new List<object>
+            {
+                logName
+            };
+
+            int logIndex = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("Get_LogYear_Index_Name", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        logIndex = int.Parse(results[0].ToString());
+                    }
+                }
+            }
+
+            return logIndex;
+        }
+
+        public static int GetLogYearByName(string logName)
+        {
+            List<object> objectValues = new List<object>
+            {
+                logName
+            };
+
+            int logIndex = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("Get_LogYear_YearByName", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        logIndex = int.Parse(results[0].ToString());
+                    }
+                }
+            }
+
+            return logIndex;
+        }
+
+        public static int GetLogIndexByYear(int logYear)
+        {
+            List<object> objectValues = new List<object>
+            {
+                logYear
+            };
+
+            int logIndex = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("Get_LogIndex_ByYear", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        logIndex = int.Parse(results[0].ToString());
+                    }
+                }
+            }
+
+            return logIndex;
+        }
+
+        public static string GetLogNameByYear(int logYear)
+        {
+            List<object> objectValues = new List<object>
+            {
+                logYear
+            };
+
+            string logName = "";
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("Get_LogName_ByYear", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        logName = results[0].ToString();
+                    }
+                }
+            }
+
+            return logName;
+        }
+
+        private void RunCalendar()
+        {
+            if (cbCalendarMonth.SelectedIndex < 1)
+            {
+                return;
+            }
+
+            int monthIndex = cbCalendarMonth.SelectedIndex;
+            int previousMonthIndex = monthIndex - 1;
+            string firstDay = GetFirstDayForMonth(monthIndex);
+            int daysInMonth = System.DateTime.DaysInMonth(DateTime.Now.Year, monthIndex);
+            int daysInMonthPrevious = System.DateTime.DaysInMonth(DateTime.Now.Year, previousMonthIndex);
+            //string firstDayOfWeek = MainForm.GetFirstDayOfWeek();
+            string logName = cbCalendarLogs.SelectedItem.ToString();
+            int logIndex = GetLogIndexByName(logName);
+            int logYear = GetLogYearByName(logName);
+
+            int day1 = 0;
+            int day2 = 0;
+            int day3 = 0;
+            int day4 = 0;
+            int day5 = 0;
+            int day6 = 0;
+            int day7 = 0;
+
+            if (firstDay.Equals("Sunday"))
+            {
+                day1 = 1;
+            }
+            else if (firstDay.Equals("Monday"))
+            {
+                day2 = 1;
+            }
+            else if (firstDay.Equals("Tuesday"))
+            {
+                day3 = 1;
+            }
+            else if (firstDay.Equals("Wednesday"))
+            {
+                day4 = 1;
+            }
+            else if (firstDay.Equals("Thursday"))
+            {
+                day5 = 1;
+            }
+            else if (firstDay.Equals("Friday"))
+            {
+                day6 = 1;
+            }
+            else if (firstDay.Equals("Saturday"))
+            {
+                day7 = 1;
+            }
+
+            try
+            {
+                dataGridViewCalendar.DataSource = null;
+                dataGridViewCalendar.Rows.Clear();
+                dataGridViewCalendar.ColumnCount = 7;
+                //dataGridViewPlanner.RowCount = 12;
+                dataGridViewCalendar.Name = "Calendar View";
+
+                //if (firstDayOfWeek.Equals("Monday"))
+                //{
+                //    dataGridViewCalendar.Columns[0].Name = "Monday";
+                //    dataGridViewCalendar.Columns[1].Name = "Tuesday";
+                //    dataGridViewCalendar.Columns[2].Name = "Wednesday";
+                //    dataGridViewCalendar.Columns[3].Name = "Thursday";
+                //    dataGridViewCalendar.Columns[4].Name = "Friday";
+                //    dataGridViewCalendar.Columns[5].Name = "Saturday";
+                //    dataGridViewCalendar.Columns[6].Name = "Sunday";
+                //}
+                //else
+                //{
+                    dataGridViewCalendar.Columns[0].Name = "Sunday";
+                    dataGridViewCalendar.Columns[1].Name = "Monday";
+                    dataGridViewCalendar.Columns[2].Name = "Tuesday";
+                    dataGridViewCalendar.Columns[3].Name = "Wednesday";
+                    dataGridViewCalendar.Columns[4].Name = "Thursday";
+                    dataGridViewCalendar.Columns[5].Name = "Friday";
+                    dataGridViewCalendar.Columns[6].Name = "Saturday";
+                //}
+
+
+                dataGridViewCalendar.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
+                dataGridViewCalendar.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+
+                dataGridViewCalendar.ReadOnly = true;
+                dataGridViewCalendar.EnableHeadersVisualStyles = false;
+                dataGridViewCalendar.AllowUserToOrderColumns = false;
+
+                foreach (DataGridViewColumn column in dataGridViewCalendar.Columns)
+                {
+                    column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
+
+                dataGridViewCalendar.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewCalendar.Columns[1].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewCalendar.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewCalendar.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewCalendar.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewCalendar.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewCalendar.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                // Resize the master DataGridView columns to fit the newly loaded data.
+                //dataGridViewMonthly.AutoResizeColumns();
+                dataGridViewCalendar.AllowUserToOrderColumns = false;
+                // Configure the details DataGridView so that its columns automatically adjust their widths when the data changes.
+                dataGridViewCalendar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridViewCalendar.AllowUserToAddRows = false;
+                //dataGridViewMonthly.DefaultCellStyle.SelectionBackColor = Color.LightGray;
+                //dataGridViewMonthly.DefaultCellStyle.SelectionForeColor = Color.White;
+                dataGridViewCalendar.RowHeadersDefaultCellStyle.BackColor = Color.LightGray;
+                //dataGridViewMonthly.RowHeadersVisible = false;
+
+                dataGridViewCalendar.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+                dataGridViewCalendar.ColumnHeadersHeight = 40;
+                dataGridViewCalendar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+                dataGridViewCalendar.RowHeadersVisible = true;
+
+                dataGridViewCalendar.Columns[0].ValueType = typeof(string);
+                dataGridViewCalendar.Columns[1].ValueType = typeof(string);
+                dataGridViewCalendar.Columns[2].ValueType = typeof(string);
+                dataGridViewCalendar.Columns[3].ValueType = typeof(string);
+                dataGridViewCalendar.Columns[4].ValueType = typeof(string);
+                dataGridViewCalendar.Columns[5].ValueType = typeof(string);
+                dataGridViewCalendar.Columns[6].ValueType = typeof(string);
+
+                int weekNumber = 2;
+                string miles1 = "";
+                string miles2 = "";
+                string miles3 = "";
+                string miles4 = "";
+                string miles5 = "";
+                string miles6 = "";
+                string miles7 = "";
+                int rowCount = 0;
+                int dayCount = 0;
+                string temp1 = "";
+                string temp2 = "";
+                string temp3 = "";
+                string temp4 = "";
+                string temp5 = "";
+                string temp6 = "";
+                string temp7 = "";
+
+                //Create TimeDate from day:
+                DateTime dateTime1 = new DateTime(logYear, monthIndex, 1);
+                DateTime dateTime2 = new DateTime(logYear, monthIndex, 2);
+                DateTime dateTime3 = new DateTime(logYear, monthIndex, 3);
+                DateTime dateTime4 = new DateTime(logYear, monthIndex, 4);
+                DateTime dateTime5 = new DateTime(logYear, monthIndex, 5);
+                DateTime dateTime6 = new DateTime(logYear, monthIndex, 6);
+                DateTime dateTime7 = new DateTime(logYear, monthIndex, 7);
+                miles1 = GetMilesByDate(logIndex, dateTime1).ToString();
+                miles2 = GetMilesByDate(logIndex, dateTime2).ToString();
+                miles3 = GetMilesByDate(logIndex, dateTime3).ToString();
+                miles4 = GetMilesByDate(logIndex, dateTime4).ToString();
+                miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
+                miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
+                miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
+
+                //First Week of the month:
+                if (day1 == 1)
+                {
+                    temp1 = "1";
+                    temp2 = "2";
+                    temp3 = "3";
+                    temp4 = "4";
+                    temp5 = "5";
+                    temp6 = "6";
+                    temp7 = "7";
+                    miles1 = GetMilesByDate(logIndex, dateTime1).ToString();
+                    miles2 = GetMilesByDate(logIndex, dateTime2).ToString();
+                    miles3 = GetMilesByDate(logIndex, dateTime3).ToString();
+                    miles4 = GetMilesByDate(logIndex, dateTime4).ToString();
+                    miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
+                    miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
+                    miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
+                }
+                else if (day2 == 1)
+                {
+                    temp1 = daysInMonthPrevious.ToString();
+                    temp2 = "1";
+                    temp3 = "2";
+                    temp4 = "3";
+                    temp5 = "4";
+                    temp6 = "5";
+                    temp7 = "6";
+                    miles1 = "";
+                    miles2 = GetMilesByDate(logIndex, dateTime2).ToString();
+                    miles3 = GetMilesByDate(logIndex, dateTime3).ToString();
+                    miles4 = GetMilesByDate(logIndex, dateTime4).ToString();
+                    miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
+                    miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
+                    miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
+
+                }
+                else if (day3 == 1)
+                {
+                    temp1 = (daysInMonthPrevious - 1).ToString();
+                    temp2 = (daysInMonthPrevious).ToString();
+                    temp3 = "1";
+                    temp4 = "2";
+                    temp5 = "3";
+                    temp6 = "4";
+                    temp7 = "5";
+                    miles1 = "";
+                    miles2 = "";
+                    miles3 = GetMilesByDate(logIndex, dateTime3).ToString();
+                    miles4 = GetMilesByDate(logIndex, dateTime4).ToString();
+                    miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
+                    miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
+                    miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
+
+                }
+                else if (day4 == 1)
+                {
+                    temp1 = (daysInMonthPrevious - 2).ToString();
+                    temp2 = (daysInMonthPrevious - 1).ToString();
+                    temp3 = (daysInMonthPrevious).ToString();
+                    temp4 = "1";
+                    temp5 = "2";
+                    temp6 = "3";
+                    temp7 = "4";
+                    miles1 = "";
+                    miles2 = "";
+                    miles3 = "";
+                    miles4 = GetMilesByDate(logIndex, dateTime4).ToString();
+                    miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
+                    miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
+                    miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
+
+                }
+                else if (day5 == 1)
+                {
+                    temp1 = (daysInMonthPrevious - 3).ToString();
+                    temp2 = (daysInMonthPrevious - 2).ToString();
+                    temp3 = (daysInMonthPrevious - 1).ToString();
+                    temp4 = (daysInMonthPrevious).ToString();
+                    temp5 = "1";
+                    temp6 = "2";
+                    temp7 = "3";
+                    miles1 = "";
+                    miles2 = "";
+                    miles3 = "";
+                    miles4 = "";
+                    miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
+                    miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
+                    miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
+
+                }
+                else if (day6 == 1)
+                {
+                    temp1 = (daysInMonthPrevious - 4).ToString();
+                    temp2 = (daysInMonthPrevious - 3).ToString();
+                    temp3 = (daysInMonthPrevious - 2).ToString();
+                    temp4 = (daysInMonthPrevious - 1).ToString();
+                    temp5 = (daysInMonthPrevious).ToString();
+                    temp6 = "1";
+                    temp7 = "2";
+                    miles1 = "";
+                    miles2 = "";
+                    miles3 = "";
+                    miles4 = "";
+                    miles5 = "";
+                    miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
+                    miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
+                }
+                else if (day7 == 1)
+                {
+                    temp1 = (daysInMonthPrevious - 5).ToString();
+                    temp2 = (daysInMonthPrevious - 4).ToString();
+                    temp3 = (daysInMonthPrevious - 3).ToString();
+                    temp4 = (daysInMonthPrevious - 2).ToString();
+                    temp5 = (daysInMonthPrevious - 1).ToString();
+                    temp6 = (daysInMonthPrevious).ToString();
+                    temp7 = "1";
+                    miles1 = "";
+                    miles2 = "";
+                    miles3 = "";
+                    miles4 = "";
+                    miles5 = "";
+                    miles6 = "";
+                    miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
+                }
+
+                dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7);
+                dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
+                dayCount = int.Parse(temp7);
+                rowCount++;
+                dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Beige;
+                rowCount++;
+                Boolean sixRow = false;
+
+                //Loop through each month for the logindex:
+                for (int i = 0; i < 5; i++)
+                {
+                    if (i == 4)
+                    {
+                        sixRow = true;
+                    }
+                    //check to see of over daysInMonth: 30
+                   
+                    dayCount++;
+                    DateTime dateTime1a = new DateTime(logYear, monthIndex, dayCount);
+                    if (dayCount == daysInMonth)
+                    {
+                        temp1 = dayCount.ToString();
+                        temp2 = "";
+                        temp3 = "";
+                        temp4 = "";
+                        temp5 = "";
+                        temp6 = "";
+                        temp7 = "";
+                        
+                        miles1 = GetMilesByDate(logIndex, dateTime1a).ToString();
+                        miles2 = "";
+                        miles3 = "";
+                        miles4 = "";
+                        miles5 = "";
+                        miles6 = "";
+                        miles7 = "";
+                        dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
+                        dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
+                        dataGridViewCalendar.Rows[rowCount+1].DefaultCellStyle.BackColor = Color.Beige;
+                        break;
+                    }
+
+                    miles1 = GetMilesByDate(logIndex, dateTime1a).ToString();
+                    temp1 = dayCount.ToString();
+                    dayCount++;
+                    DateTime dateTime2a = new DateTime(logYear, monthIndex, dayCount);
+                    if (dayCount == daysInMonth)
+                    {
+                        temp2 = dayCount.ToString();
+                        temp3 = "";
+                        temp4 = "";
+                        temp5 = "";
+                        temp6 = "";
+                        temp7 = "";
+                        miles2 = GetMilesByDate(logIndex, dateTime2a).ToString();
+                        miles3 = "";
+                        miles4 = "";
+                        miles5 = "";
+                        miles6 = "";
+                        miles7 = "";
+                        dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
+                        dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.Beige;
+
+                        break;
+                    }
+
+                    miles2 = GetMilesByDate(logIndex, dateTime2a).ToString();
+                    temp2 = dayCount.ToString();
+                    dayCount++;
+                    DateTime dateTime3a = new DateTime(logYear, monthIndex, dayCount);
+                    if (dayCount == daysInMonth)
+                    {
+                        temp3 = dayCount.ToString();
+                        temp4 = "";
+                        temp5 = "";
+                        temp6 = "";
+                        temp7 = "";
+                        miles3 = GetMilesByDate(logIndex, dateTime3a).ToString();
+                        miles4 = "";
+                        miles5 = "";
+                        miles6 = "";
+                        miles7 = "";
+                        dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
+                        dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.Beige;
+
+                        break;
+                    }
+
+                    miles3 = GetMilesByDate(logIndex, dateTime3a).ToString();
+                    temp3 = dayCount.ToString();
+                    dayCount++;
+                    DateTime dateTime4a = new DateTime(logYear, monthIndex, dayCount);
+                    if (dayCount == daysInMonth)
+                    {
+                        temp4 = dayCount.ToString();
+                        temp5 = "";
+                        temp6 = "";
+                        temp7 = "";
+                        miles4 = GetMilesByDate(logIndex, dateTime4a).ToString();
+                        miles5 = "";
+                        miles6 = "";
+                        miles7 = "";
+                        dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
+                        dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.Beige;
+
+                        break;
+                    }
+
+                    miles4 = GetMilesByDate(logIndex, dateTime4a).ToString();
+                    temp4 = dayCount.ToString();
+                    dayCount++;
+                    DateTime dateTime5a = new DateTime(logYear, monthIndex, dayCount);
+                    if (dayCount == daysInMonth)
+                    {
+                        temp5 = dayCount.ToString();
+                        temp6 = "";
+                        temp7 = "";
+                        miles5 = GetMilesByDate(logIndex, dateTime5a).ToString();
+                        miles6 = "";
+                        miles7 = "";
+                        dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
+                        dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.Beige;
+
+                        break;
+                    }
+
+                    miles5 = GetMilesByDate(logIndex, dateTime5a).ToString();
+                    temp5 = dayCount.ToString();
+                    dayCount++;
+                    DateTime dateTime6a = new DateTime(logYear, monthIndex, dayCount);
+                    if (dayCount == daysInMonth)
+                    {
+                        temp6 = dayCount.ToString();
+                        temp7 = "";
+                        miles6 = GetMilesByDate(logIndex, dateTime6a).ToString();
+                        miles7 = "";
+                        dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
+                        dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.Beige;
+
+                        break;
+                    }
+
+                    miles6 = GetMilesByDate(logIndex, dateTime6a).ToString();
+                    temp6 = dayCount.ToString();
+                    dayCount++;
+                    DateTime dateTime7a = new DateTime(logYear, monthIndex, dayCount);
+                    if (dayCount == daysInMonth)
+                    {
+                        temp7 = dayCount.ToString();
+                        miles7 = GetMilesByDate(logIndex, dateTime7a).ToString();
+                        dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
+                        dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.Beige;
+
+                        break;
+                    }
+
+                    temp7 = dayCount.ToString();
+                    miles7 = GetMilesByDate(logIndex, dateTime7a).ToString();
+
+                    dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
+                    dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                    dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
+                    rowCount++;
+                    dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Beige;
+                    rowCount++;
+                    weekNumber++;
+                }
+
+
+                //First Week of the month:
+                if (day1 == 1)
+                {
+                }
+                else if (day2 == 1)
+                {
+                    dataGridViewCalendar.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
+
+                }
+                else if (day3 == 1)
+                {
+                    dataGridViewCalendar.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
+
+                }
+                else if (day4 == 1)
+                {
+                    dataGridViewCalendar.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
+
+                }
+                else if (day5 == 1)
+                {
+                    dataGridViewCalendar.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
+
+                }
+                else if (day6 == 1)
+                {
+                    dataGridViewCalendar.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[4].Style.BackColor = Color.LightGray;
+                }
+                else if (day7 == 1)
+                {
+                    dataGridViewCalendar.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[4].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[0].Cells[5].Style.BackColor = Color.LightGray;
+                }
+
+                //dataGridViewPlanner.Columns[0].DefaultCellStyle.BackColor = Color.Khaki;
+                //dataGridViewPlanner.Columns[8].DefaultCellStyle.BackColor = Color.Khaki;
+                //dataGridViewPlanner.Rows[0].Cells[7].Style.BackColor = Color.Khaki;
+                //dataGridViewPlanner.Columns[0].Width = 30;
+                // Specify a larger font for the "Date" row. 
+                using (Font font = new Font(
+                    dataGridViewCalendar.DefaultCellStyle.Font.FontFamily, 25, FontStyle.Bold))
+                {
+                    dataGridViewCalendar.Rows[0].DefaultCellStyle.Font = font;
+                    dataGridViewCalendar.Rows[2].DefaultCellStyle.Font = font;
+                    dataGridViewCalendar.Rows[4].DefaultCellStyle.Font = font;
+                    dataGridViewCalendar.Rows[6].DefaultCellStyle.Font = font;
+                    dataGridViewCalendar.Rows[8].DefaultCellStyle.Font = font;
+                    if (sixRow)
+                    {
+                        dataGridViewCalendar.Rows[10].DefaultCellStyle.Font = font;
+                    }
+                }
+
+                dataGridViewCalendar.Rows[0].Height = 35;
+                dataGridViewCalendar.Rows[1].Height = 35;
+                dataGridViewCalendar.Rows[2].Height = 35;
+                dataGridViewCalendar.Rows[3].Height = 35;
+                dataGridViewCalendar.Rows[4].Height = 35;
+                dataGridViewCalendar.Rows[5].Height = 35;
+                dataGridViewCalendar.Rows[6].Height = 35;
+                dataGridViewCalendar.Rows[7].Height = 35;
+                dataGridViewCalendar.Rows[8].Height = 35;
+                dataGridViewCalendar.Rows[9].Height = 35;
+                if (sixRow)
+                {
+                    dataGridViewCalendar.Rows[10].Height = 35;
+                    dataGridViewCalendar.Rows[11].Height = 35;
+                }
+
+                    dataGridViewCalendar.AllowUserToResizeRows = false;
+                dataGridViewCalendar.AllowUserToResizeColumns = false;
+            }
+            catch (Exception ex)
+            {
+
+                Logger.LogError("[ERROR]: Exception while trying to run query Planner: " + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred while quering Planner.  Review the log for more information.");
+            }
+        }
+
+        private void brRefreshCalendar_Click(object sender, EventArgs e)
+        {
+            RunCalendar();
+        }
+
+        private void cbCalendarMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lbMonth.Text = cbCalendarMonth.SelectedItem.ToString();
+            RunCalendar();
+        }
+
+        private void btRefresh_Click(object sender, EventArgs e)
+        {
+            RunCalendar();
+        }
     }
 }

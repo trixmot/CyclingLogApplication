@@ -125,6 +125,12 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Planner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Planner.Designer.cs">
+      <DependentUpon>Planner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProgressBar.cs">
       <SubType>Form</SubType>
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Planner.resx">
+      <DependentUpon>Planner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressBar.resx">
       <DependentUpon>ProgressBar.cs</DependentUpon>

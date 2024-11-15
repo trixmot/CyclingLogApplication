@@ -117,3 +117,4 @@ D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplicat
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\Cycling_.74E77107.Up2Date
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.exe
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.pdb
+D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.Planner.resources

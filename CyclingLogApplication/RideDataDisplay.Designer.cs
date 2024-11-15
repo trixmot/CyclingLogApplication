@@ -51,6 +51,7 @@
             this.tbLoadingMessage = new System.Windows.Forms.TextBox();
             this.rbAscendingOrder = new System.Windows.Forms.RadioButton();
             this.rbDescendingOrder = new System.Windows.Forms.RadioButton();
+            this.btPrintPreview = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DownPictureBox)).BeginInit();
@@ -60,7 +61,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(23, 54);
+            this.dataGridView1.Location = new System.Drawing.Point(23, 60);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1079, 648);
             this.dataGridView1.TabIndex = 0;
@@ -115,7 +116,7 @@
             // 
             // bFilter
             // 
-            this.bFilter.Location = new System.Drawing.Point(725, 20);
+            this.bFilter.Location = new System.Drawing.Point(747, 32);
             this.bFilter.Name = "bFilter";
             this.bFilter.Size = new System.Drawing.Size(75, 22);
             this.bFilter.TabIndex = 6;
@@ -144,7 +145,7 @@
             // 
             // btClear
             // 
-            this.btClear.Location = new System.Drawing.Point(1114, 19);
+            this.btClear.Location = new System.Drawing.Point(846, 31);
             this.btClear.Name = "btClear";
             this.btClear.Size = new System.Drawing.Size(75, 23);
             this.btClear.TabIndex = 9;
@@ -171,7 +172,7 @@
             // checkedListBox
             // 
             this.checkedListBox.FormattingEnabled = true;
-            this.checkedListBox.Location = new System.Drawing.Point(1124, 54);
+            this.checkedListBox.Location = new System.Drawing.Point(1124, 60);
             this.checkedListBox.Name = "checkedListBox";
             this.checkedListBox.Size = new System.Drawing.Size(146, 364);
             this.checkedListBox.TabIndex = 12;
@@ -198,9 +199,9 @@
             // 
             // btPrint
             // 
-            this.btPrint.Location = new System.Drawing.Point(1195, 19);
+            this.btPrint.Location = new System.Drawing.Point(1189, 20);
             this.btPrint.Name = "btPrint";
-            this.btPrint.Size = new System.Drawing.Size(75, 23);
+            this.btPrint.Size = new System.Drawing.Size(81, 23);
             this.btPrint.TabIndex = 16;
             this.btPrint.Text = "Print";
             this.btPrint.UseVisualStyleBackColor = true;
@@ -209,7 +210,7 @@
             // cbUpdateValues
             // 
             this.cbUpdateValues.AutoSize = true;
-            this.cbUpdateValues.Location = new System.Drawing.Point(828, 20);
+            this.cbUpdateValues.Location = new System.Drawing.Point(780, 9);
             this.cbUpdateValues.Name = "cbUpdateValues";
             this.cbUpdateValues.Size = new System.Drawing.Size(116, 17);
             this.cbUpdateValues.TabIndex = 17;
@@ -298,11 +299,22 @@
             this.rbDescendingOrder.Text = "Descending Order";
             this.rbDescendingOrder.UseVisualStyleBackColor = true;
             // 
+            // btPrintPreview
+            // 
+            this.btPrintPreview.Location = new System.Drawing.Point(1102, 20);
+            this.btPrintPreview.Name = "btPrintPreview";
+            this.btPrintPreview.Size = new System.Drawing.Size(81, 23);
+            this.btPrintPreview.TabIndex = 28;
+            this.btPrintPreview.Text = "Print Preview";
+            this.btPrintPreview.UseVisualStyleBackColor = true;
+            this.btPrintPreview.Click += new System.EventHandler(this.btPrintPreview_Click);
+            // 
             // RideDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1287, 726);
+            this.Controls.Add(this.btPrintPreview);
             this.Controls.Add(this.rbDescendingOrder);
             this.Controls.Add(this.rbAscendingOrder);
             this.Controls.Add(this.tbLoadingMessage);
@@ -361,5 +373,6 @@
         private System.Windows.Forms.TextBox tbLoadingMessage;
         private System.Windows.Forms.RadioButton rbAscendingOrder;
         private System.Windows.Forms.RadioButton rbDescendingOrder;
+        private System.Windows.Forms.Button btPrintPreview;
     }
 }
