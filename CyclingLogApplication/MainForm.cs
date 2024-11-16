@@ -12,6 +12,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Data.SqlTypes;
 using System.Security.Cryptography;
+using System.Data.Common;
 //using System.Threading;
 //using System.Text.RegularExpressions;
 //using System.Runtime.Remoting.Metadata.W3cXsd2001;
@@ -55,6 +56,7 @@ namespace CyclingLogApplication
         private static string gridDisplayDataColor;
         private static string gridBikeColor;
         private static string gridRouteColor;
+        private static string gridCalendarColor;
 
         private static string gridMaintTextColor;
         private static string gridWeeklyTextColor;
@@ -63,6 +65,7 @@ namespace CyclingLogApplication
         private static string gridDisplayTextColor;
         private static string gridBikeTextColor;
         private static string gridRouteTextColor;
+        private static string gridCalendarTextColor;
 
         private static Dictionary<string, string> fieldNameDict = new Dictionary<string, string>();
         private static Dictionary<string, string> logNameIDDict = new Dictionary<string, string>();
@@ -289,6 +292,17 @@ namespace CyclingLogApplication
                     tbRouteColor.ForeColor = Color.White;
                 }
 
+                if (GetTextCalendar().Equals("True"))
+                {
+                    cbCalendarTextColor.Checked = true;
+                    tbCalendarColor.ForeColor = Color.Black;
+                }
+                else
+                {
+                    cbCalendarTextColor.Checked = false;
+                    tbCalendarColor.ForeColor = Color.White;
+                }
+
                 //Get all values and load the comboboxes:
                 List<string> logYearList = ReadDataNamesDESC("Table_Log_year", "Name");
                 List<string> routeList = ReadDataNames("Table_Routes", "Name");
@@ -338,6 +352,7 @@ namespace CyclingLogApplication
                 cbDisplayDataColors.SelectedIndex = cbDisplayDataColors.FindStringExact(gridDisplayDataColor);
                 cbBikeColors.SelectedIndex = cbBikeColors.FindStringExact(gridBikeColor);
                 cbRouteColors.SelectedIndex = cbRouteColors.FindStringExact(gridRouteColor);
+                cbCalendarColors.SelectedIndex = cbCalendarColors.FindStringExact(gridCalendarColor);
 
                 formloading = true;
 
@@ -520,6 +535,11 @@ namespace CyclingLogApplication
             gridRouteTextColor = text;
         }
 
+        public static void SetTextCalendar(string text)
+        {
+            gridCalendarTextColor = text;
+        }
+
         public static string GetTextMaint()
         {
             return gridMaintTextColor;
@@ -553,6 +573,11 @@ namespace CyclingLogApplication
         public static string GetTextRoute()
         {
             return gridRouteTextColor;
+        }
+
+        public static string GetTextCalendar()
+        {
+            return gridCalendarTextColor;
         }
 
         public static void SetMaintColor(string color)
@@ -623,6 +648,16 @@ namespace CyclingLogApplication
         public static string GetRouteColor()
         {
             return gridRouteColor;
+        }
+
+        public static void SetCalendarColor(string color)
+        {
+            gridCalendarColor = color;
+        }
+
+        public static string GetCalendarColor()
+        {
+            return gridCalendarColor;
         }
 
         public static void SetHeightCLB(int heightCLBInt)
@@ -5698,43 +5733,11 @@ namespace CyclingLogApplication
 
         private void btSetColors_Click(object sender, EventArgs e)
         {
-            //Maintenance Grid:
-            SetMaintColor(cbMaintColors.SelectedItem.ToString());
-            dgvMaint.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetMaintColor());
-            dgvMaint.Refresh();
-
-            //Weekly Stat Grid:
-            SetWeeklyColor(cbWeeklyColors.SelectedItem.ToString());
-            dataGridViewWeekly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetWeeklyColor());
-            dataGridViewWeekly.Refresh();
-
-            //Monthly Stat Grid:
-            SetMonthlyColor(cbMonthlyColors.SelectedItem.ToString());
-            dataGridViewMonthly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetMonthlyColor());
-            dataGridViewMonthly.Refresh();
-
-            //Yearly Stat Grid:
-            SetYearlyColor(cbYearlyColors.SelectedItem.ToString());
-            dataGridViewYearly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetYearlyColor());
-            dataGridViewYearly.Refresh();
-
-            //Display Data Grid:
-            SetDisplayDataColor(cbDisplayDataColors.SelectedItem.ToString());
-
-            //Bike Grid:
-            SetBikeColor(cbBikeColors.SelectedItem.ToString());
-            dataGridViewBikes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetBikeColor());
-            dataGridViewBikes.Refresh();
-
-            //Route Grid:
-            SetRouteColor(cbRouteColors.SelectedItem.ToString());
-            dataGridViewRoutes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetRouteColor());
-            dataGridViewRoutes.Refresh();
-
             if (cbMaintTextColor.Checked)
             {
                 SetTextMaint("True");
-            } else
+            }
+            else
             {
                 SetTextMaint("False");
             }
@@ -5792,6 +5795,52 @@ namespace CyclingLogApplication
             {
                 SetTextRoute("False");
             }
+
+            if (cbCalendarTextColor.Checked)
+            {
+                SetTextCalendar("True");
+            }
+            else
+            {
+                SetTextCalendar("False");
+            }
+
+            //Maintenance Grid:
+            SetMaintColor(cbMaintColors.SelectedItem.ToString());
+            dgvMaint.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetMaintColor());
+            dgvMaint.Refresh();
+
+            //Weekly Stat Grid:
+            SetWeeklyColor(cbWeeklyColors.SelectedItem.ToString());
+            dataGridViewWeekly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetWeeklyColor());
+            dataGridViewWeekly.Refresh();
+
+            //Monthly Stat Grid:
+            SetMonthlyColor(cbMonthlyColors.SelectedItem.ToString());
+            dataGridViewMonthly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetMonthlyColor());
+            dataGridViewMonthly.Refresh();
+
+            //Yearly Stat Grid:
+            SetYearlyColor(cbYearlyColors.SelectedItem.ToString());
+            dataGridViewYearly.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetYearlyColor());
+            dataGridViewYearly.Refresh();
+
+            //Display Data Grid:
+            SetDisplayDataColor(cbDisplayDataColors.SelectedItem.ToString());
+
+            //Bike Grid:
+            SetBikeColor(cbBikeColors.SelectedItem.ToString());
+            dataGridViewBikes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetBikeColor());
+            dataGridViewBikes.Refresh();
+
+            //Route Grid:
+            SetRouteColor(cbRouteColors.SelectedItem.ToString());
+            dataGridViewRoutes.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetRouteColor());
+            dataGridViewRoutes.Refresh();
+
+            //Calendar Grid:
+            SetCalendarColor(cbCalendarColors.SelectedItem.ToString());
+            RunCalendar();
 
             MessageBox.Show("Color save complete.");
         }
@@ -6230,10 +6279,10 @@ namespace CyclingLogApplication
 
             int monthIndex = cbCalendarMonth.SelectedIndex;
             int previousMonthIndex = monthIndex - 1;
+            int nextMonthIndex = monthIndex + 1;
             string firstDay = GetFirstDayForMonth(monthIndex);
             int daysInMonth = System.DateTime.DaysInMonth(DateTime.Now.Year, monthIndex);
             int daysInMonthPrevious = System.DateTime.DaysInMonth(DateTime.Now.Year, previousMonthIndex);
-            //string firstDayOfWeek = MainForm.GetFirstDayOfWeek();
             string logName = cbCalendarLogs.SelectedItem.ToString();
             int logIndex = GetLogIndexByName(logName);
             int logYear = GetLogYearByName(logName);
@@ -6275,6 +6324,17 @@ namespace CyclingLogApplication
                 day7 = 1;
             }
 
+            string textValue = GetTextCalendar();
+            System.Drawing.Color textColor;
+            if (textValue.Equals("True"))
+            {
+                textColor = Color.Black;
+            }
+            else
+            {
+                textColor = Color.White;
+            }
+
             try
             {
                 dataGridViewCalendar.DataSource = null;
@@ -6282,39 +6342,25 @@ namespace CyclingLogApplication
                 dataGridViewCalendar.ColumnCount = 7;
                 //dataGridViewPlanner.RowCount = 12;
                 dataGridViewCalendar.Name = "Calendar View";
-
-                //if (firstDayOfWeek.Equals("Monday"))
-                //{
-                //    dataGridViewCalendar.Columns[0].Name = "Monday";
-                //    dataGridViewCalendar.Columns[1].Name = "Tuesday";
-                //    dataGridViewCalendar.Columns[2].Name = "Wednesday";
-                //    dataGridViewCalendar.Columns[3].Name = "Thursday";
-                //    dataGridViewCalendar.Columns[4].Name = "Friday";
-                //    dataGridViewCalendar.Columns[5].Name = "Saturday";
-                //    dataGridViewCalendar.Columns[6].Name = "Sunday";
-                //}
-                //else
-                //{
-                    dataGridViewCalendar.Columns[0].Name = "Sunday";
-                    dataGridViewCalendar.Columns[1].Name = "Monday";
-                    dataGridViewCalendar.Columns[2].Name = "Tuesday";
-                    dataGridViewCalendar.Columns[3].Name = "Wednesday";
-                    dataGridViewCalendar.Columns[4].Name = "Thursday";
-                    dataGridViewCalendar.Columns[5].Name = "Friday";
-                    dataGridViewCalendar.Columns[6].Name = "Saturday";
-                //}
-
+                dataGridViewCalendar.Columns[0].Name = "Sunday";
+                dataGridViewCalendar.Columns[1].Name = "Monday";
+                dataGridViewCalendar.Columns[2].Name = "Tuesday";
+                dataGridViewCalendar.Columns[3].Name = "Wednesday";
+                dataGridViewCalendar.Columns[4].Name = "Thursday";
+                dataGridViewCalendar.Columns[5].Name = "Friday";
+                dataGridViewCalendar.Columns[6].Name = "Saturday";
 
                 dataGridViewCalendar.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray;
                 dataGridViewCalendar.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
-
-                dataGridViewCalendar.ReadOnly = true;
-                dataGridViewCalendar.EnableHeadersVisualStyles = false;
-                dataGridViewCalendar.AllowUserToOrderColumns = false;
+                //dataGridViewMonthly.DefaultCellStyle.SelectionBackColor = Color.LightGray;
+                //dataGridViewMonthly.DefaultCellStyle.SelectionForeColor = Color.White;
+                dataGridViewCalendar.RowHeadersDefaultCellStyle.BackColor = Color.LightGray;
 
                 foreach (DataGridViewColumn column in dataGridViewCalendar.Columns)
                 {
                     column.SortMode = DataGridViewColumnSortMode.NotSortable;
+                    column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    column.HeaderCell.Style.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Pixel);
                 }
 
                 dataGridViewCalendar.Columns[0].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -6327,15 +6373,12 @@ namespace CyclingLogApplication
 
                 // Resize the master DataGridView columns to fit the newly loaded data.
                 //dataGridViewMonthly.AutoResizeColumns();
+                dataGridViewCalendar.ReadOnly = true;
+                dataGridViewCalendar.EnableHeadersVisualStyles = false;
                 dataGridViewCalendar.AllowUserToOrderColumns = false;
+                dataGridViewCalendar.AllowUserToAddRows = false;
                 // Configure the details DataGridView so that its columns automatically adjust their widths when the data changes.
                 dataGridViewCalendar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                dataGridViewCalendar.AllowUserToAddRows = false;
-                //dataGridViewMonthly.DefaultCellStyle.SelectionBackColor = Color.LightGray;
-                //dataGridViewMonthly.DefaultCellStyle.SelectionForeColor = Color.White;
-                dataGridViewCalendar.RowHeadersDefaultCellStyle.BackColor = Color.LightGray;
-                //dataGridViewMonthly.RowHeadersVisible = false;
-
                 dataGridViewCalendar.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
                 dataGridViewCalendar.ColumnHeadersHeight = 40;
                 dataGridViewCalendar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -6367,25 +6410,16 @@ namespace CyclingLogApplication
                 string temp6 = "";
                 string temp7 = "";
 
-                //Create TimeDate from day:
-                DateTime dateTime1 = new DateTime(logYear, monthIndex, 1);
-                DateTime dateTime2 = new DateTime(logYear, monthIndex, 2);
-                DateTime dateTime3 = new DateTime(logYear, monthIndex, 3);
-                DateTime dateTime4 = new DateTime(logYear, monthIndex, 4);
-                DateTime dateTime5 = new DateTime(logYear, monthIndex, 5);
-                DateTime dateTime6 = new DateTime(logYear, monthIndex, 6);
-                DateTime dateTime7 = new DateTime(logYear, monthIndex, 7);
-                miles1 = GetMilesByDate(logIndex, dateTime1).ToString();
-                miles2 = GetMilesByDate(logIndex, dateTime2).ToString();
-                miles3 = GetMilesByDate(logIndex, dateTime3).ToString();
-                miles4 = GetMilesByDate(logIndex, dateTime4).ToString();
-                miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
-                miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
-                miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
-
                 //First Week of the month:
                 if (day1 == 1)
                 {
+                    DateTime dateTime1 = new DateTime(logYear, monthIndex, 1);
+                    DateTime dateTime2 = new DateTime(logYear, monthIndex, 2);
+                    DateTime dateTime3 = new DateTime(logYear, monthIndex, 3);
+                    DateTime dateTime4 = new DateTime(logYear, monthIndex, 4);
+                    DateTime dateTime5 = new DateTime(logYear, monthIndex, 5);
+                    DateTime dateTime6 = new DateTime(logYear, monthIndex, 6);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 7);
                     temp1 = "1";
                     temp2 = "2";
                     temp3 = "3";
@@ -6403,6 +6437,12 @@ namespace CyclingLogApplication
                 }
                 else if (day2 == 1)
                 {
+                    DateTime dateTime2 = new DateTime(logYear, monthIndex, 1);
+                    DateTime dateTime3 = new DateTime(logYear, monthIndex, 2);
+                    DateTime dateTime4 = new DateTime(logYear, monthIndex, 3);
+                    DateTime dateTime5 = new DateTime(logYear, monthIndex, 4);
+                    DateTime dateTime6 = new DateTime(logYear, monthIndex, 5);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 6);
                     temp1 = daysInMonthPrevious.ToString();
                     temp2 = "1";
                     temp3 = "2";
@@ -6410,7 +6450,8 @@ namespace CyclingLogApplication
                     temp5 = "4";
                     temp6 = "5";
                     temp7 = "6";
-                    miles1 = "";
+                    DateTime dateTime2b = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                    miles1 = GetMilesByDate(logIndex, dateTime2b).ToString();
                     miles2 = GetMilesByDate(logIndex, dateTime2).ToString();
                     miles3 = GetMilesByDate(logIndex, dateTime3).ToString();
                     miles4 = GetMilesByDate(logIndex, dateTime4).ToString();
@@ -6421,6 +6462,11 @@ namespace CyclingLogApplication
                 }
                 else if (day3 == 1)
                 {
+                    DateTime dateTime3 = new DateTime(logYear, monthIndex, 1);
+                    DateTime dateTime4 = new DateTime(logYear, monthIndex, 2);
+                    DateTime dateTime5 = new DateTime(logYear, monthIndex, 3);
+                    DateTime dateTime6 = new DateTime(logYear, monthIndex, 4);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 5);
                     temp1 = (daysInMonthPrevious - 1).ToString();
                     temp2 = (daysInMonthPrevious).ToString();
                     temp3 = "1";
@@ -6428,8 +6474,10 @@ namespace CyclingLogApplication
                     temp5 = "3";
                     temp6 = "4";
                     temp7 = "5";
-                    miles1 = "";
-                    miles2 = "";
+                    DateTime dateTime31 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                    DateTime dateTime32 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious-1);
+                    miles1 = GetMilesByDate(logIndex, dateTime32).ToString();
+                    miles2 = GetMilesByDate(logIndex, dateTime31).ToString();
                     miles3 = GetMilesByDate(logIndex, dateTime3).ToString();
                     miles4 = GetMilesByDate(logIndex, dateTime4).ToString();
                     miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
@@ -6439,6 +6487,10 @@ namespace CyclingLogApplication
                 }
                 else if (day4 == 1)
                 {
+                    DateTime dateTime4 = new DateTime(logYear, monthIndex, 1);
+                    DateTime dateTime5 = new DateTime(logYear, monthIndex, 2);
+                    DateTime dateTime6 = new DateTime(logYear, monthIndex, 3);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 4);
                     temp1 = (daysInMonthPrevious - 2).ToString();
                     temp2 = (daysInMonthPrevious - 1).ToString();
                     temp3 = (daysInMonthPrevious).ToString();
@@ -6446,9 +6498,12 @@ namespace CyclingLogApplication
                     temp5 = "2";
                     temp6 = "3";
                     temp7 = "4";
-                    miles1 = "";
-                    miles2 = "";
-                    miles3 = "";
+                    DateTime dateTime41 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                    DateTime dateTime42 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                    DateTime dateTime43 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
+                    miles1 = GetMilesByDate(logIndex, dateTime43).ToString();
+                    miles2 = GetMilesByDate(logIndex, dateTime42).ToString();
+                    miles3 = GetMilesByDate(logIndex, dateTime41).ToString();
                     miles4 = GetMilesByDate(logIndex, dateTime4).ToString();
                     miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
                     miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
@@ -6457,6 +6512,9 @@ namespace CyclingLogApplication
                 }
                 else if (day5 == 1)
                 {
+                    DateTime dateTime5 = new DateTime(logYear, monthIndex, 1);
+                    DateTime dateTime6 = new DateTime(logYear, monthIndex, 2);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 3);
                     temp1 = (daysInMonthPrevious - 3).ToString();
                     temp2 = (daysInMonthPrevious - 2).ToString();
                     temp3 = (daysInMonthPrevious - 1).ToString();
@@ -6464,10 +6522,14 @@ namespace CyclingLogApplication
                     temp5 = "1";
                     temp6 = "2";
                     temp7 = "3";
-                    miles1 = "";
-                    miles2 = "";
-                    miles3 = "";
-                    miles4 = "";
+                    DateTime dateTime51 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                    DateTime dateTime52 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                    DateTime dateTime53 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
+                    DateTime dateTime54 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
+                    miles1 = GetMilesByDate(logIndex, dateTime54).ToString();
+                    miles2 = GetMilesByDate(logIndex, dateTime53).ToString();
+                    miles3 = GetMilesByDate(logIndex, dateTime52).ToString();
+                    miles4 = GetMilesByDate(logIndex, dateTime51).ToString();
                     miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
                     miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
                     miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
@@ -6475,6 +6537,8 @@ namespace CyclingLogApplication
                 }
                 else if (day6 == 1)
                 {
+                    DateTime dateTime6 = new DateTime(logYear, monthIndex, 1);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 2);
                     temp1 = (daysInMonthPrevious - 4).ToString();
                     temp2 = (daysInMonthPrevious - 3).ToString();
                     temp3 = (daysInMonthPrevious - 2).ToString();
@@ -6482,16 +6546,22 @@ namespace CyclingLogApplication
                     temp5 = (daysInMonthPrevious).ToString();
                     temp6 = "1";
                     temp7 = "2";
-                    miles1 = "";
-                    miles2 = "";
-                    miles3 = "";
-                    miles4 = "";
-                    miles5 = "";
+                    DateTime dateTime61 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                    DateTime dateTime62 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                    DateTime dateTime63 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
+                    DateTime dateTime64 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
+                    DateTime dateTime65 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
+                    miles1 = GetMilesByDate(logIndex, dateTime65).ToString();
+                    miles2 = GetMilesByDate(logIndex, dateTime64).ToString();
+                    miles3 = GetMilesByDate(logIndex, dateTime63).ToString();
+                    miles4 = GetMilesByDate(logIndex, dateTime62).ToString();
+                    miles5 = GetMilesByDate(logIndex, dateTime61).ToString();
                     miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
                     miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
                 }
                 else if (day7 == 1)
                 {
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 1);
                     temp1 = (daysInMonthPrevious - 5).ToString();
                     temp2 = (daysInMonthPrevious - 4).ToString();
                     temp3 = (daysInMonthPrevious - 3).ToString();
@@ -6499,12 +6569,18 @@ namespace CyclingLogApplication
                     temp5 = (daysInMonthPrevious - 1).ToString();
                     temp6 = (daysInMonthPrevious).ToString();
                     temp7 = "1";
-                    miles1 = "";
-                    miles2 = "";
-                    miles3 = "";
-                    miles4 = "";
-                    miles5 = "";
-                    miles6 = "";
+                    DateTime dateTime71 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                    DateTime dateTime72 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                    DateTime dateTime73 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
+                    DateTime dateTime74 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
+                    DateTime dateTime75 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
+                    DateTime dateTime76 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 5);
+                    miles1 = GetMilesByDate(logIndex, dateTime76).ToString();
+                    miles2 = GetMilesByDate(logIndex, dateTime75).ToString();
+                    miles3 = GetMilesByDate(logIndex, dateTime74).ToString();
+                    miles4 = GetMilesByDate(logIndex, dateTime73).ToString();
+                    miles5 = GetMilesByDate(logIndex, dateTime72).ToString();
+                    miles6 = GetMilesByDate(logIndex, dateTime71).ToString();
                     miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
                 }
 
@@ -6513,7 +6589,8 @@ namespace CyclingLogApplication
                 dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                 dayCount = int.Parse(temp7);
                 rowCount++;
-                dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Beige;
+                dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.FromName(GetCalendarColor());
+                dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.ForeColor = textColor;
                 rowCount++;
                 Boolean sixRow = false;
 
@@ -6531,24 +6608,58 @@ namespace CyclingLogApplication
                     if (dayCount == daysInMonth)
                     {
                         temp1 = dayCount.ToString();
-                        temp2 = "";
-                        temp3 = "";
-                        temp4 = "";
-                        temp5 = "";
-                        temp6 = "";
-                        temp7 = "";
+                        temp2 = "1";
+                        temp3 = "2";
+                        temp4 = "3";
+                        temp5 = "4";
+                        temp6 = "5";
+                        temp7 = "6";
                         
                         miles1 = GetMilesByDate(logIndex, dateTime1a).ToString();
-                        miles2 = "";
-                        miles3 = "";
-                        miles4 = "";
-                        miles5 = "";
-                        miles6 = "";
-                        miles7 = "";
+                        if (nextMonthIndex == 13)
+                        {
+                            //Just post a blank entry for the next year Jan days:
+                            miles2 = "";
+                            miles3 = "";
+                            miles4 = "";
+                            miles5 = "";
+                            miles6 = "";
+                            miles7 = "";
+                        } else
+                        {
+                            DateTime dateTime1b = new DateTime(logYear, nextMonthIndex, 1);
+                            DateTime dateTime1c = new DateTime(logYear, nextMonthIndex, 2);
+                            DateTime dateTime1d = new DateTime(logYear, nextMonthIndex, 3);
+                            DateTime dateTime1e = new DateTime(logYear, nextMonthIndex, 4);
+                            DateTime dateTime1f = new DateTime(logYear, nextMonthIndex, 5);
+                            DateTime dateTime1g = new DateTime(logYear, nextMonthIndex, 6);
+                            miles2 = GetMilesByDate(logIndex, dateTime1b).ToString();
+                            miles3 = GetMilesByDate(logIndex, dateTime1c).ToString();
+                            miles4 = GetMilesByDate(logIndex, dateTime1d).ToString();
+                            miles5 = GetMilesByDate(logIndex, dateTime1e).ToString();
+                            miles6 = GetMilesByDate(logIndex, dateTime1f).ToString();
+                            miles7 = GetMilesByDate(logIndex, dateTime1g).ToString();
+                        }
+                        
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
-                        dataGridViewCalendar.Rows[rowCount+1].DefaultCellStyle.BackColor = Color.Beige;
+                        dataGridViewCalendar.Rows[rowCount+1].DefaultCellStyle.BackColor = Color.FromName(GetCalendarColor());
+                        dataGridViewCalendar.Rows[rowCount+1].DefaultCellStyle.ForeColor = textColor;
+
+                        dataGridViewCalendar.Rows[rowCount].Cells[1].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[2].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[3].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.LightGray;
+
                         break;
                     }
 
@@ -6559,21 +6670,51 @@ namespace CyclingLogApplication
                     if (dayCount == daysInMonth)
                     {
                         temp2 = dayCount.ToString();
-                        temp3 = "";
-                        temp4 = "";
-                        temp5 = "";
-                        temp6 = "";
-                        temp7 = "";
+                        temp3 = "1";
+                        temp4 = "2";
+                        temp5 = "3";
+                        temp6 = "4";
+                        temp7 = "5";
                         miles2 = GetMilesByDate(logIndex, dateTime2a).ToString();
-                        miles3 = "";
-                        miles4 = "";
-                        miles5 = "";
-                        miles6 = "";
-                        miles7 = "";
+                        if (nextMonthIndex == 13)
+                        {
+                            //Just post a blank entry for the next year Jan days:
+                            miles3 = "";
+                            miles4 = "";
+                            miles5 = "";
+                            miles6 = "";
+                            miles7 = "";
+                        }
+                        else
+                        {
+                            DateTime dateTime2b = new DateTime(logYear, nextMonthIndex, 1);
+                            DateTime dateTime2c = new DateTime(logYear, nextMonthIndex, 2);
+                            DateTime dateTime2d = new DateTime(logYear, nextMonthIndex, 3);
+                            DateTime dateTime2e = new DateTime(logYear, nextMonthIndex, 4);
+                            DateTime dateTime2f = new DateTime(logYear, nextMonthIndex, 5);
+                            miles3 = GetMilesByDate(logIndex, dateTime2b).ToString();
+                            miles4 = GetMilesByDate(logIndex, dateTime2c).ToString();
+                            miles5 = GetMilesByDate(logIndex, dateTime2d).ToString();
+                            miles6 = GetMilesByDate(logIndex, dateTime2e).ToString();
+                            miles7 = GetMilesByDate(logIndex, dateTime2f).ToString();
+                        }
+
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
-                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.Beige;
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.FromName(GetCalendarColor());
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.ForeColor = textColor;
+
+                        dataGridViewCalendar.Rows[rowCount].Cells[2].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[3].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.LightGray;
 
                         break;
                     }
@@ -6585,19 +6726,45 @@ namespace CyclingLogApplication
                     if (dayCount == daysInMonth)
                     {
                         temp3 = dayCount.ToString();
-                        temp4 = "";
-                        temp5 = "";
-                        temp6 = "";
-                        temp7 = "";
+                        temp4 = "1";
+                        temp5 = "2";
+                        temp6 = "3";
+                        temp7 = "4";
                         miles3 = GetMilesByDate(logIndex, dateTime3a).ToString();
-                        miles4 = "";
-                        miles5 = "";
-                        miles6 = "";
-                        miles7 = "";
+                        if (nextMonthIndex == 13)
+                        {
+                            //Just post a blank entry for the next year Jan days:
+                            miles4 = "";
+                            miles5 = "";
+                            miles6 = "";
+                            miles7 = "";
+                        }
+                        else
+                        {
+                            DateTime dateTime3b = new DateTime(logYear, nextMonthIndex, 1);
+                            DateTime dateTime3c = new DateTime(logYear, nextMonthIndex, 2);
+                            DateTime dateTime3d = new DateTime(logYear, nextMonthIndex, 3);
+                            DateTime dateTime3e = new DateTime(logYear, nextMonthIndex, 4);
+                            miles4 = GetMilesByDate(logIndex, dateTime3b).ToString();
+                            miles5 = GetMilesByDate(logIndex, dateTime3c).ToString();
+                            miles6 = GetMilesByDate(logIndex, dateTime3d).ToString();
+                            miles7 = GetMilesByDate(logIndex, dateTime3e).ToString();
+                        }
+                        
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
-                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.Beige;
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.FromName(GetCalendarColor());
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.ForeColor = textColor;
+
+                        dataGridViewCalendar.Rows[rowCount].Cells[3].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.LightGray;
 
                         break;
                     }
@@ -6609,17 +6776,39 @@ namespace CyclingLogApplication
                     if (dayCount == daysInMonth)
                     {
                         temp4 = dayCount.ToString();
-                        temp5 = "";
-                        temp6 = "";
-                        temp7 = "";
+                        temp5 = "1";
+                        temp6 = "2";
+                        temp7 = "3";
                         miles4 = GetMilesByDate(logIndex, dateTime4a).ToString();
-                        miles5 = "";
-                        miles6 = "";
-                        miles7 = "";
+                        if (nextMonthIndex == 13)
+                        {
+                            //Just post a blank entry for the next year Jan days:
+                            miles5 = "";
+                            miles6 = "";
+                            miles7 = "";
+                        }
+                        else
+                        {
+                            DateTime dateTime4b = new DateTime(logYear, nextMonthIndex, 1);
+                            DateTime dateTime4c = new DateTime(logYear, nextMonthIndex, 2);
+                            DateTime dateTime4d = new DateTime(logYear, nextMonthIndex, 3);
+                            miles5 = GetMilesByDate(logIndex, dateTime4b).ToString();
+                            miles6 = GetMilesByDate(logIndex, dateTime4c).ToString();
+                            miles7 = GetMilesByDate(logIndex, dateTime4d).ToString();
+                        }
+                        
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
-                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.Beige;
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.FromName(GetCalendarColor());
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.ForeColor = textColor;
+
+                        dataGridViewCalendar.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.LightGray;
 
                         break;
                     }
@@ -6631,15 +6820,33 @@ namespace CyclingLogApplication
                     if (dayCount == daysInMonth)
                     {
                         temp5 = dayCount.ToString();
-                        temp6 = "";
-                        temp7 = "";
+                        temp6 = "1";
+                        temp7 = "2";
                         miles5 = GetMilesByDate(logIndex, dateTime5a).ToString();
-                        miles6 = "";
-                        miles7 = "";
+                        if (nextMonthIndex == 13)
+                        {
+                            //Just post a blank entry for the next year Jan days:
+                            miles6 = "";
+                            miles7 = "";
+                        }
+                        else
+                        {
+                            DateTime dateTime5b = new DateTime(logYear, nextMonthIndex, 1);
+                            DateTime dateTime5c = new DateTime(logYear, nextMonthIndex, 2);
+                            miles6 = GetMilesByDate(logIndex, dateTime5b).ToString();
+                            miles7 = GetMilesByDate(logIndex, dateTime5c).ToString();
+                        }
+                        
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
-                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.Beige;
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.FromName(GetCalendarColor());
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.ForeColor = textColor;
+
+                        dataGridViewCalendar.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.LightGray;
 
                         break;
                     }
@@ -6651,13 +6858,27 @@ namespace CyclingLogApplication
                     if (dayCount == daysInMonth)
                     {
                         temp6 = dayCount.ToString();
-                        temp7 = "";
+                        temp7 = "1";
                         miles6 = GetMilesByDate(logIndex, dateTime6a).ToString();
-                        miles7 = "";
+                        if (nextMonthIndex == 13)
+                        {
+                            //Just post a blank entry for the next year Jan days:
+                            miles7 = "";
+                        }
+                        else
+                        {
+                            DateTime dateTime6b = new DateTime(logYear, nextMonthIndex, 1);
+                            miles7 = GetMilesByDate(logIndex, dateTime6b).ToString();
+                        }
+                        
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
-                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.Beige;
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.FromName(GetCalendarColor());
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.ForeColor = textColor;
+
+                        dataGridViewCalendar.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
+                        dataGridViewCalendar.Rows[rowCount+1].Cells[6].Style.BackColor = Color.LightGray;
 
                         break;
                     }
@@ -6673,7 +6894,8 @@ namespace CyclingLogApplication
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
-                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.Beige;
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.BackColor = Color.FromName(GetCalendarColor());
+                        dataGridViewCalendar.Rows[rowCount + 1].DefaultCellStyle.ForeColor = textColor;
 
                         break;
                     }
@@ -6685,7 +6907,8 @@ namespace CyclingLogApplication
                     dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                     dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                     rowCount++;
-                    dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Beige;
+                    dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.FromName(GetCalendarColor());
+                    dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.ForeColor = textColor;
                     rowCount++;
                     weekNumber++;
                 }
@@ -6698,12 +6921,15 @@ namespace CyclingLogApplication
                 else if (day2 == 1)
                 {
                     dataGridViewCalendar.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
 
                 }
                 else if (day3 == 1)
                 {
                     dataGridViewCalendar.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
                     dataGridViewCalendar.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
 
                 }
                 else if (day4 == 1)
@@ -6711,6 +6937,9 @@ namespace CyclingLogApplication
                     dataGridViewCalendar.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
                     dataGridViewCalendar.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
                     dataGridViewCalendar.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
 
                 }
                 else if (day5 == 1)
@@ -6719,6 +6948,10 @@ namespace CyclingLogApplication
                     dataGridViewCalendar.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
                     dataGridViewCalendar.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
                     dataGridViewCalendar.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[3].Style.BackColor = Color.LightGray;
 
                 }
                 else if (day6 == 1)
@@ -6728,6 +6961,11 @@ namespace CyclingLogApplication
                     dataGridViewCalendar.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
                     dataGridViewCalendar.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
                     dataGridViewCalendar.Rows[0].Cells[4].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[3].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[4].Style.BackColor = Color.LightGray;
                 }
                 else if (day7 == 1)
                 {
@@ -6737,6 +6975,12 @@ namespace CyclingLogApplication
                     dataGridViewCalendar.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
                     dataGridViewCalendar.Rows[0].Cells[4].Style.BackColor = Color.LightGray;
                     dataGridViewCalendar.Rows[0].Cells[5].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[3].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[4].Style.BackColor = Color.LightGray;
+                    dataGridViewCalendar.Rows[1].Cells[5].Style.BackColor = Color.LightGray;
                 }
 
                 //dataGridViewPlanner.Columns[0].DefaultCellStyle.BackColor = Color.Khaki;
@@ -6799,6 +7043,25 @@ namespace CyclingLogApplication
         private void btRefresh_Click(object sender, EventArgs e)
         {
             RunCalendar();
+        }
+
+        private void cbCalendarColors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string color = cbCalendarColors.SelectedItem.ToString();
+            color = color.Replace("\t", "");
+            tbCalendarColor.BackColor = Color.FromName(color);
+        }
+
+        private void cbCalendarTextColor_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbCalendarTextColor.Checked)
+            {
+                tbCalendarColor.ForeColor = Color.Black;
+            }
+            else
+            {
+                tbCalendarColor.ForeColor = Color.White;
+            }
         }
     }
 }

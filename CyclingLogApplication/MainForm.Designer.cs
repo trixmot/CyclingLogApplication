@@ -229,6 +229,11 @@
             this.dataGridViewCalendar = new System.Windows.Forms.DataGridView();
             this.lbMonth = new System.Windows.Forms.Label();
             this.btRefresh = new System.Windows.Forms.Button();
+            this.cbCalendarTextColor = new System.Windows.Forms.CheckBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbCalendarColor = new System.Windows.Forms.TextBox();
+            this.cbCalendarColors = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -1492,14 +1497,19 @@
             this.groupBox2.Controls.Add(this.groupBox9);
             this.groupBox2.Controls.Add(this.groupBox10);
             this.groupBox2.Controls.Add(this.label64);
-            this.groupBox2.Location = new System.Drawing.Point(79, 23);
+            this.groupBox2.Location = new System.Drawing.Point(92, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(780, 518);
+            this.groupBox2.Size = new System.Drawing.Size(780, 535);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             // 
             // groupBox23
             // 
+            this.groupBox23.Controls.Add(this.cbCalendarTextColor);
+            this.groupBox23.Controls.Add(this.textBox7);
+            this.groupBox23.Controls.Add(this.label10);
+            this.groupBox23.Controls.Add(this.tbCalendarColor);
+            this.groupBox23.Controls.Add(this.cbCalendarColors);
             this.groupBox23.Controls.Add(this.cbMonthlyTextColor);
             this.groupBox23.Controls.Add(this.tbWhiteMonthly);
             this.groupBox23.Controls.Add(this.label7);
@@ -1537,9 +1547,9 @@
             this.groupBox23.Controls.Add(this.tbColorMaint);
             this.groupBox23.Controls.Add(this.btSetColors);
             this.groupBox23.Controls.Add(this.cbMaintColors);
-            this.groupBox23.Location = new System.Drawing.Point(232, 68);
+            this.groupBox23.Location = new System.Drawing.Point(232, 58);
             this.groupBox23.Name = "groupBox23";
-            this.groupBox23.Size = new System.Drawing.Size(281, 431);
+            this.groupBox23.Size = new System.Drawing.Size(281, 441);
             this.groupBox23.TabIndex = 78;
             this.groupBox23.TabStop = false;
             this.groupBox23.Text = "Grid Colors";
@@ -1547,7 +1557,7 @@
             // cbMonthlyTextColor
             // 
             this.cbMonthlyTextColor.AutoSize = true;
-            this.cbMonthlyTextColor.Location = new System.Drawing.Point(165, 111);
+            this.cbMonthlyTextColor.Location = new System.Drawing.Point(165, 104);
             this.cbMonthlyTextColor.Name = "cbMonthlyTextColor";
             this.cbMonthlyTextColor.Size = new System.Drawing.Size(15, 14);
             this.cbMonthlyTextColor.TabIndex = 110;
@@ -1556,7 +1566,7 @@
             // 
             // tbWhiteMonthly
             // 
-            this.tbWhiteMonthly.Location = new System.Drawing.Point(198, 93);
+            this.tbWhiteMonthly.Location = new System.Drawing.Point(198, 86);
             this.tbWhiteMonthly.Name = "tbWhiteMonthly";
             this.tbWhiteMonthly.Size = new System.Drawing.Size(65, 20);
             this.tbWhiteMonthly.TabIndex = 109;
@@ -1565,7 +1575,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 90);
+            this.label7.Location = new System.Drawing.Point(20, 83);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(88, 13);
             this.label7.TabIndex = 108;
@@ -1573,7 +1583,7 @@
             // 
             // tbColorMonthly
             // 
-            this.tbColorMonthly.Location = new System.Drawing.Point(198, 110);
+            this.tbColorMonthly.Location = new System.Drawing.Point(198, 103);
             this.tbColorMonthly.Name = "tbColorMonthly";
             this.tbColorMonthly.Size = new System.Drawing.Size(65, 20);
             this.tbColorMonthly.TabIndex = 107;
@@ -1719,7 +1729,7 @@
             "WhiteSmoke",
             "Yellow",
             "YellowGreen"});
-            this.cbMonthlyColors.Location = new System.Drawing.Point(23, 106);
+            this.cbMonthlyColors.Location = new System.Drawing.Point(23, 99);
             this.cbMonthlyColors.Name = "cbMonthlyColors";
             this.cbMonthlyColors.Size = new System.Drawing.Size(111, 21);
             this.cbMonthlyColors.TabIndex = 106;
@@ -1728,7 +1738,7 @@
             // cbYearlyTextColor
             // 
             this.cbYearlyTextColor.AutoSize = true;
-            this.cbYearlyTextColor.Location = new System.Drawing.Point(165, 61);
+            this.cbYearlyTextColor.Location = new System.Drawing.Point(165, 54);
             this.cbYearlyTextColor.Name = "cbYearlyTextColor";
             this.cbYearlyTextColor.Size = new System.Drawing.Size(15, 14);
             this.cbYearlyTextColor.TabIndex = 105;
@@ -1737,7 +1747,7 @@
             // 
             // tbWhiteYearly
             // 
-            this.tbWhiteYearly.Location = new System.Drawing.Point(198, 43);
+            this.tbWhiteYearly.Location = new System.Drawing.Point(198, 36);
             this.tbWhiteYearly.Name = "tbWhiteYearly";
             this.tbWhiteYearly.Size = new System.Drawing.Size(65, 20);
             this.tbWhiteYearly.TabIndex = 104;
@@ -1746,7 +1756,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 40);
+            this.label6.Location = new System.Drawing.Point(20, 33);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 103;
@@ -1754,7 +1764,7 @@
             // 
             // tbColorYearly
             // 
-            this.tbColorYearly.Location = new System.Drawing.Point(198, 60);
+            this.tbColorYearly.Location = new System.Drawing.Point(198, 53);
             this.tbColorYearly.Name = "tbColorYearly";
             this.tbColorYearly.Size = new System.Drawing.Size(65, 20);
             this.tbColorYearly.TabIndex = 102;
@@ -1900,7 +1910,7 @@
             "WhiteSmoke",
             "Yellow",
             "YellowGreen"});
-            this.cbYearlyColors.Location = new System.Drawing.Point(23, 56);
+            this.cbYearlyColors.Location = new System.Drawing.Point(23, 49);
             this.cbYearlyColors.Name = "cbYearlyColors";
             this.cbYearlyColors.Size = new System.Drawing.Size(111, 21);
             this.cbYearlyColors.TabIndex = 101;
@@ -1909,7 +1919,7 @@
             // cbRouteTextColor
             // 
             this.cbRouteTextColor.AutoSize = true;
-            this.cbRouteTextColor.Location = new System.Drawing.Point(165, 336);
+            this.cbRouteTextColor.Location = new System.Drawing.Point(165, 329);
             this.cbRouteTextColor.Name = "cbRouteTextColor";
             this.cbRouteTextColor.Size = new System.Drawing.Size(15, 14);
             this.cbRouteTextColor.TabIndex = 100;
@@ -1919,7 +1929,7 @@
             // cbBikeTextColor
             // 
             this.cbBikeTextColor.AutoSize = true;
-            this.cbBikeTextColor.Location = new System.Drawing.Point(165, 293);
+            this.cbBikeTextColor.Location = new System.Drawing.Point(165, 286);
             this.cbBikeTextColor.Name = "cbBikeTextColor";
             this.cbBikeTextColor.Size = new System.Drawing.Size(15, 14);
             this.cbBikeTextColor.TabIndex = 99;
@@ -1929,7 +1939,7 @@
             // cbDisplayDataTextColor
             // 
             this.cbDisplayDataTextColor.AutoSize = true;
-            this.cbDisplayDataTextColor.Location = new System.Drawing.Point(165, 247);
+            this.cbDisplayDataTextColor.Location = new System.Drawing.Point(165, 240);
             this.cbDisplayDataTextColor.Name = "cbDisplayDataTextColor";
             this.cbDisplayDataTextColor.Size = new System.Drawing.Size(15, 14);
             this.cbDisplayDataTextColor.TabIndex = 98;
@@ -1939,7 +1949,7 @@
             // cbWeeklyTextColor
             // 
             this.cbWeeklyTextColor.AutoSize = true;
-            this.cbWeeklyTextColor.Location = new System.Drawing.Point(165, 156);
+            this.cbWeeklyTextColor.Location = new System.Drawing.Point(165, 149);
             this.cbWeeklyTextColor.Name = "cbWeeklyTextColor";
             this.cbWeeklyTextColor.Size = new System.Drawing.Size(15, 14);
             this.cbWeeklyTextColor.TabIndex = 97;
@@ -1949,7 +1959,7 @@
             // cbMaintTextColor
             // 
             this.cbMaintTextColor.AutoSize = true;
-            this.cbMaintTextColor.Location = new System.Drawing.Point(165, 199);
+            this.cbMaintTextColor.Location = new System.Drawing.Point(165, 192);
             this.cbMaintTextColor.Name = "cbMaintTextColor";
             this.cbMaintTextColor.Size = new System.Drawing.Size(15, 14);
             this.cbMaintTextColor.TabIndex = 96;
@@ -1959,7 +1969,7 @@
             // label88
             // 
             this.label88.AutoSize = true;
-            this.label88.Location = new System.Drawing.Point(140, 29);
+            this.label88.Location = new System.Drawing.Point(140, 22);
             this.label88.Name = "label88";
             this.label88.Size = new System.Drawing.Size(58, 13);
             this.label88.TabIndex = 95;
@@ -1967,7 +1977,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(198, 319);
+            this.textBox6.Location = new System.Drawing.Point(198, 312);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(65, 20);
             this.textBox6.TabIndex = 94;
@@ -1975,7 +1985,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(198, 277);
+            this.textBox5.Location = new System.Drawing.Point(198, 270);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(65, 20);
             this.textBox5.TabIndex = 93;
@@ -1983,7 +1993,7 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(196, 228);
+            this.textBox4.Location = new System.Drawing.Point(196, 221);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(65, 20);
             this.textBox4.TabIndex = 92;
@@ -1991,7 +2001,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(196, 138);
+            this.textBox3.Location = new System.Drawing.Point(196, 131);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(65, 20);
             this.textBox3.TabIndex = 91;
@@ -1999,7 +2009,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(196, 182);
+            this.textBox2.Location = new System.Drawing.Point(196, 175);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(65, 20);
             this.textBox2.TabIndex = 90;
@@ -2008,7 +2018,7 @@
             // cbRoutesColor
             // 
             this.cbRoutesColor.AutoSize = true;
-            this.cbRoutesColor.Location = new System.Drawing.Point(20, 313);
+            this.cbRoutesColor.Location = new System.Drawing.Point(20, 306);
             this.cbRoutesColor.Name = "cbRoutesColor";
             this.cbRoutesColor.Size = new System.Drawing.Size(63, 13);
             this.cbRoutesColor.TabIndex = 89;
@@ -2016,7 +2026,7 @@
             // 
             // tbRouteColor
             // 
-            this.tbRouteColor.Location = new System.Drawing.Point(198, 336);
+            this.tbRouteColor.Location = new System.Drawing.Point(198, 329);
             this.tbRouteColor.Name = "tbRouteColor";
             this.tbRouteColor.Size = new System.Drawing.Size(65, 20);
             this.tbRouteColor.TabIndex = 88;
@@ -2162,7 +2172,7 @@
             "WhiteSmoke",
             "Yellow",
             "YellowGreen"});
-            this.cbRouteColors.Location = new System.Drawing.Point(23, 329);
+            this.cbRouteColors.Location = new System.Drawing.Point(23, 322);
             this.cbRouteColors.Name = "cbRouteColors";
             this.cbRouteColors.Size = new System.Drawing.Size(111, 21);
             this.cbRouteColors.TabIndex = 87;
@@ -2171,7 +2181,7 @@
             // cbBikesColor
             // 
             this.cbBikesColor.AutoSize = true;
-            this.cbBikesColor.Location = new System.Drawing.Point(22, 271);
+            this.cbBikesColor.Location = new System.Drawing.Point(22, 264);
             this.cbBikesColor.Name = "cbBikesColor";
             this.cbBikesColor.Size = new System.Drawing.Size(55, 13);
             this.cbBikesColor.TabIndex = 86;
@@ -2179,7 +2189,7 @@
             // 
             // tbBikeColor
             // 
-            this.tbBikeColor.Location = new System.Drawing.Point(198, 294);
+            this.tbBikeColor.Location = new System.Drawing.Point(198, 287);
             this.tbBikeColor.Name = "tbBikeColor";
             this.tbBikeColor.Size = new System.Drawing.Size(65, 20);
             this.tbBikeColor.TabIndex = 85;
@@ -2325,7 +2335,7 @@
             "WhiteSmoke",
             "Yellow",
             "YellowGreen"});
-            this.cbBikeColors.Location = new System.Drawing.Point(23, 287);
+            this.cbBikeColors.Location = new System.Drawing.Point(23, 280);
             this.cbBikeColors.Name = "cbBikeColors";
             this.cbBikeColors.Size = new System.Drawing.Size(111, 21);
             this.cbBikeColors.TabIndex = 84;
@@ -2334,7 +2344,7 @@
             // label81
             // 
             this.label81.AutoSize = true;
-            this.label81.Location = new System.Drawing.Point(22, 228);
+            this.label81.Location = new System.Drawing.Point(22, 221);
             this.label81.Name = "label81";
             this.label81.Size = new System.Drawing.Size(89, 13);
             this.label81.TabIndex = 83;
@@ -2342,7 +2352,7 @@
             // 
             // tbColorDisplayData
             // 
-            this.tbColorDisplayData.Location = new System.Drawing.Point(196, 248);
+            this.tbColorDisplayData.Location = new System.Drawing.Point(196, 241);
             this.tbColorDisplayData.Name = "tbColorDisplayData";
             this.tbColorDisplayData.Size = new System.Drawing.Size(65, 20);
             this.tbColorDisplayData.TabIndex = 82;
@@ -2488,7 +2498,7 @@
             "WhiteSmoke",
             "Yellow",
             "YellowGreen"});
-            this.cbDisplayDataColors.Location = new System.Drawing.Point(23, 244);
+            this.cbDisplayDataColors.Location = new System.Drawing.Point(23, 237);
             this.cbDisplayDataColors.Name = "cbDisplayDataColors";
             this.cbDisplayDataColors.Size = new System.Drawing.Size(111, 21);
             this.cbDisplayDataColors.TabIndex = 81;
@@ -2497,7 +2507,7 @@
             // label76
             // 
             this.label76.AutoSize = true;
-            this.label76.Location = new System.Drawing.Point(22, 138);
+            this.label76.Location = new System.Drawing.Point(22, 131);
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(87, 13);
             this.label76.TabIndex = 80;
@@ -2505,7 +2515,7 @@
             // 
             // tbColorWeekly
             // 
-            this.tbColorWeekly.Location = new System.Drawing.Point(196, 157);
+            this.tbColorWeekly.Location = new System.Drawing.Point(196, 150);
             this.tbColorWeekly.Name = "tbColorWeekly";
             this.tbColorWeekly.Size = new System.Drawing.Size(65, 20);
             this.tbColorWeekly.TabIndex = 79;
@@ -2651,7 +2661,7 @@
             "WhiteSmoke",
             "Yellow",
             "YellowGreen"});
-            this.cbWeeklyColors.Location = new System.Drawing.Point(23, 153);
+            this.cbWeeklyColors.Location = new System.Drawing.Point(23, 146);
             this.cbWeeklyColors.Name = "cbWeeklyColors";
             this.cbWeeklyColors.Size = new System.Drawing.Size(111, 21);
             this.cbWeeklyColors.TabIndex = 78;
@@ -2660,7 +2670,7 @@
             // label70
             // 
             this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(22, 182);
+            this.label70.Location = new System.Drawing.Point(22, 175);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(91, 13);
             this.label70.TabIndex = 77;
@@ -2668,7 +2678,7 @@
             // 
             // tbColorMaint
             // 
-            this.tbColorMaint.Location = new System.Drawing.Point(196, 199);
+            this.tbColorMaint.Location = new System.Drawing.Point(196, 192);
             this.tbColorMaint.Name = "tbColorMaint";
             this.tbColorMaint.Size = new System.Drawing.Size(65, 20);
             this.tbColorMaint.TabIndex = 76;
@@ -2676,7 +2686,7 @@
             // 
             // btSetColors
             // 
-            this.btSetColors.Location = new System.Drawing.Point(105, 390);
+            this.btSetColors.Location = new System.Drawing.Point(105, 402);
             this.btSetColors.Name = "btSetColors";
             this.btSetColors.Size = new System.Drawing.Size(75, 23);
             this.btSetColors.TabIndex = 75;
@@ -2824,7 +2834,7 @@
             "WhiteSmoke",
             "Yellow",
             "YellowGreen"});
-            this.cbMaintColors.Location = new System.Drawing.Point(23, 195);
+            this.cbMaintColors.Location = new System.Drawing.Point(23, 188);
             this.cbMaintColors.Name = "cbMaintColors";
             this.cbMaintColors.Size = new System.Drawing.Size(111, 21);
             this.cbMaintColors.TabIndex = 1;
@@ -2835,7 +2845,7 @@
             this.groupBox22.Controls.Add(this.btHideShowIDColumn);
             this.groupBox22.Controls.Add(this.rbHideIDColumn);
             this.groupBox22.Controls.Add(this.rbShowIDColumn);
-            this.groupBox22.Location = new System.Drawing.Point(535, 258);
+            this.groupBox22.Location = new System.Drawing.Point(535, 254);
             this.groupBox22.Name = "groupBox22";
             this.groupBox22.Size = new System.Drawing.Size(212, 118);
             this.groupBox22.TabIndex = 77;
@@ -2969,7 +2979,7 @@
             this.groupBox9.Controls.Add(this.label85);
             this.groupBox9.Controls.Add(this.label84);
             this.groupBox9.Controls.Add(this.btCustomDataField1);
-            this.groupBox9.Location = new System.Drawing.Point(535, 68);
+            this.groupBox9.Location = new System.Drawing.Point(535, 58);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(212, 177);
             this.groupBox9.TabIndex = 68;
@@ -3029,9 +3039,9 @@
             this.groupBox10.Controls.Add(this.cbLogYear);
             this.groupBox10.Controls.Add(this.label3);
             this.groupBox10.Controls.Add(this.label24);
-            this.groupBox10.Location = new System.Drawing.Point(31, 68);
+            this.groupBox10.Location = new System.Drawing.Point(31, 58);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(187, 297);
+            this.groupBox10.Size = new System.Drawing.Size(187, 307);
             this.groupBox10.TabIndex = 69;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "LOGS";
@@ -3298,6 +3308,187 @@
             this.btRefresh.Text = "Refresh";
             this.btRefresh.UseVisualStyleBackColor = true;
             this.btRefresh.Click += new System.EventHandler(this.btRefresh_Click);
+            // 
+            // cbCalendarTextColor
+            // 
+            this.cbCalendarTextColor.AutoSize = true;
+            this.cbCalendarTextColor.Location = new System.Drawing.Point(165, 373);
+            this.cbCalendarTextColor.Name = "cbCalendarTextColor";
+            this.cbCalendarTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbCalendarTextColor.TabIndex = 115;
+            this.cbCalendarTextColor.UseVisualStyleBackColor = true;
+            this.cbCalendarTextColor.CheckedChanged += new System.EventHandler(this.cbCalendarTextColor_CheckedChanged);
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(198, 356);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(65, 20);
+            this.textBox7.TabIndex = 114;
+            this.textBox7.Text = "White Row";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(20, 350);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(71, 13);
+            this.label10.TabIndex = 113;
+            this.label10.Text = "Calendar Grid";
+            // 
+            // tbCalendarColor
+            // 
+            this.tbCalendarColor.Location = new System.Drawing.Point(198, 373);
+            this.tbCalendarColor.Name = "tbCalendarColor";
+            this.tbCalendarColor.Size = new System.Drawing.Size(65, 20);
+            this.tbCalendarColor.TabIndex = 112;
+            this.tbCalendarColor.Text = "Color Row";
+            // 
+            // cbCalendarColors
+            // 
+            this.cbCalendarColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCalendarColors.FormattingEnabled = true;
+            this.cbCalendarColors.Items.AddRange(new object[] {
+            "AliceBlue",
+            "AntiqueWhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "BlanchedAlmond",
+            "Blue",
+            "BlueViolet",
+            "Brown",
+            "BurlyWood",
+            "CadetBlue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "CornflowerBlue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "DarkBlue\t",
+            "DarkCyan\t",
+            "DarkGoldenrod\t",
+            "DarkGray\t",
+            "DarkGreen\t",
+            "DarkKhaki\t",
+            "DarkMagenta\t",
+            "DarkOliveGreen\t",
+            "DarkOrange\t",
+            "DarkOrchid\t",
+            "DarkRed\t",
+            "DarkSalmon\t",
+            "DarkSeaGreen\t",
+            "DarkSlateBlue\t",
+            "DarkSlateGray\t",
+            "DarkTurquoise\t",
+            "DarkViolet\t",
+            "DeepPink\t",
+            "DeepSkyBlue",
+            "DimGray",
+            "DodgerBlue",
+            "Firebrick",
+            "FloralWhite",
+            "ForestGreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "GreenYellow",
+            "Honeydew",
+            "HotPink",
+            "IndianRed",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "LavenderBlush",
+            "LawnGreen",
+            "LemonChiffon",
+            "LightBlue",
+            "LightCoral",
+            "LightCyan",
+            "LightGoldenrodYellow",
+            "LightGray",
+            "LightGreen",
+            "LightPink",
+            "LightSalmon",
+            "LightSeaGreen",
+            "LightSkyBlue",
+            "LightSlateGray",
+            "LightSteelBlue",
+            "LightYellow",
+            "Lime",
+            "LimeGreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "MediumAquamarine",
+            "MediumOrchid",
+            "MediumPurple",
+            "MediumSeaGreen",
+            "MediumSlateBlue",
+            "MediumSpringGreen",
+            "MediumTurquoise",
+            "MintCream",
+            "MistyRose",
+            "Moccasin",
+            "NavajoWhite",
+            "OldLace",
+            "Olive",
+            "OliveDrab",
+            "Orange",
+            "OrangeRed",
+            "Orchid",
+            "PaleGoldenrod",
+            "PaleGreen",
+            "PaleTurquoise",
+            "PaleVioletRed",
+            "PapayaWhip",
+            "PeachPuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "PowderBlue",
+            "Purple",
+            "RebeccaPurple",
+            "Red",
+            "RosyBrown",
+            "RoyalBlue",
+            "SaddleBrown",
+            "Salmon",
+            "SandyBrown",
+            "SeaGreen",
+            "SeaShell",
+            "Sienna",
+            "Silver",
+            "SkyBlue",
+            "SlateBlue",
+            "SlateGray",
+            "Snow",
+            "SpringGreen",
+            "SteelBlue",
+            "Tan",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "WhiteSmoke",
+            "Yellow",
+            "YellowGreen"});
+            this.cbCalendarColors.Location = new System.Drawing.Point(23, 366);
+            this.cbCalendarColors.Name = "cbCalendarColors";
+            this.cbCalendarColors.Size = new System.Drawing.Size(111, 21);
+            this.cbCalendarColors.TabIndex = 111;
+            this.cbCalendarColors.SelectedIndexChanged += new System.EventHandler(this.cbCalendarColors_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -3580,6 +3771,11 @@
         private System.Windows.Forms.DataGridView dataGridViewCalendar;
         private System.Windows.Forms.Label lbMonth;
         private System.Windows.Forms.Button btRefresh;
+        private System.Windows.Forms.CheckBox cbCalendarTextColor;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tbCalendarColor;
+        private System.Windows.Forms.ComboBox cbCalendarColors;
     }
 }
 
