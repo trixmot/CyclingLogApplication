@@ -36,6 +36,7 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btPlanner = new System.Windows.Forms.Button();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tbMaxYearlyMilesAllLogs = new System.Windows.Forms.TextBox();
@@ -94,6 +95,15 @@
             this.dataGridViewWeekly = new System.Windows.Forms.DataGridView();
             this.cbLogYearWeekly = new System.Windows.Forms.ComboBox();
             this.label65 = new System.Windows.Forms.Label();
+            this.Calendar = new System.Windows.Forms.TabPage();
+            this.groupBox21 = new System.Windows.Forms.GroupBox();
+            this.dataGridViewCalendar = new System.Windows.Forms.DataGridView();
+            this.btRefresh = new System.Windows.Forms.Button();
+            this.lbMonth = new System.Windows.Forms.Label();
+            this.cbCalendarMonth = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cbCalendarLogs = new System.Windows.Forms.ComboBox();
             this.Maintenance = new System.Windows.Forms.TabPage();
             this.tbMaintDateCheck = new System.Windows.Forms.TextBox();
             this.tbMaintID = new System.Windows.Forms.TextBox();
@@ -148,6 +158,11 @@
             this.Settings = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
+            this.cbCalendarTextColor = new System.Windows.Forms.CheckBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbCalendarColor = new System.Windows.Forms.TextBox();
+            this.cbCalendarColors = new System.Windows.Forms.ComboBox();
             this.cbMonthlyTextColor = new System.Windows.Forms.CheckBox();
             this.tbWhiteMonthly = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -219,21 +234,6 @@
             this.label29 = new System.Windows.Forms.Label();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btPlanner = new System.Windows.Forms.Button();
-            this.Calendar = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cbCalendarLogs = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cbCalendarMonth = new System.Windows.Forms.ComboBox();
-            this.dataGridViewCalendar = new System.Windows.Forms.DataGridView();
-            this.lbMonth = new System.Windows.Forms.Label();
-            this.btRefresh = new System.Windows.Forms.Button();
-            this.cbCalendarTextColor = new System.Windows.Forms.CheckBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tbCalendarColor = new System.Windows.Forms.TextBox();
-            this.cbCalendarColors = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -252,6 +252,9 @@
             this.StatisticsWeekly.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWeekly)).BeginInit();
+            this.Calendar.SuspendLayout();
+            this.groupBox21.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCalendar)).BeginInit();
             this.Maintenance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaint)).BeginInit();
             this.Bikes.SuspendLayout();
@@ -272,9 +275,6 @@
             this.groupBox10.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.Calendar.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCalendar)).BeginInit();
             this.SuspendLayout();
             // 
             // cbLogYearConfig
@@ -355,6 +355,17 @@
             this.groupBox1.Size = new System.Drawing.Size(792, 473);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
+            // 
+            // btPlanner
+            // 
+            this.btPlanner.Location = new System.Drawing.Point(85, 402);
+            this.btPlanner.Name = "btPlanner";
+            this.btPlanner.Size = new System.Drawing.Size(75, 23);
+            this.btPlanner.TabIndex = 83;
+            this.btPlanner.Text = "Planner";
+            this.btPlanner.UseVisualStyleBackColor = true;
+            this.btPlanner.Visible = false;
+            this.btPlanner.Click += new System.EventHandler(this.btPlanner_Click);
             // 
             // groupBox19
             // 
@@ -793,7 +804,7 @@
             this.tabControl1.Location = new System.Drawing.Point(34, 30);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(958, 591);
+            this.tabControl1.Size = new System.Drawing.Size(958, 606);
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.TabControl1_SelectedIndexChanged);
             // 
@@ -969,6 +980,108 @@
             this.label65.Size = new System.Drawing.Size(206, 28);
             this.label65.TabIndex = 128;
             this.label65.Text = "Weekly Log Data";
+            // 
+            // Calendar
+            // 
+            this.Calendar.Controls.Add(this.groupBox21);
+            this.Calendar.Location = new System.Drawing.Point(4, 22);
+            this.Calendar.Name = "Calendar";
+            this.Calendar.Size = new System.Drawing.Size(950, 580);
+            this.Calendar.TabIndex = 8;
+            this.Calendar.Text = "Calendar";
+            this.Calendar.UseVisualStyleBackColor = true;
+            // 
+            // groupBox21
+            // 
+            this.groupBox21.Controls.Add(this.dataGridViewCalendar);
+            this.groupBox21.Controls.Add(this.btRefresh);
+            this.groupBox21.Controls.Add(this.lbMonth);
+            this.groupBox21.Controls.Add(this.cbCalendarMonth);
+            this.groupBox21.Controls.Add(this.label9);
+            this.groupBox21.Controls.Add(this.label11);
+            this.groupBox21.Controls.Add(this.cbCalendarLogs);
+            this.groupBox21.Location = new System.Drawing.Point(27, 18);
+            this.groupBox21.Name = "groupBox21";
+            this.groupBox21.Size = new System.Drawing.Size(892, 548);
+            this.groupBox21.TabIndex = 1;
+            this.groupBox21.TabStop = false;
+            // 
+            // dataGridViewCalendar
+            // 
+            this.dataGridViewCalendar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCalendar.Location = new System.Drawing.Point(24, 71);
+            this.dataGridViewCalendar.Name = "dataGridViewCalendar";
+            this.dataGridViewCalendar.Size = new System.Drawing.Size(831, 470);
+            this.dataGridViewCalendar.TabIndex = 29;
+            // 
+            // btRefresh
+            // 
+            this.btRefresh.Location = new System.Drawing.Point(780, 30);
+            this.btRefresh.Name = "btRefresh";
+            this.btRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btRefresh.TabIndex = 1;
+            this.btRefresh.Text = "Refresh";
+            this.btRefresh.UseVisualStyleBackColor = true;
+            this.btRefresh.Click += new System.EventHandler(this.btRefresh_Click);
+            // 
+            // lbMonth
+            // 
+            this.lbMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMonth.Location = new System.Drawing.Point(230, 16);
+            this.lbMonth.Name = "lbMonth";
+            this.lbMonth.Size = new System.Drawing.Size(362, 44);
+            this.lbMonth.TabIndex = 30;
+            this.lbMonth.Text = "Month";
+            this.lbMonth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cbCalendarMonth
+            // 
+            this.cbCalendarMonth.FormattingEnabled = true;
+            this.cbCalendarMonth.Items.AddRange(new object[] {
+            "--Select Value--",
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"});
+            this.cbCalendarMonth.Location = new System.Drawing.Point(601, 32);
+            this.cbCalendarMonth.Name = "cbCalendarMonth";
+            this.cbCalendarMonth.Size = new System.Drawing.Size(121, 21);
+            this.cbCalendarMonth.TabIndex = 24;
+            this.cbCalendarMonth.SelectedIndexChanged += new System.EventHandler(this.cbCalendarMonth_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(598, 16);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(37, 13);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Month";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(38, 16);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(25, 13);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "Log";
+            // 
+            // cbCalendarLogs
+            // 
+            this.cbCalendarLogs.FormattingEnabled = true;
+            this.cbCalendarLogs.Location = new System.Drawing.Point(41, 32);
+            this.cbCalendarLogs.Name = "cbCalendarLogs";
+            this.cbCalendarLogs.Size = new System.Drawing.Size(161, 21);
+            this.cbCalendarLogs.TabIndex = 26;
             // 
             // Maintenance
             // 
@@ -1554,6 +1667,186 @@
             this.groupBox23.TabStop = false;
             this.groupBox23.Text = "Grid Colors";
             // 
+            // cbCalendarTextColor
+            // 
+            this.cbCalendarTextColor.AutoSize = true;
+            this.cbCalendarTextColor.Location = new System.Drawing.Point(165, 373);
+            this.cbCalendarTextColor.Name = "cbCalendarTextColor";
+            this.cbCalendarTextColor.Size = new System.Drawing.Size(15, 14);
+            this.cbCalendarTextColor.TabIndex = 115;
+            this.cbCalendarTextColor.UseVisualStyleBackColor = true;
+            this.cbCalendarTextColor.CheckedChanged += new System.EventHandler(this.cbCalendarTextColor_CheckedChanged);
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(198, 356);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(65, 20);
+            this.textBox7.TabIndex = 114;
+            this.textBox7.Text = "White Row";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(20, 350);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(71, 13);
+            this.label10.TabIndex = 113;
+            this.label10.Text = "Calendar Grid";
+            // 
+            // tbCalendarColor
+            // 
+            this.tbCalendarColor.Location = new System.Drawing.Point(198, 373);
+            this.tbCalendarColor.Name = "tbCalendarColor";
+            this.tbCalendarColor.Size = new System.Drawing.Size(65, 20);
+            this.tbCalendarColor.TabIndex = 112;
+            this.tbCalendarColor.Text = "Color Row";
+            // 
+            // cbCalendarColors
+            // 
+            this.cbCalendarColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCalendarColors.FormattingEnabled = true;
+            this.cbCalendarColors.Items.AddRange(new object[] {
+            "AliceBlue",
+            "AntiqueWhite",
+            "Aqua",
+            "Aquamarine",
+            "Azure",
+            "Beige",
+            "Bisque",
+            "Black",
+            "BlanchedAlmond",
+            "Blue",
+            "BlueViolet",
+            "Brown",
+            "BurlyWood",
+            "CadetBlue",
+            "Chartreuse",
+            "Chocolate",
+            "Coral",
+            "CornflowerBlue",
+            "Cornsilk",
+            "Crimson",
+            "Cyan",
+            "DarkBlue\t",
+            "DarkCyan\t",
+            "DarkGoldenrod\t",
+            "DarkGray\t",
+            "DarkGreen\t",
+            "DarkKhaki\t",
+            "DarkMagenta\t",
+            "DarkOliveGreen\t",
+            "DarkOrange\t",
+            "DarkOrchid\t",
+            "DarkRed\t",
+            "DarkSalmon\t",
+            "DarkSeaGreen\t",
+            "DarkSlateBlue\t",
+            "DarkSlateGray\t",
+            "DarkTurquoise\t",
+            "DarkViolet\t",
+            "DeepPink\t",
+            "DeepSkyBlue",
+            "DimGray",
+            "DodgerBlue",
+            "Firebrick",
+            "FloralWhite",
+            "ForestGreen",
+            "Fuchsia",
+            "Gainsboro",
+            "Gold",
+            "Goldenrod",
+            "Gray",
+            "Green",
+            "GreenYellow",
+            "Honeydew",
+            "HotPink",
+            "IndianRed",
+            "Indigo",
+            "Ivory",
+            "Khaki",
+            "Lavender",
+            "LavenderBlush",
+            "LawnGreen",
+            "LemonChiffon",
+            "LightBlue",
+            "LightCoral",
+            "LightCyan",
+            "LightGoldenrodYellow",
+            "LightGray",
+            "LightGreen",
+            "LightPink",
+            "LightSalmon",
+            "LightSeaGreen",
+            "LightSkyBlue",
+            "LightSlateGray",
+            "LightSteelBlue",
+            "LightYellow",
+            "Lime",
+            "LimeGreen",
+            "Linen",
+            "Magenta",
+            "Maroon",
+            "MediumAquamarine",
+            "MediumOrchid",
+            "MediumPurple",
+            "MediumSeaGreen",
+            "MediumSlateBlue",
+            "MediumSpringGreen",
+            "MediumTurquoise",
+            "MintCream",
+            "MistyRose",
+            "Moccasin",
+            "NavajoWhite",
+            "OldLace",
+            "Olive",
+            "OliveDrab",
+            "Orange",
+            "OrangeRed",
+            "Orchid",
+            "PaleGoldenrod",
+            "PaleGreen",
+            "PaleTurquoise",
+            "PaleVioletRed",
+            "PapayaWhip",
+            "PeachPuff",
+            "Peru",
+            "Pink",
+            "Plum",
+            "PowderBlue",
+            "Purple",
+            "Red",
+            "RosyBrown",
+            "RoyalBlue",
+            "SaddleBrown",
+            "Salmon",
+            "SandyBrown",
+            "SeaGreen",
+            "SeaShell",
+            "Sienna",
+            "Silver",
+            "SkyBlue",
+            "SlateBlue",
+            "SlateGray",
+            "Snow",
+            "SpringGreen",
+            "SteelBlue",
+            "Tan",
+            "Thistle",
+            "Tomato",
+            "Turquoise",
+            "Violet",
+            "Wheat",
+            "White",
+            "WhiteSmoke",
+            "Yellow",
+            "YellowGreen"});
+            this.cbCalendarColors.Location = new System.Drawing.Point(23, 366);
+            this.cbCalendarColors.Name = "cbCalendarColors";
+            this.cbCalendarColors.Size = new System.Drawing.Size(111, 21);
+            this.cbCalendarColors.TabIndex = 111;
+            this.cbCalendarColors.SelectedIndexChanged += new System.EventHandler(this.cbCalendarColors_SelectedIndexChanged);
+            // 
             // cbMonthlyTextColor
             // 
             this.cbMonthlyTextColor.AutoSize = true;
@@ -1702,7 +1995,6 @@
             "Plum",
             "PowderBlue",
             "Purple",
-            "RebeccaPurple",
             "Red",
             "RosyBrown",
             "RoyalBlue",
@@ -1883,7 +2175,6 @@
             "Plum",
             "PowderBlue",
             "Purple",
-            "RebeccaPurple",
             "Red",
             "RosyBrown",
             "RoyalBlue",
@@ -2145,7 +2436,6 @@
             "Plum",
             "PowderBlue",
             "Purple",
-            "RebeccaPurple",
             "Red",
             "RosyBrown",
             "RoyalBlue",
@@ -2308,7 +2598,6 @@
             "Plum",
             "PowderBlue",
             "Purple",
-            "RebeccaPurple",
             "Red",
             "RosyBrown",
             "RoyalBlue",
@@ -2471,7 +2760,6 @@
             "Plum",
             "PowderBlue",
             "Purple",
-            "RebeccaPurple",
             "Red",
             "RosyBrown",
             "RoyalBlue",
@@ -2634,7 +2922,6 @@
             "Plum",
             "PowderBlue",
             "Purple",
-            "RebeccaPurple",
             "Red",
             "RosyBrown",
             "RoyalBlue",
@@ -2807,7 +3094,6 @@
             "Plum",
             "PowderBlue",
             "Purple",
-            "RebeccaPurple",
             "Red",
             "RosyBrown",
             "RoyalBlue",
@@ -3197,299 +3483,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
-            // btPlanner
-            // 
-            this.btPlanner.Location = new System.Drawing.Point(85, 402);
-            this.btPlanner.Name = "btPlanner";
-            this.btPlanner.Size = new System.Drawing.Size(75, 23);
-            this.btPlanner.TabIndex = 83;
-            this.btPlanner.Text = "Planner";
-            this.btPlanner.UseVisualStyleBackColor = true;
-            this.btPlanner.Visible = false;
-            this.btPlanner.Click += new System.EventHandler(this.btPlanner_Click);
-            // 
-            // Calendar
-            // 
-            this.Calendar.Controls.Add(this.panel1);
-            this.Calendar.Location = new System.Drawing.Point(4, 22);
-            this.Calendar.Name = "Calendar";
-            this.Calendar.Size = new System.Drawing.Size(950, 565);
-            this.Calendar.TabIndex = 8;
-            this.Calendar.Text = "Calendar";
-            this.Calendar.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btRefresh);
-            this.panel1.Controls.Add(this.lbMonth);
-            this.panel1.Controls.Add(this.dataGridViewCalendar);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.cbCalendarLogs);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.cbCalendarMonth);
-            this.panel1.Location = new System.Drawing.Point(21, 17);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(909, 545);
-            this.panel1.TabIndex = 0;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(45, 9);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(25, 13);
-            this.label11.TabIndex = 27;
-            this.label11.Text = "Log";
-            // 
-            // cbCalendarLogs
-            // 
-            this.cbCalendarLogs.FormattingEnabled = true;
-            this.cbCalendarLogs.Location = new System.Drawing.Point(48, 25);
-            this.cbCalendarLogs.Name = "cbCalendarLogs";
-            this.cbCalendarLogs.Size = new System.Drawing.Size(161, 21);
-            this.cbCalendarLogs.TabIndex = 26;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(622, 9);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(37, 13);
-            this.label9.TabIndex = 25;
-            this.label9.Text = "Month";
-            // 
-            // cbCalendarMonth
-            // 
-            this.cbCalendarMonth.FormattingEnabled = true;
-            this.cbCalendarMonth.Items.AddRange(new object[] {
-            "--Select Value--",
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December"});
-            this.cbCalendarMonth.Location = new System.Drawing.Point(625, 25);
-            this.cbCalendarMonth.Name = "cbCalendarMonth";
-            this.cbCalendarMonth.Size = new System.Drawing.Size(121, 21);
-            this.cbCalendarMonth.TabIndex = 24;
-            this.cbCalendarMonth.SelectedIndexChanged += new System.EventHandler(this.cbCalendarMonth_SelectedIndexChanged);
-            // 
-            // dataGridViewCalendar
-            // 
-            this.dataGridViewCalendar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCalendar.Location = new System.Drawing.Point(44, 72);
-            this.dataGridViewCalendar.Name = "dataGridViewCalendar";
-            this.dataGridViewCalendar.Size = new System.Drawing.Size(831, 470);
-            this.dataGridViewCalendar.TabIndex = 29;
-            // 
-            // lbMonth
-            // 
-            this.lbMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMonth.Location = new System.Drawing.Point(248, 25);
-            this.lbMonth.Name = "lbMonth";
-            this.lbMonth.Size = new System.Drawing.Size(362, 44);
-            this.lbMonth.TabIndex = 30;
-            this.lbMonth.Text = "Month";
-            this.lbMonth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btRefresh
-            // 
-            this.btRefresh.Location = new System.Drawing.Point(783, 25);
-            this.btRefresh.Name = "btRefresh";
-            this.btRefresh.Size = new System.Drawing.Size(75, 23);
-            this.btRefresh.TabIndex = 1;
-            this.btRefresh.Text = "Refresh";
-            this.btRefresh.UseVisualStyleBackColor = true;
-            this.btRefresh.Click += new System.EventHandler(this.btRefresh_Click);
-            // 
-            // cbCalendarTextColor
-            // 
-            this.cbCalendarTextColor.AutoSize = true;
-            this.cbCalendarTextColor.Location = new System.Drawing.Point(165, 373);
-            this.cbCalendarTextColor.Name = "cbCalendarTextColor";
-            this.cbCalendarTextColor.Size = new System.Drawing.Size(15, 14);
-            this.cbCalendarTextColor.TabIndex = 115;
-            this.cbCalendarTextColor.UseVisualStyleBackColor = true;
-            this.cbCalendarTextColor.CheckedChanged += new System.EventHandler(this.cbCalendarTextColor_CheckedChanged);
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(198, 356);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(65, 20);
-            this.textBox7.TabIndex = 114;
-            this.textBox7.Text = "White Row";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(20, 350);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(71, 13);
-            this.label10.TabIndex = 113;
-            this.label10.Text = "Calendar Grid";
-            // 
-            // tbCalendarColor
-            // 
-            this.tbCalendarColor.Location = new System.Drawing.Point(198, 373);
-            this.tbCalendarColor.Name = "tbCalendarColor";
-            this.tbCalendarColor.Size = new System.Drawing.Size(65, 20);
-            this.tbCalendarColor.TabIndex = 112;
-            this.tbCalendarColor.Text = "Color Row";
-            // 
-            // cbCalendarColors
-            // 
-            this.cbCalendarColors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCalendarColors.FormattingEnabled = true;
-            this.cbCalendarColors.Items.AddRange(new object[] {
-            "AliceBlue",
-            "AntiqueWhite",
-            "Aqua",
-            "Aquamarine",
-            "Azure",
-            "Beige",
-            "Bisque",
-            "Black",
-            "BlanchedAlmond",
-            "Blue",
-            "BlueViolet",
-            "Brown",
-            "BurlyWood",
-            "CadetBlue",
-            "Chartreuse",
-            "Chocolate",
-            "Coral",
-            "CornflowerBlue",
-            "Cornsilk",
-            "Crimson",
-            "Cyan",
-            "DarkBlue\t",
-            "DarkCyan\t",
-            "DarkGoldenrod\t",
-            "DarkGray\t",
-            "DarkGreen\t",
-            "DarkKhaki\t",
-            "DarkMagenta\t",
-            "DarkOliveGreen\t",
-            "DarkOrange\t",
-            "DarkOrchid\t",
-            "DarkRed\t",
-            "DarkSalmon\t",
-            "DarkSeaGreen\t",
-            "DarkSlateBlue\t",
-            "DarkSlateGray\t",
-            "DarkTurquoise\t",
-            "DarkViolet\t",
-            "DeepPink\t",
-            "DeepSkyBlue",
-            "DimGray",
-            "DodgerBlue",
-            "Firebrick",
-            "FloralWhite",
-            "ForestGreen",
-            "Fuchsia",
-            "Gainsboro",
-            "Gold",
-            "Goldenrod",
-            "Gray",
-            "Green",
-            "GreenYellow",
-            "Honeydew",
-            "HotPink",
-            "IndianRed",
-            "Indigo",
-            "Ivory",
-            "Khaki",
-            "Lavender",
-            "LavenderBlush",
-            "LawnGreen",
-            "LemonChiffon",
-            "LightBlue",
-            "LightCoral",
-            "LightCyan",
-            "LightGoldenrodYellow",
-            "LightGray",
-            "LightGreen",
-            "LightPink",
-            "LightSalmon",
-            "LightSeaGreen",
-            "LightSkyBlue",
-            "LightSlateGray",
-            "LightSteelBlue",
-            "LightYellow",
-            "Lime",
-            "LimeGreen",
-            "Linen",
-            "Magenta",
-            "Maroon",
-            "MediumAquamarine",
-            "MediumOrchid",
-            "MediumPurple",
-            "MediumSeaGreen",
-            "MediumSlateBlue",
-            "MediumSpringGreen",
-            "MediumTurquoise",
-            "MintCream",
-            "MistyRose",
-            "Moccasin",
-            "NavajoWhite",
-            "OldLace",
-            "Olive",
-            "OliveDrab",
-            "Orange",
-            "OrangeRed",
-            "Orchid",
-            "PaleGoldenrod",
-            "PaleGreen",
-            "PaleTurquoise",
-            "PaleVioletRed",
-            "PapayaWhip",
-            "PeachPuff",
-            "Peru",
-            "Pink",
-            "Plum",
-            "PowderBlue",
-            "Purple",
-            "RebeccaPurple",
-            "Red",
-            "RosyBrown",
-            "RoyalBlue",
-            "SaddleBrown",
-            "Salmon",
-            "SandyBrown",
-            "SeaGreen",
-            "SeaShell",
-            "Sienna",
-            "Silver",
-            "SkyBlue",
-            "SlateBlue",
-            "SlateGray",
-            "Snow",
-            "SpringGreen",
-            "SteelBlue",
-            "Tan",
-            "Thistle",
-            "Tomato",
-            "Turquoise",
-            "Violet",
-            "Wheat",
-            "White",
-            "WhiteSmoke",
-            "Yellow",
-            "YellowGreen"});
-            this.cbCalendarColors.Location = new System.Drawing.Point(23, 366);
-            this.cbCalendarColors.Name = "cbCalendarColors";
-            this.cbCalendarColors.Size = new System.Drawing.Size(111, 21);
-            this.cbCalendarColors.TabIndex = 111;
-            this.cbCalendarColors.SelectedIndexChanged += new System.EventHandler(this.cbCalendarColors_SelectedIndexChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3529,6 +3522,10 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewWeekly)).EndInit();
+            this.Calendar.ResumeLayout(false);
+            this.groupBox21.ResumeLayout(false);
+            this.groupBox21.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCalendar)).EndInit();
             this.Maintenance.ResumeLayout(false);
             this.Maintenance.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaint)).EndInit();
@@ -3562,10 +3559,6 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.Calendar.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCalendar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3763,7 +3756,6 @@
         private System.Windows.Forms.Button btMonthlyStatReset;
         private System.Windows.Forms.Button btPlanner;
         private System.Windows.Forms.TabPage Calendar;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cbCalendarLogs;
         private System.Windows.Forms.Label label9;
@@ -3776,6 +3768,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox tbCalendarColor;
         private System.Windows.Forms.ComboBox cbCalendarColors;
+        private System.Windows.Forms.GroupBox groupBox21;
     }
 }
 
