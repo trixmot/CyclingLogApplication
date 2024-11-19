@@ -371,14 +371,28 @@ namespace CyclingLogApplication
 
                 RefreshRoutes();
 
+                cbCalendarDataItem.SelectedIndex = 3; //(Miles)
                 cbCalendarLogs.Items.Add("--Select Value--");
                 if (logYearList.Count > 0)
                 {
+                    foreach (string val in logYearList)
+                    {
+                        cbCalendarLogs.Items.Add(val);
+                        Logger.Log("Loading: Calendar logs: " + val, logSetting, 1);
+                    }
                     string logName = GetLogNameByYear(DateTime.Now.Year);
-                    cbCalendarLogs.SelectedIndex = cbCalendarLogs.Items.IndexOf(logName);
-                    string sMonth = DateTime.Now.ToString("MM");
-                    cbCalendarMonth.SelectedIndex = int.Parse(sMonth);
-                    lbMonth.Text = cbCalendarMonth.SelectedItem.ToString();
+                    if (logName == null || logName.Equals(""))
+                    {
+                        cbCalendarLogs.SelectedIndex = 0;
+                        cbCalendarMonth.SelectedIndex = 0;
+                        lbMonth.Text = "";
+                    } else
+                    {
+                        cbCalendarLogs.SelectedIndex = cbCalendarLogs.Items.IndexOf(logName);
+                        string sMonth = DateTime.Now.ToString("MM");
+                        cbCalendarMonth.SelectedIndex = int.Parse(sMonth);
+                        lbMonth.Text = cbCalendarMonth.SelectedItem.ToString();
+                    }                    
                 }
                 else
                 {
@@ -416,17 +430,6 @@ namespace CyclingLogApplication
                     int logYearIndex = GetLogYearIndex_ByName(cbStatMonthlyLogYear.SelectedItem.ToString());
                     RunMonthlyStatisticsGrid(logYearIndex);
                 }
-
-                foreach (string val in logYearList)
-                {
-                    cbCalendarLogs.Items.Add(val);
-                    Logger.Log("Data Loading: Log Year: " + val, logSetting, 1);
-                }
-
-                //int calLogIndex = GetLogIndexByYear(DateTime.Now.Year);
-                
-
-                
                 
                 tbCustomDataField1.Text = GetCustomField1();
                 tbCustomDataField2.Text = GetCustomField2();
@@ -4317,6 +4320,74 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
+        private static string GetDataItemByDate(int logIndex, DateTime rideDate, string procedureName)
+        {
+            List<object> objectValues = new List<object>
+            {
+                logIndex,
+                rideDate
+            };
+            string returnValue = "OFF";
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection(procedureName, objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp != null || !temp.Equals(""))
+                        {
+                            returnValue = temp;
+                            if (procedureName.Contains("TotalAscent"))
+                            {
+                                if (temp.Equals("0"))
+                                {
+                                    returnValue = "NA";
+                                } else { 
+                                    returnValue += " ft";
+                                }
+                            }
+                            if (procedureName.Contains("AvgSpeed"))
+                            {
+                                returnValue += " mph";
+                            }
+                            if (procedureName.Contains("Miles"))
+                            {
+                                returnValue += " miles";
+                            }
+                            if (procedureName.Contains("WindChill"))
+                            {
+                                if (temp.Equals("0"))
+                                {
+                                    returnValue = "NA";
+                                }
+                                else
+                                {
+                                    returnValue += " °F";
+                                }
+                            }
+                            if (procedureName.Contains("AvgPower"))
+                            {
+                                if (temp.Equals("0"))
+                                {
+                                    returnValue = "NA";
+                                }
+                                else
+                                {
+                                    returnValue += " watts";
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
         private static float GetMilesByDate(int logIndex, DateTime rideDate)
         {
             List<object> objectValues = new List<object>
@@ -4349,6 +4420,131 @@ namespace CyclingLogApplication
 
             return returnValue;
         }
+
+        private static float GetAvgSpeedByDate(int logIndex, DateTime rideDate)
+        {
+            List<object> objectValues = new List<object>
+            {
+                logIndex,
+                rideDate
+            };
+            float returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetAvgSpeed_ByDate", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else
+                        {
+                            returnValue = float.Parse(temp);
+                        }
+
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
+        private static float GetTotalAscentByDate(int logIndex, DateTime rideDate)
+        {
+            List<object> objectValues = new List<object>
+            {
+                logIndex,
+                rideDate
+            };
+            float returnValue = 0;
+
+            //ExecuteScalarFunction
+            using (var results = ExecuteSimpleQueryConnection("GetTotalAscent_ByDate", objectValues))
+            {
+                if (results.HasRows)
+                {
+                    while (results.Read())
+                    {
+                        string temp = results[0].ToString();
+                        if (temp.Equals(""))
+                        {
+                            returnValue = 0;
+                        }
+                        else
+                        {
+                            returnValue = float.Parse(temp);
+                        }
+
+                    }
+                }
+            }
+
+            return returnValue;
+        }
+
+        //private static string GetDataByDate(int logIndex, DateTime rideDate, string dataItem)
+        //{
+        //    SqlDataReader reader = null;
+        //    int logSetting = GetLogLevel();
+        //    string returnValue = "OFF";
+
+        //    try
+        //    {
+
+        //        //sqlConnection.Open();
+        //        string sql = "SELECT RideDistance FROM Table_Ride_Information WHERE LogYearID=@logIndex and Date=@rideDate";
+
+        //        //sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [LogYearID]=@logyearID ORDER BY [Date] " + gridOrder, sqlConnection);
+        //        //sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
+
+        //        using (SqlCommand cmd = new SqlCommand(sql, sqlConnection))
+        //        {
+        //            //cmd.Parameters.AddWithValue("@dataItem", dataItem);
+        //            cmd.Parameters.Add("@logIndex", SqlDbType.Int).Value = logIndex;
+        //            cmd.Parameters.Add("@rideDate", SqlDbType.DateTime).Value = rideDate;
+
+        //            sqlConnection.Open();
+        //            returnValue = cmd.ExecuteScalar() as string;
+        //            sqlConnection.Close();
+        //        }
+
+
+        //        //// 1. declare command object with parameter
+        //        ////SELECT RideDistance FROM Table_Ride_Information WHERE @LogYearID=LogYearID and @Date=Dat
+        //        //using (SqlCommand cmd = new SqlCommand("SELECT " + dataItem + " FROM Table_Ride_Information WHERE @LogYearID=" + logIndex.ToString() + " and @Date=" + rideDate, sqlConnection))
+        //        //{
+        //        //    reader = cmd.ExecuteReader();
+        //        //}
+
+        //        //// write each record
+        //        //while (reader.Read())
+        //        //{
+
+        //        //    returnValue = reader[0].ToString();
+        //        //    Logger.Log("Reading data from the database: columnName:" + dataItem, logSetting, 1);
+        //        //}
+        //    }
+        //    finally
+        //    {
+        //        // close reader
+        //        reader?.Close();
+
+        //        // close connection
+        //        sqlConnection?.Close();
+        //    }
+
+        //    if (returnValue == null || returnValue.Equals(""))
+        //    {
+        //        returnValue = "OFF";
+        //    }
+
+        //    return returnValue;
+        //}
 
         private static double GetLongestRideWeekly(int logIndex, int weekNumber)
         {
@@ -6316,8 +6512,46 @@ namespace CyclingLogApplication
                 currentYearMonth = true;
             }
 
-            if (currentYearNumber >= logYear && monthIndex > currentMonthNumber) {
+            if (logYear >= currentYearNumber && monthIndex > currentMonthNumber) {
                 futureDays = true;
+            }
+
+            //Average Power
+            //Average Speed
+            //Effort
+            //Ride Distance
+            //Riding Time
+            //Total Ascent
+            //Wind Chill
+
+            string sqlCommand = "";
+            if (cbCalendarDataItem.SelectedIndex == 0)
+            {
+                sqlCommand = "GetAvgPower_ByDate";
+            }
+            else if (cbCalendarDataItem.SelectedIndex == 1)
+            {
+                sqlCommand = "GetAvgSpeed_ByDate";
+            }
+            else if (cbCalendarDataItem.SelectedIndex == 2)
+            {
+                sqlCommand = "GetEffort_ByDate";
+            }
+            else if (cbCalendarDataItem.SelectedIndex == 3)
+            {
+                sqlCommand = "GetMiles_ByDate";
+            }
+            else if (cbCalendarDataItem.SelectedIndex == 4)
+            {
+                sqlCommand = "GetRidingTime_ByDate";
+            }
+            else if (cbCalendarDataItem.SelectedIndex == 5)
+            {
+                sqlCommand = "GetTotalAscent_ByDate";
+            } 
+            else if (cbCalendarDataItem.SelectedIndex == 6)
+            {
+                sqlCommand = "GetWindChill_ByDate";
             }
 
             int day1 = 0;
@@ -6412,6 +6646,7 @@ namespace CyclingLogApplication
                 dataGridViewCalendar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dataGridViewCalendar.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
                 dataGridViewCalendar.ColumnHeadersHeight = 40;
+                //dataGridViewCalendar.RowHeadersWidth = 10;
                 dataGridViewCalendar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
                 dataGridViewCalendar.RowHeadersVisible = true;
 
@@ -6486,13 +6721,13 @@ namespace CyclingLogApplication
                         DateTime dateTime6 = new DateTime(logYear, monthIndex, 6);
                         DateTime dateTime7 = new DateTime(logYear, monthIndex, 7);
                         
-                        miles1 = GetMilesByDate(logIndex, dateTime1).ToString();
-                        miles2 = GetMilesByDate(logIndex, dateTime2).ToString();
-                        miles3 = GetMilesByDate(logIndex, dateTime3).ToString();
-                        miles4 = GetMilesByDate(logIndex, dateTime4).ToString();
-                        miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
-                        miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
-                        miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
+                        miles1 = GetDataItemByDate(logIndex, dateTime1, sqlCommand);
+                        miles2 = GetDataItemByDate(logIndex, dateTime2, sqlCommand);
+                        miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand);
+                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand);
+                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand);
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand);
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand);
                     }
                 }
                 else if (day2 == 1)
@@ -6527,7 +6762,7 @@ namespace CyclingLogApplication
                     {
                         temp1 = daysInMonthPrevious.ToString();
                         DateTime dateTime2b = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                        miles1 = GetMilesByDate(logIndex, dateTime2b).ToString();
+                        miles1 = GetDataItemByDate(logIndex, dateTime2b, sqlCommand);
                     }
                     
                     if (futureDays)
@@ -6540,14 +6775,13 @@ namespace CyclingLogApplication
                         miles7 = "";
                     } else
                     {
-                        miles2 = GetMilesByDate(logIndex, dateTime2).ToString();
-                        miles3 = GetMilesByDate(logIndex, dateTime3).ToString();
-                        miles4 = GetMilesByDate(logIndex, dateTime4).ToString();
-                        miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
-                        miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
-                        miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
-                    }
-                    
+                        miles2 = GetDataItemByDate(logIndex, dateTime2, sqlCommand);
+                        miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand);
+                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand);
+                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand);
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand);
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                    }                   
 
                 }
                 else if (day3 == 1)
@@ -6577,8 +6811,8 @@ namespace CyclingLogApplication
                     {
                         DateTime dateTime31 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
                         DateTime dateTime32 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
-                        miles1 = GetMilesByDate(logIndex, dateTime32).ToString();
-                        miles2 = GetMilesByDate(logIndex, dateTime31).ToString();
+                        miles1 = GetDataItemByDate(logIndex, dateTime32, sqlCommand);
+                        miles2 = GetDataItemByDate(logIndex, dateTime31, sqlCommand);
                         temp1 = (daysInMonthPrevious - 1).ToString();
                         temp2 = (daysInMonthPrevious).ToString();
                     }
@@ -6597,11 +6831,11 @@ namespace CyclingLogApplication
                         miles7 = "";
                     } else
                     {
-                        miles3 = GetMilesByDate(logIndex, dateTime3).ToString();
-                        miles4 = GetMilesByDate(logIndex, dateTime4).ToString();
-                        miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
-                        miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
-                        miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
+                        miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand);
+                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand);
+                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand);
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand);
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand);
                     }
                     
 
@@ -6638,9 +6872,9 @@ namespace CyclingLogApplication
                         DateTime dateTime41 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
                         DateTime dateTime42 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
                         DateTime dateTime43 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
-                        miles1 = GetMilesByDate(logIndex, dateTime43).ToString();
-                        miles2 = GetMilesByDate(logIndex, dateTime42).ToString();
-                        miles3 = GetMilesByDate(logIndex, dateTime41).ToString();
+                        miles1 = GetDataItemByDate(logIndex, dateTime43, sqlCommand);
+                        miles2 = GetDataItemByDate(logIndex, dateTime42, sqlCommand);
+                        miles3 = GetDataItemByDate(logIndex, dateTime41, sqlCommand);
                     }
                     temp4 = "1";
                     temp5 = "2";
@@ -6655,10 +6889,10 @@ namespace CyclingLogApplication
                         miles7 = "";
                     } else
                     {
-                        miles4 = GetMilesByDate(logIndex, dateTime4).ToString();
-                        miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
-                        miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
-                        miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
+                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand);
+                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand);
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand);
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand);
                     }
                     
 
@@ -6698,10 +6932,10 @@ namespace CyclingLogApplication
                         DateTime dateTime52 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
                         DateTime dateTime53 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
                         DateTime dateTime54 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
-                        miles1 = GetMilesByDate(logIndex, dateTime54).ToString();
-                        miles2 = GetMilesByDate(logIndex, dateTime53).ToString();
-                        miles3 = GetMilesByDate(logIndex, dateTime52).ToString();
-                        miles4 = GetMilesByDate(logIndex, dateTime51).ToString();
+                        miles1 = GetDataItemByDate(logIndex, dateTime54, sqlCommand);
+                        miles2 = GetDataItemByDate(logIndex, dateTime53, sqlCommand);
+                        miles3 = GetDataItemByDate(logIndex, dateTime52, sqlCommand);
+                        miles4 = GetDataItemByDate(logIndex, dateTime51, sqlCommand);
                     }
                     temp5 = "1";
                     temp6 = "2";
@@ -6715,9 +6949,9 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles5 = GetMilesByDate(logIndex, dateTime5).ToString();
-                        miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
-                        miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
+                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand);
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand);
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand);
                     }
 
                 }
@@ -6759,11 +6993,11 @@ namespace CyclingLogApplication
                         DateTime dateTime63 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
                         DateTime dateTime64 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
                         DateTime dateTime65 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
-                        miles1 = GetMilesByDate(logIndex, dateTime65).ToString();
-                        miles2 = GetMilesByDate(logIndex, dateTime64).ToString();
-                        miles3 = GetMilesByDate(logIndex, dateTime63).ToString();
-                        miles4 = GetMilesByDate(logIndex, dateTime62).ToString();
-                        miles5 = GetMilesByDate(logIndex, dateTime61).ToString();
+                        miles1 = GetDataItemByDate(logIndex, dateTime65, sqlCommand);
+                        miles2 = GetDataItemByDate(logIndex, dateTime64, sqlCommand);
+                        miles3 = GetDataItemByDate(logIndex, dateTime63, sqlCommand);
+                        miles4 = GetDataItemByDate(logIndex, dateTime62, sqlCommand);
+                        miles5 = GetDataItemByDate(logIndex, dateTime61, sqlCommand);
                     }
                     temp6 = "1";
                     temp7 = "2";
@@ -6775,8 +7009,8 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles6 = GetMilesByDate(logIndex, dateTime6).ToString();
-                        miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand);
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand);
                     }
                 }
                 else if (day7 == 1)
@@ -6821,12 +7055,12 @@ namespace CyclingLogApplication
                         DateTime dateTime74 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
                         DateTime dateTime75 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
                         DateTime dateTime76 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 5);
-                        miles1 = GetMilesByDate(logIndex, dateTime76).ToString();
-                        miles2 = GetMilesByDate(logIndex, dateTime75).ToString();
-                        miles3 = GetMilesByDate(logIndex, dateTime74).ToString();
-                        miles4 = GetMilesByDate(logIndex, dateTime73).ToString();
-                        miles5 = GetMilesByDate(logIndex, dateTime72).ToString();
-                        miles6 = GetMilesByDate(logIndex, dateTime71).ToString();
+                        miles1 = GetDataItemByDate(logIndex, dateTime76, sqlCommand);
+                        miles2 = GetDataItemByDate(logIndex, dateTime75, sqlCommand);
+                        miles3 = GetDataItemByDate(logIndex, dateTime74, sqlCommand);
+                        miles4 = GetDataItemByDate(logIndex, dateTime73, sqlCommand);
+                        miles5 = GetDataItemByDate(logIndex, dateTime72, sqlCommand);
+                        miles6 = GetDataItemByDate(logIndex, dateTime71, sqlCommand);
                     }
 
                     if (futureDays)
@@ -6835,37 +7069,10 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles7 = GetMilesByDate(logIndex, dateTime7).ToString();
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand);
                     }
                 }
 
-                if (miles1.Equals("0")){
-                    miles1 = "OFF";
-                }
-                if (miles2.Equals("0"))
-                {
-                    miles2 = "OFF";
-                }
-                if (miles3.Equals("0"))
-                {
-                    miles3 = "OFF";
-                }
-                if (miles4.Equals("0"))
-                {
-                    miles4 = "OFF";
-                }
-                if (miles5.Equals("0"))
-                {
-                    miles5 = "OFF";
-                }
-                if (miles6.Equals("0"))
-                {
-                    miles6 = "OFF";
-                }
-                if (miles7.Equals("0"))
-                {
-                    miles7 = "OFF";
-                }
                 dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7);
                 dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                 dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -6959,7 +7166,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles1 = GetMilesByDate(logIndex, dateTime1a).ToString();
+                            miles1 = GetDataItemByDate(logIndex, dateTime1a, sqlCommand);
                         }
                         if (nextMonthIndex == 13)
                         {
@@ -6978,41 +7185,14 @@ namespace CyclingLogApplication
                             DateTime dateTime1e = new DateTime(logYear, nextMonthIndex, 4);
                             DateTime dateTime1f = new DateTime(logYear, nextMonthIndex, 5);
                             DateTime dateTime1g = new DateTime(logYear, nextMonthIndex, 6);
-                            miles2 = GetMilesByDate(logIndex, dateTime1b).ToString();
-                            miles3 = GetMilesByDate(logIndex, dateTime1c).ToString();
-                            miles4 = GetMilesByDate(logIndex, dateTime1d).ToString();
-                            miles5 = GetMilesByDate(logIndex, dateTime1e).ToString();
-                            miles6 = GetMilesByDate(logIndex, dateTime1f).ToString();
-                            miles7 = GetMilesByDate(logIndex, dateTime1g).ToString();
+                            miles2 = GetDataItemByDate(logIndex, dateTime1b, sqlCommand);
+                            miles3 = GetDataItemByDate(logIndex, dateTime1c, sqlCommand);
+                            miles4 = GetDataItemByDate(logIndex, dateTime1d, sqlCommand);
+                            miles5 = GetDataItemByDate(logIndex, dateTime1e, sqlCommand);
+                            miles6 = GetDataItemByDate(logIndex, dateTime1f, sqlCommand);
+                            miles7 = GetDataItemByDate(logIndex, dateTime1g, sqlCommand);
                         }
-                        if (miles1.Equals("0"))
-                        {
-                            miles1 = "OFF";
-                        }
-                        if (miles2.Equals("0"))
-                        {
-                            miles2 = "OFF";
-                        }
-                        if (miles3.Equals("0"))
-                        {
-                            miles3 = "OFF";
-                        }
-                        if (miles4.Equals("0"))
-                        {
-                            miles4 = "OFF";
-                        }
-                        if (miles5.Equals("0"))
-                        {
-                            miles5 = "OFF";
-                        }
-                        if (miles6.Equals("0"))
-                        {
-                            miles6 = "OFF";
-                        }
-                        if (miles7.Equals("0"))
-                        {
-                            miles7 = "OFF";
-                        }
+
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -7057,7 +7237,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles1 = GetMilesByDate(logIndex, dateTime1a).ToString();
+                        miles1 = GetDataItemByDate(logIndex, dateTime1a, sqlCommand);
                     }
                     if (currentYearMonth)
                     {
@@ -7086,7 +7266,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles2 = GetMilesByDate(logIndex, dateTime2a).ToString();
+                            miles2 = GetDataItemByDate(logIndex, dateTime2a, sqlCommand);
                         }
                         if (nextMonthIndex == 13)
                         {
@@ -7104,40 +7284,13 @@ namespace CyclingLogApplication
                             DateTime dateTime2d = new DateTime(logYear, nextMonthIndex, 3);
                             DateTime dateTime2e = new DateTime(logYear, nextMonthIndex, 4);
                             DateTime dateTime2f = new DateTime(logYear, nextMonthIndex, 5);
-                            miles3 = GetMilesByDate(logIndex, dateTime2b).ToString();
-                            miles4 = GetMilesByDate(logIndex, dateTime2c).ToString();
-                            miles5 = GetMilesByDate(logIndex, dateTime2d).ToString();
-                            miles6 = GetMilesByDate(logIndex, dateTime2e).ToString();
-                            miles7 = GetMilesByDate(logIndex, dateTime2f).ToString();
+                            miles3 = GetDataItemByDate(logIndex, dateTime2b, sqlCommand);
+                            miles4 = GetDataItemByDate(logIndex, dateTime2c, sqlCommand);
+                            miles5 = GetDataItemByDate(logIndex, dateTime2d, sqlCommand);
+                            miles6 = GetDataItemByDate(logIndex, dateTime2e, sqlCommand);
+                            miles7 = GetDataItemByDate(logIndex, dateTime2f, sqlCommand);
                         }
-                        if (miles1.Equals("0"))
-                        {
-                            miles1 = "OFF";
-                        }
-                        if (miles2.Equals("0"))
-                        {
-                            miles2 = "OFF";
-                        }
-                        if (miles3.Equals("0"))
-                        {
-                            miles3 = "OFF";
-                        }
-                        if (miles4.Equals("0"))
-                        {
-                            miles4 = "OFF";
-                        }
-                        if (miles5.Equals("0"))
-                        {
-                            miles5 = "OFF";
-                        }
-                        if (miles6.Equals("0"))
-                        {
-                            miles6 = "OFF";
-                        }
-                        if (miles7.Equals("0"))
-                        {
-                            miles7 = "OFF";
-                        }
+
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -7183,7 +7336,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles2 = GetMilesByDate(logIndex, dateTime2a).ToString();
+                        miles2 = GetDataItemByDate(logIndex, dateTime2a, sqlCommand);
                     }
                     if (currentYearMonth)
                     {
@@ -7211,7 +7364,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles3 = GetMilesByDate(logIndex, dateTime3a).ToString();
+                            miles3 = GetDataItemByDate(logIndex, dateTime3a, sqlCommand);
                         }
                         if (nextMonthIndex == 13)
                         {
@@ -7227,39 +7380,12 @@ namespace CyclingLogApplication
                             DateTime dateTime3c = new DateTime(logYear, nextMonthIndex, 2);
                             DateTime dateTime3d = new DateTime(logYear, nextMonthIndex, 3);
                             DateTime dateTime3e = new DateTime(logYear, nextMonthIndex, 4);
-                            miles4 = GetMilesByDate(logIndex, dateTime3b).ToString();
-                            miles5 = GetMilesByDate(logIndex, dateTime3c).ToString();
-                            miles6 = GetMilesByDate(logIndex, dateTime3d).ToString();
-                            miles7 = GetMilesByDate(logIndex, dateTime3e).ToString();
+                            miles4 = GetDataItemByDate(logIndex, dateTime3b, sqlCommand);
+                            miles5 = GetDataItemByDate(logIndex, dateTime3c, sqlCommand);
+                            miles6 = GetDataItemByDate(logIndex, dateTime3d, sqlCommand);
+                            miles7 = GetDataItemByDate(logIndex, dateTime3e, sqlCommand);
                         }
-                        if (miles1.Equals("0"))
-                        {
-                            miles1 = "OFF";
-                        }
-                        if (miles2.Equals("0"))
-                        {
-                            miles2 = "OFF";
-                        }
-                        if (miles3.Equals("0"))
-                        {
-                            miles3 = "OFF";
-                        }
-                        if (miles4.Equals("0"))
-                        {
-                            miles4 = "OFF";
-                        }
-                        if (miles5.Equals("0"))
-                        {
-                            miles5 = "OFF";
-                        }
-                        if (miles6.Equals("0"))
-                        {
-                            miles6 = "OFF";
-                        }
-                        if (miles7.Equals("0"))
-                        {
-                            miles7 = "OFF";
-                        }
+
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -7305,7 +7431,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles3 = GetMilesByDate(logIndex, dateTime3a).ToString();
+                        miles3 = GetDataItemByDate(logIndex, dateTime3a, sqlCommand);
                     }
                     if (currentYearMonth)
                     {
@@ -7332,7 +7458,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles4 = GetMilesByDate(logIndex, dateTime4a).ToString();
+                            miles4 = GetDataItemByDate(logIndex, dateTime4a, sqlCommand);
                         }
                         if (nextMonthIndex == 13)
                         {
@@ -7346,38 +7472,11 @@ namespace CyclingLogApplication
                             DateTime dateTime4b = new DateTime(logYear, nextMonthIndex, 1);
                             DateTime dateTime4c = new DateTime(logYear, nextMonthIndex, 2);
                             DateTime dateTime4d = new DateTime(logYear, nextMonthIndex, 3);
-                            miles5 = GetMilesByDate(logIndex, dateTime4b).ToString();
-                            miles6 = GetMilesByDate(logIndex, dateTime4c).ToString();
-                            miles7 = GetMilesByDate(logIndex, dateTime4d).ToString();
+                            miles5 = GetDataItemByDate(logIndex, dateTime4b, sqlCommand);
+                            miles6 = GetDataItemByDate(logIndex, dateTime4c, sqlCommand);
+                            miles7 = GetDataItemByDate(logIndex, dateTime4d, sqlCommand);
                         }
-                        if (miles1.Equals("0"))
-                        {
-                            miles1 = "OFF";
-                        }
-                        if (miles2.Equals("0"))
-                        {
-                            miles2 = "OFF";
-                        }
-                        if (miles3.Equals("0"))
-                        {
-                            miles3 = "OFF";
-                        }
-                        if (miles4.Equals("0"))
-                        {
-                            miles4 = "OFF";
-                        }
-                        if (miles5.Equals("0"))
-                        {
-                            miles5 = "OFF";
-                        }
-                        if (miles6.Equals("0"))
-                        {
-                            miles6 = "OFF";
-                        }
-                        if (miles7.Equals("0"))
-                        {
-                            miles7 = "OFF";
-                        }
+
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -7425,7 +7524,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles4 = GetMilesByDate(logIndex, dateTime4a).ToString();
+                        miles4 = GetDataItemByDate(logIndex, dateTime4a, sqlCommand);
                     }
                     if (currentYearMonth)
                     {
@@ -7451,7 +7550,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles5 = GetMilesByDate(logIndex, dateTime5a).ToString();
+                            miles5 = GetDataItemByDate(logIndex, dateTime5a, sqlCommand);
                         }
                         if (nextMonthIndex == 13)
                         {
@@ -7463,37 +7562,10 @@ namespace CyclingLogApplication
                         {
                             DateTime dateTime5b = new DateTime(logYear, nextMonthIndex, 1);
                             DateTime dateTime5c = new DateTime(logYear, nextMonthIndex, 2);
-                            miles6 = GetMilesByDate(logIndex, dateTime5b).ToString();
-                            miles7 = GetMilesByDate(logIndex, dateTime5c).ToString();
+                            miles6 = GetDataItemByDate(logIndex, dateTime5b, sqlCommand);
+                            miles7 = GetDataItemByDate(logIndex, dateTime5c, sqlCommand);
                         }
-                        if (miles1.Equals("0"))
-                        {
-                            miles1 = "OFF";
-                        }
-                        if (miles2.Equals("0"))
-                        {
-                            miles2 = "OFF";
-                        }
-                        if (miles3.Equals("0"))
-                        {
-                            miles3 = "OFF";
-                        }
-                        if (miles4.Equals("0"))
-                        {
-                            miles4 = "OFF";
-                        }
-                        if (miles5.Equals("0"))
-                        {
-                            miles5 = "OFF";
-                        }
-                        if (miles6.Equals("0"))
-                        {
-                            miles6 = "OFF";
-                        }
-                        if (miles7.Equals("0"))
-                        {
-                            miles7 = "OFF";
-                        }
+
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -7542,7 +7614,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles5 = GetMilesByDate(logIndex, dateTime5a).ToString();
+                        miles5 = GetDataItemByDate(logIndex, dateTime5a, sqlCommand);
                     }
                     if (currentYearMonth)
                     {
@@ -7567,7 +7639,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles6 = GetMilesByDate(logIndex, dateTime6a).ToString();
+                            miles6 = GetDataItemByDate(logIndex, dateTime6a, sqlCommand);
                         }
                         if (nextMonthIndex == 13)
                         {
@@ -7577,36 +7649,9 @@ namespace CyclingLogApplication
                         else
                         {
                             DateTime dateTime6b = new DateTime(logYear, nextMonthIndex, 1);
-                            miles7 = GetMilesByDate(logIndex, dateTime6b).ToString();
+                            miles7 = GetDataItemByDate(logIndex, dateTime6b, sqlCommand);
                         }
-                        if (miles1.Equals("0"))
-                        {
-                            miles1 = "OFF";
-                        }
-                        if (miles2.Equals("0"))
-                        {
-                            miles2 = "OFF";
-                        }
-                        if (miles3.Equals("0"))
-                        {
-                            miles3 = "OFF";
-                        }
-                        if (miles4.Equals("0"))
-                        {
-                            miles4 = "OFF";
-                        }
-                        if (miles5.Equals("0"))
-                        {
-                            miles5 = "OFF";
-                        }
-                        if (miles6.Equals("0"))
-                        {
-                            miles6 = "OFF";
-                        }
-                        if (miles7.Equals("0"))
-                        {
-                            miles7 = "OFF";
-                        }
+
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -7655,7 +7700,7 @@ namespace CyclingLogApplication
                         miles6 = "";
                     } else
                     {
-                        miles6 = GetMilesByDate(logIndex, dateTime6a).ToString();
+                        miles6 = GetDataItemByDate(logIndex, dateTime6a, sqlCommand);
                     }
                     if (currentYearMonth)
                     {
@@ -7680,36 +7725,9 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles7 = GetMilesByDate(logIndex, dateTime7a).ToString();
+                            miles7 = GetDataItemByDate(logIndex, dateTime7a, sqlCommand);
                         }
-                        if (miles1.Equals("0"))
-                        {
-                            miles1 = "OFF";
-                        }
-                        if (miles2.Equals("0"))
-                        {
-                            miles2 = "OFF";
-                        }
-                        if (miles3.Equals("0"))
-                        {
-                            miles3 = "OFF";
-                        }
-                        if (miles4.Equals("0"))
-                        {
-                            miles4 = "OFF";
-                        }
-                        if (miles5.Equals("0"))
-                        {
-                            miles5 = "OFF";
-                        }
-                        if (miles6.Equals("0"))
-                        {
-                            miles6 = "OFF";
-                        }
-                        if (miles7.Equals("0"))
-                        {
-                            miles7 = "OFF";
-                        }
+
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewCalendar.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -7798,36 +7816,9 @@ namespace CyclingLogApplication
                         miles7 = "";
                     } else
                     {
-                        miles7 = GetMilesByDate(logIndex, dateTime7a).ToString();
+                        miles7 = GetDataItemByDate(logIndex, dateTime7a, sqlCommand);
                     }
-                    if (miles1.Equals("0"))
-                    {
-                        miles1 = "OFF";
-                    }
-                    if (miles2.Equals("0"))
-                    {
-                        miles2 = "OFF";
-                    }
-                    if (miles3.Equals("0"))
-                    {
-                        miles3 = "OFF";
-                    }
-                    if (miles4.Equals("0"))
-                    {
-                        miles4 = "OFF";
-                    }
-                    if (miles5.Equals("0"))
-                    {
-                        miles5 = "OFF";
-                    }
-                    if (miles6.Equals("0"))
-                    {
-                        miles6 = "OFF";
-                    }
-                    if (miles7.Equals("0"))
-                    {
-                        miles7 = "OFF";
-                    }
+
                     dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                     dataGridViewCalendar.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);                
                     
@@ -7911,12 +7902,6 @@ namespace CyclingLogApplication
                         dataGridViewCalendar.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.FromName(GetCalendarColor());
                         //dataGridViewCalendar.Rows[rowCount].Cells[6].Style.BackColor = Color.Gray;
                     }
-                    //dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.FromName(GetCalendarColor());
-                    //dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.FromName(GetCalendarColor());
-                    //dataGridViewCalendar.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.FromName(GetCalendarColor());
-                    //dataGridViewCalendar.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.FromName(GetCalendarColor());
-                    //dataGridViewCalendar.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.FromName(GetCalendarColor());
-                    //dataGridViewCalendar.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.FromName(GetCalendarColor());
 
                     if (currentYearMonth)
                     {
@@ -8100,6 +8085,11 @@ namespace CyclingLogApplication
             {
                 tbCalendarColor.ForeColor = Color.White;
             }
+        }
+
+        private void cbCalendarDataItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RunCalendar();
         }
     }
 }

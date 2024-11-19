@@ -234,6 +234,8 @@
             this.label29 = new System.Windows.Forms.Label();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbCalendarDataItem = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -993,6 +995,8 @@
             // 
             // groupBox21
             // 
+            this.groupBox21.Controls.Add(this.label12);
+            this.groupBox21.Controls.Add(this.cbCalendarDataItem);
             this.groupBox21.Controls.Add(this.dataGridViewCalendar);
             this.groupBox21.Controls.Add(this.btRefresh);
             this.groupBox21.Controls.Add(this.lbMonth);
@@ -1000,23 +1004,23 @@
             this.groupBox21.Controls.Add(this.label9);
             this.groupBox21.Controls.Add(this.label11);
             this.groupBox21.Controls.Add(this.cbCalendarLogs);
-            this.groupBox21.Location = new System.Drawing.Point(27, 18);
+            this.groupBox21.Location = new System.Drawing.Point(27, 3);
             this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(892, 548);
+            this.groupBox21.Size = new System.Drawing.Size(892, 574);
             this.groupBox21.TabIndex = 1;
             this.groupBox21.TabStop = false;
             // 
             // dataGridViewCalendar
             // 
             this.dataGridViewCalendar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewCalendar.Location = new System.Drawing.Point(24, 71);
+            this.dataGridViewCalendar.Location = new System.Drawing.Point(24, 77);
             this.dataGridViewCalendar.Name = "dataGridViewCalendar";
             this.dataGridViewCalendar.Size = new System.Drawing.Size(831, 470);
             this.dataGridViewCalendar.TabIndex = 29;
             // 
             // btRefresh
             // 
-            this.btRefresh.Location = new System.Drawing.Point(780, 30);
+            this.btRefresh.Location = new System.Drawing.Point(780, 46);
             this.btRefresh.Name = "btRefresh";
             this.btRefresh.Size = new System.Drawing.Size(75, 23);
             this.btRefresh.TabIndex = 1;
@@ -1027,9 +1031,9 @@
             // lbMonth
             // 
             this.lbMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMonth.Location = new System.Drawing.Point(230, 16);
+            this.lbMonth.Location = new System.Drawing.Point(331, 25);
             this.lbMonth.Name = "lbMonth";
-            this.lbMonth.Size = new System.Drawing.Size(362, 44);
+            this.lbMonth.Size = new System.Drawing.Size(298, 44);
             this.lbMonth.TabIndex = 30;
             this.lbMonth.Text = "Month";
             this.lbMonth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1051,7 +1055,7 @@
             "October",
             "November",
             "December"});
-            this.cbCalendarMonth.Location = new System.Drawing.Point(601, 32);
+            this.cbCalendarMonth.Location = new System.Drawing.Point(193, 48);
             this.cbCalendarMonth.Name = "cbCalendarMonth";
             this.cbCalendarMonth.Size = new System.Drawing.Size(121, 21);
             this.cbCalendarMonth.TabIndex = 24;
@@ -1060,7 +1064,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(598, 16);
+            this.label9.Location = new System.Drawing.Point(190, 32);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(37, 13);
             this.label9.TabIndex = 25;
@@ -1069,7 +1073,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(38, 16);
+            this.label11.Location = new System.Drawing.Point(21, 32);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(25, 13);
             this.label11.TabIndex = 27;
@@ -1078,7 +1082,7 @@
             // cbCalendarLogs
             // 
             this.cbCalendarLogs.FormattingEnabled = true;
-            this.cbCalendarLogs.Location = new System.Drawing.Point(41, 32);
+            this.cbCalendarLogs.Location = new System.Drawing.Point(24, 48);
             this.cbCalendarLogs.Name = "cbCalendarLogs";
             this.cbCalendarLogs.Size = new System.Drawing.Size(161, 21);
             this.cbCalendarLogs.TabIndex = 26;
@@ -1596,7 +1600,7 @@
             this.Settings.Location = new System.Drawing.Point(4, 22);
             this.Settings.Name = "Settings";
             this.Settings.Padding = new System.Windows.Forms.Padding(3);
-            this.Settings.Size = new System.Drawing.Size(950, 565);
+            this.Settings.Size = new System.Drawing.Size(950, 580);
             this.Settings.TabIndex = 1;
             this.Settings.Text = "Settings";
             this.Settings.UseVisualStyleBackColor = true;
@@ -3483,6 +3487,32 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
+            // cbCalendarDataItem
+            // 
+            this.cbCalendarDataItem.FormattingEnabled = true;
+            this.cbCalendarDataItem.Items.AddRange(new object[] {
+            "Average Power",
+            "Average Speed",
+            "Effort",
+            "Ride Distance",
+            "Riding Time",
+            "Total Ascent",
+            "Wind Chill"});
+            this.cbCalendarDataItem.Location = new System.Drawing.Point(662, 48);
+            this.cbCalendarDataItem.Name = "cbCalendarDataItem";
+            this.cbCalendarDataItem.Size = new System.Drawing.Size(112, 21);
+            this.cbCalendarDataItem.TabIndex = 31;
+            this.cbCalendarDataItem.SelectedIndexChanged += new System.EventHandler(this.cbCalendarDataItem_SelectedIndexChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(659, 32);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 13);
+            this.label12.TabIndex = 32;
+            this.label12.Text = "Data Item";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3769,6 +3799,8 @@
         private System.Windows.Forms.TextBox tbCalendarColor;
         private System.Windows.Forms.ComboBox cbCalendarColors;
         private System.Windows.Forms.GroupBox groupBox21;
+        private System.Windows.Forms.ComboBox cbCalendarDataItem;
+        private System.Windows.Forms.Label label12;
     }
 }
 
