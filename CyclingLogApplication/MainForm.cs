@@ -4345,7 +4345,8 @@ namespace CyclingLogApplication
                                 if (temp.Equals("0"))
                                 {
                                     returnValue = "NA";
-                                } else { 
+                                } else {
+                                    returnValue = int.Parse(returnValue).ToString("N0");
                                     returnValue += " ft";
                                 }
                             }
@@ -8090,6 +8091,74 @@ namespace CyclingLogApplication
         private void cbCalendarDataItem_SelectedIndexChanged(object sender, EventArgs e)
         {
             RunCalendar();
+        }
+
+        private void btResetGridColors_Click(object sender, EventArgs e)
+        {
+            //Reset text back to black:
+            SetTextMaint("True");
+            cbMaintTextColor.Checked = true;
+            cbWeeklyTextColor.Checked = true;
+            SetTextWeekly("True");
+            cbMonthlyTextColor.Checked = true;
+            SetTextMonthly("True");
+            cbYearlyTextColor.Checked = true;
+            SetTextYearly("True");
+            cbDisplayDataTextColor.Checked = true;
+            SetTextDisplay("True");
+            cbBikeTextColor.Checked = true;
+            SetTextBike("True");
+            cbRouteTextColor.Checked = true;
+            SetTextRoute("True");
+            cbCalendarTextColor.Checked = true;
+            SetTextCalendar("True");
+
+            //Maintenance Grid:
+            cbMaintColors.SelectedIndex = 5;
+            SetMaintColor("Beige");
+            dgvMaint.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
+            dgvMaint.Refresh();
+
+            //Weekly Stat Grid:
+            cbWeeklyColors.SelectedIndex = 5;
+            SetWeeklyColor("Beige");
+            dataGridViewWeekly.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
+            dataGridViewWeekly.Refresh();
+
+            //Monthly Stat Grid:
+            cbMonthlyColors.SelectedIndex = 5;
+            SetMonthlyColor("Beige");
+            dataGridViewMonthly.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
+            dataGridViewMonthly.Refresh();
+
+            //Yearly Stat Grid:
+            cbYearlyColors.SelectedIndex = 5;
+            SetYearlyColor("Beige");
+            dataGridViewYearly.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
+            dataGridViewYearly.Refresh();
+
+            //Display Data Grid:
+            cbDisplayDataColors.SelectedIndex = 5;
+            SetDisplayDataColor("Beige");
+
+            //Bike Grid:
+            cbBikeColors.SelectedIndex = 5;
+            SetBikeColor("Beige");
+            dataGridViewBikes.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
+            dataGridViewBikes.Refresh();
+
+            //Route Grid:
+            cbRouteColors.SelectedIndex = 5;
+            SetRouteColor("Beige");
+            dataGridViewRoutes.AlternatingRowsDefaultCellStyle.BackColor = Color.Beige;
+            dataGridViewRoutes.Refresh();
+
+            //Calendar Grid:
+            cbCalendarColors.SelectedIndex = 5;
+            SetCalendarColor("Beige");
+            RunCalendar();
+
+            MessageBox.Show("Color reset to default is complete.");
         }
     }
 }

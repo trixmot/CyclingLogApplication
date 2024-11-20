@@ -236,6 +236,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbCalendarDataItem = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.btResetGridColors = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -1622,6 +1623,7 @@
             // 
             // groupBox23
             // 
+            this.groupBox23.Controls.Add(this.btResetGridColors);
             this.groupBox23.Controls.Add(this.cbCalendarTextColor);
             this.groupBox23.Controls.Add(this.textBox7);
             this.groupBox23.Controls.Add(this.label10);
@@ -2977,7 +2979,7 @@
             // 
             // btSetColors
             // 
-            this.btSetColors.Location = new System.Drawing.Point(105, 402);
+            this.btSetColors.Location = new System.Drawing.Point(59, 412);
             this.btSetColors.Name = "btSetColors";
             this.btSetColors.Size = new System.Drawing.Size(75, 23);
             this.btSetColors.TabIndex = 75;
@@ -3495,7 +3497,7 @@
             "Average Speed",
             "Effort",
             "Ride Distance",
-            "Riding Time",
+            "Moving Time",
             "Total Ascent",
             "Wind Chill"});
             this.cbCalendarDataItem.Location = new System.Drawing.Point(662, 48);
@@ -3512,6 +3514,16 @@
             this.label12.Size = new System.Drawing.Size(53, 13);
             this.label12.TabIndex = 32;
             this.label12.Text = "Data Item";
+            // 
+            // btResetGridColors
+            // 
+            this.btResetGridColors.Location = new System.Drawing.Point(154, 412);
+            this.btResetGridColors.Name = "btResetGridColors";
+            this.btResetGridColors.Size = new System.Drawing.Size(75, 23);
+            this.btResetGridColors.TabIndex = 116;
+            this.btResetGridColors.Text = "Reset";
+            this.btResetGridColors.UseVisualStyleBackColor = true;
+            this.btResetGridColors.Click += new System.EventHandler(this.btResetGridColors_Click);
             // 
             // MainForm
             // 
@@ -3801,6 +3813,7 @@
         private System.Windows.Forms.GroupBox groupBox21;
         private System.Windows.Forms.ComboBox cbCalendarDataItem;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btResetGridColors;
     }
 }
 
