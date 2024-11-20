@@ -1476,8 +1476,8 @@ namespace CyclingLogApplication
             dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);//Moving Time:
             tbRideDataEntryDistance.Text = "";                                                                         //Ride Distance:
             tbRideDataEntryAvgSpeed.Text = "";                                                                                   //Average Speed:
-            cbBikeDataEntrySelection.SelectedIndex = cbBikeDataEntrySelection.FindStringExact(""); ;                    //Bike:
-            cbRideTypeDataEntry.SelectedIndex = cbRideTypeDataEntry.FindStringExact(""); ;                              //Ride Type:
+            cbBikeDataEntrySelection.SelectedIndex = 0;                     //Bike:
+            cbRideTypeDataEntry.SelectedIndex = 0;                              //Ride Type:
             tbRideDataEntryWind.Text = "";                                                                                   //Wind:
             tbRideEntryTemp.Text = "";                                                                                   //Temp:
             //dtpRideDate.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0); ;     //Date:
@@ -1490,17 +1490,18 @@ namespace CyclingLogApplication
             max_speed.Text = "";                                                                                        //Max Speed:
             avg_power.Text = "";                                                                                        //Average Power:
             max_power.Text = "";                                                                                        //Max Power:
-            cbRouteDataEntry.SelectedIndex = cbRouteDataEntry.FindStringExact(""); ;                                    //Route:
+            cbRouteDataEntry.SelectedIndex = 0; ;                                    //Route:
             tbComments.Text = "";                                                                                       //Comments:
             //cbLogYearDataEntry.SelectedIndex = cbLogYearDataEntry.FindStringExact("");                                //LogYear index:
-            cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.FindStringExact("");
-            cbEffortRideDataEntry.SelectedIndex = cbEffortRideDataEntry.FindStringExact("");
+            cbLocationDataEntry.SelectedIndex = 0;
+            cbEffortRideDataEntry.SelectedIndex = 0;
             //tbWeekNumber.Text = "0";
             tbRecordID.Text = "0";
-            cbComfortRideDataEntry.SelectedIndex = cbComfortRideDataEntry.FindStringExact("");
+            cbComfortRideDataEntry.SelectedIndex = 0;
             tbCustom1.Text = "";
             tbCustom2.Text = "";
             tbMaxCadence.Text = "";
+            tbRideEntryWindChill.Text = "0";
         }
 
         private void ClearDataEntryFields_click(object sender, EventArgs e)
