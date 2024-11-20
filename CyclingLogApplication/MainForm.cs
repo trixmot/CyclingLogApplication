@@ -174,7 +174,7 @@ namespace CyclingLogApplication
 
                 if (GetLicenseAgreement() == null || GetLicenseAgreement().Equals("false"))
                 {
-                    DialogResult result = MessageBox.Show("Do you agree with the License Agreement?\n\nThe MIT License Copyright (c) 2024, John T Flynn Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the Software), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.", "License Agreement", MessageBoxButtons.YesNo);
+                    DialogResult result = MessageBox.Show("Do you agree with the License Agreement?\n\nThe MIT License Copyright (c) 2024, John T Flynn Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the Software), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED AS IS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. \n\nClick Yes to accept or No to decline.", "License Agreement", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No)
                     {
                         Application.Exit();
@@ -1019,128 +1019,112 @@ namespace CyclingLogApplication
             string logYearTitle = tbLogYearConfig.Text;
             string logType = "Add";
 
-            if (logYearTitle.Equals(""))
+            try
             {
-                MessageBox.Show("No title entered. Enter a unique name for the log.");
-                return;
-            }
 
-            //Needs to be selected for new or updated entry:
-            if (cbLogYear.SelectedIndex < 1)
-            {
-                MessageBox.Show("Log Year not selected. Select a year from the dropdown list.");
-                return;
-            }
-
-            //Get list of Log Titles to determine if the title already exists:
-            List<string> logList = ReadDataNames("Table_Log_year", "Name");
-
-            if (logList.Contains(logYearTitle) || cbLogYearConfig.SelectedIndex > 0)
-            {
-                logType = "Update";
-                DialogResult result = MessageBox.Show("Do you really want to update the Log Title?", "Update Log", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
+                if (logYearTitle.Equals(""))
                 {
-
-                }
-                else
-                {
+                    MessageBox.Show("No title entered. Enter a unique name for the log.");
                     return;
                 }
-            } else
-            { 
-                logType = "Add";
-                DialogResult result = MessageBox.Show("Do you really want to Add the Log Title?", "Add Log", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
 
-                }
-                else
+                //Needs to be selected for new or updated entry:
+                if (cbLogYear.SelectedIndex < 1)
                 {
+                    MessageBox.Show("Log Year not selected. Select a year from the dropdown list.");
                     return;
                 }
-            }
 
-            string logYear = cbLogYear.SelectedItem.ToString();
-            int logSetting = GetLogLevel();
+                //Get list of Log Titles to determine if the title already exists:
+                List<string> logList = ReadDataNames("Table_Log_year", "Name");
 
-            // New Log created:
-            if (logType.Equals("Add"))
-            {
-                //Add new entry to the LogYear Table:
-                List<object> objectValues = new List<object>();
-                objectValues.Add(logYearTitle);
-                objectValues.Add(Convert.ToInt32(logYear));
-                RunStoredProcedure(objectValues, "Log_Year_Add");
-
-                cbLogYearConfig.Items.Add(logYearTitle);
-                cbLogYearConfig.SelectedIndex = cbLogYearConfig.Items.Count - 1;
-                cbStatMonthlyLogYear.Items.Add(logYearTitle);
-                cbLogYearWeekly.Items.Add(logYearTitle);
-                cbCalendarLogs.Items.Add(logYearTitle);
-            }
-            // Update to an existing log:
-            else
-            {
-                string newValue = logYearTitle;
-                string oldValue;
-
-                // check if a title has been selected from the combobox:
-                if (cbLogYearConfig.SelectedIndex < 1)
+                if (logList.Contains(logYearTitle) || cbLogYearConfig.SelectedIndex > 0)
                 {
-                    oldValue = logYearTitle;
-                } 
-                else
-                {
-                    oldValue = cbLogYearConfig.SelectedItem.ToString();
-                }
-
-                List<object> objectValues = new List<object>();
-                objectValues.Add(newValue);
-                objectValues.Add(oldValue);
-                objectValues.Add(logYear);
-
-                RunStoredProcedure(objectValues, "Log_Year_Update");
-
-                List<string> tempList = new List<string>();
-
-                int cbLogYearConfigIndex = cbLogYearConfig.SelectedIndex;
-                int cbStatMonthlyLogYearIndex = cbStatMonthlyLogYear.SelectedIndex;
-
-                // Skip first item:
-                for (int i = 1; i < cbLogYearConfig.Items.Count; i++)
-                {
-                    tempList.Add(cbLogYearConfig.Items[i].ToString());
-                }
-
-                for (int i = 0; i < tempList.Count; i++)
-                {
-                    // -1 since do not want to include the --not select-- option:
-                    if (cbLogYearConfigIndex -1 == i)
+                    logType = "Update";
+                    DialogResult result = MessageBox.Show("Do you really want to update the Log Title?", "Update Log", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
                     {
-                        cbLogYearConfig.Items.Remove(oldValue);
-                        cbLogYearConfig.Items.Add(newValue);
-                        cbStatMonthlyLogYear.Items.Remove(oldValue);
-                        cbStatMonthlyLogYear.Items.Add(newValue);
 
-                        break;
                     }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    logType = "Add";
+                    DialogResult result = MessageBox.Show("Do you really want to Add the Log Title?", "Add Log", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
 
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
 
-                cbLogYearConfig.Sorted = true;
-                cbStatMonthlyLogYear.Sorted = true;
-                cbLogYearConfig.SelectedIndex = cbLogYearConfigIndex;
-                cbStatMonthlyLogYear.SelectedIndex = cbStatMonthlyLogYearIndex;
-            }
+                string logYear = cbLogYear.SelectedItem.ToString();
+                int logSetting = GetLogLevel();
 
-            List<string> namesList = new List<string>();    
-            for (int i = 0; i < cbLogYearConfig.Items.Count; i++)
+                // New Log created:
+                if (logType.Equals("Add"))
+                {
+                    //Add new entry to the LogYear Table:
+                    List<object> objectValues = new List<object>();
+                    objectValues.Add(logYearTitle);
+                    objectValues.Add(Convert.ToInt32(logYear));
+                    RunStoredProcedure(objectValues, "Log_Year_Add");
+
+                    cbLogYearConfig.Items.Add(logYearTitle);
+                    cbLogYearConfig.SelectedIndex = 0;
+                    cbStatMonthlyLogYear.Items.Add(logYearTitle);
+                    cbLogYearWeekly.Items.Add(logYearTitle);
+                    cbCalendarLogs.Items.Add(logYearTitle);
+                }
+                // Update to an existing log:
+                else
+                {
+                    string newValue = logYearTitle;
+                    string oldValue;
+
+                    oldValue = cbLogYearConfig.SelectedItem.ToString();
+
+                    List<object> objectValues = new List<object>();
+                    objectValues.Add(newValue);
+                    objectValues.Add(oldValue);
+                    objectValues.Add(logYear);
+
+                    RunStoredProcedure(objectValues, "Log_Year_Update");
+
+                    int cbLogYearConfigIndex = cbLogYearConfig.SelectedIndex;
+                    int cbStatMonthlyLogYearIndex = cbStatMonthlyLogYear.SelectedIndex;
+
+                    cbLogYearConfig.Items.Remove(oldValue);
+                    cbLogYearConfig.Items.Add(newValue);
+                    cbStatMonthlyLogYear.Items.Remove(oldValue);
+                    cbStatMonthlyLogYear.Items.Add(newValue);
+
+                    cbLogYearConfig.Sorted = true;
+                    cbStatMonthlyLogYear.Sorted = true;
+                    cbLogYearConfig.SelectedIndex = 0;
+                    cbStatMonthlyLogYear.SelectedIndex = cbStatMonthlyLogYearIndex;
+                }
+
+                List<string> namesList = new List<string>();
+                for (int i = 0; i < cbLogYearConfig.Items.Count; i++)
+                {
+                    namesList.Add(cbLogYearConfig.Items[i].ToString());
+                }
+
+                SetLogNameIDDictionary(namesList);
+
+            }
+            catch (Exception ex)
             {
-                namesList.Add(cbLogYearConfig.Items[i].ToString());
+                Logger.LogError("[ERROR]: Exception while trying to add/udpate log title." + ex.Message.ToString());
             }
-
-            SetLogNameIDDictionary(namesList);
             MessageBox.Show("Log Title save is complete.");
         }
             
@@ -3425,7 +3409,7 @@ namespace CyclingLogApplication
 
         private void CbStatMonthlyLogYear_changed(object sender, EventArgs e)
         {
-            if (cbStatMonthlyLogYear.SelectedIndex == 0)
+            if (cbStatMonthlyLogYear.SelectedIndex < 1)
             {
                 return;
             }
