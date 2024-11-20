@@ -4,40 +4,57 @@ Cycling log to track bike rides.  Data can be entered manually or imported using
 
 The program requires Windows 10/11 and Microsoft® SQL Server® 2022 Express to be installed in order to use the sql database.
 
+Example program screen captures:
 
-![image](https://github.com/user-attachments/assets/d168ef13-b852-4d5c-88e0-b8154b0d0f89)
-
-
-![image](https://github.com/user-attachments/assets/f344a4ba-ad5c-4221-a8d9-57234d92fac3)
-
-
-![image](https://github.com/user-attachments/assets/7bf4a167-ac15-4899-abd7-885e3046394a)
+Main Tab:
+![image](https://github.com/user-attachments/assets/ea83359e-6a9a-4ed3-bd2a-074b175dad57)
 
 
-![image](https://github.com/user-attachments/assets/d77cfec9-47d7-4bd6-9ee5-a053da8e09f3)
+Statistics-Yearly Tab:
+![image](https://github.com/user-attachments/assets/1dc72eee-5087-4efb-8d33-d6ea7ef56bc1)
 
 
-![image](https://github.com/user-attachments/assets/acb7ff98-9a36-4f0e-9eb7-438972ba2665)
+Statistics-Monthly Tab:
+![image](https://github.com/user-attachments/assets/a66a8a20-28fd-44c8-99e1-97b8559fb5cd)
 
 
-![image](https://github.com/user-attachments/assets/d103e8fa-05ae-4dff-89c9-69f289e70e67)
+Statistics-Weekly Tab:
+![image](https://github.com/user-attachments/assets/df4066ae-6ed7-4877-b653-4c40b9c6a362)
 
 
-![image](https://github.com/user-attachments/assets/5adbab58-6801-4221-bade-9298947524bb)
+Calendar Tab:
+![image](https://github.com/user-attachments/assets/11255557-4135-44a4-920e-79250c16a4f2)
 
 
-![image](https://github.com/user-attachments/assets/45175e2a-33fd-4c74-876c-67eb97f486ae)
+Maintenance Tab:
+![image](https://github.com/user-attachments/assets/2b41d2f5-f43f-48a9-abb5-4f02f650de97)
 
 
-![image](https://github.com/user-attachments/assets/d086d371-82fa-4ed7-ac06-fb2bd21a9c47)
+Bikes Tab:
+![image](https://github.com/user-attachments/assets/c750cb27-40da-4a83-a9fe-a0e6adbb10d2)
 
 
+Routes Tab:
+![image](https://github.com/user-attachments/assets/8b24a859-c094-40ff-bf1e-670785c055ce)
+
+
+Settings Tab:
+![image](https://github.com/user-attachments/assets/6340f466-8835-4760-9c8b-be5609463714)
+
+
+About Tab:
+![image](https://github.com/user-attachments/assets/a7898ed1-1194-4074-863e-8544f07d3ba1)
+
+
+Ride Data Information Page:
 ![image](https://github.com/user-attachments/assets/513341dd-29e5-4f25-a497-09666e6e0667)
 
 
+Ride Data Entry Page:
 ![image](https://github.com/user-attachments/assets/53f477e9-6af8-4763-a048-d72a7763faf4)
 
 
+Charts Page:
 ![image](https://github.com/user-attachments/assets/610e5a8c-afa8-4c61-8f89-337d5d1e8ffe)
 
 
