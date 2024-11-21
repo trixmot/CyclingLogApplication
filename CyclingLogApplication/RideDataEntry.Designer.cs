@@ -104,17 +104,18 @@
             this.label11 = new System.Windows.Forms.Label();
             this.cbRideTypeDataEntry = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBoxCloneEntry = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBoxRetrieveDate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).BeginInit();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbLogYearDataEntry
@@ -131,9 +132,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(20, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Log Entry*";
+            this.label1.Text = "Log Title*";
             // 
             // dtpRideDate
             // 
@@ -197,13 +198,14 @@
             // 
             // groupBoxRetrieveDate
             // 
+            this.groupBoxRetrieveDate.Controls.Add(this.checkBoxCloneEntry);
             this.groupBoxRetrieveDate.Controls.Add(this.label28);
             this.groupBoxRetrieveDate.Controls.Add(this.btRetrieve);
             this.groupBoxRetrieveDate.Controls.Add(this.label24);
             this.groupBoxRetrieveDate.Controls.Add(this.numericUpDown2);
-            this.groupBoxRetrieveDate.Location = new System.Drawing.Point(230, 22);
+            this.groupBoxRetrieveDate.Location = new System.Drawing.Point(230, 14);
             this.groupBoxRetrieveDate.Name = "groupBoxRetrieveDate";
-            this.groupBoxRetrieveDate.Size = new System.Drawing.Size(158, 130);
+            this.groupBoxRetrieveDate.Size = new System.Drawing.Size(158, 138);
             this.groupBoxRetrieveDate.TabIndex = 48;
             this.groupBoxRetrieveDate.TabStop = false;
             // 
@@ -218,7 +220,7 @@
             // 
             // btRetrieve
             // 
-            this.btRetrieve.Location = new System.Drawing.Point(43, 55);
+            this.btRetrieve.Location = new System.Drawing.Point(45, 40);
             this.btRetrieve.Name = "btRetrieve";
             this.btRetrieve.Size = new System.Drawing.Size(75, 23);
             this.btRetrieve.TabIndex = 4;
@@ -822,20 +824,6 @@
             this.label22.TabIndex = 40;
             this.label22.Text = "* Required Fields";
             // 
-            // tableRideInformationBindingSource
-            // 
-            this.tableRideInformationBindingSource.DataMember = "Table_Ride_Information";
-            this.tableRideInformationBindingSource.DataSource = this.cyclingLogDatabaseDataSet;
-            // 
-            // cyclingLogDatabaseDataSet
-            // 
-            this.cyclingLogDatabaseDataSet.DataSetName = "CyclingLogDatabaseDataSet";
-            this.cyclingLogDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // table_Ride_InformationTableAdapter
-            // 
-            this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.cbLocationDataEntry);
@@ -855,6 +843,30 @@
             this.groupBox3.Size = new System.Drawing.Size(532, 147);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
+            // 
+            // tableRideInformationBindingSource
+            // 
+            this.tableRideInformationBindingSource.DataMember = "Table_Ride_Information";
+            this.tableRideInformationBindingSource.DataSource = this.cyclingLogDatabaseDataSet;
+            // 
+            // cyclingLogDatabaseDataSet
+            // 
+            this.cyclingLogDatabaseDataSet.DataSetName = "CyclingLogDatabaseDataSet";
+            this.cyclingLogDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // table_Ride_InformationTableAdapter
+            // 
+            this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
+            // 
+            // checkBoxCloneEntry
+            // 
+            this.checkBoxCloneEntry.AutoSize = true;
+            this.checkBoxCloneEntry.Location = new System.Drawing.Point(45, 71);
+            this.checkBoxCloneEntry.Name = "checkBoxCloneEntry";
+            this.checkBoxCloneEntry.Size = new System.Drawing.Size(80, 17);
+            this.checkBoxCloneEntry.TabIndex = 50;
+            this.checkBoxCloneEntry.Text = "Clone Entry";
+            this.checkBoxCloneEntry.UseVisualStyleBackColor = true;
             // 
             // RideDataEntry
             // 
@@ -883,10 +895,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -971,5 +983,6 @@
         private System.Windows.Forms.TextBox tbRideDataEntryAvgSpeed;
         private System.Windows.Forms.TextBox tbRideDataEntryDistance;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox checkBoxCloneEntry;
     }
 }

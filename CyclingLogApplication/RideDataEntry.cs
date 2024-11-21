@@ -751,6 +751,16 @@ namespace CyclingLogApplication
                 changeType = "DisplayUpdate";
                 procedureName = "Ride_Information_Update";
             }
+            else if (checkBoxCloneEntry.Checked)
+            {
+                changeType = "clone";
+                procedureName = "Ride_Information_Add";
+                DialogResult result = MessageBox.Show("Do you really want to Clone the current ride data entry?", "Clone Ride Entry", MessageBoxButtons.YesNo);
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+            }
             else
             {
                 //Determine if Add or Update:
@@ -776,7 +786,7 @@ namespace CyclingLogApplication
                     }
                 }
             }
-            
+
             try
             {
                 //Make sure certain required fields are filled in:
@@ -1043,13 +1053,14 @@ namespace CyclingLogApplication
                 if (tbRideDataEntryWind.Text.Equals(""))
                 {
                     windspeed = 0;
-                } else
-                {
-                    windspeed = float.Parse(tbRideDataEntryWind.Text);                  
                 }
-                
+                else
+                {
+                    windspeed = float.Parse(tbRideDataEntryWind.Text);
+                }
+
                 objectValues.Add(windspeed);                                            //Wind:
-                float temp = float.Parse(tbRideEntryTemp.Text);                               
+                float temp = float.Parse(tbRideEntryTemp.Text);
                 objectValues.Add(Math.Round(temp, 1));                                  //Temp:
                 objectValues.Add(dtpRideDate.Value);                                    //Date:
 
@@ -1184,13 +1195,9 @@ namespace CyclingLogApplication
                 objectValues.Add(tbCustom1.Text);                                                //Custom1
                 objectValues.Add(tbCustom2.Text);                                                //Custom2
 
-                if (changeType.Equals("Update"))
+                if (changeType.Equals("Update") || changeType.Equals("DisplayUpdate"))
                 {
                     objectValues.Add(GetEntryID().ToString());                                         //Record ID:
-                }
-                else if (changeType.Equals("DisplayUpdate"))
-                {
-                    objectValues.Add(GetEntryID().ToString());
                 }
 
                 using (var results = ExecuteSimpleQueryConnection(procedureName, objectValues))
