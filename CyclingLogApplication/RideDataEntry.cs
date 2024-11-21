@@ -128,6 +128,9 @@ namespace CyclingLogApplication
             numericUpDown2.Minimum = 1;
             numericUpDown2.Enabled = false;
 
+            checkBoxCloneEntry.Enabled = false;
+            checkBoxCloneEntry.Checked = false;
+
             if (cbComfortRideDataEntry.Items.Count < 3)
             {
                 cbComfortRideDataEntry.Items.Add("--Select Value--");
@@ -512,6 +515,8 @@ namespace CyclingLogApplication
 
         private void GetRideData(DateTime date, int recordDateIndex)
         {
+            checkBoxCloneEntry.Enabled = false;
+
             if (formLoad == 1)
             {
                 return;
@@ -664,6 +669,8 @@ namespace CyclingLogApplication
                             {
                                 Logger.LogError("Ride data for an unselected date index was selected.");
                             }
+
+                            checkBoxCloneEntry.Enabled = true;
                         }
                     }
                     else
@@ -688,6 +695,7 @@ namespace CyclingLogApplication
                     numericUpDown2.Enabled = true;
                     
                 }
+
             }
             catch (Exception ex)
             {
@@ -1595,6 +1603,9 @@ namespace CyclingLogApplication
             //Logger.LogError("Calendar value: " + dtpRideDate.Value.Date);
             int weekValue = myCal.GetWeekOfYear(dtpRideDate.Value.Date, myCWR, myFirstDOW);
             tbWeekCountRDE.Text = weekValue.ToString();
+
+            checkBoxCloneEntry.Enabled = false;
+            checkBoxCloneEntry.Checked = false;
         }
 
         private void BtUpdateRideDateEntry_Click(object sender, EventArgs e)
