@@ -40,6 +40,7 @@ namespace CyclingLogApplication
         private DateTime date;
         private int bikeIndex;
         private string bike;
+        private string route;
 
 
         public RideDataEntry()
@@ -165,7 +166,7 @@ namespace CyclingLogApplication
             }
 
             cbRouteDataEntry.SelectedIndex = 0;
-            //cbBikeDataEntrySelection.SelectedIndex = 0;
+            cbBikeDataEntrySelection.SelectedIndex = 0;
             cbRideTypeDataEntry.SelectedIndex = 0;
             cbLocationDataEntry.SelectedIndex = 0;
             cbEffortRideDataEntry.SelectedIndex = 0;
@@ -276,12 +277,12 @@ namespace CyclingLogApplication
             tbRideDataEntryDistance.Text = distance.ToString();
         }
 
-        public void SetID(int idValue)
+        public void SetEntryID(int idValue)
         {
             id = idValue;
         }
 
-        public int GetID()
+        public int GetEntryID()
         {
             return id;
         }
@@ -308,9 +309,14 @@ namespace CyclingLogApplication
             
         }
 
-        public void SetRoute(int routeIndex)
+        public void SetRouteIndex(int routeIndex)
         {
             cbRouteDataEntry.SelectedIndex = routeIndex;
+        }
+
+        public void SetRoute(string routeValue)
+        {
+            route = routeValue;
         }
 
         public void SetBike(string bikeValue)
@@ -1180,11 +1186,11 @@ namespace CyclingLogApplication
 
                 if (changeType.Equals("Update"))
                 {
-                    objectValues.Add(entryID);                                         //Record ID:
+                    objectValues.Add(GetEntryID().ToString());                                         //Record ID:
                 }
                 else if (changeType.Equals("DisplayUpdate"))
                 {
-                    objectValues.Add(GetID().ToString());
+                    objectValues.Add(GetEntryID().ToString());
                 }
 
                 using (var results = ExecuteSimpleQueryConnection(procedureName, objectValues))
@@ -1733,6 +1739,8 @@ namespace CyclingLogApplication
                 MessageBox.Show("Multiple Rides were found for the selected date. Use the 'Multiple Rides' selecter to select the desired ride.");
             }
 
+            //The Entry ID will need to be used on the update:
+            SetEntryID(int.Parse(tbRecordID.Text));
         }
 
         //public void SetSqlParameters(Dictionary<string, string> sqlParametersDict)
@@ -1834,7 +1842,7 @@ namespace CyclingLogApplication
         private void btUpdateEntry_Click(object sender, EventArgs e)
         {
             //UpdateRideDisplayInformation();
-            DeleteRecordByID(GetID());
+            DeleteRecordByID(GetEntryID());
             UpdateRideDisplayInformationAdd();
         }
 
@@ -1856,7 +1864,7 @@ namespace CyclingLogApplication
                 id
             };
 
-            SetID(int.Parse(id));
+            SetEntryID(int.Parse(id));
             tbRecordID.Text = id;
 
             string movingTime;
@@ -1886,12 +1894,12 @@ namespace CyclingLogApplication
             string custom1;
             string custom2;
             string windChill;
-            int routeIndex = -1;
-            int bikeIndex = -1;
-            int rideTypeIndex = -1;
-            int locationIndex = -1;
-            int effortIndex = -1;
-            int comfortIndex = -1;
+            int routeIndex = 0;
+            int bikeIndex = 0;
+            int rideTypeIndex = 0;
+            int locationIndex = 0;
+            int effortIndex = 0;
+            int comfortIndex = 0;
 
             try
             {
@@ -1955,11 +1963,7 @@ namespace CyclingLogApplication
                                 }
                             }
 
-                            if (rideType.Equals("Recovery"))
-                            {
-                                rideTypeIndex = 0;
-                            }
-                            else if (rideType.Equals("Base"))
+                            if (rideType.Equals("Base"))
                             {
                                 rideTypeIndex = 1;
                             }
@@ -1967,67 +1971,76 @@ namespace CyclingLogApplication
                             {
                                 rideTypeIndex = 2;
                             }
-                            else if (rideType.Equals("Speed"))
+                            else if (rideType.Equals("Race"))
                             {
                                 rideTypeIndex = 3;
                             }
-                            else if (rideType.Equals("Race"))
+                            else if (rideType.Equals("Recovery"))
                             {
                                 rideTypeIndex = 4;
+                            }
+                            else if (rideType.Equals("Speed"))
+                            {
+                                rideTypeIndex = 5;
+                            }
+                            else if (rideType.Equals("Tour"))
+                            {
+                                rideTypeIndex = 6;
                             }
 
                             if (location.Equals("Road"))
                             {
-                                locationIndex = 0;
+                                locationIndex = 1;
                             }
                             else if (location.Equals("Rollers"))
                             {
-                                locationIndex = 1;
+                                locationIndex = 2;
                             }
                             else if (location.Equals("Trail"))
                             {
-                                locationIndex = 2;
+                                locationIndex = 3;
                             }
                             else if (location.Equals("Trainer"))
                             {
-                                locationIndex = 3;
+                                locationIndex = 4;
                             }
 
-                            if (effort.Equals("Easy/Spin"))
-                            {
-                                effortIndex = 0;
-                            }
-                            else if (effort.Equals("Moderate"))
+                            if (effort.Contains("Easy"))
                             {
                                 effortIndex = 1;
                             }
-                            else if (effort.Equals("Hard"))
+                            else if (effort.Equals("Moderate"))
                             {
                                 effortIndex = 2;
                             }
-                            else if (effort.Equals("Race"))
+                            else if (effort.Equals("Hard"))
                             {
                                 effortIndex = 3;
                             }
-
-                            if (comfort.Contains("Weak/Tight"))
+                            else if (effort.Equals("Race"))
                             {
-                                comfortIndex = 0;
+                                effortIndex = 4;
                             }
-                            else if (comfort.Contains("Average"))
+
+                            if (comfort.Contains("Weak"))
                             {
                                 comfortIndex = 1;
                             }
-                            else if (comfort.Contains("Strong"))
+                            else if (comfort.Contains("Average"))
                             {
                                 comfortIndex = 2;
+                            }
+                            else if (comfort.Contains("Strong"))
+                            {
+                                comfortIndex = 3;
                             }
 
                             //Populate fields in the entry form:
                             SetcbLogYearDataEntryIndex(logYearID);
                             SetDate(DateTime.Parse(date));
                             SettbWeekCountRDE(weekNumber);
-                            SetRoute(routeIndex);                  
+                            SetRouteIndex(routeIndex+1); //+1 to account for '--Select Value--'
+                            SetRoute(route);
                             //Thread.Sleep(2000); // 1000 milliseconds i.e 1sec
                             SetTime(DateTime.Parse(movingTime));
                             SetDistance(decimal.Parse(rideDistance));
@@ -2051,7 +2064,7 @@ namespace CyclingLogApplication
                             SetCustom1(custom1);
                             SetCustom2(custom2);
                             SetBike(bike);
-                            SetBikeIndex(bikeIndex);
+                            SetBikeIndex(bikeIndex+1);//+1 to account for '--Select Value--'
                             SetComments(comments);
                             SetWindChill(windChill);
 
