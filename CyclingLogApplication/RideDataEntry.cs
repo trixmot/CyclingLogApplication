@@ -1501,7 +1501,7 @@ namespace CyclingLogApplication
             tbCustom1.Text = "";
             tbCustom2.Text = "";
             tbMaxCadence.Text = "";
-            tbRideEntryWindChill.Text = "0";
+            tbRideEntryWindChill.Text = "";
         }
 
         private void ClearDataEntryFields_click(object sender, EventArgs e)

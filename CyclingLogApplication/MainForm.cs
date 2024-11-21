@@ -313,7 +313,7 @@ namespace CyclingLogApplication
                 SetLogNameIDDictionary(logYearList);
                 ChartForm chartForm = new ChartForm();
 
-                cbLogYearConfig.Items.Add("--Select Value--");
+                cbLogYearConfig.Items.Add("--Add New Log--");
 
                 RideDataEntry rideDataEntryForm = new RideDataEntry();
 
@@ -5579,7 +5579,7 @@ namespace CyclingLogApplication
                         double avgPaceWeekly = GetAveragePaceWeekly(logYearIndex, weekNumber, tbDistanceWeek0);
                         dataGridViewWeekly.Rows.Add(weekNumber, double.Parse(tbDistanceWeek0), double.Parse(tbNumRidesWeek0), avgMilesPerRide, longestRideWeekly, totalElevGainWeekly, hightestElevWeekly, totalMovingTimeWeekly, avgSpeedWeekly, avgPaceWeekly);
                         dataGridViewWeekly.Rows[weekNumber - 1].HeaderCell.Value = GetDateFromWeekNumber(logYear, weekNumber).ToString("MM/dd/yyyy");
-                        dataGridViewWeekly.Rows[weekNumber - 1].Height = 34;
+                        dataGridViewWeekly.Rows[weekNumber - 1].Height = 35;
                     }                  
                 }
 
