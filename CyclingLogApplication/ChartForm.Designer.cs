@@ -328,9 +328,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(57, 88);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(50, 13);
+            this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Log Year";
+            this.label4.Text = "Log Title";
             // 
             // label3
             // 

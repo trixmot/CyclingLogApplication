@@ -42,26 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CyclingLogApplication.exe" size="407552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CyclingLogApplication.exe" size="457728">
       <assemblyIdentity name="CyclingLogApplication" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>9Sby0QF2SOdpGfF4qJ8+OMdaOgJcaRx42t58QkjiTkc=</dsig:DigestValue>
-      </hash>
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DGV Printer.dll" size="53760">
-      <assemblyIdentity name="DGV Printer" version="4.4.0.0" language="neutral" processorArchitecture="msil" />
-      <hash>
-        <dsig:Transforms>
-          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-        </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>lAySeHemdWnl43zGUzKLBpQ2EvHLpCQA60eF3I54JOo=</dsig:DigestValue>
+        <dsig:DigestValue>KwerqL8Cf1KldvdEaLFnIBptHmQdWtIeFygj+FIZpyE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -89,7 +77,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>8WugGbAYhPy2aNrv/uw/wYZ38rlRYq/dxgPf4VupR9E=</dsig:DigestValue>
+      <dsig:DigestValue>C09sPQp2fd9WkZF4tY6agfR4PG0LYRuI5P9UUGiPLGA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="CyclingLogDatabase_log.ldf" size="851968" writeableType="applicationData">
@@ -98,7 +86,16 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>gIRo/KnjcND/CAbGobaJvaU3n8JFFFmN+1sxSKHAKXc=</dsig:DigestValue>
+      <dsig:DigestValue>TX13iriAEqlpae5ABz1PNpEjD2KG9MwIHCkIs0hoN7g=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="license.txt" size="1080">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>D0QvtQPmxF9bdbx0nAoQnK7+QXnDkPXV3tAoG/WoSKc=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

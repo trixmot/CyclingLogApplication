@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using System.IO;
 using System.Diagnostics;
+using DGVPrinterHelper;
 
 
 //[module:CLSCompliant(true)]

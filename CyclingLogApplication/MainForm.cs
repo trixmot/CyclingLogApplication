@@ -8144,5 +8144,15 @@ namespace CyclingLogApplication
 
             MessageBox.Show("Color reset to default is complete.");
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (cbLogYearWeekly.SelectedIndex == 0)
+            {
+                return;
+            }
+
+            RefreshWeekly();
+        }
     }
 }

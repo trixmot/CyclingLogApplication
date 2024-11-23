@@ -105,10 +105,10 @@
             this.cbRideTypeDataEntry = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBoxCloneEntry = new System.Windows.Forms.CheckBox();
             this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
-            this.checkBoxCloneEntry = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBoxRetrieveDate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -161,7 +161,7 @@
             this.groupBox1.Controls.Add(this.cbLogYearDataEntry);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.dtpRideDate);
-            this.groupBox1.Location = new System.Drawing.Point(18, 12);
+            this.groupBox1.Location = new System.Drawing.Point(19, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(534, 165);
             this.groupBox1.TabIndex = 0;
@@ -179,7 +179,7 @@
             // 
             // btRideDisplayUpdate
             // 
-            this.btRideDisplayUpdate.Location = new System.Drawing.Point(410, 71);
+            this.btRideDisplayUpdate.Location = new System.Drawing.Point(395, 71);
             this.btRideDisplayUpdate.Name = "btRideDisplayUpdate";
             this.btRideDisplayUpdate.Size = new System.Drawing.Size(85, 34);
             this.btRideDisplayUpdate.TabIndex = 9;
@@ -379,7 +379,7 @@
             this.groupBox2.Controls.Add(this.max_heart_rate);
             this.groupBox2.Controls.Add(this.avg_heart_rate);
             this.groupBox2.Controls.Add(this.avg_cadence);
-            this.groupBox2.Location = new System.Drawing.Point(18, 343);
+            this.groupBox2.Location = new System.Drawing.Point(19, 343);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(534, 310);
             this.groupBox2.TabIndex = 2;
@@ -838,11 +838,21 @@
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.cbBikeDataEntrySelection);
             this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Location = new System.Drawing.Point(20, 186);
+            this.groupBox3.Location = new System.Drawing.Point(21, 186);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(532, 147);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
+            // 
+            // checkBoxCloneEntry
+            // 
+            this.checkBoxCloneEntry.AutoSize = true;
+            this.checkBoxCloneEntry.Location = new System.Drawing.Point(45, 71);
+            this.checkBoxCloneEntry.Name = "checkBoxCloneEntry";
+            this.checkBoxCloneEntry.Size = new System.Drawing.Size(80, 17);
+            this.checkBoxCloneEntry.TabIndex = 50;
+            this.checkBoxCloneEntry.Text = "Clone Entry";
+            this.checkBoxCloneEntry.UseVisualStyleBackColor = true;
             // 
             // tableRideInformationBindingSource
             // 
@@ -857,16 +867,6 @@
             // table_Ride_InformationTableAdapter
             // 
             this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
-            // 
-            // checkBoxCloneEntry
-            // 
-            this.checkBoxCloneEntry.AutoSize = true;
-            this.checkBoxCloneEntry.Location = new System.Drawing.Point(45, 71);
-            this.checkBoxCloneEntry.Name = "checkBoxCloneEntry";
-            this.checkBoxCloneEntry.Size = new System.Drawing.Size(80, 17);
-            this.checkBoxCloneEntry.TabIndex = 50;
-            this.checkBoxCloneEntry.Text = "Clone Entry";
-            this.checkBoxCloneEntry.UseVisualStyleBackColor = true;
             // 
             // RideDataEntry
             // 

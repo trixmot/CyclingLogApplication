@@ -75,7 +75,6 @@ D:\workdir\github\cycling_log\CyclingLogApplication\bin\Release\CyclingLogApplic
 D:\workdir\github\cycling_log\CyclingLogApplication\bin\Release\CyclingLogApplication.application
 D:\workdir\github\cycling_log\CyclingLogApplication\bin\Release\CyclingLogApplication.exe
 D:\workdir\github\cycling_log\CyclingLogApplication\bin\Release\CyclingLogApplication.pdb
-D:\workdir\github\cycling_log\CyclingLogApplication\bin\Release\DGV Printer.dll
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\Cycling_Log.csproj.AssemblyReference.cache
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.ChartForm.resources
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.LegacyImport.resources
@@ -89,7 +88,6 @@ D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\Cycling_Log.cspr
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\Cycling_Log.csproj.CoreCompileInputs.cache
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.exe.manifest
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.application
-D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\Cycling_.74E77107.Up2Date
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.exe
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.pdb
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.Planner.resources

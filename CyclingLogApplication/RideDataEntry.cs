@@ -1068,7 +1068,15 @@ namespace CyclingLogApplication
                 }
 
                 objectValues.Add(windspeed);                                            //Wind:
-                float temp = float.Parse(tbRideEntryTemp.Text);
+                float temp;
+                if (tbRideEntryTemp.Text.Equals(""))
+                {
+                    temp = 0;
+                }
+                else
+                {
+                    temp = float.Parse(tbRideEntryTemp.Text);
+                }
                 objectValues.Add(Math.Round(temp, 1));                                  //Temp:
                 objectValues.Add(dtpRideDate.Value);                                    //Date:
 
