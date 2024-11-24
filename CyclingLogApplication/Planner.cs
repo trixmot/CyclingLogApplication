@@ -525,33 +525,68 @@ namespace CyclingLogApplication
             int day6 = 0;
             int day7 = 0;
 
-            if (firstDay.Equals("Sunday"))
+            string firstDayOfWeek = MainForm.GetFirstDayOfWeek();
+
+            if (firstDayOfWeek.Equals("Sunday"))
             {
-                day1 = 1;
-            }
-            else if (firstDay.Equals("Monday"))
+                if (firstDay.Equals("Sunday"))
+                {
+                    day1 = 1;
+                }
+                else if (firstDay.Equals("Monday"))
+                {
+                    day2 = 1;
+                }
+                else if (firstDay.Equals("Tuesday"))
+                {
+                    day3 = 1;
+                }
+                else if (firstDay.Equals("Wednesday"))
+                {
+                    day4 = 1;
+                }
+                else if (firstDay.Equals("Thursday"))
+                {
+                    day5 = 1;
+                }
+                else if (firstDay.Equals("Friday"))
+                {
+                    day6 = 1;
+                }
+                else if (firstDay.Equals("Saturday"))
+                {
+                    day7 = 1;
+                }
+            } else
             {
-                day2 = 1;
-            }
-            else if (firstDay.Equals("Tuesday"))
-            {
-                day3 = 1;
-            }
-            else if (firstDay.Equals("Wednesday"))
-            {
-                day4 = 1;
-            }
-            else if (firstDay.Equals("Thursday"))
-            {
-                day5 = 1;
-            }
-            else if (firstDay.Equals("Friday"))
-            {
-                day6 = 1;
-            }
-            else if (firstDay.Equals("Saturday"))
-            {
-                day7 = 1;
+                if (firstDay.Equals("Monday"))
+                {
+                    day1 = 1;
+                }
+                else if (firstDay.Equals("Tuesday"))
+                {
+                    day2 = 1;
+                }
+                else if (firstDay.Equals("Wednesday"))
+                {
+                    day3 = 1;
+                }
+                else if (firstDay.Equals("Thursday"))
+                {
+                    day4 = 1;
+                }
+                else if (firstDay.Equals("Friday"))
+                {
+                    day5 = 1;
+                }
+                else if (firstDay.Equals("Saturday"))
+                {
+                    day6 = 1;
+                }
+                else if (firstDay.Equals("Sunday"))
+                {
+                    day7 = 1;
+                }
             }
 
             string textValue = MainForm.GetTextCalendar();
@@ -571,14 +606,27 @@ namespace CyclingLogApplication
                 dataGridViewPlanner.Rows.Clear();
                 dataGridViewPlanner.ColumnCount = 7;
                 //dataGridViewPlanner.RowCount = 12;
-                dataGridViewPlanner.Name = "Calendar View";
-                dataGridViewPlanner.Columns[0].Name = "Sunday";
-                dataGridViewPlanner.Columns[1].Name = "Monday";
-                dataGridViewPlanner.Columns[2].Name = "Tuesday";
-                dataGridViewPlanner.Columns[3].Name = "Wednesday";
-                dataGridViewPlanner.Columns[4].Name = "Thursday";
-                dataGridViewPlanner.Columns[5].Name = "Friday";
-                dataGridViewPlanner.Columns[6].Name = "Saturday";
+                dataGridViewPlanner.Name = "Planner View";
+
+                if (firstDayOfWeek.Equals("Sunday"))
+                {
+                    dataGridViewPlanner.Columns[0].Name = "Sunday";
+                    dataGridViewPlanner.Columns[1].Name = "Monday";
+                    dataGridViewPlanner.Columns[2].Name = "Tuesday";
+                    dataGridViewPlanner.Columns[3].Name = "Wednesday";
+                    dataGridViewPlanner.Columns[4].Name = "Thursday";
+                    dataGridViewPlanner.Columns[5].Name = "Friday";
+                    dataGridViewPlanner.Columns[6].Name = "Saturday";
+                } else
+                {                   
+                    dataGridViewPlanner.Columns[0].Name = "Monday";
+                    dataGridViewPlanner.Columns[1].Name = "Tuesday";
+                    dataGridViewPlanner.Columns[2].Name = "Wednesday";
+                    dataGridViewPlanner.Columns[3].Name = "Thursday";
+                    dataGridViewPlanner.Columns[4].Name = "Friday";
+                    dataGridViewPlanner.Columns[5].Name = "Saturday";
+                    dataGridViewPlanner.Columns[6].Name = "Sunday";
+                }
 
                 dataGridViewPlanner.ColumnHeadersDefaultCellStyle.BackColor = Color.Silver;
                 dataGridViewPlanner.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
@@ -1250,14 +1298,6 @@ namespace CyclingLogApplication
                         if (futureDays)
                         {
                             miles2 = "";
-                        }
-                        else
-                        {
-                            miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2a, sqlCommand);
-                        }
-                        if (nextMonthIndex == 13)
-                        {
-                            //Just post a blank entry for the next year Jan days:
                             miles3 = "";
                             miles4 = "";
                             miles5 = "";
@@ -1266,17 +1306,30 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            DateTime dateTime2b = new DateTime(logYear, nextMonthIndex, 1);
-                            DateTime dateTime2c = new DateTime(logYear, nextMonthIndex, 2);
-                            DateTime dateTime2d = new DateTime(logYear, nextMonthIndex, 3);
-                            DateTime dateTime2e = new DateTime(logYear, nextMonthIndex, 4);
-                            DateTime dateTime2f = new DateTime(logYear, nextMonthIndex, 5);
-                            miles3 = MainForm.GetDataItemByDate(logIndex, dateTime2b, sqlCommand);
-                            miles4 = MainForm.GetDataItemByDate(logIndex, dateTime2c, sqlCommand);
-                            miles5 = MainForm.GetDataItemByDate(logIndex, dateTime2d, sqlCommand);
-                            miles6 = MainForm.GetDataItemByDate(logIndex, dateTime2e, sqlCommand);
-                            miles7 = MainForm.GetDataItemByDate(logIndex, dateTime2f, sqlCommand);
-                        }
+                            miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2a, sqlCommand);
+                            if (nextMonthIndex == 13)
+                            {
+                                //Just post a blank entry for the next year Jan days:
+                                miles3 = "";
+                                miles4 = "";
+                                miles5 = "";
+                                miles6 = "";
+                                miles7 = "";
+                            }
+                            else
+                            {
+                                DateTime dateTime2b = new DateTime(logYear, nextMonthIndex, 1);
+                                DateTime dateTime2c = new DateTime(logYear, nextMonthIndex, 2);
+                                DateTime dateTime2d = new DateTime(logYear, nextMonthIndex, 3);
+                                DateTime dateTime2e = new DateTime(logYear, nextMonthIndex, 4);
+                                DateTime dateTime2f = new DateTime(logYear, nextMonthIndex, 5);
+                                miles3 = MainForm.GetDataItemByDate(logIndex, dateTime2b, sqlCommand);
+                                miles4 = MainForm.GetDataItemByDate(logIndex, dateTime2c, sqlCommand);
+                                miles5 = MainForm.GetDataItemByDate(logIndex, dateTime2d, sqlCommand);
+                                miles6 = MainForm.GetDataItemByDate(logIndex, dateTime2e, sqlCommand);
+                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime2f, sqlCommand);
+                            }
+                        }                       
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -1351,14 +1404,6 @@ namespace CyclingLogApplication
                         if (futureDays)
                         {
                             miles3 = "";
-                        }
-                        else
-                        {
-                            miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3a, sqlCommand);
-                        }
-                        if (nextMonthIndex == 13)
-                        {
-                            //Just post a blank entry for the next year Jan days:
                             miles4 = "";
                             miles5 = "";
                             miles6 = "";
@@ -1366,15 +1411,27 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            DateTime dateTime3b = new DateTime(logYear, nextMonthIndex, 1);
-                            DateTime dateTime3c = new DateTime(logYear, nextMonthIndex, 2);
-                            DateTime dateTime3d = new DateTime(logYear, nextMonthIndex, 3);
-                            DateTime dateTime3e = new DateTime(logYear, nextMonthIndex, 4);
-                            miles4 = MainForm.GetDataItemByDate(logIndex, dateTime3b, sqlCommand);
-                            miles5 = MainForm.GetDataItemByDate(logIndex, dateTime3c, sqlCommand);
-                            miles6 = MainForm.GetDataItemByDate(logIndex, dateTime3d, sqlCommand);
-                            miles7 = MainForm.GetDataItemByDate(logIndex, dateTime3e, sqlCommand);
-                        }
+                            miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3a, sqlCommand);
+                            if (nextMonthIndex == 13)
+                            {
+                                //Just post a blank entry for the next year Jan days:
+                                miles4 = "";
+                                miles5 = "";
+                                miles6 = "";
+                                miles7 = "";
+                            }
+                            else
+                            {
+                                DateTime dateTime3b = new DateTime(logYear, nextMonthIndex, 1);
+                                DateTime dateTime3c = new DateTime(logYear, nextMonthIndex, 2);
+                                DateTime dateTime3d = new DateTime(logYear, nextMonthIndex, 3);
+                                DateTime dateTime3e = new DateTime(logYear, nextMonthIndex, 4);
+                                miles4 = MainForm.GetDataItemByDate(logIndex, dateTime3b, sqlCommand);
+                                miles5 = MainForm.GetDataItemByDate(logIndex, dateTime3c, sqlCommand);
+                                miles6 = MainForm.GetDataItemByDate(logIndex, dateTime3d, sqlCommand);
+                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime3e, sqlCommand);
+                            }
+                        }                     
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -1449,27 +1506,30 @@ namespace CyclingLogApplication
                         if (futureDays)
                         {
                             miles4 = "";
-                        }
-                        else
-                        {
-                            miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4a, sqlCommand);
-                        }
-                        if (nextMonthIndex == 13)
-                        {
-                            //Just post a blank entry for the next year Jan days:
                             miles5 = "";
                             miles6 = "";
                             miles7 = "";
                         }
                         else
                         {
-                            DateTime dateTime4b = new DateTime(logYear, nextMonthIndex, 1);
-                            DateTime dateTime4c = new DateTime(logYear, nextMonthIndex, 2);
-                            DateTime dateTime4d = new DateTime(logYear, nextMonthIndex, 3);
-                            miles5 = MainForm.GetDataItemByDate(logIndex, dateTime4b, sqlCommand);
-                            miles6 = MainForm.GetDataItemByDate(logIndex, dateTime4c, sqlCommand);
-                            miles7 = MainForm.GetDataItemByDate(logIndex, dateTime4d, sqlCommand);
-                        }
+                            miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4a, sqlCommand);
+                            if (nextMonthIndex == 13)
+                            {
+                                //Just post a blank entry for the next year Jan days:
+                                miles5 = "";
+                                miles6 = "";
+                                miles7 = "";
+                            }
+                            else
+                            {
+                                DateTime dateTime4b = new DateTime(logYear, nextMonthIndex, 1);
+                                DateTime dateTime4c = new DateTime(logYear, nextMonthIndex, 2);
+                                DateTime dateTime4d = new DateTime(logYear, nextMonthIndex, 3);
+                                miles5 = MainForm.GetDataItemByDate(logIndex, dateTime4b, sqlCommand);
+                                miles6 = MainForm.GetDataItemByDate(logIndex, dateTime4c, sqlCommand);
+                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime4d, sqlCommand);
+                            }
+                        }                     
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -1544,24 +1604,26 @@ namespace CyclingLogApplication
                         if (futureDays)
                         {
                             miles5 = "";
-                        }
-                        else
-                        {
-                            miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5a, sqlCommand);
-                        }
-                        if (nextMonthIndex == 13)
-                        {
-                            //Just post a blank entry for the next year Jan days:
                             miles6 = "";
                             miles7 = "";
                         }
                         else
                         {
-                            DateTime dateTime5b = new DateTime(logYear, nextMonthIndex, 1);
-                            DateTime dateTime5c = new DateTime(logYear, nextMonthIndex, 2);
-                            miles6 = MainForm.GetDataItemByDate(logIndex, dateTime5b, sqlCommand);
-                            miles7 = MainForm.GetDataItemByDate(logIndex, dateTime5c, sqlCommand);
-                        }
+                            miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5a, sqlCommand);
+                            if (nextMonthIndex == 13)
+                            {
+                                //Just post a blank entry for the next year Jan days:
+                                miles6 = "";
+                                miles7 = "";
+                            }
+                            else
+                            {
+                                DateTime dateTime5b = new DateTime(logYear, nextMonthIndex, 1);
+                                DateTime dateTime5c = new DateTime(logYear, nextMonthIndex, 2);
+                                miles6 = MainForm.GetDataItemByDate(logIndex, dateTime5b, sqlCommand);
+                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime5c, sqlCommand);
+                            }
+                        }                      
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -1636,21 +1698,22 @@ namespace CyclingLogApplication
                         if (futureDays)
                         {
                             miles6 = "";
-                        }
-                        else
-                        {
-                            miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6a, sqlCommand);
-                        }
-                        if (nextMonthIndex == 13)
-                        {
-                            //Just post a blank entry for the next year Jan days:
                             miles7 = "";
                         }
                         else
                         {
-                            DateTime dateTime6b = new DateTime(logYear, nextMonthIndex, 1);
-                            miles7 = MainForm.GetDataItemByDate(logIndex, dateTime6b, sqlCommand);
-                        }
+                            miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6a, sqlCommand);
+                            if (nextMonthIndex == 13)
+                            {
+                                //Just post a blank entry for the next year Jan days:
+                                miles7 = "";
+                            }
+                            else
+                            {
+                                DateTime dateTime6b = new DateTime(logYear, nextMonthIndex, 1);
+                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime6b, sqlCommand);
+                            }
+                        }                        
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -1935,7 +1998,7 @@ namespace CyclingLogApplication
                 //Highlight the current day if on the curernt month and year:
                 if (currentYearMonth)
                 {
-                    dataGridViewPlanner.CurrentCell = dataGridViewPlanner.Rows[rowNumber].Cells[cellNumber];
+                    dataGridViewPlanner.CurrentCell = dataGridViewPlanner.Rows[rowNumber-2].Cells[cellNumber];
                 }
 
                 //First Week of the month:
@@ -1946,15 +2009,18 @@ namespace CyclingLogApplication
                 else if (day2 == 1)
                 {
                     dataGridViewPlanner.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[0].Style.BackColor = Color.LightGray;
 
                 }
                 else if (day3 == 1)
                 {
                     dataGridViewPlanner.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[0].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[1].Style.BackColor = Color.LightGray;
 
                 }
                 else if (day4 == 1)
@@ -1962,9 +2028,12 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[0].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[1].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[2].Style.BackColor = Color.LightGray;
 
                 }
                 else if (day5 == 1)
@@ -1973,10 +2042,14 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[0].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[1].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[2].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[3].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[3].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[3].Style.BackColor = Color.LightGray;
 
                 }
                 else if (day6 == 1)
@@ -1986,11 +2059,16 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[4].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[0].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[1].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[2].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[3].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[4].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[3].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[4].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[3].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[4].Style.BackColor = Color.LightGray;
                 }
                 else if (day7 == 1)
                 {
@@ -2000,12 +2078,18 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[4].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[5].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[0].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[1].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[2].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[3].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[4].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[3].Cells[5].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[3].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[4].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[1].Cells[5].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[3].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[4].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[2].Cells[5].Style.BackColor = Color.LightGray;
                 }
 
                 //dataGridViewPlanner.Columns[0].DefaultCellStyle.BackColor = Color.Khaki;
