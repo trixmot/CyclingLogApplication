@@ -251,11 +251,18 @@ namespace CyclingLogApplication
                 dataType = "longest";
             }
             //Miles:
-            else
+            else if (cbTypeChartData.SelectedIndex == 2)
             {
                 chartDataColumn = "RideDistance";
                 lbYAxis.Text = "Miles";
                 dataType = "miles";
+            } 
+            //Longest Ascent:
+            else
+            {
+                chartDataColumn = "TotalAscent";
+                lbYAxis.Text = "Feet";
+                dataType = "totalascent";
             }
 
             SqlCommand cmd = null;
@@ -398,7 +405,7 @@ namespace CyclingLogApplication
                                     chart1.Series["Series1"].Points.AddXY(date, avg_value.ToString());
                                 }
                             }
-                            else if (dataType.Equals("longest"))
+                            else if (dataType.Equals("longest") || dataType.Equals("totalascent"))
                             {
                                 if (weeklyMax != 0)
                                 {
@@ -457,7 +464,7 @@ namespace CyclingLogApplication
                                     chart1.Series["Series1"].IsValueShownAsLabel = true;
                                 }
                             }
-                            else if (dataType.Equals("longest"))
+                            else if (dataType.Equals("longest") || dataType.Equals("totalascent"))
                             {
                                 if (monthlyMax != 0)
                                 {
@@ -499,6 +506,7 @@ namespace CyclingLogApplication
                     chart1.ChartAreas[0].AxisX.Interval = 1;
                 }
 
+                // Daily not required:
                 //Weekly:
                 if (recordFound && cbTypeTime.SelectedIndex == 2)
                 {
@@ -512,7 +520,7 @@ namespace CyclingLogApplication
                             chart1.Series["Series1"].IsValueShownAsLabel = true;
                         }
                     }
-                    else if (dataType.Equals("longest"))
+                    else if (dataType.Equals("longest") || dataType.Equals("totalascent"))
                     {
                         if (weeklyMax != 0)
                         {
@@ -543,7 +551,7 @@ namespace CyclingLogApplication
                             chart1.Series["Series1"].IsValueShownAsLabel = true;
                         }
                     }
-                    else if (dataType.Equals("longest"))
+                    else if (dataType.Equals("longest") || dataType.Equals("totalascent"))
                     {
                         if (monthlyMax != 0)
                         {
@@ -840,7 +848,7 @@ namespace CyclingLogApplication
         {
             labelChartError.Hide();
 
-            if (cbTypeChartData.SelectedIndex == 2)
+            if (cbTypeChartData.SelectedIndex == 2 || cbTypeChartData.SelectedIndex == 4)
             {
                 checkBoxRouteOption.Checked = false;
                 checkBoxRouteOption.Enabled = false;

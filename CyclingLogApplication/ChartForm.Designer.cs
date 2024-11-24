@@ -210,7 +210,8 @@
             "--Select Value--",
             "Average Speed",
             "Longest",
-            "Miles"});
+            "Miles",
+            "Highest Ascent"});
             this.cbTypeChartData.Location = new System.Drawing.Point(60, 200);
             this.cbTypeChartData.Name = "cbTypeChartData";
             this.cbTypeChartData.Size = new System.Drawing.Size(146, 21);

@@ -370,7 +370,6 @@
             this.btPlanner.TabIndex = 83;
             this.btPlanner.Text = "Planner";
             this.btPlanner.UseVisualStyleBackColor = true;
-            this.btPlanner.Visible = false;
             this.btPlanner.Click += new System.EventHandler(this.btPlanner_Click);
             // 
             // groupBox19
@@ -1329,16 +1328,16 @@
             this.groupBox12.Controls.Add(this.label5);
             this.groupBox12.Controls.Add(this.label27);
             this.groupBox12.Controls.Add(this.tbConfigMilesNotInLog);
-            this.groupBox12.Location = new System.Drawing.Point(544, 68);
+            this.groupBox12.Location = new System.Drawing.Point(526, 68);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(254, 364);
+            this.groupBox12.Size = new System.Drawing.Size(296, 364);
             this.groupBox12.TabIndex = 71;
             this.groupBox12.TabStop = false;
             // 
             // label68
             // 
             this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(34, 114);
+            this.label68.Location = new System.Drawing.Point(46, 114);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(29, 13);
             this.label68.TabIndex = 29;
@@ -1347,7 +1346,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(40, 95);
+            this.label26.Location = new System.Drawing.Point(52, 95);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(23, 13);
             this.label26.TabIndex = 28;
@@ -1355,7 +1354,7 @@
             // 
             // tbBikeOldName
             // 
-            this.tbBikeOldName.Location = new System.Drawing.Point(69, 88);
+            this.tbBikeOldName.Location = new System.Drawing.Point(81, 88);
             this.tbBikeOldName.Name = "tbBikeOldName";
             this.tbBikeOldName.ReadOnly = true;
             this.tbBikeOldName.Size = new System.Drawing.Size(141, 20);
@@ -1363,7 +1362,7 @@
             // 
             // btBikeClear
             // 
-            this.btBikeClear.Location = new System.Drawing.Point(94, 281);
+            this.btBikeClear.Location = new System.Drawing.Point(106, 281);
             this.btBikeClear.Name = "btBikeClear";
             this.btBikeClear.Size = new System.Drawing.Size(75, 23);
             this.btBikeClear.TabIndex = 26;
@@ -1374,7 +1373,7 @@
             // label67
             // 
             this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(43, 181);
+            this.label67.Location = new System.Drawing.Point(55, 181);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(52, 13);
             this.label67.TabIndex = 25;
@@ -1382,7 +1381,7 @@
             // 
             // tbBikeLogMiles
             // 
-            this.tbBikeLogMiles.Location = new System.Drawing.Point(101, 178);
+            this.tbBikeLogMiles.Location = new System.Drawing.Point(113, 178);
             this.tbBikeLogMiles.Name = "tbBikeLogMiles";
             this.tbBikeLogMiles.ReadOnly = true;
             this.tbBikeLogMiles.Size = new System.Drawing.Size(81, 20);
@@ -1392,7 +1391,7 @@
             // label66
             // 
             this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(37, 210);
+            this.label66.Location = new System.Drawing.Point(49, 210);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(58, 13);
             this.label66.TabIndex = 23;
@@ -1400,7 +1399,7 @@
             // 
             // tbBikeTotalMiles
             // 
-            this.tbBikeTotalMiles.Location = new System.Drawing.Point(101, 207);
+            this.tbBikeTotalMiles.Location = new System.Drawing.Point(113, 207);
             this.tbBikeTotalMiles.Name = "tbBikeTotalMiles";
             this.tbBikeTotalMiles.ReadOnly = true;
             this.tbBikeTotalMiles.Size = new System.Drawing.Size(81, 20);
@@ -1410,7 +1409,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(90, 20);
+            this.label28.Location = new System.Drawing.Point(95, 22);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(101, 13);
             this.label28.TabIndex = 21;
@@ -1418,7 +1417,7 @@
             // 
             // btAddBikeConfig
             // 
-            this.btAddBikeConfig.Location = new System.Drawing.Point(94, 253);
+            this.btAddBikeConfig.Location = new System.Drawing.Point(106, 253);
             this.btAddBikeConfig.Name = "btAddBikeConfig";
             this.btAddBikeConfig.Size = new System.Drawing.Size(75, 23);
             this.btAddBikeConfig.TabIndex = 12;
@@ -1428,7 +1427,7 @@
             // 
             // tbBikeAllMilesTotal
             // 
-            this.tbBikeAllMilesTotal.Location = new System.Drawing.Point(101, 36);
+            this.tbBikeAllMilesTotal.Location = new System.Drawing.Point(106, 38);
             this.tbBikeAllMilesTotal.Name = "tbBikeAllMilesTotal";
             this.tbBikeAllMilesTotal.ReadOnly = true;
             this.tbBikeAllMilesTotal.Size = new System.Drawing.Size(80, 20);
@@ -1438,7 +1437,7 @@
             // 
             // btRemoveBikeConfig
             // 
-            this.btRemoveBikeConfig.Location = new System.Drawing.Point(94, 310);
+            this.btRemoveBikeConfig.Location = new System.Drawing.Point(106, 310);
             this.btRemoveBikeConfig.Name = "btRemoveBikeConfig";
             this.btRemoveBikeConfig.Size = new System.Drawing.Size(75, 23);
             this.btRemoveBikeConfig.TabIndex = 13;
@@ -1448,7 +1447,7 @@
             // 
             // tbBikeConfig
             // 
-            this.tbBikeConfig.Location = new System.Drawing.Point(69, 111);
+            this.tbBikeConfig.Location = new System.Drawing.Point(81, 111);
             this.tbBikeConfig.Name = "tbBikeConfig";
             this.tbBikeConfig.Size = new System.Drawing.Size(141, 20);
             this.tbBikeConfig.TabIndex = 11;
@@ -1456,7 +1455,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(85, 72);
+            this.label5.Location = new System.Drawing.Point(110, 72);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 16;
@@ -1465,7 +1464,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(19, 155);
+            this.label27.Location = new System.Drawing.Point(31, 155);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(77, 13);
             this.label27.TabIndex = 21;
@@ -1473,7 +1472,7 @@
             // 
             // tbConfigMilesNotInLog
             // 
-            this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(101, 152);
+            this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(113, 152);
             this.tbConfigMilesNotInLog.Name = "tbConfigMilesNotInLog";
             this.tbConfigMilesNotInLog.Size = new System.Drawing.Size(81, 20);
             this.tbConfigMilesNotInLog.TabIndex = 17;
@@ -1482,7 +1481,7 @@
             // dataGridViewBikes
             // 
             this.dataGridViewBikes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewBikes.Location = new System.Drawing.Point(57, 77);
+            this.dataGridViewBikes.Location = new System.Drawing.Point(37, 77);
             this.dataGridViewBikes.Name = "dataGridViewBikes";
             this.dataGridViewBikes.Size = new System.Drawing.Size(467, 355);
             this.dataGridViewBikes.TabIndex = 33;
@@ -1504,9 +1503,9 @@
             this.groupBox20.Controls.Add(this.label86);
             this.groupBox20.Controls.Add(this.groupBox11);
             this.groupBox20.Controls.Add(this.dataGridViewRoutes);
-            this.groupBox20.Location = new System.Drawing.Point(53, 36);
+            this.groupBox20.Location = new System.Drawing.Point(50, 36);
             this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(861, 492);
+            this.groupBox20.Size = new System.Drawing.Size(864, 486);
             this.groupBox20.TabIndex = 74;
             this.groupBox20.TabStop = false;
             // 
@@ -1531,9 +1530,9 @@
             this.groupBox11.Controls.Add(this.btRemoveRoute);
             this.groupBox11.Controls.Add(this.tbRouteConfig);
             this.groupBox11.Controls.Add(this.label4);
-            this.groupBox11.Location = new System.Drawing.Point(516, 68);
+            this.groupBox11.Location = new System.Drawing.Point(526, 68);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(305, 393);
+            this.groupBox11.Size = new System.Drawing.Size(296, 393);
             this.groupBox11.TabIndex = 70;
             this.groupBox11.TabStop = false;
             // 
@@ -1623,7 +1622,7 @@
             this.dataGridViewRoutes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRoutes.Location = new System.Drawing.Point(37, 77);
             this.dataGridViewRoutes.Name = "dataGridViewRoutes";
-            this.dataGridViewRoutes.Size = new System.Drawing.Size(449, 384);
+            this.dataGridViewRoutes.Size = new System.Drawing.Size(467, 384);
             this.dataGridViewRoutes.TabIndex = 71;
             this.dataGridViewRoutes.Click += new System.EventHandler(this.dataGridViewRoutes_Click);
             // 

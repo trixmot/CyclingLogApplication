@@ -4304,7 +4304,7 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        private static string GetDataItemByDate(int logIndex, DateTime rideDate, string procedureName)
+        public static string GetDataItemByDate(int logIndex, DateTime rideDate, string procedureName)
         {
             List<object> objectValues = new List<object>
             {
