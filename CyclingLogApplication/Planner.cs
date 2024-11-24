@@ -643,6 +643,14 @@ namespace CyclingLogApplication
                 string temp6 = "";
                 string temp7 = "";
 
+                string pMiles1 = "";
+                string pMiles2 = "";
+                string pMiles3 = "";
+                string pMiles4 = "";
+                string pMiles5 = "";
+                string pMiles6 = "";
+                string pMiles7 = "";
+
                 //First Week of the month:
                 if (day1 == 1)
                 {
@@ -1039,70 +1047,74 @@ namespace CyclingLogApplication
                         miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);
                     }
                 }
-
+                //Date:
                 dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7);
-                dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                 dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
+                //Planned:
+                dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                rowCount++;
+                //Actuals
+                dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                rowCount++;
                 dayCount = int.Parse(temp7);
 
                 if (miles1.Equals(""))
                 {
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
+                    dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
                 }
                 else
                 {
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                    dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                 }
                 if (miles2.Equals(""))
                 {
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
+                    dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
                 }
                 else
                 {
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                    dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                 }
                 if (miles3.Equals(""))
                 {
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
+                    dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
                 }
                 else
                 {
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                    dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                 }
                 if (miles4.Equals(""))
                 {
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.White;
+                    dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
                 }
                 else
                 {
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                    dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                 }
                 if (miles5.Equals(""))
                 {
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.White;
+                    dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.White;
                 }
                 else
                 {
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                    dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                 }
                 if (miles6.Equals(""))
                 {
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.White;
+                    dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.White;
                 }
                 else
                 {
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                    dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                 }
                 if (miles7.Equals(""))
                 {
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.White;
+                    dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.White;
                 }
                 else
                 {
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                    dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                 }
 
-                rowCount++;
                 dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.ForeColor = textColor;
                 rowCount++;
                 Boolean sixRow = false;
@@ -1162,8 +1174,8 @@ namespace CyclingLogApplication
                             miles7 = MainForm.GetDataItemByDate(logIndex, dateTime1g, sqlCommand);
                         }
 
+                        //Dates
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
-                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                         dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.LightGray;
@@ -1171,21 +1183,27 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.ForeColor = textColor;
+                        //PLanned
+                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                        rowCount++;
+                        //Actuals
+                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);              
+                        rowCount++;
+                        dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         }
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
 
                         if (currentYearMonth)
                         {
@@ -1261,30 +1279,33 @@ namespace CyclingLogApplication
                         }
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
-                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                         dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                        rowCount++;
+                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        rowCount++;
+                        dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         }
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
 
                         if (currentYearMonth)
                         {
@@ -1356,31 +1377,34 @@ namespace CyclingLogApplication
                         }
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
-                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                         dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                        rowCount++;
+                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        rowCount++;
+                        dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[2].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         }
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
 
                         if (currentYearMonth)
                         {
@@ -1448,32 +1472,35 @@ namespace CyclingLogApplication
                         }
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
-                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                         dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                        rowCount++;
+                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        rowCount++;
+                        dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[2].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[3].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         }
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
 
                         if (currentYearMonth)
                         {
@@ -1537,33 +1564,36 @@ namespace CyclingLogApplication
                         }
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
-                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                        rowCount++;
+                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        rowCount++;
+                        dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[2].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[3].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[4].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.White;
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         }
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
 
                         if (currentYearMonth)
                         {
@@ -1623,34 +1653,37 @@ namespace CyclingLogApplication
                         }
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
-                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                        rowCount++;
+                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        rowCount++;
+                        dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[2].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[3].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[4].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[5].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.White;
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         }
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.LightGray;
+                        dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
 
                         if (currentYearMonth)
                         {
@@ -1700,77 +1733,80 @@ namespace CyclingLogApplication
                         }
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
-                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.ForeColor = textColor;
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[6].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                        rowCount++;
+                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        rowCount++;
+                        dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[2].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[3].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[4].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[5].Style.ForeColor = textColor;
+                        dataGridViewPlanner.Rows[rowCount].Cells[6].Style.ForeColor = textColor;
 
                         if (miles1.Equals(""))
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         }
 
                         if (miles2.Equals(""))
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         }
 
                         if (miles3.Equals(""))
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         }
 
                         if (miles4.Equals(""))
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         }
 
                         if (miles5.Equals(""))
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.White;
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         }
 
                         if (miles6.Equals(""))
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.White;
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         }
 
                         if (miles7.Equals(""))
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.White;
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         }
 
                         if (currentYearMonth)
@@ -1798,86 +1834,87 @@ namespace CyclingLogApplication
                     }
 
                     dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
-                    dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
-
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.ForeColor = textColor;
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.ForeColor = textColor;
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.ForeColor = textColor;
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.ForeColor = textColor;
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.ForeColor = textColor;
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.ForeColor = textColor;
-                    dataGridViewPlanner.Rows[rowCount + 1].Cells[6].Style.ForeColor = textColor;
-
                     dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
+                    dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                    rowCount++;
+                    dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                    rowCount++;
+                    dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
+                    dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
+                    dataGridViewPlanner.Rows[rowCount].Cells[2].Style.ForeColor = textColor;
+                    dataGridViewPlanner.Rows[rowCount].Cells[3].Style.ForeColor = textColor;
+                    dataGridViewPlanner.Rows[rowCount].Cells[4].Style.ForeColor = textColor;
+                    dataGridViewPlanner.Rows[rowCount].Cells[5].Style.ForeColor = textColor;
+                    dataGridViewPlanner.Rows[rowCount].Cells[6].Style.ForeColor = textColor;                    
 
                     if (miles1.Equals(""))
                     {
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
+                        dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
                         //dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
                     }
                     else
                     {
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                        dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         //dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.Gray;
                     }
                     if (miles2.Equals(""))
                     {
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
+                        dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
                         //dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
                     }
                     else
                     {
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                        dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         //dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.Gray;
                     }
                     if (miles3.Equals(""))
                     {
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
+                        dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
                         //dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
                     }
                     else
                     {
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                        dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         //dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.Gray;
                     }
                     if (miles4.Equals(""))
                     {
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.White;
+                        dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
                         //dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
                     }
                     else
                     {
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                        dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         //dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.Gray;
                     }
                     if (miles5.Equals(""))
                     {
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.White;
+                        dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.White;
                         //dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.White;
                     }
                     else
                     {
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                        dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         //dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.Gray;
                     }
                     if (miles6.Equals(""))
                     {
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.White;
+                        dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.White;
                         //dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.White;
                     }
                     else
                     {
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                        dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         //dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.Gray;
                     }
                     if (miles7.Equals(""))
                     {
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.White;
+                        dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.White;
                         //dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.White;
                     }
                     else
                     {
-                        dataGridViewPlanner.Rows[rowCount + 1].Cells[6].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                        dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
                         //dataGridViewCalendar.Rows[rowCount].Cells[6].Style.BackColor = Color.Gray;
                     }
 
@@ -1891,7 +1928,6 @@ namespace CyclingLogApplication
                         }
                     }
 
-                    rowCount++;
                     rowCount++;
                     weekNumber++;
                 }
@@ -1910,15 +1946,15 @@ namespace CyclingLogApplication
                 else if (day2 == 1)
                 {
                     dataGridViewPlanner.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[0].Style.BackColor = Color.LightGray;
 
                 }
                 else if (day3 == 1)
                 {
                     dataGridViewPlanner.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[1].Style.BackColor = Color.LightGray;
 
                 }
                 else if (day4 == 1)
@@ -1926,9 +1962,9 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[2].Style.BackColor = Color.LightGray;
 
                 }
                 else if (day5 == 1)
@@ -1937,10 +1973,10 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[3].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[3].Style.BackColor = Color.LightGray;
 
                 }
                 else if (day6 == 1)
@@ -1950,11 +1986,11 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[4].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[3].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[4].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[3].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[4].Style.BackColor = Color.LightGray;
                 }
                 else if (day7 == 1)
                 {
@@ -1964,12 +2000,12 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[4].Style.BackColor = Color.LightGray;
                     dataGridViewPlanner.Rows[0].Cells[5].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[3].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[4].Style.BackColor = Color.LightGray;
-                    dataGridViewPlanner.Rows[1].Cells[5].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[0].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[1].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[2].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[3].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[4].Style.BackColor = Color.LightGray;
+                    dataGridViewPlanner.Rows[3].Cells[5].Style.BackColor = Color.LightGray;
                 }
 
                 //dataGridViewPlanner.Columns[0].DefaultCellStyle.BackColor = Color.Khaki;
@@ -1981,38 +2017,44 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.DefaultCellStyle.Font.FontFamily, 23, FontStyle.Bold))
                 {
                     dataGridViewPlanner.Rows[0].DefaultCellStyle.Font = font;
-                    dataGridViewPlanner.Rows[2].DefaultCellStyle.Font = font;
-                    dataGridViewPlanner.Rows[4].DefaultCellStyle.Font = font;
+                    dataGridViewPlanner.Rows[3].DefaultCellStyle.Font = font;
                     dataGridViewPlanner.Rows[6].DefaultCellStyle.Font = font;
-                    dataGridViewPlanner.Rows[8].DefaultCellStyle.Font = font;
+                    dataGridViewPlanner.Rows[9].DefaultCellStyle.Font = font;
+                    dataGridViewPlanner.Rows[12].DefaultCellStyle.Font = font;
                     if (sixRow)
                     {
-                        dataGridViewPlanner.Rows[10].DefaultCellStyle.Font = font;
+                        dataGridViewPlanner.Rows[15].DefaultCellStyle.Font = font;
                     }
                 }
 
-                dataGridViewPlanner.Rows[0].Height = 35;
-                dataGridViewPlanner.Rows[1].Height = 35;
-                dataGridViewPlanner.Rows[2].Height = 35;
-                dataGridViewPlanner.Rows[3].Height = 35;
-                dataGridViewPlanner.Rows[4].Height = 35;
-                dataGridViewPlanner.Rows[5].Height = 35;
-                dataGridViewPlanner.Rows[6].Height = 35;
-                dataGridViewPlanner.Rows[7].Height = 35;
-                dataGridViewPlanner.Rows[8].Height = 35;
-                dataGridViewPlanner.Rows[9].Height = 35;
+                dataGridViewPlanner.Rows[0].Height = 33;
+                dataGridViewPlanner.Rows[1].Height = 28;
+                dataGridViewPlanner.Rows[2].Height = 28;
+                dataGridViewPlanner.Rows[3].Height = 33;
+                dataGridViewPlanner.Rows[4].Height = 28;
+                dataGridViewPlanner.Rows[5].Height = 28;
+                dataGridViewPlanner.Rows[6].Height = 33;
+                dataGridViewPlanner.Rows[7].Height = 28;
+                dataGridViewPlanner.Rows[8].Height = 28;
+                dataGridViewPlanner.Rows[9].Height = 33;
+                dataGridViewPlanner.Rows[10].Height = 28;
+                dataGridViewPlanner.Rows[11].Height = 28;
+                dataGridViewPlanner.Rows[12].Height = 33;
+                dataGridViewPlanner.Rows[13].Height = 28;
+                dataGridViewPlanner.Rows[14].Height = 28;
 
                 //Changes if a 6th week is needed:
                 if (sixRow)
                 {
-                    dataGridViewPlanner.Rows[10].Height = 35;
-                    dataGridViewPlanner.Rows[11].Height = 35;
-                    Size gridSize = new Size(830, 470);
+                    dataGridViewPlanner.Rows[15].Height = 33;
+                    dataGridViewPlanner.Rows[16].Height = 28;
+                    dataGridViewPlanner.Rows[17].Height = 28;
+                    Size gridSize = new Size(904, 580);
                     dataGridViewPlanner.Size = gridSize;
                 }
                 else
                 {
-                    Size gridSize = new Size(830, 400);
+                    Size gridSize = new Size(904, 493);
                     dataGridViewPlanner.Size = gridSize;
                 }
 

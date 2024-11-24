@@ -59,15 +59,15 @@
             // dataGridViewPlanner
             // 
             this.dataGridViewPlanner.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPlanner.Location = new System.Drawing.Point(48, 147);
+            this.dataGridViewPlanner.Location = new System.Drawing.Point(48, 124);
             this.dataGridViewPlanner.Name = "dataGridViewPlanner";
-            this.dataGridViewPlanner.Size = new System.Drawing.Size(904, 517);
+            this.dataGridViewPlanner.Size = new System.Drawing.Size(904, 587);
             this.dataGridViewPlanner.TabIndex = 0;
             this.dataGridViewPlanner.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPlanner_CellContentClick);
             // 
             // btClosePlanner
             // 
-            this.btClosePlanner.Location = new System.Drawing.Point(877, 693);
+            this.btClosePlanner.Location = new System.Drawing.Point(877, 85);
             this.btClosePlanner.Name = "btClosePlanner";
             this.btClosePlanner.Size = new System.Drawing.Size(75, 23);
             this.btClosePlanner.TabIndex = 16;
@@ -92,7 +92,7 @@
             "October",
             "November",
             "December"});
-            this.cbPlannerMonth.Location = new System.Drawing.Point(231, 111);
+            this.cbPlannerMonth.Location = new System.Drawing.Point(230, 87);
             this.cbPlannerMonth.Name = "cbPlannerMonth";
             this.cbPlannerMonth.Size = new System.Drawing.Size(121, 21);
             this.cbPlannerMonth.TabIndex = 18;
@@ -101,7 +101,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(228, 95);
+            this.label9.Location = new System.Drawing.Point(227, 71);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(37, 13);
             this.label9.TabIndex = 19;
@@ -110,7 +110,7 @@
             // cbPlannerLogs
             // 
             this.cbPlannerLogs.FormattingEnabled = true;
-            this.cbPlannerLogs.Location = new System.Drawing.Point(48, 111);
+            this.cbPlannerLogs.Location = new System.Drawing.Point(47, 87);
             this.cbPlannerLogs.Name = "cbPlannerLogs";
             this.cbPlannerLogs.Size = new System.Drawing.Size(161, 21);
             this.cbPlannerLogs.TabIndex = 20;
@@ -119,7 +119,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(45, 95);
+            this.label11.Location = new System.Drawing.Point(44, 71);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(25, 13);
             this.label11.TabIndex = 21;
@@ -127,7 +127,7 @@
             // 
             // brRefreshPlanner
             // 
-            this.brRefreshPlanner.Location = new System.Drawing.Point(412, 109);
+            this.brRefreshPlanner.Location = new System.Drawing.Point(411, 85);
             this.brRefreshPlanner.Name = "brRefreshPlanner";
             this.brRefreshPlanner.Size = new System.Drawing.Size(75, 23);
             this.brRefreshPlanner.TabIndex = 23;
@@ -137,49 +137,49 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(273, 36);
+            this.textBox1.Location = new System.Drawing.Point(271, 26);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(65, 20);
             this.textBox1.TabIndex = 24;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(344, 36);
+            this.textBox2.Location = new System.Drawing.Point(342, 26);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(65, 20);
             this.textBox2.TabIndex = 25;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(415, 36);
+            this.textBox3.Location = new System.Drawing.Point(413, 26);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(65, 20);
             this.textBox3.TabIndex = 26;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(486, 36);
+            this.textBox4.Location = new System.Drawing.Point(484, 26);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(65, 20);
             this.textBox4.TabIndex = 27;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(557, 36);
+            this.textBox5.Location = new System.Drawing.Point(555, 26);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(65, 20);
             this.textBox5.TabIndex = 28;
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(628, 36);
+            this.textBox6.Location = new System.Drawing.Point(626, 26);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(65, 20);
             this.textBox6.TabIndex = 29;
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(202, 36);
+            this.textBox7.Location = new System.Drawing.Point(200, 26);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(65, 20);
             this.textBox7.TabIndex = 30;
@@ -187,7 +187,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(223, 20);
+            this.label1.Location = new System.Drawing.Point(221, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 31;
@@ -196,7 +196,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(289, 20);
+            this.label2.Location = new System.Drawing.Point(287, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 32;
@@ -205,7 +205,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(365, 20);
+            this.label3.Location = new System.Drawing.Point(363, 10);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 13);
             this.label3.TabIndex = 33;
@@ -214,7 +214,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(434, 20);
+            this.label4.Location = new System.Drawing.Point(432, 10);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 34;
@@ -223,7 +223,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(501, 20);
+            this.label5.Location = new System.Drawing.Point(499, 10);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 13);
             this.label5.TabIndex = 35;
@@ -232,7 +232,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(574, 20);
+            this.label6.Location = new System.Drawing.Point(572, 10);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 13);
             this.label6.TabIndex = 36;
@@ -241,7 +241,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(646, 20);
+            this.label7.Location = new System.Drawing.Point(644, 10);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(32, 13);
             this.label7.TabIndex = 37;
@@ -249,7 +249,7 @@
             // 
             // btSavePlanner
             // 
-            this.btSavePlanner.Location = new System.Drawing.Point(739, 33);
+            this.btSavePlanner.Location = new System.Drawing.Point(737, 23);
             this.btSavePlanner.Name = "btSavePlanner";
             this.btSavePlanner.Size = new System.Drawing.Size(75, 23);
             this.btSavePlanner.TabIndex = 38;
@@ -276,14 +276,14 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(45, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(907, 65);
+            this.groupBox1.Size = new System.Drawing.Size(907, 56);
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(43, 33);
+            this.comboBox1.Location = new System.Drawing.Point(41, 23);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 39;
@@ -292,7 +292,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(988, 736);
+            this.ClientSize = new System.Drawing.Size(988, 747);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.brRefreshPlanner);
             this.Controls.Add(this.label11);
