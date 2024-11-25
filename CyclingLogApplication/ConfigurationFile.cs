@@ -69,6 +69,7 @@ namespace CyclingLogApplication
             //string verison = nodes.Item(0).SelectSingleNode("VERSION").InnerText;
             int logLevel = Convert.ToInt32(nodes.Item(0).SelectSingleNode("LOGLEVEL").InnerText);
             string firstDayOfWeek = nodes.Item(0).SelectSingleNode("FIRSTDAY").InnerText;
+            string firstDayOfWeekCalendar = nodes.Item(0).SelectSingleNode("FIRSTDAYCALENDAR").InnerText;
             string license = nodes.Item(0).SelectSingleNode("LICENSE").InnerText;
             string gridOrder = nodes.Item(0).SelectSingleNode("GRIDORDER").InnerText;
             string idColumnValue = nodes.Item(0).SelectSingleNode("IDCOLUMN").InnerText;
@@ -218,6 +219,7 @@ namespace CyclingLogApplication
             MainForm.SetLogLevel(logLevel);
             MainForm.SetGridOrder(gridOrder);
             MainForm.SetFirstDayOfWeek(firstDayOfWeek);
+            MainForm.SetFirstDayOfWeekCalendar(firstDayOfWeekCalendar);
             MainForm.SetCustomField1(customDataField1);
             MainForm.SetCustomField2(customDataField2);
             MainForm.SetMaintColor(colorMaint);
@@ -255,6 +257,8 @@ namespace CyclingLogApplication
             Logger.Log("Configuration Read: LOGLEVEL : " + logLevel, logLevel, 0);
             //Logger.Log("Configuration Read: VERSION : " + verison, logLevel, 0);
             Logger.Log("Configuration Read: GRIDORDER : " + gridOrder, logLevel, 0);
+            Logger.Log("Configuration Read: FIRSTDAY : " + firstDayOfWeek, logLevel, 0);
+            Logger.Log("Configuration Read: FIRSTDAYCALENDAR : " + firstDayOfWeekCalendar, logLevel, 0);
             Logger.Log("Configuration Read: IDCOLUMN : " + idColumnValue, logLevel, 0);
             Logger.Log("Configuration Read: custom1 : " + customDataField1, logLevel, 0);
             Logger.Log("Configuration Read: custom2 : " + customDataField2, logLevel, 0);
@@ -355,6 +359,10 @@ namespace CyclingLogApplication
                     XmlNode firstDayNode = xmlDoc.CreateElement("FIRSTDAY");
                     firstDayNode.InnerText = "Monday";
                     rootNode.AppendChild(firstDayNode);
+
+                    XmlNode firstDayNodeCalendar = xmlDoc.CreateElement("FIRSTDAYCALENDAR");
+                    firstDayNodeCalendar.InnerText = "Monday";
+                    rootNode.AppendChild(firstDayNodeCalendar);
 
                     XmlNode licesneNode = xmlDoc.CreateElement("LICENSE");
                     licesneNode.InnerText = "false";
@@ -702,6 +710,7 @@ namespace CyclingLogApplication
                     string version = MainForm.GetLogVersion();
                     string gridOrder = MainForm.GetGridOrder();
                     string firstDay = MainForm.GetFirstDayOfWeek();
+                    string firstDayCalendar = MainForm.GetFirstDayOfWeekCalendar();
                     string license = MainForm.GetLicenseAgreement();
                     string customField1 = MainForm.GetCustomField1();
                     string customField2 = MainForm.GetCustomField2();
@@ -740,6 +749,7 @@ namespace CyclingLogApplication
                     xmlDoc.SelectSingleNode("/Config/VERSION").InnerText = version;
                     xmlDoc.SelectSingleNode("/Config/IDCOLUMN").InnerText = idColumnValue;
                     xmlDoc.SelectSingleNode("/Config/FIRSTDAY").InnerText = firstDay;
+                    xmlDoc.SelectSingleNode("/Config/FIRSTDAYCALENDAR").InnerText = firstDayCalendar;
                     xmlDoc.SelectSingleNode("/Config/LICENSE").InnerText = license;
                     xmlDoc.SelectSingleNode("/Config/GRIDORDER").InnerText = gridOrder;
                     xmlDoc.SelectSingleNode("/Config/CUSTOMFIELD1").InnerText = customField1;
@@ -832,6 +842,7 @@ namespace CyclingLogApplication
                     Logger.Log("Write Config Values: GRIDORDER written:" + gridOrder, logSetting, 0);
                     Logger.Log("Write Config Values: IDCOLUMN written:" + idColumnValue, logSetting, 0);
                     Logger.Log("Write Config Values: FIRSTDAY written:" + firstDay, logSetting, 0);
+                    Logger.Log("Write Config Values: FIRSTDAYCALENDAR written:" + firstDayCalendar, logSetting, 0);
                     Logger.Log("Write Config Values: LICENSE written:" + license, logSetting, 0);
                     Logger.Log("Write Config Values: CUSTOMFIELD1 written:" + customField1, logSetting, 0);
                     Logger.Log("Write Config Values: CUSTOMFIELD2 written:" + customField2, logSetting, 0);
