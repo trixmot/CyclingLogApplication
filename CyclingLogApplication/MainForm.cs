@@ -7207,7 +7207,8 @@ namespace CyclingLogApplication
                    
                     dayCount++;
                     DateTime dateTime1a = new DateTime(logYear, monthIndex, dayCount);
-                    //check to see of over daysInMonth: 30
+
+                    //Checking for last day of the month to setup the last week of the month:
                     if (dayCount == daysInMonth)
                     {
                         temp1 = dayCount.ToString();

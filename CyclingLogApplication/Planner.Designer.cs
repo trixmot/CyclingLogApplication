@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Planner));
             this.dataGridViewPlanner = new System.Windows.Forms.DataGridView();
             this.btClosePlanner = new System.Windows.Forms.Button();
             this.cbPlannerMonth = new System.Windows.Forms.ComboBox();
@@ -35,23 +36,25 @@
             this.cbPlannerLogs = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.brRefreshPlanner = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.tbDayPlanner2 = new System.Windows.Forms.TextBox();
+            this.tbDayPlanner3 = new System.Windows.Forms.TextBox();
+            this.tbDayPlanner4 = new System.Windows.Forms.TextBox();
+            this.tbDayPlanner5 = new System.Windows.Forms.TextBox();
+            this.tbDayPlanner6 = new System.Windows.Forms.TextBox();
+            this.tbDayPlanner7 = new System.Windows.Forms.TextBox();
+            this.tbDayPlanner1 = new System.Windows.Forms.TextBox();
+            this.lbDay1 = new System.Windows.Forms.Label();
+            this.lbDay2 = new System.Windows.Forms.Label();
+            this.lbDay3 = new System.Windows.Forms.Label();
+            this.lbDay4 = new System.Windows.Forms.Label();
+            this.lbDay5 = new System.Windows.Forms.Label();
+            this.lbDay6 = new System.Windows.Forms.Label();
+            this.lbDay7 = new System.Windows.Forms.Label();
             this.btSavePlanner = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbPlannerDate = new System.Windows.Forms.ComboBox();
+            this.lbPlannerError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlanner)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -67,7 +70,7 @@
             // 
             // btClosePlanner
             // 
-            this.btClosePlanner.Location = new System.Drawing.Point(877, 85);
+            this.btClosePlanner.Location = new System.Drawing.Point(854, 85);
             this.btClosePlanner.Name = "btClosePlanner";
             this.btClosePlanner.Size = new System.Drawing.Size(75, 23);
             this.btClosePlanner.TabIndex = 16;
@@ -92,7 +95,7 @@
             "October",
             "November",
             "December"});
-            this.cbPlannerMonth.Location = new System.Drawing.Point(230, 87);
+            this.cbPlannerMonth.Location = new System.Drawing.Point(276, 87);
             this.cbPlannerMonth.Name = "cbPlannerMonth";
             this.cbPlannerMonth.Size = new System.Drawing.Size(121, 21);
             this.cbPlannerMonth.TabIndex = 18;
@@ -101,7 +104,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(227, 71);
+            this.label9.Location = new System.Drawing.Point(273, 71);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(37, 13);
             this.label9.TabIndex = 19;
@@ -110,16 +113,16 @@
             // cbPlannerLogs
             // 
             this.cbPlannerLogs.FormattingEnabled = true;
-            this.cbPlannerLogs.Location = new System.Drawing.Point(47, 87);
+            this.cbPlannerLogs.Location = new System.Drawing.Point(70, 87);
             this.cbPlannerLogs.Name = "cbPlannerLogs";
-            this.cbPlannerLogs.Size = new System.Drawing.Size(161, 21);
+            this.cbPlannerLogs.Size = new System.Drawing.Size(185, 21);
             this.cbPlannerLogs.TabIndex = 20;
             this.cbPlannerLogs.SelectedIndexChanged += new System.EventHandler(this.cbPlannerLogs_SelectedIndexChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(44, 71);
+            this.label11.Location = new System.Drawing.Point(67, 71);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(25, 13);
             this.label11.TabIndex = 21;
@@ -127,7 +130,7 @@
             // 
             // brRefreshPlanner
             // 
-            this.brRefreshPlanner.Location = new System.Drawing.Point(411, 85);
+            this.brRefreshPlanner.Location = new System.Drawing.Point(434, 85);
             this.brRefreshPlanner.Name = "brRefreshPlanner";
             this.brRefreshPlanner.Size = new System.Drawing.Size(75, 23);
             this.brRefreshPlanner.TabIndex = 23;
@@ -135,164 +138,193 @@
             this.brRefreshPlanner.UseVisualStyleBackColor = true;
             this.brRefreshPlanner.Click += new System.EventHandler(this.brRefreshPlanner_Click);
             // 
-            // textBox1
+            // tbDayPlanner2
             // 
-            this.textBox1.Location = new System.Drawing.Point(271, 26);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(65, 20);
-            this.textBox1.TabIndex = 24;
+            this.tbDayPlanner2.Location = new System.Drawing.Point(277, 27);
+            this.tbDayPlanner2.Name = "tbDayPlanner2";
+            this.tbDayPlanner2.Size = new System.Drawing.Size(65, 20);
+            this.tbDayPlanner2.TabIndex = 24;
+            this.tbDayPlanner2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox2
+            // tbDayPlanner3
             // 
-            this.textBox2.Location = new System.Drawing.Point(342, 26);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(65, 20);
-            this.textBox2.TabIndex = 25;
+            this.tbDayPlanner3.Location = new System.Drawing.Point(362, 27);
+            this.tbDayPlanner3.Name = "tbDayPlanner3";
+            this.tbDayPlanner3.Size = new System.Drawing.Size(65, 20);
+            this.tbDayPlanner3.TabIndex = 25;
+            this.tbDayPlanner3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox3
+            // tbDayPlanner4
             // 
-            this.textBox3.Location = new System.Drawing.Point(413, 26);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(65, 20);
-            this.textBox3.TabIndex = 26;
+            this.tbDayPlanner4.Location = new System.Drawing.Point(449, 27);
+            this.tbDayPlanner4.Name = "tbDayPlanner4";
+            this.tbDayPlanner4.Size = new System.Drawing.Size(65, 20);
+            this.tbDayPlanner4.TabIndex = 26;
+            this.tbDayPlanner4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox4
+            // tbDayPlanner5
             // 
-            this.textBox4.Location = new System.Drawing.Point(484, 26);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(65, 20);
-            this.textBox4.TabIndex = 27;
+            this.tbDayPlanner5.Location = new System.Drawing.Point(538, 27);
+            this.tbDayPlanner5.Name = "tbDayPlanner5";
+            this.tbDayPlanner5.Size = new System.Drawing.Size(65, 20);
+            this.tbDayPlanner5.TabIndex = 27;
+            this.tbDayPlanner5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox5
+            // tbDayPlanner6
             // 
-            this.textBox5.Location = new System.Drawing.Point(555, 26);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(65, 20);
-            this.textBox5.TabIndex = 28;
+            this.tbDayPlanner6.Location = new System.Drawing.Point(621, 27);
+            this.tbDayPlanner6.Name = "tbDayPlanner6";
+            this.tbDayPlanner6.Size = new System.Drawing.Size(65, 20);
+            this.tbDayPlanner6.TabIndex = 28;
+            this.tbDayPlanner6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox6
+            // tbDayPlanner7
             // 
-            this.textBox6.Location = new System.Drawing.Point(626, 26);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(65, 20);
-            this.textBox6.TabIndex = 29;
+            this.tbDayPlanner7.Location = new System.Drawing.Point(708, 27);
+            this.tbDayPlanner7.Name = "tbDayPlanner7";
+            this.tbDayPlanner7.Size = new System.Drawing.Size(65, 20);
+            this.tbDayPlanner7.TabIndex = 29;
+            this.tbDayPlanner7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox7
+            // tbDayPlanner1
             // 
-            this.textBox7.Location = new System.Drawing.Point(200, 26);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(65, 20);
-            this.textBox7.TabIndex = 30;
+            this.tbDayPlanner1.Location = new System.Drawing.Point(188, 27);
+            this.tbDayPlanner1.Name = "tbDayPlanner1";
+            this.tbDayPlanner1.Size = new System.Drawing.Size(65, 20);
+            this.tbDayPlanner1.TabIndex = 30;
+            this.tbDayPlanner1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label1
+            // lbDay1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(221, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 31;
-            this.label1.Text = "Day1";
+            this.lbDay1.AutoSize = true;
+            this.lbDay1.Location = new System.Drawing.Point(185, 10);
+            this.lbDay1.Name = "lbDay1";
+            this.lbDay1.Size = new System.Drawing.Size(32, 13);
+            this.lbDay1.TabIndex = 31;
+            this.lbDay1.Text = "Day1";
             // 
-            // label2
+            // lbDay2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(287, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 13);
-            this.label2.TabIndex = 32;
-            this.label2.Text = "Day2";
+            this.lbDay2.AutoSize = true;
+            this.lbDay2.Location = new System.Drawing.Point(274, 10);
+            this.lbDay2.Name = "lbDay2";
+            this.lbDay2.Size = new System.Drawing.Size(32, 13);
+            this.lbDay2.TabIndex = 32;
+            this.lbDay2.Text = "Day2";
             // 
-            // label3
+            // lbDay3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(363, 10);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 13);
-            this.label3.TabIndex = 33;
-            this.label3.Text = "Day3";
+            this.lbDay3.AutoSize = true;
+            this.lbDay3.Location = new System.Drawing.Point(359, 10);
+            this.lbDay3.Name = "lbDay3";
+            this.lbDay3.Size = new System.Drawing.Size(32, 13);
+            this.lbDay3.TabIndex = 33;
+            this.lbDay3.Text = "Day3";
             // 
-            // label4
+            // lbDay4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(432, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(32, 13);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "Day4";
+            this.lbDay4.AutoSize = true;
+            this.lbDay4.Location = new System.Drawing.Point(446, 10);
+            this.lbDay4.Name = "lbDay4";
+            this.lbDay4.Size = new System.Drawing.Size(32, 13);
+            this.lbDay4.TabIndex = 34;
+            this.lbDay4.Text = "Day4";
             // 
-            // label5
+            // lbDay5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(499, 10);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 13);
-            this.label5.TabIndex = 35;
-            this.label5.Text = "Day5";
+            this.lbDay5.AutoSize = true;
+            this.lbDay5.Location = new System.Drawing.Point(535, 10);
+            this.lbDay5.Name = "lbDay5";
+            this.lbDay5.Size = new System.Drawing.Size(32, 13);
+            this.lbDay5.TabIndex = 35;
+            this.lbDay5.Text = "Day5";
             // 
-            // label6
+            // lbDay6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(572, 10);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(32, 13);
-            this.label6.TabIndex = 36;
-            this.label6.Text = "Day6";
+            this.lbDay6.AutoSize = true;
+            this.lbDay6.Location = new System.Drawing.Point(618, 10);
+            this.lbDay6.Name = "lbDay6";
+            this.lbDay6.Size = new System.Drawing.Size(32, 13);
+            this.lbDay6.TabIndex = 36;
+            this.lbDay6.Text = "Day6";
             // 
-            // label7
+            // lbDay7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(644, 10);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 13);
-            this.label7.TabIndex = 37;
-            this.label7.Text = "Day7";
+            this.lbDay7.AutoSize = true;
+            this.lbDay7.Location = new System.Drawing.Point(705, 10);
+            this.lbDay7.Name = "lbDay7";
+            this.lbDay7.Size = new System.Drawing.Size(32, 13);
+            this.lbDay7.TabIndex = 37;
+            this.lbDay7.Text = "Day7";
             // 
             // btSavePlanner
             // 
-            this.btSavePlanner.Location = new System.Drawing.Point(737, 23);
+            this.btSavePlanner.Location = new System.Drawing.Point(809, 23);
             this.btSavePlanner.Name = "btSavePlanner";
             this.btSavePlanner.Size = new System.Drawing.Size(75, 23);
             this.btSavePlanner.TabIndex = 38;
             this.btSavePlanner.Text = "Save";
             this.btSavePlanner.UseVisualStyleBackColor = true;
+            this.btSavePlanner.Click += new System.EventHandler(this.btSavePlanner_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.textBox6);
-            this.groupBox1.Controls.Add(this.btSavePlanner);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox7);
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.cbPlannerDate);
+            this.groupBox1.Controls.Add(this.tbDayPlanner7);
+            this.groupBox1.Controls.Add(this.btSavePlanner);
+            this.groupBox1.Controls.Add(this.tbDayPlanner2);
+            this.groupBox1.Controls.Add(this.lbDay7);
+            this.groupBox1.Controls.Add(this.tbDayPlanner3);
+            this.groupBox1.Controls.Add(this.lbDay6);
+            this.groupBox1.Controls.Add(this.tbDayPlanner4);
+            this.groupBox1.Controls.Add(this.lbDay5);
+            this.groupBox1.Controls.Add(this.tbDayPlanner5);
+            this.groupBox1.Controls.Add(this.lbDay4);
+            this.groupBox1.Controls.Add(this.tbDayPlanner6);
+            this.groupBox1.Controls.Add(this.lbDay3);
+            this.groupBox1.Controls.Add(this.tbDayPlanner1);
+            this.groupBox1.Controls.Add(this.lbDay2);
+            this.groupBox1.Controls.Add(this.lbDay1);
             this.groupBox1.Location = new System.Drawing.Point(45, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(907, 56);
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             // 
-            // comboBox1
+            // label1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(41, 23);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 39;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(47, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.TabIndex = 41;
+            this.label1.Text = "Week";
+            // 
+            // cbPlannerDate
+            // 
+            this.cbPlannerDate.FormattingEnabled = true;
+            this.cbPlannerDate.Location = new System.Drawing.Point(41, 26);
+            this.cbPlannerDate.Name = "cbPlannerDate";
+            this.cbPlannerDate.Size = new System.Drawing.Size(121, 21);
+            this.cbPlannerDate.TabIndex = 39;
+            // 
+            // lbPlannerError
+            // 
+            this.lbPlannerError.AutoSize = true;
+            this.lbPlannerError.ForeColor = System.Drawing.Color.Red;
+            this.lbPlannerError.Location = new System.Drawing.Point(556, 90);
+            this.lbPlannerError.Name = "lbPlannerError";
+            this.lbPlannerError.Size = new System.Drawing.Size(121, 13);
+            this.lbPlannerError.TabIndex = 40;
+            this.lbPlannerError.Text = "Planner error message...";
             // 
             // Planner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(988, 747);
+            this.Controls.Add(this.lbPlannerError);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.brRefreshPlanner);
             this.Controls.Add(this.label11);
@@ -302,6 +334,7 @@
             this.Controls.Add(this.btClosePlanner);
             this.Controls.Add(this.dataGridViewPlanner);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Planner";
             this.Text = "Planner";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlanner)).EndInit();
@@ -321,22 +354,24 @@
         private System.Windows.Forms.ComboBox cbPlannerLogs;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button brRefreshPlanner;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbDayPlanner2;
+        private System.Windows.Forms.TextBox tbDayPlanner3;
+        private System.Windows.Forms.TextBox tbDayPlanner4;
+        private System.Windows.Forms.TextBox tbDayPlanner5;
+        private System.Windows.Forms.TextBox tbDayPlanner6;
+        private System.Windows.Forms.TextBox tbDayPlanner7;
+        private System.Windows.Forms.TextBox tbDayPlanner1;
+        private System.Windows.Forms.Label lbDay1;
+        private System.Windows.Forms.Label lbDay2;
+        private System.Windows.Forms.Label lbDay3;
+        private System.Windows.Forms.Label lbDay4;
+        private System.Windows.Forms.Label lbDay5;
+        private System.Windows.Forms.Label lbDay6;
+        private System.Windows.Forms.Label lbDay7;
         private System.Windows.Forms.Button btSavePlanner;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbPlannerDate;
+        private System.Windows.Forms.Label lbPlannerError;
+        private System.Windows.Forms.Label label1;
     }
 }

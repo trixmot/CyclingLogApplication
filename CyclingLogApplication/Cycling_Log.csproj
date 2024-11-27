@@ -218,6 +218,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bike-16.ico" />
     <Content Include="CyclingLogConfig.xml" />
     <Content Include="CyclingLogDatabase.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -226,7 +227,9 @@
       <DependentUpon>CyclingLogDatabase.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="license.txt" />
+    <Content Include="license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
