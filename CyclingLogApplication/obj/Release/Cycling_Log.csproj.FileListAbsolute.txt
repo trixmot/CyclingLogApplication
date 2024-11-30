@@ -91,3 +91,4 @@ D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplic
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.exe
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.pdb
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.Planner.resources
+D:\workdir\github\cycling_log\CyclingLogApplication\bin\Release\license.txt

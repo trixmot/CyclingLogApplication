@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -110,6 +111,14 @@ namespace CyclingLogApplication
             int day5 = 0;
             int day6 = 0;
             int day7 = 0;
+
+            string plan1 = "";
+            string plan2 = "";
+            string plan3 = "";
+            string plan4 = "";
+            string plan5 = "";
+            string plan6 = "";
+            string plan7 = "";
 
             if (firstDay.Equals("Monday"))
             {
@@ -573,6 +582,14 @@ namespace CyclingLogApplication
             int day6 = 0;
             int day7 = 0;
 
+            string pMiles1 = "";
+            string pMiles2 = "";
+            string pMiles3 = "";
+            string pMiles4 = "";
+            string pMiles5 = "";
+            string pMiles6 = "";
+            string pMiles7 = "";
+
             string firstDayOfWeek = MainForm.GetFirstDayOfWeek();
 
             if (firstDayOfWeek.Equals("Sunday"))
@@ -739,14 +756,6 @@ namespace CyclingLogApplication
                 string temp6 = "";
                 string temp7 = "";
 
-                string pMiles1 = "";
-                string pMiles2 = "";
-                string pMiles3 = "";
-                string pMiles4 = "";
-                string pMiles5 = "";
-                string pMiles6 = "";
-                string pMiles7 = "";
-
                 //First Week of the month:
                 //Check which day is the first day of the month:
                 if (day1 == 1)
@@ -769,6 +778,14 @@ namespace CyclingLogApplication
                     temp6 = "6";
                     temp7 = "7";
 
+                    DateTime dateTime1 = new DateTime(logYear, monthIndex, 1);
+                    DateTime dateTime2 = new DateTime(logYear, monthIndex, 2);
+                    DateTime dateTime3 = new DateTime(logYear, monthIndex, 3);
+                    DateTime dateTime4 = new DateTime(logYear, monthIndex, 4);
+                    DateTime dateTime5 = new DateTime(logYear, monthIndex, 5);
+                    DateTime dateTime6 = new DateTime(logYear, monthIndex, 6);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 7);
+
                     if (futureDays)
                     {
                         miles1 = "";
@@ -781,22 +798,22 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        DateTime dateTime1 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime2 = new DateTime(logYear, monthIndex, 2);
-                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 3);
-                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 4);
-                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 5);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 6);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 7);
-
                         miles1 = MainForm.GetDataItemByDate(logIndex, dateTime1, sqlCommand);
                         miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2, sqlCommand);
                         miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3, sqlCommand);
                         miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand);
                         miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand);
                         miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand);
-                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);                
                     }
+
+                    pMiles1 = GetPlannedEntry(logIndex, dateTime1);
+                    pMiles2 = GetPlannedEntry(logIndex, dateTime2);
+                    pMiles3 = GetPlannedEntry(logIndex, dateTime3);
+                    pMiles4 = GetPlannedEntry(logIndex, dateTime4);
+                    pMiles5 = GetPlannedEntry(logIndex, dateTime5);
+                    pMiles6 = GetPlannedEntry(logIndex, dateTime6);
+                    pMiles7 = GetPlannedEntry(logIndex, dateTime7);
                 }
                 else if (day2 == 1)
                 {
@@ -817,6 +834,14 @@ namespace CyclingLogApplication
                     temp6 = "5";
                     temp7 = "6";
 
+                    DateTime dateTime2b = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                    DateTime dateTime2 = new DateTime(logYear, monthIndex, 1);
+                    DateTime dateTime3 = new DateTime(logYear, monthIndex, 2);
+                    DateTime dateTime4 = new DateTime(logYear, monthIndex, 3);
+                    DateTime dateTime5 = new DateTime(logYear, monthIndex, 4);
+                    DateTime dateTime6 = new DateTime(logYear, monthIndex, 5);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 6);
+
                     if (startOfYear)
                     {
                         temp1 = "";
@@ -834,14 +859,9 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        DateTime dateTime2b = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                        
                         miles1 = MainForm.GetDataItemByDate(logIndex, dateTime2b, sqlCommand);
-                        DateTime dateTime2 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 2);
-                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 3);
-                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 4);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 5);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 6);
+                        
                         miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2, sqlCommand);
                         miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3, sqlCommand);
                         miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand);
@@ -849,6 +869,14 @@ namespace CyclingLogApplication
                         miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand);
                         miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);
                     }
+
+                    pMiles1 = GetPlannedEntry(logIndex, dateTime2b);
+                    pMiles2 = GetPlannedEntry(logIndex, dateTime2);
+                    pMiles3 = GetPlannedEntry(logIndex, dateTime3);
+                    pMiles4 = GetPlannedEntry(logIndex, dateTime4);
+                    pMiles5 = GetPlannedEntry(logIndex, dateTime5);
+                    pMiles6 = GetPlannedEntry(logIndex, dateTime6);
+                    pMiles7 = GetPlannedEntry(logIndex, dateTime7);
                 }
                 else if (day3 == 1)
                 {
@@ -869,6 +897,14 @@ namespace CyclingLogApplication
                     temp6 = "4";
                     temp7 = "5";
 
+                    DateTime dateTime31 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                    DateTime dateTime32 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                    DateTime dateTime3 = new DateTime(logYear, monthIndex, 1);
+                    DateTime dateTime4 = new DateTime(logYear, monthIndex, 2);
+                    DateTime dateTime5 = new DateTime(logYear, monthIndex, 3);
+                    DateTime dateTime6 = new DateTime(logYear, monthIndex, 4);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 5);
+
                     if (startOfYear)
                     {
                         temp1 = "";
@@ -888,21 +924,24 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        DateTime dateTime31 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                        DateTime dateTime32 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                        
                         miles1 = MainForm.GetDataItemByDate(logIndex, dateTime32, sqlCommand);
                         miles2 = MainForm.GetDataItemByDate(logIndex, dateTime31, sqlCommand);
-                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 2);
-                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 3);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 4);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 5);
+                        
                         miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3, sqlCommand);
                         miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand);
                         miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand);
                         miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand);
                         miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);
                     }
+
+                    pMiles1 = GetPlannedEntry(logIndex, dateTime31);
+                    pMiles2 = GetPlannedEntry(logIndex, dateTime32);
+                    pMiles3 = GetPlannedEntry(logIndex, dateTime3);
+                    pMiles4 = GetPlannedEntry(logIndex, dateTime4);
+                    pMiles5 = GetPlannedEntry(logIndex, dateTime5);
+                    pMiles6 = GetPlannedEntry(logIndex, dateTime6);
+                    pMiles7 = GetPlannedEntry(logIndex, dateTime7);
                 }
                 else if (day4 == 1)
                 {
@@ -922,6 +961,14 @@ namespace CyclingLogApplication
                     temp5 = "2";
                     temp6 = "3";
                     temp7 = "4";
+
+                    DateTime dateTime41 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                    DateTime dateTime42 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                    DateTime dateTime43 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
+                    DateTime dateTime4 = new DateTime(logYear, monthIndex, 1);
+                    DateTime dateTime5 = new DateTime(logYear, monthIndex, 2);
+                    DateTime dateTime6 = new DateTime(logYear, monthIndex, 3);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 4);
 
                     if (startOfYear)
                     {
@@ -943,22 +990,24 @@ namespace CyclingLogApplication
                         miles7 = "";
                     }
                     else
-                    {
-                        DateTime dateTime41 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                        DateTime dateTime42 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
-                        DateTime dateTime43 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
+                    {                        
                         miles1 = MainForm.GetDataItemByDate(logIndex, dateTime43, sqlCommand);
                         miles2 = MainForm.GetDataItemByDate(logIndex, dateTime42, sqlCommand);
                         miles3 = MainForm.GetDataItemByDate(logIndex, dateTime41, sqlCommand);
-                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 2);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 3);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 4);
+                        
                         miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand);
                         miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand);
                         miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand);
                         miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);
                     }
+
+                    pMiles1 = GetPlannedEntry(logIndex, dateTime41);
+                    pMiles2 = GetPlannedEntry(logIndex, dateTime42);
+                    pMiles3 = GetPlannedEntry(logIndex, dateTime43);
+                    pMiles4 = GetPlannedEntry(logIndex, dateTime4);
+                    pMiles5 = GetPlannedEntry(logIndex, dateTime5);
+                    pMiles6 = GetPlannedEntry(logIndex, dateTime6);
+                    pMiles7 = GetPlannedEntry(logIndex, dateTime7);
                 }
                 else if (day5 == 1)
                 {
@@ -978,6 +1027,14 @@ namespace CyclingLogApplication
                     temp5 = "1";
                     temp6 = "2";
                     temp7 = "3";
+
+                    DateTime dateTime51 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                    DateTime dateTime52 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                    DateTime dateTime53 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
+                    DateTime dateTime54 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
+                    DateTime dateTime5 = new DateTime(logYear, monthIndex, 1);
+                    DateTime dateTime6 = new DateTime(logYear, monthIndex, 2);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 3);
 
                     if (startOfYear)
                     {
@@ -1001,22 +1058,24 @@ namespace CyclingLogApplication
                         miles7 = "";
                     }
                     else
-                    {
-                        DateTime dateTime51 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                        DateTime dateTime52 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
-                        DateTime dateTime53 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
-                        DateTime dateTime54 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
+                    {                       
                         miles1 = MainForm.GetDataItemByDate(logIndex, dateTime54, sqlCommand);
                         miles2 = MainForm.GetDataItemByDate(logIndex, dateTime53, sqlCommand);
                         miles3 = MainForm.GetDataItemByDate(logIndex, dateTime52, sqlCommand);
                         miles4 = MainForm.GetDataItemByDate(logIndex, dateTime51, sqlCommand);
-                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 2);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 3);
+                        
                         miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand);
                         miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand);
                         miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);
                     }
+
+                    pMiles1 = GetPlannedEntry(logIndex, dateTime51);
+                    pMiles2 = GetPlannedEntry(logIndex, dateTime52);
+                    pMiles3 = GetPlannedEntry(logIndex, dateTime53);
+                    pMiles4 = GetPlannedEntry(logIndex, dateTime54);
+                    pMiles5 = GetPlannedEntry(logIndex, dateTime5);
+                    pMiles6 = GetPlannedEntry(logIndex, dateTime6);
+                    pMiles7 = GetPlannedEntry(logIndex, dateTime7);
                 }
                 else if (day6 == 1)
                 {
@@ -1036,6 +1095,14 @@ namespace CyclingLogApplication
                     temp5 = (daysInMonthPrevious).ToString();
                     temp6 = "1";
                     temp7 = "2";
+
+                    DateTime dateTime61 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                    DateTime dateTime62 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                    DateTime dateTime63 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
+                    DateTime dateTime64 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
+                    DateTime dateTime65 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
+                    DateTime dateTime6 = new DateTime(logYear, monthIndex, 1);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 2);
 
                     if (startOfYear)
                     {
@@ -1061,22 +1128,24 @@ namespace CyclingLogApplication
                         miles7 = "";
                     }
                     else
-                    {
-                        DateTime dateTime61 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                        DateTime dateTime62 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
-                        DateTime dateTime63 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
-                        DateTime dateTime64 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
-                        DateTime dateTime65 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
+                    {                       
                         miles1 = MainForm.GetDataItemByDate(logIndex, dateTime65, sqlCommand);
                         miles2 = MainForm.GetDataItemByDate(logIndex, dateTime64, sqlCommand);
                         miles3 = MainForm.GetDataItemByDate(logIndex, dateTime63, sqlCommand);
                         miles4 = MainForm.GetDataItemByDate(logIndex, dateTime62, sqlCommand);
                         miles5 = MainForm.GetDataItemByDate(logIndex, dateTime61, sqlCommand);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 2);
+                        
                         miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand);
                         miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);
                     }
+
+                    pMiles1 = GetPlannedEntry(logIndex, dateTime61);
+                    pMiles2 = GetPlannedEntry(logIndex, dateTime62);
+                    pMiles3 = GetPlannedEntry(logIndex, dateTime63);
+                    pMiles4 = GetPlannedEntry(logIndex, dateTime64);
+                    pMiles5 = GetPlannedEntry(logIndex, dateTime65);
+                    pMiles6 = GetPlannedEntry(logIndex, dateTime6);
+                    pMiles7 = GetPlannedEntry(logIndex, dateTime7);
                 }
                 else if (day7 == 1)
                 {
@@ -1096,6 +1165,14 @@ namespace CyclingLogApplication
                     temp5 = (daysInMonthPrevious - 1).ToString();
                     temp6 = (daysInMonthPrevious).ToString();
                     temp7 = "1";
+
+                    DateTime dateTime71 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                    DateTime dateTime72 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                    DateTime dateTime73 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
+                    DateTime dateTime74 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
+                    DateTime dateTime75 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
+                    DateTime dateTime76 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 5);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 1);
 
                     if (startOfYear)
                     {
@@ -1123,22 +1200,24 @@ namespace CyclingLogApplication
                         miles7 = "";
                     }
                     else
-                    {
-                        DateTime dateTime71 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                        DateTime dateTime72 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
-                        DateTime dateTime73 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
-                        DateTime dateTime74 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
-                        DateTime dateTime75 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
-                        DateTime dateTime76 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 5);
+                    {                     
                         miles1 = MainForm.GetDataItemByDate(logIndex, dateTime76, sqlCommand);
                         miles2 = MainForm.GetDataItemByDate(logIndex, dateTime75, sqlCommand);
                         miles3 = MainForm.GetDataItemByDate(logIndex, dateTime74, sqlCommand);
                         miles4 = MainForm.GetDataItemByDate(logIndex, dateTime73, sqlCommand);
                         miles5 = MainForm.GetDataItemByDate(logIndex, dateTime72, sqlCommand);
                         miles6 = MainForm.GetDataItemByDate(logIndex, dateTime71, sqlCommand);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 1);
+                        
                         miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);
                     }
+
+                    pMiles1 = GetPlannedEntry(logIndex, dateTime71);
+                    pMiles2 = GetPlannedEntry(logIndex, dateTime72);
+                    pMiles3 = GetPlannedEntry(logIndex, dateTime73);
+                    pMiles4 = GetPlannedEntry(logIndex, dateTime74);
+                    pMiles5 = GetPlannedEntry(logIndex, dateTime75);
+                    pMiles6 = GetPlannedEntry(logIndex, dateTime76);
+                    pMiles7 = GetPlannedEntry(logIndex, dateTime7);
                 }
 
                 //Date:
@@ -1213,6 +1292,13 @@ namespace CyclingLogApplication
                 rowCount++;
                 Boolean sixRow = false;
 
+                Boolean futureDay1 = false;
+                Boolean futureDay2 = false;
+                Boolean futureDay3 = false;
+                Boolean futureDay4 = false;
+                Boolean futureDay5 = false;
+                Boolean futureDay6 = false;
+
                 //Loop through remaining weeks:
                 for (int i = 0; i < 5; i++)
                 {
@@ -1286,7 +1372,14 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
+                            if (futureDay1)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
                         }
                         else
                         {
@@ -1306,6 +1399,12 @@ namespace CyclingLogApplication
                                 cellNumber = 0;
                                 rowNumber = rowCount;
                                 futureDays = true;
+
+                                futureDay2 = true;
+                                futureDay3 = true;
+                                futureDay4 = true;
+                                futureDay5 = true;
+                                futureDay6 = true;
                             }
                         }
 
@@ -1319,6 +1418,7 @@ namespace CyclingLogApplication
                     else
                     {
                         miles1 = MainForm.GetDataItemByDate(logIndex, dateTime1a, sqlCommand);
+                        pMiles1 = GetPlannedEntry(logIndex, dateTime1a);
                     }
                     if (currentYearMonth)
                     {
@@ -1392,8 +1492,22 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
+                            if (futureDay1)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay2)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
                         }
                         else
                         {
@@ -1426,6 +1540,7 @@ namespace CyclingLogApplication
                     else
                     {
                         miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2a, sqlCommand);
+                        pMiles2 = GetPlannedEntry(logIndex, dateTime2a);
                     }
                     if (currentYearMonth)
                     {
@@ -1434,6 +1549,11 @@ namespace CyclingLogApplication
                             cellNumber = 1;
                             rowNumber = rowCount;
                             futureDays = true;
+
+                            futureDay3 = true;
+                            futureDay4 = true;
+                            futureDay5 = true;
+                            futureDay6 = true;
                         }
                     }
                     temp2 = dayCount.ToString();
@@ -1494,9 +1614,30 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount].Cells[2].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
+                            if (futureDay1)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay2)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay3)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
                         }
                         else
                         {
@@ -1529,6 +1670,7 @@ namespace CyclingLogApplication
                     else
                     {
                         miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3a, sqlCommand);
+                        pMiles3 = GetPlannedEntry(logIndex, dateTime3a);
                     }
                     if (currentYearMonth)
                     {
@@ -1537,6 +1679,10 @@ namespace CyclingLogApplication
                             cellNumber = 2;
                             rowNumber = rowCount;
                             futureDays = true;
+
+                            futureDay4 = true;
+                            futureDay5 = true;
+                            futureDay6 = true;
                         }
                     }
                     temp3 = dayCount.ToString();
@@ -1592,10 +1738,38 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount].Cells[3].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
+                            if (futureDay1)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay2)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay3)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay4)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
                         }
                         else
                         {
@@ -1628,6 +1802,7 @@ namespace CyclingLogApplication
                     else
                     {
                         miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4a, sqlCommand);
+                        pMiles4 = GetPlannedEntry(logIndex, dateTime4a);
                     }
                     if (currentYearMonth)
                     {
@@ -1636,6 +1811,9 @@ namespace CyclingLogApplication
                             cellNumber = 3;
                             rowNumber = rowCount;
                             futureDays = true;
+
+                            futureDay5 = true;
+                            futureDay6 = true;
                         }
                     }
                     temp4 = dayCount.ToString();
@@ -1686,11 +1864,46 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount].Cells[4].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.White;
+                            if (futureDay1)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay2)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay3)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay4)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay5)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
                         }
                         else
                         {
@@ -1723,6 +1936,7 @@ namespace CyclingLogApplication
                     else
                     {
                         miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5a, sqlCommand);
+                        pMiles5 = GetPlannedEntry(logIndex, dateTime5a);
                     }
                     if (currentYearMonth)
                     {
@@ -1731,6 +1945,8 @@ namespace CyclingLogApplication
                             cellNumber = 4;
                             rowNumber = rowCount;
                             futureDays = true;
+
+                            futureDay6 = true;
                         }
                     }
                     temp5 = dayCount.ToString();
@@ -1749,6 +1965,7 @@ namespace CyclingLogApplication
                         else
                         {
                             miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6a, sqlCommand);
+                            
                             if (nextMonthIndex == 13)
                             {
                                 //Just post a blank entry for the next year Jan days:
@@ -1758,8 +1975,11 @@ namespace CyclingLogApplication
                             {
                                 DateTime dateTime6b = new DateTime(logYear, nextMonthIndex, 1);
                                 miles7 = MainForm.GetDataItemByDate(logIndex, dateTime6b, sqlCommand);
+                                pMiles7 = GetPlannedEntry(logIndex, dateTime6b);
                             }
-                        }                        
+                        }
+
+                        pMiles6 = GetPlannedEntry(logIndex, dateTime6a);
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -1776,12 +1996,54 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.White;
-                            dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.White;
+                            if (futureDay1)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay2)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay3)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay4)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay5)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
+                            if (futureDay6)
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
+                            }
                         }
                         else
                         {
@@ -1814,6 +2076,7 @@ namespace CyclingLogApplication
                     else
                     {
                         miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6a, sqlCommand);
+                        pMiles6 = GetPlannedEntry(logIndex, dateTime6a);
                     }
                     if (currentYearMonth)
                     {
@@ -1854,6 +2117,21 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount].Cells[4].Style.ForeColor = textColor;
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.ForeColor = textColor;
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.ForeColor = textColor;
+                        if (!pMiles6.Equals("- -"))
+                        {
+                            if (!miles6.Equals("0"))
+                            {
+                                double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount-1].DefaultCellStyle.BackColor = Color.LightGreen;
+                                } else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount-1].DefaultCellStyle.BackColor = Color.Tomato;
+                                }
+                            }
+                            
+                        }
 
                         if (miles1.Equals(""))
                         {
@@ -2044,7 +2322,7 @@ namespace CyclingLogApplication
                 //Highlight the current day if on the curernt month and year:
                 if (currentYearMonth)
                 {
-                    dataGridViewPlanner.CurrentCell = dataGridViewPlanner.Rows[rowNumber-2].Cells[cellNumber];
+                    dataGridViewPlanner.CurrentCell = dataGridViewPlanner.Rows[rowNumber].Cells[cellNumber];
                 }
 
                 //First Week of the month:
@@ -2312,25 +2590,143 @@ namespace CyclingLogApplication
             if (result == DialogResult.No)
             {
                 return;
-            }
+            }      
 
             string dateString = cbPlannerDate.SelectedItem.ToString();
+            //firstday is the first day of the week for the selected planning week:
             DateTime firstDay = DateTime.ParseExact(dateString, "dd/MM/yyyy", null);
 
-            //Need to check if an entry exists for the current date:
-            //Save each day's plan value to the database:
+            //Get week number from the selected date:
+            DayOfWeek firstDayOfWeek = DayOfWeek.Monday;
 
+            DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
+            Calendar cal = dfi.Calendar;
+            int weekValue = cal.GetWeekOfYear(firstDay, dfi.CalendarWeekRule, firstDayOfWeek);
+
+            //First day:*************************************************
             List<int> idList = CheckDateExists(firstDay);
 
-            if (idList.Count > 0)
+            if (idList.Count > 1)
             {
-                MessageBox.Show("More than one ride entry found for " + firstDay);
+                MessageBox.Show("More than one ride entry found for " + firstDay + ". Currently setting value for the first entry.");
             }
 
-            //If blank, then need to add a new entry:
-            //Else update that already exists:
+            if (idList != null || idList[0].Equals("0") || idList[0].Equals(""))
+            {
+                AddPlannedEntry(firstDay, double.Parse(tbDayPlanner1.Text), weekValue);
+            } else
+            {
+                UpdatePlannedEntry(firstDay, double.Parse(tbDayPlanner1.Text));
+            }
 
-            ExtractAssociatedIconEx();
+            //Second day:*************************************************
+            DateTime secondDay = firstDay.AddDays(1);
+            idList = CheckDateExists(secondDay);
+
+            if (idList.Count > 1)
+            {
+                MessageBox.Show("More than one ride entry found for " + secondDay + ". Currently setting value for the first entry.");
+            }
+
+            if (idList != null || idList[0].Equals("0") || idList[0].Equals(""))
+            {
+                AddPlannedEntry(secondDay, double.Parse(tbDayPlanner2.Text), weekValue);
+            }
+            else
+            {
+                UpdatePlannedEntry(secondDay, double.Parse(tbDayPlanner2.Text));
+            }
+
+            //Third day:*************************************************
+            DateTime thirdDay = secondDay.AddDays(1);
+            idList = CheckDateExists(thirdDay);
+
+            if (idList.Count > 1)
+            {
+                MessageBox.Show("More than one ride entry found for " + thirdDay + ". Currently setting value for the first entry.");
+            }
+
+            if (idList != null || idList[0].Equals("0") || idList[0].Equals(""))
+            {
+                AddPlannedEntry(thirdDay, double.Parse(tbDayPlanner3.Text), weekValue);
+            }
+            else
+            {
+                UpdatePlannedEntry(thirdDay, double.Parse(tbDayPlanner3.Text));
+            }
+
+            //Fourth day:*************************************************
+            DateTime fourthDay = thirdDay.AddDays(1);
+            idList = CheckDateExists(fourthDay);
+
+            if (idList.Count > 1)
+            {
+                MessageBox.Show("More than one ride entry found for " + fourthDay + ". Currently setting value for the first entry.");
+            }
+
+            if (idList != null || idList[0].Equals("0") || idList[0].Equals(""))
+            {
+                AddPlannedEntry(fourthDay, double.Parse(tbDayPlanner4.Text), weekValue);
+            }
+            else
+            {
+                UpdatePlannedEntry(fourthDay, double.Parse(tbDayPlanner4.Text));
+            }
+
+            //Fith day:*************************************************
+            DateTime fithDay = fourthDay.AddDays(1);
+            idList = CheckDateExists(fithDay);
+
+            if (idList.Count > 1)
+            {
+                MessageBox.Show("More than one ride entry found for " + fithDay + ". Currently setting value for the first entry.");
+            }
+
+            if (idList != null || idList[0].Equals("0") || idList[0].Equals(""))
+            {
+                AddPlannedEntry(fithDay, double.Parse(tbDayPlanner5.Text), weekValue);
+            }
+            else
+            {
+                UpdatePlannedEntry(fithDay, double.Parse(tbDayPlanner5.Text));
+            }
+
+            //Sixth day:*************************************************
+            DateTime sixthDay = fithDay.AddDays(1);
+            idList = CheckDateExists(sixthDay);
+
+            if (idList.Count > 1)
+            {
+                MessageBox.Show("More than one ride entry found for " + sixthDay + ". Currently setting value for the first entry.");
+            }
+
+            if (idList != null || idList[0].Equals("0") || idList[0].Equals(""))
+            {
+                AddPlannedEntry(sixthDay, double.Parse(tbDayPlanner6.Text), weekValue);
+            }
+            else
+            {
+                UpdatePlannedEntry(sixthDay, double.Parse(tbDayPlanner6.Text));
+            }
+
+            //Seventh day:*************************************************
+            DateTime seventhDay = sixthDay.AddDays(1);
+            idList = CheckDateExists(seventhDay);
+
+            if (idList.Count > 1)
+            {
+                MessageBox.Show("More than one ride entry found for " + seventhDay + ". Currently setting value for the first entry.");
+            }
+
+            if (idList != null || idList[0].Equals("0") || idList[0].Equals(""))
+            {
+                AddPlannedEntry(seventhDay, double.Parse(tbDayPlanner7.Text), weekValue);
+            }
+            else
+            {
+                UpdatePlannedEntry(seventhDay, double.Parse(tbDayPlanner7.Text));
+            }
+
         }
 
         private static List<int> CheckDateExists(DateTime dateValue)
@@ -2365,48 +2761,141 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        System.Windows.Forms.ListView listView1;
-        ImageList imageList1;
-        public void ExtractAssociatedIconEx()
+        private static int UpdatePlannedEntry(DateTime dateValue, double plannedValue)
         {
-            // Initialize the ListView, ImageList and Form.
-            listView1 = new System.Windows.Forms.ListView();
-            imageList1 = new ImageList();
-            listView1.Location = new Point(37, 12);
-            listView1.Size = new Size(151, 262);
-            listView1.SmallImageList = imageList1;
-            listView1.View = View.SmallIcon;
-            this.ClientSize = new System.Drawing.Size(292, 266);
-            this.Controls.Add(this.listView1);
-            this.Text = "Form1";
+            int returnValue = 1;
 
-            // Get the c:\ directory.
-            System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(@"c:\");
-
-            ListViewItem item;
-            listView1.BeginUpdate();
-
-            // For each file in the c:\ directory, create a ListViewItem
-            // and set the icon to the icon extracted from the file.
-            foreach (System.IO.FileInfo file in dir.GetFiles())
+            try
             {
-                // Set a default icon for the file.
-                Icon iconForFile = SystemIcons.WinLogo;
-
-                item = new ListViewItem(file.Name, 1);
-
-                // Check to see if the image collection contains an image
-                // for this extension, using the extension as a key.
-                if (!imageList1.Images.ContainsKey(file.Extension))
+                List<object> objectValues = new List<object>
                 {
-                    // If not, add the image to the image list.
-                    iconForFile = System.Drawing.Icon.ExtractAssociatedIcon(file.FullName);
-                    imageList1.Images.Add(file.Extension, iconForFile);
+                    plannedValue,
+                    dateValue
+                };
+                //ExecuteScalarFunction
+                using (var results = MainForm.ExecuteSimpleQueryConnection("Ride_Information_UpdatePlanned", objectValues))
+                {
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            returnValue = int.Parse(results[0].ToString());
+                        }
+                    }
                 }
-                item.ImageKey = file.Extension;
-                listView1.Items.Add(item);
             }
-            listView1.EndUpdate();
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to run query for Update Planned entry: " + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred while running Update Planned entry.  Review the log for more information.");
+            }
+
+            return returnValue;
+        }
+
+        private static int AddPlannedEntry(DateTime dateValue, double plannedValue, int weekNumber)
+        {
+            int returnValue = 1;
+
+            try
+            {
+                List<object> objectValues = new List<object>
+            {
+                plannedValue,
+                dateValue,
+                weekNumber
+            };
+                //ExecuteScalarFunction
+                using (var results = MainForm.ExecuteSimpleQueryConnection("Ride_Information_AddPlanned", objectValues))
+                {
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            returnValue =int.Parse(results[0].ToString());
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to run query for Add Planned entry. " + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred while running Add Planned.  Review the log for more information.");
+            }
+
+            return returnValue;
+        }
+
+        private static string GetPlannedEntry(int logTitleID, DateTime dateValue)
+        {
+            string returnValue = "";
+
+            try
+            {
+                List<object> objectValues = new List<object>
+            {
+                logTitleID,
+                dateValue
+            };
+                //ExecuteScalarFunction
+                using (var results = MainForm.ExecuteSimpleQueryConnection("GetPlannedValue", objectValues))
+                {
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            returnValue = results[0].ToString();                           
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to run query for Get Planned entry. " + ex.Message.ToString());
+                MessageBox.Show("An exception error has occurred while running Get Planned.  Review the log for more information.");
+            }
+
+            if (returnValue == null || returnValue.Equals(""))
+            {
+                returnValue = "- -";
+            }
+
+            return returnValue;
+        }
+
+        private void cbPlannerDate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Get planned data for the selected week:
+            string logName = cbPlannerLogs.SelectedItem.ToString();
+            int logIndex = MainForm.GetLogIndexByName(logName);
+
+            string dateString = cbPlannerDate.SelectedItem.ToString();
+            if (dateString.Contains("--Select Value--"))
+            {
+                return;
+            }
+            DateTime firstDay = DateTime.ParseExact(dateString, "dd/MM/yyyy", null);
+
+            tbDayPlanner1.Text = GetPlannedEntry(logIndex, firstDay);
+            tbDayPlanner2.Text = GetPlannedEntry(logIndex, firstDay.AddDays(1));
+            tbDayPlanner3.Text = GetPlannedEntry(logIndex, firstDay.AddDays(2));
+            tbDayPlanner4.Text = GetPlannedEntry(logIndex, firstDay.AddDays(3));
+            tbDayPlanner5.Text = GetPlannedEntry(logIndex, firstDay.AddDays(4));
+            tbDayPlanner6.Text = GetPlannedEntry(logIndex, firstDay.AddDays(5));
+            tbDayPlanner7.Text = GetPlannedEntry(logIndex, firstDay.AddDays(6));
+        }
+
+        private void btClearPlanned_Click(object sender, EventArgs e)
+        {
+            tbDayPlanner1.Text = "";
+            tbDayPlanner2.Text = "";
+            tbDayPlanner3.Text = "";
+            tbDayPlanner4.Text = "";
+            tbDayPlanner5.Text = "";
+            tbDayPlanner6.Text = "";
+            tbDayPlanner7.Text = "";
         }
     }
 }

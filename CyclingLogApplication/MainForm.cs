@@ -7197,6 +7197,14 @@ namespace CyclingLogApplication
                 rowCount++;
                 Boolean sixRow = false;
 
+                Boolean futureDay1 = false;
+                Boolean futureDay2 = false;
+                Boolean futureDay3 = false;
+                Boolean futureDay4 = false;
+                Boolean futureDay5 = false;
+                Boolean futureDay6 = false;
+                Boolean futureDay7 = false;
+
                 //Loop through remaining weeks:
                 for (int i = 0; i < 5; i++)
                 {
@@ -7271,7 +7279,14 @@ namespace CyclingLogApplication
                         dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
+                            if (futureDay1)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
                         }
                         else
                         {
@@ -7291,6 +7306,7 @@ namespace CyclingLogApplication
                                 cellNumber = 0;
                                 rowNumber = rowCount;
                                 futureDays = true;
+                                futureDay1 = true;
                             }
                         }
 
@@ -7312,6 +7328,12 @@ namespace CyclingLogApplication
                             cellNumber = 0;
                             rowNumber = rowCount;
                             futureDays = true;
+                            futureDay2 = true;
+                            futureDay3 = true;
+                            futureDay4 = true;
+                            futureDay5 = true;
+                            futureDay6 = true;
+                            futureDay7 = true;
                         }
                     }
                     temp1 = dayCount.ToString();
@@ -7374,8 +7396,22 @@ namespace CyclingLogApplication
                         dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
+                            if (futureDay1)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay2)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
                         }
                         else
                         {
@@ -7416,6 +7452,12 @@ namespace CyclingLogApplication
                             cellNumber = 1;
                             rowNumber = rowCount;
                             futureDays = true;
+
+                            futureDay3 = true;
+                            futureDay4 = true;
+                            futureDay5 = true;
+                            futureDay6 = true;
+                            futureDay7 = true;
                         }
                     }
                     temp2 = dayCount.ToString();
@@ -7473,9 +7515,30 @@ namespace CyclingLogApplication
                         dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
+                            if (futureDay1)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay2)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay3)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
                         }
                         else { 
                             dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(GetCalendarColor());
@@ -7515,6 +7578,11 @@ namespace CyclingLogApplication
                             cellNumber = 2;
                             rowNumber = rowCount;
                             futureDays = true;
+
+                            futureDay4 = true;
+                            futureDay5 = true;
+                            futureDay6 = true;
+                            futureDay7 = true;
                         }
                     }
                     temp3 = dayCount.ToString();
@@ -7567,10 +7635,38 @@ namespace CyclingLogApplication
                         dataGridViewCalendar.Rows[rowCount + 1].Cells[3].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.White;
+                            if (futureDay1)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay2)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay3)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay4)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
                         }
                         else
                         {
@@ -7611,6 +7707,10 @@ namespace CyclingLogApplication
                             cellNumber = 3;
                             rowNumber = rowCount;
                             futureDays = true;
+
+                            futureDay5 = true;
+                            futureDay6 = true;
+                            futureDay7 = true;
                         }
                     }
                     temp4 = dayCount.ToString();
@@ -7658,11 +7758,46 @@ namespace CyclingLogApplication
                         dataGridViewCalendar.Rows[rowCount + 1].Cells[4].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.White;
+                            if (futureDay1)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay2)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay3)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay4)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay5)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
                         }
                         else
                         {
@@ -7703,6 +7838,9 @@ namespace CyclingLogApplication
                             cellNumber = 4;
                             rowNumber = rowCount;
                             futureDays = true;
+
+                            futureDay6 = true;
+                            futureDay7 = true;
                         }
                     }
                     temp5 = dayCount.ToString();
@@ -7745,12 +7883,48 @@ namespace CyclingLogApplication
                         dataGridViewCalendar.Rows[rowCount + 1].Cells[5].Style.ForeColor = textColor;
                         if (futureDays)
                         {
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.White;
-                            dataGridViewCalendar.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.White;
+                            if (futureDay1)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.White;
+                            } else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[0].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay2)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.White;
+                            } else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[1].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay3)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.White;
+                            } else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[2].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay4)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.White;
+                            } else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[3].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay5)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.White;
+                            } else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[4].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
+                            if (futureDay6)
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.White;
+                            } else
+                            {
+                                dataGridViewCalendar.Rows[rowCount + 1].Cells[5].Style.BackColor = Color.FromName(GetCalendarColor());
+                            }
                         }
                         else
                         {
@@ -7790,6 +7964,8 @@ namespace CyclingLogApplication
                             cellNumber = 5;
                             rowNumber = rowCount;
                             futureDays = true;
+
+                            futureDay7 = true;
                         }
                     }
 
