@@ -4344,7 +4344,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp != null || !temp.Equals(""))
+                        if (temp != null && !temp.Equals(""))
                         {
                             returnValue = temp;
                             if (procedureName.Contains("TotalAscent"))
@@ -4363,7 +4363,14 @@ namespace CyclingLogApplication
                             }
                             if (procedureName.Contains("Miles"))
                             {
-                                returnValue += " miles";
+                                if (returnValue != null && !returnValue.Equals(""))
+                                {
+                                    returnValue += " miles";
+                                }
+                                else
+                                {
+                                    returnValue = "OFF";
+                                }
                             }
                             if (procedureName.Contains("WindChill"))
                             {
@@ -7316,6 +7323,7 @@ namespace CyclingLogApplication
                     if (futureDays)
                     {
                         miles1 = "";
+                        futureDay1 = true;
                     }
                     else
                     {
@@ -7356,6 +7364,12 @@ namespace CyclingLogApplication
                             miles5 = "";
                             miles6 = "";
                             miles7 = "";
+                            futureDay2 = true;
+                            futureDay3 = true;
+                            futureDay4 = true;
+                            futureDay5 = true;
+                            futureDay6 = true;
+                            futureDay7 = true;
                         }
                         else
                         {
@@ -7478,6 +7492,11 @@ namespace CyclingLogApplication
                             miles5 = "";
                             miles6 = "";
                             miles7 = "";
+                            futureDay3 = true;
+                            futureDay4 = true;
+                            futureDay5 = true;
+                            futureDay6 = true;
+                            futureDay7 = true;
                         }
                         else
                         {
@@ -7601,6 +7620,10 @@ namespace CyclingLogApplication
                             miles5 = "";
                             miles6 = "";
                             miles7 = "";
+                            futureDay4 = true;
+                            futureDay5 = true;
+                            futureDay6 = true;
+                            futureDay7 = true;
                         }
                         else
                         {
@@ -7727,6 +7750,9 @@ namespace CyclingLogApplication
                             miles5 = "";
                             miles6 = "";
                             miles7 = "";
+                            futureDay5 = true;
+                            futureDay6 = true;
+                            futureDay7 = true;
                         }
                         else
                         {
@@ -7855,6 +7881,8 @@ namespace CyclingLogApplication
                         {
                             miles6 = "";
                             miles7 = "";
+                            futureDay6 = true;
+                            futureDay7 = true;
                         }
                         else
                         {
@@ -7979,6 +8007,7 @@ namespace CyclingLogApplication
                         if (futureDays)
                         {
                             miles7 = "";
+                            futureDay7 = true;
                         }
                         else
                         {

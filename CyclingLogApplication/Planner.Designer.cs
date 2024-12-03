@@ -52,11 +52,12 @@
             this.lbDay7 = new System.Windows.Forms.Label();
             this.btSavePlanner = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btClearPlanned = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cbPlannerDate = new System.Windows.Forms.ComboBox();
             this.lbPlannerError = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btClearPlanned = new System.Windows.Forms.Button();
+            this.btDeletePlanner = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlanner)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -262,7 +263,7 @@
             // 
             // btSavePlanner
             // 
-            this.btSavePlanner.Location = new System.Drawing.Point(764, 52);
+            this.btSavePlanner.Location = new System.Drawing.Point(764, 38);
             this.btSavePlanner.Name = "btSavePlanner";
             this.btSavePlanner.Size = new System.Drawing.Size(75, 23);
             this.btSavePlanner.TabIndex = 38;
@@ -285,6 +286,43 @@
             this.groupBox1.Size = new System.Drawing.Size(904, 157);
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btDeletePlanner);
+            this.groupBox2.Controls.Add(this.btClearPlanned);
+            this.groupBox2.Controls.Add(this.lbDay3);
+            this.groupBox2.Controls.Add(this.lbDay1);
+            this.groupBox2.Controls.Add(this.lbDay2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.tbDayPlanner1);
+            this.groupBox2.Controls.Add(this.btSavePlanner);
+            this.groupBox2.Controls.Add(this.cbPlannerDate);
+            this.groupBox2.Controls.Add(this.tbDayPlanner6);
+            this.groupBox2.Controls.Add(this.lbDay4);
+            this.groupBox2.Controls.Add(this.tbDayPlanner7);
+            this.groupBox2.Controls.Add(this.tbDayPlanner5);
+            this.groupBox2.Controls.Add(this.lbDay5);
+            this.groupBox2.Controls.Add(this.tbDayPlanner4);
+            this.groupBox2.Controls.Add(this.tbDayPlanner2);
+            this.groupBox2.Controls.Add(this.lbDay6);
+            this.groupBox2.Controls.Add(this.tbDayPlanner3);
+            this.groupBox2.Controls.Add(this.lbDay7);
+            this.groupBox2.Location = new System.Drawing.Point(17, 52);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(867, 94);
+            this.groupBox2.TabIndex = 41;
+            this.groupBox2.TabStop = false;
+            // 
+            // btClearPlanned
+            // 
+            this.btClearPlanned.Location = new System.Drawing.Point(764, 14);
+            this.btClearPlanned.Name = "btClearPlanned";
+            this.btClearPlanned.Size = new System.Drawing.Size(75, 23);
+            this.btClearPlanned.TabIndex = 42;
+            this.btClearPlanned.Text = "Clear";
+            this.btClearPlanned.UseVisualStyleBackColor = true;
+            this.btClearPlanned.Click += new System.EventHandler(this.btClearPlanned_Click);
             // 
             // label1
             // 
@@ -314,41 +352,15 @@
             this.lbPlannerError.TabIndex = 40;
             this.lbPlannerError.Text = "Planner error message...";
             // 
-            // groupBox2
+            // btDeletePlanner
             // 
-            this.groupBox2.Controls.Add(this.btClearPlanned);
-            this.groupBox2.Controls.Add(this.lbDay3);
-            this.groupBox2.Controls.Add(this.lbDay1);
-            this.groupBox2.Controls.Add(this.lbDay2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.tbDayPlanner1);
-            this.groupBox2.Controls.Add(this.btSavePlanner);
-            this.groupBox2.Controls.Add(this.cbPlannerDate);
-            this.groupBox2.Controls.Add(this.tbDayPlanner6);
-            this.groupBox2.Controls.Add(this.lbDay4);
-            this.groupBox2.Controls.Add(this.tbDayPlanner7);
-            this.groupBox2.Controls.Add(this.tbDayPlanner5);
-            this.groupBox2.Controls.Add(this.lbDay5);
-            this.groupBox2.Controls.Add(this.tbDayPlanner4);
-            this.groupBox2.Controls.Add(this.tbDayPlanner2);
-            this.groupBox2.Controls.Add(this.lbDay6);
-            this.groupBox2.Controls.Add(this.tbDayPlanner3);
-            this.groupBox2.Controls.Add(this.lbDay7);
-            this.groupBox2.Location = new System.Drawing.Point(17, 52);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(867, 86);
-            this.groupBox2.TabIndex = 41;
-            this.groupBox2.TabStop = false;
-            // 
-            // btClearPlanned
-            // 
-            this.btClearPlanned.Location = new System.Drawing.Point(764, 19);
-            this.btClearPlanned.Name = "btClearPlanned";
-            this.btClearPlanned.Size = new System.Drawing.Size(75, 23);
-            this.btClearPlanned.TabIndex = 42;
-            this.btClearPlanned.Text = "Clear";
-            this.btClearPlanned.UseVisualStyleBackColor = true;
-            this.btClearPlanned.Click += new System.EventHandler(this.btClearPlanned_Click);
+            this.btDeletePlanner.Location = new System.Drawing.Point(764, 63);
+            this.btDeletePlanner.Name = "btDeletePlanner";
+            this.btDeletePlanner.Size = new System.Drawing.Size(75, 23);
+            this.btDeletePlanner.TabIndex = 43;
+            this.btDeletePlanner.Text = "Delete";
+            this.btDeletePlanner.UseVisualStyleBackColor = true;
+            this.btDeletePlanner.Click += new System.EventHandler(this.btDeletePlanner_Click);
             // 
             // Planner
             // 
@@ -400,5 +412,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btClearPlanned;
+        private System.Windows.Forms.Button btDeletePlanner;
     }
 }

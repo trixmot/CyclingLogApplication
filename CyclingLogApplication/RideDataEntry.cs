@@ -751,8 +751,84 @@ namespace CyclingLogApplication
         private void RideInformationChange(Boolean rideDisplayChange)
         {
             lbRideDataEntryError.Hide();
-            string changeType;
-            string procedureName;
+            string changeType = "";
+            string procedureName = "";
+
+            //Make sure certain required fields are filled in:
+            DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            if (dtpTimeRideDataEntry.Value == dt)
+            {
+                lbRideDataEntryError.Text = "The Ride Time must be greater than 0:00:00.";
+                lbRideDataEntryError.Show();
+                return;
+            }
+            decimal avgspeed = decimal.Parse(tbRideDataEntryAvgSpeed.Text);
+            if (avgspeed == 0)
+            {
+                lbRideDataEntryError.Text = "The Average Speed must be greater than 0.";
+                lbRideDataEntryError.Show();
+                return;
+            }
+            if (cbLogYearDataEntry.SelectedIndex < 1)
+            {
+                lbRideDataEntryError.Text = "A Log year must be selected.";
+                lbRideDataEntryError.Show();
+                return;
+            }
+            if (cbRouteDataEntry.SelectedIndex < 1)
+            {
+                lbRideDataEntryError.Text = "A Route must be selected.";
+                lbRideDataEntryError.Show();
+                return;
+            }
+            if (cbBikeDataEntrySelection.SelectedIndex < 1)
+            {
+                lbRideDataEntryError.Text = "A Bike must be selected.";
+                lbRideDataEntryError.Show();
+                return;
+            }
+            if (cbRideTypeDataEntry.SelectedIndex < 1)
+            {
+                lbRideDataEntryError.Text = "A Ride Type must be selected.";
+                lbRideDataEntryError.Show();
+                return;
+            }
+            if (cbLocationDataEntry.SelectedIndex < 1)
+            {
+                lbRideDataEntryError.Text = "A Ride Location must be selected.";
+                lbRideDataEntryError.Show();
+                return;
+            }
+            if (cbEffortRideDataEntry.SelectedIndex < 1)
+            {
+                lbRideDataEntryError.Text = "An Effort option must be selected.";
+                lbRideDataEntryError.Show();
+                return;
+            }
+            if (cbComfortRideDataEntry.SelectedIndex < 1)
+            {
+                lbRideDataEntryError.Text = "An Comfort option must be selected.";
+                lbRideDataEntryError.Show();
+                return;
+            }
+            if (tbRideDataEntryDistance.Text.Equals("") || tbRideDataEntryDistance.Text.Equals("0"))
+            {
+                lbRideDataEntryError.Text = "A Ride Distance value must be entered.";
+                lbRideDataEntryError.Show();
+                return;
+            }
+            if (tbRideDataEntryAvgSpeed.Text.Equals("") || tbRideDataEntryAvgSpeed.Text.Equals("0"))
+            {
+                lbRideDataEntryError.Text = "An Average Speed value must be entered.";
+                lbRideDataEntryError.Show();
+                return;
+            }
+
+            //***********************************************************************
+            //Check the entry type:
+            //***********************************************************************
+            Boolean addUpdateEntry = false;
+            Boolean plannedEntry = false;
 
             if (rideDisplayChange)
             {
@@ -771,103 +847,12 @@ namespace CyclingLogApplication
             }
             else
             {
-                //Determine if Add or Update:
-                //ID field = 0 -> Add otherwise Update
-                if (tbRecordID.Text.Equals("0"))
-                {
-                    changeType = "Add";
-                    procedureName = "Ride_Information_Add";
-                    DialogResult result = MessageBox.Show("Do you really want to Add a new ride entry?", "Add Ride Entry", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
-                else
-                {
-                    changeType = "Update";
-                    procedureName = "Ride_Information_Update";
-                    DialogResult result = MessageBox.Show("Do you really want to Update the ride entry?", "Update Ride Entry", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.No)
-                    {
-                        return;
-                    }
-                }
+                addUpdateEntry = true;
             }
 
             try
             {
-                //Make sure certain required fields are filled in:
-                DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-                if (dtpTimeRideDataEntry.Value == dt)
-                {
-                    lbRideDataEntryError.Text = "The Ride Time must be greater than 0:00:00.";
-                    lbRideDataEntryError.Show();
-                    return;
-                }
-                decimal avgspeed = decimal.Parse(tbRideDataEntryAvgSpeed.Text);
-                if (avgspeed == 0)
-                {
-                    lbRideDataEntryError.Text = "The Average Speed must be greater than 0.";
-                    lbRideDataEntryError.Show();
-                    return;
-                }
-                if (cbLogYearDataEntry.SelectedIndex < 1)
-                {
-                    lbRideDataEntryError.Text = "A Log year must be selected.";
-                    lbRideDataEntryError.Show();
-                    return;
-                }
-                if (cbRouteDataEntry.SelectedIndex < 1)
-                {
-                    lbRideDataEntryError.Text = "A Route must be selected.";
-                    lbRideDataEntryError.Show();
-                    return;
-                }
-                if (cbBikeDataEntrySelection.SelectedIndex < 1)
-                {
-                    lbRideDataEntryError.Text = "A Bike must be selected.";
-                    lbRideDataEntryError.Show();
-                    return;
-                }
-                if (cbRideTypeDataEntry.SelectedIndex < 1)
-                {
-                    lbRideDataEntryError.Text = "A Ride Type must be selected.";
-                    lbRideDataEntryError.Show();
-                    return;
-                }
-                if (cbLocationDataEntry.SelectedIndex < 1)
-                {
-                    lbRideDataEntryError.Text = "A Ride Location must be selected.";
-                    lbRideDataEntryError.Show();
-                    return;
-                }
-                if (cbEffortRideDataEntry.SelectedIndex < 1)
-                {
-                    lbRideDataEntryError.Text = "An Effort option must be selected.";
-                    lbRideDataEntryError.Show();
-                    return;
-                }
-                if (cbComfortRideDataEntry.SelectedIndex < 1)
-                {
-                    lbRideDataEntryError.Text = "An Comfort option must be selected.";
-                    lbRideDataEntryError.Show();
-                    return;
-                }
-                if (tbRideDataEntryDistance.Text.Equals("") || tbRideDataEntryDistance.Text.Equals("0"))
-                {
-                    lbRideDataEntryError.Text = "A Ride Distance value must be entered.";
-                    lbRideDataEntryError.Show();
-                    return;
-                }
-                if (tbRideDataEntryAvgSpeed.Text.Equals("") || tbRideDataEntryAvgSpeed.Text.Equals("0"))
-                {
-                    lbRideDataEntryError.Text = "An Average Speed value must be entered.";
-                    lbRideDataEntryError.Show();
-                    return;
-                }
-
-                //===============================
+                string plannedEntryID = "";
                 string year = "";
                 List<object> objectValuesLogYear = new List<object>();
                 objectValuesLogYear.Add(cbLogYearDataEntry.SelectedItem);
@@ -913,20 +898,87 @@ namespace CyclingLogApplication
                 List<object> objectValuesRideDate = new List<object>();
                 objectValuesRideDate.Add(dtpRideDate.Value);
                 objectValuesRideDate.Add(logIndex);
-                string entryID = "0";
+                int recordCount = 0;
 
-                using (var results = ExecuteSimpleQueryConnection("CheckRideDate", objectValuesRideDate))
+                using (var results = ExecuteSimpleQueryConnection("CheckRideDateCount", objectValuesRideDate)) //and RideDistance IS NOT NULL
                 {
                     if (results.HasRows)
                     {
                         while (results.Read())
                         {
-                            entryID = results[0].ToString();
+                            recordCount = int.Parse(results[0].ToString());
                         }
                     }
-                    else
+                }
+
+                //TODO: Check if a plan entry exists:
+                if (addUpdateEntry)
+                {
+                    List<object> objectValuesPlanEntry = new List<object>
                     {
-                        //No matching date found
+                        logIndex,
+                        dtpRideDate.Value
+                    };                  
+                    
+                    if (recordCount == 0)
+                    {
+                        using (var results = ExecuteSimpleQueryConnection("GetPlannedValueEntryID", objectValuesPlanEntry))
+                        {
+                            if (results.HasRows)
+                            {
+                                while (results.Read())
+                                {
+                                    plannedEntryID = results[0].ToString();
+                                }
+                            }
+                        }
+
+                        //Record Count is 0 and an ID is found, this means a planner entry was found:
+                        if (plannedEntryID.Equals("") || plannedEntryID.Equals("0"))
+                        {
+                            changeType = "Add";
+                            procedureName = "Ride_Information_Add";
+                            DialogResult result = MessageBox.Show("Do you really want to Add a new ride entry?", "Add Ride Entry", MessageBoxButtons.YesNo);
+                            if (result == DialogResult.No)
+                            {
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            changeType = "Update";
+                            plannedEntry = true;
+                            procedureName = "Ride_Information_Update";
+                            DialogResult result = MessageBox.Show("Do you really want to Update the ride entry?", "Update Ride Entry", MessageBoxButtons.YesNo);
+                            if (result == DialogResult.No)
+                            {
+                                return;
+                            }
+                        }
+                    } else
+                    {
+                        //Determine if Add or Update:
+                        //ID field = 0 -> Add otherwise Update
+                        if (tbRecordID.Text.Equals("0"))
+                        {
+                            changeType = "Add";
+                            procedureName = "Ride_Information_Add";
+                            DialogResult result = MessageBox.Show("Do you really want to Add a new ride entry?", "Add Ride Entry", MessageBoxButtons.YesNo);
+                            if (result == DialogResult.No)
+                            {
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            changeType = "Update";
+                            procedureName = "Ride_Information_Update";
+                            DialogResult result = MessageBox.Show("Do you really want to Update the ride entry?", "Update Ride Entry", MessageBoxButtons.YesNo);
+                            if (result == DialogResult.No)
+                            {
+                                return;
+                            }
+                        }
                     }
                 }
 
@@ -934,7 +986,7 @@ namespace CyclingLogApplication
 
                 //MessageBox.Show("Record ID value: " + recordID);
 
-                if (changeType.Equals("Update"))
+                if (changeType.Equals("Update") && recordCount > 0)
                 {
                     if (tbRecordID.Text.Equals("0"))
                     {
@@ -946,7 +998,7 @@ namespace CyclingLogApplication
                 }
 
                 // Check recordID value:
-                if (!entryID.Equals("0") && changeType.Equals("Add"))
+                if (recordCount > 0 && changeType.Equals("Add"))
                 {
                     DialogResult result = MessageBox.Show("Detected that the selected date already has an entry saved to the database. Do you want to continue adding this entry?", "Add Ride Data", MessageBoxButtons.YesNo);
                     if (result == DialogResult.No)
@@ -1211,7 +1263,12 @@ namespace CyclingLogApplication
                 objectValues.Add(tbCustom1.Text);                                                //Custom1
                 objectValues.Add(tbCustom2.Text);                                                //Custom2
 
-                if (changeType.Equals("Update") || changeType.Equals("DisplayUpdate"))
+
+                if (plannedEntry)
+                {
+                    objectValues.Add(plannedEntryID);                                         //Record ID:
+                }
+                else if (changeType.Equals("Update") || changeType.Equals("DisplayUpdate"))
                 {
                     objectValues.Add(GetEntryID().ToString());                                         //Record ID:
                 }
