@@ -121,6 +121,7 @@ namespace CyclingLogApplication
             string checkListBoxItemNAME23 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME23").InnerText;
             string checkListBoxItemNAME24 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME24").InnerText;
             string checkListBoxItemNAME25 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME25").InnerText;
+            string checkListBoxItemNAME26 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXNAME26").InnerText;
 
             string checkListBoxItemCHECK0 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK0").InnerText;
             string checkListBoxItemCHECK1 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK1").InnerText;
@@ -148,6 +149,7 @@ namespace CyclingLogApplication
             string checkListBoxItemCHECK23 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK23").InnerText;
             string checkListBoxItemCHECK24 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK24").InnerText;
             string checkListBoxItemCHECK25 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK25").InnerText;
+            string checkListBoxItemCHECK26 = nodes.Item(0).SelectSingleNode("CHECKEDLISTBOXCHECK26").InnerText;
 
             fieldCheckDictionary.Add(checkListBoxItemNAME0, checkListBoxItemCHECK0);
             fieldCheckDictionary.Add(checkListBoxItemNAME1, checkListBoxItemCHECK1);
@@ -175,6 +177,7 @@ namespace CyclingLogApplication
             fieldCheckDictionary.Add(checkListBoxItemNAME23, checkListBoxItemCHECK23);
             fieldCheckDictionary.Add(checkListBoxItemNAME24, checkListBoxItemCHECK24);
             fieldCheckDictionary.Add(checkListBoxItemNAME25, checkListBoxItemCHECK25);
+            fieldCheckDictionary.Add(checkListBoxItemNAME26, checkListBoxItemCHECK26);
 
             //int heightCLB = 394;
             //int numberRemoved = 0;
@@ -544,6 +547,10 @@ namespace CyclingLogApplication
                     XmlNode checkedItemNode25 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME25");
                     checkedItemNode25.InnerText = "Custom2";
                     rootNode.AppendChild(checkedItemNode25);
+
+                    XmlNode checkedItemNode26 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME26");
+                    checkedItemNode26.InnerText = "Planned";
+                    rootNode.AppendChild(checkedItemNode26);
                     //**********************************************************************
                     XmlNode checkedItemNodeCHECK0 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK0");
                     checkedItemNodeCHECK0.InnerText = "True";
@@ -648,6 +655,10 @@ namespace CyclingLogApplication
                     XmlNode checkedItemNodeCHECK25 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK25");
                     checkedItemNodeCHECK25.InnerText = "False";
                     rootNode.AppendChild(checkedItemNodeCHECK25);
+
+                    XmlNode checkedItemNodeCHECK26 = xmlDoc.CreateElement("CHECKEDLISTBOXCHECK26");
+                    checkedItemNodeCHECK26.InnerText = "False";
+                    rootNode.AppendChild(checkedItemNodeCHECK26);
                     //**********************************************************************
 
                     XmlNode logLevelNode = xmlDoc.CreateElement("LOGLEVEL");
@@ -798,6 +809,7 @@ namespace CyclingLogApplication
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK23").InnerText = fieldDictionary.Values.ElementAt(23);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK24").InnerText = fieldDictionary.Values.ElementAt(24);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK25").InnerText = fieldDictionary.Values.ElementAt(25);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK26").InnerText = fieldDictionary.Values.ElementAt(26);
 
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME0").InnerText = fieldDictionary.Keys.ElementAt(0);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME1").InnerText = fieldDictionary.Keys.ElementAt(1);
@@ -825,6 +837,7 @@ namespace CyclingLogApplication
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME23").InnerText = fieldDictionary.Keys.ElementAt(23);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME24").InnerText = fieldDictionary.Keys.ElementAt(24);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME25").InnerText = fieldDictionary.Keys.ElementAt(25);
+                    xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXNAME26").InnerText = fieldDictionary.Keys.ElementAt(26);
 
                     xmlDoc.SelectSingleNode("/Config/LastLogSelected").InnerText = lastLogSelected.ToString();
                     xmlDoc.SelectSingleNode("/Config/LastBikeSelected").InnerText = lastBikeSelected.ToString();

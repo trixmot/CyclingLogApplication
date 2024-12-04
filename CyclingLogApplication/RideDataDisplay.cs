@@ -114,15 +114,15 @@ namespace CyclingLogApplication
                     }
                 }
 
-                int heightCLB = 394;
+                int heightCLB = 409;
 
                 if (numberRemoved == 1)
                 {
-                    heightCLB = 379;
+                    heightCLB = 394;
                 }
                 else if (numberRemoved == 2)
                 {
-                    heightCLB = 364;
+                    heightCLB = 379;
                 }
 
                 string gridOrder = MainForm.GetGridOrder();

@@ -1370,6 +1370,7 @@ namespace CyclingLogApplication
 
             lbRideDataEntryError.Text = "";
             lbRideDataEntryError.Hide();
+            double avgSpeed = 0;
 
             // Only the Summary line is required:
             try
@@ -1505,6 +1506,8 @@ namespace CyclingLogApplication
                     tbRideDataEntryAvgSpeed.Text = garminDataDictionary["\"Avg Speed\""];
                 }
 
+                avgSpeed = double.Parse(tbRideDataEntryAvgSpeed.Text);
+
                 if (garminDataDictionary.TryGetValue("\"Max Speed\"", out value))
                 {
                     max_speed.Text = value;
@@ -1531,8 +1534,14 @@ namespace CyclingLogApplication
                     tbRideEntryTemp.Text = decimal.Round(System.Convert.ToDecimal(value), 2, MidpointRounding.AwayFromZero).ToString();
                 }
 
-                calories.Text = garminDataDictionary["\"Calories\""];
-
+                if (garminDataDictionary.ContainsKey("\"Calories\""))
+                {
+                    calories.Text = garminDataDictionary["\"Calories\""];
+                } else
+                {
+                    calories.Text = "";
+                }
+                
             }
             catch (Exception ex)
             {
@@ -1541,18 +1550,35 @@ namespace CyclingLogApplication
             }
 
             double windChill;
-            double maxSpeed = double.Parse(max_speed.Text);
-            double temperature = double.Parse(tbRideEntryTemp.Text.ToString());
-            if (maxSpeed > 0 && temperature > 0)
+            double maxSpeed;
+
+            if (max_speed.Text.Equals(""))
             {
-                windChill = 35.74 + 0.6215 * temperature + (0.4275 * temperature - 35.75) * Math.Pow(maxSpeed, 0.16);
+                maxSpeed = avgSpeed;
             } else
             {
-                windChill = temperature;
+                maxSpeed = double.Parse(max_speed.Text);
             }
 
-            windChill = Math.Round(windChill, 1);
-            tbRideEntryWindChill.Text = windChill.ToString();
+            if (tbRideEntryTemp.Text.Equals(""))
+            {
+                tbRideEntryWindChill.Text = "";
+            } else
+            {
+                double temperature = double.Parse(tbRideEntryTemp.Text.ToString());
+
+                if (maxSpeed > 0 && temperature > 0)
+                {
+                    windChill = 35.74 + 0.6215 * temperature + (0.4275 * temperature - 35.75) * Math.Pow(maxSpeed, 0.16);
+                }
+                else
+                {
+                    windChill = temperature;
+                }
+
+                windChill = Math.Round(windChill, 1);
+                tbRideEntryWindChill.Text = windChill.ToString();
+            }                    
         }
 
         // Used to clear the form on date changes:

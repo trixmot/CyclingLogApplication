@@ -52,29 +52,26 @@
             this.lbDay7 = new System.Windows.Forms.Label();
             this.btSavePlanner = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btDeletePlanner = new System.Windows.Forms.Button();
             this.btClearPlanned = new System.Windows.Forms.Button();
+            this.lbPlannerError = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbPlannerDate = new System.Windows.Forms.ComboBox();
-            this.lbPlannerError = new System.Windows.Forms.Label();
-            this.btDeletePlanner = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlanner)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewPlanner
             // 
             this.dataGridViewPlanner.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPlanner.Location = new System.Drawing.Point(45, 175);
+            this.dataGridViewPlanner.Location = new System.Drawing.Point(45, 181);
             this.dataGridViewPlanner.Name = "dataGridViewPlanner";
             this.dataGridViewPlanner.Size = new System.Drawing.Size(904, 587);
             this.dataGridViewPlanner.TabIndex = 0;
-            this.dataGridViewPlanner.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPlanner_CellContentClick);
             // 
             // btClosePlanner
             // 
-            this.btClosePlanner.Location = new System.Drawing.Point(803, 18);
+            this.btClosePlanner.Location = new System.Drawing.Point(791, 127);
             this.btClosePlanner.Name = "btClosePlanner";
             this.btClosePlanner.Size = new System.Drawing.Size(75, 23);
             this.btClosePlanner.TabIndex = 16;
@@ -99,16 +96,15 @@
             "October",
             "November",
             "December"});
-            this.cbPlannerMonth.Location = new System.Drawing.Point(239, 28);
+            this.cbPlannerMonth.Location = new System.Drawing.Point(29, 73);
             this.cbPlannerMonth.Name = "cbPlannerMonth";
-            this.cbPlannerMonth.Size = new System.Drawing.Size(121, 21);
+            this.cbPlannerMonth.Size = new System.Drawing.Size(122, 21);
             this.cbPlannerMonth.TabIndex = 18;
-            this.cbPlannerMonth.SelectedIndexChanged += new System.EventHandler(this.RunPlanner);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(236, 12);
+            this.label9.Location = new System.Drawing.Point(26, 57);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(37, 13);
             this.label9.TabIndex = 19;
@@ -117,16 +113,15 @@
             // cbPlannerLogs
             // 
             this.cbPlannerLogs.FormattingEnabled = true;
-            this.cbPlannerLogs.Location = new System.Drawing.Point(26, 28);
+            this.cbPlannerLogs.Location = new System.Drawing.Point(30, 32);
             this.cbPlannerLogs.Name = "cbPlannerLogs";
             this.cbPlannerLogs.Size = new System.Drawing.Size(185, 21);
             this.cbPlannerLogs.TabIndex = 20;
-            this.cbPlannerLogs.SelectedIndexChanged += new System.EventHandler(this.cbPlannerLogs_SelectedIndexChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(23, 12);
+            this.label11.Location = new System.Drawing.Point(27, 16);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(48, 13);
             this.label11.TabIndex = 21;
@@ -134,7 +129,7 @@
             // 
             // brRefreshPlanner
             // 
-            this.brRefreshPlanner.Location = new System.Drawing.Point(715, 18);
+            this.brRefreshPlanner.Location = new System.Drawing.Point(791, 16);
             this.brRefreshPlanner.Name = "brRefreshPlanner";
             this.brRefreshPlanner.Size = new System.Drawing.Size(75, 23);
             this.brRefreshPlanner.TabIndex = 23;
@@ -144,7 +139,7 @@
             // 
             // tbDayPlanner2
             // 
-            this.tbDayPlanner2.Location = new System.Drawing.Point(239, 41);
+            this.tbDayPlanner2.Location = new System.Drawing.Point(305, 97);
             this.tbDayPlanner2.Name = "tbDayPlanner2";
             this.tbDayPlanner2.Size = new System.Drawing.Size(65, 20);
             this.tbDayPlanner2.TabIndex = 24;
@@ -152,7 +147,7 @@
             // 
             // tbDayPlanner3
             // 
-            this.tbDayPlanner3.Location = new System.Drawing.Point(319, 42);
+            this.tbDayPlanner3.Location = new System.Drawing.Point(377, 98);
             this.tbDayPlanner3.Name = "tbDayPlanner3";
             this.tbDayPlanner3.Size = new System.Drawing.Size(65, 20);
             this.tbDayPlanner3.TabIndex = 25;
@@ -160,7 +155,7 @@
             // 
             // tbDayPlanner4
             // 
-            this.tbDayPlanner4.Location = new System.Drawing.Point(401, 41);
+            this.tbDayPlanner4.Location = new System.Drawing.Point(450, 98);
             this.tbDayPlanner4.Name = "tbDayPlanner4";
             this.tbDayPlanner4.Size = new System.Drawing.Size(65, 20);
             this.tbDayPlanner4.TabIndex = 26;
@@ -168,7 +163,7 @@
             // 
             // tbDayPlanner5
             // 
-            this.tbDayPlanner5.Location = new System.Drawing.Point(482, 42);
+            this.tbDayPlanner5.Location = new System.Drawing.Point(524, 98);
             this.tbDayPlanner5.Name = "tbDayPlanner5";
             this.tbDayPlanner5.Size = new System.Drawing.Size(65, 20);
             this.tbDayPlanner5.TabIndex = 27;
@@ -176,7 +171,7 @@
             // 
             // tbDayPlanner6
             // 
-            this.tbDayPlanner6.Location = new System.Drawing.Point(563, 42);
+            this.tbDayPlanner6.Location = new System.Drawing.Point(598, 98);
             this.tbDayPlanner6.Name = "tbDayPlanner6";
             this.tbDayPlanner6.Size = new System.Drawing.Size(65, 20);
             this.tbDayPlanner6.TabIndex = 28;
@@ -184,7 +179,7 @@
             // 
             // tbDayPlanner7
             // 
-            this.tbDayPlanner7.Location = new System.Drawing.Point(644, 42);
+            this.tbDayPlanner7.Location = new System.Drawing.Point(671, 98);
             this.tbDayPlanner7.Name = "tbDayPlanner7";
             this.tbDayPlanner7.Size = new System.Drawing.Size(65, 20);
             this.tbDayPlanner7.TabIndex = 29;
@@ -192,7 +187,7 @@
             // 
             // tbDayPlanner1
             // 
-            this.tbDayPlanner1.Location = new System.Drawing.Point(158, 42);
+            this.tbDayPlanner1.Location = new System.Drawing.Point(233, 98);
             this.tbDayPlanner1.Name = "tbDayPlanner1";
             this.tbDayPlanner1.Size = new System.Drawing.Size(65, 20);
             this.tbDayPlanner1.TabIndex = 30;
@@ -201,7 +196,7 @@
             // lbDay1
             // 
             this.lbDay1.AutoSize = true;
-            this.lbDay1.Location = new System.Drawing.Point(155, 25);
+            this.lbDay1.Location = new System.Drawing.Point(243, 81);
             this.lbDay1.Name = "lbDay1";
             this.lbDay1.Size = new System.Drawing.Size(32, 13);
             this.lbDay1.TabIndex = 31;
@@ -210,7 +205,7 @@
             // lbDay2
             // 
             this.lbDay2.AutoSize = true;
-            this.lbDay2.Location = new System.Drawing.Point(236, 24);
+            this.lbDay2.Location = new System.Drawing.Point(314, 81);
             this.lbDay2.Name = "lbDay2";
             this.lbDay2.Size = new System.Drawing.Size(32, 13);
             this.lbDay2.TabIndex = 32;
@@ -219,7 +214,7 @@
             // lbDay3
             // 
             this.lbDay3.AutoSize = true;
-            this.lbDay3.Location = new System.Drawing.Point(316, 25);
+            this.lbDay3.Location = new System.Drawing.Point(377, 81);
             this.lbDay3.Name = "lbDay3";
             this.lbDay3.Size = new System.Drawing.Size(32, 13);
             this.lbDay3.TabIndex = 33;
@@ -228,7 +223,7 @@
             // lbDay4
             // 
             this.lbDay4.AutoSize = true;
-            this.lbDay4.Location = new System.Drawing.Point(398, 24);
+            this.lbDay4.Location = new System.Drawing.Point(460, 81);
             this.lbDay4.Name = "lbDay4";
             this.lbDay4.Size = new System.Drawing.Size(32, 13);
             this.lbDay4.TabIndex = 34;
@@ -237,7 +232,7 @@
             // lbDay5
             // 
             this.lbDay5.AutoSize = true;
-            this.lbDay5.Location = new System.Drawing.Point(479, 25);
+            this.lbDay5.Location = new System.Drawing.Point(536, 81);
             this.lbDay5.Name = "lbDay5";
             this.lbDay5.Size = new System.Drawing.Size(32, 13);
             this.lbDay5.TabIndex = 35;
@@ -246,7 +241,7 @@
             // lbDay6
             // 
             this.lbDay6.AutoSize = true;
-            this.lbDay6.Location = new System.Drawing.Point(560, 25);
+            this.lbDay6.Location = new System.Drawing.Point(607, 81);
             this.lbDay6.Name = "lbDay6";
             this.lbDay6.Size = new System.Drawing.Size(32, 13);
             this.lbDay6.TabIndex = 36;
@@ -255,7 +250,7 @@
             // lbDay7
             // 
             this.lbDay7.AutoSize = true;
-            this.lbDay7.Location = new System.Drawing.Point(641, 25);
+            this.lbDay7.Location = new System.Drawing.Point(680, 81);
             this.lbDay7.Name = "lbDay7";
             this.lbDay7.Size = new System.Drawing.Size(32, 13);
             this.lbDay7.TabIndex = 37;
@@ -263,7 +258,7 @@
             // 
             // btSavePlanner
             // 
-            this.btSavePlanner.Location = new System.Drawing.Point(764, 38);
+            this.btSavePlanner.Location = new System.Drawing.Point(791, 44);
             this.btSavePlanner.Name = "btSavePlanner";
             this.btSavePlanner.Size = new System.Drawing.Size(75, 23);
             this.btSavePlanner.TabIndex = 38;
@@ -273,50 +268,51 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Controls.Add(this.btDeletePlanner);
             this.groupBox1.Controls.Add(this.btClosePlanner);
+            this.groupBox1.Controls.Add(this.btClearPlanned);
             this.groupBox1.Controls.Add(this.lbPlannerError);
+            this.groupBox1.Controls.Add(this.btSavePlanner);
+            this.groupBox1.Controls.Add(this.lbDay3);
             this.groupBox1.Controls.Add(this.brRefreshPlanner);
+            this.groupBox1.Controls.Add(this.lbDay1);
             this.groupBox1.Controls.Add(this.cbPlannerMonth);
+            this.groupBox1.Controls.Add(this.lbDay2);
             this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.tbDayPlanner1);
             this.groupBox1.Controls.Add(this.cbPlannerLogs);
+            this.groupBox1.Controls.Add(this.lbDay4);
+            this.groupBox1.Controls.Add(this.cbPlannerDate);
+            this.groupBox1.Controls.Add(this.lbDay7);
+            this.groupBox1.Controls.Add(this.tbDayPlanner6);
+            this.groupBox1.Controls.Add(this.tbDayPlanner3);
+            this.groupBox1.Controls.Add(this.lbDay6);
+            this.groupBox1.Controls.Add(this.tbDayPlanner7);
+            this.groupBox1.Controls.Add(this.tbDayPlanner2);
+            this.groupBox1.Controls.Add(this.tbDayPlanner5);
+            this.groupBox1.Controls.Add(this.tbDayPlanner4);
+            this.groupBox1.Controls.Add(this.lbDay5);
             this.groupBox1.Location = new System.Drawing.Point(45, 10);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(904, 157);
+            this.groupBox1.Size = new System.Drawing.Size(904, 160);
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             // 
-            // groupBox2
+            // btDeletePlanner
             // 
-            this.groupBox2.Controls.Add(this.btDeletePlanner);
-            this.groupBox2.Controls.Add(this.btClearPlanned);
-            this.groupBox2.Controls.Add(this.lbDay3);
-            this.groupBox2.Controls.Add(this.lbDay1);
-            this.groupBox2.Controls.Add(this.lbDay2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.tbDayPlanner1);
-            this.groupBox2.Controls.Add(this.btSavePlanner);
-            this.groupBox2.Controls.Add(this.cbPlannerDate);
-            this.groupBox2.Controls.Add(this.tbDayPlanner6);
-            this.groupBox2.Controls.Add(this.lbDay4);
-            this.groupBox2.Controls.Add(this.tbDayPlanner7);
-            this.groupBox2.Controls.Add(this.tbDayPlanner5);
-            this.groupBox2.Controls.Add(this.lbDay5);
-            this.groupBox2.Controls.Add(this.tbDayPlanner4);
-            this.groupBox2.Controls.Add(this.tbDayPlanner2);
-            this.groupBox2.Controls.Add(this.lbDay6);
-            this.groupBox2.Controls.Add(this.tbDayPlanner3);
-            this.groupBox2.Controls.Add(this.lbDay7);
-            this.groupBox2.Location = new System.Drawing.Point(17, 52);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(867, 94);
-            this.groupBox2.TabIndex = 41;
-            this.groupBox2.TabStop = false;
+            this.btDeletePlanner.Location = new System.Drawing.Point(791, 100);
+            this.btDeletePlanner.Name = "btDeletePlanner";
+            this.btDeletePlanner.Size = new System.Drawing.Size(75, 23);
+            this.btDeletePlanner.TabIndex = 43;
+            this.btDeletePlanner.Text = "Delete";
+            this.btDeletePlanner.UseVisualStyleBackColor = true;
+            this.btDeletePlanner.Click += new System.EventHandler(this.btDeletePlanner_Click);
             // 
             // btClearPlanned
             // 
-            this.btClearPlanned.Location = new System.Drawing.Point(764, 14);
+            this.btClearPlanned.Location = new System.Drawing.Point(791, 71);
             this.btClearPlanned.Name = "btClearPlanned";
             this.btClearPlanned.Size = new System.Drawing.Size(75, 23);
             this.btClearPlanned.TabIndex = 42;
@@ -324,10 +320,20 @@
             this.btClearPlanned.UseVisualStyleBackColor = true;
             this.btClearPlanned.Click += new System.EventHandler(this.btClearPlanned_Click);
             // 
+            // lbPlannerError
+            // 
+            this.lbPlannerError.AutoSize = true;
+            this.lbPlannerError.ForeColor = System.Drawing.Color.Red;
+            this.lbPlannerError.Location = new System.Drawing.Point(342, 39);
+            this.lbPlannerError.Name = "lbPlannerError";
+            this.lbPlannerError.Size = new System.Drawing.Size(121, 13);
+            this.lbPlannerError.TabIndex = 40;
+            this.lbPlannerError.Text = "Planner error message...";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 24);
+            this.label1.Location = new System.Drawing.Point(27, 98);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(36, 13);
             this.label1.TabIndex = 41;
@@ -336,37 +342,17 @@
             // cbPlannerDate
             // 
             this.cbPlannerDate.FormattingEnabled = true;
-            this.cbPlannerDate.Location = new System.Drawing.Point(9, 40);
+            this.cbPlannerDate.Location = new System.Drawing.Point(30, 114);
             this.cbPlannerDate.Name = "cbPlannerDate";
             this.cbPlannerDate.Size = new System.Drawing.Size(121, 21);
             this.cbPlannerDate.TabIndex = 39;
             this.cbPlannerDate.SelectedIndexChanged += new System.EventHandler(this.cbPlannerDate_SelectedIndexChanged);
             // 
-            // lbPlannerError
-            // 
-            this.lbPlannerError.AutoSize = true;
-            this.lbPlannerError.ForeColor = System.Drawing.Color.Red;
-            this.lbPlannerError.Location = new System.Drawing.Point(401, 28);
-            this.lbPlannerError.Name = "lbPlannerError";
-            this.lbPlannerError.Size = new System.Drawing.Size(121, 13);
-            this.lbPlannerError.TabIndex = 40;
-            this.lbPlannerError.Text = "Planner error message...";
-            // 
-            // btDeletePlanner
-            // 
-            this.btDeletePlanner.Location = new System.Drawing.Point(764, 63);
-            this.btDeletePlanner.Name = "btDeletePlanner";
-            this.btDeletePlanner.Size = new System.Drawing.Size(75, 23);
-            this.btDeletePlanner.TabIndex = 43;
-            this.btDeletePlanner.Text = "Delete";
-            this.btDeletePlanner.UseVisualStyleBackColor = true;
-            this.btDeletePlanner.Click += new System.EventHandler(this.btDeletePlanner_Click);
-            // 
             // Planner
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(988, 782);
+            this.ClientSize = new System.Drawing.Size(988, 785);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridViewPlanner);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -376,8 +362,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlanner)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -410,7 +394,6 @@
         private System.Windows.Forms.ComboBox cbPlannerDate;
         private System.Windows.Forms.Label lbPlannerError;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btClearPlanned;
         private System.Windows.Forms.Button btDeletePlanner;
     }

@@ -69,7 +69,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1159, 681);
+            this.button1.Location = new System.Drawing.Point(32, 199);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(82, 33);
             this.button1.TabIndex = 1;
@@ -174,12 +174,12 @@
             this.checkedListBox.FormattingEnabled = true;
             this.checkedListBox.Location = new System.Drawing.Point(1124, 60);
             this.checkedListBox.Name = "checkedListBox";
-            this.checkedListBox.Size = new System.Drawing.Size(146, 364);
+            this.checkedListBox.Size = new System.Drawing.Size(146, 379);
             this.checkedListBox.TabIndex = 12;
             // 
             // btSelectAll
             // 
-            this.btSelectAll.Location = new System.Drawing.Point(35, 115);
+            this.btSelectAll.Location = new System.Drawing.Point(35, 112);
             this.btSelectAll.Name = "btSelectAll";
             this.btSelectAll.Size = new System.Drawing.Size(75, 23);
             this.btSelectAll.TabIndex = 14;
@@ -189,7 +189,7 @@
             // 
             // btDeselectAll
             // 
-            this.btDeselectAll.Location = new System.Drawing.Point(35, 144);
+            this.btDeselectAll.Location = new System.Drawing.Point(35, 140);
             this.btDeselectAll.Name = "btDeselectAll";
             this.btDeselectAll.Size = new System.Drawing.Size(75, 23);
             this.btDeselectAll.TabIndex = 15;
@@ -243,7 +243,7 @@
             // 
             // btSaveMoves
             // 
-            this.btSaveMoves.Location = new System.Drawing.Point(35, 173);
+            this.btSaveMoves.Location = new System.Drawing.Point(35, 168);
             this.btSaveMoves.Name = "btSaveMoves";
             this.btSaveMoves.Size = new System.Drawing.Size(75, 23);
             this.btSaveMoves.TabIndex = 20;
@@ -258,9 +258,10 @@
             this.groupBox1.Controls.Add(this.btSelectAll);
             this.groupBox1.Controls.Add(this.btDeselectAll);
             this.groupBox1.Controls.Add(this.UpPictureBox);
-            this.groupBox1.Location = new System.Drawing.Point(1124, 455);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Location = new System.Drawing.Point(1124, 469);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(146, 209);
+            this.groupBox1.Size = new System.Drawing.Size(146, 239);
             this.groupBox1.TabIndex = 21;
             this.groupBox1.TabStop = false;
             // 
@@ -330,7 +331,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Field);
             this.Controls.Add(this.cbFilterField);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
