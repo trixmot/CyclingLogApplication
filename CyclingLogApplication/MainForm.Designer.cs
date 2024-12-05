@@ -36,6 +36,7 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox26 = new System.Windows.Forms.GroupBox();
             this.btPlanner = new System.Windows.Forms.Button();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -86,12 +87,15 @@
             this.label62 = new System.Windows.Forms.Label();
             this.StatisticsMonthly = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label32 = new System.Windows.Forms.Label();
             this.btMonthlyStatReset = new System.Windows.Forms.Button();
             this.dataGridViewMonthly = new System.Windows.Forms.DataGridView();
             this.cbStatMonthlyLogYear = new System.Windows.Forms.ComboBox();
             this.label63 = new System.Windows.Forms.Label();
             this.StatisticsWeekly = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
             this.dataGridViewWeekly = new System.Windows.Forms.DataGridView();
             this.cbLogYearWeekly = new System.Windows.Forms.ComboBox();
             this.label65 = new System.Windows.Forms.Label();
@@ -208,9 +212,14 @@
             this.rbHideIDColumn = new System.Windows.Forms.RadioButton();
             this.rbShowIDColumn = new System.Windows.Forms.RadioButton();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.groupBox25 = new System.Windows.Forms.GroupBox();
+            this.btFirstDayCal = new System.Windows.Forms.Button();
+            this.rbFirstDaySundayCal = new System.Windows.Forms.RadioButton();
+            this.rbFirstDayMondayCal = new System.Windows.Forms.RadioButton();
+            this.groupBox24 = new System.Windows.Forms.GroupBox();
             this.btFirstDay = new System.Windows.Forms.Button();
-            this.rbFirstDayMonday = new System.Windows.Forms.RadioButton();
             this.rbFirstDaySunday = new System.Windows.Forms.RadioButton();
+            this.rbFirstDayMonday = new System.Windows.Forms.RadioButton();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -237,16 +246,8 @@
             this.label29 = new System.Windows.Forms.Label();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.groupBox24 = new System.Windows.Forms.GroupBox();
-            this.groupBox25 = new System.Windows.Forms.GroupBox();
-            this.btFirstDayCal = new System.Windows.Forms.Button();
-            this.rbFirstDaySundayCal = new System.Windows.Forms.RadioButton();
-            this.rbFirstDayMondayCal = new System.Windows.Forms.RadioButton();
-            this.groupBox26 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox26.SuspendLayout();
             this.groupBox19.SuspendLayout();
             this.groupBox17.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -282,14 +283,13 @@
             this.groupBox23.SuspendLayout();
             this.groupBox22.SuspendLayout();
             this.groupBox18.SuspendLayout();
+            this.groupBox25.SuspendLayout();
+            this.groupBox24.SuspendLayout();
             this.groupBox13.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox24.SuspendLayout();
-            this.groupBox25.SuspendLayout();
-            this.groupBox26.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbLogYearConfig
@@ -370,6 +370,16 @@
             this.groupBox1.Size = new System.Drawing.Size(792, 505);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
+            // 
+            // groupBox26
+            // 
+            this.groupBox26.Controls.Add(this.btPlanner);
+            this.groupBox26.Location = new System.Drawing.Point(528, 323);
+            this.groupBox26.Name = "groupBox26";
+            this.groupBox26.Size = new System.Drawing.Size(223, 66);
+            this.groupBox26.TabIndex = 84;
+            this.groupBox26.TabStop = false;
+            this.groupBox26.Text = "Planner";
             // 
             // btPlanner
             // 
@@ -907,6 +917,15 @@
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
             // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(65, 19);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(48, 13);
+            this.label32.TabIndex = 161;
+            this.label32.Text = "Log Title";
+            // 
             // btMonthlyStatReset
             // 
             this.btMonthlyStatReset.Location = new System.Drawing.Point(812, 33);
@@ -968,6 +987,25 @@
             this.groupBox7.Size = new System.Drawing.Size(920, 520);
             this.groupBox7.TabIndex = 130;
             this.groupBox7.TabStop = false;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(812, 33);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(56, 23);
+            this.button6.TabIndex = 180;
+            this.button6.Text = "Reset";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(65, 19);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(48, 13);
+            this.label25.TabIndex = 179;
+            this.label25.Text = "Log Title";
             // 
             // dataGridViewWeekly
             // 
@@ -3237,6 +3275,63 @@
             this.groupBox18.TabStop = false;
             this.groupBox18.Text = "First Day Of Week";
             // 
+            // groupBox25
+            // 
+            this.groupBox25.Controls.Add(this.btFirstDayCal);
+            this.groupBox25.Controls.Add(this.rbFirstDaySundayCal);
+            this.groupBox25.Controls.Add(this.rbFirstDayMondayCal);
+            this.groupBox25.Location = new System.Drawing.Point(23, 96);
+            this.groupBox25.Name = "groupBox25";
+            this.groupBox25.Size = new System.Drawing.Size(165, 65);
+            this.groupBox25.TabIndex = 30;
+            this.groupBox25.TabStop = false;
+            this.groupBox25.Text = "Calendar";
+            // 
+            // btFirstDayCal
+            // 
+            this.btFirstDayCal.Location = new System.Drawing.Point(84, 25);
+            this.btFirstDayCal.Name = "btFirstDayCal";
+            this.btFirstDayCal.Size = new System.Drawing.Size(75, 23);
+            this.btFirstDayCal.TabIndex = 28;
+            this.btFirstDayCal.Text = "Save";
+            this.btFirstDayCal.UseVisualStyleBackColor = true;
+            this.btFirstDayCal.Click += new System.EventHandler(this.btFirstDayCal_Click);
+            // 
+            // rbFirstDaySundayCal
+            // 
+            this.rbFirstDaySundayCal.AutoSize = true;
+            this.rbFirstDaySundayCal.Location = new System.Drawing.Point(9, 17);
+            this.rbFirstDaySundayCal.Name = "rbFirstDaySundayCal";
+            this.rbFirstDaySundayCal.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.rbFirstDaySundayCal.Size = new System.Drawing.Size(61, 17);
+            this.rbFirstDaySundayCal.TabIndex = 26;
+            this.rbFirstDaySundayCal.TabStop = true;
+            this.rbFirstDaySundayCal.Text = "Sunday";
+            this.rbFirstDaySundayCal.UseVisualStyleBackColor = true;
+            // 
+            // rbFirstDayMondayCal
+            // 
+            this.rbFirstDayMondayCal.AutoSize = true;
+            this.rbFirstDayMondayCal.Location = new System.Drawing.Point(9, 37);
+            this.rbFirstDayMondayCal.Name = "rbFirstDayMondayCal";
+            this.rbFirstDayMondayCal.Size = new System.Drawing.Size(63, 17);
+            this.rbFirstDayMondayCal.TabIndex = 27;
+            this.rbFirstDayMondayCal.TabStop = true;
+            this.rbFirstDayMondayCal.Text = "Monday";
+            this.rbFirstDayMondayCal.UseVisualStyleBackColor = true;
+            // 
+            // groupBox24
+            // 
+            this.groupBox24.Controls.Add(this.btFirstDay);
+            this.groupBox24.Controls.Add(this.rbFirstDaySunday);
+            this.groupBox24.Controls.Add(this.rbFirstDayMonday);
+            this.groupBox24.Location = new System.Drawing.Point(23, 26);
+            this.groupBox24.Name = "groupBox24";
+            this.groupBox24.Size = new System.Drawing.Size(165, 59);
+            this.groupBox24.TabIndex = 29;
+            this.groupBox24.TabStop = false;
+            this.groupBox24.Text = "Week Data & Planner";
+            // 
             // btFirstDay
             // 
             this.btFirstDay.Location = new System.Drawing.Point(84, 25);
@@ -3246,17 +3341,6 @@
             this.btFirstDay.Text = "Save";
             this.btFirstDay.UseVisualStyleBackColor = true;
             this.btFirstDay.Click += new System.EventHandler(this.BtFirstDay_Click);
-            // 
-            // rbFirstDayMonday
-            // 
-            this.rbFirstDayMonday.AutoSize = true;
-            this.rbFirstDayMonday.Location = new System.Drawing.Point(9, 37);
-            this.rbFirstDayMonday.Name = "rbFirstDayMonday";
-            this.rbFirstDayMonday.Size = new System.Drawing.Size(63, 17);
-            this.rbFirstDayMonday.TabIndex = 27;
-            this.rbFirstDayMonday.TabStop = true;
-            this.rbFirstDayMonday.Text = "Monday";
-            this.rbFirstDayMonday.UseVisualStyleBackColor = true;
             // 
             // rbFirstDaySunday
             // 
@@ -3269,6 +3353,17 @@
             this.rbFirstDaySunday.TabStop = true;
             this.rbFirstDaySunday.Text = "Sunday";
             this.rbFirstDaySunday.UseVisualStyleBackColor = true;
+            // 
+            // rbFirstDayMonday
+            // 
+            this.rbFirstDayMonday.AutoSize = true;
+            this.rbFirstDayMonday.Location = new System.Drawing.Point(9, 37);
+            this.rbFirstDayMonday.Name = "rbFirstDayMonday";
+            this.rbFirstDayMonday.Size = new System.Drawing.Size(63, 17);
+            this.rbFirstDayMonday.TabIndex = 27;
+            this.rbFirstDayMonday.TabStop = true;
+            this.rbFirstDayMonday.Text = "Monday";
+            this.rbFirstDayMonday.UseVisualStyleBackColor = true;
             // 
             // groupBox13
             // 
@@ -3538,107 +3633,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
             // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(65, 19);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(48, 13);
-            this.label25.TabIndex = 179;
-            this.label25.Text = "Log Title";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(65, 19);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(48, 13);
-            this.label32.TabIndex = 161;
-            this.label32.Text = "Log Title";
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(812, 33);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(56, 23);
-            this.button6.TabIndex = 180;
-            this.button6.Text = "Reset";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // groupBox24
-            // 
-            this.groupBox24.Controls.Add(this.btFirstDay);
-            this.groupBox24.Controls.Add(this.rbFirstDaySunday);
-            this.groupBox24.Controls.Add(this.rbFirstDayMonday);
-            this.groupBox24.Location = new System.Drawing.Point(23, 26);
-            this.groupBox24.Name = "groupBox24";
-            this.groupBox24.Size = new System.Drawing.Size(165, 59);
-            this.groupBox24.TabIndex = 29;
-            this.groupBox24.TabStop = false;
-            this.groupBox24.Text = "Week Data & Planner";
-            // 
-            // groupBox25
-            // 
-            this.groupBox25.Controls.Add(this.btFirstDayCal);
-            this.groupBox25.Controls.Add(this.rbFirstDaySundayCal);
-            this.groupBox25.Controls.Add(this.rbFirstDayMondayCal);
-            this.groupBox25.Location = new System.Drawing.Point(23, 96);
-            this.groupBox25.Name = "groupBox25";
-            this.groupBox25.Size = new System.Drawing.Size(165, 65);
-            this.groupBox25.TabIndex = 30;
-            this.groupBox25.TabStop = false;
-            this.groupBox25.Text = "Calendar";
-            // 
-            // btFirstDayCal
-            // 
-            this.btFirstDayCal.Location = new System.Drawing.Point(84, 25);
-            this.btFirstDayCal.Name = "btFirstDayCal";
-            this.btFirstDayCal.Size = new System.Drawing.Size(75, 23);
-            this.btFirstDayCal.TabIndex = 28;
-            this.btFirstDayCal.Text = "Save";
-            this.btFirstDayCal.UseVisualStyleBackColor = true;
-            this.btFirstDayCal.Click += new System.EventHandler(this.btFirstDayCal_Click);
-            // 
-            // rbFirstDaySundayCal
-            // 
-            this.rbFirstDaySundayCal.AutoSize = true;
-            this.rbFirstDaySundayCal.Location = new System.Drawing.Point(9, 17);
-            this.rbFirstDaySundayCal.Name = "rbFirstDaySundayCal";
-            this.rbFirstDaySundayCal.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.rbFirstDaySundayCal.Size = new System.Drawing.Size(61, 17);
-            this.rbFirstDaySundayCal.TabIndex = 26;
-            this.rbFirstDaySundayCal.TabStop = true;
-            this.rbFirstDaySundayCal.Text = "Sunday";
-            this.rbFirstDaySundayCal.UseVisualStyleBackColor = true;
-            // 
-            // rbFirstDayMondayCal
-            // 
-            this.rbFirstDayMondayCal.AutoSize = true;
-            this.rbFirstDayMondayCal.Location = new System.Drawing.Point(9, 37);
-            this.rbFirstDayMondayCal.Name = "rbFirstDayMondayCal";
-            this.rbFirstDayMondayCal.Size = new System.Drawing.Size(63, 17);
-            this.rbFirstDayMondayCal.TabIndex = 27;
-            this.rbFirstDayMondayCal.TabStop = true;
-            this.rbFirstDayMondayCal.Text = "Monday";
-            this.rbFirstDayMondayCal.UseVisualStyleBackColor = true;
-            // 
-            // groupBox26
-            // 
-            this.groupBox26.Controls.Add(this.btPlanner);
-            this.groupBox26.Location = new System.Drawing.Point(528, 323);
-            this.groupBox26.Name = "groupBox26";
-            this.groupBox26.Size = new System.Drawing.Size(223, 66);
-            this.groupBox26.TabIndex = 84;
-            this.groupBox26.TabStop = false;
-            this.groupBox26.Text = "Planner";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(1050, 713);
+            this.ControlBox = false;
             this.Controls.Add(this.button8);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -3650,6 +3651,7 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox26.ResumeLayout(false);
             this.groupBox19.ResumeLayout(false);
             this.groupBox19.PerformLayout();
             this.groupBox17.ResumeLayout(false);
@@ -3699,6 +3701,10 @@
             this.groupBox22.ResumeLayout(false);
             this.groupBox22.PerformLayout();
             this.groupBox18.ResumeLayout(false);
+            this.groupBox25.ResumeLayout(false);
+            this.groupBox25.PerformLayout();
+            this.groupBox24.ResumeLayout(false);
+            this.groupBox24.PerformLayout();
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
             this.groupBox9.ResumeLayout(false);
@@ -3708,11 +3714,6 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox24.ResumeLayout(false);
-            this.groupBox24.PerformLayout();
-            this.groupBox25.ResumeLayout(false);
-            this.groupBox25.PerformLayout();
-            this.groupBox26.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

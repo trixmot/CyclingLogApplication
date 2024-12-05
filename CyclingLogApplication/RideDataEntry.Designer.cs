@@ -38,6 +38,7 @@
             this.btRideDisplayUpdate = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
             this.groupBoxRetrieveDate = new System.Windows.Forms.GroupBox();
+            this.checkBoxCloneEntry = new System.Windows.Forms.CheckBox();
             this.label28 = new System.Windows.Forms.Label();
             this.btRetrieve = new System.Windows.Forms.Button();
             this.label24 = new System.Windows.Forms.Label();
@@ -105,7 +106,6 @@
             this.cbRideTypeDataEntry = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.checkBoxCloneEntry = new System.Windows.Forms.CheckBox();
             this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
@@ -208,6 +208,16 @@
             this.groupBoxRetrieveDate.Size = new System.Drawing.Size(158, 138);
             this.groupBoxRetrieveDate.TabIndex = 48;
             this.groupBoxRetrieveDate.TabStop = false;
+            // 
+            // checkBoxCloneEntry
+            // 
+            this.checkBoxCloneEntry.AutoSize = true;
+            this.checkBoxCloneEntry.Location = new System.Drawing.Point(45, 71);
+            this.checkBoxCloneEntry.Name = "checkBoxCloneEntry";
+            this.checkBoxCloneEntry.Size = new System.Drawing.Size(80, 17);
+            this.checkBoxCloneEntry.TabIndex = 50;
+            this.checkBoxCloneEntry.Text = "Clone Entry";
+            this.checkBoxCloneEntry.UseVisualStyleBackColor = true;
             // 
             // label28
             // 
@@ -844,16 +854,6 @@
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             // 
-            // checkBoxCloneEntry
-            // 
-            this.checkBoxCloneEntry.AutoSize = true;
-            this.checkBoxCloneEntry.Location = new System.Drawing.Point(45, 71);
-            this.checkBoxCloneEntry.Name = "checkBoxCloneEntry";
-            this.checkBoxCloneEntry.Size = new System.Drawing.Size(80, 17);
-            this.checkBoxCloneEntry.TabIndex = 50;
-            this.checkBoxCloneEntry.Text = "Clone Entry";
-            this.checkBoxCloneEntry.UseVisualStyleBackColor = true;
-            // 
             // tableRideInformationBindingSource
             // 
             this.tableRideInformationBindingSource.DataMember = "Table_Ride_Information";
@@ -873,6 +873,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 720);
+            this.ControlBox = false;
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

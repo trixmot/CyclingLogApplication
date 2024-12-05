@@ -315,6 +315,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1287, 726);
+            this.ControlBox = false;
             this.Controls.Add(this.btPrintPreview);
             this.Controls.Add(this.rbDescendingOrder);
             this.Controls.Add(this.rbAscendingOrder);
