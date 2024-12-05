@@ -59,6 +59,7 @@ namespace CyclingLogApplication
         private static string gridBikeColor;
         private static string gridRouteColor;
         private static string gridCalendarColor;
+        private static string planGoal;
 
         private static string gridMaintTextColor;
         private static string gridWeeklyTextColor;
@@ -600,6 +601,11 @@ namespace CyclingLogApplication
             return gridCalendarTextColor;
         }
 
+        public static string GetPlanGoal()
+        {
+            return planGoal;
+        }
+
         public static void SetMaintColor(string color)
         {
             gridMaintColor = color;
@@ -673,6 +679,11 @@ namespace CyclingLogApplication
         public static void SetCalendarColor(string color)
         {
             gridCalendarColor = color;
+        }
+
+        public static void SetPlanGoal(string planGoalValue)
+        {
+            planGoal = planGoalValue;
         }
 
         public static string GetCalendarColor()

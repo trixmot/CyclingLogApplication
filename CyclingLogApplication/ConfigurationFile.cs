@@ -83,6 +83,7 @@ namespace CyclingLogApplication
             string colorBike = nodes.Item(0).SelectSingleNode("COLORBIKE").InnerText;
             string colorRoute = nodes.Item(0).SelectSingleNode("COLORROUTE").InnerText;
             string colorCalendar = nodes.Item(0).SelectSingleNode("COLORCALENDAR").InnerText;
+            string planGoal = nodes.Item(0).SelectSingleNode("PLANGOAL").InnerText;
 
             string textMaint = nodes.Item(0).SelectSingleNode("COLORMAINTTEXT").InnerText;
             string textWeekly = nodes.Item(0).SelectSingleNode("COLORWEEKLYTEXT").InnerText;
@@ -233,6 +234,7 @@ namespace CyclingLogApplication
             MainForm.SetBikeColor(colorBike);
             MainForm.SetRouteColor(colorRoute);
             MainForm.SetCalendarColor(colorCalendar);
+            MainForm.SetPlanGoal(planGoal);
 
             MainForm.SetTextMaint(textMaint);
             MainForm.SetTextWeekly(textWeekly);
@@ -291,6 +293,7 @@ namespace CyclingLogApplication
             Logger.Log("Configuration Read: chartRouteSelected : " + chartRouteSelected, logLevel, 0);
             Logger.Log("Configuration Read: chartTypeSelected : " + chartTypeSelected, logLevel, 0);
             Logger.Log("Configuration Read: chartTimeTypeSelected : " + chartTimeTypeSelected, logLevel, 0);
+            Logger.Log("Configuration Read: planGoal : " + planGoal, logLevel, 0);
 
             Logger.Log("Configuration Read: lastMonthlyLogYearSelected : " + lastMonthlyLogYearSelected, logLevel, 0);
             Logger.Log("Configuration Read: lastLogYearSelectedDataEntry : " + lastLogYearSelectedDataEntry, logLevel, 0);
@@ -443,6 +446,10 @@ namespace CyclingLogApplication
                     XmlNode colorCalendarTextNode = xmlDoc.CreateElement("COLORCALENDARTEXT");
                     colorCalendarTextNode.InnerText = "True";
                     rootNode.AppendChild(colorCalendarTextNode);
+
+                    XmlNode planGoalTextNode = xmlDoc.CreateElement("PLANGOAL");
+                    planGoalTextNode.InnerText = "75";
+                    rootNode.AppendChild(planGoalTextNode);
                     //**********************************************************************
                     XmlNode checkedItemNode0 = xmlDoc.CreateElement("CHECKEDLISTBOXNAME0");
                     checkedItemNode0.InnerText = "Week Number";
@@ -741,6 +748,7 @@ namespace CyclingLogApplication
                     string textBike = MainForm.GetTextBike();
                     string textRoute = MainForm.GetTextRoute();
                     string textCalendar = MainForm.GetTextCalendar();
+                    string planGoal = MainForm.GetPlanGoal();
 
                     Dictionary<string, string> fieldDictionary = MainForm.GetFieldsDictionary();
 
@@ -782,6 +790,7 @@ namespace CyclingLogApplication
                     xmlDoc.SelectSingleNode("/Config/COLORBIKETEXT").InnerText = textBike;
                     xmlDoc.SelectSingleNode("/Config/COLORROUTETEXT").InnerText = textRoute;
                     xmlDoc.SelectSingleNode("/Config/COLORCALENDARTEXT").InnerText = textCalendar;
+                    xmlDoc.SelectSingleNode("/Config/PLANGOAL").InnerText = planGoal;
 
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK0").InnerText = fieldDictionary.Values.ElementAt(0);
                     xmlDoc.SelectSingleNode("/Config/CHECKEDLISTBOXCHECK1").InnerText = fieldDictionary.Values.ElementAt(1);
@@ -889,6 +898,7 @@ namespace CyclingLogApplication
 
                     Logger.Log("Write Config Values: lastMonthlyLogSelected written:" + lastMonthlyLogSelected, logSetting, 0);
                     Logger.Log("Write Config Values: lastLogSelectedDataEntry written:" + lastLogSelectedDataEntry, logSetting, 0);
+                    Logger.Log("Write Config Values: PLANGOAL written:" + planGoal, logSetting, 0);
 
                     xmlDoc.Save(pathFile);
                 }
