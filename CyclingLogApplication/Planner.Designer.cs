@@ -96,7 +96,7 @@
             "October",
             "November",
             "December"});
-            this.cbPlannerMonth.Location = new System.Drawing.Point(29, 73);
+            this.cbPlannerMonth.Location = new System.Drawing.Point(21, 75);
             this.cbPlannerMonth.Name = "cbPlannerMonth";
             this.cbPlannerMonth.Size = new System.Drawing.Size(122, 21);
             this.cbPlannerMonth.TabIndex = 18;
@@ -104,7 +104,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(26, 57);
+            this.label9.Location = new System.Drawing.Point(18, 59);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(37, 13);
             this.label9.TabIndex = 19;
@@ -113,7 +113,7 @@
             // cbPlannerLogs
             // 
             this.cbPlannerLogs.FormattingEnabled = true;
-            this.cbPlannerLogs.Location = new System.Drawing.Point(30, 32);
+            this.cbPlannerLogs.Location = new System.Drawing.Point(22, 34);
             this.cbPlannerLogs.Name = "cbPlannerLogs";
             this.cbPlannerLogs.Size = new System.Drawing.Size(185, 21);
             this.cbPlannerLogs.TabIndex = 20;
@@ -121,7 +121,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(27, 16);
+            this.label11.Location = new System.Drawing.Point(19, 18);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(48, 13);
             this.label11.TabIndex = 21;
@@ -324,7 +324,7 @@
             // 
             this.lbPlannerError.AutoSize = true;
             this.lbPlannerError.ForeColor = System.Drawing.Color.Red;
-            this.lbPlannerError.Location = new System.Drawing.Point(342, 39);
+            this.lbPlannerError.Location = new System.Drawing.Point(302, 40);
             this.lbPlannerError.Name = "lbPlannerError";
             this.lbPlannerError.Size = new System.Drawing.Size(121, 13);
             this.lbPlannerError.TabIndex = 40;
@@ -333,7 +333,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 98);
+            this.label1.Location = new System.Drawing.Point(19, 100);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(36, 13);
             this.label1.TabIndex = 41;
@@ -342,7 +342,7 @@
             // cbPlannerDate
             // 
             this.cbPlannerDate.FormattingEnabled = true;
-            this.cbPlannerDate.Location = new System.Drawing.Point(30, 114);
+            this.cbPlannerDate.Location = new System.Drawing.Point(22, 116);
             this.cbPlannerDate.Name = "cbPlannerDate";
             this.cbPlannerDate.Size = new System.Drawing.Size(121, 21);
             this.cbPlannerDate.TabIndex = 39;

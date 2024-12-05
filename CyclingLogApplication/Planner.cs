@@ -19,7 +19,6 @@ namespace CyclingLogApplication
         public Planner()
         {
             InitializeComponent();
-            //RunPlanner();
 
             int logSetting = MainForm.GetLogLevel();
 
@@ -84,6 +83,8 @@ namespace CyclingLogApplication
             cbPlannerLogs.SelectedIndex = logTitleIndex;
             cbPlannerMonth.SelectedIndex = DateTime.Now.Month;
             cbPlannerDate.SelectedIndex = weekCount;
+
+            RunPlanner();
         }
 
         private string GetFirstDayForMonth(int month)
@@ -96,6 +97,8 @@ namespace CyclingLogApplication
 
         private void RunPlanner()
         {
+            lbPlannerError.Text = "";
+
             if (cbPlannerMonth.SelectedIndex < 1 || cbPlannerLogs.SelectedIndex < 1)
             {
                 return;
@@ -796,6 +799,171 @@ namespace CyclingLogApplication
                 rowCount++;
                 dayCount = int.Parse(temp7);
 
+                if (!pMiles1.Equals("- -"))
+                {
+                    //Planner value not set:
+                    if (pMiles1 == null || pMiles1.Equals(""))
+                    {
+                        dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
+                    }
+                    //Planner set but no ride miles:
+                    else if (miles1.Equals("0") || miles1.Equals("OFF"))
+                    {
+                        if (pMiles1.Equals("0"))
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                        }
+                        else
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                        }
+                    }
+                    //Planner and miles available:
+                    else
+                    {
+                        double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
+                        if (compareMiles > 0.75)
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                        }
+                        else
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                        }
+                    }
+                }
+                if (!pMiles2.Equals("- -"))
+                {
+                    //Planner value not set:
+                    if (pMiles2 == null || pMiles2.Equals(""))
+                    {
+                        dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
+                    }
+                    //Planner set but no ride miles:
+                    else if (miles2.Equals("0") || miles2.Equals("OFF"))
+                    {
+                        if (pMiles2.Equals("0"))
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                        }
+                        else
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                        }
+                    }
+                    //Planner and miles available:
+                    else
+                    {
+                        double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
+                        if (compareMiles > 0.75)
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                        }
+                        else
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                        }
+                    }
+                }
+                if (!pMiles3.Equals("- -"))
+                {
+                    //Planner value not set:
+                    if (pMiles3 == null || pMiles3.Equals(""))
+                    {
+                        dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
+                    }
+                    //Planner set but no ride miles:
+                    else if (miles3.Equals("0") || miles3.Equals("OFF"))
+                    {
+                        if (pMiles3.Equals("0"))
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                        }
+                        else
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                        }
+                    }
+                    //Planner and miles available:
+                    else
+                    {
+                        double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
+                        if (compareMiles > 0.75)
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                        }
+                        else
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                        }
+                    }
+                }
+                if (!pMiles4.Equals("- -"))
+                {
+                    //Planner value not set:
+                    if (pMiles4 == null || pMiles4.Equals(""))
+                    {
+                        dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
+                    }
+                    //Planner set but no ride miles:
+                    else if (miles4.Equals("0") || miles4.Equals("OFF"))
+                    {
+                        if (pMiles4.Equals("0"))
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                        }
+                        else
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                        }
+                    }
+                    //Planner and miles available:
+                    else
+                    {
+                        double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
+                        if (compareMiles > 0.75)
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                        }
+                        else
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                        }
+                    }
+                }
+                if (!pMiles5.Equals("- -"))
+                {
+                    //Planner value not set:
+                    if (pMiles5 == null || pMiles5.Equals(""))
+                    {
+                        dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
+                    }
+                    //Planner set but no ride miles:
+                    else if (miles5.Equals("0") || miles5.Equals("OFF"))
+                    {
+                        if (pMiles5.Equals("0"))
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                        }
+                        else
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                        }
+                    }
+                    //Planner and miles available:
+                    else
+                    {
+                        double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
+                        if (compareMiles > 0.75)
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                        }
+                        else
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                        }
+                    }
+                }
                 if (!pMiles6.Equals("- -"))
                 {
                     //Planner value not set:
@@ -804,11 +972,11 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
                     }
                     //Planner set but no ride miles:
-                    else if (!miles6.Equals("0") || !miles6.Equals("OFF"))
+                    else if (miles6.Equals("0") || miles6.Equals("OFF"))
                     {
-                        if (!pMiles6.Equals("0"))
+                        if (pMiles6.Equals("0"))
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
                         }
                         else
                         {
@@ -837,11 +1005,11 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
                     }
                     //Planner set but no ride miles:
-                    else if (!miles7.Equals("0") || !miles7.Equals("OFF"))
+                    else if (miles7.Equals("0") || miles7.Equals("OFF"))
                     {
-                        if (!pMiles7.Equals("0"))
+                        if (pMiles7.Equals("0"))
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.LightGreen;
                         }
                         else
                         {
@@ -1053,6 +1221,238 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
 
+                        if (!pMiles1.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles1 == null || pMiles1.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles1.Equals("0") || miles1.Equals("OFF"))
+                            {
+                                if (pMiles1.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles2.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles2 == null || pMiles2.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles2.Equals("0") || miles2.Equals("OFF"))
+                            {
+                                if (pMiles2.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles3.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles3 == null || pMiles3.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles3.Equals("0") || miles3.Equals("OFF"))
+                            {
+                                if (pMiles3.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles4.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles4 == null || pMiles4.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles4.Equals("0") || miles4.Equals("OFF"))
+                            {
+                                if (pMiles4.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles5.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles5 == null || pMiles5.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles5.Equals("0") || miles5.Equals("OFF"))
+                            {
+                                if (pMiles5.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles6.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles6 == null || pMiles6.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles6.Equals("0") || miles6.Equals("OFF"))
+                            {
+                                if (pMiles6.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles7.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles7 == null || pMiles7.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles7.Equals("0") || miles7.Equals("OFF"))
+                            {
+                                if (pMiles7.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+
                         if (currentYearMonth)
                         {
                             //If day count matches current day number we know that all days after are future days:
@@ -1217,6 +1617,238 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
 
+                        if (!pMiles1.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles1 == null || pMiles1.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles1.Equals("0") || miles1.Equals("OFF"))
+                            {
+                                if (pMiles1.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles2.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles2 == null || pMiles2.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles2.Equals("0") || miles2.Equals("OFF"))
+                            {
+                                if (pMiles2.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles3.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles3 == null || pMiles3.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles3.Equals("0") || miles3.Equals("OFF"))
+                            {
+                                if (pMiles3.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles4.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles4 == null || pMiles4.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles4.Equals("0") || miles4.Equals("OFF"))
+                            {
+                                if (pMiles4.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles5.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles5 == null || pMiles5.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles5.Equals("0") || miles5.Equals("OFF"))
+                            {
+                                if (pMiles5.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles6.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles6 == null || pMiles6.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles6.Equals("0") || miles6.Equals("OFF"))
+                            {
+                                if (pMiles6.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles7.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles7 == null || pMiles7.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles7.Equals("0") || miles7.Equals("OFF"))
+                            {
+                                if (pMiles7.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+
                         if (currentYearMonth)
                         {
                             if (dayCount == currentDayNumber)
@@ -1378,6 +2010,238 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
+
+                        if (!pMiles1.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles1 == null || pMiles1.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles1.Equals("0") || miles1.Equals("OFF"))
+                            {
+                                if (pMiles1.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles2.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles2 == null || pMiles2.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles2.Equals("0") || miles2.Equals("OFF"))
+                            {
+                                if (pMiles2.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles3.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles3 == null || pMiles3.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles3.Equals("0") || miles3.Equals("OFF"))
+                            {
+                                if (pMiles3.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles4.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles4 == null || pMiles4.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles4.Equals("0") || miles4.Equals("OFF"))
+                            {
+                                if (pMiles4.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles5.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles5 == null || pMiles5.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles5.Equals("0") || miles5.Equals("OFF"))
+                            {
+                                if (pMiles5.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles6.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles6 == null || pMiles6.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles6.Equals("0") || miles6.Equals("OFF"))
+                            {
+                                if (pMiles6.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles7.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles7 == null || pMiles7.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles7.Equals("0") || miles7.Equals("OFF"))
+                            {
+                                if (pMiles7.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
 
                         if (currentYearMonth)
                         {
@@ -1541,6 +2405,238 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
 
+                        if (!pMiles1.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles1 == null || pMiles1.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles1.Equals("0") || miles1.Equals("OFF"))
+                            {
+                                if (pMiles1.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles2.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles2 == null || pMiles2.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles2.Equals("0") || miles2.Equals("OFF"))
+                            {
+                                if (pMiles2.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles3.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles3 == null || pMiles3.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles3.Equals("0") || miles3.Equals("OFF"))
+                            {
+                                if (pMiles3.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles4.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles4 == null || pMiles4.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles4.Equals("0") || miles4.Equals("OFF"))
+                            {
+                                if (pMiles4.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles5.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles5 == null || pMiles5.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles5.Equals("0") || miles5.Equals("OFF"))
+                            {
+                                if (pMiles5.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles6.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles6 == null || pMiles6.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles6.Equals("0") || miles6.Equals("OFF"))
+                            {
+                                if (pMiles6.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles7.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles7 == null || pMiles7.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles7.Equals("0") || miles7.Equals("OFF"))
+                            {
+                                if (pMiles7.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+
                         if (currentYearMonth)
                         {
                             if (dayCount == currentDayNumber)
@@ -1702,6 +2798,238 @@ namespace CyclingLogApplication
                         }
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
+
+                        if (!pMiles1.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles1 == null || pMiles1.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles1.Equals("0") || miles1.Equals("OFF"))
+                            {
+                                if (pMiles1.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles2.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles2 == null || pMiles2.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles2.Equals("0") || miles2.Equals("OFF"))
+                            {
+                                if (pMiles2.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles3.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles3 == null || pMiles3.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles3.Equals("0") || miles3.Equals("OFF"))
+                            {
+                                if (pMiles3.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles4.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles4 == null || pMiles4.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles4.Equals("0") || miles4.Equals("OFF"))
+                            {
+                                if (pMiles4.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles5.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles5 == null || pMiles5.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles5.Equals("0") || miles5.Equals("OFF"))
+                            {
+                                if (pMiles5.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles6.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles6 == null || pMiles6.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles6.Equals("0") || miles6.Equals("OFF"))
+                            {
+                                if (pMiles6.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles7.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles7 == null || pMiles7.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles7.Equals("0") || miles7.Equals("OFF"))
+                            {
+                                if (pMiles7.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
 
                         if (currentYearMonth)
                         {
@@ -2169,23 +3497,225 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount].Cells[4].Style.ForeColor = textColor;
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.ForeColor = textColor;
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.ForeColor = textColor;
+                        if (!pMiles1.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles1 == null || pMiles1.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles1.Equals("0") || miles1.Equals("OFF"))
+                            {
+                                if (pMiles1.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles2.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles2 == null || pMiles2.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles2.Equals("0") || miles2.Equals("OFF"))
+                            {
+                                if (pMiles2.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles3.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles3 == null || pMiles3.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles3.Equals("0") || miles3.Equals("OFF"))
+                            {
+                                if (pMiles3.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles4.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles4 == null || pMiles4.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles4.Equals("0") || miles4.Equals("OFF"))
+                            {
+                                if (pMiles4.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
+                        if (!pMiles5.Equals("- -"))
+                        {
+                            //Planner value not set:
+                            if (pMiles5 == null || pMiles5.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles5.Equals("0") || miles5.Equals("OFF"))
+                            {
+                                if (pMiles5.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
+                            {
+                                double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
+                                if (compareMiles > 0.75)
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                        }
                         if (!pMiles6.Equals("- -"))
                         {
-                            if (!miles6.Equals("0"))
+                            //Planner value not set:
+                            if (pMiles6 == null || pMiles6.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles6.Equals("0") || miles6.Equals("OFF"))
+                            {
+                                if (pMiles6.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
                             {
                                 double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
                                 if (compareMiles > 0.75)
                                 {
-                                    dataGridViewPlanner.Rows[rowCount-1].Cells[5].Style.BackColor = Color.LightGreen;
-                                } else
-                                {
-                                    dataGridViewPlanner.Rows[rowCount-1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
                                 }
-                            }                         
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                }
+                            }
                         }
                         if (!pMiles7.Equals("- -"))
                         {
-                            if (!miles7.Equals("0"))
+                            //Planner value not set:
+                            if (pMiles7 == null || pMiles7.Equals(""))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
+                            }
+                            //Planner set but no ride miles:
+                            else if (miles7.Equals("0") || miles7.Equals("OFF"))
+                            {
+                                if (pMiles7.Equals("0"))
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.LightGreen;
+                                }
+                                else
+                                {
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                }
+                            }
+                            //Planner and miles available:
+                            else
                             {
                                 double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
                                 if (compareMiles > 0.75)
@@ -2566,6 +4096,7 @@ namespace CyclingLogApplication
 
         private void btSavePlanner_Click(object sender, EventArgs e)
         {
+            lbPlannerError.Text = "";
             lbPlannerError.Hide();          
 
             //*****************************************************************************
@@ -2935,6 +4466,7 @@ namespace CyclingLogApplication
 
         private void cbPlannerDate_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lbPlannerError.Text = "";
             string dateString = cbPlannerDate.SelectedItem.ToString();
             if (dateString.Contains("--Select Value--"))
             {
@@ -3066,6 +4598,8 @@ namespace CyclingLogApplication
 
         private void btClearPlanned_Click(object sender, EventArgs e)
         {
+            lbPlannerError.Text = "";
+
             tbDayPlanner1.Text = "- -";
             tbDayPlanner2.Text = "- -";
             tbDayPlanner3.Text = "- -";
@@ -3077,6 +4611,8 @@ namespace CyclingLogApplication
 
         private void btDeletePlanner_Click(object sender, EventArgs e)
         {
+            lbPlannerError.Text = "";
+
             //Check current plan values, if '-  -' then return:
             if (tbDayPlanner1.Text.Equals("- -") && tbDayPlanner2.Text.Equals("- -") && tbDayPlanner3.Text.Equals("- -") && tbDayPlanner4.Text.Equals("- -") && tbDayPlanner5.Text.Equals("- -") && tbDayPlanner6.Text.Equals("- -") && tbDayPlanner7.Text.Equals("- -"))
             {
