@@ -57,6 +57,7 @@
             this.lbPlannerError = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbPlannerDate = new System.Windows.Forms.ComboBox();
+            this.label62 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlanner)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -139,7 +140,7 @@
             // 
             // tbDayPlanner2
             // 
-            this.tbDayPlanner2.Location = new System.Drawing.Point(305, 97);
+            this.tbDayPlanner2.Location = new System.Drawing.Point(305, 107);
             this.tbDayPlanner2.Name = "tbDayPlanner2";
             this.tbDayPlanner2.Size = new System.Drawing.Size(65, 20);
             this.tbDayPlanner2.TabIndex = 24;
@@ -147,7 +148,7 @@
             // 
             // tbDayPlanner3
             // 
-            this.tbDayPlanner3.Location = new System.Drawing.Point(377, 98);
+            this.tbDayPlanner3.Location = new System.Drawing.Point(377, 108);
             this.tbDayPlanner3.Name = "tbDayPlanner3";
             this.tbDayPlanner3.Size = new System.Drawing.Size(65, 20);
             this.tbDayPlanner3.TabIndex = 25;
@@ -155,7 +156,7 @@
             // 
             // tbDayPlanner4
             // 
-            this.tbDayPlanner4.Location = new System.Drawing.Point(450, 98);
+            this.tbDayPlanner4.Location = new System.Drawing.Point(450, 108);
             this.tbDayPlanner4.Name = "tbDayPlanner4";
             this.tbDayPlanner4.Size = new System.Drawing.Size(65, 20);
             this.tbDayPlanner4.TabIndex = 26;
@@ -163,7 +164,7 @@
             // 
             // tbDayPlanner5
             // 
-            this.tbDayPlanner5.Location = new System.Drawing.Point(524, 98);
+            this.tbDayPlanner5.Location = new System.Drawing.Point(524, 108);
             this.tbDayPlanner5.Name = "tbDayPlanner5";
             this.tbDayPlanner5.Size = new System.Drawing.Size(65, 20);
             this.tbDayPlanner5.TabIndex = 27;
@@ -171,7 +172,7 @@
             // 
             // tbDayPlanner6
             // 
-            this.tbDayPlanner6.Location = new System.Drawing.Point(598, 98);
+            this.tbDayPlanner6.Location = new System.Drawing.Point(598, 108);
             this.tbDayPlanner6.Name = "tbDayPlanner6";
             this.tbDayPlanner6.Size = new System.Drawing.Size(65, 20);
             this.tbDayPlanner6.TabIndex = 28;
@@ -179,7 +180,7 @@
             // 
             // tbDayPlanner7
             // 
-            this.tbDayPlanner7.Location = new System.Drawing.Point(671, 98);
+            this.tbDayPlanner7.Location = new System.Drawing.Point(671, 108);
             this.tbDayPlanner7.Name = "tbDayPlanner7";
             this.tbDayPlanner7.Size = new System.Drawing.Size(65, 20);
             this.tbDayPlanner7.TabIndex = 29;
@@ -187,7 +188,7 @@
             // 
             // tbDayPlanner1
             // 
-            this.tbDayPlanner1.Location = new System.Drawing.Point(233, 98);
+            this.tbDayPlanner1.Location = new System.Drawing.Point(233, 108);
             this.tbDayPlanner1.Name = "tbDayPlanner1";
             this.tbDayPlanner1.Size = new System.Drawing.Size(65, 20);
             this.tbDayPlanner1.TabIndex = 30;
@@ -196,7 +197,7 @@
             // lbDay1
             // 
             this.lbDay1.AutoSize = true;
-            this.lbDay1.Location = new System.Drawing.Point(243, 81);
+            this.lbDay1.Location = new System.Drawing.Point(243, 91);
             this.lbDay1.Name = "lbDay1";
             this.lbDay1.Size = new System.Drawing.Size(32, 13);
             this.lbDay1.TabIndex = 31;
@@ -205,7 +206,7 @@
             // lbDay2
             // 
             this.lbDay2.AutoSize = true;
-            this.lbDay2.Location = new System.Drawing.Point(314, 81);
+            this.lbDay2.Location = new System.Drawing.Point(314, 91);
             this.lbDay2.Name = "lbDay2";
             this.lbDay2.Size = new System.Drawing.Size(32, 13);
             this.lbDay2.TabIndex = 32;
@@ -214,7 +215,7 @@
             // lbDay3
             // 
             this.lbDay3.AutoSize = true;
-            this.lbDay3.Location = new System.Drawing.Point(377, 81);
+            this.lbDay3.Location = new System.Drawing.Point(377, 91);
             this.lbDay3.Name = "lbDay3";
             this.lbDay3.Size = new System.Drawing.Size(32, 13);
             this.lbDay3.TabIndex = 33;
@@ -223,7 +224,7 @@
             // lbDay4
             // 
             this.lbDay4.AutoSize = true;
-            this.lbDay4.Location = new System.Drawing.Point(460, 81);
+            this.lbDay4.Location = new System.Drawing.Point(460, 91);
             this.lbDay4.Name = "lbDay4";
             this.lbDay4.Size = new System.Drawing.Size(32, 13);
             this.lbDay4.TabIndex = 34;
@@ -232,7 +233,7 @@
             // lbDay5
             // 
             this.lbDay5.AutoSize = true;
-            this.lbDay5.Location = new System.Drawing.Point(536, 81);
+            this.lbDay5.Location = new System.Drawing.Point(536, 91);
             this.lbDay5.Name = "lbDay5";
             this.lbDay5.Size = new System.Drawing.Size(32, 13);
             this.lbDay5.TabIndex = 35;
@@ -241,7 +242,7 @@
             // lbDay6
             // 
             this.lbDay6.AutoSize = true;
-            this.lbDay6.Location = new System.Drawing.Point(607, 81);
+            this.lbDay6.Location = new System.Drawing.Point(607, 91);
             this.lbDay6.Name = "lbDay6";
             this.lbDay6.Size = new System.Drawing.Size(32, 13);
             this.lbDay6.TabIndex = 36;
@@ -250,7 +251,7 @@
             // lbDay7
             // 
             this.lbDay7.AutoSize = true;
-            this.lbDay7.Location = new System.Drawing.Point(680, 81);
+            this.lbDay7.Location = new System.Drawing.Point(680, 91);
             this.lbDay7.Name = "lbDay7";
             this.lbDay7.Size = new System.Drawing.Size(32, 13);
             this.lbDay7.TabIndex = 37;
@@ -268,6 +269,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label62);
             this.groupBox1.Controls.Add(this.btDeletePlanner);
             this.groupBox1.Controls.Add(this.btClosePlanner);
             this.groupBox1.Controls.Add(this.btClearPlanned);
@@ -324,7 +326,7 @@
             // 
             this.lbPlannerError.AutoSize = true;
             this.lbPlannerError.ForeColor = System.Drawing.Color.Red;
-            this.lbPlannerError.Location = new System.Drawing.Point(302, 40);
+            this.lbPlannerError.Location = new System.Drawing.Point(371, 64);
             this.lbPlannerError.Name = "lbPlannerError";
             this.lbPlannerError.Size = new System.Drawing.Size(121, 13);
             this.lbPlannerError.TabIndex = 40;
@@ -347,6 +349,16 @@
             this.cbPlannerDate.Size = new System.Drawing.Size(121, 21);
             this.cbPlannerDate.TabIndex = 39;
             this.cbPlannerDate.SelectedIndexChanged += new System.EventHandler(this.cbPlannerDate_SelectedIndexChanged);
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Location = new System.Drawing.Point(336, 22);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(215, 28);
+            this.label62.TabIndex = 64;
+            this.label62.Text = "Planner Calendar";
             // 
             // Planner
             // 
@@ -398,5 +410,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btClearPlanned;
         private System.Windows.Forms.Button btDeletePlanner;
+        private System.Windows.Forms.Label label62;
     }
 }

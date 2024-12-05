@@ -802,7 +802,7 @@ namespace CyclingLogApplication
                 if (!pMiles1.Equals("- -"))
                 {
                     //Planner value not set:
-                    if (pMiles1 == null || pMiles1.Equals(""))
+                    if (pMiles1 == null || pMiles1.Equals("") || miles1.Equals(""))
                     {
                         dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
                     }
@@ -821,6 +821,7 @@ namespace CyclingLogApplication
                     //Planner and miles available:
                     else
                     {
+                        miles1 = miles1.Replace(" miles", "");
                         double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
                         if (compareMiles > 0.75)
                         {
@@ -835,7 +836,7 @@ namespace CyclingLogApplication
                 if (!pMiles2.Equals("- -"))
                 {
                     //Planner value not set:
-                    if (pMiles2 == null || pMiles2.Equals(""))
+                    if (pMiles2 == null || pMiles2.Equals("") || miles2.Equals(""))
                     {
                         dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
                     }
@@ -854,6 +855,7 @@ namespace CyclingLogApplication
                     //Planner and miles available:
                     else
                     {
+                        miles2 = miles2.Replace(" miles", "");
                         double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
                         if (compareMiles > 0.75)
                         {
@@ -868,7 +870,7 @@ namespace CyclingLogApplication
                 if (!pMiles3.Equals("- -"))
                 {
                     //Planner value not set:
-                    if (pMiles3 == null || pMiles3.Equals(""))
+                    if (pMiles3 == null || pMiles3.Equals("") || miles3.Equals(""))
                     {
                         dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
                     }
@@ -887,6 +889,7 @@ namespace CyclingLogApplication
                     //Planner and miles available:
                     else
                     {
+                        miles3 = miles3.Replace(" miles", "");
                         double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
                         if (compareMiles > 0.75)
                         {
@@ -901,7 +904,7 @@ namespace CyclingLogApplication
                 if (!pMiles4.Equals("- -"))
                 {
                     //Planner value not set:
-                    if (pMiles4 == null || pMiles4.Equals(""))
+                    if (pMiles4 == null || pMiles4.Equals("") || miles4.Equals(""))
                     {
                         dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
                     }
@@ -920,6 +923,7 @@ namespace CyclingLogApplication
                     //Planner and miles available:
                     else
                     {
+                        miles4 = miles4.Replace(" miles", "");
                         double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
                         if (compareMiles > 0.75)
                         {
@@ -934,7 +938,7 @@ namespace CyclingLogApplication
                 if (!pMiles5.Equals("- -"))
                 {
                     //Planner value not set:
-                    if (pMiles5 == null || pMiles5.Equals(""))
+                    if (pMiles5 == null || pMiles5.Equals("") || miles5.Equals(""))
                     {
                         dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
                     }
@@ -953,6 +957,7 @@ namespace CyclingLogApplication
                     //Planner and miles available:
                     else
                     {
+                        miles5 = miles5.Replace(" miles", "");
                         double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
                         if (compareMiles > 0.75)
                         {
@@ -967,7 +972,7 @@ namespace CyclingLogApplication
                 if (!pMiles6.Equals("- -"))
                 {
                     //Planner value not set:
-                    if (pMiles6 == null || pMiles6.Equals(""))
+                    if (pMiles6 == null || pMiles6.Equals("") || miles6.Equals(""))
                     {
                         dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
                     }
@@ -986,6 +991,7 @@ namespace CyclingLogApplication
                     //Planner and miles available:
                     else
                     {
+                        miles6 = miles6.Replace(" miles", "");
                         double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
                         if (compareMiles > 0.75)
                         {
@@ -1000,7 +1006,7 @@ namespace CyclingLogApplication
                 if (!pMiles7.Equals("- -"))
                 {
                     //Planner value not set:
-                    if (pMiles7 == null || pMiles7.Equals(""))
+                    if (pMiles7 == null || pMiles7.Equals("") || miles7.Equals(""))
                     {
                         dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
                     }
@@ -1019,6 +1025,7 @@ namespace CyclingLogApplication
                     //Planner and miles available:
                     else
                     {
+                        miles7 = miles7.Replace(" miles", "");
                         double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
                         if (compareMiles > 0.75)
                         {
@@ -1224,7 +1231,7 @@ namespace CyclingLogApplication
                         if (!pMiles1.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles1 == null || pMiles1.Equals(""))
+                            if (pMiles1 == null || pMiles1.Equals("") || miles1.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
                             }
@@ -1243,6 +1250,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles1 = miles1.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
                                 if (compareMiles > 0.75)
                                 {
@@ -1257,7 +1265,7 @@ namespace CyclingLogApplication
                         if (!pMiles2.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles2 == null || pMiles2.Equals(""))
+                            if (pMiles2 == null || pMiles2.Equals("") || miles2.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
                             }
@@ -1276,6 +1284,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles2 = miles2.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
                                 if (compareMiles > 0.75)
                                 {
@@ -1290,7 +1299,7 @@ namespace CyclingLogApplication
                         if (!pMiles3.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles3 == null || pMiles3.Equals(""))
+                            if (pMiles3 == null || pMiles3.Equals("") || miles3.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
                             }
@@ -1309,6 +1318,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles3 = miles3.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
                                 if (compareMiles > 0.75)
                                 {
@@ -1323,7 +1333,7 @@ namespace CyclingLogApplication
                         if (!pMiles4.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles4 == null || pMiles4.Equals(""))
+                            if (pMiles4 == null || pMiles4.Equals("") || miles4.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
                             }
@@ -1342,6 +1352,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles4 = miles4.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
                                 if (compareMiles > 0.75)
                                 {
@@ -1356,7 +1367,7 @@ namespace CyclingLogApplication
                         if (!pMiles5.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles5 == null || pMiles5.Equals(""))
+                            if (pMiles5 == null || pMiles5.Equals("") || miles5.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
                             }
@@ -1375,6 +1386,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles5 = miles5.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
                                 if (compareMiles > 0.75)
                                 {
@@ -1389,7 +1401,7 @@ namespace CyclingLogApplication
                         if (!pMiles6.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles6 == null || pMiles6.Equals(""))
+                            if (pMiles6 == null || pMiles6.Equals("") || miles6.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
                             }
@@ -1408,6 +1420,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles6 = miles6.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
                                 if (compareMiles > 0.75)
                                 {
@@ -1422,7 +1435,7 @@ namespace CyclingLogApplication
                         if (!pMiles7.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles7 == null || pMiles7.Equals(""))
+                            if (pMiles7 == null || pMiles7.Equals("") || miles7.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
                             }
@@ -1441,6 +1454,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles7 = miles7.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
                                 if (compareMiles > 0.75)
                                 {
@@ -1620,7 +1634,7 @@ namespace CyclingLogApplication
                         if (!pMiles1.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles1 == null || pMiles1.Equals(""))
+                            if (pMiles1 == null || pMiles1.Equals("") || miles1.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
                             }
@@ -1639,6 +1653,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles1 = miles1.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
                                 if (compareMiles > 0.75)
                                 {
@@ -1653,7 +1668,7 @@ namespace CyclingLogApplication
                         if (!pMiles2.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles2 == null || pMiles2.Equals(""))
+                            if (pMiles2 == null || pMiles2.Equals("") || miles2.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
                             }
@@ -1672,6 +1687,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles2 = miles2.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
                                 if (compareMiles > 0.75)
                                 {
@@ -1686,7 +1702,7 @@ namespace CyclingLogApplication
                         if (!pMiles3.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles3 == null || pMiles3.Equals(""))
+                            if (pMiles3 == null || pMiles3.Equals("") || miles3.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
                             }
@@ -1705,6 +1721,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles3 = miles3.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
                                 if (compareMiles > 0.75)
                                 {
@@ -1719,7 +1736,7 @@ namespace CyclingLogApplication
                         if (!pMiles4.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles4 == null || pMiles4.Equals(""))
+                            if (pMiles4 == null || pMiles4.Equals("") || miles4.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
                             }
@@ -1738,6 +1755,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles4 = miles4.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
                                 if (compareMiles > 0.75)
                                 {
@@ -1752,7 +1770,7 @@ namespace CyclingLogApplication
                         if (!pMiles5.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles5 == null || pMiles5.Equals(""))
+                            if (pMiles5 == null || pMiles5.Equals("") || miles5.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
                             }
@@ -1771,6 +1789,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles5 = miles5.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
                                 if (compareMiles > 0.75)
                                 {
@@ -1785,7 +1804,7 @@ namespace CyclingLogApplication
                         if (!pMiles6.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles6 == null || pMiles6.Equals(""))
+                            if (pMiles6 == null || pMiles6.Equals("") || miles6.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
                             }
@@ -1804,6 +1823,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles6 = miles6.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
                                 if (compareMiles > 0.75)
                                 {
@@ -1818,7 +1838,7 @@ namespace CyclingLogApplication
                         if (!pMiles7.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles7 == null || pMiles7.Equals(""))
+                            if (pMiles7 == null || pMiles7.Equals("") || miles7.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
                             }
@@ -1837,6 +1857,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles7 = miles7.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
                                 if (compareMiles > 0.75)
                                 {
@@ -2014,7 +2035,7 @@ namespace CyclingLogApplication
                         if (!pMiles1.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles1 == null || pMiles1.Equals(""))
+                            if (pMiles1 == null || pMiles1.Equals("") || miles1.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
                             }
@@ -2033,6 +2054,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles1 = miles1.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
                                 if (compareMiles > 0.75)
                                 {
@@ -2047,7 +2069,7 @@ namespace CyclingLogApplication
                         if (!pMiles2.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles2 == null || pMiles2.Equals(""))
+                            if (pMiles2 == null || pMiles2.Equals("") || miles2.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
                             }
@@ -2066,6 +2088,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles2 = miles2.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
                                 if (compareMiles > 0.75)
                                 {
@@ -2080,7 +2103,7 @@ namespace CyclingLogApplication
                         if (!pMiles3.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles3 == null || pMiles3.Equals(""))
+                            if (pMiles3 == null || pMiles3.Equals("") || miles3.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
                             }
@@ -2099,6 +2122,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles3 = miles3.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
                                 if (compareMiles > 0.75)
                                 {
@@ -2113,7 +2137,7 @@ namespace CyclingLogApplication
                         if (!pMiles4.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles4 == null || pMiles4.Equals(""))
+                            if (pMiles4 == null || pMiles4.Equals("") || miles4.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
                             }
@@ -2132,6 +2156,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles4 = miles4.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
                                 if (compareMiles > 0.75)
                                 {
@@ -2146,7 +2171,7 @@ namespace CyclingLogApplication
                         if (!pMiles5.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles5 == null || pMiles5.Equals(""))
+                            if (pMiles5 == null || pMiles5.Equals("") || miles5.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
                             }
@@ -2165,6 +2190,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles5 = miles5.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
                                 if (compareMiles > 0.75)
                                 {
@@ -2179,7 +2205,7 @@ namespace CyclingLogApplication
                         if (!pMiles6.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles6 == null || pMiles6.Equals(""))
+                            if (pMiles6 == null || pMiles6.Equals("") || miles6.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
                             }
@@ -2198,6 +2224,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles6 = miles6.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
                                 if (compareMiles > 0.75)
                                 {
@@ -2212,7 +2239,7 @@ namespace CyclingLogApplication
                         if (!pMiles7.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles7 == null || pMiles7.Equals(""))
+                            if (pMiles7 == null || pMiles7.Equals("") || miles7.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
                             }
@@ -2231,6 +2258,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles7 = miles7.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
                                 if (compareMiles > 0.75)
                                 {
@@ -2408,7 +2436,7 @@ namespace CyclingLogApplication
                         if (!pMiles1.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles1 == null || pMiles1.Equals(""))
+                            if (pMiles1 == null || pMiles1.Equals("") || miles1.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
                             }
@@ -2427,6 +2455,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles1 = miles1.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
                                 if (compareMiles > 0.75)
                                 {
@@ -2441,7 +2470,7 @@ namespace CyclingLogApplication
                         if (!pMiles2.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles2 == null || pMiles2.Equals(""))
+                            if (pMiles2 == null || pMiles2.Equals("") || miles2.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
                             }
@@ -2460,6 +2489,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles2 = miles2.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
                                 if (compareMiles > 0.75)
                                 {
@@ -2474,7 +2504,7 @@ namespace CyclingLogApplication
                         if (!pMiles3.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles3 == null || pMiles3.Equals(""))
+                            if (pMiles3 == null || pMiles3.Equals("") || miles3.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
                             }
@@ -2493,6 +2523,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles3 = miles3.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
                                 if (compareMiles > 0.75)
                                 {
@@ -2507,7 +2538,7 @@ namespace CyclingLogApplication
                         if (!pMiles4.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles4 == null || pMiles4.Equals(""))
+                            if (pMiles4 == null || pMiles4.Equals("") || miles4.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
                             }
@@ -2526,6 +2557,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles4 = miles4.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
                                 if (compareMiles > 0.75)
                                 {
@@ -2540,7 +2572,7 @@ namespace CyclingLogApplication
                         if (!pMiles5.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles5 == null || pMiles5.Equals(""))
+                            if (pMiles5 == null || pMiles5.Equals("") || miles5.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
                             }
@@ -2559,6 +2591,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles5 = miles5.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
                                 if (compareMiles > 0.75)
                                 {
@@ -2573,7 +2606,7 @@ namespace CyclingLogApplication
                         if (!pMiles6.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles6 == null || pMiles6.Equals(""))
+                            if (pMiles6 == null || pMiles6.Equals("") || miles6.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
                             }
@@ -2592,6 +2625,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles6 = miles6.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
                                 if (compareMiles > 0.75)
                                 {
@@ -2606,7 +2640,7 @@ namespace CyclingLogApplication
                         if (!pMiles7.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles7 == null || pMiles7.Equals(""))
+                            if (pMiles7 == null || pMiles7.Equals("") || miles7.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
                             }
@@ -2625,6 +2659,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles7 = miles7.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
                                 if (compareMiles > 0.75)
                                 {
@@ -2802,7 +2837,7 @@ namespace CyclingLogApplication
                         if (!pMiles1.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles1 == null || pMiles1.Equals(""))
+                            if (pMiles1 == null || pMiles1.Equals("") || miles1.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
                             }
@@ -2821,6 +2856,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles1 = miles1.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
                                 if (compareMiles > 0.75)
                                 {
@@ -2835,7 +2871,7 @@ namespace CyclingLogApplication
                         if (!pMiles2.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles2 == null || pMiles2.Equals(""))
+                            if (pMiles2 == null || pMiles2.Equals("") || miles2.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
                             }
@@ -2854,6 +2890,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles2 = miles2.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
                                 if (compareMiles > 0.75)
                                 {
@@ -2868,7 +2905,7 @@ namespace CyclingLogApplication
                         if (!pMiles3.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles3 == null || pMiles3.Equals(""))
+                            if (pMiles3 == null || pMiles3.Equals("") || miles3.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
                             }
@@ -2887,6 +2924,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles3 = miles3.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
                                 if (compareMiles > 0.75)
                                 {
@@ -2901,7 +2939,7 @@ namespace CyclingLogApplication
                         if (!pMiles4.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles4 == null || pMiles4.Equals(""))
+                            if (pMiles4 == null || pMiles4.Equals("") || miles4.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
                             }
@@ -2920,6 +2958,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles4 = miles4.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
                                 if (compareMiles > 0.75)
                                 {
@@ -2934,7 +2973,7 @@ namespace CyclingLogApplication
                         if (!pMiles5.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles5 == null || pMiles5.Equals(""))
+                            if (pMiles5 == null || pMiles5.Equals("") || miles5.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
                             }
@@ -2953,6 +2992,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles5 = miles5.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
                                 if (compareMiles > 0.75)
                                 {
@@ -2967,7 +3007,7 @@ namespace CyclingLogApplication
                         if (!pMiles6.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles6 == null || pMiles6.Equals(""))
+                            if (pMiles6 == null || pMiles6.Equals("") || miles6.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
                             }
@@ -2986,6 +3026,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles6 = miles6.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
                                 if (compareMiles > 0.75)
                                 {
@@ -3000,7 +3041,7 @@ namespace CyclingLogApplication
                         if (!pMiles7.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles7 == null || pMiles7.Equals(""))
+                            if (pMiles7 == null || pMiles7.Equals("") || miles7.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
                             }
@@ -3019,6 +3060,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles7 = miles7.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
                                 if (compareMiles > 0.75)
                                 {
@@ -3198,7 +3240,7 @@ namespace CyclingLogApplication
                         if (!pMiles1.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles1 == null || pMiles1.Equals(""))
+                            if (pMiles1 == null || pMiles1.Equals("") || miles1.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
                             }
@@ -3217,6 +3259,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles1 = miles1.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
                                 if (compareMiles > 0.75)
                                 {
@@ -3231,7 +3274,7 @@ namespace CyclingLogApplication
                         if (!pMiles2.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles2 == null || pMiles2.Equals(""))
+                            if (pMiles2 == null || pMiles2.Equals("") || miles2.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
                             }
@@ -3250,6 +3293,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles2 = miles2.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
                                 if (compareMiles > 0.75)
                                 {
@@ -3264,7 +3308,7 @@ namespace CyclingLogApplication
                         if (!pMiles3.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles3 == null || pMiles3.Equals(""))
+                            if (pMiles3 == null || pMiles3.Equals("") || miles3.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
                             }
@@ -3283,6 +3327,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles3 = miles3.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
                                 if (compareMiles > 0.75)
                                 {
@@ -3297,7 +3342,7 @@ namespace CyclingLogApplication
                         if (!pMiles4.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles4 == null || pMiles4.Equals(""))
+                            if (pMiles4 == null || pMiles4.Equals("") || miles4.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
                             }
@@ -3316,6 +3361,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles4 = miles4.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
                                 if (compareMiles > 0.75)
                                 {
@@ -3330,7 +3376,7 @@ namespace CyclingLogApplication
                         if (!pMiles5.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles5 == null || pMiles5.Equals(""))
+                            if (pMiles5 == null || pMiles5.Equals("") || miles5.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
                             }
@@ -3349,6 +3395,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles5 = miles5.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
                                 if (compareMiles > 0.75)
                                 {
@@ -3363,7 +3410,7 @@ namespace CyclingLogApplication
                         if (!pMiles6.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles6 == null || pMiles6.Equals(""))
+                            if (pMiles6 == null || pMiles6.Equals("") || miles6.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
                             }
@@ -3382,6 +3429,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles6 = miles6.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
                                 if (compareMiles > 0.75)
                                 {
@@ -3396,7 +3444,7 @@ namespace CyclingLogApplication
                         if (!pMiles7.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles7 == null || pMiles7.Equals(""))
+                            if (pMiles7 == null || pMiles7.Equals("") || miles7.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
                             }
@@ -3415,6 +3463,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles7 = miles7.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
                                 if (compareMiles > 0.75)
                                 {
@@ -3497,10 +3546,11 @@ namespace CyclingLogApplication
                         dataGridViewPlanner.Rows[rowCount].Cells[4].Style.ForeColor = textColor;
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.ForeColor = textColor;
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.ForeColor = textColor;
+
                         if (!pMiles1.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles1 == null || pMiles1.Equals(""))
+                            if (pMiles1 == null || pMiles1.Equals("") || miles1.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
                             }
@@ -3519,6 +3569,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles1 = miles1.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
                                 if (compareMiles > 0.75)
                                 {
@@ -3533,7 +3584,7 @@ namespace CyclingLogApplication
                         if (!pMiles2.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles2 == null || pMiles2.Equals(""))
+                            if (pMiles2 == null || pMiles2.Equals("") || miles2.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
                             }
@@ -3552,6 +3603,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles2 = miles2.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
                                 if (compareMiles > 0.75)
                                 {
@@ -3566,7 +3618,7 @@ namespace CyclingLogApplication
                         if (!pMiles3.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles3 == null || pMiles3.Equals(""))
+                            if (pMiles3 == null || pMiles3.Equals("") || miles3.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
                             }
@@ -3585,6 +3637,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles3 = miles3.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
                                 if (compareMiles > 0.75)
                                 {
@@ -3599,7 +3652,7 @@ namespace CyclingLogApplication
                         if (!pMiles4.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles4 == null || pMiles4.Equals(""))
+                            if (pMiles4 == null || pMiles4.Equals("") || miles4.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
                             }
@@ -3618,6 +3671,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles4 = miles4.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
                                 if (compareMiles > 0.75)
                                 {
@@ -3632,7 +3686,7 @@ namespace CyclingLogApplication
                         if (!pMiles5.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles5 == null || pMiles5.Equals(""))
+                            if (pMiles5 == null || pMiles5.Equals("") || miles5.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
                             }
@@ -3651,6 +3705,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles5 = miles5.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
                                 if (compareMiles > 0.75)
                                 {
@@ -3665,7 +3720,7 @@ namespace CyclingLogApplication
                         if (!pMiles6.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles6 == null || pMiles6.Equals(""))
+                            if (pMiles6 == null || pMiles6.Equals("") || miles6.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
                             }
@@ -3684,6 +3739,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles6 = miles6.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
                                 if (compareMiles > 0.75)
                                 {
@@ -3698,7 +3754,7 @@ namespace CyclingLogApplication
                         if (!pMiles7.Equals("- -"))
                         {
                             //Planner value not set:
-                            if (pMiles7 == null || pMiles7.Equals(""))
+                            if (pMiles7 == null || pMiles7.Equals("") || miles7.Equals(""))
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
                             }
@@ -3717,6 +3773,7 @@ namespace CyclingLogApplication
                             //Planner and miles available:
                             else
                             {
+                                miles7 = miles7.Replace(" miles", "");
                                 double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
                                 if (compareMiles > 0.75)
                                 {
@@ -3837,7 +3894,246 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[rowCount].Cells[3].Style.ForeColor = textColor;
                     dataGridViewPlanner.Rows[rowCount].Cells[4].Style.ForeColor = textColor;
                     dataGridViewPlanner.Rows[rowCount].Cells[5].Style.ForeColor = textColor;
-                    dataGridViewPlanner.Rows[rowCount].Cells[6].Style.ForeColor = textColor;                    
+                    dataGridViewPlanner.Rows[rowCount].Cells[6].Style.ForeColor = textColor;
+
+                    if (!pMiles1.Equals("- -"))
+                    {
+                        //Planner value not set:
+                        if (pMiles1 == null || pMiles1.Equals("") || miles1.Equals(""))
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
+                        }
+                        //Planner set but no ride miles:
+                        else if (miles1.Equals("0") || miles1.Equals("OFF"))
+                        {
+                            if (pMiles1.Equals("0"))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                            }
+                        }
+                        //Planner and miles available:
+                        else
+                        {
+                            miles1 = miles1.Replace(" miles", "");
+                            double compareMiles = double.Parse(miles1) / double.Parse(pMiles1);
+                            if (compareMiles > 0.75)
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                            }
+                        }
+                    }
+                    if (!pMiles2.Equals("- -"))
+                    {
+                        //Planner value not set:
+                        if (pMiles2 == null || pMiles2.Equals("") || miles2.Equals(""))
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
+                        }
+                        //Planner set but no ride miles:
+                        else if (miles2.Equals("0") || miles2.Equals("OFF"))
+                        {
+                            if (pMiles2.Equals("0"))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                            }
+                        }
+                        //Planner and miles available:
+                        else
+                        {
+                            miles2 = miles2.Replace(" miles", "");
+                            double compareMiles = double.Parse(miles2) / double.Parse(pMiles2);
+                            if (compareMiles > 0.75)
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                            }
+                        }
+                    }
+                    if (!pMiles3.Equals("- -"))
+                    {
+                        //Planner value not set:
+                        if (pMiles3 == null || pMiles3.Equals("") || miles3.Equals(""))
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
+                        }
+                        //Planner set but no ride miles:
+                        else if (miles3.Equals("0") || miles3.Equals("OFF"))
+                        {
+                            if (pMiles3.Equals("0"))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                            }
+                        }
+                        //Planner and miles available:
+                        else
+                        {
+                            miles3 = miles3.Replace(" miles", "");
+                            double compareMiles = double.Parse(miles3) / double.Parse(pMiles3);
+                            if (compareMiles > 0.75)
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                            }
+                        }
+                    }
+                    if (!pMiles4.Equals("- -"))
+                    {
+                        //Planner value not set:
+                        if (pMiles4 == null || pMiles4.Equals("") || miles4.Equals(""))
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
+                        }
+                        //Planner set but no ride miles:
+                        else if (miles4.Equals("0") || miles4.Equals("OFF"))
+                        {
+                            if (pMiles4.Equals("0"))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                            }
+                        }
+                        //Planner and miles available:
+                        else
+                        {
+                            miles4 = miles4.Replace(" miles", "");
+                            double compareMiles = double.Parse(miles4) / double.Parse(pMiles4);
+                            if (compareMiles > 0.75)
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                            }
+                        }
+                    }
+                    if (!pMiles5.Equals("- -"))
+                    {
+                        //Planner value not set:
+                        if (pMiles5 == null || pMiles5.Equals("") || miles5.Equals(""))
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
+                        }
+                        //Planner set but no ride miles:
+                        else if (miles5.Equals("0") || miles5.Equals("OFF"))
+                        {
+                            if (pMiles5.Equals("0"))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                            }
+                        }
+                        //Planner and miles available:
+                        else
+                        {
+                            miles5 = miles5.Replace(" miles", "");
+                            double compareMiles = double.Parse(miles5) / double.Parse(pMiles5);
+                            if (compareMiles > 0.75)
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                            }
+                        }
+                    }
+                    if (!pMiles6.Equals("- -"))
+                    {
+                        //Planner value not set:
+                        if (pMiles6 == null || pMiles6.Equals("") || miles6.Equals(""))
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
+                        }
+                        //Planner set but no ride miles:
+                        else if (miles6.Equals("0") || miles6.Equals("OFF"))
+                        {
+                            if (pMiles6.Equals("0"))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                            }
+                        }
+                        //Planner and miles available:
+                        else
+                        {
+                            miles6 = miles6.Replace(" miles", "");
+                            double compareMiles = double.Parse(miles6) / double.Parse(pMiles6);
+                            if (compareMiles > 0.75)
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                            }
+                        }
+                    }
+                    if (!pMiles7.Equals("- -"))
+                    {
+                        //Planner value not set:
+                        if (pMiles7 == null || pMiles7.Equals("") || miles7.Equals(""))
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
+                        }
+                        //Planner set but no ride miles:
+                        else if (miles7.Equals("0") || miles7.Equals("OFF"))
+                        {
+                            if (pMiles7.Equals("0"))
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                            }
+                        }
+                        //Planner and miles available:
+                        else
+                        {
+                            miles7 = miles7.Replace(" miles", "");
+                            double compareMiles = double.Parse(miles7) / double.Parse(pMiles7);
+                            if (compareMiles > 0.75)
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                            }
+                        }
+                    }
 
                     if (miles1.Equals(""))
                     {
