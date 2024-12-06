@@ -106,6 +106,8 @@ namespace CyclingLogApplication
             //const string appName = "Cycling Log";
             //bool createdNew;
 
+            
+
             //mutex = new Mutex(true, appName, out createdNew);
 
             //if (!createdNew)
@@ -4338,7 +4340,7 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        public static string GetDataItemByDate(int logIndex, DateTime rideDate, string procedureName)
+        public static string GetDataItemByDate(int logIndex, DateTime rideDate, string procedureName, string calendarType)
         {
             List<object> objectValues = new List<object>
             {
@@ -4374,9 +4376,13 @@ namespace CyclingLogApplication
                             }
                             if (procedureName.Contains("Miles"))
                             {
-                                if (returnValue != null && !returnValue.Equals(""))
+                                if (returnValue != null && !returnValue.Equals("") && calendarType.Equals("calendar"))
                                 {
                                     returnValue += " miles";
+                                }
+                                else if (returnValue != null && !returnValue.Equals("") && calendarType.Equals("planner"))
+                                {
+                                    //return only the actual value:
                                 }
                                 else
                                 {
@@ -6797,13 +6803,13 @@ namespace CyclingLogApplication
                         DateTime dateTime6 = new DateTime(logYear, monthIndex, 6);
                         DateTime dateTime7 = new DateTime(logYear, monthIndex, 7);
                         
-                        miles1 = GetDataItemByDate(logIndex, dateTime1, sqlCommand);
-                        miles2 = GetDataItemByDate(logIndex, dateTime2, sqlCommand);
-                        miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand);
-                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand);
-                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand);
-                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand);
-                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                        miles1 = GetDataItemByDate(logIndex, dateTime1, sqlCommand, "calendar");
+                        miles2 = GetDataItemByDate(logIndex, dateTime2, sqlCommand, "calendar");
+                        miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand, "calendar");
+                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand, "calendar");
+                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
                     }
                 }
                 else if (day2 == 1)
@@ -6843,19 +6849,19 @@ namespace CyclingLogApplication
                     else
                     {                      
                         DateTime dateTime2b = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                        miles1 = GetDataItemByDate(logIndex, dateTime2b, sqlCommand);
+                        miles1 = GetDataItemByDate(logIndex, dateTime2b, sqlCommand, "calendar");
                         DateTime dateTime2 = new DateTime(logYear, monthIndex, 1);
                         DateTime dateTime3 = new DateTime(logYear, monthIndex, 2);
                         DateTime dateTime4 = new DateTime(logYear, monthIndex, 3);
                         DateTime dateTime5 = new DateTime(logYear, monthIndex, 4);
                         DateTime dateTime6 = new DateTime(logYear, monthIndex, 5);
                         DateTime dateTime7 = new DateTime(logYear, monthIndex, 6);
-                        miles2 = GetDataItemByDate(logIndex, dateTime2, sqlCommand);
-                        miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand);
-                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand);
-                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand);
-                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand);
-                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                        miles2 = GetDataItemByDate(logIndex, dateTime2, sqlCommand, "calendar");
+                        miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand, "calendar");
+                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand, "calendar");
+                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
                     }
                 }
                 else if (day3 == 1)
@@ -6898,18 +6904,18 @@ namespace CyclingLogApplication
                     {
                         DateTime dateTime31 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
                         DateTime dateTime32 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
-                        miles1 = GetDataItemByDate(logIndex, dateTime32, sqlCommand);
-                        miles2 = GetDataItemByDate(logIndex, dateTime31, sqlCommand);                       
+                        miles1 = GetDataItemByDate(logIndex, dateTime32, sqlCommand, "calendar");
+                        miles2 = GetDataItemByDate(logIndex, dateTime31, sqlCommand, "calendar");                       
                         DateTime dateTime3 = new DateTime(logYear, monthIndex, 1);
                         DateTime dateTime4 = new DateTime(logYear, monthIndex, 2);
                         DateTime dateTime5 = new DateTime(logYear, monthIndex, 3);
                         DateTime dateTime6 = new DateTime(logYear, monthIndex, 4);
                         DateTime dateTime7 = new DateTime(logYear, monthIndex, 5);
-                        miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand);
-                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand);
-                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand);
-                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand);
-                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                        miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand, "calendar");
+                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand, "calendar");
+                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
                     }                    
                 }
                 else if (day4 == 1)
@@ -6955,17 +6961,17 @@ namespace CyclingLogApplication
                         DateTime dateTime41 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
                         DateTime dateTime42 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
                         DateTime dateTime43 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
-                        miles1 = GetDataItemByDate(logIndex, dateTime43, sqlCommand);
-                        miles2 = GetDataItemByDate(logIndex, dateTime42, sqlCommand);
-                        miles3 = GetDataItemByDate(logIndex, dateTime41, sqlCommand);
+                        miles1 = GetDataItemByDate(logIndex, dateTime43, sqlCommand, "calendar");
+                        miles2 = GetDataItemByDate(logIndex, dateTime42, sqlCommand, "calendar");
+                        miles3 = GetDataItemByDate(logIndex, dateTime41, sqlCommand, "calendar");
                         DateTime dateTime4 = new DateTime(logYear, monthIndex, 1);
                         DateTime dateTime5 = new DateTime(logYear, monthIndex, 2);
                         DateTime dateTime6 = new DateTime(logYear, monthIndex, 3);
                         DateTime dateTime7 = new DateTime(logYear, monthIndex, 4);
-                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand);
-                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand);
-                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand);
-                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand, "calendar");
+                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
                     }
                 }
                 else if (day5 == 1)
@@ -7014,16 +7020,16 @@ namespace CyclingLogApplication
                         DateTime dateTime52 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
                         DateTime dateTime53 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
                         DateTime dateTime54 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
-                        miles1 = GetDataItemByDate(logIndex, dateTime54, sqlCommand);
-                        miles2 = GetDataItemByDate(logIndex, dateTime53, sqlCommand);
-                        miles3 = GetDataItemByDate(logIndex, dateTime52, sqlCommand);
-                        miles4 = GetDataItemByDate(logIndex, dateTime51, sqlCommand);
+                        miles1 = GetDataItemByDate(logIndex, dateTime54, sqlCommand, "calendar");
+                        miles2 = GetDataItemByDate(logIndex, dateTime53, sqlCommand, "calendar");
+                        miles3 = GetDataItemByDate(logIndex, dateTime52, sqlCommand, "calendar");
+                        miles4 = GetDataItemByDate(logIndex, dateTime51, sqlCommand, "calendar");
                         DateTime dateTime5 = new DateTime(logYear, monthIndex, 1);
                         DateTime dateTime6 = new DateTime(logYear, monthIndex, 2);
                         DateTime dateTime7 = new DateTime(logYear, monthIndex, 3);
-                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand);
-                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand);
-                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
                     }                
                 }
                 else if (day6 == 1)
@@ -7075,15 +7081,15 @@ namespace CyclingLogApplication
                         DateTime dateTime63 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
                         DateTime dateTime64 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
                         DateTime dateTime65 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
-                        miles1 = GetDataItemByDate(logIndex, dateTime65, sqlCommand);
-                        miles2 = GetDataItemByDate(logIndex, dateTime64, sqlCommand);
-                        miles3 = GetDataItemByDate(logIndex, dateTime63, sqlCommand);
-                        miles4 = GetDataItemByDate(logIndex, dateTime62, sqlCommand);
-                        miles5 = GetDataItemByDate(logIndex, dateTime61, sqlCommand);
+                        miles1 = GetDataItemByDate(logIndex, dateTime65, sqlCommand, "calendar");
+                        miles2 = GetDataItemByDate(logIndex, dateTime64, sqlCommand, "calendar");
+                        miles3 = GetDataItemByDate(logIndex, dateTime63, sqlCommand, "calendar");
+                        miles4 = GetDataItemByDate(logIndex, dateTime62, sqlCommand, "calendar");
+                        miles5 = GetDataItemByDate(logIndex, dateTime61, sqlCommand, "calendar");
                         DateTime dateTime6 = new DateTime(logYear, monthIndex, 1);
                         DateTime dateTime7 = new DateTime(logYear, monthIndex, 2);
-                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand);
-                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
                     }               
                 }
                 else if (day7 == 1)
@@ -7138,14 +7144,14 @@ namespace CyclingLogApplication
                         DateTime dateTime74 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
                         DateTime dateTime75 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
                         DateTime dateTime76 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 5);
-                        miles1 = GetDataItemByDate(logIndex, dateTime76, sqlCommand);
-                        miles2 = GetDataItemByDate(logIndex, dateTime75, sqlCommand);
-                        miles3 = GetDataItemByDate(logIndex, dateTime74, sqlCommand);
-                        miles4 = GetDataItemByDate(logIndex, dateTime73, sqlCommand);
-                        miles5 = GetDataItemByDate(logIndex, dateTime72, sqlCommand);
-                        miles6 = GetDataItemByDate(logIndex, dateTime71, sqlCommand);
+                        miles1 = GetDataItemByDate(logIndex, dateTime76, sqlCommand, "calendar");
+                        miles2 = GetDataItemByDate(logIndex, dateTime75, sqlCommand, "calendar");
+                        miles3 = GetDataItemByDate(logIndex, dateTime74, sqlCommand, "calendar");
+                        miles4 = GetDataItemByDate(logIndex, dateTime73, sqlCommand, "calendar");
+                        miles5 = GetDataItemByDate(logIndex, dateTime72, sqlCommand, "calendar");
+                        miles6 = GetDataItemByDate(logIndex, dateTime71, sqlCommand, "calendar");
                         DateTime dateTime7 = new DateTime(logYear, monthIndex, 1);
-                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
                     }
                 }
 
@@ -7257,7 +7263,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles1 = GetDataItemByDate(logIndex, dateTime1a, sqlCommand);
+                            miles1 = GetDataItemByDate(logIndex, dateTime1a, sqlCommand, "calendar");
                             if (nextMonthIndex == 13)
                             {
                                 //Just post a blank entry for the next year Jan days:
@@ -7276,12 +7282,12 @@ namespace CyclingLogApplication
                                 DateTime dateTime1e = new DateTime(logYear, nextMonthIndex, 4);
                                 DateTime dateTime1f = new DateTime(logYear, nextMonthIndex, 5);
                                 DateTime dateTime1g = new DateTime(logYear, nextMonthIndex, 6);
-                                miles2 = GetDataItemByDate(logIndex, dateTime1b, sqlCommand);
-                                miles3 = GetDataItemByDate(logIndex, dateTime1c, sqlCommand);
-                                miles4 = GetDataItemByDate(logIndex, dateTime1d, sqlCommand);
-                                miles5 = GetDataItemByDate(logIndex, dateTime1e, sqlCommand);
-                                miles6 = GetDataItemByDate(logIndex, dateTime1f, sqlCommand);
-                                miles7 = GetDataItemByDate(logIndex, dateTime1g, sqlCommand);
+                                miles2 = GetDataItemByDate(logIndex, dateTime1b, sqlCommand, "calendar");
+                                miles3 = GetDataItemByDate(logIndex, dateTime1c, sqlCommand, "calendar");
+                                miles4 = GetDataItemByDate(logIndex, dateTime1d, sqlCommand, "calendar");
+                                miles5 = GetDataItemByDate(logIndex, dateTime1e, sqlCommand, "calendar");
+                                miles6 = GetDataItemByDate(logIndex, dateTime1f, sqlCommand, "calendar");
+                                miles7 = GetDataItemByDate(logIndex, dateTime1g, sqlCommand, "calendar");
                             }
                         }
 
@@ -7338,7 +7344,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles1 = GetDataItemByDate(logIndex, dateTime1a, sqlCommand);
+                        miles1 = GetDataItemByDate(logIndex, dateTime1a, sqlCommand, "calendar");
                     }
                     if (currentYearMonth)
                     {
@@ -7384,7 +7390,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles2 = GetDataItemByDate(logIndex, dateTime2a, sqlCommand);
+                            miles2 = GetDataItemByDate(logIndex, dateTime2a, sqlCommand, "calendar");
                             if (nextMonthIndex == 13)
                             {
                                 //Just post a blank entry for the next year Jan days:
@@ -7401,11 +7407,11 @@ namespace CyclingLogApplication
                                 DateTime dateTime2d = new DateTime(logYear, nextMonthIndex, 3);
                                 DateTime dateTime2e = new DateTime(logYear, nextMonthIndex, 4);
                                 DateTime dateTime2f = new DateTime(logYear, nextMonthIndex, 5);
-                                miles3 = GetDataItemByDate(logIndex, dateTime2b, sqlCommand);
-                                miles4 = GetDataItemByDate(logIndex, dateTime2c, sqlCommand);
-                                miles5 = GetDataItemByDate(logIndex, dateTime2d, sqlCommand);
-                                miles6 = GetDataItemByDate(logIndex, dateTime2e, sqlCommand);
-                                miles7 = GetDataItemByDate(logIndex, dateTime2f, sqlCommand);
+                                miles3 = GetDataItemByDate(logIndex, dateTime2b, sqlCommand, "calendar");
+                                miles4 = GetDataItemByDate(logIndex, dateTime2c, sqlCommand, "calendar");
+                                miles5 = GetDataItemByDate(logIndex, dateTime2d, sqlCommand, "calendar");
+                                miles6 = GetDataItemByDate(logIndex, dateTime2e, sqlCommand, "calendar");
+                                miles7 = GetDataItemByDate(logIndex, dateTime2f, sqlCommand, "calendar");
                             }
                         }                       
 
@@ -7468,7 +7474,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles2 = GetDataItemByDate(logIndex, dateTime2a, sqlCommand);
+                        miles2 = GetDataItemByDate(logIndex, dateTime2a, sqlCommand, "calendar");
                     }
                     if (currentYearMonth)
                     {
@@ -7511,7 +7517,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles3 = GetDataItemByDate(logIndex, dateTime3a, sqlCommand);
+                            miles3 = GetDataItemByDate(logIndex, dateTime3a, sqlCommand, "calendar");
                             if (nextMonthIndex == 13)
                             {
                                 //Just post a blank entry for the next year Jan days:
@@ -7526,10 +7532,10 @@ namespace CyclingLogApplication
                                 DateTime dateTime3c = new DateTime(logYear, nextMonthIndex, 2);
                                 DateTime dateTime3d = new DateTime(logYear, nextMonthIndex, 3);
                                 DateTime dateTime3e = new DateTime(logYear, nextMonthIndex, 4);
-                                miles4 = GetDataItemByDate(logIndex, dateTime3b, sqlCommand);
-                                miles5 = GetDataItemByDate(logIndex, dateTime3c, sqlCommand);
-                                miles6 = GetDataItemByDate(logIndex, dateTime3d, sqlCommand);
-                                miles7 = GetDataItemByDate(logIndex, dateTime3e, sqlCommand);
+                                miles4 = GetDataItemByDate(logIndex, dateTime3b, sqlCommand, "calendar");
+                                miles5 = GetDataItemByDate(logIndex, dateTime3c, sqlCommand, "calendar");
+                                miles6 = GetDataItemByDate(logIndex, dateTime3d, sqlCommand, "calendar");
+                                miles7 = GetDataItemByDate(logIndex, dateTime3e, sqlCommand, "calendar");
                             }
                         }                       
 
@@ -7599,7 +7605,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles3 = GetDataItemByDate(logIndex, dateTime3a, sqlCommand);
+                        miles3 = GetDataItemByDate(logIndex, dateTime3a, sqlCommand, "calendar");
                     }
                     if (currentYearMonth)
                     {
@@ -7638,7 +7644,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles4 = GetDataItemByDate(logIndex, dateTime4a, sqlCommand);
+                            miles4 = GetDataItemByDate(logIndex, dateTime4a, sqlCommand, "calendar");
                             if (nextMonthIndex == 13)
                             {
                                 //Just post a blank entry for the next year Jan days:
@@ -7651,9 +7657,9 @@ namespace CyclingLogApplication
                                 DateTime dateTime4b = new DateTime(logYear, nextMonthIndex, 1);
                                 DateTime dateTime4c = new DateTime(logYear, nextMonthIndex, 2);
                                 DateTime dateTime4d = new DateTime(logYear, nextMonthIndex, 3);
-                                miles5 = GetDataItemByDate(logIndex, dateTime4b, sqlCommand);
-                                miles6 = GetDataItemByDate(logIndex, dateTime4c, sqlCommand);
-                                miles7 = GetDataItemByDate(logIndex, dateTime4d, sqlCommand);
+                                miles5 = GetDataItemByDate(logIndex, dateTime4b, sqlCommand, "calendar");
+                                miles6 = GetDataItemByDate(logIndex, dateTime4c, sqlCommand, "calendar");
+                                miles7 = GetDataItemByDate(logIndex, dateTime4d, sqlCommand, "calendar");
                             }
                         }                        
 
@@ -7732,7 +7738,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles4 = GetDataItemByDate(logIndex, dateTime4a, sqlCommand);
+                        miles4 = GetDataItemByDate(logIndex, dateTime4a, sqlCommand, "calendar");
                     }
                     if (currentYearMonth)
                     {
@@ -7767,7 +7773,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles5 = GetDataItemByDate(logIndex, dateTime5a, sqlCommand);
+                            miles5 = GetDataItemByDate(logIndex, dateTime5a, sqlCommand, "calendar");
                             if (nextMonthIndex == 13)
                             {
                                 //Just post a blank entry for the next year Jan days:
@@ -7778,8 +7784,8 @@ namespace CyclingLogApplication
                             {
                                 DateTime dateTime5b = new DateTime(logYear, nextMonthIndex, 1);
                                 DateTime dateTime5c = new DateTime(logYear, nextMonthIndex, 2);
-                                miles6 = GetDataItemByDate(logIndex, dateTime5b, sqlCommand);
-                                miles7 = GetDataItemByDate(logIndex, dateTime5c, sqlCommand);
+                                miles6 = GetDataItemByDate(logIndex, dateTime5b, sqlCommand, "calendar");
+                                miles7 = GetDataItemByDate(logIndex, dateTime5c, sqlCommand, "calendar");
                             }
                         }                       
 
@@ -7866,7 +7872,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles5 = GetDataItemByDate(logIndex, dateTime5a, sqlCommand);
+                        miles5 = GetDataItemByDate(logIndex, dateTime5a, sqlCommand, "calendar");
                     }
                     if (currentYearMonth)
                     {
@@ -7897,7 +7903,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles6 = GetDataItemByDate(logIndex, dateTime6a, sqlCommand);
+                            miles6 = GetDataItemByDate(logIndex, dateTime6a, sqlCommand, "calendar");
                             if (nextMonthIndex == 13)
                             {
                                 //Just post a blank entry for the next year Jan days:
@@ -7906,7 +7912,7 @@ namespace CyclingLogApplication
                             else
                             {
                                 DateTime dateTime6b = new DateTime(logYear, nextMonthIndex, 1);
-                                miles7 = GetDataItemByDate(logIndex, dateTime6b, sqlCommand);
+                                miles7 = GetDataItemByDate(logIndex, dateTime6b, sqlCommand, "calendar");
                             }
                         }                       
 
@@ -7994,7 +8000,7 @@ namespace CyclingLogApplication
                         miles6 = "";
                     } else
                     {
-                        miles6 = GetDataItemByDate(logIndex, dateTime6a, sqlCommand);
+                        miles6 = GetDataItemByDate(logIndex, dateTime6a, sqlCommand, "calendar");
                     }
                     if (currentYearMonth)
                     {
@@ -8022,7 +8028,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles7 = GetDataItemByDate(logIndex, dateTime7a, sqlCommand);
+                            miles7 = GetDataItemByDate(logIndex, dateTime7a, sqlCommand, "calendar");
                         }
 
                         dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
@@ -8113,7 +8119,7 @@ namespace CyclingLogApplication
                         miles7 = "";
                     } else
                     {
-                        miles7 = GetDataItemByDate(logIndex, dateTime7a, sqlCommand);
+                        miles7 = GetDataItemByDate(logIndex, dateTime7a, sqlCommand, "calendar");
                     }
 
                     dataGridViewCalendar.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");

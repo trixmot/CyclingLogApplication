@@ -80,9 +80,6 @@ namespace CyclingLogApplication
             string logTitle = MainForm.GetLogNameByYear(currentYearNumber);
             int logTitleIndex = cbPlannerLogs.Items.IndexOf(logTitle);
             int weekCount = MainForm.GetCurrentWeekCount();
-            cbPlannerLogs.SelectedIndex = logTitleIndex;
-            cbPlannerMonth.SelectedIndex = DateTime.Now.Month;
-            cbPlannerDate.SelectedIndex = weekCount;
 
             for (int i = 100; i > 19; i--)
             {
@@ -91,8 +88,11 @@ namespace CyclingLogApplication
 
             int goalValue = int.Parse(MainForm.GetPlanGoal());
             cbGoal.SelectedIndex = cbGoal.Items.IndexOf(goalValue);
+            cbHold.Checked = false;
 
-            RunPlanner();
+            cbPlannerLogs.SelectedIndex = logTitleIndex;
+            cbPlannerMonth.SelectedIndex = DateTime.Now.Month;
+            cbPlannerDate.SelectedIndex = weekCount;
         }
 
         private string GetFirstDayForMonth(int month)
@@ -123,6 +123,8 @@ namespace CyclingLogApplication
             string logName = cbPlannerLogs.SelectedItem.ToString();
             int logIndex = MainForm.GetLogIndexByName(logName);
             int logYear = MainForm.GetLogYearByName(logName);
+            double doubleValue = 0;
+
             if (monthIndex == 1)
             {
                 startOfYear = true;
@@ -245,7 +247,7 @@ namespace CyclingLogApplication
             {
                 dataGridViewPlanner.DataSource = null;
                 dataGridViewPlanner.Rows.Clear();
-                dataGridViewPlanner.ColumnCount = 7;
+                dataGridViewPlanner.ColumnCount = 8;
                 //dataGridViewPlanner.RowCount = 12;
                 dataGridViewPlanner.Name = "Planner View";
 
@@ -258,6 +260,7 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Columns[4].Name = "Thursday";
                     dataGridViewPlanner.Columns[5].Name = "Friday";
                     dataGridViewPlanner.Columns[6].Name = "Saturday";
+                    dataGridViewPlanner.Columns[7].Name = "Totals";
                 } else
                 {                   
                     dataGridViewPlanner.Columns[0].Name = "Monday";
@@ -267,6 +270,7 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Columns[4].Name = "Friday";
                     dataGridViewPlanner.Columns[5].Name = "Saturday";
                     dataGridViewPlanner.Columns[6].Name = "Sunday";
+                    dataGridViewPlanner.Columns[7].Name = "Totals";
                 }
 
                 dataGridViewPlanner.ColumnHeadersDefaultCellStyle.BackColor = Color.Silver;
@@ -287,6 +291,7 @@ namespace CyclingLogApplication
                 dataGridViewPlanner.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridViewPlanner.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dataGridViewPlanner.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridViewPlanner.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 // Resize the master DataGridView columns to fit the newly loaded data.
                 //dataGridViewMonthly.AutoResizeColumns();
@@ -309,6 +314,7 @@ namespace CyclingLogApplication
                 dataGridViewPlanner.Columns[4].ValueType = typeof(string);
                 dataGridViewPlanner.Columns[5].ValueType = typeof(string);
                 dataGridViewPlanner.Columns[6].ValueType = typeof(string);
+                dataGridViewPlanner.Columns[7].ValueType = typeof(string);
 
                 int cellNumber = 0;
                 int rowNumber = 0;
@@ -374,13 +380,13 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime1, sqlCommand);
-                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2, sqlCommand);
-                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3, sqlCommand);
-                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand);
-                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand);
-                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand);
-                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);                
+                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime1, sqlCommand, "planner");
+                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2, sqlCommand, "planner");
+                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3, sqlCommand, "planner");
+                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand, "planner");
+                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand, "planner");
+                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");                
                     }
 
                     pMiles1 = GetPlannedEntry(logIndex, dateTime1);
@@ -436,14 +442,14 @@ namespace CyclingLogApplication
                     else
                     {
                         
-                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime2b, sqlCommand);
+                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime2b, sqlCommand, "planner");
                         
-                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2, sqlCommand);
-                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3, sqlCommand);
-                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand);
-                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand);
-                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand);
-                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2, sqlCommand, "planner");
+                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3, sqlCommand, "planner");
+                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand, "planner");
+                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand, "planner");
+                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
                     }
 
                     pMiles1 = GetPlannedEntry(logIndex, dateTime2b);
@@ -501,14 +507,14 @@ namespace CyclingLogApplication
                     else
                     {
                         
-                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime32, sqlCommand);
-                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime31, sqlCommand);
+                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime32, sqlCommand, "planner");
+                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime31, sqlCommand, "planner");
                         
-                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3, sqlCommand);
-                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand);
-                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand);
-                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand);
-                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3, sqlCommand, "planner");
+                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand, "planner");
+                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand, "planner");
+                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
                     }
 
                     pMiles1 = GetPlannedEntry(logIndex, dateTime32);
@@ -567,14 +573,14 @@ namespace CyclingLogApplication
                     }
                     else
                     {                        
-                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime43, sqlCommand);
-                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime42, sqlCommand);
-                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime41, sqlCommand);
+                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime43, sqlCommand, "planner");
+                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime42, sqlCommand, "planner");
+                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime41, sqlCommand, "planner");
                         
-                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand);
-                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand);
-                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand);
-                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand, "planner");
+                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand, "planner");
+                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
                     }
 
                     pMiles1 = GetPlannedEntry(logIndex, dateTime43);
@@ -635,14 +641,14 @@ namespace CyclingLogApplication
                     }
                     else
                     {                       
-                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime54, sqlCommand);
-                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime53, sqlCommand);
-                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime52, sqlCommand);
-                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime51, sqlCommand);
+                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime54, sqlCommand, "planner");
+                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime53, sqlCommand, "planner");
+                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime52, sqlCommand, "planner");
+                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime51, sqlCommand, "planner");
                         
-                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand);
-                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand);
-                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand, "planner");
+                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
                     }
 
                     pMiles1 = GetPlannedEntry(logIndex, dateTime54);
@@ -705,14 +711,14 @@ namespace CyclingLogApplication
                     }
                     else
                     {                       
-                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime65, sqlCommand);
-                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime64, sqlCommand);
-                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime63, sqlCommand);
-                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime62, sqlCommand);
-                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime61, sqlCommand);
+                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime65, sqlCommand, "planner");
+                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime64, sqlCommand, "planner");
+                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime63, sqlCommand, "planner");
+                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime62, sqlCommand, "planner");
+                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime61, sqlCommand, "planner");
                         
-                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand);
-                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
                     }
 
                     pMiles1 = GetPlannedEntry(logIndex, dateTime65);
@@ -777,14 +783,14 @@ namespace CyclingLogApplication
                     }
                     else
                     {                     
-                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime76, sqlCommand);
-                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime75, sqlCommand);
-                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime74, sqlCommand);
-                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime73, sqlCommand);
-                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime72, sqlCommand);
-                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime71, sqlCommand);
+                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime76, sqlCommand, "planner");
+                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime75, sqlCommand, "planner");
+                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime74, sqlCommand, "planner");
+                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime73, sqlCommand, "planner");
+                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime72, sqlCommand, "planner");
+                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime71, sqlCommand, "planner");
                         
-                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand);
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
                     }
 
                     pMiles1 = GetPlannedEntry(logIndex, dateTime76);
@@ -796,14 +802,84 @@ namespace CyclingLogApplication
                     pMiles7 = GetPlannedEntry(logIndex, dateTime7);
                 }
 
+                //Add up Planner Miles:
+                double totalPlanMiles = 0;
+                if (double.TryParse(pMiles1, out doubleValue))
+                {
+                    totalPlanMiles += double.Parse(pMiles1);
+                }
+                if (double.TryParse(pMiles2, out doubleValue))
+                {
+                    totalPlanMiles += double.Parse(pMiles2);
+                }
+                if (double.TryParse(pMiles3, out doubleValue))
+                {
+                    totalPlanMiles += double.Parse(pMiles3);
+                }
+                if (double.TryParse(pMiles4, out doubleValue))
+                {
+                    totalPlanMiles += double.Parse(pMiles4);
+                }
+                if (double.TryParse(pMiles5, out doubleValue))
+                {
+                    totalPlanMiles += double.Parse(pMiles5);
+                }
+                if (double.TryParse(pMiles6, out doubleValue))
+                {
+                    totalPlanMiles += double.Parse(pMiles6);
+                }
+                if (double.TryParse(pMiles7, out doubleValue))
+                {
+                    totalPlanMiles += double.Parse(pMiles7);
+                }
+
+                //Add up Actual Miles:
+                double totalActualMiles = 0;
+
+                if (double.TryParse(miles1, out doubleValue))
+                {
+                    totalActualMiles = totalActualMiles + double.Parse(miles1);
+                    miles1 = miles1 + " miles";
+                }
+                if (double.TryParse(miles2, out doubleValue))
+                {
+                    totalActualMiles += double.Parse(miles2);
+                    miles2 = miles2 + " miles";
+                }
+                if (double.TryParse(miles3, out doubleValue))
+                {
+                    totalActualMiles += double.Parse(miles3);
+                    miles3 = miles3 + " miles";
+                }
+                if (double.TryParse(miles4, out doubleValue))
+                {
+                    totalActualMiles += double.Parse(miles4);
+                    miles4 = miles4 + " miles";
+                }
+                if (double.TryParse(miles5, out doubleValue))
+                {
+                    totalActualMiles += double.Parse(miles5);
+                    miles5 = miles5 + " miles";
+                }
+                if (double.TryParse(miles6, out doubleValue))
+                {
+                    totalActualMiles += double.Parse(miles6);
+                    miles6 = miles6 + " miles";
+                }
+                if (double.TryParse(miles7, out doubleValue))
+                {
+                    totalActualMiles += double.Parse(miles7);
+                    miles7 = miles7 + " miles";
+                }
+
                 //Date:
                 dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7);
                 dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                 //Planned:
-                dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7, totalPlanMiles);
                 rowCount++;
                 //Actuals
-                dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7, totalActualMiles);
                 rowCount++;
                 dayCount = int.Parse(temp7);
 
@@ -823,7 +899,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                         }
                     }
                     //Planner and miles available:
@@ -837,7 +913,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                         }
                     }
                 }
@@ -857,7 +933,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                         }
                     }
                     //Planner and miles available:
@@ -871,7 +947,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                         }
                     }
                 }
@@ -891,7 +967,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                         }
                     }
                     //Planner and miles available:
@@ -905,7 +981,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                         }
                     }
                 }
@@ -925,7 +1001,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                         }
                     }
                     //Planner and miles available:
@@ -939,7 +1015,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                         }
                     }
                 }
@@ -959,7 +1035,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                         }
                     }
                     //Planner and miles available:
@@ -973,7 +1049,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                         }
                     }
                 }
@@ -993,7 +1069,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                         }
                     }
                     //Planner and miles available:
@@ -1007,7 +1083,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                         }
                     }
                 }
@@ -1027,7 +1103,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                         }
                     }
                     //Planner and miles available:
@@ -1041,8 +1117,33 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                         }
+                    }
+                }
+
+                //Planner value not set:
+                if (totalPlanMiles == 0)
+                {
+                    dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.White;
+                }
+                //Planner set but no ride miles:
+                else if (totalActualMiles == 0)
+                {
+
+                    dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                }
+                //Planner and miles available:
+                else
+                {
+                    double compareMiles = totalActualMiles / totalPlanMiles;
+                    if (compareMiles > planGoal)
+                    {
+                        dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
                     }
                 }
 
@@ -1142,7 +1243,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles1 = MainForm.GetDataItemByDate(logIndex, dateTime1a, sqlCommand);
+                            miles1 = MainForm.GetDataItemByDate(logIndex, dateTime1a, sqlCommand, "planner");
                         }                       
 
                         if (nextMonthIndex == 13)
@@ -1163,12 +1264,12 @@ namespace CyclingLogApplication
                             DateTime dateTime1e = new DateTime(logYear, nextMonthIndex, 4);
                             DateTime dateTime1f = new DateTime(logYear, nextMonthIndex, 5);
                             DateTime dateTime1g = new DateTime(logYear, nextMonthIndex, 6);
-                            miles2 = MainForm.GetDataItemByDate(logIndex, dateTime1b, sqlCommand);
-                            miles3 = MainForm.GetDataItemByDate(logIndex, dateTime1c, sqlCommand);
-                            miles4 = MainForm.GetDataItemByDate(logIndex, dateTime1d, sqlCommand);
-                            miles5 = MainForm.GetDataItemByDate(logIndex, dateTime1e, sqlCommand);
-                            miles6 = MainForm.GetDataItemByDate(logIndex, dateTime1f, sqlCommand);
-                            miles7 = MainForm.GetDataItemByDate(logIndex, dateTime1g, sqlCommand);
+                            miles2 = MainForm.GetDataItemByDate(logIndex, dateTime1b, sqlCommand, "planner");
+                            miles3 = MainForm.GetDataItemByDate(logIndex, dateTime1c, sqlCommand, "planner");
+                            miles4 = MainForm.GetDataItemByDate(logIndex, dateTime1d, sqlCommand, "planner");
+                            miles5 = MainForm.GetDataItemByDate(logIndex, dateTime1e, sqlCommand, "planner");
+                            miles6 = MainForm.GetDataItemByDate(logIndex, dateTime1f, sqlCommand, "planner");
+                            miles7 = MainForm.GetDataItemByDate(logIndex, dateTime1g, sqlCommand, "planner");
                         }            
 
                         if (nextMonthIndex == 13)
@@ -1198,6 +1299,76 @@ namespace CyclingLogApplication
                             pMiles7 = GetPlannedEntry(logIndex, dateTime1g);
                         }
 
+                        //Add up Planner Miles:
+                        totalPlanMiles = 0;
+                        if (double.TryParse(pMiles1, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles1);
+                        }
+                        if (double.TryParse(pMiles2, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles2);
+                        }
+                        if (double.TryParse(pMiles3, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles3);
+                        }
+                        if (double.TryParse(pMiles4, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles4);
+                        }
+                        if (double.TryParse(pMiles5, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles5);
+                        }
+                        if (double.TryParse(pMiles6, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles6);
+                        }
+                        if (double.TryParse(pMiles7, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles7);
+                        }
+
+                        //Add up Actual Miles:
+                        totalActualMiles = 0;
+
+                        if (double.TryParse(miles1, out doubleValue))
+                        {
+                            totalActualMiles = totalActualMiles + double.Parse(miles1);
+                            miles1 = miles1 + " miles";
+                        }
+                        if (double.TryParse(miles2, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles2);
+                            miles2 = miles2 + " miles";
+                        }
+                        if (double.TryParse(miles3, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles3);
+                            miles3 = miles3 + " miles";
+                        }
+                        if (double.TryParse(miles4, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles4);
+                            miles4 = miles4 + " miles";
+                        }
+                        if (double.TryParse(miles5, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles5);
+                            miles5 = miles5 + " miles";
+                        }
+                        if (double.TryParse(miles6, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles6);
+                            miles6 = miles6 + " miles";
+                        }
+                        if (double.TryParse(miles7, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles7);
+                            miles7 = miles7 + " miles";
+                        }
+
                         //Dates
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
@@ -1208,10 +1379,10 @@ namespace CyclingLogApplication
                         //dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         //dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
                         //PLanned
-                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7, totalPlanMiles);
                         rowCount++;
                         //Actuals
-                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);              
+                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7, totalActualMiles);              
                         rowCount++;
                         dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
                         if (futureDays)
@@ -1258,7 +1429,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -1272,7 +1443,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -1292,7 +1463,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -1306,7 +1477,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -1326,7 +1497,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -1340,7 +1511,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -1360,7 +1531,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -1374,7 +1545,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -1394,7 +1565,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -1408,7 +1579,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -1428,7 +1599,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -1442,7 +1613,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -1462,7 +1633,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -1476,7 +1647,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -1502,7 +1673,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime1a, sqlCommand);
+                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime1a, sqlCommand, "planner");
                         //pMiles1 = GetPlannedEntry(logIndex, dateTime1a);
                     }
                     if (currentYearMonth)
@@ -1551,7 +1722,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2a, sqlCommand);
+                            miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2a, sqlCommand, "planner");
 
                             if (nextMonthIndex == 13)
                             {
@@ -1569,11 +1740,11 @@ namespace CyclingLogApplication
                                 DateTime dateTime2d = new DateTime(logYear, nextMonthIndex, 3);
                                 DateTime dateTime2e = new DateTime(logYear, nextMonthIndex, 4);
                                 DateTime dateTime2f = new DateTime(logYear, nextMonthIndex, 5);
-                                miles3 = MainForm.GetDataItemByDate(logIndex, dateTime2b, sqlCommand);
-                                miles4 = MainForm.GetDataItemByDate(logIndex, dateTime2c, sqlCommand);
-                                miles5 = MainForm.GetDataItemByDate(logIndex, dateTime2d, sqlCommand);
-                                miles6 = MainForm.GetDataItemByDate(logIndex, dateTime2e, sqlCommand);
-                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime2f, sqlCommand);
+                                miles3 = MainForm.GetDataItemByDate(logIndex, dateTime2b, sqlCommand, "planner");
+                                miles4 = MainForm.GetDataItemByDate(logIndex, dateTime2c, sqlCommand, "planner");
+                                miles5 = MainForm.GetDataItemByDate(logIndex, dateTime2d, sqlCommand, "planner");
+                                miles6 = MainForm.GetDataItemByDate(logIndex, dateTime2e, sqlCommand, "planner");
+                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime2f, sqlCommand, "planner");
                             }
                         }
 
@@ -1602,6 +1773,76 @@ namespace CyclingLogApplication
                             pMiles7 = GetPlannedEntry(logIndex, dateTime2f);
                         }
 
+                        //Add up Planner Miles:
+                        totalPlanMiles = 0;
+                        if (double.TryParse(pMiles1, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles1);
+                        }
+                        if (double.TryParse(pMiles2, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles2);
+                        }
+                        if (double.TryParse(pMiles3, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles3);
+                        }
+                        if (double.TryParse(pMiles4, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles4);
+                        }
+                        if (double.TryParse(pMiles5, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles5);
+                        }
+                        if (double.TryParse(pMiles6, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles6);
+                        }
+                        if (double.TryParse(pMiles7, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles7);
+                        }
+
+                        //Add up Actual Miles:
+                        totalActualMiles = 0;
+
+                        if (double.TryParse(miles1, out doubleValue))
+                        {
+                            totalActualMiles = totalActualMiles + double.Parse(miles1);
+                            miles1 = miles1 + " miles";
+                        }
+                        if (double.TryParse(miles2, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles2);
+                            miles2 = miles2 + " miles";
+                        }
+                        if (double.TryParse(miles3, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles3);
+                            miles3 = miles3 + " miles";
+                        }
+                        if (double.TryParse(miles4, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles4);
+                            miles4 = miles4 + " miles";
+                        }
+                        if (double.TryParse(miles5, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles5);
+                            miles5 = miles5 + " miles";
+                        }
+                        if (double.TryParse(miles6, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles6);
+                            miles6 = miles6 + " miles";
+                        }
+                        if (double.TryParse(miles7, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles7);
+                            miles7 = miles7 + " miles";
+                        }
+
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                         //dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.LightGray;
@@ -1609,9 +1850,9 @@ namespace CyclingLogApplication
                         //dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
                         //dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         //dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7, totalPlanMiles);
                         rowCount++;
-                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7, totalActualMiles);
                         rowCount++;
                         dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
                         dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
@@ -1666,7 +1907,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -1680,7 +1921,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -1700,7 +1941,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -1714,7 +1955,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -1734,7 +1975,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -1748,7 +1989,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -1768,7 +2009,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -1782,7 +2023,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -1802,7 +2043,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -1816,7 +2057,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -1836,7 +2077,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -1850,7 +2091,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -1870,7 +2111,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -1884,7 +2125,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -1908,7 +2149,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2a, sqlCommand);
+                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2a, sqlCommand, "planner");
                         //pMiles2 = GetPlannedEntry(logIndex, dateTime2a);
                     }
                     if (currentYearMonth)
@@ -1953,7 +2194,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3a, sqlCommand);
+                            miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3a, sqlCommand, "planner");
                             if (nextMonthIndex == 13)
                             {
                                 //Just post a blank entry for the next year Jan days:
@@ -1968,10 +2209,10 @@ namespace CyclingLogApplication
                                 DateTime dateTime3c = new DateTime(logYear, nextMonthIndex, 2);
                                 DateTime dateTime3d = new DateTime(logYear, nextMonthIndex, 3);
                                 DateTime dateTime3e = new DateTime(logYear, nextMonthIndex, 4);
-                                miles4 = MainForm.GetDataItemByDate(logIndex, dateTime3b, sqlCommand);
-                                miles5 = MainForm.GetDataItemByDate(logIndex, dateTime3c, sqlCommand);
-                                miles6 = MainForm.GetDataItemByDate(logIndex, dateTime3d, sqlCommand);
-                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime3e, sqlCommand);
+                                miles4 = MainForm.GetDataItemByDate(logIndex, dateTime3b, sqlCommand, "planner");
+                                miles5 = MainForm.GetDataItemByDate(logIndex, dateTime3c, sqlCommand, "planner");
+                                miles6 = MainForm.GetDataItemByDate(logIndex, dateTime3d, sqlCommand, "planner");
+                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime3e, sqlCommand, "planner");
                             }
                         }                
 
@@ -2000,15 +2241,85 @@ namespace CyclingLogApplication
                             pMiles7 = GetPlannedEntry(logIndex, dateTime3e);
                         }
 
+                        //Add up Planner Miles:
+                        totalPlanMiles = 0;
+                        if (double.TryParse(pMiles1, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles1);
+                        }
+                        if (double.TryParse(pMiles2, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles2);
+                        }
+                        if (double.TryParse(pMiles3, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles3);
+                        }
+                        if (double.TryParse(pMiles4, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles4);
+                        }
+                        if (double.TryParse(pMiles5, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles5);
+                        }
+                        if (double.TryParse(pMiles6, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles6);
+                        }
+                        if (double.TryParse(pMiles7, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles7);
+                        }
+
+                        //Add up Actual Miles:
+                        totalActualMiles = 0;
+
+                        if (double.TryParse(miles1, out doubleValue))
+                        {
+                            totalActualMiles = totalActualMiles + double.Parse(miles1);
+                            miles1 = miles1 + " miles";
+                        }
+                        if (double.TryParse(miles2, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles2);
+                            miles2 = miles2 + " miles";
+                        }
+                        if (double.TryParse(miles3, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles3);
+                            miles3 = miles3 + " miles";
+                        }
+                        if (double.TryParse(miles4, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles4);
+                            miles4 = miles4 + " miles";
+                        }
+                        if (double.TryParse(miles5, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles5);
+                            miles5 = miles5 + " miles";
+                        }
+                        if (double.TryParse(miles6, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles6);
+                            miles6 = miles6 + " miles";
+                        }
+                        if (double.TryParse(miles7, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles7);
+                            miles7 = miles7 + " miles";
+                        }
+
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                         //dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.LightGray;
                         //dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
                         //dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         //dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7, totalPlanMiles);
                         rowCount++;
-                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7, totalActualMiles);
                         rowCount++;
                         dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
                         dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
@@ -2071,7 +2382,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2085,7 +2396,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2105,7 +2416,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2119,7 +2430,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2139,7 +2450,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2153,7 +2464,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2173,7 +2484,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2187,7 +2498,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2207,7 +2518,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2221,7 +2532,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2241,7 +2552,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2255,7 +2566,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2275,7 +2586,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2289,7 +2600,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2313,7 +2624,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3a, sqlCommand);
+                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3a, sqlCommand, "planner");
                         //pMiles3 = GetPlannedEntry(logIndex, dateTime3a);
                     }
                     if (currentYearMonth)
@@ -2354,7 +2665,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4a, sqlCommand);
+                            miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4a, sqlCommand, "planner");
                             if (nextMonthIndex == 13)
                             {
                                 //Just post a blank entry for the next year Jan days:
@@ -2367,9 +2678,9 @@ namespace CyclingLogApplication
                                 DateTime dateTime4b = new DateTime(logYear, nextMonthIndex, 1);
                                 DateTime dateTime4c = new DateTime(logYear, nextMonthIndex, 2);
                                 DateTime dateTime4d = new DateTime(logYear, nextMonthIndex, 3);
-                                miles5 = MainForm.GetDataItemByDate(logIndex, dateTime4b, sqlCommand);
-                                miles6 = MainForm.GetDataItemByDate(logIndex, dateTime4c, sqlCommand);
-                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime4d, sqlCommand);
+                                miles5 = MainForm.GetDataItemByDate(logIndex, dateTime4b, sqlCommand, "planner");
+                                miles6 = MainForm.GetDataItemByDate(logIndex, dateTime4c, sqlCommand, "planner");
+                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime4d, sqlCommand, "planner");
                             }
                         }
 
@@ -2397,14 +2708,84 @@ namespace CyclingLogApplication
                             pMiles7 = GetPlannedEntry(logIndex, dateTime4d);
                         }
 
+                        //Add up Planner Miles:
+                        totalPlanMiles = 0;
+                        if (double.TryParse(pMiles1, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles1);
+                        }
+                        if (double.TryParse(pMiles2, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles2);
+                        }
+                        if (double.TryParse(pMiles3, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles3);
+                        }
+                        if (double.TryParse(pMiles4, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles4);
+                        }
+                        if (double.TryParse(pMiles5, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles5);
+                        }
+                        if (double.TryParse(pMiles6, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles6);
+                        }
+                        if (double.TryParse(pMiles7, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles7);
+                        }
+
+                        //Add up Actual Miles:
+                        totalActualMiles = 0;
+
+                        if (double.TryParse(miles1, out doubleValue))
+                        {
+                            totalActualMiles = totalActualMiles + double.Parse(miles1);
+                            miles1 = miles1 + " miles";
+                        }
+                        if (double.TryParse(miles2, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles2);
+                            miles2 = miles2 + " miles";
+                        }
+                        if (double.TryParse(miles3, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles3);
+                            miles3 = miles3 + " miles";
+                        }
+                        if (double.TryParse(miles4, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles4);
+                            miles4 = miles4 + " miles";
+                        }
+                        if (double.TryParse(miles5, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles5);
+                            miles5 = miles5 + " miles";
+                        }
+                        if (double.TryParse(miles6, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles6);
+                            miles6 = miles6 + " miles";
+                        }
+                        if (double.TryParse(miles7, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles7);
+                            miles7 = miles7 + " miles";
+                        }
+
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                         //dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.LightGray;
                         //dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         //dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7, totalPlanMiles);
                         rowCount++;
-                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7, totalActualMiles);
                         rowCount++;
                         dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
                         dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
@@ -2475,7 +2856,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2489,7 +2870,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2509,7 +2890,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2523,7 +2904,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2543,7 +2924,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2557,7 +2938,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2577,7 +2958,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2591,7 +2972,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2611,7 +2992,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2625,7 +3006,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2645,7 +3026,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2659,7 +3040,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2679,7 +3060,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2693,7 +3074,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2717,7 +3098,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4a, sqlCommand);
+                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4a, sqlCommand, "planner");
                         //pMiles4 = GetPlannedEntry(logIndex, dateTime4a);
                     }
                     if (currentYearMonth)
@@ -2754,7 +3135,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5a, sqlCommand);
+                            miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5a, sqlCommand, "planner");
                             if (nextMonthIndex == 13)
                             {
                                 //Just post a blank entry for the next year Jan days:
@@ -2765,8 +3146,8 @@ namespace CyclingLogApplication
                             {
                                 DateTime dateTime5b = new DateTime(logYear, nextMonthIndex, 1);
                                 DateTime dateTime5c = new DateTime(logYear, nextMonthIndex, 2);
-                                miles6 = MainForm.GetDataItemByDate(logIndex, dateTime5b, sqlCommand);
-                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime5c, sqlCommand);
+                                miles6 = MainForm.GetDataItemByDate(logIndex, dateTime5b, sqlCommand, "planner");
+                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime5c, sqlCommand, "planner");
                             }
                         }           
 
@@ -2793,13 +3174,83 @@ namespace CyclingLogApplication
                             pMiles7 = GetPlannedEntry(logIndex, dateTime5c);
                         }
 
+                        //Add up Planner Miles:
+                        totalPlanMiles = 0;
+                        if (double.TryParse(pMiles1, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles1);
+                        }
+                        if (double.TryParse(pMiles2, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles2);
+                        }
+                        if (double.TryParse(pMiles3, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles3);
+                        }
+                        if (double.TryParse(pMiles4, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles4);
+                        }
+                        if (double.TryParse(pMiles5, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles5);
+                        }
+                        if (double.TryParse(pMiles6, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles6);
+                        }
+                        if (double.TryParse(pMiles7, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles7);
+                        }
+
+                        //Add up Actual Miles:
+                        totalActualMiles = 0;
+
+                        if (double.TryParse(miles1, out doubleValue))
+                        {
+                            totalActualMiles = totalActualMiles + double.Parse(miles1);
+                            miles1 = miles1 + " miles";
+                        }
+                        if (double.TryParse(miles2, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles2);
+                            miles2 = miles2 + " miles";
+                        }
+                        if (double.TryParse(miles3, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles3);
+                            miles3 = miles3 + " miles";
+                        }
+                        if (double.TryParse(miles4, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles4);
+                            miles4 = miles4 + " miles";
+                        }
+                        if (double.TryParse(miles5, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles5);
+                            miles5 = miles5 + " miles";
+                        }
+                        if (double.TryParse(miles6, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles6);
+                            miles6 = miles6 + " miles";
+                        }
+                        if (double.TryParse(miles7, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles7);
+                            miles7 = miles7 + " miles";
+                        }
+
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                         //dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.LightGray;
                         //dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7, totalPlanMiles);
                         rowCount++;
-                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7, totalActualMiles);
                         rowCount++;
                         dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
                         dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
@@ -2878,7 +3329,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2892,7 +3343,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2912,7 +3363,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2926,7 +3377,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2946,7 +3397,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2960,7 +3411,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -2980,7 +3431,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -2994,7 +3445,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3014,7 +3465,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3028,7 +3479,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3048,7 +3499,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3062,7 +3513,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3082,7 +3533,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3096,7 +3547,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3120,7 +3571,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5a, sqlCommand);
+                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5a, sqlCommand, "planner");
                         //pMiles5 = GetPlannedEntry(logIndex, dateTime5a);
                     }
                     if (currentYearMonth)
@@ -3153,7 +3604,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6a, sqlCommand);
+                            miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6a, sqlCommand, "planner");
                             
                             if (nextMonthIndex == 13)
                             {
@@ -3163,7 +3614,7 @@ namespace CyclingLogApplication
                             else
                             {
                                 DateTime dateTime6b = new DateTime(logYear, nextMonthIndex, 1);
-                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime6b, sqlCommand);
+                                miles7 = MainForm.GetDataItemByDate(logIndex, dateTime6b, sqlCommand, "planner");
                                 pMiles7 = GetPlannedEntry(logIndex, dateTime6b);
                             }
                         }
@@ -3190,12 +3641,82 @@ namespace CyclingLogApplication
                             pMiles7 = GetPlannedEntry(logIndex, dateTime6b);
                         }
 
+                        //Add up Planner Miles:
+                        totalPlanMiles = 0;
+                        if (double.TryParse(pMiles1, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles1);
+                        }
+                        if (double.TryParse(pMiles2, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles2);
+                        }
+                        if (double.TryParse(pMiles3, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles3);
+                        }
+                        if (double.TryParse(pMiles4, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles4);
+                        }
+                        if (double.TryParse(pMiles5, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles5);
+                        }
+                        if (double.TryParse(pMiles6, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles6);
+                        }
+                        if (double.TryParse(pMiles7, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles7);
+                        }
+
+                        //Add up Actual Miles:
+                        totalActualMiles = 0;
+
+                        if (double.TryParse(miles1, out doubleValue))
+                        {
+                            totalActualMiles = totalActualMiles + double.Parse(miles1);
+                            miles1 = miles1 + " miles";
+                        }
+                        if (double.TryParse(miles2, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles2);
+                            miles2 = miles2 + " miles";
+                        }
+                        if (double.TryParse(miles3, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles3);
+                            miles3 = miles3 + " miles";
+                        }
+                        if (double.TryParse(miles4, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles4);
+                            miles4 = miles4 + " miles";
+                        }
+                        if (double.TryParse(miles5, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles5);
+                            miles5 = miles5 + " miles";
+                        }
+                        if (double.TryParse(miles6, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles6);
+                            miles6 = miles6 + " miles";
+                        }
+                        if (double.TryParse(miles7, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles7);
+                            miles7 = miles7 + " miles";
+                        }
+
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                         //dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.LightGray;
-                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7, totalPlanMiles);
                         rowCount++;
-                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7, totalActualMiles);
                         rowCount++;
                         dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
                         dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
@@ -3282,7 +3803,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3296,7 +3817,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3316,7 +3837,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3330,7 +3851,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3350,7 +3871,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3364,7 +3885,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3384,7 +3905,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3398,7 +3919,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3418,7 +3939,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3432,7 +3953,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3452,7 +3973,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3466,7 +3987,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3486,7 +4007,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3500,7 +4021,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3524,7 +4045,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6a, sqlCommand);
+                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6a, sqlCommand, "planner");
                         //pMiles6 = GetPlannedEntry(logIndex, dateTime6a);
                     }
                     if (currentYearMonth)
@@ -3551,7 +4072,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7a, sqlCommand);
+                            miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7a, sqlCommand, "planner");
                         }
 
                         pMiles1 = GetPlannedEntry(logIndex, dateTime1a);
@@ -3562,11 +4083,81 @@ namespace CyclingLogApplication
                         pMiles6 = GetPlannedEntry(logIndex, dateTime6a);
                         pMiles7 = GetPlannedEntry(logIndex, dateTime7a);
 
+                        //Add up Planner Miles:
+                        totalPlanMiles = 0;
+                        if (double.TryParse(pMiles1, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles1);
+                        }
+                        if (double.TryParse(pMiles2, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles2);
+                        }
+                        if (double.TryParse(pMiles3, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles3);
+                        }
+                        if (double.TryParse(pMiles4, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles4);
+                        }
+                        if (double.TryParse(pMiles5, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles5);
+                        }
+                        if (double.TryParse(pMiles6, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles6);
+                        }
+                        if (double.TryParse(pMiles7, out doubleValue))
+                        {
+                            totalPlanMiles += double.Parse(pMiles7);
+                        }
+
+                        //Add up Actual Miles:
+                        totalActualMiles = 0;
+
+                        if (double.TryParse(miles1, out doubleValue))
+                        {
+                            totalActualMiles = totalActualMiles + double.Parse(miles1);
+                            miles1 = miles1 + " miles";
+                        }
+                        if (double.TryParse(miles2, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles2);
+                            miles2 = miles2 + " miles";
+                        }
+                        if (double.TryParse(miles3, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles3);
+                            miles3 = miles3 + " miles";
+                        }
+                        if (double.TryParse(miles4, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles4);
+                            miles4 = miles4 + " miles";
+                        }
+                        if (double.TryParse(miles5, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles5);
+                            miles5 = miles5 + " miles";
+                        }
+                        if (double.TryParse(miles6, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles6);
+                            miles6 = miles6 + " miles";
+                        }
+                        if (double.TryParse(miles7, out doubleValue))
+                        {
+                            totalActualMiles += double.Parse(miles7);
+                            miles7 = miles7 + " miles";
+                        }
+
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                         dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
-                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                        dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7, totalPlanMiles);
                         rowCount++;
-                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                        dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7, totalActualMiles);
                         rowCount++;
                         dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
                         dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
@@ -3592,7 +4183,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3606,7 +4197,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3626,7 +4217,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3640,7 +4231,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3660,7 +4251,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3674,7 +4265,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3694,7 +4285,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3708,7 +4299,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3728,7 +4319,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3742,7 +4333,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3762,7 +4353,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3776,7 +4367,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3796,7 +4387,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
                             }
                             //Planner and miles available:
@@ -3810,7 +4401,7 @@ namespace CyclingLogApplication
                                 }
                                 else
                                 {
-                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                    dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
                             }
                         }
@@ -3900,7 +4491,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7a, sqlCommand);
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7a, sqlCommand, "planner");
                     }
 
                     pMiles1 = GetPlannedEntry(logIndex, dateTime1a);
@@ -3911,11 +4502,81 @@ namespace CyclingLogApplication
                     pMiles6 = GetPlannedEntry(logIndex, dateTime6a);
                     pMiles7 = GetPlannedEntry(logIndex, dateTime7a);
 
+                    //Add up Planner Miles:
+                    totalPlanMiles = 0;
+                    if (double.TryParse(pMiles1, out doubleValue))
+                    {
+                        totalPlanMiles += double.Parse(pMiles1);
+                    }
+                    if (double.TryParse(pMiles2, out doubleValue))
+                    {
+                        totalPlanMiles += double.Parse(pMiles2);
+                    }
+                    if (double.TryParse(pMiles3, out doubleValue))
+                    {
+                        totalPlanMiles += double.Parse(pMiles3);
+                    }
+                    if (double.TryParse(pMiles4, out doubleValue))
+                    {
+                        totalPlanMiles += double.Parse(pMiles4);
+                    }
+                    if (double.TryParse(pMiles5, out doubleValue))
+                    {
+                        totalPlanMiles += double.Parse(pMiles5);
+                    }
+                    if (double.TryParse(pMiles6, out doubleValue))
+                    {
+                        totalPlanMiles += double.Parse(pMiles6);
+                    }
+                    if (double.TryParse(pMiles7, out doubleValue))
+                    {
+                        totalPlanMiles += double.Parse(pMiles7);
+                    }
+
+                    //Add up Actual Miles:
+                    totalActualMiles = 0;
+
+                    if (double.TryParse(miles1, out doubleValue))
+                    {
+                        totalActualMiles = totalActualMiles + double.Parse(miles1);
+                        miles1 = miles1 + " miles";
+                    }
+                    if (double.TryParse(miles2, out doubleValue))
+                    {
+                        totalActualMiles += double.Parse(miles2);
+                        miles2 = miles2 + " miles";
+                    }
+                    if (double.TryParse(miles3, out doubleValue))
+                    {
+                        totalActualMiles += double.Parse(miles3);
+                        miles3 = miles3 + " miles";
+                    }
+                    if (double.TryParse(miles4, out doubleValue))
+                    {
+                        totalActualMiles += double.Parse(miles4);
+                        miles4 = miles4 + " miles";
+                    }
+                    if (double.TryParse(miles5, out doubleValue))
+                    {
+                        totalActualMiles += double.Parse(miles5);
+                        miles5 = miles5 + " miles";
+                    }
+                    if (double.TryParse(miles6, out doubleValue))
+                    {
+                        totalActualMiles += double.Parse(miles6);
+                        miles6 = miles6 + " miles";
+                    }
+                    if (double.TryParse(miles7, out doubleValue))
+                    {
+                        totalActualMiles += double.Parse(miles7);
+                        miles7 = miles7 + " miles";
+                    }
+
                     dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
                     dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
-                    dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7);
+                    dataGridViewPlanner.Rows.Add(pMiles1, pMiles2, pMiles3, pMiles4, pMiles5, pMiles6, pMiles7, totalPlanMiles);
                     rowCount++;
-                    dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7);
+                    dataGridViewPlanner.Rows.Add(miles1, miles2, miles3, miles4, miles5, miles6, miles7, totalActualMiles);
                     rowCount++;
                     dataGridViewPlanner.Rows[rowCount].Cells[0].Style.ForeColor = textColor;
                     dataGridViewPlanner.Rows[rowCount].Cells[1].Style.ForeColor = textColor;
@@ -3941,7 +4602,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                             }
                         }
                         //Planner and miles available:
@@ -3955,7 +4616,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Tomato;
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.Red;
                             }
                         }
                     }
@@ -3975,7 +4636,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                             }
                         }
                         //Planner and miles available:
@@ -3989,7 +4650,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Tomato;
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.Red;
                             }
                         }
                     }
@@ -4009,7 +4670,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                             }
                         }
                         //Planner and miles available:
@@ -4023,7 +4684,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Tomato;
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.Red;
                             }
                         }
                     }
@@ -4043,7 +4704,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                             }
                         }
                         //Planner and miles available:
@@ -4057,7 +4718,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Tomato;
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.Red;
                             }
                         }
                     }
@@ -4077,7 +4738,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                             }
                         }
                         //Planner and miles available:
@@ -4091,7 +4752,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Tomato;
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.Red;
                             }
                         }
                     }
@@ -4111,7 +4772,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                             }
                         }
                         //Planner and miles available:
@@ -4125,7 +4786,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Tomato;
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.Red;
                             }
                         }
                     }
@@ -4145,7 +4806,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                             }
                         }
                         //Planner and miles available:
@@ -4159,7 +4820,7 @@ namespace CyclingLogApplication
                             }
                             else
                             {
-                                dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Tomato;
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                             }
                         }
                     }
@@ -4380,6 +5041,7 @@ namespace CyclingLogApplication
                 dataGridViewPlanner.Rows[12].Height = 33;
                 dataGridViewPlanner.Rows[13].Height = 28;
                 dataGridViewPlanner.Rows[14].Height = 28;
+                dataGridViewPlanner.Columns[7].Width = 50;
 
                 //Changes if a 6th week is needed:
                 if (sixRow)
@@ -4389,11 +5051,26 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[17].Height = 28;
                     Size gridSize = new Size(904, 580);
                     dataGridViewPlanner.Size = gridSize;
+
+                    //Totals column
+                    dataGridViewPlanner.Rows[0].Cells[7].Style.BackColor = Color.DarkGray;
+                    dataGridViewPlanner.Rows[3].Cells[7].Style.BackColor = Color.DarkGray;
+                    dataGridViewPlanner.Rows[6].Cells[7].Style.BackColor = Color.DarkGray;
+                    dataGridViewPlanner.Rows[9].Cells[7].Style.BackColor = Color.DarkGray;
+                    dataGridViewPlanner.Rows[12].Cells[7].Style.BackColor = Color.DarkGray;
+                    dataGridViewPlanner.Rows[15].Cells[7].Style.BackColor = Color.DarkGray;
                 }
                 else
                 {
                     Size gridSize = new Size(904, 493);
                     dataGridViewPlanner.Size = gridSize;
+
+                    //Totals column
+                    dataGridViewPlanner.Rows[0].Cells[7].Style.BackColor = Color.DarkGray;
+                    dataGridViewPlanner.Rows[3].Cells[7].Style.BackColor = Color.DarkGray;
+                    dataGridViewPlanner.Rows[6].Cells[7].Style.BackColor = Color.DarkGray;
+                    dataGridViewPlanner.Rows[9].Cells[7].Style.BackColor = Color.DarkGray;
+                    dataGridViewPlanner.Rows[12].Cells[7].Style.BackColor = Color.DarkGray;
                 }
 
                 dataGridViewPlanner.AllowUserToResizeRows = false;
@@ -4573,73 +5250,73 @@ namespace CyclingLogApplication
 
                 if (i == 0)
                 {
-                    if (idList != null || idList[0].Equals("0") || idList[0].Equals(""))
+                    if (idList.Count == 0)
                     {
                         AddPlannedEntry(planDate, double.Parse(tbDayPlanner1.Text), weekValue, logIndex);
                     }
                     else
                     {
-                        UpdatePlannedEntry(planDate, double.Parse(tbDayPlanner1.Text), logIndex);
+                        UpdatePlannedEntry(double.Parse(tbDayPlanner1.Text), idList[0]);
                     }
                 } else if (i == 1)
                 {
-                    if (idList != null || idList[0].Equals("0") || idList[0].Equals(""))
+                    if (idList.Count == 0)
                     {
                         AddPlannedEntry(planDate, double.Parse(tbDayPlanner2.Text), weekValue, logIndex);
                     }
                     else
                     {
-                        UpdatePlannedEntry(planDate, double.Parse(tbDayPlanner2.Text), logIndex);
+                        UpdatePlannedEntry(double.Parse(tbDayPlanner2.Text), idList[0]);
                     }
                 } else if (i == 2)
                 {
-                    if (idList != null || idList[0].Equals("0") || idList[0].Equals(""))
+                    if (idList.Count == 0)
                     {
                         AddPlannedEntry(planDate, double.Parse(tbDayPlanner3.Text), weekValue, logIndex);
                     }
                     else
                     {
-                        UpdatePlannedEntry(planDate, double.Parse(tbDayPlanner3.Text), logIndex);
+                        UpdatePlannedEntry(double.Parse(tbDayPlanner3.Text), idList[0]);
                     }
                 } else if (i==3 )
                 {
-                    if (idList != null || idList[0].Equals("0") || idList[0].Equals(""))
+                    if (idList.Count == 0)
                     {
                         AddPlannedEntry(planDate, double.Parse(tbDayPlanner4.Text), weekValue, logIndex);
                     }
                     else
                     {
-                        UpdatePlannedEntry(planDate, double.Parse(tbDayPlanner4.Text), logIndex);
+                        UpdatePlannedEntry(double.Parse(tbDayPlanner4.Text), idList[0]);
                     }
                 } else if (i==4)
                 {
-                    if (idList != null || idList[0].Equals("0") || idList[0].Equals(""))
+                    if (idList.Count == 0)
                     {
                         AddPlannedEntry(planDate, double.Parse(tbDayPlanner5.Text), weekValue, logIndex);
                     }
                     else
                     {
-                        UpdatePlannedEntry(planDate, double.Parse(tbDayPlanner5.Text), logIndex);
+                        UpdatePlannedEntry(double.Parse(tbDayPlanner5.Text), idList[0]);
                     }
                 } else if (i == 5)
                 {
-                    if (idList != null || idList[0].Equals("0") || idList[0].Equals(""))
+                    if (idList.Count == 0)
                     {
                         AddPlannedEntry(planDate, double.Parse(tbDayPlanner6.Text), weekValue, logIndex);
                     }
                     else
                     {
-                        UpdatePlannedEntry(planDate, double.Parse(tbDayPlanner6.Text), logIndex);
+                        UpdatePlannedEntry(double.Parse(tbDayPlanner6.Text), idList[0]);
                     }
                 } else if (i == 6)
                 {
-                    if (idList != null || idList[0].Equals("0") || idList[0].Equals(""))
+                    if (idList.Count == 0)
                     {
                         AddPlannedEntry(planDate, double.Parse(tbDayPlanner7.Text), weekValue, logIndex);
                     }
                     else
                     {
-                        UpdatePlannedEntry(planDate, double.Parse(tbDayPlanner7.Text), logIndex);
+                        UpdatePlannedEntry(double.Parse(tbDayPlanner7.Text), idList[0]);
                     }
                 } 
             }
@@ -4683,7 +5360,7 @@ namespace CyclingLogApplication
             return returnValue;
         }
 
-        private static int UpdatePlannedEntry(DateTime dateValue, double plannedValue, int logEntryID)
+        private static int UpdatePlannedEntry(double plannedValue, int entryID)
         {
             int returnValue = 1;
 
@@ -4692,8 +5369,7 @@ namespace CyclingLogApplication
                 List<object> objectValues = new List<object>
                 {
                     plannedValue,
-                    dateValue,
-                    logEntryID
+                    entryID
                 };
                 //ExecuteScalarFunction
                 using (var results = MainForm.ExecuteSimpleQueryConnection("Ride_Information_UpdatePlanned", objectValues))
@@ -4792,6 +5468,12 @@ namespace CyclingLogApplication
         private void cbPlannerDate_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbPlannerError.Text = "";
+
+            if (cbHold.Checked == true)
+            {
+                return;
+            }
+
             string dateString = cbPlannerDate.SelectedItem.ToString();
             if (dateString.Contains("--Select Value--"))
             {
@@ -5034,7 +5716,7 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    UpdatePlannedEntry(planDate, 0, plannedEntryID);
+                    UpdatePlannedEntry(0, plannedEntryID);
                 }
             }
 
