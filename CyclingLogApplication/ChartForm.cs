@@ -168,8 +168,8 @@ namespace CyclingLogApplication
 
         private void BtRunChart_Click(object sender, EventArgs e)
         {
-            string chartDataColumn;
-            string dataType; 
+            string chartDataColumn = "";
+            string dataType = ""; 
             bool averageDataType = false;
 
             //Verify the required values are available before running chart:
@@ -251,357 +251,585 @@ namespace CyclingLogApplication
                 dataType = "longest";
             }
             //Miles:
-            else if (cbTypeChartData.SelectedIndex == 2)
+            else if (cbTypeChartData.SelectedIndex == 3)
             {
                 chartDataColumn = "RideDistance";
                 lbYAxis.Text = "Miles";
                 dataType = "miles";
             } 
             //Longest Ascent:
-            else
+            else if (cbTypeChartData.SelectedIndex == 4)
             {
                 chartDataColumn = "TotalAscent";
                 lbYAxis.Text = "Feet";
                 dataType = "totalascent";
+            } 
+            else if (cbTypeChartData.SelectedIndex == 5)
+            {
+                chartDataColumn = "Planned";
+                lbYAxis.Text = "Miles";
+                dataType = "miles";
             }
 
             SqlCommand cmd = null;
 
-            try
+            if (chartDataColumn.Equals("Planned"))
             {
-                // instantiate and open connection
-                //conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-
-                //Daily:
-                if (cbTypeTime.SelectedIndex == 1)
+                try
                 {
-                    if (!checkBoxRouteOption.Checked)
-                    {
-                        cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
-                    }
-                    else
-                    {
-                        cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
-                    }
-
-                    lbXAxis.Text = "Day";
-                }
-                //Weekly:
-                else if (cbTypeTime.SelectedIndex == 2)
-                {
-                    if (!checkBoxRouteOption.Checked)
-                    {
-                        if (cbTypeChartData.SelectedIndex == 2)
-                        {
-                            cmd = new SqlCommand("SELECT Date, MAX(RideDistance), WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " GROUP BY RideDistance, WeekNumber, Date ORDER BY Date", sqlConnection);
-                        }
-                        else
-                        {
-                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
-                        }
-                    }
-                    else
-                    {
-                        if (cbTypeChartData.SelectedIndex == 2)
-                        {
-                            cmd = new SqlCommand("SELECT Date, MAX(RideDistance), WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID='" + logIndex + "' GROUP BY RideDistance, WeekNumber, Date", sqlConnection);
-                        }
-                        else
-                        {
-                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
-                        }
-                    }
-
-                    lbXAxis.Text = "Week";
-                }
-                //Monthly:
-                else if (cbTypeTime.SelectedIndex == 3)
-                {
-                    if (!checkBoxRouteOption.Checked)
-                    {
-                        if (cbTypeChartData.SelectedIndex == 2)
-                        {
-                            cmd = new SqlCommand("SELECT Date, MAX(RideDistance), WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " GROUP BY RideDistance, WeekNumber, Date ORDER BY Date", sqlConnection);
-                        }
-                        else
-                        {
-                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
-                        }
-                    }
-                    else
-                    {
-                        if (cbTypeChartData.SelectedIndex == 2)
-                        {
-                            cmd = new SqlCommand("SELECT Date, MAX(RideDistance), WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " GROUP BY RideDistance, WeekNumber, Date ORDER BY Date", sqlConnection);
-                        }
-                        else
-                        {
-                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
-                        }
-                    }
-
-                    lbXAxis.Text = "Month";
-                }
-
-                sqlConnection.Open();
-                reader = cmd.ExecuteReader();
-                int weekCount = 1;
-                int monthCount = 1;
-                int recordCount = 1;
-                double total_value = 0;
-                double avg_value = 0;
-
-                chart1.Series[0].Points.Clear();
-
-                if (rbChartTypeBar.Checked)
-                {
-                    chart1.Series["Series1"].ChartType = SeriesChartType.Bar;
-                }
-                else if (rbChartTypeColumn.Checked)
-                {
-                    chart1.Series["Series1"].ChartType = SeriesChartType.Column;
-                }
-                else
-                {
-                    chart1.Series["Series1"].ChartType = SeriesChartType.Line;
-                }
-
-                string date = "";
-                Boolean recordFound = false;
-                double weeklyMax = 0;
-                double monthlyMax = 0;
-
-                // write each record
-                while (reader.Read())
-                { 
-                    date = reader[0].ToString();
-                    date = Convert.ToDateTime(date).ToShortDateString();
-                    double chartDataTypeValue = Convert.ToDouble(reader[1].ToString());
-                    int weekValue = Convert.ToInt32(reader[2].ToString());
-                    //this.chart1.Series["Series1"].Points.AddXY(reader[0].ToString(), reader[1].ToString());
-
-                    //Daily
+                    //Daily:
                     if (cbTypeTime.SelectedIndex == 1)
                     {
-                        if (!date.Equals(""))
-                        {
-                            chartDataTypeValue = Math.Round(chartDataTypeValue, 1);
-                            chart1.Series["Series1"].Points.AddXY(date, chartDataTypeValue.ToString());
-                            Logger.Log("Chart Testing: Daily values: " + chartDataTypeValue + "::" + date, logSetting, 1);
-                        }
+                        cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber, RideDistance FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        lbXAxis.Text = "Day";
                     }
                     //Weekly:
                     else if (cbTypeTime.SelectedIndex == 2)
                     {
-                        //If not equal, a new week has started:
-                        if (weekCount != weekValue)
-                        {
-                            if (averageDataType)
-                            {
-                                if (total_value != 0)
-                                {
-                                    avg_value = total_value / recordCount;
-                                    avg_value = Math.Round(avg_value, 1);
-                                    chart1.Series["Series1"].Points.AddXY(date, avg_value.ToString());
-                                }
-                            }
-                            else if (dataType.Equals("longest") || dataType.Equals("totalascent"))
-                            {
-                                if (weeklyMax != 0)
-                                {
-                                    chart1.Series["Series1"].Points.AddXY(date, weeklyMax.ToString());
-                                }
-                            } else
-                            {
-                                if (total_value != 0)
-                                {
-                                    chart1.Series["Series1"].Points.AddXY(date, total_value.ToString());
-                                }
-                            }
-
-                            //Restart values over since starting a new week:
-                            recordCount = 1;
-                            total_value = chartDataTypeValue;
-                            weekCount = weekValue;
-                            weeklyMax = chartDataTypeValue;
-                            recordFound = true;
-                        }
-                        // Still on the current week:
-                        else
-                        {
-                            total_value += chartDataTypeValue;
-                            recordCount++;
-                            recordFound = true;
-                            if (chartDataTypeValue > weeklyMax)
-                            {
-                                weeklyMax = chartDataTypeValue;
-                            }
-                        }
-
-                        Logger.Log("Chart Testing: Weekly values: " + chartDataTypeValue + "::" + date, logSetting, 1);
+                        cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber, RideDistance FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        lbXAxis.Text = "Week";
                     }
                     //Monthly:
                     else if (cbTypeTime.SelectedIndex == 3)
                     {
-                        DateTime datetime = Convert.ToDateTime(date);
-                        int month = datetime.Month;
+                        cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber, RideDistance FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        lbXAxis.Text = "Month";
+                    }
 
-                        //if (month == 11)
-                        //{
-                        //    string test = "";
-                        //}
+                    sqlConnection.Open();
+                    reader = cmd.ExecuteReader();
+                    int weekCount = 1;
+                    int monthCount = 1;
+                    int recordCount = 1;
+                    double total_miles_plan = 0;
+                    double total_miles_actual = 0;
 
-                        if (monthCount != month)
+                    chart1.Series[0].Points.Clear();
+                    chart1.Series[1].Points.Clear();
+                    chart1.Series["Series1"].ChartType = SeriesChartType.Column;
+                    chart1.Series["Series2"].ChartType = SeriesChartType.Line;
+                   
+                    
+                    string date = "";
+                    Boolean recordFound = false;
+
+                    // write each record
+                    while (reader.Read())
+                    {
+                        date = reader[0].ToString();
+                        date = Convert.ToDateTime(date).ToShortDateString();
+                        string pMilesString = reader[1].ToString();
+                        
+                        double plan_miles = 0;
+                        if (pMilesString.Equals(""))
                         {
-                            if (averageDataType)
-                            {
-                                if (avg_value != 0)
-                                {
-                                    avg_value = total_value / recordCount;
-                                    avg_value = Math.Round(avg_value, 1);
-                                    chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), avg_value.ToString());
-                                    chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-                                    chart1.Series["Series1"].IsValueShownAsLabel = true;
-                                }
-                            }
-                            else if (dataType.Equals("longest") || dataType.Equals("totalascent"))
-                            {
-                                if (monthlyMax != 0)
-                                {
-                                    chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), monthlyMax.ToString());
-                                    chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-                                    chart1.Series["Series1"].IsValueShownAsLabel = true;
-                                }
-                            }
-                            else
-                            {
-                                if (total_value != 0)
-                                {
-                                    chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), total_value.ToString());
-                                    chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-                                    chart1.Series["Series1"].IsValueShownAsLabel = true;
-                                }
+                            plan_miles = 0;
+                        } else
+                        {
+                            plan_miles = double.Parse(pMilesString);
+                        }
+                        
+                        int weekValue = Convert.ToInt32(reader[2].ToString());
+                        string aMilesString = reader[3].ToString();
 
-                            }
-                            //Restart values over since starting a new month:
-                            recordCount = 1;
-                            total_value = chartDataTypeValue;
-                            monthCount = month;
-                            monthlyMax = chartDataTypeValue;
-                            recordFound = true;
+                        double actual_miles = 0;
+                        if (aMilesString.Equals(""))
+                        {
+                            actual_miles = 0;
                         }
                         else
                         {
-                            total_value += chartDataTypeValue;
-                            recordCount++;
-                            recordFound = true;
-                            if (chartDataTypeValue > monthlyMax)
+                            actual_miles = double.Parse(aMilesString);
+                        }
+
+                        //Daily
+                        if (cbTypeTime.SelectedIndex == 1)
+                        {
+                            if (!date.Equals(""))
                             {
-                                monthlyMax = chartDataTypeValue;
+                                actual_miles = Math.Round(actual_miles, 1);
+                                chart1.Series["Series1"].Points.AddXY(date, actual_miles.ToString());
+                                Logger.Log("Planner Chart Testing: Daily values: " + actual_miles + "::" + date, logSetting, 1);
+                            }
+                        }
+                        //Weekly:
+                        else if (cbTypeTime.SelectedIndex == 2)
+                        {
+                            //If not equal, a new week has started:
+                            if (weekCount != weekValue)
+                            {
+                                chart1.Series["Series1"].Points.AddXY(date, total_miles_actual.ToString());
+                                chart1.Series["Series2"].Points.AddXY(date, total_miles_plan.ToString());
+
+                                //Restart values over since starting a new week:
+                                recordCount = 1;
+                                total_miles_actual = actual_miles;
+                                total_miles_plan = plan_miles;
+                                weekCount = weekValue;
+                                recordFound = true;
+                            }
+                            // Still on the current week:
+                            else
+                            {
+                                total_miles_actual += actual_miles;
+                                total_miles_plan += plan_miles;
+                                recordCount++;
+                                recordFound = true;
+                            }
+
+                            Logger.Log("Planner Chart Testing: Weekly actual values: " + actual_miles + "::" + date, logSetting, 1);
+                            Logger.Log("Planner Chart Testing: Weekly plan values: " + plan_miles + "::" + date, logSetting, 1);
+                        }
+                        //Monthly:
+                        else if (cbTypeTime.SelectedIndex == 3)
+                        {
+                            DateTime datetime = Convert.ToDateTime(date);
+                            int month = datetime.Month;
+
+                            if (monthCount != month)
+                            {
+                                chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), total_miles_actual.ToString());
+                                chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                                chart1.Series["Series1"].IsValueShownAsLabel = true;
+
+                                chart1.Series["Series2"].Points.AddXY(monthCount.ToString(), total_miles_plan.ToString());
+                                chart1.Series["Series2"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                                chart1.Series["Series2"].IsValueShownAsLabel = true;
+
+                                //Restart values over since starting a new month:
+                                recordCount = 1;
+                                total_miles_actual = actual_miles;
+                                total_miles_plan = plan_miles;
+                                monthCount = month;
+                                recordFound = true;
+                            }
+                            else
+                            {
+                                total_miles_actual += actual_miles;
+                                total_miles_plan += plan_miles;
+                                recordCount++;
+                                recordFound = true;
+                            }
+
+                            Logger.Log("Planner Chart Testing: Weekly actual values: " + actual_miles + "::" + date, logSetting, 1);
+                            Logger.Log("Planner Chart Testing: Weekly plan values: " + plan_miles + "::" + date, logSetting, 1);
+                        }
+                        chart1.ChartAreas[0].AxisX.Interval = 1;
+                    }
+
+                    // Daily not required:
+                    //Last Weekly data:
+                    if (recordFound && cbTypeTime.SelectedIndex == 2)
+                    {
+                        chart1.Series["Series1"].Points.AddXY(date, total_miles_actual.ToString());
+                        chart1.Series["Series1"].IsValueShownAsLabel = true;
+
+                        chart1.Series["Series2"].Points.AddXY(date, total_miles_plan.ToString());
+                        chart1.Series["Series2"].IsValueShownAsLabel = true;
+                    }
+                    //Last Monthly data:
+                    else if (recordFound && cbTypeTime.SelectedIndex == 3)
+                    {
+                        chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), total_miles_actual.ToString());
+                        chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                        chart1.Series["Series1"].IsValueShownAsLabel = true;
+
+                        chart1.Series["Series2"].Points.AddXY(monthCount.ToString(), total_miles_plan.ToString());
+                        chart1.Series["Series2"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                        chart1.Series["Series2"].IsValueShownAsLabel = true;
+                    }
+
+                    chart1.Series["Series2"].BorderWidth = 5;
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError("[ERROR]: Exception while trying to run a Planner chart." + ex.Message.ToString());
+                    MessageBox.Show("Exception while trying to run a Planner chart: " + ex.Message.ToString());
+                }
+                finally
+                {
+                    // close reader
+                    reader?.Close();
+
+                    // close connection
+                    sqlConnection?.Close();
+
+                    cmd.Dispose();
+                }
+            } else {
+
+                // All other than Planner:
+                try
+                {
+                    // instantiate and open connection
+                    //conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
+
+                    //Daily:
+                    if (cbTypeTime.SelectedIndex == 1)
+                    {
+                        if (!checkBoxRouteOption.Checked)
+                        {
+                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        }
+                        else
+                        {
+                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        }
+
+                        lbXAxis.Text = "Day";
+                    }
+                    //Weekly:
+                    else if (cbTypeTime.SelectedIndex == 2)
+                    {
+                        if (!checkBoxRouteOption.Checked)
+                        {
+                            if (cbTypeChartData.SelectedIndex == 2)
+                            {
+                                cmd = new SqlCommand("SELECT Date, MAX(RideDistance), WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " GROUP BY RideDistance, WeekNumber, Date ORDER BY Date", sqlConnection);
+                            }
+                            else
+                            {
+                                cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                            }
+                        }
+                        else
+                        {
+                            if (cbTypeChartData.SelectedIndex == 2)
+                            {
+                                cmd = new SqlCommand("SELECT Date, MAX(RideDistance), WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID='" + logIndex + "' GROUP BY RideDistance, WeekNumber, Date", sqlConnection);
+                            }
+                            else
+                            {
+                                cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
                             }
                         }
 
-                        Logger.Log("Chart Testing: Monthly values: " + chartDataTypeValue + "::" + date, logSetting, 1);
+                        lbXAxis.Text = "Week";
                     }
-                    chart1.ChartAreas[0].AxisX.Interval = 1;
-                }
+                    //Monthly:
+                    else if (cbTypeTime.SelectedIndex == 3)
+                    {
+                        if (!checkBoxRouteOption.Checked)
+                        {
+                            if (cbTypeChartData.SelectedIndex == 2)
+                            {
+                                cmd = new SqlCommand("SELECT Date, MAX(RideDistance), WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " GROUP BY RideDistance, WeekNumber, Date ORDER BY Date", sqlConnection);
+                            }
+                            if (cbTypeChartData.SelectedIndex == 5)
+                            {
+                                cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                            }
+                            else
+                            {
+                                cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " and RideDistance > 0 ORDER BY Date", sqlConnection);
+                            }
+                        }
+                        else
+                        {
+                            if (cbTypeChartData.SelectedIndex == 2)
+                            {
+                                cmd = new SqlCommand("SELECT Date, MAX(RideDistance), WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " GROUP BY RideDistance, WeekNumber, Date ORDER BY Date", sqlConnection);
+                            }
+                            else
+                            {
+                                cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                            }
+                        }
 
-                // Daily not required:
-                //Weekly:
-                if (recordFound && cbTypeTime.SelectedIndex == 2)
-                {
-                    if (averageDataType)
-                    {
-                        if (total_value != 0)
-                        {
-                            avg_value = total_value / recordCount;
-                            avg_value = Math.Round(avg_value, 1);
-                            chart1.Series["Series1"].Points.AddXY(date, avg_value.ToString());
-                            chart1.Series["Series1"].IsValueShownAsLabel = true;
-                        }
+                        lbXAxis.Text = "Month";
                     }
-                    else if (dataType.Equals("longest") || dataType.Equals("totalascent"))
+
+                    sqlConnection.Open();
+                    reader = cmd.ExecuteReader();
+                    int weekCount = 1;
+                    int monthCount = 1;
+                    int recordCount = 1;
+                    double total_value = 0;
+                    double avg_value = 0;
+
+                    chart1.Series[0].Points.Clear();
+                    chart1.Series[1].Points.Clear();
+
+                    if (rbChartTypeBar.Checked)
                     {
-                        if (weeklyMax != 0)
-                        {
-                            chart1.Series["Series1"].Points.AddXY(date, weeklyMax.ToString());
-                            chart1.Series["Series1"].IsValueShownAsLabel = true;
-                        }
+                        chart1.Series["Series1"].ChartType = SeriesChartType.Bar;
+                    }
+                    else if (rbChartTypeColumn.Checked)
+                    {
+                        chart1.Series["Series1"].ChartType = SeriesChartType.Column;
                     }
                     else
                     {
-                        if (total_value != 0)
+                        chart1.Series["Series1"].ChartType = SeriesChartType.Line;
+                    }
+
+                    string date = "";
+                    Boolean recordFound = false;
+                    double weeklyMax = 0;
+                    double monthlyMax = 0;
+
+                    // write each record
+                    while (reader.Read())
+                    {
+                        date = reader[0].ToString();
+                        date = Convert.ToDateTime(date).ToShortDateString();
+                        string test = reader[1].ToString();
+                        if (test.Equals("OFF") || test.Equals(""))
                         {
-                            chart1.Series["Series1"].Points.AddXY(date, total_value.ToString());
-                            chart1.Series["Series1"].IsValueShownAsLabel = true;
+                            string test2 = test;
+                        }
+                        double chartDataTypeValue = double.Parse(reader[1].ToString());
+                        int weekValue = Convert.ToInt32(reader[2].ToString());
+                        //this.chart1.Series["Series1"].Points.AddXY(reader[0].ToString(), reader[1].ToString());
+
+                        //Daily
+                        if (cbTypeTime.SelectedIndex == 1)
+                        {
+                            if (!date.Equals(""))
+                            {
+                                chartDataTypeValue = Math.Round(chartDataTypeValue, 1);
+                                chart1.Series["Series1"].Points.AddXY(date, chartDataTypeValue.ToString());
+                                Logger.Log("Chart Testing: Daily values: " + chartDataTypeValue + "::" + date, logSetting, 1);
+                            }
+                        }
+                        //Weekly:
+                        else if (cbTypeTime.SelectedIndex == 2)
+                        {
+                            //If not equal, a new week has started:
+                            if (weekCount != weekValue)
+                            {
+                                if (averageDataType)
+                                {
+                                    if (total_value != 0)
+                                    {
+                                        avg_value = total_value / recordCount;
+                                        avg_value = Math.Round(avg_value, 1);
+                                        chart1.Series["Series1"].Points.AddXY(date, avg_value.ToString());
+                                    }
+                                }
+                                else if (dataType.Equals("longest") || dataType.Equals("totalascent"))
+                                {
+                                    if (weeklyMax != 0)
+                                    {
+                                        chart1.Series["Series1"].Points.AddXY(date, weeklyMax.ToString());
+                                    }
+                                } else
+                                {
+                                    if (total_value != 0)
+                                    {
+                                        chart1.Series["Series1"].Points.AddXY(date, total_value.ToString());
+                                    }
+                                }
+
+                                //Restart values over since starting a new week:
+                                recordCount = 1;
+                                total_value = chartDataTypeValue;
+                                weekCount = weekValue;
+                                weeklyMax = chartDataTypeValue;
+                                recordFound = true;
+                            }
+                            // Still on the current week:
+                            else
+                            {
+                                total_value += chartDataTypeValue;
+                                recordCount++;
+                                recordFound = true;
+                                if (chartDataTypeValue > weeklyMax)
+                                {
+                                    weeklyMax = chartDataTypeValue;
+                                }
+                            }
+
+                            Logger.Log("Chart Testing: Weekly values: " + chartDataTypeValue + "::" + date, logSetting, 1);
+                        }
+                        //Monthly:
+                        else if (cbTypeTime.SelectedIndex == 3)
+                        {
+                            DateTime datetime = Convert.ToDateTime(date);
+                            int month = datetime.Month;
+
+                            //if (month == 11)
+                            //{
+                            //    string test = "";
+                            //}
+
+                            if (monthCount != month)
+                            {
+                                if (averageDataType)
+                                {
+                                    if (avg_value != 0)
+                                    {
+                                        avg_value = total_value / recordCount;
+                                        avg_value = Math.Round(avg_value, 1);
+                                        chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), avg_value.ToString());
+                                        chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                                        chart1.Series["Series1"].IsValueShownAsLabel = true;
+                                    }
+                                }
+                                else if (dataType.Equals("longest") || dataType.Equals("totalascent"))
+                                {
+                                    if (monthlyMax != 0)
+                                    {
+                                        chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), monthlyMax.ToString());
+                                        chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                                        chart1.Series["Series1"].IsValueShownAsLabel = true;
+                                    }
+                                }
+                                else
+                                {
+                                    if (total_value != 0)
+                                    {
+                                        chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), total_value.ToString());
+                                        chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                                        chart1.Series["Series1"].IsValueShownAsLabel = true;
+                                    }
+
+                                }
+                                //Restart values over since starting a new month:
+                                recordCount = 1;
+                                total_value = chartDataTypeValue;
+                                monthCount = month;
+                                monthlyMax = chartDataTypeValue;
+                                recordFound = true;
+                            }
+                            else
+                            {
+                                total_value += chartDataTypeValue;
+                                recordCount++;
+                                recordFound = true;
+                                if (chartDataTypeValue > monthlyMax)
+                                {
+                                    monthlyMax = chartDataTypeValue;
+                                }
+                            }
+
+                            Logger.Log("Chart Testing: Monthly values: " + chartDataTypeValue + "::" + date, logSetting, 1);
+                        }
+                        chart1.ChartAreas[0].AxisX.Interval = 1;
+                    }
+
+                    // Daily not required:
+                    //Weekly:
+                    if (recordFound && cbTypeTime.SelectedIndex == 2)
+                    {
+                        if (averageDataType)
+                        {
+                            if (total_value != 0)
+                            {
+                                avg_value = total_value / recordCount;
+                                avg_value = Math.Round(avg_value, 1);
+                                chart1.Series["Series1"].Points.AddXY(date, avg_value.ToString());
+                                chart1.Series["Series1"].IsValueShownAsLabel = true;
+                            }
+                        }
+                        else if (dataType.Equals("longest") || dataType.Equals("totalascent"))
+                        {
+                            if (weeklyMax != 0)
+                            {
+                                chart1.Series["Series1"].Points.AddXY(date, weeklyMax.ToString());
+                                chart1.Series["Series1"].IsValueShownAsLabel = true;
+                            }
+                        }
+                        else
+                        {
+                            if (total_value != 0)
+                            {
+                                chart1.Series["Series1"].Points.AddXY(date, total_value.ToString());
+                                chart1.Series["Series1"].IsValueShownAsLabel = true;
+                            }
+                        }
+                    }
+                    //Monthly:
+                    else if (recordFound && cbTypeTime.SelectedIndex == 3)
+                    {
+                        if (averageDataType)
+                        {
+                            if (total_value != 0)
+                            {
+                                avg_value = total_value / recordCount;
+                                avg_value = Math.Round(avg_value, 1);
+                                chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), avg_value.ToString());
+                                chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                                chart1.Series["Series1"].IsValueShownAsLabel = true;
+                            }
+                        }
+                        else if (dataType.Equals("longest") || dataType.Equals("totalascent"))
+                        {
+                            if (monthlyMax != 0)
+                            {
+                                chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), monthlyMax.ToString());
+                                chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                                chart1.Series["Series1"].IsValueShownAsLabel = true;
+                            }
+                        }
+                        else
+                        {
+                            if (total_value != 0)
+                            {
+                                chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), total_value.ToString());
+                                chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+                                chart1.Series["Series1"].IsValueShownAsLabel = true;
+                            }
+
                         }
                     }
                 }
-                //Monthly:
-                else if (recordFound && cbTypeTime.SelectedIndex == 3)
+                catch (Exception ex)
                 {
-                    if (averageDataType)
-                    {
-                        if (total_value != 0)
-                        {
-                            avg_value = total_value / recordCount;
-                            avg_value = Math.Round(avg_value, 1);
-                            chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), avg_value.ToString());
-                            chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-                            chart1.Series["Series1"].IsValueShownAsLabel = true;
-                        }
-                    }
-                    else if (dataType.Equals("longest") || dataType.Equals("totalascent"))
-                    {
-                        if (monthlyMax != 0)
-                        {
-                            chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), monthlyMax.ToString());
-                            chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-                            chart1.Series["Series1"].IsValueShownAsLabel = true;
-                        }
-                    }
-                    else
-                    {
-                        if (total_value != 0)
-                        {
-                            chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), total_value.ToString());
-                            chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
-                            chart1.Series["Series1"].IsValueShownAsLabel = true;
-                        }
-
-                    }
+                    Logger.LogError("[ERROR]: Exception while trying to run a chart." + ex.Message.ToString());
+                    MessageBox.Show("Exception while trying to run a chart: " + ex.Message.ToString());
                 }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError("[ERROR]: Exception while trying to run a chart." + ex.Message.ToString());
-            }
-            finally
-            {
-                // close reader
-                reader?.Close();
+                finally
+                {
+                    // close reader
+                    reader?.Close();
 
-                // close connection
-                sqlConnection?.Close();
+                    // close connection
+                    sqlConnection?.Close();
 
-                cmd.Dispose();
+                    cmd.Dispose();
+                }
             }
 
             //---------------------
-            if (cbTypeTime.SelectedIndex == 1)
-            {
-
-            }
-            else if (cbTypeTime.SelectedIndex == 2)
-            {
-
-            }
-            else if (cbTypeTime.SelectedIndex == 3)
+            if (cbTypeChartData.SelectedIndex == 1)
             {
                 // Average Speed Chart
                 chart1.Series["Series1"].XValueMember = "Date";
                 chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
                 chart1.Series["Series1"].YValueMembers = "AvgSpeed";
+                chart1.Series["Series1"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            }
+            else if (cbTypeChartData.SelectedIndex == 2)
+            {
+                // Longest Chart
+                chart1.Series["Series1"].XValueMember = "Date";
+                chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
+                chart1.Series["Series1"].YValueMembers = "AvgSpeed";
+                chart1.Series["Series1"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            }
+            else if (cbTypeChartData.SelectedIndex == 3)
+            {
+                // Miles Chart
+                chart1.Series["Series1"].XValueMember = "Date";
+                chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
+                chart1.Series["Series1"].YValueMembers = "AvgSpeed";
+                chart1.Series["Series1"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            }
+            else if (cbTypeChartData.SelectedIndex == 4)
+            {
+                // High Ascent Chart
+                chart1.Series["Series1"].XValueMember = "Date";
+                chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
+                chart1.Series["Series1"].YValueMembers = "AvgSpeed";
+                chart1.Series["Series1"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            }
+            else if (cbTypeChartData.SelectedIndex == 5)
+            {
+                // Planner Chart
+                chart1.Series["Series1"].XValueMember = "Date";
+                chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
+                chart1.Series["Series1"].YValueMembers = "Miles";
                 chart1.Series["Series1"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             }
         }
@@ -625,6 +853,7 @@ namespace CyclingLogApplication
             string point12 = GetMaxHighMileageMonthlyForSelectedLog(logYearIndex, 12).ToString();
 
             chart1.Series[0].Points.Clear();
+            chart1.Series[1].Points.Clear();
 
             chart1.Series["Series1"].Points.AddXY("1/1/" + logYear, point1.ToString());
             chart1.Series["Series1"].Points.AddXY("2/1/" + logYear, point2.ToString());
@@ -713,6 +942,7 @@ namespace CyclingLogApplication
             double weeklyMaxTmp;
             double weeklyMax = 0;
             chart1.Series[0].Points.Clear();
+            chart1.Series[1].Points.Clear();
 
             try
             {
@@ -848,16 +1078,26 @@ namespace CyclingLogApplication
         {
             labelChartError.Hide();
 
-            if (cbTypeChartData.SelectedIndex == 2 || cbTypeChartData.SelectedIndex == 4)
+            if (cbTypeChartData.SelectedIndex == 5)
             {
+                rbChartTypeBar.Checked = false;
+                rbChartTypeColumn.Checked = true;
+                rbChartTypeLine.Checked = false;
+                gbChartType.Enabled = false;
+            }
+            else if (cbTypeChartData.SelectedIndex == 2 || cbTypeChartData.SelectedIndex == 4)
+            {
+                gbChartType.Enabled = true;
                 checkBoxRouteOption.Checked = false;
                 checkBoxRouteOption.Enabled = false;
                 cbRoutesChart.Enabled = false;
                 cbRoutesChart.SelectedIndex = 0;
             } else
             {
+                gbChartType.Enabled = true;
                 checkBoxRouteOption.Enabled = true;
             }
+
             using (MainForm mainForm = new MainForm(""))
             {
                 MainForm.SetLastTypeChartSelected(cbTypeChartData.SelectedIndex);

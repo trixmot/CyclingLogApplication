@@ -32,6 +32,7 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartForm));
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -47,7 +48,7 @@
             this.checkBoxRouteOption = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cbTypeChartData = new System.Windows.Forms.ComboBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbChartType = new System.Windows.Forms.GroupBox();
             this.rbChartTypeColumn = new System.Windows.Forms.RadioButton();
             this.rbChartTypeLine = new System.Windows.Forms.RadioButton();
             this.rbChartTypeBar = new System.Windows.Forms.RadioButton();
@@ -62,12 +63,13 @@
             this.cbTypeTime = new System.Windows.Forms.ComboBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.gbChartTimeRange = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gbChartType.SuspendLayout();
             this.SuspendLayout();
             // 
             // chart1
@@ -84,12 +86,17 @@
             this.chart1.Name = "chart1";
             series1.BorderWidth = 5;
             series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             series1.XValueMember = "Date";
             series1.YValueMembers = "RideDistance";
+            series2.BorderWidth = 5;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Series2";
             this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(932, 589);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -132,10 +139,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.gbChartTimeRange);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.cbTypeChartData);
-            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Controls.Add(this.gbChartType);
             this.groupBox1.Controls.Add(this.labelChartError);
             this.groupBox1.Controls.Add(this.btCloseChart);
             this.groupBox1.Controls.Add(this.btRunChart);
@@ -211,29 +219,30 @@
             "Average Speed",
             "Longest",
             "Miles",
-            "Highest Ascent"});
+            "Highest Ascent",
+            "Planner"});
             this.cbTypeChartData.Location = new System.Drawing.Point(60, 200);
             this.cbTypeChartData.Name = "cbTypeChartData";
             this.cbTypeChartData.Size = new System.Drawing.Size(146, 21);
             this.cbTypeChartData.TabIndex = 20;
             this.cbTypeChartData.SelectedIndexChanged += new System.EventHandler(this.CbTypeChartData_SelectedIndexChanged);
             // 
-            // groupBox2
+            // gbChartType
             // 
-            this.groupBox2.Controls.Add(this.rbChartTypeColumn);
-            this.groupBox2.Controls.Add(this.rbChartTypeLine);
-            this.groupBox2.Controls.Add(this.rbChartTypeBar);
-            this.groupBox2.Location = new System.Drawing.Point(17, 353);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(228, 100);
-            this.groupBox2.TabIndex = 19;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Chart Type";
+            this.gbChartType.Controls.Add(this.rbChartTypeColumn);
+            this.gbChartType.Controls.Add(this.rbChartTypeLine);
+            this.gbChartType.Controls.Add(this.rbChartTypeBar);
+            this.gbChartType.Location = new System.Drawing.Point(17, 353);
+            this.gbChartType.Name = "gbChartType";
+            this.gbChartType.Size = new System.Drawing.Size(106, 100);
+            this.gbChartType.TabIndex = 19;
+            this.gbChartType.TabStop = false;
+            this.gbChartType.Text = "Chart Type";
             // 
             // rbChartTypeColumn
             // 
             this.rbChartTypeColumn.AutoSize = true;
-            this.rbChartTypeColumn.Location = new System.Drawing.Point(91, 46);
+            this.rbChartTypeColumn.Location = new System.Drawing.Point(19, 46);
             this.rbChartTypeColumn.Name = "rbChartTypeColumn";
             this.rbChartTypeColumn.Size = new System.Drawing.Size(60, 17);
             this.rbChartTypeColumn.TabIndex = 17;
@@ -244,7 +253,7 @@
             // rbChartTypeLine
             // 
             this.rbChartTypeLine.AutoSize = true;
-            this.rbChartTypeLine.Location = new System.Drawing.Point(91, 69);
+            this.rbChartTypeLine.Location = new System.Drawing.Point(19, 69);
             this.rbChartTypeLine.Name = "rbChartTypeLine";
             this.rbChartTypeLine.Size = new System.Drawing.Size(45, 17);
             this.rbChartTypeLine.TabIndex = 18;
@@ -255,7 +264,7 @@
             // rbChartTypeBar
             // 
             this.rbChartTypeBar.AutoSize = true;
-            this.rbChartTypeBar.Location = new System.Drawing.Point(91, 23);
+            this.rbChartTypeBar.Location = new System.Drawing.Point(19, 23);
             this.rbChartTypeBar.Name = "rbChartTypeBar";
             this.rbChartTypeBar.Size = new System.Drawing.Size(41, 17);
             this.rbChartTypeBar.TabIndex = 16;
@@ -360,6 +369,15 @@
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
             // 
+            // gbChartTimeRange
+            // 
+            this.gbChartTimeRange.Location = new System.Drawing.Point(129, 353);
+            this.gbChartTimeRange.Name = "gbChartTimeRange";
+            this.gbChartTimeRange.Size = new System.Drawing.Size(116, 100);
+            this.gbChartTimeRange.TabIndex = 23;
+            this.gbChartTimeRange.TabStop = false;
+            this.gbChartTimeRange.Text = "Time Range";
+            // 
             // ChartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -383,8 +401,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gbChartType.ResumeLayout(false);
+            this.gbChartType.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -413,11 +431,12 @@
         private System.Windows.Forms.RadioButton rbChartTypeLine;
         private System.Windows.Forms.RadioButton rbChartTypeColumn;
         private System.Windows.Forms.RadioButton rbChartTypeBar;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbChartType;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbTypeChartData;
         private System.Windows.Forms.Timer timer1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gbChartTimeRange;
     }
 }
