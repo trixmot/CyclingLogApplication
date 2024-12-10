@@ -36,9 +36,6 @@
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartForm));
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
-            this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
             this.lbXAxis = new System.Windows.Forms.Label();
             this.lbYAxis = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -64,12 +61,20 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.gbChartTimeRange = new System.Windows.Forms.GroupBox();
+            this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpToDate = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
+            this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.gbChartType.SuspendLayout();
+            this.gbChartTimeRange.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
@@ -100,29 +105,17 @@
             this.chart1.Size = new System.Drawing.Size(932, 589);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title1.Name = "chart";
-            title1.Text = "Log Chart";
+            title1.Text = "Ride Charts";
+            title1.Visible = false;
             this.chart1.Titles.Add(title1);
             this.chart1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Chart1_MouseMove);
-            // 
-            // tableRideInformationBindingSource
-            // 
-            this.tableRideInformationBindingSource.DataMember = "Table_Ride_Information";
-            this.tableRideInformationBindingSource.DataSource = this.cyclingLogDatabaseDataSet;
-            // 
-            // cyclingLogDatabaseDataSet
-            // 
-            this.cyclingLogDatabaseDataSet.DataSetName = "CyclingLogDatabaseDataSet";
-            this.cyclingLogDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // table_Ride_InformationTableAdapter
-            // 
-            this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
             // 
             // lbXAxis
             // 
             this.lbXAxis.AutoSize = true;
-            this.lbXAxis.Location = new System.Drawing.Point(58, 26);
+            this.lbXAxis.Location = new System.Drawing.Point(58, 19);
             this.lbXAxis.Name = "lbXAxis";
             this.lbXAxis.Size = new System.Drawing.Size(36, 13);
             this.lbXAxis.TabIndex = 1;
@@ -131,7 +124,7 @@
             // lbYAxis
             // 
             this.lbYAxis.AutoSize = true;
-            this.lbYAxis.Location = new System.Drawing.Point(161, 26);
+            this.lbYAxis.Location = new System.Drawing.Point(161, 19);
             this.lbYAxis.Name = "lbYAxis";
             this.lbYAxis.Size = new System.Drawing.Size(36, 13);
             this.lbYAxis.TabIndex = 2;
@@ -166,7 +159,7 @@
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.cbRoutesChart);
             this.groupBox3.Controls.Add(this.checkBoxRouteOption);
-            this.groupBox3.Location = new System.Drawing.Point(17, 238);
+            this.groupBox3.Location = new System.Drawing.Point(17, 217);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(228, 100);
             this.groupBox3.TabIndex = 22;
@@ -205,7 +198,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(57, 184);
+            this.label1.Location = new System.Drawing.Point(57, 170);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 21;
@@ -221,7 +214,7 @@
             "Miles",
             "Highest Ascent",
             "Planner"});
-            this.cbTypeChartData.Location = new System.Drawing.Point(60, 200);
+            this.cbTypeChartData.Location = new System.Drawing.Point(60, 186);
             this.cbTypeChartData.Name = "cbTypeChartData";
             this.cbTypeChartData.Size = new System.Drawing.Size(146, 21);
             this.cbTypeChartData.TabIndex = 20;
@@ -232,9 +225,9 @@
             this.gbChartType.Controls.Add(this.rbChartTypeColumn);
             this.gbChartType.Controls.Add(this.rbChartTypeLine);
             this.gbChartType.Controls.Add(this.rbChartTypeBar);
-            this.gbChartType.Location = new System.Drawing.Point(17, 353);
+            this.gbChartType.Location = new System.Drawing.Point(17, 323);
             this.gbChartType.Name = "gbChartType";
-            this.gbChartType.Size = new System.Drawing.Size(106, 100);
+            this.gbChartType.Size = new System.Drawing.Size(213, 61);
             this.gbChartType.TabIndex = 19;
             this.gbChartType.TabStop = false;
             this.gbChartType.Text = "Chart Type";
@@ -242,7 +235,7 @@
             // rbChartTypeColumn
             // 
             this.rbChartTypeColumn.AutoSize = true;
-            this.rbChartTypeColumn.Location = new System.Drawing.Point(19, 46);
+            this.rbChartTypeColumn.Location = new System.Drawing.Point(84, 27);
             this.rbChartTypeColumn.Name = "rbChartTypeColumn";
             this.rbChartTypeColumn.Size = new System.Drawing.Size(60, 17);
             this.rbChartTypeColumn.TabIndex = 17;
@@ -253,7 +246,7 @@
             // rbChartTypeLine
             // 
             this.rbChartTypeLine.AutoSize = true;
-            this.rbChartTypeLine.Location = new System.Drawing.Point(19, 69);
+            this.rbChartTypeLine.Location = new System.Drawing.Point(156, 27);
             this.rbChartTypeLine.Name = "rbChartTypeLine";
             this.rbChartTypeLine.Size = new System.Drawing.Size(45, 17);
             this.rbChartTypeLine.TabIndex = 18;
@@ -264,7 +257,7 @@
             // rbChartTypeBar
             // 
             this.rbChartTypeBar.AutoSize = true;
-            this.rbChartTypeBar.Location = new System.Drawing.Point(19, 23);
+            this.rbChartTypeBar.Location = new System.Drawing.Point(19, 27);
             this.rbChartTypeBar.Name = "rbChartTypeBar";
             this.rbChartTypeBar.Size = new System.Drawing.Size(41, 17);
             this.rbChartTypeBar.TabIndex = 16;
@@ -276,7 +269,7 @@
             // 
             this.labelChartError.AutoSize = true;
             this.labelChartError.ForeColor = System.Drawing.Color.Red;
-            this.labelChartError.Location = new System.Drawing.Point(41, 469);
+            this.labelChartError.Location = new System.Drawing.Point(45, 503);
             this.labelChartError.MaximumSize = new System.Drawing.Size(200, 0);
             this.labelChartError.Name = "labelChartError";
             this.labelChartError.Size = new System.Drawing.Size(165, 26);
@@ -286,7 +279,7 @@
             // 
             // btCloseChart
             // 
-            this.btCloseChart.Location = new System.Drawing.Point(93, 543);
+            this.btCloseChart.Location = new System.Drawing.Point(155, 543);
             this.btCloseChart.Name = "btCloseChart";
             this.btCloseChart.Size = new System.Drawing.Size(75, 23);
             this.btCloseChart.TabIndex = 13;
@@ -296,7 +289,7 @@
             // 
             // btRunChart
             // 
-            this.btRunChart.Location = new System.Drawing.Point(93, 514);
+            this.btRunChart.Location = new System.Drawing.Point(48, 543);
             this.btRunChart.Name = "btRunChart";
             this.btRunChart.Size = new System.Drawing.Size(75, 23);
             this.btRunChart.TabIndex = 12;
@@ -307,7 +300,7 @@
             // tbYAxis
             // 
             this.tbYAxis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbYAxis.Location = new System.Drawing.Point(142, 51);
+            this.tbYAxis.Location = new System.Drawing.Point(142, 36);
             this.tbYAxis.Name = "tbYAxis";
             this.tbYAxis.ReadOnly = true;
             this.tbYAxis.Size = new System.Drawing.Size(88, 26);
@@ -317,7 +310,7 @@
             // tbXAxis
             // 
             this.tbXAxis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbXAxis.Location = new System.Drawing.Point(35, 51);
+            this.tbXAxis.Location = new System.Drawing.Point(35, 36);
             this.tbXAxis.Name = "tbXAxis";
             this.tbXAxis.ReadOnly = true;
             this.tbXAxis.Size = new System.Drawing.Size(88, 26);
@@ -327,7 +320,7 @@
             // cbLogYearChart
             // 
             this.cbLogYearChart.FormattingEnabled = true;
-            this.cbLogYearChart.Location = new System.Drawing.Point(60, 104);
+            this.cbLogYearChart.Location = new System.Drawing.Point(60, 90);
             this.cbLogYearChart.Name = "cbLogYearChart";
             this.cbLogYearChart.Size = new System.Drawing.Size(146, 21);
             this.cbLogYearChart.TabIndex = 6;
@@ -336,7 +329,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(57, 88);
+            this.label4.Location = new System.Drawing.Point(57, 74);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 5;
@@ -345,11 +338,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(57, 137);
+            this.label3.Location = new System.Drawing.Point(57, 123);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Time";
+            this.label3.Text = "Frequency";
             // 
             // cbTypeTime
             // 
@@ -359,7 +352,7 @@
             "Daily",
             "Weekly",
             "Monthly"});
-            this.cbTypeTime.Location = new System.Drawing.Point(60, 153);
+            this.cbTypeTime.Location = new System.Drawing.Point(60, 139);
             this.cbTypeTime.Name = "cbTypeTime";
             this.cbTypeTime.Size = new System.Drawing.Size(146, 21);
             this.cbTypeTime.TabIndex = 3;
@@ -371,12 +364,62 @@
             // 
             // gbChartTimeRange
             // 
-            this.gbChartTimeRange.Location = new System.Drawing.Point(129, 353);
+            this.gbChartTimeRange.Controls.Add(this.label6);
+            this.gbChartTimeRange.Controls.Add(this.label2);
+            this.gbChartTimeRange.Controls.Add(this.dtpToDate);
+            this.gbChartTimeRange.Controls.Add(this.dtpFromDate);
+            this.gbChartTimeRange.Location = new System.Drawing.Point(17, 390);
             this.gbChartTimeRange.Name = "gbChartTimeRange";
-            this.gbChartTimeRange.Size = new System.Drawing.Size(116, 100);
+            this.gbChartTimeRange.Size = new System.Drawing.Size(228, 110);
             this.gbChartTimeRange.TabIndex = 23;
             this.gbChartTimeRange.TabStop = false;
-            this.gbChartTimeRange.Text = "Time Range";
+            this.gbChartTimeRange.Text = "Date Range";
+            // 
+            // dtpFromDate
+            // 
+            this.dtpFromDate.Location = new System.Drawing.Point(19, 33);
+            this.dtpFromDate.Name = "dtpFromDate";
+            this.dtpFromDate.Size = new System.Drawing.Size(194, 20);
+            this.dtpFromDate.TabIndex = 2;
+            // 
+            // dtpToDate
+            // 
+            this.dtpToDate.Location = new System.Drawing.Point(19, 75);
+            this.dtpToDate.Name = "dtpToDate";
+            this.dtpToDate.Size = new System.Drawing.Size(194, 20);
+            this.dtpToDate.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(17, 17);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 13);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "From";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(17, 59);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(20, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "To";
+            // 
+            // tableRideInformationBindingSource
+            // 
+            this.tableRideInformationBindingSource.DataMember = "Table_Ride_Information";
+            this.tableRideInformationBindingSource.DataSource = this.cyclingLogDatabaseDataSet;
+            // 
+            // cyclingLogDatabaseDataSet
+            // 
+            this.cyclingLogDatabaseDataSet.DataSetName = "CyclingLogDatabaseDataSet";
+            this.cyclingLogDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // table_Ride_InformationTableAdapter
+            // 
+            this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
             // 
             // ChartForm
             // 
@@ -395,14 +438,16 @@
             this.Text = "Charts";
             this.Load += new System.EventHandler(this.ChartForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.gbChartType.ResumeLayout(false);
             this.gbChartType.PerformLayout();
+            this.gbChartTimeRange.ResumeLayout(false);
+            this.gbChartTimeRange.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tableRideInformationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cyclingLogDatabaseDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -438,5 +483,9 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox gbChartTimeRange;
+        private System.Windows.Forms.DateTimePicker dtpFromDate;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dtpToDate;
     }
 }

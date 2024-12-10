@@ -221,7 +221,7 @@ namespace CyclingLogApplication
                 chartDataColumn = "AvgSpeed";
                 averageDataType = true;
                 lbYAxis.Text = "AvgSpeed";
-                dataType = "avdspeed";
+                dataType = "avgspeed";
             }
             //Longest:
             else if (cbTypeChartData.SelectedIndex == 2)
@@ -272,6 +272,7 @@ namespace CyclingLogApplication
             }
 
             SqlCommand cmd = null;
+            string timeFreq = "";
 
             if (chartDataColumn.Equals("Planned"))
             {
@@ -280,20 +281,27 @@ namespace CyclingLogApplication
                     //Daily:
                     if (cbTypeTime.SelectedIndex == 1)
                     {
-                        cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber, RideDistance FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        DateTime dateFrom = DateTime.Parse(dtpFromDate.Value.ToString());
+                        DateTime dateTo = DateTime.Parse(dtpToDate.Value.ToString());
+
+                        //cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber, RideDistance FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                        cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber, RideDistance FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " and Date >= '" + dateFrom + "' AND Date < '" + dateTo + "' ORDER BY Date", sqlConnection);
                         lbXAxis.Text = "Day";
+                        timeFreq = "Daily";
                     }
                     //Weekly:
                     else if (cbTypeTime.SelectedIndex == 2)
                     {
                         cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber, RideDistance FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
                         lbXAxis.Text = "Week";
+                        timeFreq = "Weekly";
                     }
                     //Monthly:
                     else if (cbTypeTime.SelectedIndex == 3)
                     {
                         cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber, RideDistance FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
                         lbXAxis.Text = "Month";
+                        timeFreq = "Monthly";
                     }
 
                     sqlConnection.Open();
@@ -348,8 +356,12 @@ namespace CyclingLogApplication
                             if (!date.Equals(""))
                             {
                                 actual_miles = Math.Round(actual_miles, 1);
+                                plan_miles = Math.Round(plan_miles, 1);
                                 chart1.Series["Series1"].Points.AddXY(date, actual_miles.ToString());
-                                Logger.Log("Planner Chart Testing: Daily values: " + actual_miles + "::" + date, logSetting, 1);
+                                chart1.Series["Series2"].Points.AddXY(date, plan_miles.ToString());
+
+                                Logger.Log("Planner Chart Testing: Daily acutul values: " + actual_miles + "::" + date, logSetting, 1);
+                                Logger.Log("Planner Chart Testing: Daily plan values: " + plan_miles + "::" + date, logSetting, 1);
                             }
                         }
                         //Weekly:
@@ -440,6 +452,11 @@ namespace CyclingLogApplication
                     }
 
                     chart1.Series["Series2"].BorderWidth = 5;
+                    Title title = new Title();
+                    title.Font = new Font("Arial", 14, FontStyle.Bold);
+                    title.Text = "Planner: " + timeFreq + " Miles";
+                    chart1.Titles.RemoveAt(0);
+                    chart1.Titles.Add(title);
                 }
                 catch (Exception ex)
                 {
@@ -467,16 +484,20 @@ namespace CyclingLogApplication
                     //Daily:
                     if (cbTypeTime.SelectedIndex == 1)
                     {
+                        DateTime dateFrom = DateTime.Parse(dtpFromDate.Value.ToString());
+                        DateTime dateTo = DateTime.Parse(dtpToDate.Value.ToString());
+
                         if (!checkBoxRouteOption.Checked)
                         {
-                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " and Date >= '" + dateFrom + "' AND Date < '" + dateTo + "' ORDER BY Date", sqlConnection);
                         }
                         else
                         {
-                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
+                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " and Date >= '" + dateFrom + "' AND Date < '" + dateTo + "' ORDER BY Date", sqlConnection);
                         }
 
                         lbXAxis.Text = "Day";
+                        timeFreq = "Daily";
                     }
                     //Weekly:
                     else if (cbTypeTime.SelectedIndex == 2)
@@ -505,6 +526,7 @@ namespace CyclingLogApplication
                         }
 
                         lbXAxis.Text = "Week";
+                        timeFreq = "Weekly";
                     }
                     //Monthly:
                     else if (cbTypeTime.SelectedIndex == 3)
@@ -537,6 +559,7 @@ namespace CyclingLogApplication
                         }
 
                         lbXAxis.Text = "Month";
+                        timeFreq = "Monthly";
                     }
 
                     sqlConnection.Open();
@@ -773,6 +796,30 @@ namespace CyclingLogApplication
 
                         }
                     }
+
+                    Title title = new Title();
+                    title.Font = new Font("Arial", 14, FontStyle.Bold);
+                    string chartName = "";
+                    if (dataType.Equals("longest"))
+                    {
+                        chartName = " Longest Ride";
+                        title.Text = timeFreq + chartName;
+                    } else if (dataType.Equals("totalascent"))
+                    {
+                        chartName = " Total Ascent";
+                        title.Text = timeFreq + chartName;
+                    } else if (dataType.Equals("avgspeed"))
+                    {
+                        chartName = " Average Speed";
+                        title.Text = timeFreq + chartName;
+                    } else if (dataType.Equals("miles"))
+                    {
+                        chartName = " Miles";
+                        title.Text = timeFreq + chartName;
+                    }
+
+                    chart1.Titles.RemoveAt(0);
+                    chart1.Titles.Add(title);
                 }
                 catch (Exception ex)
                 {
@@ -1071,6 +1118,14 @@ namespace CyclingLogApplication
             using (MainForm mainForm = new MainForm(""))
             {
                 MainForm.SetLastTypeTimeChartSelected(cbTypeTime.SelectedIndex);
+            }
+
+            if (cbTypeTime.SelectedIndex == 1)
+            {
+                gbChartTimeRange.Enabled = true;
+            } else
+            {
+                gbChartTimeRange.Enabled = false;
             }
         }
 

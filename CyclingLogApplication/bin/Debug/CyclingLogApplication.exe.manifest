@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CyclingLogApplication.exe" size="537088">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CyclingLogApplication.exe" size="539648">
       <assemblyIdentity name="CyclingLogApplication" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>HviVg1XNWed9OnhGiLwGmDAZpF93dF3kcicVQI5Tpfg=</dsig:DigestValue>
+        <dsig:DigestValue>fRGjJTfnAQ4Ke2Edsb4r0L/x3nnSex40wlUpW6qjdH4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -80,22 +80,22 @@
       <dsig:DigestValue>yaFN5KWr+9MIg4ALfYdOJIxLjHyXDGgV3NhP7A948uo=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="CyclingLogDatabase.mdf" size="4915200" writeableType="applicationData">
+  <file name="CyclingLogDatabase.mdf" size="5963776" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>YbjCZ3A73Cht8vmJs1U5pCfSMX6Xa9p3BvmUVAFZJLM=</dsig:DigestValue>
+      <dsig:DigestValue>aj5gRr+3irYMQeXjSJ1R6lRyovGa7G1lYDMHznMCebM=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="CyclingLogDatabase_log.ldf" size="851968" writeableType="applicationData">
+  <file name="CyclingLogDatabase_log.ldf" size="573440" writeableType="applicationData">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>VNAV0cNRi8LAIoQYPmcUTfSOJPUl9gnOvF4/zP7X0YU=</dsig:DigestValue>
+      <dsig:DigestValue>Y0hdhUT5ge337QBKU/S+LcdWFME60x3HgIeMHxRbqMk=</dsig:DigestValue>
     </hash>
   </file>
   <file name="license.txt" size="1080">

@@ -5617,13 +5617,13 @@ namespace CyclingLogApplication
         {
             lbPlannerError.Text = "";
 
-            tbDayPlanner1.Text = "- -";
-            tbDayPlanner2.Text = "- -";
-            tbDayPlanner3.Text = "- -";
-            tbDayPlanner4.Text = "- -";
-            tbDayPlanner5.Text = "- -";
-            tbDayPlanner6.Text = "- -";
-            tbDayPlanner7.Text = "- -";
+            tbDayPlanner1.Text = "";
+            tbDayPlanner2.Text = "";
+            tbDayPlanner3.Text = "";
+            tbDayPlanner4.Text = "";
+            tbDayPlanner5.Text = "";
+            tbDayPlanner6.Text = "";
+            tbDayPlanner7.Text = "";
         }
 
         private void btDeletePlanner_Click(object sender, EventArgs e)
