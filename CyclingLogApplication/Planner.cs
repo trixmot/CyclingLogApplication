@@ -1662,6 +1662,35 @@ namespace CyclingLogApplication
                             }
                         }
 
+                        //Planner value not set:
+                        if (totalPlanMiles == 0)
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.White;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.Black;
+                        }
+                        //Planner set but no ride miles:
+                        else if (totalActualMiles == 0)
+                        {
+
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                        }
+                        //Planner and miles available:
+                        else
+                        {
+                            double compareMiles = totalActualMiles / totalPlanMiles;
+                            if (compareMiles > planGoal)
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.LimeGreen;
+                                //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                                //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                            }
+                        }
+
                         if (currentYearMonth)
                         {
                             //If day count matches current day number we know that all days after are future days:
@@ -2140,6 +2169,35 @@ namespace CyclingLogApplication
                             }
                         }
 
+                        //Planner value not set:
+                        if (totalPlanMiles == 0)
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.White;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.Black;
+                        }
+                        //Planner set but no ride miles:
+                        else if (totalActualMiles == 0)
+                        {
+
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                        }
+                        //Planner and miles available:
+                        else
+                        {
+                            double compareMiles = totalActualMiles / totalPlanMiles;
+                            if (compareMiles > planGoal)
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.LimeGreen;
+                                //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                                //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                            }
+                        }
+
                         if (currentYearMonth)
                         {
                             if (dayCount == currentDayNumber)
@@ -2612,6 +2670,35 @@ namespace CyclingLogApplication
                                 {
                                     dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
+                            }
+                        }
+
+                        //Planner value not set:
+                        if (totalPlanMiles == 0)
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.White;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.Black;
+                        }
+                        //Planner set but no ride miles:
+                        else if (totalActualMiles == 0)
+                        {
+
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                        }
+                        //Planner and miles available:
+                        else
+                        {
+                            double compareMiles = totalActualMiles / totalPlanMiles;
+                            if (compareMiles > planGoal)
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.LimeGreen;
+                                //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                                //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
                             }
                         }
 
@@ -3089,6 +3176,35 @@ namespace CyclingLogApplication
                             }
                         }
 
+                        //Planner value not set:
+                        if (totalPlanMiles == 0)
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.White;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.Black;
+                        }
+                        //Planner set but no ride miles:
+                        else if (totalActualMiles == 0)
+                        {
+
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                        }
+                        //Planner and miles available:
+                        else
+                        {
+                            double compareMiles = totalActualMiles / totalPlanMiles;
+                            if (compareMiles > planGoal)
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.LimeGreen;
+                                //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                                //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                            }
+                        }
+
                         if (currentYearMonth)
                         {
                             if (dayCount == currentDayNumber)
@@ -3559,6 +3675,35 @@ namespace CyclingLogApplication
                                 {
                                     dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
+                            }
+                        }
+
+                        //Planner value not set:
+                        if (totalPlanMiles == 0)
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.White;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.Black;
+                        }
+                        //Planner set but no ride miles:
+                        else if (totalActualMiles == 0)
+                        {
+
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                        }
+                        //Planner and miles available:
+                        else
+                        {
+                            double compareMiles = totalActualMiles / totalPlanMiles;
+                            if (compareMiles > planGoal)
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.LimeGreen;
+                                //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                                //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
                             }
                         }
 
@@ -4036,6 +4181,35 @@ namespace CyclingLogApplication
                             }
                         }
 
+                        //Planner value not set:
+                        if (totalPlanMiles == 0)
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.White;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.Black;
+                        }
+                        //Planner set but no ride miles:
+                        else if (totalActualMiles == 0)
+                        {
+
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                        }
+                        //Planner and miles available:
+                        else
+                        {
+                            double compareMiles = totalActualMiles / totalPlanMiles;
+                            if (compareMiles > planGoal)
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.LimeGreen;
+                                //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                                //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                            }
+                        }
+
                         if (currentYearMonth)
                         {
                             if (dayCount == currentDayNumber)
@@ -4413,6 +4587,35 @@ namespace CyclingLogApplication
                                 {
                                     dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                                 }
+                            }
+                        }
+
+                        //Planner value not set:
+                        if (totalPlanMiles == 0)
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.White;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.Black;
+                        }
+                        //Planner set but no ride miles:
+                        else if (totalActualMiles == 0)
+                        {
+
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                        }
+                        //Planner and miles available:
+                        else
+                        {
+                            double compareMiles = totalActualMiles / totalPlanMiles;
+                            if (compareMiles > planGoal)
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.LimeGreen;
+                                //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                            }
+                            else
+                            {
+                                dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                                //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
                             }
                         }
 
@@ -4832,6 +5035,35 @@ namespace CyclingLogApplication
                             {
                                 dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.Red;
                             }
+                        }
+                    }
+
+                    //Planner value not set:
+                    if (totalPlanMiles == 0)
+                    {
+                        dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.White;
+                        //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.Black;
+                    }
+                    //Planner set but no ride miles:
+                    else if (totalActualMiles == 0)
+                    {
+
+                        dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                        //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                    }
+                    //Planner and miles available:
+                    else
+                    {
+                        double compareMiles = totalActualMiles / totalPlanMiles;
+                        if (compareMiles > planGoal)
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.LimeGreen;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
+                        }
+                        else
+                        {
+                            dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
+                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
                         }
                     }
 
