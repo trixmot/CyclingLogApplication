@@ -324,9 +324,16 @@ namespace CyclingLogApplication
 
                 int cellNumber = 0;
                 int rowNumber = 0;
-                int weekNumber = 2;
+                int weekNumber = 0;
                 int rowCount = 0;
                 int dayCount = 0;
+
+                int weekNumber1 = 0;
+                int weekNumber2 = 0;
+                int weekNumber3 = 0;
+                int weekNumber4 = 0;
+                int weekNumber5 = 0;
+                int weekNumber6 = 0;
 
                 string miles1 = "";
                 string miles2 = "";
@@ -373,6 +380,8 @@ namespace CyclingLogApplication
                     DateTime dateTime5 = new DateTime(logYear, monthIndex, 5);
                     DateTime dateTime6 = new DateTime(logYear, monthIndex, 6);
                     DateTime dateTime7 = new DateTime(logYear, monthIndex, 7);
+
+                    weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime1);
 
                     if (futureDays)
                     {
@@ -429,6 +438,8 @@ namespace CyclingLogApplication
                     DateTime dateTime5 = new DateTime(logYear, monthIndex, 4);
                     DateTime dateTime6 = new DateTime(logYear, monthIndex, 5);
                     DateTime dateTime7 = new DateTime(logYear, monthIndex, 6);
+
+                    weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime2b);
 
                     if (startOfYear)
                     {
@@ -492,6 +503,8 @@ namespace CyclingLogApplication
                     DateTime dateTime5 = new DateTime(logYear, monthIndex, 3);
                     DateTime dateTime6 = new DateTime(logYear, monthIndex, 4);
                     DateTime dateTime7 = new DateTime(logYear, monthIndex, 5);
+
+                    weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime31);
 
                     if (startOfYear)
                     {
@@ -558,6 +571,8 @@ namespace CyclingLogApplication
                     DateTime dateTime6 = new DateTime(logYear, monthIndex, 3);
                     DateTime dateTime7 = new DateTime(logYear, monthIndex, 4);
 
+                    weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime41);
+
                     if (startOfYear)
                     {
                         temp1 = "";
@@ -623,6 +638,8 @@ namespace CyclingLogApplication
                     DateTime dateTime5 = new DateTime(logYear, monthIndex, 1);
                     DateTime dateTime6 = new DateTime(logYear, monthIndex, 2);
                     DateTime dateTime7 = new DateTime(logYear, monthIndex, 3);
+
+                    weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime51);
 
                     if (startOfYear)
                     {
@@ -691,6 +708,8 @@ namespace CyclingLogApplication
                     DateTime dateTime65 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
                     DateTime dateTime6 = new DateTime(logYear, monthIndex, 1);
                     DateTime dateTime7 = new DateTime(logYear, monthIndex, 2);
+
+                    weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime61);
 
                     if (startOfYear)
                     {
@@ -761,6 +780,8 @@ namespace CyclingLogApplication
                     DateTime dateTime75 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
                     DateTime dateTime76 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 5);
                     DateTime dateTime7 = new DateTime(logYear, monthIndex, 1);
+
+                    weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime71);
 
                     if (startOfYear)
                     {
@@ -878,7 +899,7 @@ namespace CyclingLogApplication
                     miles7 = miles7 + " miles";
                 }
 
-                //Date:
+                //Date:              
                 dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7);
                 dataGridViewPlanner.Rows[rowCount].DefaultCellStyle.BackColor = Color.Gray;
                 //Planned:
@@ -1226,6 +1247,8 @@ namespace CyclingLogApplication
                 Boolean futureDay6 = false;
                 Boolean futureDay7 = false;
 
+                DateTime dateTime1a = DateTime.Now;
+
                 //Loop through remaining weeks:
                 for (int i = 0; i < 5; i++)
                 {
@@ -1235,7 +1258,7 @@ namespace CyclingLogApplication
                     }
 
                     dayCount++;
-                    DateTime dateTime1a = new DateTime(logYear, monthIndex, dayCount);
+                    dateTime1a = new DateTime(logYear, monthIndex, dayCount);
                     //check to see of over daysInMonth: 30
                     if (dayCount == daysInMonth)
                     {
@@ -4799,6 +4822,23 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[rowCount].Cells[5].Style.ForeColor = textColor;
                     dataGridViewPlanner.Rows[rowCount].Cells[6].Style.ForeColor = textColor;
 
+                    //Weeknumbers for mid weeks:
+                    if (rowCount == 5)
+                    {
+                        weekNumber2 = MainForm.GetCurrentWeekCountByDate(dateTime1a);
+                    } else if (rowCount == 8)
+                    {
+                        weekNumber3 = MainForm.GetCurrentWeekCountByDate(dateTime1a);
+                    }
+                    else if (rowCount == 11)
+                    {
+                        weekNumber4 = MainForm.GetCurrentWeekCountByDate(dateTime1a);
+                    }
+                    else if (rowCount == 14) // Only for 6 week months:
+                    {
+                        weekNumber5 = MainForm.GetCurrentWeekCountByDate(dateTime1a);
+                    }
+
                     if (!pMiles1.Equals("- -"))
                     {
                         //Planner value not set:
@@ -5294,6 +5334,8 @@ namespace CyclingLogApplication
                     Size gridSize = new Size(904, 580);
                     dataGridViewPlanner.Size = gridSize;
 
+                    weekNumber6 = MainForm.GetCurrentWeekCountByDate(dateTime1a);
+
                     //Totals column
                     dataGridViewPlanner.Rows[0].Cells[7].Style.BackColor = Color.DarkGray;
                     dataGridViewPlanner.Rows[3].Cells[7].Style.BackColor = Color.DarkGray;
@@ -5301,11 +5343,20 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[9].Cells[7].Style.BackColor = Color.DarkGray;
                     dataGridViewPlanner.Rows[12].Cells[7].Style.BackColor = Color.DarkGray;
                     dataGridViewPlanner.Rows[15].Cells[7].Style.BackColor = Color.DarkGray;
+
+                    dataGridViewPlanner.Rows[0].HeaderCell.Value = weekNumber1.ToString();
+                    dataGridViewPlanner.Rows[3].HeaderCell.Value = weekNumber2.ToString();
+                    dataGridViewPlanner.Rows[6].HeaderCell.Value = weekNumber3.ToString();
+                    dataGridViewPlanner.Rows[9].HeaderCell.Value = weekNumber4.ToString();
+                    dataGridViewPlanner.Rows[12].HeaderCell.Value = weekNumber5.ToString();
+                    dataGridViewPlanner.Rows[15].HeaderCell.Value = weekNumber6.ToString();
                 }
                 else
                 {
                     Size gridSize = new Size(904, 493);
                     dataGridViewPlanner.Size = gridSize;
+
+                    weekNumber5 = MainForm.GetCurrentWeekCountByDate(dateTime1a);
 
                     //Totals column
                     dataGridViewPlanner.Rows[0].Cells[7].Style.BackColor = Color.DarkGray;
@@ -5313,8 +5364,15 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[6].Cells[7].Style.BackColor = Color.DarkGray;
                     dataGridViewPlanner.Rows[9].Cells[7].Style.BackColor = Color.DarkGray;
                     dataGridViewPlanner.Rows[12].Cells[7].Style.BackColor = Color.DarkGray;
+
+                    dataGridViewPlanner.Rows[0].HeaderCell.Value = weekNumber1.ToString();
+                    dataGridViewPlanner.Rows[3].HeaderCell.Value = weekNumber2.ToString();
+                    dataGridViewPlanner.Rows[6].HeaderCell.Value = weekNumber3.ToString();
+                    dataGridViewPlanner.Rows[9].HeaderCell.Value = weekNumber4.ToString();
+                    dataGridViewPlanner.Rows[12].HeaderCell.Value = weekNumber5.ToString();
                 }
 
+                //dataGridViewPlanner.EnableHeadersVisualStyles = false;
                 dataGridViewPlanner.AllowUserToResizeRows = false;
                 dataGridViewPlanner.AllowUserToResizeColumns = false;
             }

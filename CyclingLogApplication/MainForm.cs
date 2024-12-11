@@ -2621,7 +2621,7 @@ namespace CyclingLogApplication
             return weekValue;
         }
 
-        private static int GetCurrentWeekCountByYear(DateTime dateValue)
+        public static int GetCurrentWeekCountByDate(DateTime dateValue)
         {
             DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
             Calendar cal = dfi.Calendar;
