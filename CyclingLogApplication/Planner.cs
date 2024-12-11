@@ -328,6 +328,8 @@ namespace CyclingLogApplication
                 int rowCount = 0;
                 int dayCount = 0;
 
+                int currentWeekNumber = MainForm.GetCurrentWeekCount();
+                int weekNumberProcess = 0;
                 int weekNumber1 = 0;
                 int weekNumber2 = 0;
                 int weekNumber3 = 0;
@@ -1150,7 +1152,7 @@ namespace CyclingLogApplication
                 }
 
                 //Planner value not set:
-                if (totalPlanMiles == 0)
+                if (totalPlanMiles == 0 || weekNumber1 == currentWeekNumber)
                 {
                     dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.White;
                     //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.Black;
@@ -4822,21 +4824,31 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[rowCount].Cells[5].Style.ForeColor = textColor;
                     dataGridViewPlanner.Rows[rowCount].Cells[6].Style.ForeColor = textColor;
 
+                    weekNumberProcess = 0;
                     //Weeknumbers for mid weeks:
                     if (rowCount == 5)
                     {
                         weekNumber2 = MainForm.GetCurrentWeekCountByDate(dateTime1a);
+                        weekNumberProcess = weekNumber2;
                     } else if (rowCount == 8)
                     {
                         weekNumber3 = MainForm.GetCurrentWeekCountByDate(dateTime1a);
+                        weekNumberProcess = weekNumber3;
                     }
                     else if (rowCount == 11)
                     {
                         weekNumber4 = MainForm.GetCurrentWeekCountByDate(dateTime1a);
+                        weekNumberProcess = weekNumber4;
                     }
-                    else if (rowCount == 14) // Only for 6 week months:
+                    else if (rowCount == 14) 
                     {
                         weekNumber5 = MainForm.GetCurrentWeekCountByDate(dateTime1a);
+                        weekNumberProcess = weekNumber5;
+                    }
+                    else if (rowCount == 17)
+                    {
+                        weekNumber6 = MainForm.GetCurrentWeekCountByDate(dateTime1a);
+                        weekNumberProcess = weekNumber6;
                     }
 
                     if (!pMiles1.Equals("- -"))
@@ -5079,7 +5091,7 @@ namespace CyclingLogApplication
                     }
 
                     //Planner value not set:
-                    if (totalPlanMiles == 0)
+                    if (totalPlanMiles == 0 || weekNumberProcess == currentWeekNumber)
                     {
                         dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.White;
                         //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.Black;
@@ -5350,6 +5362,13 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[9].HeaderCell.Value = weekNumber4.ToString();
                     dataGridViewPlanner.Rows[12].HeaderCell.Value = weekNumber5.ToString();
                     dataGridViewPlanner.Rows[15].HeaderCell.Value = weekNumber6.ToString();
+
+                    dataGridViewPlanner.Rows[0].Cells[7].Style.BackColor = Color.Silver;
+                    dataGridViewPlanner.Rows[3].Cells[7].Style.BackColor = Color.Silver;
+                    dataGridViewPlanner.Rows[6].Cells[7].Style.BackColor = Color.Silver;
+                    dataGridViewPlanner.Rows[9].Cells[7].Style.BackColor = Color.Silver;
+                    dataGridViewPlanner.Rows[12].Cells[7].Style.BackColor = Color.Silver;
+                    dataGridViewPlanner.Rows[15].Cells[7].Style.BackColor = Color.Silver;
                 }
                 else
                 {
@@ -5370,6 +5389,12 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[6].HeaderCell.Value = weekNumber3.ToString();
                     dataGridViewPlanner.Rows[9].HeaderCell.Value = weekNumber4.ToString();
                     dataGridViewPlanner.Rows[12].HeaderCell.Value = weekNumber5.ToString();
+
+                    dataGridViewPlanner.Rows[0].Cells[7].Style.BackColor = Color.Silver;
+                    dataGridViewPlanner.Rows[3].Cells[7].Style.BackColor = Color.Silver;
+                    dataGridViewPlanner.Rows[6].Cells[7].Style.BackColor = Color.Silver;
+                    dataGridViewPlanner.Rows[9].Cells[7].Style.BackColor = Color.Silver;
+                    dataGridViewPlanner.Rows[12].Cells[7].Style.BackColor = Color.Silver;
                 }
 
                 //dataGridViewPlanner.EnableHeadersVisualStyles = false;

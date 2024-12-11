@@ -52,15 +52,15 @@
             this.lbDay7 = new System.Windows.Forms.Label();
             this.btSavePlanner = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbHold = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbGoal = new System.Windows.Forms.ComboBox();
+            this.label62 = new System.Windows.Forms.Label();
             this.btDeletePlanner = new System.Windows.Forms.Button();
             this.btClearPlanned = new System.Windows.Forms.Button();
             this.lbPlannerError = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbPlannerDate = new System.Windows.Forms.ComboBox();
-            this.label62 = new System.Windows.Forms.Label();
-            this.cbGoal = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbHold = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlanner)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -75,7 +75,7 @@
             // 
             // btClosePlanner
             // 
-            this.btClosePlanner.Location = new System.Drawing.Point(798, 84);
+            this.btClosePlanner.Location = new System.Drawing.Point(798, 102);
             this.btClosePlanner.Name = "btClosePlanner";
             this.btClosePlanner.Size = new System.Drawing.Size(75, 23);
             this.btClosePlanner.TabIndex = 16;
@@ -134,7 +134,7 @@
             // 
             // brRefreshPlanner
             // 
-            this.brRefreshPlanner.Location = new System.Drawing.Point(798, 47);
+            this.brRefreshPlanner.Location = new System.Drawing.Point(798, 65);
             this.brRefreshPlanner.Name = "brRefreshPlanner";
             this.brRefreshPlanner.Size = new System.Drawing.Size(75, 23);
             this.brRefreshPlanner.TabIndex = 23;
@@ -309,6 +309,46 @@
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             // 
+            // cbHold
+            // 
+            this.cbHold.AutoSize = true;
+            this.cbHold.Location = new System.Drawing.Point(163, 75);
+            this.cbHold.Name = "cbHold";
+            this.cbHold.Size = new System.Drawing.Size(48, 17);
+            this.cbHold.TabIndex = 67;
+            this.cbHold.Text = "Hold";
+            this.cbHold.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(167, 95);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 66;
+            this.label2.Text = "Goal %";
+            // 
+            // cbGoal
+            // 
+            this.cbGoal.FormattingEnabled = true;
+            this.cbGoal.Items.AddRange(new object[] {
+            ""});
+            this.cbGoal.Location = new System.Drawing.Point(163, 111);
+            this.cbGoal.Name = "cbGoal";
+            this.cbGoal.Size = new System.Drawing.Size(52, 21);
+            this.cbGoal.TabIndex = 65;
+            this.cbGoal.SelectedIndexChanged += new System.EventHandler(this.cbGoal_SelectedIndexChanged);
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Location = new System.Drawing.Point(338, 15);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(193, 28);
+            this.label62.TabIndex = 64;
+            this.label62.Text = "Weekly Planner";
+            // 
             // btDeletePlanner
             // 
             this.btDeletePlanner.Location = new System.Drawing.Point(550, 119);
@@ -356,46 +396,6 @@
             this.cbPlannerDate.Size = new System.Drawing.Size(121, 21);
             this.cbPlannerDate.TabIndex = 39;
             this.cbPlannerDate.SelectedIndexChanged += new System.EventHandler(this.cbPlannerDate_SelectedIndexChanged);
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label62.Location = new System.Drawing.Point(338, 15);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(193, 28);
-            this.label62.TabIndex = 64;
-            this.label62.Text = "Weekly Planner";
-            // 
-            // cbGoal
-            // 
-            this.cbGoal.FormattingEnabled = true;
-            this.cbGoal.Items.AddRange(new object[] {
-            ""});
-            this.cbGoal.Location = new System.Drawing.Point(163, 111);
-            this.cbGoal.Name = "cbGoal";
-            this.cbGoal.Size = new System.Drawing.Size(52, 21);
-            this.cbGoal.TabIndex = 65;
-            this.cbGoal.SelectedIndexChanged += new System.EventHandler(this.cbGoal_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(167, 95);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
-            this.label2.TabIndex = 66;
-            this.label2.Text = "Goal %";
-            // 
-            // cbHold
-            // 
-            this.cbHold.AutoSize = true;
-            this.cbHold.Location = new System.Drawing.Point(163, 75);
-            this.cbHold.Name = "cbHold";
-            this.cbHold.Size = new System.Drawing.Size(48, 17);
-            this.cbHold.TabIndex = 67;
-            this.cbHold.Text = "Hold";
-            this.cbHold.UseVisualStyleBackColor = true;
             // 
             // Planner
             // 

@@ -1350,20 +1350,8 @@ namespace CyclingLogApplication
 
         private void ImportData(object sender, EventArgs e)
         {
-            //Clear values on form:
-            avg_cadence.Text = "";                                                                                      //Average Cadence:
-            avg_heart_rate.Text = "";                                                                                   //Average Heart Rate:
-            max_heart_rate.Text = "";                                                                                   //Max Heart Rate:
-            calories.Text = "";                                                                                         //Calories:
-            total_ascent.Text = "";                                                                                     //Total Ascent:
-            total_descent.Text = "";                                                                                    //Total Descent:
-            max_speed.Text = "";                                                                                        //Max Speed:
-            avg_power.Text = "";                                                                                        //Average Power:
-            max_power.Text = "";
-            tbComments.Text = "";
-            tbMaxCadence.Text = "";
-            tbCustom1.Text = "";
-            tbCustom2.Text = "";
+            //Clear some values on form to prepdare for import:
+            ClearDataEntryFieldsImport();
 
             string[] headingList = new string[16];
             string[] splitList = new string[16];
@@ -1611,6 +1599,31 @@ namespace CyclingLogApplication
             //tbWeekNumber.Text = "0";
             tbRecordID.Text = "0";
             cbComfortRideDataEntry.SelectedIndex = 0;
+            tbCustom1.Text = "";
+            tbCustom2.Text = "";
+            tbMaxCadence.Text = "";
+            tbRideEntryWindChill.Text = "";
+        }
+
+        private void ClearDataEntryFieldsImport()
+        {
+            //Reset and clear values:
+            dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);//Moving Time:
+            tbRideDataEntryDistance.Text = "";                                                                          //Ride Distance:
+            tbRideDataEntryAvgSpeed.Text = "";                                                                          //Average Speed:
+            tbRideDataEntryWind.Text = "";                                                                              //Wind:
+            tbRideEntryTemp.Text = "";                                                                                  //Temp:
+            avg_cadence.Text = "";                                                                                      //Average Cadence:
+            avg_heart_rate.Text = "";                                                                                   //Average Heart Rate:
+            max_heart_rate.Text = "";                                                                                   //Max Heart Rate:
+            calories.Text = "";                                                                                         //Calories:
+            total_ascent.Text = "";                                                                                     //Total Ascent:
+            total_descent.Text = "";                                                                                    //Total Descent:
+            max_speed.Text = "";                                                                                        //Max Speed:
+            avg_power.Text = "";                                                                                        //Average Power:
+            max_power.Text = "";                                                                                        //Max Power:
+            tbComments.Text = "";                                                                                       //Comments:          
+            tbRecordID.Text = "0";
             tbCustom1.Text = "";
             tbCustom2.Text = "";
             tbMaxCadence.Text = "";
