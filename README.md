@@ -67,7 +67,7 @@ Ride Data Entry Page:
 
 
 Planner Page:
-![image](https://github.com/user-attachments/assets/b06660c5-7ecb-4eb6-94b2-172578c21672)
+![image](https://github.com/user-attachments/assets/a47507a1-1359-4d9e-b03c-0925aa8836e3)
 
 
 
