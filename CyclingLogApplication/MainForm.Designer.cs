@@ -143,7 +143,6 @@
             this.tbBikeAllMilesTotal = new System.Windows.Forms.TextBox();
             this.btRemoveBikeConfig = new System.Windows.Forms.Button();
             this.tbBikeConfig = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.tbConfigMilesNotInLog = new System.Windows.Forms.TextBox();
             this.dataGridViewBikes = new System.Windows.Forms.DataGridView();
@@ -1372,7 +1371,6 @@
             this.groupBox12.Controls.Add(this.tbBikeAllMilesTotal);
             this.groupBox12.Controls.Add(this.btRemoveBikeConfig);
             this.groupBox12.Controls.Add(this.tbBikeConfig);
-            this.groupBox12.Controls.Add(this.label5);
             this.groupBox12.Controls.Add(this.label27);
             this.groupBox12.Controls.Add(this.tbConfigMilesNotInLog);
             this.groupBox12.Location = new System.Drawing.Point(526, 68);
@@ -1384,24 +1382,24 @@
             // label68
             // 
             this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(46, 114);
+            this.label68.Location = new System.Drawing.Point(16, 112);
             this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(29, 13);
+            this.label68.Size = new System.Drawing.Size(84, 13);
             this.label68.TabIndex = 29;
-            this.label68.Text = "New";
+            this.label68.Text = "New Bike Name";
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(52, 95);
+            this.label26.Location = new System.Drawing.Point(22, 90);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(23, 13);
+            this.label26.Size = new System.Drawing.Size(78, 13);
             this.label26.TabIndex = 28;
-            this.label26.Text = "Old";
+            this.label26.Text = "Old Bike Name";
             // 
             // tbBikeOldName
             // 
-            this.tbBikeOldName.Location = new System.Drawing.Point(81, 88);
+            this.tbBikeOldName.Location = new System.Drawing.Point(106, 83);
             this.tbBikeOldName.Name = "tbBikeOldName";
             this.tbBikeOldName.ReadOnly = true;
             this.tbBikeOldName.Size = new System.Drawing.Size(141, 20);
@@ -1494,19 +1492,10 @@
             // 
             // tbBikeConfig
             // 
-            this.tbBikeConfig.Location = new System.Drawing.Point(81, 111);
+            this.tbBikeConfig.Location = new System.Drawing.Point(106, 105);
             this.tbBikeConfig.Name = "tbBikeConfig";
             this.tbBikeConfig.Size = new System.Drawing.Size(141, 20);
             this.tbBikeConfig.TabIndex = 11;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(110, 72);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 13);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Bike Name";
             // 
             // label27
             // 
@@ -1753,7 +1742,7 @@
             // 
             // btResetGridColors
             // 
-            this.btResetGridColors.Location = new System.Drawing.Point(154, 412);
+            this.btResetGridColors.Location = new System.Drawing.Point(154, 410);
             this.btResetGridColors.Name = "btResetGridColors";
             this.btResetGridColors.Size = new System.Drawing.Size(75, 23);
             this.btResetGridColors.TabIndex = 116;
@@ -1784,9 +1773,9 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(20, 350);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(71, 13);
+            this.label10.Size = new System.Drawing.Size(112, 13);
             this.label10.TabIndex = 113;
-            this.label10.Text = "Calendar Grid";
+            this.label10.Text = "Calendar/Planner Grid";
             // 
             // tbCalendarColor
             // 
@@ -3067,7 +3056,7 @@
             // 
             // btSetColors
             // 
-            this.btSetColors.Location = new System.Drawing.Point(59, 412);
+            this.btSetColors.Location = new System.Drawing.Point(59, 410);
             this.btSetColors.Name = "btSetColors";
             this.btSetColors.Size = new System.Drawing.Size(75, 23);
             this.btSetColors.TabIndex = 75;
@@ -3737,7 +3726,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.TabPage StatisticsYearly;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tbBikeConfig;
         private System.Windows.Forms.Button btRemoveBikeConfig;
         private System.Windows.Forms.Button btAddBikeConfig;
