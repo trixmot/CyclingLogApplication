@@ -357,7 +357,7 @@ namespace CyclingLogApplication
 
                 cbLogYear.Items.Add("--Select Value--");
                 //cbLogYear
-                for (int i = 2010; i <= currentYear; i++)
+                for (int i = currentYear; i > 2009; i--)
                 {
                     cbLogYear.Items.Add(i.ToString());
                 }
@@ -2839,7 +2839,7 @@ namespace CyclingLogApplication
             int count = 0;
 
             //ExecuteScalarFunction
-            using (var results = ExecuteSimpleQueryConnection("GetTotalRides_AllLogs", objectValues))
+            using (var results = ExecuteSimpleQueryConnection("GetTotalMaintItems", objectValues))
             {
                 if (results.HasRows)
                 {
@@ -2857,9 +2857,14 @@ namespace CyclingLogApplication
         {
             lbMaintError.Text = "";
 
+            Logger.Log("[DEBUG] Maintenance count. " + GetMaintCount(), 0, 0);
+
             if (GetMaintCount() < 1)
             {
                 Logger.Log("[WARNING] No Maintenance items recorded. ", 0, 0);
+                dgvMaint.Refresh();
+                tbMaintAddUpdate.Text = "";
+
                 return;
             }
 
@@ -2884,15 +2889,11 @@ namespace CyclingLogApplication
                     dgvMaint.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
                     dgvMaint.AllowUserToAddRows = false;
                     dgvMaint.AlternatingRowsDefaultCellStyle.BackColor = Color.FromName(GetMaintColor());
-
                     dgvMaint.Columns[2].DefaultCellStyle.Format = "0.00";
 
-                    //dgvMaint.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-                    // dgvMaint.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-
-
-                    string testValue = GetTextMaint();
+                    string textValue = GetTextMaint();
                     int rowCount = dgvMaint.Rows.Count;
+
                     for (int i = 0; i < rowCount; i++)
                     {
                         if (i % 2 == 0)
@@ -2903,7 +2904,7 @@ namespace CyclingLogApplication
                         else
                         {
                             //is odd
-                            if (testValue.Equals("True"))
+                            if (textValue.Equals("True"))
                             {
                                 dgvMaint.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
                             }
@@ -2914,7 +2915,6 @@ namespace CyclingLogApplication
                         }
                     }
 
-                    string test = dgvMaint.Rows[1].DefaultCellStyle.ForeColor.ToString();
                     //dgvMaint.Refresh();
                 }
             }
@@ -2950,7 +2950,7 @@ namespace CyclingLogApplication
             RunStoredProcedure(objectValues, "Maintenance_Remove");
             rtbMaintComments.Text = "";
             tbMaintMiles.Text = "";
-            GetMaintLog();
+            GetMaintLog();         
         }
 
         private void BtMaintRetrieve_Run(string date, string bike)
@@ -5931,35 +5931,51 @@ namespace CyclingLogApplication
 
         private void dgvMaint_Click(object sender, EventArgs e)
         {
-            int rowindex = dgvMaint.CurrentCell.RowIndex;
-            int columnindex = dgvMaint.CurrentCell.ColumnIndex;
-
-            string date = dgvMaint.Rows[rowindex].Cells[0].Value.ToString();
-            string bike = dgvMaint.Rows[rowindex].Cells[1].Value.ToString();
-            double milesD = double.Parse(dgvMaint.Rows[rowindex].Cells[2].Value.ToString());
-            milesD = Math.Round(milesD, 2);
-            int bikeIndex = -1; 
-
-            BtMaintRetrieve_Run(date, bike);
-
-            List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
-
-            for (int i = 0; i < bikeList.Count; i++)
+            try
             {
-                if (bikeList[i].Equals(bike))
+                if (GetMaintCount() < 1)
                 {
-                    bikeIndex = i;
-                    break;
-                }
-            }
+                    dgvMaint.Refresh();
+                    tbMaintAddUpdate.Text = "";
 
-            //dgvMaint.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            //dgvMaint.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            tbMaintDateCheck.Text = dgvMaint.Rows[rowindex].Cells[0].Value.ToString();
-            dateTimePicker1.Value = DateTime.Parse(dgvMaint.Rows[rowindex].Cells[0].Value.ToString());
-            cbBikeMaint.SelectedIndex = bikeIndex + 1; // Add 1 to account for --select value--:
-            tbMaintMiles.Text = milesD.ToString();
-            tbMaintAddUpdate.Text = "Update";
+                    return;
+                }
+                int rowindex = dgvMaint.CurrentCell.RowIndex;
+                int columnindex = dgvMaint.CurrentCell.ColumnIndex;
+
+                string date = dgvMaint.Rows[rowindex].Cells[0].Value.ToString();
+                string bike = dgvMaint.Rows[rowindex].Cells[1].Value.ToString();
+                double milesD = double.Parse(dgvMaint.Rows[rowindex].Cells[2].Value.ToString());
+                milesD = Math.Round(milesD, 2);
+                int bikeIndex = -1;
+
+                BtMaintRetrieve_Run(date, bike);
+
+                List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
+
+                for (int i = 0; i < bikeList.Count; i++)
+                {
+                    if (bikeList[i].Equals(bike))
+                    {
+                        bikeIndex = i;
+                        break;
+                    }
+                }
+
+                //dgvMaint.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                //dgvMaint.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                tbMaintDateCheck.Text = dgvMaint.Rows[rowindex].Cells[0].Value.ToString();
+                dateTimePicker1.Value = DateTime.Parse(dgvMaint.Rows[rowindex].Cells[0].Value.ToString());
+                cbBikeMaint.SelectedIndex = bikeIndex + 1; // Add 1 to account for --select value--:
+                tbMaintMiles.Text = milesD.ToString();
+                tbMaintAddUpdate.Text = "Update";
+                rtbMaintComments.Text = dgvMaint.Rows[rowindex].Cells[3].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception dgvMaint_Click." + ex.Message.ToString());
+                MessageBox.Show("Exception(): " + ex.Message.ToString());
+            }
         }
 
         private void btHideShowIDColumn_Click(object sender, EventArgs e)
@@ -6315,6 +6331,7 @@ namespace CyclingLogApplication
                 objectValues.Add(dateTimePicker1.Value);
                 objectValues.Add(float.Parse(tbMaintMiles.Text));
                 RunStoredProcedure(objectValues, "Maintenance_Update");
+                MessageBox.Show("Maintenance item has been updated.");
             }
             else
             {
@@ -6323,14 +6340,13 @@ namespace CyclingLogApplication
                 objectValues.Add(dateTimePicker1.Value);
                 objectValues.Add(float.Parse(tbMaintMiles.Text));
                 RunStoredProcedure(objectValues, "Maintenance_Add");
+                MessageBox.Show("Maintenance item has been added.");
             }
 
             //tbMaintID.Text = "";
             //tbMaintMiles.Text = "";
             //rtbMaintComments.Text = "";
-            GetMaintLog();
-
-            MessageBox.Show("Maintenance item has been saved.");
+            GetMaintLog();           
         }
 
         private void dataGridViewBikes_Click(object sender, EventArgs e)
@@ -8495,5 +8511,6 @@ namespace CyclingLogApplication
                 MessageBox.Show("First Day of week set to Monday for Calendar.");
             }
         }
+
     }
 }
