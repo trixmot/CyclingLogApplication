@@ -37,7 +37,7 @@ Maintenance Tab:
 
 
 Bikes Tab:
-![image](https://github.com/user-attachments/assets/10ad9e33-1151-4666-b6e0-a53222427991)
+![image](https://github.com/user-attachments/assets/5a96df34-4840-4490-ad5e-7f8d4d554640)
 
 
 
