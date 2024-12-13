@@ -201,6 +201,9 @@
       <DependentUpon>CyclingLogDatabaseDataSet.xsd</DependentUpon>
     </None>
     <None Include="Cycling_Log_TemporaryKey.pfx" />
+    <None Include="Cycling_Log_User%27s_Guide.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -31,7 +31,7 @@ namespace CyclingLogApplication
         //private static Mutex mutex = null;
         Boolean formloading = false;
 
-        private static string logVersion = "0.9.3";
+        private static string logVersion = "0.9.4";
         private static int logLevel = 0;
         private static string gridOrder;
         private static int lastLogSelected = 0;
@@ -322,7 +322,7 @@ namespace CyclingLogApplication
                 }
 
                 //Get all values and load the comboboxes:
-                List<string> logYearList = ReadDataNamesDESC("Table_Log_year", "Name");
+                List<string> logYearList = GetLogYears();
                 List<string> routeList = ReadDataNames("Table_Routes", "Name");
                 SetRoutes(routeList);
                 List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
@@ -357,7 +357,7 @@ namespace CyclingLogApplication
 
                 cbLogYear.Items.Add("--Select Value--");
                 //cbLogYear
-                for (int i = currentYear; i > 2009; i--)
+                for (int i = currentYear + 1; i > 2009; i--)
                 {
                     cbLogYear.Items.Add(i.ToString());
                 }
@@ -1063,6 +1063,7 @@ namespace CyclingLogApplication
         {
             string logYearTitle = tbLogYearConfig.Text;
             string logType = "Add";
+            string oldValue = "";
 
             try
             {
@@ -1120,20 +1121,13 @@ namespace CyclingLogApplication
                     List<object> objectValues = new List<object>();
                     objectValues.Add(logYearTitle);
                     objectValues.Add(Convert.ToInt32(logYear));
-                    RunStoredProcedure(objectValues, "Log_Year_Add");
-
-                    cbLogYearConfig.Items.Add(logYearTitle);
-                    cbLogYearConfig.SelectedIndex = 0;
-                    cbStatMonthlyLogYear.Items.Add(logYearTitle);
-                    cbLogYearWeekly.Items.Add(logYearTitle);
-                    cbCalendarLogs.Items.Add(logYearTitle);
+                    RunStoredProcedure(objectValues, "Log_Year_Add"); 
                 }
                 // Update to an existing log:
                 else
                 {
                     string newValue = logYearTitle;
-                    string oldValue;
-
+                    
                     oldValue = cbLogYearConfig.SelectedItem.ToString();
 
                     List<object> objectValues = new List<object>();
@@ -1142,19 +1136,67 @@ namespace CyclingLogApplication
                     objectValues.Add(logYear);
 
                     RunStoredProcedure(objectValues, "Log_Year_Update");
+                }
 
-                    int cbLogYearConfigIndex = cbLogYearConfig.SelectedIndex;
-                    int cbStatMonthlyLogYearIndex = cbStatMonthlyLogYear.SelectedIndex;
+                string cbLogYearConfigIndex = cbLogYearConfig.SelectedItem.ToString();
+                string cbStatMonthlyLogYearIndex = cbStatMonthlyLogYear.SelectedItem.ToString();
+                string cbLogYearWeeklyIndex = cbLogYearWeekly.SelectedItem.ToString();
+                string cbCalendarLogsIndex = cbCalendarLogs.SelectedItem.ToString();
 
-                    cbLogYearConfig.Items.Remove(oldValue);
-                    cbLogYearConfig.Items.Add(newValue);
-                    cbStatMonthlyLogYear.Items.Remove(oldValue);
-                    cbStatMonthlyLogYear.Items.Add(newValue);
+                cbLogYearConfig.Items.Clear();
+                cbStatMonthlyLogYear.Items.Clear();
+                cbLogYearWeekly.Items.Clear();
+                cbCalendarLogs.Items.Clear();
+                List<string> logTitles = GetLogYears();
+                cbLogYearConfig.Items.Add("--Add New Log--");
+                cbStatMonthlyLogYear.Items.Add("--Select Value--");
+                cbLogYearWeekly.Items.Add("--Select Value--");
+                cbCalendarLogs.Items.Add("--Select Value--");
 
-                    cbLogYearConfig.Sorted = true;
-                    cbStatMonthlyLogYear.Sorted = true;
-                    cbLogYearConfig.SelectedIndex = 0;
-                    cbStatMonthlyLogYear.SelectedIndex = cbStatMonthlyLogYearIndex;
+                for (int i = 0; i < logTitles.Count; i++)
+                {
+                    cbLogYearConfig.Items.Add(logTitles.ElementAt(i));
+                    cbStatMonthlyLogYear.Items.Add(logTitles.ElementAt(i));
+                    cbLogYearWeekly.Items.Add(logTitles.ElementAt(i));
+                    cbCalendarLogs.Items.Add(logTitles.ElementAt(i));
+                }
+
+                if (logType.Equals("Add"))
+                {
+                    cbLogYearConfig.SelectedIndex = cbLogYearConfig.FindStringExact(logYearTitle);
+                    cbStatMonthlyLogYear.SelectedIndex = cbStatMonthlyLogYear.FindStringExact(cbStatMonthlyLogYearIndex);
+                    cbLogYearWeekly.SelectedIndex = cbLogYearWeekly.FindStringExact(cbLogYearWeeklyIndex);
+                    cbCalendarLogs.SelectedIndex = cbCalendarLogs.FindStringExact(cbCalendarLogsIndex);
+                } else
+                {
+                    cbLogYearConfig.SelectedIndex = cbLogYearConfig.FindStringExact(logYearTitle);
+
+                    // If the CB had the changed title selected, then don't try and find the old name:
+                    if (oldValue.Equals(cbLogYearConfigIndex))
+                    {
+                        cbStatMonthlyLogYear.SelectedIndex = cbStatMonthlyLogYear.FindStringExact(logYearTitle);
+                    } else
+                    {
+                        cbStatMonthlyLogYear.SelectedIndex = cbStatMonthlyLogYear.FindStringExact(cbStatMonthlyLogYearIndex);
+                    }
+
+                    if (oldValue.Equals(cbLogYearWeeklyIndex))
+                    {
+                        cbLogYearWeekly.SelectedIndex = cbLogYearWeekly.FindStringExact(logYearTitle);
+                    }
+                    else
+                    {
+                        cbLogYearWeekly.SelectedIndex = cbLogYearWeekly.FindStringExact(cbLogYearWeeklyIndex);
+                    }
+
+                    if (oldValue.Equals(cbCalendarLogsIndex))
+                    {
+                        cbCalendarLogs.SelectedIndex = cbCalendarLogs.FindStringExact(logYearTitle);
+                    }
+                    else
+                    {
+                        cbCalendarLogs.SelectedIndex = cbCalendarLogs.FindStringExact(cbCalendarLogsIndex);
+                    }
                 }
 
                 List<string> namesList = new List<string>();
@@ -2862,7 +2904,7 @@ namespace CyclingLogApplication
             if (GetMaintCount() < 1)
             {
                 Logger.Log("[WARNING] No Maintenance items recorded. ", 0, 0);
-                dgvMaint.Refresh();
+                //dgvMaint.Refresh();
                 tbMaintAddUpdate.Text = "";
 
                 return;
@@ -5935,7 +5977,7 @@ namespace CyclingLogApplication
             {
                 if (GetMaintCount() < 1)
                 {
-                    dgvMaint.Refresh();
+                    //dgvMaint.Refresh();
                     tbMaintAddUpdate.Text = "";
 
                     return;
@@ -7496,6 +7538,7 @@ namespace CyclingLogApplication
                     if (futureDays)
                     {
                         miles2 = "";
+                        futureDay2 = true;
                     }
                     else
                     {
@@ -7627,6 +7670,7 @@ namespace CyclingLogApplication
                     if (futureDays)
                     {
                         miles3 = "";
+                        futureDay3 = true;
                     }
                     else
                     {
@@ -7760,6 +7804,7 @@ namespace CyclingLogApplication
                     if (futureDays)
                     {
                         miles4 = "";
+                        futureDay4 = true;
                     }
                     else
                     {
@@ -7894,6 +7939,7 @@ namespace CyclingLogApplication
                     if (futureDays)
                     {
                         miles5 = "";
+                        futureDay5 = true;
                     }
                     else
                     {
@@ -8023,6 +8069,7 @@ namespace CyclingLogApplication
                     if (futureDays)
                     {
                         miles6 = "";
+                        futureDay6 = true;
                     } else
                     {
                         miles6 = GetDataItemByDate(logIndex, dateTime6a, sqlCommand, "calendar");
@@ -8142,6 +8189,7 @@ namespace CyclingLogApplication
                     if (futureDays)
                     {
                         miles7 = "";
+                        futureDay7 = true;
                     } else
                     {
                         miles7 = GetDataItemByDate(logIndex, dateTime7a, sqlCommand, "calendar");
@@ -8510,6 +8558,8 @@ namespace CyclingLogApplication
                 SetFirstDayOfWeekCalendar("Monday");
                 MessageBox.Show("First Day of week set to Monday for Calendar.");
             }
+
+            RunCalendar();
         }
 
     }

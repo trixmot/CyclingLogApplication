@@ -2239,6 +2239,7 @@ namespace CyclingLogApplication
                     if (futureDays)
                     {
                         miles2 = "";
+                        futureDay2 = true;
                     }
                     else
                     {
@@ -2743,6 +2744,7 @@ namespace CyclingLogApplication
                     if (futureDays)
                     {
                         miles3 = "";
+                        futureDay3 = true;
                     }
                     else
                     {
@@ -3246,6 +3248,7 @@ namespace CyclingLogApplication
                     if (futureDays)
                     {
                         miles4 = "";
+                        futureDay4 = true;
                     }
                     else
                     {
@@ -3748,6 +3751,7 @@ namespace CyclingLogApplication
                     if (futureDays)
                     {
                         miles5 = "";
+                        futureDay5 = true;
                     }
                     else
                     {
@@ -4251,6 +4255,7 @@ namespace CyclingLogApplication
                     if (futureDays)
                     {
                         miles6 = "";
+                        futureDay6 = true;
                     }
                     else
                     {

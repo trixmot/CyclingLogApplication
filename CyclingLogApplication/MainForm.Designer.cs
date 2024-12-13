@@ -870,7 +870,7 @@
             this.btYearlyStatReset.Name = "btYearlyStatReset";
             this.btYearlyStatReset.Size = new System.Drawing.Size(56, 23);
             this.btYearlyStatReset.TabIndex = 159;
-            this.btYearlyStatReset.Text = "Reset";
+            this.btYearlyStatReset.Text = "Refresh";
             this.btYearlyStatReset.UseVisualStyleBackColor = true;
             this.btYearlyStatReset.Click += new System.EventHandler(this.btYearlyStatReset_Click);
             // 

@@ -373,7 +373,7 @@
             // 
             this.lbPlannerError.AutoSize = true;
             this.lbPlannerError.ForeColor = System.Drawing.Color.Red;
-            this.lbPlannerError.Location = new System.Drawing.Point(603, 24);
+            this.lbPlannerError.Location = new System.Drawing.Point(630, 27);
             this.lbPlannerError.Name = "lbPlannerError";
             this.lbPlannerError.Size = new System.Drawing.Size(121, 13);
             this.lbPlannerError.TabIndex = 40;

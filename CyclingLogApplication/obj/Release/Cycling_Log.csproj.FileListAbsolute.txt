@@ -92,3 +92,4 @@ D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplic
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.pdb
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.Planner.resources
 D:\workdir\github\cycling_log\CyclingLogApplication\bin\Release\license.txt
+D:\workdir\github\cycling_log\CyclingLogApplication\bin\Release\Cycling_Log_User's_Guide.docx
