@@ -6469,9 +6469,9 @@ namespace CyclingLogApplication
             planner.Show();
         }
 
-        private static string GetFirstDayForMonth(int month)
+        private static string GetFirstDayForMonth(int year, int month)
         {
-            DateTime firstDay = new DateTime(DateTime.Now.Year, month, 1);
+            DateTime firstDay = new DateTime(year, month, 1);
             // 'Friday, November 1, 2024'
 
             return firstDay.DayOfWeek.ToString();
@@ -6584,13 +6584,14 @@ namespace CyclingLogApplication
             int previousMonthIndex = monthIndex - 1;
             int daysInMonthPrevious = 1;
             Boolean startOfYear = false;
-            
-            
+
             int nextMonthIndex = monthIndex + 1;
-            string firstDay = GetFirstDayForMonth(monthIndex);
+            
             string logName = cbCalendarLogs.SelectedItem.ToString();
             int logIndex = GetLogIndexByName(logName);
             int logYear = GetLogYearByName(logName);
+            string firstDay = GetFirstDayForMonth(logYear, monthIndex);
+
             if (monthIndex == 1)
             {
                 startOfYear = true;
@@ -6611,7 +6612,10 @@ namespace CyclingLogApplication
                 currentYearMonth = true;
             }
 
-            if (logYear >= currentYearNumber && monthIndex > currentMonthNumber) {
+            if (logYear > currentYearNumber) {
+                futureDays = true;
+            } else if (logYear == currentYearNumber && monthIndex > currentMonthNumber)
+            {
                 futureDays = true;
             }
 
@@ -6850,6 +6854,7 @@ namespace CyclingLogApplication
                     temp6 = "6";
                     temp7 = "7";
 
+                    //If first day lands on the first day, then no need to look at previous month
                     if (futureDays)
                     {
                         miles1 = "";
@@ -6890,7 +6895,6 @@ namespace CyclingLogApplication
                         }
                     }
 
-                    temp1 = daysInMonthPrevious.ToString();
                     temp2 = "1";
                     temp3 = "2";
                     temp4 = "3";
@@ -6898,11 +6902,12 @@ namespace CyclingLogApplication
                     temp6 = "5";
                     temp7 = "6";
 
-                    if (startOfYear)
+                    if (startOfYear && futureDays)
                     {
                         temp1 = "";
                         miles1 = "";
-                    } 
+
+                    }
                     else if (futureDays)
                     {
                         miles1 = "";
@@ -6913,8 +6918,26 @@ namespace CyclingLogApplication
                         miles6 = "";
                         miles7 = "";
                     }
+                    else if (startOfYear)
+                    {
+                        temp1 = "";
+                        DateTime dateTime2 = new DateTime(logYear, monthIndex, 1);
+                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 2);
+                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 3);
+                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 4);
+                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 5);
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 6);
+                        miles1 = "";
+                        miles2 = GetDataItemByDate(logIndex, dateTime2, sqlCommand, "calendar");
+                        miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand, "calendar");
+                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand, "calendar");
+                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
+                    }
                     else
-                    {                      
+                    {
+                        temp1 = daysInMonthPrevious.ToString();
                         DateTime dateTime2b = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
                         miles1 = GetDataItemByDate(logIndex, dateTime2b, sqlCommand, "calendar");
                         DateTime dateTime2 = new DateTime(logYear, monthIndex, 1);
@@ -6941,16 +6964,14 @@ namespace CyclingLogApplication
                             rowNumber = 0;
                         }
                     }
-
-                    temp1 = (daysInMonthPrevious - 1).ToString();
-                    temp2 = (daysInMonthPrevious).ToString();
+                 
                     temp3 = "1";
                     temp4 = "2";
                     temp5 = "3";
                     temp6 = "4";
                     temp7 = "5";
-                    
-                    if (startOfYear)
+
+                    if (startOfYear && futureDays)
                     {
                         temp1 = "";
                         temp2 = "";
@@ -6967,12 +6988,31 @@ namespace CyclingLogApplication
                         miles6 = "";
                         miles7 = "";
                     }
+                    else if (startOfYear)
+                    {
+                        temp1 = "";
+                        temp2 = "";
+                        miles1 = "";
+                        miles2 = "";
+                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 1);
+                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 2);
+                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 3);
+                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 4);
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 5);
+                        miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand, "calendar");
+                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand, "calendar");
+                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
+                    }
                     else
                     {
+                        temp1 = (daysInMonthPrevious - 1).ToString();
+                        temp2 = (daysInMonthPrevious).ToString();
                         DateTime dateTime31 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
                         DateTime dateTime32 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
                         miles1 = GetDataItemByDate(logIndex, dateTime32, sqlCommand, "calendar");
-                        miles2 = GetDataItemByDate(logIndex, dateTime31, sqlCommand, "calendar");                       
+                        miles2 = GetDataItemByDate(logIndex, dateTime31, sqlCommand, "calendar");
                         DateTime dateTime3 = new DateTime(logYear, monthIndex, 1);
                         DateTime dateTime4 = new DateTime(logYear, monthIndex, 2);
                         DateTime dateTime5 = new DateTime(logYear, monthIndex, 3);
@@ -6996,15 +7036,13 @@ namespace CyclingLogApplication
                         }
                     }
 
-                    temp1 = (daysInMonthPrevious - 2).ToString();
-                    temp2 = (daysInMonthPrevious - 1).ToString();
-                    temp3 = (daysInMonthPrevious).ToString();
+                    
                     temp4 = "1";
                     temp5 = "2";
                     temp6 = "3";
                     temp7 = "4";
-                    
-                    if (startOfYear)
+
+                    if (startOfYear && futureDays)
                     {
                         temp1 = "";
                         temp2 = "";
@@ -7023,8 +7061,31 @@ namespace CyclingLogApplication
                         miles6 = "";
                         miles7 = "";
                     }
+                    else if (startOfYear)
+                    {
+                        temp1 = "";
+                        temp2 = "";
+                        temp3 = "";
+
+                        miles1 = "";
+                        miles2 = "";
+                        miles3 = "";
+
+                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 1);
+                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 2);
+                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 3);
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 4);
+                        miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand, "calendar");
+                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
+                    }
                     else
-                    {                     
+                    {
+                        temp1 = (daysInMonthPrevious - 2).ToString();
+                        temp2 = (daysInMonthPrevious - 1).ToString();
+                        temp3 = (daysInMonthPrevious).ToString();
+
                         DateTime dateTime41 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
                         DateTime dateTime42 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
                         DateTime dateTime43 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
@@ -7052,15 +7113,11 @@ namespace CyclingLogApplication
                         }
                     }
 
-                    temp1 = (daysInMonthPrevious - 3).ToString();
-                    temp2 = (daysInMonthPrevious - 2).ToString();
-                    temp3 = (daysInMonthPrevious - 1).ToString();
-                    temp4 = (daysInMonthPrevious).ToString();
                     temp5 = "1";
                     temp6 = "2";
                     temp7 = "3";
 
-                    if (startOfYear)
+                    if (startOfYear && futureDays)
                     {
                         temp1 = "";
                         temp2 = "";
@@ -7081,8 +7138,32 @@ namespace CyclingLogApplication
                         miles6 = "";
                         miles7 = "";
                     }
+                    else if (startOfYear)
+                    {
+                        temp1 = "";
+                        temp2 = "";
+                        temp3 = "";
+                        temp4 = "";
+
+                        miles1 = "";
+                        miles2 = "";
+                        miles3 = "";
+                        miles4 = "";
+
+                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 1);
+                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 2);
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 3);
+                        miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
+                    }
                     else
-                    {                      
+                    {
+                        temp1 = (daysInMonthPrevious - 3).ToString();
+                        temp2 = (daysInMonthPrevious - 2).ToString();
+                        temp3 = (daysInMonthPrevious - 1).ToString();
+                        temp4 = (daysInMonthPrevious).ToString();
+
                         DateTime dateTime51 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
                         DateTime dateTime52 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
                         DateTime dateTime53 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
@@ -7109,16 +7190,11 @@ namespace CyclingLogApplication
                             rowNumber = 0;
                         }
                     }
-
-                    temp1 = (daysInMonthPrevious - 4).ToString();
-                    temp2 = (daysInMonthPrevious - 3).ToString();
-                    temp3 = (daysInMonthPrevious - 2).ToString();
-                    temp4 = (daysInMonthPrevious - 1).ToString();
-                    temp5 = (daysInMonthPrevious).ToString();
+                 
                     temp6 = "1";
                     temp7 = "2";
 
-                    if (startOfYear)
+                    if (startOfYear && futureDays)
                     {
                         temp1 = "";
                         temp2 = "";
@@ -7141,8 +7217,33 @@ namespace CyclingLogApplication
                         miles6 = "";
                         miles7 = "";
                     }
+                    else if (startOfYear)
+                    {
+                        temp1 = "";
+                        temp2 = "";
+                        temp3 = "";
+                        temp4 = "";
+                        temp5 = "";
+
+                        miles1 = "";
+                        miles2 = "";
+                        miles3 = "";
+                        miles4 = "";
+                        miles5 = "";
+
+                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 1);
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 2);
+                        miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
+                    }
                     else
                     {
+                        temp1 = (daysInMonthPrevious - 4).ToString();
+                        temp2 = (daysInMonthPrevious - 3).ToString();
+                        temp3 = (daysInMonthPrevious - 2).ToString();
+                        temp4 = (daysInMonthPrevious - 1).ToString();
+                        temp5 = (daysInMonthPrevious).ToString();
+
                         DateTime dateTime61 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
                         DateTime dateTime62 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
                         DateTime dateTime63 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
@@ -7169,16 +7270,10 @@ namespace CyclingLogApplication
                             rowNumber = 0;
                         }
                     }
-                   
-                    temp1 = (daysInMonthPrevious - 5).ToString();
-                    temp2 = (daysInMonthPrevious - 4).ToString();
-                    temp3 = (daysInMonthPrevious - 3).ToString();
-                    temp4 = (daysInMonthPrevious - 2).ToString();
-                    temp5 = (daysInMonthPrevious - 1).ToString();
-                    temp6 = (daysInMonthPrevious).ToString();
+                                      
                     temp7 = "1";
 
-                    if (startOfYear)
+                    if (startOfYear && futureDays)
                     {
                         temp1 = "";
                         temp2 = "";
@@ -7203,8 +7298,34 @@ namespace CyclingLogApplication
                         miles6 = "";
                         miles7 = "";
                     }
+                    else if (startOfYear)
+                    {
+                        temp1 = "";
+                        temp2 = "";
+                        temp3 = "";
+                        temp4 = "";
+                        temp5 = "";
+                        temp6 = "";
+
+                        miles1 = "";
+                        miles2 = "";
+                        miles3 = "";
+                        miles4 = "";
+                        miles5 = "";
+                        miles6 = "";
+
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 1);
+                        miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
+                    }
                     else
                     {
+                        temp1 = (daysInMonthPrevious - 5).ToString();
+                        temp2 = (daysInMonthPrevious - 4).ToString();
+                        temp3 = (daysInMonthPrevious - 3).ToString();
+                        temp4 = (daysInMonthPrevious - 2).ToString();
+                        temp5 = (daysInMonthPrevious - 1).ToString();
+                        temp6 = (daysInMonthPrevious).ToString();
+
                         DateTime dateTime71 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
                         DateTime dateTime72 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
                         DateTime dateTime73 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);

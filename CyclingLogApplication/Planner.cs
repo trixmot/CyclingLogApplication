@@ -101,9 +101,9 @@ namespace CyclingLogApplication
             cbPlannerDate.SelectedIndex = weekCount;
         }
 
-        private string GetFirstDayForMonth(int month)
+        private string GetFirstDayForMonth(int logYear, int month)
         {
-            DateTime firstDay = new DateTime(DateTime.Now.Year, month, 1);
+            DateTime firstDay = new DateTime(logYear, month, 1);
             // 'Friday, November 1, 2024'
 
             return firstDay.DayOfWeek.ToString();
@@ -120,15 +120,15 @@ namespace CyclingLogApplication
 
             int monthIndex = cbPlannerMonth.SelectedIndex;
             int previousMonthIndex = monthIndex - 1;
-            int daysInMonthPrevious = 1;
+            int daysInMonthPrevious = 31;
             Boolean startOfYear = false;
             double planGoal = double.Parse(MainForm.GetPlanGoal())/100;
 
             int nextMonthIndex = monthIndex + 1;
-            string firstDay = GetFirstDayForMonth(monthIndex);
             string logName = cbPlannerLogs.SelectedItem.ToString();
             int logIndex = MainForm.GetLogIndexByName(logName);
             int logYear = MainForm.GetLogYearByName(logName);
+            string firstDay = GetFirstDayForMonth(logYear, monthIndex);
             double doubleValue = 0;
 
             if (monthIndex == 1)
@@ -151,7 +151,11 @@ namespace CyclingLogApplication
                 currentYearMonth = true;
             }
 
-            if (logYear >= currentYearNumber && monthIndex > currentMonthNumber)
+            if (logYear > currentYearNumber)
+            {
+                futureDays = true;
+            }
+            else if (logYear == currentYearNumber && monthIndex > currentMonthNumber)
             {
                 futureDays = true;
             }
@@ -433,7 +437,7 @@ namespace CyclingLogApplication
                     temp6 = "5";
                     temp7 = "6";
 
-                    DateTime dateTime2b = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                    
                     DateTime dateTime2 = new DateTime(logYear, monthIndex, 1);
                     DateTime dateTime3 = new DateTime(logYear, monthIndex, 2);
                     DateTime dateTime4 = new DateTime(logYear, monthIndex, 3);
@@ -441,13 +445,22 @@ namespace CyclingLogApplication
                     DateTime dateTime6 = new DateTime(logYear, monthIndex, 5);
                     DateTime dateTime7 = new DateTime(logYear, monthIndex, 6);
 
-                    weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime2b);
-
-                    if (startOfYear)
+                    // Future year and month
+                    if (startOfYear && futureDays)
                     {
-                        temp1 = "";
                         miles1 = "";
+                        //DateTime dateTime2b = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                        weekNumber1 = 1;
+                        pMiles1 = "";
+
+                        miles2 = "";
+                        miles3 = "";
+                        miles4 = "";
+                        miles5 = "";
+                        miles6 = "";
+                        miles7 = "";
                     }
+                    // Future year or month just not Jan:
                     else if (futureDays)
                     {
                         miles1 = "";
@@ -458,11 +471,13 @@ namespace CyclingLogApplication
                         miles6 = "";
                         miles7 = "";
                     }
-                    else
+                    else if (startOfYear)
                     {
-                        
-                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime2b, sqlCommand, "planner");
-                        
+                        miles1 = "- -";
+                        //DateTime dateTime2b = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                        weekNumber1 = 0;
+                        pMiles1 = "";
+
                         miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2, sqlCommand, "planner");
                         miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3, sqlCommand, "planner");
                         miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand, "planner");
@@ -470,8 +485,24 @@ namespace CyclingLogApplication
                         miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
                         miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
                     }
+                    // Current or past year and month:
+                    else
+                    {
+                        DateTime dateTime2b = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                        weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime2b);
+                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime2b, sqlCommand, "planner");
 
-                    pMiles1 = GetPlannedEntry(logIndex, dateTime2b);
+                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime2, sqlCommand, "planner");
+                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3, sqlCommand, "planner");
+                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand, "planner");
+                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand, "planner");
+                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
+
+                        pMiles1 = GetPlannedEntry(logIndex, dateTime2b);
+                    }
+
+                    
                     pMiles2 = GetPlannedEntry(logIndex, dateTime2);
                     pMiles3 = GetPlannedEntry(logIndex, dateTime3);
                     pMiles4 = GetPlannedEntry(logIndex, dateTime4);
@@ -497,21 +528,20 @@ namespace CyclingLogApplication
                     temp5 = "3";
                     temp6 = "4";
                     temp7 = "5";
-
-                    DateTime dateTime31 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                    DateTime dateTime32 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                   
                     DateTime dateTime3 = new DateTime(logYear, monthIndex, 1);
                     DateTime dateTime4 = new DateTime(logYear, monthIndex, 2);
                     DateTime dateTime5 = new DateTime(logYear, monthIndex, 3);
                     DateTime dateTime6 = new DateTime(logYear, monthIndex, 4);
-                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 5);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 5);                   
 
-                    weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime31);
-
-                    if (startOfYear)
+                    if (startOfYear && futureDays)
                     {
-                        temp1 = "";
-                        temp2 = "";
+                        weekNumber1 = 1;
+
+                        pMiles1 = "";
+                        pMiles2 = "";
+
                         miles1 = "";
                         miles2 = "";
                     }
@@ -525,21 +555,41 @@ namespace CyclingLogApplication
                         miles6 = "";
                         miles7 = "";
                     }
-                    else
+                    else if (startOfYear)
                     {
-                        
-                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime32, sqlCommand, "planner");
-                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime31, sqlCommand, "planner");
-                        
+                        miles1 = "- -";
+                        miles2 = "- -";
+                        pMiles1 = "";
+                        pMiles2 = "";
+
+                        weekNumber1 = 1;
+
                         miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3, sqlCommand, "planner");
                         miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand, "planner");
                         miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand, "planner");
                         miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
                         miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
                     }
+                    else
+                    {
+                        DateTime dateTime31 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                        DateTime dateTime32 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
 
-                    pMiles1 = GetPlannedEntry(logIndex, dateTime32);
-                    pMiles2 = GetPlannedEntry(logIndex, dateTime31);
+                        weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime31);
+
+                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime32, sqlCommand, "planner");
+                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime31, sqlCommand, "planner");
+
+                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime3, sqlCommand, "planner");
+                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand, "planner");
+                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand, "planner");
+                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
+
+                        pMiles1 = GetPlannedEntry(logIndex, dateTime32);
+                        pMiles2 = GetPlannedEntry(logIndex, dateTime31);
+                    }
+                
                     pMiles3 = GetPlannedEntry(logIndex, dateTime3);
                     pMiles4 = GetPlannedEntry(logIndex, dateTime4);
                     pMiles5 = GetPlannedEntry(logIndex, dateTime5);
@@ -565,24 +615,20 @@ namespace CyclingLogApplication
                     temp6 = "3";
                     temp7 = "4";
 
-                    DateTime dateTime41 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                    DateTime dateTime42 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
-                    DateTime dateTime43 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
                     DateTime dateTime4 = new DateTime(logYear, monthIndex, 1);
                     DateTime dateTime5 = new DateTime(logYear, monthIndex, 2);
                     DateTime dateTime6 = new DateTime(logYear, monthIndex, 3);
-                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 4);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 4);                    
 
-                    weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime41);
-
-                    if (startOfYear)
+                    if (startOfYear && futureDays)
                     {
-                        temp1 = "";
-                        temp2 = "";
-                        temp3 = "";
+                        weekNumber1 = 1;
                         miles1 = "";
                         miles2 = "";
                         miles3 = "";
+                        pMiles1 = "";
+                        pMiles2 = "";
+                        pMiles3 = "";
                     }
                     else if (futureDays)
                     {
@@ -594,21 +640,42 @@ namespace CyclingLogApplication
                         miles6 = "";
                         miles7 = "";
                     }
-                    else
-                    {                        
-                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime43, sqlCommand, "planner");
-                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime42, sqlCommand, "planner");
-                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime41, sqlCommand, "planner");
-                        
+                    else if (startOfYear)
+                    {
+                        weekNumber1 = 1;
+                        miles1 = "- -";
+                        miles2 = "- -";
+                        miles3 = "- -";
+                        pMiles1 = "";
+                        pMiles2 = "";
+                        pMiles3 = "";
+
                         miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand, "planner");
                         miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand, "planner");
                         miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
                         miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
                     }
+                    else
+                    {
+                        DateTime dateTime41 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                        DateTime dateTime42 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                        DateTime dateTime43 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
+                        weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime41);
 
-                    pMiles1 = GetPlannedEntry(logIndex, dateTime43);
-                    pMiles2 = GetPlannedEntry(logIndex, dateTime42);
-                    pMiles3 = GetPlannedEntry(logIndex, dateTime41);
+                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime43, sqlCommand, "planner");
+                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime42, sqlCommand, "planner");
+                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime41, sqlCommand, "planner");
+
+                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime4, sqlCommand, "planner");
+                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand, "planner");
+                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
+
+                        pMiles1 = GetPlannedEntry(logIndex, dateTime43);
+                        pMiles2 = GetPlannedEntry(logIndex, dateTime42);
+                        pMiles3 = GetPlannedEntry(logIndex, dateTime41);
+                    }
+                  
                     pMiles4 = GetPlannedEntry(logIndex, dateTime4);
                     pMiles5 = GetPlannedEntry(logIndex, dateTime5);
                     pMiles6 = GetPlannedEntry(logIndex, dateTime6);
@@ -633,26 +700,21 @@ namespace CyclingLogApplication
                     temp6 = "2";
                     temp7 = "3";
 
-                    DateTime dateTime51 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                    DateTime dateTime52 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
-                    DateTime dateTime53 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
-                    DateTime dateTime54 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
                     DateTime dateTime5 = new DateTime(logYear, monthIndex, 1);
                     DateTime dateTime6 = new DateTime(logYear, monthIndex, 2);
-                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 3);
+                    DateTime dateTime7 = new DateTime(logYear, monthIndex, 3);                  
 
-                    weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime51);
-
-                    if (startOfYear)
+                    if (startOfYear && futureDays)
                     {
-                        temp1 = "";
-                        temp2 = "";
-                        temp3 = "";
-                        temp4 = "";
+                        weekNumber1 = 1;
                         miles1 = "";
                         miles2 = "";
                         miles3 = "";
                         miles4 = "";
+                        pMiles1 = "";
+                        pMiles2 = "";
+                        pMiles3 = "";
+                        pMiles4 = "";
                     }
                     else if (futureDays)
                     {
@@ -664,22 +726,45 @@ namespace CyclingLogApplication
                         miles6 = "";
                         miles7 = "";
                     }
-                    else
-                    {                       
-                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime54, sqlCommand, "planner");
-                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime53, sqlCommand, "planner");
-                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime52, sqlCommand, "planner");
-                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime51, sqlCommand, "planner");
-                        
+                    else if (startOfYear)
+                    {
+                        weekNumber1 = 1;
+                        miles1 = "- -";
+                        miles2 = "- -";
+                        miles3 = "- -";
+                        miles4 = "- -";
+                        pMiles1 = "";
+                        pMiles2 = "";
+                        pMiles3 = "";
+                        pMiles4 = "";
+
                         miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand, "planner");
                         miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
                         miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
                     }
+                    else
+                    {
+                        DateTime dateTime51 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                        DateTime dateTime52 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                        DateTime dateTime53 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
+                        DateTime dateTime54 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
 
-                    pMiles1 = GetPlannedEntry(logIndex, dateTime54);
-                    pMiles2 = GetPlannedEntry(logIndex, dateTime53);
-                    pMiles3 = GetPlannedEntry(logIndex, dateTime52);
-                    pMiles4 = GetPlannedEntry(logIndex, dateTime51);
+                        weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime51);
+                        miles1 = MainForm.GetDataItemByDate(logIndex, dateTime54, sqlCommand, "planner");
+                        miles2 = MainForm.GetDataItemByDate(logIndex, dateTime53, sqlCommand, "planner");
+                        miles3 = MainForm.GetDataItemByDate(logIndex, dateTime52, sqlCommand, "planner");
+                        miles4 = MainForm.GetDataItemByDate(logIndex, dateTime51, sqlCommand, "planner");
+
+                        miles5 = MainForm.GetDataItemByDate(logIndex, dateTime5, sqlCommand, "planner");
+                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
+
+                        pMiles1 = GetPlannedEntry(logIndex, dateTime54);
+                        pMiles2 = GetPlannedEntry(logIndex, dateTime53);
+                        pMiles3 = GetPlannedEntry(logIndex, dateTime52);
+                        pMiles4 = GetPlannedEntry(logIndex, dateTime51);
+                    }
+                  
                     pMiles5 = GetPlannedEntry(logIndex, dateTime5);
                     pMiles6 = GetPlannedEntry(logIndex, dateTime6);
                     pMiles7 = GetPlannedEntry(logIndex, dateTime7);
@@ -703,28 +788,21 @@ namespace CyclingLogApplication
                     temp6 = "1";
                     temp7 = "2";
 
-                    DateTime dateTime61 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                    DateTime dateTime62 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
-                    DateTime dateTime63 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
-                    DateTime dateTime64 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
-                    DateTime dateTime65 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
                     DateTime dateTime6 = new DateTime(logYear, monthIndex, 1);
                     DateTime dateTime7 = new DateTime(logYear, monthIndex, 2);
 
-                    weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime61);
-
-                    if (startOfYear)
+                    if (startOfYear && futureDays)
                     {
-                        temp1 = "";
-                        temp2 = "";
-                        temp3 = "";
-                        temp4 = "";
-                        temp5 = "";
                         miles1 = "";
                         miles2 = "";
                         miles3 = "";
                         miles4 = "";
                         miles5 = "";
+                        pMiles1 = "";
+                        pMiles2 = "";
+                        pMiles3 = "";
+                        pMiles4 = "";
+                        pMiles5 = "";
                     }
                     else if (futureDays)
                     {
@@ -736,23 +814,47 @@ namespace CyclingLogApplication
                         miles6 = "";
                         miles7 = "";
                     }
+                    else if (startOfYear)
+                    {
+                        weekNumber1 = 1;
+                        miles1 = "- -";
+                        miles2 = "- -";
+                        miles3 = "- -";
+                        miles4 = "- -";
+                        miles5 = "- -";
+                        pMiles1 = "";
+                        pMiles2 = "";
+                        pMiles3 = "";
+                        pMiles4 = "";
+                        pMiles5 = "";
+                        miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
+                    }
                     else
-                    {                       
+                    {
+                        DateTime dateTime61 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                        DateTime dateTime62 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                        DateTime dateTime63 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
+                        DateTime dateTime64 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
+                        DateTime dateTime65 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
+
+                        weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime61);
                         miles1 = MainForm.GetDataItemByDate(logIndex, dateTime65, sqlCommand, "planner");
                         miles2 = MainForm.GetDataItemByDate(logIndex, dateTime64, sqlCommand, "planner");
                         miles3 = MainForm.GetDataItemByDate(logIndex, dateTime63, sqlCommand, "planner");
                         miles4 = MainForm.GetDataItemByDate(logIndex, dateTime62, sqlCommand, "planner");
                         miles5 = MainForm.GetDataItemByDate(logIndex, dateTime61, sqlCommand, "planner");
-                        
+
                         miles6 = MainForm.GetDataItemByDate(logIndex, dateTime6, sqlCommand, "planner");
                         miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
+
+                        pMiles1 = GetPlannedEntry(logIndex, dateTime65);
+                        pMiles2 = GetPlannedEntry(logIndex, dateTime64);
+                        pMiles3 = GetPlannedEntry(logIndex, dateTime63);
+                        pMiles4 = GetPlannedEntry(logIndex, dateTime62);
+                        pMiles5 = GetPlannedEntry(logIndex, dateTime61);
                     }
 
-                    pMiles1 = GetPlannedEntry(logIndex, dateTime65);
-                    pMiles2 = GetPlannedEntry(logIndex, dateTime64);
-                    pMiles3 = GetPlannedEntry(logIndex, dateTime63);
-                    pMiles4 = GetPlannedEntry(logIndex, dateTime62);
-                    pMiles5 = GetPlannedEntry(logIndex, dateTime61);
                     pMiles6 = GetPlannedEntry(logIndex, dateTime6);
                     pMiles7 = GetPlannedEntry(logIndex, dateTime7);
                 }
@@ -775,30 +877,22 @@ namespace CyclingLogApplication
                     temp6 = (daysInMonthPrevious).ToString();
                     temp7 = "1";
 
-                    DateTime dateTime71 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                    DateTime dateTime72 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
-                    DateTime dateTime73 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
-                    DateTime dateTime74 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
-                    DateTime dateTime75 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
-                    DateTime dateTime76 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 5);
                     DateTime dateTime7 = new DateTime(logYear, monthIndex, 1);
 
-                    weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime71);
-
-                    if (startOfYear)
+                    if (startOfYear && futureDays)
                     {
-                        temp1 = "";
-                        temp2 = "";
-                        temp3 = "";
-                        temp4 = "";
-                        temp5 = "";
-                        temp6 = "";
                         miles1 = "";
                         miles2 = "";
                         miles3 = "";
                         miles4 = "";
                         miles5 = "";
                         miles6 = "";
+                        pMiles1 = "";
+                        pMiles2 = "";
+                        pMiles3 = "";
+                        pMiles4 = "";
+                        pMiles5 = "";
+                        pMiles6 = "";
                     }
                     else if (futureDays)
                     {
@@ -810,24 +904,49 @@ namespace CyclingLogApplication
                         miles6 = "";
                         miles7 = "";
                     }
+                    else if (startOfYear)
+                    {
+                        weekNumber1 = 1;
+                        miles1 = "- -";
+                        miles2 = "- -";
+                        miles3 = "- -";
+                        miles4 = "- -";
+                        miles5 = "- -";
+                        miles6 = "- -";
+                        pMiles1 = "";
+                        pMiles2 = "";
+                        pMiles3 = "";
+                        pMiles4 = "";
+                        pMiles5 = "";
+                        pMiles6 = "";
+                        miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
+                    }
                     else
-                    {                     
+                    {
+                        DateTime dateTime71 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
+                        DateTime dateTime72 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                        DateTime dateTime73 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
+                        DateTime dateTime74 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
+                        DateTime dateTime75 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 4);
+                        DateTime dateTime76 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 5);
+
+                        weekNumber1 = MainForm.GetCurrentWeekCountByDate(dateTime71);
                         miles1 = MainForm.GetDataItemByDate(logIndex, dateTime76, sqlCommand, "planner");
                         miles2 = MainForm.GetDataItemByDate(logIndex, dateTime75, sqlCommand, "planner");
                         miles3 = MainForm.GetDataItemByDate(logIndex, dateTime74, sqlCommand, "planner");
                         miles4 = MainForm.GetDataItemByDate(logIndex, dateTime73, sqlCommand, "planner");
                         miles5 = MainForm.GetDataItemByDate(logIndex, dateTime72, sqlCommand, "planner");
                         miles6 = MainForm.GetDataItemByDate(logIndex, dateTime71, sqlCommand, "planner");
-                        
                         miles7 = MainForm.GetDataItemByDate(logIndex, dateTime7, sqlCommand, "planner");
+
+                        pMiles1 = GetPlannedEntry(logIndex, dateTime76);
+                        pMiles2 = GetPlannedEntry(logIndex, dateTime75);
+                        pMiles3 = GetPlannedEntry(logIndex, dateTime74);
+                        pMiles4 = GetPlannedEntry(logIndex, dateTime73);
+                        pMiles5 = GetPlannedEntry(logIndex, dateTime72);
+                        pMiles6 = GetPlannedEntry(logIndex, dateTime71);
                     }
 
-                    pMiles1 = GetPlannedEntry(logIndex, dateTime76);
-                    pMiles2 = GetPlannedEntry(logIndex, dateTime75);
-                    pMiles3 = GetPlannedEntry(logIndex, dateTime74);
-                    pMiles4 = GetPlannedEntry(logIndex, dateTime73);
-                    pMiles5 = GetPlannedEntry(logIndex, dateTime72);
-                    pMiles6 = GetPlannedEntry(logIndex, dateTime71);
                     pMiles7 = GetPlannedEntry(logIndex, dateTime7);
                 }
 
