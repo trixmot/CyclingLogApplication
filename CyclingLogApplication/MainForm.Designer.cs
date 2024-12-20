@@ -245,6 +245,8 @@
             this.label29 = new System.Windows.Forms.Label();
             this.lbVersion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox26.SuspendLayout();
             this.groupBox19.SuspendLayout();
@@ -303,7 +305,7 @@
             // 
             // btRemoveLogYear
             // 
-            this.btRemoveLogYear.Location = new System.Drawing.Point(56, 251);
+            this.btRemoveLogYear.Location = new System.Drawing.Point(56, 241);
             this.btRemoveLogYear.Name = "btRemoveLogYear";
             this.btRemoveLogYear.Size = new System.Drawing.Size(75, 23);
             this.btRemoveLogYear.TabIndex = 3;
@@ -804,7 +806,7 @@
             // btDeleteAllData
             // 
             this.btDeleteAllData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btDeleteAllData.Location = new System.Drawing.Point(39, 51);
+            this.btDeleteAllData.Location = new System.Drawing.Point(47, 51);
             this.btDeleteAllData.Name = "btDeleteAllData";
             this.btDeleteAllData.Size = new System.Drawing.Size(92, 21);
             this.btDeleteAllData.TabIndex = 3;
@@ -3356,32 +3358,33 @@
             // 
             // groupBox13
             // 
+            this.groupBox13.Controls.Add(this.label33);
+            this.groupBox13.Controls.Add(this.label5);
             this.groupBox13.Controls.Add(this.button4);
             this.groupBox13.Controls.Add(this.label2);
             this.groupBox13.Controls.Add(this.button3);
             this.groupBox13.Controls.Add(this.btDeleteAllData);
-            this.groupBox13.Location = new System.Drawing.Point(31, 380);
+            this.groupBox13.Location = new System.Drawing.Point(31, 345);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(187, 119);
+            this.groupBox13.Size = new System.Drawing.Size(187, 154);
             this.groupBox13.TabIndex = 72;
             this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "Delete All Data";
+            this.groupBox13.Text = "Ride Data";
             // 
             // button4
             // 
-            this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(99, 87);
+            this.button4.Location = new System.Drawing.Point(96, 115);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 75;
-            this.button4.Text = "Restore";
+            this.button4.Text = "Import";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Click += new System.EventHandler(this.ImportTables);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 30);
+            this.label2.Location = new System.Drawing.Point(36, 33);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 13);
             this.label2.TabIndex = 19;
@@ -3389,11 +3392,11 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(18, 87);
+            this.button3.Location = new System.Drawing.Point(15, 115);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 74;
-            this.button3.Text = "Backup";
+            this.button3.Text = "Export";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
@@ -3466,14 +3469,14 @@
             this.groupBox10.Controls.Add(this.label24);
             this.groupBox10.Location = new System.Drawing.Point(31, 58);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(187, 307);
+            this.groupBox10.Size = new System.Drawing.Size(187, 277);
             this.groupBox10.TabIndex = 69;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "LOGS";
             // 
             // btLogTitleClear
             // 
-            this.btLogTitleClear.Location = new System.Drawing.Point(56, 222);
+            this.btLogTitleClear.Location = new System.Drawing.Point(56, 212);
             this.btLogTitleClear.Name = "btLogTitleClear";
             this.btLogTitleClear.Size = new System.Drawing.Size(75, 23);
             this.btLogTitleClear.TabIndex = 26;
@@ -3483,7 +3486,7 @@
             // 
             // btLogTitleSave
             // 
-            this.btLogTitleSave.Location = new System.Drawing.Point(56, 193);
+            this.btLogTitleSave.Location = new System.Drawing.Point(56, 183);
             this.btLogTitleSave.Name = "btLogTitleSave";
             this.btLogTitleSave.Size = new System.Drawing.Size(75, 23);
             this.btLogTitleSave.TabIndex = 25;
@@ -3621,6 +3624,24 @@
             this.label1.Size = new System.Drawing.Size(287, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cycling Log Application";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(24, 98);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 13);
+            this.label5.TabIndex = 76;
+            this.label5.Text = "Export Data";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(102, 96);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(62, 13);
+            this.label33.TabIndex = 77;
+            this.label33.Text = "Import Data";
             // 
             // MainForm
             // 
@@ -3924,6 +3945,8 @@
         private System.Windows.Forms.RadioButton rbFirstDaySundayCal;
         private System.Windows.Forms.RadioButton rbFirstDayMondayCal;
         private System.Windows.Forms.GroupBox groupBox26;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label5;
     }
 }
 

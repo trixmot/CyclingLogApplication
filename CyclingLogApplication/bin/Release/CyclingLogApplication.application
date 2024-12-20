@@ -7,14 +7,14 @@
     <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="CyclingLogApplication.exe.manifest" size="5617">
+    <dependentAssembly dependencyType="install" codebase="CyclingLogApplication.exe.manifest" size="11199">
       <assemblyIdentity name="CyclingLogApplication.exe" version="1.0.0.3" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>jBDRI+QRCa01Tf6NyTnptDujPtE7Us3nXpUAXoKVcn8=</dsig:DigestValue>
+        <dsig:DigestValue>2DXdim9CDHUH7iCcFfidTSKBNsNhMh/65bJe4PB0ZFk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

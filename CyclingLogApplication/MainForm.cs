@@ -14,6 +14,8 @@ using System.Data.SqlTypes;
 using System.Security.Cryptography;
 using System.Data.Common;
 using System.Security.Policy;
+using CsvHelper;
+using System.Text;
 //using System.Threading;
 //using System.Text.RegularExpressions;
 //using System.Runtime.Remoting.Metadata.W3cXsd2001;
@@ -2904,7 +2906,7 @@ namespace CyclingLogApplication
             if (GetMaintCount() < 1)
             {
                 Logger.Log("[WARNING] No Maintenance items recorded. ", 0, 0);
-                //dgvMaint.Refresh();
+                dgvMaint.DataSource = null;
                 tbMaintAddUpdate.Text = "";
 
                 return;
@@ -5963,12 +5965,8 @@ namespace CyclingLogApplication
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            Backup();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            Restore();
+            //Backup();
+            ExportTables();
         }
 
         private void dgvMaint_Click(object sender, EventArgs e)
@@ -8683,5 +8681,797 @@ namespace CyclingLogApplication
             RunCalendar();
         }
 
+        //************************************************************************
+        //**************** EXPORT ************************************************
+        //************************************************************************
+
+        private void ExportTables()
+        {
+            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
+            string path = strWorkPath + "\\backup";
+
+            string bikeFile = path + "\\bikeTableData.csv";
+            string logYearFile = path + "\\logYearTableData.csv";
+            string maintenanceFile = path + "\\maintenanceTableData.csv";
+            string routeFile = path + "\\routeTableData.csv";
+            string rideDataFile = path + "\\rideDataTableData.csv";
+            int logSetting = MainForm.GetLogLevel();
+
+            // Determine whether the directory exists.
+            if (!Directory.Exists(path))
+            {
+                // Try to create the directory.
+                DirectoryInfo di = Directory.CreateDirectory(path);
+                Logger.Log("Export Tables: The directory was created successfully at {0}." + Directory.GetCreationTime(path), 1, logSetting);
+            }
+
+            //Delete all existing files:
+            if (File.Exists(logYearFile))
+            {
+                File.Delete(logYearFile);
+            }
+            if (File.Exists(bikeFile))
+            {
+                File.Delete(bikeFile);
+            }
+            if (File.Exists(maintenanceFile))
+            {
+                File.Delete(maintenanceFile);
+            }
+            if (File.Exists(routeFile))
+            {
+                File.Delete(routeFile);
+            }
+            if (File.Exists(rideDataFile))
+            {
+                File.Delete(rideDataFile);
+            }
+
+            //Call Table Exports:
+            if (!ExportLogYears(logYearFile))
+            {
+                MessageBox.Show("Error while Exporting Log Year data.");
+                return;
+            }
+            if (!ExportBikes(bikeFile))
+            {
+                MessageBox.Show("Error while Exporting Bike data.");
+                return;
+            }
+            if (!ExportMaintenance(maintenanceFile))
+            {
+                MessageBox.Show("Error while Exporting Maintenance data.");
+                return;
+            }
+            if (!ExportRoutes(routeFile))
+            {
+                MessageBox.Show("Error while Exporting Route data.");
+                return;
+            }
+            if (!ExportRideData(rideDataFile))
+            {
+                MessageBox.Show("Error while Exporting Ride data.");
+                return;
+            }
+
+            MessageBox.Show("The Data Exports were successful.");
+        }
+
+        private Boolean ExportLogYears(string logYearFile)
+        {
+            Boolean returnStatus = true;
+            //Need to read all the data from the table
+            List<object> objectValues = new List<object>
+            {
+
+            };
+
+            string name;
+            string year;
+
+            string separator = ",";
+            StringBuilder output = new StringBuilder();
+            string[] headings = { "Name", "Year" };
+            output.AppendLine(string.Join(separator, headings));
+
+            try
+            {
+                //Get ride data using the date:
+                using (var results = ExecuteSimpleQueryConnection("ExportLogYearTableData", objectValues))
+                {
+                    //Logger.Log("Results: " + results.FieldCount, 0, logLevel);
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            name = results[0].ToString();
+                            year = results[1].ToString();
+
+                            string newLine = string.Format("{0}, {1}", name, year);
+                            output.AppendLine(string.Join(separator, newLine));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Export Log Year data Exception: " + ex.Message.ToString());
+            }
+
+            try
+            {
+                File.AppendAllText(logYearFile, output.ToString());
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("Log year Data could not be written to the CSV file.");
+                returnStatus = false;
+
+                return returnStatus;
+            }
+
+            Logger.Log("The Log Year data has been successfully saved to the CSV file", 0, 0);
+
+            return returnStatus;
+        }
+
+
+        private Boolean ExportBikes(string bikeFile)
+        {
+            Boolean returnStatus = true;
+            //Need to read all the data from the table
+            List<object> objectValues = new List<object>
+            {
+                
+            };
+
+            string name;
+            string notinlogmiles;
+            string logmiles;
+            string totalmiles;
+
+            string separator = ",";
+            StringBuilder output = new StringBuilder();
+            string[] headings = { "Bike Name", "Not In Log Miles", "Log Miles", "Total Miles" };
+            output.AppendLine(string.Join(separator, headings));
+
+            try
+            {
+                //Get ride data using the date:
+                using (var results = ExecuteSimpleQueryConnection("ExportBikeTableData", objectValues))
+                {
+                    //Logger.Log("Results: " + results.FieldCount, 0, logLevel);
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            name = results[0].ToString();
+                            notinlogmiles = results[1].ToString();
+                            logmiles = results[2].ToString();
+                            totalmiles = results[3].ToString();
+
+                            string newLine = string.Format("{0}, {1}, {2}, {3}", name, notinlogmiles, logmiles, totalmiles);
+                            output.AppendLine(string.Join(separator, newLine));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Export Bike data Exception: " + ex.Message.ToString());
+            }
+
+            try
+            {
+                File.AppendAllText(bikeFile, output.ToString());
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("Bike Data could not be written to the CSV file.");
+                returnStatus = false;
+
+                return returnStatus;
+            }
+
+            Logger.Log("The Bike data has been successfully saved to the CSV file", 0, 0);
+
+            return returnStatus;
+        }
+
+        private Boolean ExportMaintenance(string maintenanceFile)
+        {
+            Boolean returnStatus = true;
+            //Need to read all the data from the table
+            List<object> objectValues = new List<object>
+            {
+
+            };
+
+            string bike;
+            string comments;
+            string date;
+            string miles;
+
+            string separator = ",";
+            StringBuilder output = new StringBuilder();
+            string[] headings = { "Bike", "Comments", "Date", "Miles" };
+            output.AppendLine(string.Join(separator, headings));
+
+            try
+            {
+                //Get ride data using the date:
+                using (var results = ExecuteSimpleQueryConnection("ExportMaintenanceTableData", objectValues))
+                {
+                    //Logger.Log("Results: " + results.FieldCount, 0, logLevel);
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            bike = results[0].ToString();
+                            comments = results[1].ToString();
+                            date = results[2].ToString();
+                            miles = results[3].ToString();
+
+                            string newLine = string.Format("{0}, {1}, {2}, {3}", bike, comments, date, miles);
+                            output.AppendLine(string.Join(separator, newLine));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Export Maintenance data Exception: " + ex.Message.ToString());
+            }
+
+            try
+            {
+                File.AppendAllText(maintenanceFile, output.ToString());
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("Maintenance Data could not be written to the CSV file.");
+                returnStatus = false;
+
+                return returnStatus;
+            }
+
+            Logger.Log("The Maintenance data has been successfully saved to the CSV file", 0, 0);
+
+            return returnStatus;
+        }
+
+        private Boolean ExportRoutes(string routesFile)
+        {
+            Boolean returnStatus = true;
+            //Need to read all the data from the table
+            List<object> objectValues = new List<object>
+            {
+
+            };
+
+            string name;
+
+            string separator = ",";
+            StringBuilder output = new StringBuilder();
+            string[] headings = { "Name" };
+            output.AppendLine(string.Join(separator, headings));
+
+            try
+            {
+                //Get ride data using the date:
+                using (var results = ExecuteSimpleQueryConnection("ExportRouteTableData", objectValues))
+                {
+                    //Logger.Log("Results: " + results.FieldCount, 0, logLevel);
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            name = results[0].ToString();
+
+                            string newLine = string.Format("{0}", name);
+                            output.AppendLine(string.Join(separator, newLine));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Export Route data Exception: " + ex.Message.ToString());
+            }
+
+            try
+            {
+                File.AppendAllText(routesFile, output.ToString());
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("Route Data could not be written to the CSV file.");
+                returnStatus = false;
+
+                return returnStatus;
+            }
+
+            Logger.Log("The Route data has been successfully saved to the CSV file", 0, 0);
+
+            return returnStatus;
+        }
+
+        private Boolean ExportRideData(string rideDataFile)
+        {
+            Boolean returnStatus = true;
+            //Need to read all the data from the table
+            List<object> objectValues = new List<object>
+            {
+
+            };
+
+            string movingTime;
+            string rideDistance;
+            string avgSpeed;
+            string bike;
+            string rideType;
+            string wind;
+            string temp;
+            string date;
+            string avgCadence;
+            string maxCadence;
+            string avgHeartRate;
+            string maxHeartRate;
+            string calories;
+            string totalAscent;
+            string totalDescent;
+            string maxSpeed;
+            string avgPower;
+            string maxPower;
+            string route;
+            string comments;
+            string logYearID;
+            string weekNumber;
+            string location;
+            string windChill;
+            string effort;
+            string comfort;
+            string custom1;
+            string custom2;
+            string planned;
+
+            string separator = ",";
+            StringBuilder output = new StringBuilder();
+            string[] headings = { "Moving Time", "Ride Distance", "Avg Speed", "Bike", "Ride Type", "Wind", "Temperature", "Date", "Avg Cadence", "Max Cadence", "Avg Heart Rate", "Max Heart Rate", "Calories", "Total Ascent", "Total Descent", "Max Speed", "Avg Power", "Max Power", "Route", "Comments", "Log Year ID", "Week Number", "Location", "Wind Chill", "Effort", "Comfort", "Custom1", "Custom2", "Planned" };
+            output.AppendLine(string.Join(separator, headings));
+
+            try
+            {
+                //Get ride data using the date:
+                using (var results = ExecuteSimpleQueryConnection("ExportRideDataTableData", objectValues))
+                {
+                    //Logger.Log("Results: " + results.FieldCount, 0, logLevel);
+                    if (results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            movingTime = results[0].ToString();
+                            rideDistance = results[1].ToString();
+                            avgSpeed = results[2].ToString();
+                            bike = results[3].ToString();
+                            rideType = results[4].ToString();
+                            wind = results[5].ToString();
+                            temp = results[6].ToString();
+                            date = results[7].ToString();
+                            avgCadence = results[8].ToString();
+                            maxCadence = results[9].ToString();
+                            avgHeartRate = results[10].ToString();
+                            maxHeartRate = results[11].ToString();
+                            calories = results[12].ToString();
+                            totalAscent = results[13].ToString();
+                            totalDescent = results[14].ToString();
+                            maxSpeed = results[15].ToString();
+                            avgPower = results[16].ToString();
+                            maxPower = results[17].ToString();
+                            route = results[18].ToString();
+                            comments = results[19].ToString();
+                            logYearID = results[20].ToString();
+                            weekNumber = results[21].ToString();
+                            location = results[22].ToString();
+                            windChill = results[23].ToString();
+                            effort = results[24].ToString();
+                            comfort = results[25].ToString();
+                            custom1 = results[26].ToString();
+                            custom2 = results[27].ToString();
+                            planned = results[28].ToString();
+
+                            string newLine = string.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15}, {16}, {17}, {18}, {19}, {20}, {21}, {22}, {23}, {24}, {25}, {26}, {27}, {28} ", movingTime, rideDistance, avgSpeed, bike, rideType, wind, temp, date, avgCadence, maxCadence, avgHeartRate, maxHeartRate, calories, totalAscent, totalDescent, maxSpeed, avgPower, maxPower, route, comments, logYearID, weekNumber, location, windChill, effort, comfort, custom1, custom2, planned);
+                            output.AppendLine(string.Join(separator, newLine));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Export Ride data Exception: " + ex.Message.ToString());
+            }
+
+            try
+            {
+                File.AppendAllText(rideDataFile, output.ToString());
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("Ride Data could not be written to the CSV file.");
+                returnStatus = false;
+
+                return returnStatus;
+            }
+
+            Logger.Log("The Ride data has been successfully saved to the CSV file", 0, 0);
+
+            return returnStatus;
+        }
+
+        //************************************************************************
+        //**************** IMPORT ************************************************
+        //************************************************************************
+
+        private void ImportTables() 
+        {
+            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            string strWorkPath = System.IO.Path.GetDirectoryName(strExeFilePath);
+            string path = strWorkPath + "\\backup";
+
+            string logYearFile = path + "\\logYearTableData.csv";
+            string bikeFile = path + "\\bikeTableData.csv";
+            string maintenanceFile = path + "\\maintnenaceTableData.csv";
+            string routeFile = path + "\\routeTableData.csv";
+            string rideDataFile = path + "\\rideDataTableData.csv";
+
+            if (!ImportLogYearData(logYearFile))
+            {
+                MessageBox.Show("Error while Importing Log Year data.");
+                return;
+            }
+            if (!ImportBikeData(bikeFile))
+            {
+                MessageBox.Show("Error while Importing Bike data.");
+                return;
+            }
+            if (!ImportMaintenanceData(maintenanceFile))
+            {
+                MessageBox.Show("Error while Importing Maintenance data.");
+                return;
+            }
+            if (!ImportRouteData(routeFile))
+            {
+                MessageBox.Show("Error while Importing Route data.");
+                return;
+            }
+            if (!ImportRideData(rideDataFile))
+            {
+                MessageBox.Show("Error while Importing Ride data.");
+                return;
+            }
+
+            //Refresh all data and controls:
+            MainForm mainForm = new MainForm();
+            MessageBox.Show("The Data Imports were successful.");
+        }
+
+        private Boolean ImportLogYearData(string logYearFile)
+        {
+            Boolean returnStatus = true;
+            int rowCount = 0;
+
+            try
+            {
+                List<object> objectValues = new List<object>();
+
+                string line;
+                //Check if the file is used by another process
+                using (StreamReader file = new StreamReader(logYearFile))
+                {
+                    rowCount = 0;
+
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        var tempList = line.Split(',');
+
+                        if (rowCount == 0)
+                        {
+                            //Line 1 is the headings                  
+                            //MessageBox.Show(headingList[0]);
+                        }
+                        else
+                        {
+                            //MessageBox.Show(line);
+                            objectValues.Clear();
+                            string[] splitList = line.Split(',');
+
+                            objectValues.Add(splitList[0]);      //Name:
+                            objectValues.Add(splitList[1]);      //Year:                            
+
+                            using (var results = ExecuteSimpleQueryConnection("Log_Year_Add", objectValues))
+                            {
+
+                            }
+                        }
+
+                        rowCount++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to read the Log Year .CVS file." + ex.Message.ToString());
+                MessageBox.Show("[ERROR] An error occured while reading the Log Year .CVS file. \n\n");
+                returnStatus = false;
+                return returnStatus;
+            }
+
+            Logger.Log("The Log Year data has been successfully read from the CSV file", 0, 0);
+
+            return returnStatus;
+        }
+
+        private Boolean ImportBikeData(string bikeFile)
+        {
+            Boolean returnStatus = true;
+            int rowCount = 0;
+
+            try
+            {
+                List<object> objectValues = new List<object>();
+
+                string line;
+                //Check if the file is used by another process
+                using (StreamReader file = new StreamReader(bikeFile))
+                {
+                    rowCount = 0;
+
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        var tempList = line.Split(',');
+
+                        if (rowCount == 0)
+                        {
+                            //Line 1 is the headings                  
+                            //MessageBox.Show(headingList[0]);
+                        }
+                        else
+                        {
+                            //MessageBox.Show(line);
+                            objectValues.Clear();
+                            string[] splitList = line.Split(',');
+
+                            objectValues.Add(splitList[0]);      //Name:
+                            objectValues.Add(splitList[1]);      //MilesNotInLog:
+                            objectValues.Add(splitList[2]);      //LogMiles:
+                            objectValues.Add(splitList[3]);      //TotalMiles:                            
+
+                            using (var results = ExecuteSimpleQueryConnection("Bike_Totals_Add", objectValues))
+                            {
+
+                            }
+                        }
+
+                        rowCount++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to read the Bike .CVS file." + ex.Message.ToString());
+                MessageBox.Show("[ERROR] An error occured while reading the Bike .CVS file. \n\n");
+                returnStatus = false;
+                return returnStatus;
+            }
+
+            Logger.Log("The Bike data has been successfully read from the CSV file", 0, 0);
+
+            return returnStatus;
+        }
+
+        private Boolean ImportMaintenanceData(string maintenanceFile)
+        {
+            Boolean returnStatus = true;
+            int rowCount = 0;
+
+            try
+            {
+                List<object> objectValues = new List<object>();
+
+                string line;
+                //Check if the file is used by another process
+                using (StreamReader file = new StreamReader(maintenanceFile))
+                {
+                    rowCount = 0;
+
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        var tempList = line.Split(',');
+
+                        if (rowCount == 0)
+                        {
+                            //Line 1 is the headings                  
+                            //MessageBox.Show(headingList[0]);
+                        }
+                        else
+                        {
+                            //MessageBox.Show(line);
+                            objectValues.Clear();
+                            string[] splitList = line.Split(',');
+
+                            objectValues.Add(splitList[0]);      //Bike:
+                            objectValues.Add(splitList[1]);      //Comments:
+                            objectValues.Add(splitList[2]);      //Date:
+                            objectValues.Add(splitList[3]);      //Miles:                            
+
+                            using (var results = ExecuteSimpleQueryConnection("Maintenance_Add", objectValues))
+                            {
+
+                            }
+                        }
+
+                        rowCount++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to read the Maintenanc .CVS file." + ex.Message.ToString());
+                MessageBox.Show("[ERROR] An error occured while reading the Maintenanc .CVS file. \n\n");
+                returnStatus = false;
+                return returnStatus;
+            }
+
+            Logger.Log("The Maintenanc data has been successfully read from the CSV file", 0, 0);
+
+            return returnStatus;
+        }
+
+        private Boolean ImportRouteData(string routeFile)
+        {
+            Boolean returnStatus = true;
+            int rowCount = 0;
+
+            try
+            {
+                List<object> objectValues = new List<object>();
+
+                string line;
+                //Check if the file is used by another process
+                using (StreamReader file = new StreamReader(routeFile))
+                {
+                    rowCount = 0;
+
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        var tempList = line.Split(',');
+
+                        if (rowCount == 0)
+                        {
+                            //Line 1 is the headings                  
+                            //MessageBox.Show(headingList[0]);
+                        }
+                        else
+                        {
+                            //MessageBox.Show(line);
+                            objectValues.Clear();
+                            string[] splitList = line.Split(',');
+
+                            objectValues.Add(splitList[0]);      //Name:                           
+
+                            using (var results = ExecuteSimpleQueryConnection("Route_Add", objectValues))
+                            {
+
+                            }
+                        }
+
+                        rowCount++;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to read the Route .CVS file." + ex.Message.ToString());
+                MessageBox.Show("[ERROR] An error occured while reading the Route .CVS file. \n\n");
+                returnStatus = false;
+                return returnStatus;
+            }
+
+            Logger.Log("The Route data has been successfully read from the CSV file", 0, 0);
+
+            return returnStatus;
+        }
+
+        private Boolean ImportRideData(string rideDataFile)
+        {
+            //****************************************************************
+            //NOTE: Export of comment field will need to remove any commas:
+            //****************************************************************
+            Boolean returnStatus = true;
+            //int logIndex = 0;
+            try
+            {
+                List<object> objectValues = new List<object>();
+
+                string line;
+                //Check if the file is used by another process
+                using (StreamReader file = new StreamReader(rideDataFile))
+                {
+                    int rowCount = 0;
+
+                    while ((line = file.ReadLine()) != null)
+                    {
+                        var tempList = line.Split(',');
+
+                        if (rowCount == 0)
+                        {
+                            //Line 1 is the headings                  
+                            //MessageBox.Show(headingList[0]);
+                        }
+                        else
+                        {
+                            //MessageBox.Show(line);
+                            objectValues.Clear();
+                            string[] splitList = line.Split(',');
+
+                            objectValues.Add(splitList[0]);      //Moving Time:
+                            objectValues.Add(splitList[1]);      //Ride Distance:
+                            objectValues.Add(splitList[2]);      //Average Speed:
+                            objectValues.Add(splitList[3]);      //Bike:
+                            objectValues.Add(splitList[4]);      //Ride Type:                            
+                            objectValues.Add(splitList[5]);      //Wind:
+                            objectValues.Add(splitList[6]);      //Temp:
+                            objectValues.Add(splitList[7]);      //Date:
+                            objectValues.Add(splitList[8]);      //Average Cadence:
+                            objectValues.Add(splitList[9]);     //Max Cadence:
+                            objectValues.Add(splitList[10]);     //Average Heart Rate:
+                            objectValues.Add(splitList[11]);     //Max Heart Rate:
+                            objectValues.Add(splitList[12]);     //Calories:
+                            objectValues.Add(splitList[13]);     //Total Ascent:
+                            objectValues.Add(splitList[14]);     //Total Descent:
+                            objectValues.Add(splitList[15]);     //Max Speed:
+                            objectValues.Add(splitList[16]);     //Average Power:
+                            objectValues.Add(splitList[17]);     //Max Power:
+                            objectValues.Add(splitList[18]);     //Route:
+                            objectValues.Add(splitList[19]);     //Comments:
+                            objectValues.Add(splitList[20]);     //LogYear index:
+                            objectValues.Add(splitList[21]);     //Week number:
+                            objectValues.Add(splitList[22]);     //Location:
+                            objectValues.Add(splitList[23]);     //Windchill:
+                            objectValues.Add(splitList[24]);     //Effort:
+                            objectValues.Add(splitList[25]);     //Comfort:
+                            objectValues.Add(splitList[26]);     //Custom1:
+                            objectValues.Add(splitList[27]);     //Custom2:
+                            objectValues.Add(splitList[28]);     //Planned:
+
+                            using (var results = ExecuteSimpleQueryConnection("Ride_Information_Add_Import", objectValues))
+                            {
+
+                            }
+                        }
+
+                        rowCount++;
+                    }
+                }                  
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to read the Ride Data .CVS file." + ex.Message.ToString());
+                MessageBox.Show("[ERROR] An error occured while reading the Ride Data .CVS file. \n\n");
+                returnStatus = false;
+
+                return returnStatus;
+            }
+
+            Logger.Log("The Ride data has been successfully read from the CSV file", 0, 0);
+
+            return returnStatus;
+        }
+
+        private void ImportTables(object sender, EventArgs e)
+        {
+            ImportTables();
+        }
     }
 }

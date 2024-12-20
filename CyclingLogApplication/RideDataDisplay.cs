@@ -913,9 +913,11 @@ namespace CyclingLogApplication
 
                 if (newIndex < 0)
                 {
+                    //UpPictureBox.Enabled = false;
                     return;
                 }
 
+                //UpPictureBox.Enabled = true;
                 //CheckState.Unchecked
                 //CheckState.Checked
                 string itemChecked = checkedListBox.GetItemCheckState(checkedListBox.SelectedIndex).ToString();
@@ -948,9 +950,11 @@ namespace CyclingLogApplication
 
                 if (newIndex >= checkedListBox.Items.Count)
                 {
+                    //DownPictureBox.Enabled=false;
                     return;
                 }
 
+                //DownPictureBox.Enabled = true;
                 string itemChecked = checkedListBox.GetItemCheckState(checkedListBox.SelectedIndex).ToString();
                 object selectedItem = checkedListBox.SelectedItem;
                 checkedListBox.Items.Remove(selectedItem);
