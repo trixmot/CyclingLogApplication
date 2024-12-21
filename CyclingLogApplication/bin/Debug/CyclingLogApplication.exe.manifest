@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>lw5C4acD2/nAbmWG9FUyNdgceW69Hwh5fMq8OlOU3kI=</dsig:DigestValue>
+        <dsig:DigestValue>I0yAzSpWMFT8fa3U39LEJSfrvie3DHFM7Pr6m61vI0M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -86,7 +86,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>STa+ddseCAwqHBzbQb1YpgO0MAUuy5Ze/Uf7dgsXOCY=</dsig:DigestValue>
+      <dsig:DigestValue>/A68sHSqsdlH9Kt9quqLNxKQrMUo0bQKctJ/TnYOALM=</dsig:DigestValue>
     </hash>
   </file>
   <file name="CyclingLogDatabase_log.ldf" size="851968" writeableType="applicationData">
@@ -95,7 +95,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>NSP5WW0sVkYNfuMzlWP2lc0NV527jdUgx19TbsinNjk=</dsig:DigestValue>
+      <dsig:DigestValue>2xx3UXXT0ooy3zUjA53/OFgmo9e0Yq3rxirIazXrz+s=</dsig:DigestValue>
     </hash>
   </file>
   <file name="license.txt" size="1080">

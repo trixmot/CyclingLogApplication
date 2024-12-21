@@ -16,6 +16,7 @@ using System.Data.Common;
 using System.Security.Policy;
 using System.Text;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using System.Xml.Linq;
 //using System.Threading;
 //using System.Text.RegularExpressions;
 //using System.Runtime.Remoting.Metadata.W3cXsd2001;
@@ -325,13 +326,19 @@ namespace CyclingLogApplication
 
                 //Get all values and load the comboboxes:
                 List<string> logYearList = GetLogYears();
-                List<string> routeList = ReadDataNames("Table_Routes", "Name");
+                List<string> routeListTemp = ReadDataNames("Table_Routes", "Name");
+                List<string> routeList = new List<string>();
+                routeList.Add("--Select Value--");
+                foreach (string route in routeListTemp)
+                {
+                    routeList.Add(route);
+                }
                 SetRoutes(routeList);
                 List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
 
                 SetLogNameIDDictionary(logYearList);
                 ChartForm chartForm = new ChartForm();
-
+                cbLogYearConfig.Items.Clear();
                 cbLogYearConfig.Items.Add("--Add New Log--");
 
                 RideDataEntry rideDataEntryForm = new RideDataEntry();
@@ -344,6 +351,7 @@ namespace CyclingLogApplication
                 }
 
                 cbLogYearConfig.SelectedIndex = 0;
+                cbBikeMaint.Items.Clear();
                 cbBikeMaint.Items.Add("--Select Value--");
 
                 //Load Bike values:
@@ -357,6 +365,7 @@ namespace CyclingLogApplication
 
                 int currentYear = DateTime.Now.Year;
 
+                cbLogYear.Items.Clear();
                 cbLogYear.Items.Add("--Select Value--");
                 //cbLogYear
                 for (int i = currentYear + 1; i > 2009; i--)
@@ -375,8 +384,9 @@ namespace CyclingLogApplication
                 cbCalendarColors.SelectedIndex = cbCalendarColors.FindStringExact(gridCalendarColor);
 
                 formloading = true;
-
+                cbStatMonthlyLogYear.Items.Clear();
                 cbStatMonthlyLogYear.Items.Add("--Select Value--");
+                cbLogYearWeekly.Items.Clear();
                 cbLogYearWeekly.Items.Add("--Select Value--");
                 //Load LogYear Monthly values:
                 foreach (string val in logYearList)
@@ -391,6 +401,7 @@ namespace CyclingLogApplication
                 RefreshRoutes();
 
                 cbCalendarDataItem.SelectedIndex = 3; //(Miles)
+                cbCalendarLogs.Items.Clear();
                 cbCalendarLogs.Items.Add("--Select Value--");
                 if (logYearList.Count > 0)
                 {
@@ -3091,6 +3102,7 @@ namespace CyclingLogApplication
 
             List<object> objectBlank = new List<object>();
             RunStoredProcedure(objectBlank, "DeleteTable");
+            ResetPrimaryKeys("Table_Routes");
 
             //Delete the config file and a default new one will be created:
             //This will give us the full name path of the executable file:
@@ -5953,43 +5965,52 @@ namespace CyclingLogApplication
         //    //System.IO.File.Delete("C:\\Program Files\\Microsoft SQL Server\\MSSQL12.MSSQLSERVER\\MSSQL\\Backup\\Test_Full_Backup1");
         //}
 
-        private void BtDBBackup_Click(object sender, EventArgs e)
+        private void DBBackup()
         {
-            DialogResult result = MessageBox.Show("This function will create a copy of the database. Do you want to continue?", "Backup Database", MessageBoxButtons.YesNo);
-            if (result == DialogResult.No)
+            try
             {
-                return;
+                string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string path = System.IO.Path.GetDirectoryName(strExeFilePath);
+                string DBFileName = path + "\\CyclingLogDatabase.mdf";
+
+                using (SqlCommand cmd = new SqlCommand("backup database [" + DBFileName + "] to disk=@path WITH NOFORMAT", sqlConnection))
+                {
+                    cmd.Parameters.AddWithValue("@path", path + "\\backup\\CyclingLogDatabase_backup.bak");
+                    sqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    sqlConnection.Close();
+                }
+
+
+                //string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                //string path = System.IO.Path.GetDirectoryName(strExeFilePath);
+
+                //string sourceFile1 = path + "\\CyclingLogDatabase.mdf";
+                //string sourceFile2 = path + "\\CyclingLogDatabase_log.ldf";
+
+                //// Source file to be renamed  
+                //// Create a FileInfo  
+                //System.IO.FileInfo fi = new System.IO.FileInfo(sourceFile1);
+                //// Check if file is there  
+                //if (fi.Exists)
+                //{
+                //    // Move file with a new name. Hence renamed.  
+                //    fi.MoveTo(path + "\\dbBackup\\CyclingLogDatabase_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".mdf");
+                //}
+
+                //fi = new System.IO.FileInfo(sourceFile2);
+                //// Check if file is there  
+                //if (fi.Exists)
+                //{
+                //    // Move file with a new name. Hence renamed.  
+                //    fi.MoveTo(path + "\\dbBackup\\CyclingLogDatabase_log_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".ldf");
+                //}
             }
-
-            string strExeFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            string path = System.IO.Path.GetDirectoryName(strExeFilePath);
-
-            string sourceFile1 = path + "\\CyclingLogDatabase.mdf";
-            string sourceFile2 = path + "\\CyclingLogDatabase_log.ldf";
-
-            // Source file to be renamed  
-            // Create a FileInfo  
-            System.IO.FileInfo fi = new System.IO.FileInfo(sourceFile1);
-            // Check if file is there  
-            if (fi.Exists)
+            catch (Exception ex)
             {
-                // Move file with a new name. Hence renamed.  
-                fi.MoveTo(path + "\\dbBackup\\CyclingLogDatabase_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".mdf");
+                Logger.LogError("[ERROR]: Exception database backup." + ex.Message.ToString());
+                MessageBox.Show("Exception() database backup: " + ex.Message.ToString());
             }
-
-            fi = new System.IO.FileInfo(sourceFile2);
-            // Check if file is there  
-            if (fi.Exists)
-            {
-                // Move file with a new name. Hence renamed.  
-                fi.MoveTo(path + "\\dbBackup\\CyclingLogDatabase_log_" + DateTime.Now.ToString("yyyyMMddHHmmssfff") + ".ldf");
-            }
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            //Backup();
-            ExportTables();
         }
 
         private void dgvMaint_Click(object sender, EventArgs e)
@@ -8810,6 +8831,7 @@ namespace CyclingLogApplication
                         while (results.Read())
                         {
                             name = results[0].ToString();
+                            name = name.Replace(",", "");
                             year = results[1].ToString();
                             logid = results[2].ToString();
 
@@ -8872,6 +8894,7 @@ namespace CyclingLogApplication
                         while (results.Read())
                         {
                             name = results[0].ToString();
+                            name = name.Replace(",", "");
                             notinlogmiles = results[1].ToString();
                             logmiles = results[2].ToString();
                             totalmiles = results[3].ToString();
@@ -8934,7 +8957,7 @@ namespace CyclingLogApplication
                         while (results.Read())
                         {
                             bike = results[0].ToString();
-
+                            bike = bike.Replace(",", "");
                             //Remove any commas in the comment string:
                             comments = results[1].ToString();
                             comments = comments.Replace(",", "");
@@ -8996,7 +9019,7 @@ namespace CyclingLogApplication
                         while (results.Read())
                         {
                             name = results[0].ToString();
-
+                            name = name.Replace(",", "");
                             string newLine = string.Format("{0}", name);
                             output.AppendLine(string.Join(separator, newLine));
                         }
@@ -9083,6 +9106,7 @@ namespace CyclingLogApplication
                             rideDistance = results[1].ToString();
                             avgSpeed = results[2].ToString();
                             bike = results[3].ToString();
+                            bike = bike.Replace(",", "");
                             rideType = results[4].ToString();
                             wind = results[5].ToString();
                             temp = results[6].ToString();
@@ -9098,6 +9122,7 @@ namespace CyclingLogApplication
                             avgPower = results[16].ToString();
                             maxPower = results[17].ToString();
                             route = results[18].ToString();
+                            route = route.Replace(",", "");
                             comments = results[19].ToString();
                             comments = comments.Replace(",", "");
                             logYearID = results[20].ToString();
@@ -9107,7 +9132,9 @@ namespace CyclingLogApplication
                             effort = results[24].ToString();
                             comfort = results[25].ToString();
                             custom1 = results[26].ToString();
+                            custom1 = custom1.Replace(",", "");
                             custom2 = results[27].ToString();
+                            custom2 = custom2.Replace(",", "");
                             planned = results[28].ToString();
 
                             string newLine = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},{23},{24},{25},{26},{27},{28}", movingTime, rideDistance, avgSpeed, bike, rideType, wind, temp, date, avgCadence, maxCadence, avgHeartRate, maxHeartRate, calories, totalAscent, totalDescent, maxSpeed, avgPower, maxPower, route, comments, logYearID, weekNumber, location, windChill, effort, comfort, custom1, custom2, planned);
@@ -9181,7 +9208,7 @@ namespace CyclingLogApplication
             }
 
             //Refresh all data and controls:
-            MainForm mainForm = new MainForm();
+            MainForm_Load(this, null);
             MessageBox.Show("The Data Imports were successful.");
         }
 
@@ -9364,6 +9391,10 @@ namespace CyclingLogApplication
             Boolean returnStatus = true;
             int rowCount = 0;
 
+            //Before importing data, need to delete the pre-configured routes:
+            List<object> objectBlank = new List<object>();
+            RunStoredProcedure(objectBlank, "DeleteRouteTable");
+
             try
             {
                 List<object> objectValues = new List<object>();
@@ -9452,8 +9483,10 @@ namespace CyclingLogApplication
                             objectValues.Add(double.Parse(splitList[2]));       //Average Speed:
                             objectValues.Add(splitList[3]);                     //Bike:
                             objectValues.Add(splitList[4]);                     //Ride Type:                            
-                            objectValues.Add(double.Parse(splitList[5]));       //Wind:
-                            objectValues.Add(double.Parse(splitList[6]));       //Temp:
+                            double windRounded = Math.Round(double.Parse(splitList[5]), 1);
+                            objectValues.Add(windRounded);       //Wind:
+                            double tempRounded = Math.Round(double.Parse(splitList[6]), 1);
+                            objectValues.Add(tempRounded);       //Temp:
                             DateTime dateTimeValue = DateTime.Parse(splitList[7]);
                             objectValues.Add(dateTimeValue);                    //Date:
                             if (string.IsNullOrWhiteSpace(splitList[8]))
@@ -9620,7 +9653,22 @@ namespace CyclingLogApplication
 
         private void ImportTables(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show("This function will import all data that was exported from the database. This should be run after all data has been deleted. Are you sure you want to continue?", "Import Data To The Database", MessageBoxButtons.YesNo);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
+
             ImportTables();
+        }
+
+        private void btExportData(object sender, EventArgs e)
+        {
+            //Make a backup copy of the database files:
+            DBBackup();
+
+            //Export database tables to csv files:
+            ExportTables();
         }
     }
 }

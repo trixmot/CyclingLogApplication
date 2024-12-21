@@ -38,9 +38,9 @@ namespace CyclingLogApplication
                 }
 
                 // Determine whether the directory and file exists.
-                if (!Directory.Exists(strWorkPath + "\\database"))
+                if (!Directory.Exists(strWorkPath + "\\backup"))
                 {
-                    System.IO.Directory.CreateDirectory(strWorkPath + "\\database");
+                    System.IO.Directory.CreateDirectory(strWorkPath + "\\backup");
                 }
 
                 if (!Directory.Exists(path) || !File.Exists(pathFile))
