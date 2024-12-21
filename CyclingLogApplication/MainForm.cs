@@ -14,8 +14,8 @@ using System.Data.SqlTypes;
 using System.Security.Cryptography;
 using System.Data.Common;
 using System.Security.Policy;
-using CsvHelper;
 using System.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 //using System.Threading;
 //using System.Text.RegularExpressions;
 //using System.Runtime.Remoting.Metadata.W3cXsd2001;
@@ -463,7 +463,7 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to load Main form. " + ex.Message.ToString());
+                Logger.LogError("[ERROR]: Exception while trying to load Main form. " + ex.Message.ToString() + ":" + ex.Data.ToString());
             }
 
             formloading = false;
@@ -1061,6 +1061,40 @@ namespace CyclingLogApplication
             return nameList;
         }
 
+        public static void ResetPrimaryKeys(string tableString)
+        {
+            SqlDataReader reader = null;
+            //List<string> nameList = new List<string>();
+            int logSetting = GetLogLevel();
+
+            try
+            {
+                sqlConnection.Open();
+
+                // 1. declare command object with parameter
+                using (SqlCommand cmd = new SqlCommand("DBCC CHECKIDENT ('[" + tableString + "]', RESEED, 0)", sqlConnection))
+                {
+                    reader = cmd.ExecuteReader();
+                }
+
+                // write each record
+                while (reader.Read())
+                {
+                    Logger.Log("Reset Primary Key for [Table_Ride_Information]:", logSetting, 1);
+                }
+            }
+            finally
+            {
+                // close reader
+                reader?.Close();
+
+                // close connection
+                sqlConnection?.Close();
+            }
+
+            return;
+        }
+
         private void LogTitleSave()
         {
             string logYearTitle = tbLogYearConfig.Text;
@@ -1123,7 +1157,8 @@ namespace CyclingLogApplication
                     List<object> objectValues = new List<object>();
                     objectValues.Add(logYearTitle);
                     objectValues.Add(Convert.ToInt32(logYear));
-                    RunStoredProcedure(objectValues, "Log_Year_Add"); 
+                    RunStoredProcedure(objectValues, "Log_Year_Add");
+                    RunStoredProcedure(objectValues, "LogID_Update");
                 }
                 // Update to an existing log:
                 else
@@ -1217,55 +1252,55 @@ namespace CyclingLogApplication
             MessageBox.Show("Log Title save is complete.");
         }
             
-        private void BtAddLogYearConfig(object sender, EventArgs e)
-        {
-            string logYearTitle;
-            RideDataEntry rideDataEntryForm = new RideDataEntry();
+        //private void BtAddLogYearConfig(object sender, EventArgs e)
+        //{
+        //    string logYearTitle;
+        //    RideDataEntry rideDataEntryForm = new RideDataEntry();
 
-            if (!tbLogYearConfig.Text.Equals(""))
-            {
-                logYearTitle = tbLogYearConfig.Text;
-                //Check to see if the string has already been entered to eliminate duplicates:
-                for (int index = 1; index < cbLogYearConfig.Items.Count; index++)
-                {
-                    if (cbLogYearConfig.Items.Contains(logYearTitle))
-                    {
-                        MessageBox.Show("Duplicate name entered. Enter a unique name for the log.");
-                        return;
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Invalid name entered. Enter a unique name for the log.");
-                return;
-            }
+        //    if (!tbLogYearConfig.Text.Equals(""))
+        //    {
+        //        logYearTitle = tbLogYearConfig.Text;
+        //        //Check to see if the string has already been entered to eliminate duplicates:
+        //        for (int index = 1; index < cbLogYearConfig.Items.Count; index++)
+        //        {
+        //            if (cbLogYearConfig.Items.Contains(logYearTitle))
+        //            {
+        //                MessageBox.Show("Duplicate name entered. Enter a unique name for the log.");
+        //                return;
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Invalid name entered. Enter a unique name for the log.");
+        //        return;
+        //    }
 
-            if (cbLogYear.SelectedIndex < 1)
-            {
-                MessageBox.Show("Invalid Log Year selected. Select a valid year.");
-                return;
-            }
+        //    if (cbLogYear.SelectedIndex < 1)
+        //    {
+        //        MessageBox.Show("Invalid Log Year selected. Select a valid year.");
+        //        return;
+        //    }
 
-            string logYearValue = cbLogYear.SelectedItem.ToString();
-            int logSetting = GetLogLevel();
+        //    string logYearValue = cbLogYear.SelectedItem.ToString();
+        //    int logSetting = GetLogLevel();
 
-            //Add new entry to the LogYear Table:
-            List<object> objectValues = new List<object>();
-            objectValues.Add(logYearTitle);
-            objectValues.Add(Convert.ToInt32(logYearValue));
-            RunStoredProcedure(objectValues, "Log_Year_Add");
-            RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
-            ChartForm chartForm = new ChartForm();
-            cbLogYearConfig.Items.Add(logYearTitle);
-            cbLogYearConfig.SelectedIndex = cbLogYearConfig.Items.Count - 1;
-            rideDataEntryForm.AddLogYearDataEntry(logYearTitle);
-            rideDataDisplayForm.AddLogYearFilter(logYearTitle);
-            chartForm.cbLogYearChart.Items.Add(logYearTitle);
-            cbStatMonthlyLogYear.Items.Add(logYearTitle);
+        //    //Add new entry to the LogYear Table:
+        //    List<object> objectValues = new List<object>();
+        //    objectValues.Add(logYearTitle);
+        //    objectValues.Add(Convert.ToInt32(logYearValue));
+        //    RunStoredProcedure(objectValues, "Log_Year_Add");
+        //    RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
+        //    ChartForm chartForm = new ChartForm();
+        //    cbLogYearConfig.Items.Add(logYearTitle);
+        //    cbLogYearConfig.SelectedIndex = cbLogYearConfig.Items.Count - 1;
+        //    rideDataEntryForm.AddLogYearDataEntry(logYearTitle);
+        //    rideDataDisplayForm.AddLogYearFilter(logYearTitle);
+        //    chartForm.cbLogYearChart.Items.Add(logYearTitle);
+        //    cbStatMonthlyLogYear.Items.Add(logYearTitle);
 
-            Logger.Log("Adding a Log Year entry to the Configuration:" + logYearTitle, logSetting, 0);
-        }
+        //    Logger.Log("Adding a Log Year entry to the Configuration:" + logYearTitle, logSetting, 0);
+        //}
 
         private void RemoveLogYearConfig(object sender, EventArgs e)
         {
@@ -1592,21 +1627,21 @@ namespace CyclingLogApplication
         {
             RideDataEntry rideDataEntryForm = new RideDataEntry();
             ChartForm chartForm = new ChartForm();
-            string routeString1 = "--Select Value--";
+            //string routeString1 = "--Select Value--";
             string routeString2 = "Miscellaneous Route";
             string routeString3 = "*** Indoor Training ***";
             int logSetting = GetLogLevel();
 
-            Logger.Log("Adding a Route entry:  --Select Value--:", 0, 0);
+            //Logger.Log("Adding a Route entry:  --Select Value--:", 0, 0);
             Logger.Log("Adding a Route entry:  Miscellaneous Route:", 0, 0);
             Logger.Log("Adding a Route entry:  *** Indoor Training ***:", 0, 0);
 
             //Route1:
-            List<object> objectValues1 = new List<object>
-            {
-                routeString1
-            };
-            RunStoredProcedure(objectValues1, "Route_Add");
+            //List<object> objectValues1 = new List<object>
+            //{
+            //    routeString1
+            //};
+            //RunStoredProcedure(objectValues1, "Route_Add");
 
             //Route2:
             List<object> objectValues2 = new List<object>
@@ -1624,11 +1659,11 @@ namespace CyclingLogApplication
 
 
 
-            rideDataEntryForm.AddRouteDataEntry(routeString1);
+            //rideDataEntryForm.AddRouteDataEntry(routeString1);
             rideDataEntryForm.AddRouteDataEntry(routeString2);
             rideDataEntryForm.AddRouteDataEntry(routeString3);
 
-            chartForm.cbRoutesChart.Items.Add(routeString1);
+            //chartForm.cbRoutesChart.Items.Add(routeString1);
             chartForm.cbRoutesChart.Items.Add(routeString2);
             chartForm.cbRoutesChart.Items.Add(routeString3);
 
@@ -3054,34 +3089,8 @@ namespace CyclingLogApplication
                 return;
             }
 
-            //TODO: Reset entire application:
-            //List of things to clean up:
-            // Clear out Table_Routes:
-            // Clear out Table_Bikes:
-            // Clear out Table_Log_year:
-            // Clear out Table_Bike_Mainenace:
-            // Clear out Table_Ride_Information:
             List<object> objectBlank = new List<object>();
             RunStoredProcedure(objectBlank, "DeleteTable");
-
-
-            // TODO: Loop through each combo and delete items:
-
-            //cbLogYearConfig
-            //cbStatMonthlyLogYear
-            //rideDataEntryForm.cbLogYearDataEntry
-            //rideDataDisplayForm.cbLogYearFilter
-            //chartForm.cbLogYearChart
-
-            //cbRouteConfig
-            //chartForm.cbRoutesChart
-            //rideDataEntryForm.cbRouteDataEntry
-
-            //cbBikeConfig
-            //cbBikeMaint
-            //rideDataEntryForm.cbBikeDataEntrySelection
-
-
 
             //Delete the config file and a default new one will be created:
             //This will give us the full name path of the executable file:
@@ -3117,7 +3126,21 @@ namespace CyclingLogApplication
 
             AddDefautRoute();
 
-            MessageBox.Show("Close the program and reopen before entering any data.");
+            ResetPrimaryKeys("Table_Bike_Maintenance");
+            ResetPrimaryKeys("Table_Bikes");
+            ResetPrimaryKeys("Table_Log_year");
+            ResetPrimaryKeys("Table_Ride_Information");
+            ResetPrimaryKeys("Table_Routes");
+
+            result = MessageBox.Show("The program needs to close. After closing you can reopen the program. Do you want to continue to close the application?", "Close Application", MessageBoxButtons.YesNo);
+            
+            if (result == DialogResult.No)
+            {
+                return;
+            } else
+            {
+                Application.Exit();
+            }
         }
 
         public static int GetLogYearIndexByName(string logName)
@@ -8769,10 +8792,11 @@ namespace CyclingLogApplication
 
             string name;
             string year;
+            string logid;
 
             string separator = ",";
             StringBuilder output = new StringBuilder();
-            string[] headings = { "Name", "Year" };
+            string[] headings = { "Name", "Year", "LogID" };
             output.AppendLine(string.Join(separator, headings));
 
             try
@@ -8787,8 +8811,9 @@ namespace CyclingLogApplication
                         {
                             name = results[0].ToString();
                             year = results[1].ToString();
+                            logid = results[2].ToString();
 
-                            string newLine = string.Format("{0}, {1}", name, year);
+                            string newLine = string.Format("{0},{1},{2}", name, year, logid);
                             output.AppendLine(string.Join(separator, newLine));
                         }
                     }
@@ -8833,7 +8858,7 @@ namespace CyclingLogApplication
 
             string separator = ",";
             StringBuilder output = new StringBuilder();
-            string[] headings = { "Bike Name", "Not In Log Miles", "Log Miles", "Total Miles" };
+            string[] headings = {"Bike Name","Not In Log Miles","Log Miles","Total Miles"};
             output.AppendLine(string.Join(separator, headings));
 
             try
@@ -8851,7 +8876,7 @@ namespace CyclingLogApplication
                             logmiles = results[2].ToString();
                             totalmiles = results[3].ToString();
 
-                            string newLine = string.Format("{0}, {1}, {2}, {3}", name, notinlogmiles, logmiles, totalmiles);
+                            string newLine = string.Format("{0},{1},{2},{3}", name, notinlogmiles, logmiles, totalmiles);
                             output.AppendLine(string.Join(separator, newLine));
                         }
                     }
@@ -8895,7 +8920,7 @@ namespace CyclingLogApplication
 
             string separator = ",";
             StringBuilder output = new StringBuilder();
-            string[] headings = { "Bike", "Comments", "Date", "Miles" };
+            string[] headings = {"Bike","Comments","Date","Miles"};
             output.AppendLine(string.Join(separator, headings));
 
             try
@@ -8909,11 +8934,14 @@ namespace CyclingLogApplication
                         while (results.Read())
                         {
                             bike = results[0].ToString();
+
+                            //Remove any commas in the comment string:
                             comments = results[1].ToString();
+                            comments = comments.Replace(",", "");
                             date = results[2].ToString();
                             miles = results[3].ToString();
 
-                            string newLine = string.Format("{0}, {1}, {2}, {3}", bike, comments, date, miles);
+                            string newLine = string.Format("{0},{1},{2},{3}", bike, comments, date, miles);
                             output.AppendLine(string.Join(separator, newLine));
                         }
                     }
@@ -8954,7 +8982,7 @@ namespace CyclingLogApplication
 
             string separator = ",";
             StringBuilder output = new StringBuilder();
-            string[] headings = { "Name" };
+            string[] headings = {"Name"};
             output.AppendLine(string.Join(separator, headings));
 
             try
@@ -9038,7 +9066,7 @@ namespace CyclingLogApplication
 
             string separator = ",";
             StringBuilder output = new StringBuilder();
-            string[] headings = { "Moving Time", "Ride Distance", "Avg Speed", "Bike", "Ride Type", "Wind", "Temperature", "Date", "Avg Cadence", "Max Cadence", "Avg Heart Rate", "Max Heart Rate", "Calories", "Total Ascent", "Total Descent", "Max Speed", "Avg Power", "Max Power", "Route", "Comments", "Log Year ID", "Week Number", "Location", "Wind Chill", "Effort", "Comfort", "Custom1", "Custom2", "Planned" };
+            string[] headings = {"Moving Time","Ride Distance","Avg Speed","Bike","Ride Type","Wind","Temperature","Date","Avg Cadence","Max Cadence","Avg Heart Rate","Max Heart Rate","Calories","Total Ascent","Total Descent","Max Speed","Avg Power","Max Power","Route","Comments","Log Year ID","Week Number","Location","Wind Chill","Effort","Comfort","Custom1","Custom2","Planned"};
             output.AppendLine(string.Join(separator, headings));
 
             try
@@ -9071,6 +9099,7 @@ namespace CyclingLogApplication
                             maxPower = results[17].ToString();
                             route = results[18].ToString();
                             comments = results[19].ToString();
+                            comments = comments.Replace(",", "");
                             logYearID = results[20].ToString();
                             weekNumber = results[21].ToString();
                             location = results[22].ToString();
@@ -9081,7 +9110,7 @@ namespace CyclingLogApplication
                             custom2 = results[27].ToString();
                             planned = results[28].ToString();
 
-                            string newLine = string.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15}, {16}, {17}, {18}, {19}, {20}, {21}, {22}, {23}, {24}, {25}, {26}, {27}, {28} ", movingTime, rideDistance, avgSpeed, bike, rideType, wind, temp, date, avgCadence, maxCadence, avgHeartRate, maxHeartRate, calories, totalAscent, totalDescent, maxSpeed, avgPower, maxPower, route, comments, logYearID, weekNumber, location, windChill, effort, comfort, custom1, custom2, planned);
+                            string newLine = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},{23},{24},{25},{26},{27},{28}", movingTime, rideDistance, avgSpeed, bike, rideType, wind, temp, date, avgCadence, maxCadence, avgHeartRate, maxHeartRate, calories, totalAscent, totalDescent, maxSpeed, avgPower, maxPower, route, comments, logYearID, weekNumber, location, windChill, effort, comfort, custom1, custom2, planned);
                             output.AppendLine(string.Join(separator, newLine));
                         }
                     }
@@ -9121,7 +9150,7 @@ namespace CyclingLogApplication
 
             string logYearFile = path + "\\logYearTableData.csv";
             string bikeFile = path + "\\bikeTableData.csv";
-            string maintenanceFile = path + "\\maintnenaceTableData.csv";
+            string maintenanceFile = path + "\\maintenanceTableData.csv";
             string routeFile = path + "\\routeTableData.csv";
             string rideDataFile = path + "\\rideDataTableData.csv";
 
@@ -9187,9 +9216,10 @@ namespace CyclingLogApplication
                             string[] splitList = line.Split(',');
 
                             objectValues.Add(splitList[0]);      //Name:
-                            objectValues.Add(splitList[1]);      //Year:                            
+                            objectValues.Add(int.Parse(splitList[1]));      //Year:
+                            objectValues.Add(int.Parse(splitList[2]));      //LogID: 
 
-                            using (var results = ExecuteSimpleQueryConnection("Log_Year_Add", objectValues))
+                            using (var results = ExecuteSimpleQueryConnection("Log_Year_Import", objectValues))
                             {
 
                             }
@@ -9243,9 +9273,9 @@ namespace CyclingLogApplication
                             string[] splitList = line.Split(',');
 
                             objectValues.Add(splitList[0]);      //Name:
-                            objectValues.Add(splitList[1]);      //MilesNotInLog:
-                            objectValues.Add(splitList[2]);      //LogMiles:
-                            objectValues.Add(splitList[3]);      //TotalMiles:                            
+                            objectValues.Add(double.Parse(splitList[1]));      //MilesNotInLog:
+                            objectValues.Add(double.Parse(splitList[2]));      //LogMiles:
+                            objectValues.Add(double.Parse(splitList[3]));      //TotalMiles:                            
 
                             using (var results = ExecuteSimpleQueryConnection("Bike_Totals_Add", objectValues))
                             {
@@ -9300,10 +9330,11 @@ namespace CyclingLogApplication
                             objectValues.Clear();
                             string[] splitList = line.Split(',');
 
-                            objectValues.Add(splitList[0]);      //Bike:
-                            objectValues.Add(splitList[1]);      //Comments:
-                            objectValues.Add(splitList[2]);      //Date:
-                            objectValues.Add(splitList[3]);      //Miles:                            
+                            objectValues.Add(splitList[0]);                                                 //Bike:
+                            objectValues.Add(splitList[1]);                                                 //Comments:
+                            DateTime dateTimeValue = DateTime.Parse(splitList[2]);
+                            objectValues.Add(dateTimeValue);                                                //Date:
+                            objectValues.Add(double.Parse(splitList[3]));                                   //Miles:                            
 
                             using (var results = ExecuteSimpleQueryConnection("Maintenance_Add", objectValues))
                             {
@@ -9415,35 +9446,153 @@ namespace CyclingLogApplication
                             objectValues.Clear();
                             string[] splitList = line.Split(',');
 
-                            objectValues.Add(splitList[0]);      //Moving Time:
-                            objectValues.Add(splitList[1]);      //Ride Distance:
-                            objectValues.Add(splitList[2]);      //Average Speed:
-                            objectValues.Add(splitList[3]);      //Bike:
-                            objectValues.Add(splitList[4]);      //Ride Type:                            
-                            objectValues.Add(splitList[5]);      //Wind:
-                            objectValues.Add(splitList[6]);      //Temp:
-                            objectValues.Add(splitList[7]);      //Date:
-                            objectValues.Add(splitList[8]);      //Average Cadence:
-                            objectValues.Add(splitList[9]);     //Max Cadence:
-                            objectValues.Add(splitList[10]);     //Average Heart Rate:
-                            objectValues.Add(splitList[11]);     //Max Heart Rate:
-                            objectValues.Add(splitList[12]);     //Calories:
-                            objectValues.Add(splitList[13]);     //Total Ascent:
-                            objectValues.Add(splitList[14]);     //Total Descent:
-                            objectValues.Add(splitList[15]);     //Max Speed:
-                            objectValues.Add(splitList[16]);     //Average Power:
-                            objectValues.Add(splitList[17]);     //Max Power:
-                            objectValues.Add(splitList[18]);     //Route:
-                            objectValues.Add(splitList[19]);     //Comments:
-                            objectValues.Add(splitList[20]);     //LogYear index:
-                            objectValues.Add(splitList[21]);     //Week number:
-                            objectValues.Add(splitList[22]);     //Location:
-                            objectValues.Add(splitList[23]);     //Windchill:
-                            objectValues.Add(splitList[24]);     //Effort:
-                            objectValues.Add(splitList[25]);     //Comfort:
-                            objectValues.Add(splitList[26]);     //Custom1:
-                            objectValues.Add(splitList[27]);     //Custom2:
-                            objectValues.Add(splitList[28]);     //Planned:
+                            DateTime movingTime = DateTime.Parse(splitList[0]);
+                            objectValues.Add(splitList[0]);                       //Moving Time:
+                            objectValues.Add(double.Parse(splitList[1]));       //Ride Distance:
+                            objectValues.Add(double.Parse(splitList[2]));       //Average Speed:
+                            objectValues.Add(splitList[3]);                     //Bike:
+                            objectValues.Add(splitList[4]);                     //Ride Type:                            
+                            objectValues.Add(double.Parse(splitList[5]));       //Wind:
+                            objectValues.Add(double.Parse(splitList[6]));       //Temp:
+                            DateTime dateTimeValue = DateTime.Parse(splitList[7]);
+                            objectValues.Add(dateTimeValue);                    //Date:
+                            if (string.IsNullOrWhiteSpace(splitList[8]))
+                            { 
+                                objectValues.Add(0);       //Average Cadence:
+                            } else
+                            {
+                                objectValues.Add(double.Parse(splitList[8]));       //Average Cadence:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[9]))
+                            {
+                                objectValues.Add(0);       //Max Cadence:
+                            } else
+                            {
+                                objectValues.Add(double.Parse(splitList[9]));       //Max Cadence:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[10]))
+                            {
+                                objectValues.Add(0);      //Average Heart Rate:
+                            } else
+                            {
+                                objectValues.Add(double.Parse(splitList[10]));      //Average Heart Rate:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[11]))
+                            {
+                                objectValues.Add(double.Parse(splitList[11]));      //Max Heart Rate:
+                            } else
+                            {
+                                objectValues.Add(double.Parse(splitList[11]));      //Max Heart Rate:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[12]))
+                            {
+                                objectValues.Add(0);         //Calories:
+                            } else
+                            {
+                                objectValues.Add(int.Parse(splitList[12]));         //Calories:
+                            }
+                            if (splitList[13].Equals(null) || splitList[13].Equals("") || splitList[13].Equals(" "))
+                            {
+                                objectValues.Add(0);      //Total Ascent:
+                            } else
+                            {
+                                objectValues.Add(double.Parse(splitList[13]));      //Total Ascent:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[14]))
+                            {
+                                objectValues.Add(double.Parse(splitList[14]));      //Total Descent:
+                            } else
+                            {
+                                objectValues.Add(double.Parse(splitList[14]));      //Total Descent:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[15]))
+                            {
+                                objectValues.Add(0);      //Max Speed:
+                            } else
+                            {
+                                objectValues.Add(double.Parse(splitList[15]));      //Max Speed:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[16]))
+                            {
+                                objectValues.Add(0);      //Average Power:
+                            } else
+                            {
+                                objectValues.Add(double.Parse(splitList[16]));      //Average Power:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[17]))
+                            {
+                                objectValues.Add(0);      //Max Power:
+                            } else
+                            {
+                                objectValues.Add(double.Parse(splitList[17]));      //Max Power:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[18]))
+                            {
+                                objectValues.Add("");                    //Route:
+                            } else
+                            {
+                                objectValues.Add(splitList[18]);                    //Route:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[19]))
+                            {
+                                objectValues.Add("");                    //Comments:
+                            } else
+                            {
+                                objectValues.Add(splitList[19]);                    //Comments:
+                            }
+
+                            objectValues.Add(int.Parse(splitList[20]));         //LogYear index:
+                            objectValues.Add(int.Parse(splitList[21]));         //Week number:
+                            if (string.IsNullOrWhiteSpace(splitList[22]))
+                            {
+                                objectValues.Add("");                    //Location:
+                            } else
+                            {
+                                objectValues.Add(splitList[22]);                    //Location:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[23]))
+                            {
+                                objectValues.Add(null);      //Windchill:
+                            } else
+                            {
+                                objectValues.Add(double.Parse(splitList[23]));      //Windchill:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[24]))
+                            {
+                                objectValues.Add("");                    //Effort:
+                            } else
+                            {
+                                objectValues.Add(splitList[24]);                    //Effort:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[25]))
+                            {
+                                objectValues.Add("");                    //Comfort:
+                            } else
+                            {
+                                objectValues.Add(splitList[25]);                    //Comfort:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[26]))
+                            {
+                                objectValues.Add("");                    //Custom1:
+                            } else
+                            {
+                                objectValues.Add(splitList[26]);                    //Custom1:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[27]))
+                            {
+                                objectValues.Add("");                    //Custom2:
+                            } else
+                            {
+                                objectValues.Add(splitList[27]);                    //Custom2:
+                            }
+                            if (string.IsNullOrWhiteSpace(splitList[28]))
+                            {
+                                objectValues.Add(null);      //Planned:
+                            } 
+                            else
+                            {
+                                objectValues.Add(double.Parse(splitList[28]));      //Planned:
+                            }
 
                             using (var results = ExecuteSimpleQueryConnection("Ride_Information_Add_Import", objectValues))
                             {
