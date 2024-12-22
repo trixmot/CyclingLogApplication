@@ -220,7 +220,6 @@
             this.rbFirstDaySunday = new System.Windows.Forms.RadioButton();
             this.rbFirstDayMonday = new System.Windows.Forms.RadioButton();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.label33 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -3358,7 +3357,6 @@
             // 
             // groupBox13
             // 
-            this.groupBox13.Controls.Add(this.label33);
             this.groupBox13.Controls.Add(this.label5);
             this.groupBox13.Controls.Add(this.button4);
             this.groupBox13.Controls.Add(this.label2);
@@ -3371,23 +3369,14 @@
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Ride Data";
             // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(102, 96);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(62, 13);
-            this.label33.TabIndex = 77;
-            this.label33.Text = "Import Data";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 98);
+            this.label5.Location = new System.Drawing.Point(32, 95);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 13);
+            this.label5.Size = new System.Drawing.Size(128, 13);
             this.label5.TabIndex = 76;
-            this.label5.Text = "Export Data";
+            this.label5.Text = "Export/Import Data tables";
             // 
             // button4
             // 
@@ -3945,7 +3934,6 @@
         private System.Windows.Forms.RadioButton rbFirstDaySundayCal;
         private System.Windows.Forms.RadioButton rbFirstDayMondayCal;
         private System.Windows.Forms.GroupBox groupBox26;
-        private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label5;
     }
 }

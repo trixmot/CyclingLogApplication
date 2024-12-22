@@ -34,7 +34,7 @@ namespace CyclingLogApplication
         //private static Mutex mutex = null;
         Boolean formloading = false;
 
-        private static string logVersion = "0.9.4";
+        private static string logVersion = "0.9.5";
         private static int logLevel = 0;
         private static string gridOrder;
         private static int lastLogSelected = 0;
@@ -3144,15 +3144,20 @@ namespace CyclingLogApplication
             ResetPrimaryKeys("Table_Ride_Information");
             ResetPrimaryKeys("Table_Routes");
 
-            result = MessageBox.Show("The program needs to close. After closing you can reopen the program. Do you want to continue to close the application?", "Close Application", MessageBoxButtons.YesNo);
-            
-            if (result == DialogResult.No)
-            {
-                return;
-            } else
-            {
-                Application.Exit();
-            }
+            //result = MessageBox.Show("The program needs to close. After closing you can reopen the program. Do you want to continue to close the application?", "Close Application", MessageBoxButtons.YesNo);
+
+            //if (result == DialogResult.No)
+            //{
+            //    return;
+            //} else
+            //{
+            //    Application.Exit();
+            //}
+
+            //Refresh all data and controls:
+            MainForm_Load(this, null);
+            RefreshData();
+            MessageBox.Show("All Data has been removed successful.");
         }
 
         public static int GetLogYearIndexByName(string logName)
@@ -5210,6 +5215,8 @@ namespace CyclingLogApplication
 
             if (logYearList.Count < 1)
             {
+                MessageBox.Show("ERROR: No logs have been created.");
+
                 return;
             }
             RefreshData();
