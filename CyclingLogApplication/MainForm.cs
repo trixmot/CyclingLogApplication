@@ -34,7 +34,7 @@ namespace CyclingLogApplication
         //private static Mutex mutex = null;
         Boolean formloading = false;
 
-        private static string logVersion = "0.9.5";
+        private static string logVersion = "0.9.6";
         private static int logLevel = 0;
         private static string gridOrder;
         private static int lastLogSelected = 0;

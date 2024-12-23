@@ -1201,8 +1201,8 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    float maxSpeed1 = float.Parse(max_speed.Text);
-                    objectValues.Add(Math.Round(maxSpeed1));
+                    double maxSpeed1 = double.Parse(max_speed.Text);
+                    objectValues.Add(Math.Round(maxSpeed1,1));
                 }
 
                 if (avg_power.Text.Equals("") || avg_power.Text.Equals("--"))           //Average Power:
@@ -1256,6 +1256,9 @@ namespace CyclingLogApplication
                         windChill = 35.74 + 0.6215 * temp + (0.4275 * temp - 35.75) * Math.Pow(maxSpeed, 0.16);
                         windChill = Math.Round(windChill, 1);
                         objectValues.Add(windChill.ToString());
+                    } else
+                    {
+                        objectValues.Add(temp);                                                 //Winchill:
                     }
                 }
 
