@@ -26,6 +26,7 @@ using System.Diagnostics;
 using System.Net.PeerToPeer.Collaboration;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace CyclingLogApplication
 {
@@ -610,21 +611,91 @@ namespace CyclingLogApplication
                                 avgSpeed = results[2].ToString();
                                 bike = results[3].ToString();
                                 rideType = results[4].ToString();
-                                double windTemp = double.Parse(results[5].ToString());
-                                windTemp = Math.Round(windTemp, 1);
-                                wind = windTemp.ToString();
-                                temp = results[6].ToString();
-                                avgCadence = results[7].ToString();
-                                maxCadence = results[8].ToString();
-                                avgHeartRate = results[9].ToString();
-                                maxHeartRate = results[10].ToString();
-                                caloriesField = results[11].ToString();
-                                totalAscent = results[12].ToString();
-                                totalDescent = results[13].ToString();
-                                double maxSpeedDouble = double.Parse(results[14].ToString());
-                                maxSpeed = (Math.Round(maxSpeedDouble, 1)).ToString();
-                                avgPower = results[15].ToString();
-                                maxPower = results[16].ToString();
+                                if (string.IsNullOrEmpty(results[5].ToString()))
+                                {
+                                    tbRideDataEntryWind.Text = "";
+                                } else
+                                {
+                                    double windTemp = double.Parse(results[5].ToString());
+                                    windTemp = Math.Round(windTemp, 1);
+                                    wind = windTemp.ToString();
+                                    tbRideDataEntryWind.Text = wind;
+                                }
+                                if (string.IsNullOrEmpty(results[6].ToString()) || results[6].ToString().Equals("0"))
+                                {
+                                    tbRideEntryTemp.Text = "";
+                                } else
+                                {
+                                    temp = results[6].ToString();
+                                    tbRideEntryTemp.Text = temp;
+                                }
+                                if (string.IsNullOrEmpty(results[7].ToString()) || results[7].ToString().Equals("0"))
+                                {
+                                    avg_cadence.Text = "";
+                                } else
+                                {
+                                    avgCadence = results[7].ToString();
+                                    avg_cadence.Text = avgCadence;
+                                }
+                                if (string.IsNullOrEmpty(results[8].ToString()) || results[8].ToString().Equals("0"))
+                                {
+                                    tbMaxCadence.Text = "";
+                                } else
+                                {
+                                    maxCadence = results[8].ToString();
+                                    tbMaxCadence.Text = maxCadence;
+                                }
+                                if (string.IsNullOrEmpty(results[9].ToString()) || results[9].ToString().Equals("0"))
+                                {
+                                    avg_heart_rate.Text = "";
+                                } else
+                                {
+                                    avgHeartRate = results[9].ToString();
+                                    avg_heart_rate.Text = avgHeartRate;                               
+                                }
+                                if (string.IsNullOrEmpty(results[10].ToString()) || results[10].ToString().Equals("0"))
+                                {
+                                    max_heart_rate.Text = "";
+                                } else
+                                {
+                                    maxHeartRate = results[10].ToString();
+                                    max_heart_rate.Text = maxHeartRate;
+                                }
+                                if (string.IsNullOrEmpty(results[11].ToString()) || results[11].ToString().Equals("0"))
+                                {
+                                    calories.Text = "";
+                                }
+                                else
+                                {
+                                    caloriesField = results[11].ToString();
+                                    calories.Text = caloriesField;
+                                }
+                                totalAscent = results[12].ToString(); //allow 0
+                                totalDescent = results[13].ToString(); //allow 0
+                                if (string.IsNullOrEmpty(results[14].ToString()) || results[14].ToString().Equals("0"))
+                                {
+                                    max_speed.Text = "";
+                                } else {
+                                    double maxSpeedDouble = double.Parse(results[14].ToString());
+                                    maxSpeed = (Math.Round(maxSpeedDouble, 1)).ToString();
+                                    max_speed.Text = maxSpeed;
+                                }
+                                if (string.IsNullOrEmpty(results[15].ToString()) || results[15].ToString().Equals("0"))
+                                {
+                                    avg_power.Text = "";
+                                } else
+                                {
+                                    avgPower = results[15].ToString();
+                                    avg_power.Text = avgPower;
+                                }
+                                if (string.IsNullOrEmpty(results[16].ToString()) || results[16].ToString().Equals("0"))
+                                {
+                                    max_power.Text = "";
+                                } else
+                                {
+                                    maxPower = results[16].ToString();
+                                    max_power.Text = maxPower;
+                                }
                                 route = results[17].ToString();
                                 comments = results[18].ToString();
                                 location = results[19].ToString();
@@ -632,38 +703,47 @@ namespace CyclingLogApplication
                                 weekNumber = results[21].ToString();
                                 effort = results[22].ToString();
                                 comfort = results[23].ToString();
-                                custom1 = results[24].ToString();
-                                custom2 = results[25].ToString();
-                                windChill = results[26].ToString();
+                                if (string.IsNullOrEmpty(results[24].ToString()) || results[24].ToString().Equals("0"))
+                                {
+                                    tbCustom1.Text = "";
+                                } else
+                                {
+                                    custom1 = results[24].ToString();
+                                    tbCustom1.Text = custom1;
+                                }
+                                if (string.IsNullOrEmpty(results[25].ToString()) || results[25].ToString().Equals("0"))
+                                {
+                                    tbCustom2.Text = "";
+                                }
+                                else
+                                {
+                                    custom2 = results[25].ToString();
+                                    tbCustom2.Text = custom2;
+                                }
+                                if (string.IsNullOrEmpty(results[26].ToString()) || results[26].ToString().Equals("0"))
+                                {
+                                    tbRideEntryWindChill.Text = "";
+                                } else
+                                {
+                                    windChill = results[26].ToString();
+                                    tbRideEntryWindChill.Text = Math.Round(double.Parse(windChill), 1).ToString();
+                                }                               
 
                                 //Load ride data page:
                                 dtpTimeRideDataEntry.Value = Convert.ToDateTime(movingTime);
                                 tbRideDataEntryDistance.Text = rideDistance;
                                 tbRideDataEntryAvgSpeed.Text = avgSpeed;
                                 cbBikeDataEntrySelection.SelectedIndex = cbBikeDataEntrySelection.Items.IndexOf(bike);
-                                cbRideTypeDataEntry.SelectedIndex = cbRideTypeDataEntry.Items.IndexOf(rideType);
-                                tbRideDataEntryWind.Text = wind;
-                                tbRideEntryTemp.Text = temp;
-                                avg_cadence.Text = avgCadence;
-                                tbMaxCadence.Text = maxCadence;
-                                avg_heart_rate.Text = avgHeartRate;
-                                max_heart_rate.Text = maxHeartRate;
-                                calories.Text = caloriesField;
+                                cbRideTypeDataEntry.SelectedIndex = cbRideTypeDataEntry.Items.IndexOf(rideType);                      
                                 total_ascent.Text = totalAscent;
-                                total_descent.Text = totalDescent;
-                                max_speed.Text = maxSpeed;
-                                avg_power.Text = avgPower;
-                                max_power.Text = maxPower;
+                                total_descent.Text = totalDescent;             
                                 cbRouteDataEntry.SelectedIndex = cbRouteDataEntry.Items.IndexOf(route);
                                 tbComments.Text = comments;
                                 tbRecordID.Text = recordID;
                                 //tbWeekNumber.Text = weekNumber;
                                 cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.Items.IndexOf(location);
                                 cbEffortRideDataEntry.SelectedIndex = cbEffortRideDataEntry.Items.IndexOf(effort);
-                                cbComfortRideDataEntry.SelectedIndex = cbComfortRideDataEntry.Items.IndexOf(comfort.TrimEnd());
-                                tbCustom1.Text = custom1;
-                                tbCustom2.Text = custom2;
-                                tbRideEntryWindChill.Text = Math.Round(double.Parse(windChill), 1).ToString();
+                                cbComfortRideDataEntry.SelectedIndex = cbComfortRideDataEntry.Items.IndexOf(comfort.TrimEnd());                                
                             }
                             else
                             {
@@ -762,13 +842,13 @@ namespace CyclingLogApplication
                 lbRideDataEntryError.Show();
                 return;
             }
-            decimal avgspeed = decimal.Parse(tbRideDataEntryAvgSpeed.Text);
-            if (avgspeed == 0)
-            {
-                lbRideDataEntryError.Text = "The Average Speed must be greater than 0.";
-                lbRideDataEntryError.Show();
-                return;
-            }
+            //decimal avgspeed = decimal.Parse(tbRideDataEntryAvgSpeed.Text);
+            //if (avgspeed == 0)
+            //{
+            //    lbRideDataEntryError.Text = "The Average Speed must be greater than 0.";
+            //    lbRideDataEntryError.Show();
+            //    return;
+            //}
             if (cbLogYearDataEntry.SelectedIndex < 1)
             {
                 lbRideDataEntryError.Text = "A Log year must be selected.";
@@ -817,12 +897,12 @@ namespace CyclingLogApplication
                 lbRideDataEntryError.Show();
                 return;
             }
-            if (tbRideDataEntryAvgSpeed.Text.Equals("") || tbRideDataEntryAvgSpeed.Text.Equals("0"))
-            {
-                lbRideDataEntryError.Text = "An Average Speed value must be entered.";
-                lbRideDataEntryError.Show();
-                return;
-            }
+            //if (tbRideDataEntryAvgSpeed.Text.Equals("") || tbRideDataEntryAvgSpeed.Text.Equals("0"))
+            //{
+            //    lbRideDataEntryError.Text = "An Average Speed value must be entered.";
+            //    lbRideDataEntryError.Show();
+            //    return;
+            //}
 
             //***********************************************************************
             //Check the entry type:
@@ -1009,6 +1089,20 @@ namespace CyclingLogApplication
                     }
                 }
 
+                double averageSpeed = 0;
+                if (tbRideDataEntryAvgSpeed.Text.Equals(""))
+                {
+                    //Value missing, need to calculate it (miles/time:
+                    double miles = double.Parse(tbRideDataEntryDistance.Text);
+                    int timeHours = DateTime.Parse(dtpTimeRideDataEntry.Value.ToString()).Hour;
+                    int timeMin = DateTime.Parse(dtpTimeRideDataEntry.Value.ToString()).Minute;                
+                    int timeSec = DateTime.Parse(dtpTimeRideDataEntry.Value.ToString()).Second;
+                    string timeString = timeHours.ToString() + ":" + timeMin.ToString() + ":" + timeSec.ToString();
+                    double timeInHours = TimeSpan.Parse(timeString).TotalHours;
+                    averageSpeed = miles / timeInHours;
+                    tbRideDataEntryAvgSpeed.Text = averageSpeed.ToString();
+                }
+
                 //*****************************************************************************
                 //*************  VERIFY INPUT DATA IS IN CORRECT FORMAT ***********************
                 //*****************************************************************************
@@ -1106,98 +1200,110 @@ namespace CyclingLogApplication
                 List<object> objectValues = new List<object>();
                 objectValues.Add(dtpTimeRideDataEntry.Value);                           //Moving Time:
                 objectValues.Add(tbRideDataEntryDistance.Text);                         //Ride Distance:
-                objectValues.Add(tbRideDataEntryAvgSpeed.Text);                         //Average Speed:
+                if (tbRideDataEntryAvgSpeed.Text.Equals(""))
+                {
+                    objectValues.Add(averageSpeed);                         //Average Speed:
+                } else
+                {
+                    objectValues.Add(tbRideDataEntryAvgSpeed.Text);                         //Average Speed:
+                }
+                
                 objectValues.Add(cbBikeDataEntrySelection.SelectedItem.ToString());     //Bike:
                 objectValues.Add(cbRideTypeDataEntry.SelectedItem.ToString());          //Ride Type:
                 float windspeed;
+                Boolean noTemp = false;
+                Boolean noWind = false;
                 if (tbRideDataEntryWind.Text.Equals(""))
                 {
-                    windspeed = 0;
+                    objectValues.Add(null);                                            //Wind:
+                    noWind = true;
                 }
                 else
                 {
                     windspeed = float.Parse(tbRideDataEntryWind.Text);
+                    objectValues.Add(windspeed);                                            //Wind:
                 }
-
-                objectValues.Add(windspeed);                                            //Wind:
-                float temp;
+                
+                float temp = 0;
                 if (tbRideEntryTemp.Text.Equals(""))
                 {
-                    temp = 0;
+                    objectValues.Add(null);                                  //Temp:
+                    noTemp = true;
                 }
                 else
                 {
                     temp = float.Parse(tbRideEntryTemp.Text);
+                    objectValues.Add(Math.Round(temp, 1));                                  //Temp:
                 }
-                objectValues.Add(Math.Round(temp, 1));                                  //Temp:
+                
                 objectValues.Add(dtpRideDate.Value);                                    //Date:
 
-                if (avg_cadence.Text.Equals("") || avg_cadence.Text.Equals("--"))       //Average Cadence:
+                if (avg_cadence.Text.Equals(""))       //Average Cadence:
                 {
-                    objectValues.Add(0);
+                    objectValues.Add(null);
                 }
                 else
                 {
                     objectValues.Add(float.Parse(avg_cadence.Text));
                 }
 
-                if (tbMaxCadence.Text.Equals("") || tbMaxCadence.Text.Equals("--"))     //Max Cadence:
+                if (tbMaxCadence.Text.Equals(""))     //Max Cadence:
                 {
-                    objectValues.Add(0);
+                    objectValues.Add(null);
                 }
                 else
                 {
                     objectValues.Add(float.Parse(tbMaxCadence.Text));
                 }
 
-                if (avg_heart_rate.Text.Equals("") || avg_heart_rate.Text.Equals("--"))     //Average Heart Rate:
+                if (avg_heart_rate.Text.Equals(""))     //Average Heart Rate:
                 {
-                    objectValues.Add(0);
+                    objectValues.Add(null);
                 }
                 else
                 {
                     objectValues.Add(float.Parse(avg_heart_rate.Text));
                 }
 
-                if (max_heart_rate.Text.Equals("") || max_heart_rate.Text.Equals("--")) //Max Heart Rate:
+                if (max_heart_rate.Text.Equals("")) //Max Heart Rate:
                 {
-                    objectValues.Add(0);
+                    objectValues.Add(null);
                 }
                 else
                 {
                     objectValues.Add(float.Parse(max_heart_rate.Text));
                 }
 
-                if (calories.Text.Equals("") || calories.Text.Equals("--"))             //Calories:
+                if (calories.Text.Equals(""))             //Calories:
                 {
-                    objectValues.Add(0);
+                    objectValues.Add(null);
                 }
                 else
                 {
                     objectValues.Add(float.Parse(calories.Text));
                 }
 
-                if (total_ascent.Text.Equals("") || total_ascent.Text.Equals("--"))     //Total Ascent:
+                if (total_ascent.Text.Equals(""))     //Total Ascent:
                 {
-                    objectValues.Add(0);
+                    objectValues.Add(null);
                 }
                 else
                 {
                     objectValues.Add(float.Parse(total_ascent.Text));
                 }
 
-                if (total_descent.Text.Equals("") || total_descent.Text.Equals("--"))   //Total Descent:
+                if (total_descent.Text.Equals(""))   //Total Descent:
                 {
-                    objectValues.Add(0);
+                    objectValues.Add(null);
                 }
                 else
                 {
                     objectValues.Add(float.Parse(total_descent.Text));
                 }
 
-                if (max_speed.Text.Equals("") || max_speed.Text.Equals("--"))           //Max Speed:
+                if (max_speed.Text.Equals(""))           //Max Speed:
                 {
-                    objectValues.Add(0);
+                    objectValues.Add(null);
                 }
                 else
                 {
@@ -1205,18 +1311,18 @@ namespace CyclingLogApplication
                     objectValues.Add(Math.Round(maxSpeed1,1));
                 }
 
-                if (avg_power.Text.Equals("") || avg_power.Text.Equals("--"))           //Average Power:
+                if (avg_power.Text.Equals(""))           //Average Power:
                 {
-                    objectValues.Add(0);
+                    objectValues.Add(null);
                 }
                 else
                 {
                     objectValues.Add(float.Parse(avg_power.Text));
                 }
 
-                if (max_power.Text.Equals("") || max_power.Text.Equals("--"))           //Max Power:
+                if (max_power.Text.Equals(""))           //Max Power:
                 {
-                    objectValues.Add(0);
+                    objectValues.Add(null);
                 }
                 else
                 {
@@ -1245,9 +1351,9 @@ namespace CyclingLogApplication
 
                 objectValues.Add(cbLocationDataEntry.SelectedItem.ToString());          //Location:
                 double windChill = 0;
-                if (max_speed.Text == "")
+                if (max_speed.Text == "" || noTemp)
                 {
-                    objectValues.Add(temp);                                                 //Winchill:
+                    objectValues.Add(null);                                                 //Winchill:
                 } else
                 {
                     double maxSpeed = double.Parse(max_speed.Text);
@@ -1264,8 +1370,21 @@ namespace CyclingLogApplication
 
                 objectValues.Add(cbEffortRideDataEntry.SelectedItem.ToString());         //Effort:
                 objectValues.Add(cbComfortRideDataEntry.SelectedItem.ToString());         //Comfort:
-                objectValues.Add(tbCustom1.Text);                                                //Custom1
-                objectValues.Add(tbCustom2.Text);                                                //Custom2
+                if (tbCustom1.Text.Equals("")){
+                    objectValues.Add(null);                                                //Custom1
+                } else
+                {
+                    objectValues.Add(tbCustom1.Text);                                                //Custom1
+                }
+
+                if (tbCustom2.Text.Equals(""))
+                {
+                    objectValues.Add(null);                                                //Custom2
+                }
+                else
+                {
+                    objectValues.Add(tbCustom2.Text);                                                //Custom2
+                }
 
 
                 if (plannedEntry)

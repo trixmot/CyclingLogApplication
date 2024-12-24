@@ -564,11 +564,11 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(40, 73);
+            this.label14.Location = new System.Drawing.Point(44, 73);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(64, 13);
+            this.label14.Size = new System.Drawing.Size(60, 13);
             this.label14.TabIndex = 28;
-            this.label14.Text = "Avg Speed*";
+            this.label14.Text = "Avg Speed";
             // 
             // label10
             // 
