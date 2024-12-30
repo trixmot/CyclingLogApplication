@@ -27,6 +27,7 @@ using System.Net.PeerToPeer.Collaboration;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using System.Diagnostics.Eventing.Reader;
 
 namespace CyclingLogApplication
 {
@@ -216,9 +217,9 @@ namespace CyclingLogApplication
             date = dateValue;
         }
 
-        public DateTime GetDateValue() 
-        { 
-            return date; 
+        public DateTime GetDateValue()
+        {
+            return date;
         }
 
         public void AddLogYearDataEntry(string item)
@@ -303,14 +304,14 @@ namespace CyclingLogApplication
 
         public void SetCalories(string caloriesValue)
         {
-            if (caloriesValue.Equals("")) {
-                calories.Text = "";
+            if (caloriesValue.Equals("") || caloriesValue.Equals("0")) {
+                calories.Text = "- -";
             }
             else
             {
                 calories.Text = caloriesValue;
             }
-            
+
         }
 
         public void SetRouteIndex(int routeIndex)
@@ -344,15 +345,28 @@ namespace CyclingLogApplication
             tbRideDataEntryAvgSpeed.Text = avgSpeed.ToString();
         }
 
-        public void SetWind(decimal windIndex)
+        public void SetWind(string windIndex)
         {
-            tbRideDataEntryWind.Text = windIndex.ToString();
+            if (windIndex.Equals("") || windIndex.Equals("- -"))
+            {
+                tbRideDataEntryWind.Text = "- -";
+            } else
+            {
+                double wind = Math.Round(double.Parse(windIndex), 1);
+                tbRideDataEntryWind.Text = wind.ToString();
+            }
         }
 
-        public void SetTemp(decimal temp)
+        public void SetTemp(string temp)
         {
-            tbRideEntryTemp.Text = temp.ToString();
+            if (temp.Equals("") || temp.Equals("- -")) { 
+                tbRideEntryTemp.Text = "- -";
+            } else 
+            {
+                tbRideEntryTemp.Text = temp;
+            }
         }
+
 
         public void SetType(int typeIndex)
         {
@@ -377,9 +391,9 @@ namespace CyclingLogApplication
 
         public void SetAvgCadence(string avgCadence)
         {
-            if (avgCadence.Equals("0"))
+            if (avgCadence.Equals("0") || avgCadence.Equals(""))
             {
-                avg_cadence.Text = "";
+                avg_cadence.Text = "- -";
             } else
             {
                 avg_cadence.Text = avgCadence;
@@ -389,9 +403,9 @@ namespace CyclingLogApplication
 
         public void SetMaxCadence(string maxCadence)
         {
-            if (maxCadence.Equals("0"))
+            if (maxCadence.Equals("0") || maxCadence.Equals(""))
             {
-                tbMaxCadence.Text = "";
+                tbMaxCadence.Text = "- -";
             } else
             {
                 tbMaxCadence.Text = maxCadence;
@@ -401,9 +415,9 @@ namespace CyclingLogApplication
 
         public void SetAvgHeartRate(string avgHeartRate)
         {
-            if (avgHeartRate.Equals("0"))
+            if (avgHeartRate.Equals("0") || avgHeartRate.Equals(""))
             {
-                avg_heart_rate.Text = "";
+                avg_heart_rate.Text = "- -";
             } else
             {
                 avg_heart_rate.Text = avgHeartRate;
@@ -413,9 +427,9 @@ namespace CyclingLogApplication
 
         public void SetMaxHeartRate(string maxHeartRate)
         {
-            if (maxHeartRate.Equals("0"))
+            if (maxHeartRate.Equals("0") || maxHeartRate.Equals(""))
             {
-                max_heart_rate.Text = "";
+                max_heart_rate.Text = "- -";
             } else
             {
                 max_heart_rate.Text = maxHeartRate;
@@ -425,24 +439,46 @@ namespace CyclingLogApplication
 
         public void SetTotalAscent(string totalAscent)
         {
-            total_ascent.Text = totalAscent;
+            if (totalAscent.Equals(""))
+            {
+                total_ascent.Text = "- -";
+            } else
+            {
+                total_ascent.Text = totalAscent;
+            }
+            
         }
 
         public void SetTotalDescent(string totalDescent)
         {
-            total_descent.Text = totalDescent;
+            if (totalDescent.Equals(""))
+            {
+                total_descent.Text = "- -";
+            }
+            else
+            {
+                total_descent.Text = totalDescent;
+            }
+            
         }
 
         public void SetMaxSpeed(string maxSpeed)
         {
-            max_speed.Text = maxSpeed;
+            if (maxSpeed.Equals(""))
+            {
+                max_speed.Text = "- -";
+            } else
+            {
+                max_speed.Text = maxSpeed;
+            }
+            
         }
 
         public void SetAvgPower(string avgPower)
         {
-            if (avgPower.Equals("0"))
+            if (avgPower.Equals("0") || avgPower.Equals(""))
             {
-                avg_power.Text = "";
+                avg_power.Text = "- -";
             }
             else
             {
@@ -453,9 +489,9 @@ namespace CyclingLogApplication
 
         public void SetMaxPower(string maxPower)
         {
-            if (maxPower.Equals("0"))
+            if (maxPower.Equals("0") || maxPower.Equals(""))
             {
-                max_power.Text = "";
+                max_power.Text = "- -";
             }
             else
             {
@@ -466,12 +502,26 @@ namespace CyclingLogApplication
 
         public void SetCustom1(string custom1)
         {
-            tbCustom1.Text = custom1;
+            if (custom1.Equals("0") || custom1.Equals(""))
+            {
+                tbCustom1.Text = "- -";
+            }
+            else
+            {
+                tbCustom1.Text = custom1;
+            }
         }
 
         public void SetCustom2(string custom2)
         {
-            tbCustom2.Text = custom2;
+            if (custom2.Equals("0") || custom2.Equals(""))
+            {
+                tbCustom2.Text = "- -";
+            }
+            else
+            {
+                tbCustom2.Text = custom2;
+            }
         }
 
         public void SetComments(string comments)
@@ -481,7 +531,14 @@ namespace CyclingLogApplication
 
         public void SetWindChill(string wind_Chill)
         {
-            tbRideEntryWindChill.Text = wind_Chill;
+            if (wind_Chill.Equals(""))
+            {
+                tbRideEntryWindChill.Text = "- -";
+            }
+            else
+            {
+                tbRideEntryWindChill.Text = wind_Chill;
+            }
         }
 
         //Diable x close option:
@@ -613,7 +670,7 @@ namespace CyclingLogApplication
                                 rideType = results[4].ToString();
                                 if (string.IsNullOrEmpty(results[5].ToString()))
                                 {
-                                    tbRideDataEntryWind.Text = "";
+                                    tbRideDataEntryWind.Text = "- -";
                                 } else
                                 {
                                     double windTemp = double.Parse(results[5].ToString());
@@ -623,7 +680,7 @@ namespace CyclingLogApplication
                                 }
                                 if (string.IsNullOrEmpty(results[6].ToString()) || results[6].ToString().Equals("0"))
                                 {
-                                    tbRideEntryTemp.Text = "";
+                                    tbRideEntryTemp.Text = "- -";
                                 } else
                                 {
                                     temp = results[6].ToString();
@@ -631,7 +688,7 @@ namespace CyclingLogApplication
                                 }
                                 if (string.IsNullOrEmpty(results[7].ToString()) || results[7].ToString().Equals("0"))
                                 {
-                                    avg_cadence.Text = "";
+                                    avg_cadence.Text = "- -";
                                 } else
                                 {
                                     avgCadence = results[7].ToString();
@@ -639,7 +696,7 @@ namespace CyclingLogApplication
                                 }
                                 if (string.IsNullOrEmpty(results[8].ToString()) || results[8].ToString().Equals("0"))
                                 {
-                                    tbMaxCadence.Text = "";
+                                    tbMaxCadence.Text = "- -";
                                 } else
                                 {
                                     maxCadence = results[8].ToString();
@@ -647,7 +704,7 @@ namespace CyclingLogApplication
                                 }
                                 if (string.IsNullOrEmpty(results[9].ToString()) || results[9].ToString().Equals("0"))
                                 {
-                                    avg_heart_rate.Text = "";
+                                    avg_heart_rate.Text = "- -";
                                 } else
                                 {
                                     avgHeartRate = results[9].ToString();
@@ -655,7 +712,7 @@ namespace CyclingLogApplication
                                 }
                                 if (string.IsNullOrEmpty(results[10].ToString()) || results[10].ToString().Equals("0"))
                                 {
-                                    max_heart_rate.Text = "";
+                                    max_heart_rate.Text = "- -";
                                 } else
                                 {
                                     maxHeartRate = results[10].ToString();
@@ -663,18 +720,33 @@ namespace CyclingLogApplication
                                 }
                                 if (string.IsNullOrEmpty(results[11].ToString()) || results[11].ToString().Equals("0"))
                                 {
-                                    calories.Text = "";
+                                    calories.Text = "- -";
                                 }
                                 else
                                 {
                                     caloriesField = results[11].ToString();
                                     calories.Text = caloriesField;
                                 }
-                                totalAscent = results[12].ToString(); //allow 0
-                                totalDescent = results[13].ToString(); //allow 0
+                                if (string.IsNullOrEmpty(results[12].ToString()))
+                                {
+                                    total_ascent.Text = "- -";
+                                }
+                                else
+                                {
+                                    totalAscent = results[12].ToString(); //allow 0
+                                    total_ascent.Text = totalAscent;
+                                }
+                                if (string.IsNullOrEmpty(results[13].ToString()))
+                                {
+                                    total_descent.Text = "- -";
+                                } else
+                                {
+                                    totalDescent = results[13].ToString(); //allow 0
+                                    total_descent.Text = totalDescent;
+                                }
                                 if (string.IsNullOrEmpty(results[14].ToString()) || results[14].ToString().Equals("0"))
                                 {
-                                    max_speed.Text = "";
+                                    max_speed.Text = "- -";
                                 } else {
                                     double maxSpeedDouble = double.Parse(results[14].ToString());
                                     maxSpeed = (Math.Round(maxSpeedDouble, 1)).ToString();
@@ -682,7 +754,7 @@ namespace CyclingLogApplication
                                 }
                                 if (string.IsNullOrEmpty(results[15].ToString()) || results[15].ToString().Equals("0"))
                                 {
-                                    avg_power.Text = "";
+                                    avg_power.Text = "- -";
                                 } else
                                 {
                                     avgPower = results[15].ToString();
@@ -690,7 +762,7 @@ namespace CyclingLogApplication
                                 }
                                 if (string.IsNullOrEmpty(results[16].ToString()) || results[16].ToString().Equals("0"))
                                 {
-                                    max_power.Text = "";
+                                    max_power.Text = "- -";
                                 } else
                                 {
                                     maxPower = results[16].ToString();
@@ -705,7 +777,7 @@ namespace CyclingLogApplication
                                 comfort = results[23].ToString();
                                 if (string.IsNullOrEmpty(results[24].ToString()) || results[24].ToString().Equals("0"))
                                 {
-                                    tbCustom1.Text = "";
+                                    tbCustom1.Text = "- -";
                                 } else
                                 {
                                     custom1 = results[24].ToString();
@@ -713,7 +785,7 @@ namespace CyclingLogApplication
                                 }
                                 if (string.IsNullOrEmpty(results[25].ToString()) || results[25].ToString().Equals("0"))
                                 {
-                                    tbCustom2.Text = "";
+                                    tbCustom2.Text = "- -";
                                 }
                                 else
                                 {
@@ -722,7 +794,7 @@ namespace CyclingLogApplication
                                 }
                                 if (string.IsNullOrEmpty(results[26].ToString()) || results[26].ToString().Equals("0"))
                                 {
-                                    tbRideEntryWindChill.Text = "";
+                                    tbRideEntryWindChill.Text = "- -";
                                 } else
                                 {
                                     windChill = results[26].ToString();
@@ -734,9 +806,7 @@ namespace CyclingLogApplication
                                 tbRideDataEntryDistance.Text = rideDistance;
                                 tbRideDataEntryAvgSpeed.Text = avgSpeed;
                                 cbBikeDataEntrySelection.SelectedIndex = cbBikeDataEntrySelection.Items.IndexOf(bike);
-                                cbRideTypeDataEntry.SelectedIndex = cbRideTypeDataEntry.Items.IndexOf(rideType);                      
-                                total_ascent.Text = totalAscent;
-                                total_descent.Text = totalDescent;             
+                                cbRideTypeDataEntry.SelectedIndex = cbRideTypeDataEntry.Items.IndexOf(rideType);                                                                 
                                 cbRouteDataEntry.SelectedIndex = cbRouteDataEntry.Items.IndexOf(route);
                                 tbComments.Text = comments;
                                 tbRecordID.Text = recordID;
@@ -1114,7 +1184,7 @@ namespace CyclingLogApplication
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (!double.TryParse(tbRideDataEntryAvgSpeed.Text, out doubleValue))
+                if (!tbRideDataEntryAvgSpeed.Text.Equals("- - ") && !double.TryParse(tbRideDataEntryAvgSpeed.Text, out doubleValue))
                 {
                     lbRideDataEntryError.Text = "The Average Speed value is incorrect.";
                     lbRideDataEntryError.Show();
@@ -1126,67 +1196,67 @@ namespace CyclingLogApplication
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (!avg_cadence.Text.Equals("") && !int.TryParse(avg_cadence.Text, out intValue))
+                if (!avg_cadence.Text.Equals("- -") && !avg_cadence.Text.Equals("") && !int.TryParse(avg_cadence.Text, out intValue))
                 {
                     lbRideDataEntryError.Text = "The Average Cadenace value is incorrect.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (!tbMaxCadence.Text.Equals("") && !int.TryParse(tbMaxCadence.Text, out intValue))
+                if (!tbMaxCadence.Text.Equals("- -") && !tbMaxCadence.Text.Equals("") && !int.TryParse(tbMaxCadence.Text, out intValue))
                 {
                     lbRideDataEntryError.Text = "The Max Cadenace value is incorrect.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (!calories.Text.Equals("") && !int.TryParse(calories.Text, out intValue))
+                if (!calories.Text.Equals("- -") && !calories.Text.Equals("") && !int.TryParse(calories.Text, out intValue))
                 {
                     lbRideDataEntryError.Text = "The Calories value is incorrect.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (!tbRideDataEntryWind.Text.Equals("") && !double.TryParse(tbRideDataEntryWind.Text, out doubleValue))
+                if (!tbRideDataEntryWind.Text.Equals("- -") && !tbRideDataEntryWind.Text.Equals("") && !double.TryParse(tbRideDataEntryWind.Text, out doubleValue))
                 {
                     lbRideDataEntryError.Text = "The Wind value is incorrect.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (!tbRideEntryTemp.Text.Equals("") && !double.TryParse(tbRideEntryTemp.Text, out doubleValue))
+                if (!tbRideEntryTemp.Text.Equals("- -") && !tbRideEntryTemp.Text.Equals("") && !double.TryParse(tbRideEntryTemp.Text, out doubleValue))
                 {
                     lbRideDataEntryError.Text = "The Temperture value is incorrect.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (!avg_heart_rate.Text.Equals("") && !int.TryParse(avg_heart_rate.Text, out intValue))
+                if (!avg_heart_rate.Text.Equals("- -") && !avg_heart_rate.Text.Equals("") && !int.TryParse(avg_heart_rate.Text, out intValue))
                 {
                     lbRideDataEntryError.Text = "The Average Heart Rate value is incorrect.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (!max_heart_rate.Text.Equals("") && !int.TryParse(max_heart_rate.Text, out intValue))
+                if (!max_heart_rate.Text.Equals("- -") && !max_heart_rate.Text.Equals("") && !int.TryParse(max_heart_rate.Text, out intValue))
                 {
                     lbRideDataEntryError.Text = "The Max Heart Rate value is incorrect.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (!total_ascent.Text.Equals("") && !int.TryParse(total_ascent.Text, out intValue))
+                if (!total_ascent.Text.Equals("- -") && !total_ascent.Text.Equals("") && !int.TryParse(total_ascent.Text, out intValue))
                 {
                     lbRideDataEntryError.Text = "The Total Ascent value is incorrect.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (!total_descent.Text.Equals("") && !int.TryParse(total_descent.Text, out intValue))
+                if (!total_descent.Text.Equals("- -") && !total_descent.Text.Equals("") && !int.TryParse(total_descent.Text, out intValue))
                 {
                     lbRideDataEntryError.Text = "The Total Descent value is incorrect.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (!avg_power.Text.Equals("") && !int.TryParse(avg_power.Text, out intValue))
+                if (!avg_power.Text.Equals("- -") && !avg_power.Text.Equals("") && !int.TryParse(avg_power.Text, out intValue))
                 {
                     lbRideDataEntryError.Text = "The Average Power value is incorrect.";
                     lbRideDataEntryError.Show();
                     return;
                 }
-                if (!max_power.Text.Equals("") && !int.TryParse(max_power.Text, out intValue))
+                if (!max_power.Text.Equals("- -") && !max_power.Text.Equals("") && !int.TryParse(max_power.Text, out intValue))
                 {
                     lbRideDataEntryError.Text = "The Max Power value is incorrect.";
                     lbRideDataEntryError.Show();
@@ -1212,11 +1282,11 @@ namespace CyclingLogApplication
                 objectValues.Add(cbRideTypeDataEntry.SelectedItem.ToString());          //Ride Type:
                 float windspeed;
                 Boolean noTemp = false;
-                Boolean noWind = false;
-                if (tbRideDataEntryWind.Text.Equals(""))
+                //Boolean noWind = false;
+                if (tbRideDataEntryWind.Text.Equals("") || tbRideDataEntryWind.Text.Equals("- -"))
                 {
                     objectValues.Add(null);                                            //Wind:
-                    noWind = true;
+                    //noWind = true;
                 }
                 else
                 {
@@ -1225,7 +1295,7 @@ namespace CyclingLogApplication
                 }
                 
                 float temp = 0;
-                if (tbRideEntryTemp.Text.Equals(""))
+                if (tbRideEntryTemp.Text.Equals("") || tbRideEntryTemp.Text.Equals("- -"))
                 {
                     objectValues.Add(null);                                  //Temp:
                     noTemp = true;
@@ -1238,7 +1308,7 @@ namespace CyclingLogApplication
                 
                 objectValues.Add(dtpRideDate.Value);                                    //Date:
 
-                if (avg_cadence.Text.Equals(""))       //Average Cadence:
+                if (avg_cadence.Text.Equals("") || avg_cadence.Text.Equals("- -"))       //Average Cadence:
                 {
                     objectValues.Add(null);
                 }
@@ -1247,7 +1317,7 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(avg_cadence.Text));
                 }
 
-                if (tbMaxCadence.Text.Equals(""))     //Max Cadence:
+                if (tbMaxCadence.Text.Equals("") || tbMaxCadence.Text.Equals("- -"))     //Max Cadence:
                 {
                     objectValues.Add(null);
                 }
@@ -1256,7 +1326,7 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(tbMaxCadence.Text));
                 }
 
-                if (avg_heart_rate.Text.Equals(""))     //Average Heart Rate:
+                if (avg_heart_rate.Text.Equals("") || avg_heart_rate.Text.Equals("- -"))     //Average Heart Rate:
                 {
                     objectValues.Add(null);
                 }
@@ -1265,7 +1335,7 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(avg_heart_rate.Text));
                 }
 
-                if (max_heart_rate.Text.Equals("")) //Max Heart Rate:
+                if (max_heart_rate.Text.Equals("") || max_heart_rate.Text.Equals("- -")) //Max Heart Rate:
                 {
                     objectValues.Add(null);
                 }
@@ -1274,7 +1344,7 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(max_heart_rate.Text));
                 }
 
-                if (calories.Text.Equals(""))             //Calories:
+                if (calories.Text.Equals("") || calories.Text.Equals("- -"))             //Calories:
                 {
                     objectValues.Add(null);
                 }
@@ -1283,7 +1353,7 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(calories.Text));
                 }
 
-                if (total_ascent.Text.Equals(""))     //Total Ascent:
+                if (total_ascent.Text.Equals("") || total_ascent.Text.Equals("- -"))     //Total Ascent:
                 {
                     objectValues.Add(null);
                 }
@@ -1292,7 +1362,7 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(total_ascent.Text));
                 }
 
-                if (total_descent.Text.Equals(""))   //Total Descent:
+                if (total_descent.Text.Equals("") || total_descent.Text.Equals("- -"))   //Total Descent:
                 {
                     objectValues.Add(null);
                 }
@@ -1301,7 +1371,7 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(total_descent.Text));
                 }
 
-                if (max_speed.Text.Equals(""))           //Max Speed:
+                if (max_speed.Text.Equals("") || max_speed.Text.Equals("- -"))           //Max Speed:
                 {
                     objectValues.Add(null);
                 }
@@ -1311,7 +1381,7 @@ namespace CyclingLogApplication
                     objectValues.Add(Math.Round(maxSpeed1,1));
                 }
 
-                if (avg_power.Text.Equals(""))           //Average Power:
+                if (avg_power.Text.Equals("") || avg_power.Text.Equals("- -"))           //Average Power:
                 {
                     objectValues.Add(null);
                 }
@@ -1320,7 +1390,7 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(avg_power.Text));
                 }
 
-                if (max_power.Text.Equals(""))           //Max Power:
+                if (max_power.Text.Equals("") || max_power.Text.Equals("- -"))           //Max Power:
                 {
                     objectValues.Add(null);
                 }
@@ -1370,14 +1440,14 @@ namespace CyclingLogApplication
 
                 objectValues.Add(cbEffortRideDataEntry.SelectedItem.ToString());         //Effort:
                 objectValues.Add(cbComfortRideDataEntry.SelectedItem.ToString());         //Comfort:
-                if (tbCustom1.Text.Equals("")){
+                if (tbCustom1.Text.Equals("") || tbCustom1.Text.Equals("- -")){
                     objectValues.Add(null);                                                //Custom1
                 } else
                 {
                     objectValues.Add(tbCustom1.Text);                                                //Custom1
                 }
 
-                if (tbCustom2.Text.Equals(""))
+                if (tbCustom2.Text.Equals("") || tbCustom2.Text.Equals("- -"))
                 {
                     objectValues.Add(null);                                                //Custom2
                 }
@@ -1988,6 +2058,8 @@ namespace CyclingLogApplication
 
             //The Entry ID will need to be used on the update:
             SetEntryID(int.Parse(tbRecordID.Text));
+
+            MessageBox.Show("Ride data retrieved successfully.");
         }
 
         //public void SetSqlParameters(Dictionary<string, string> sqlParametersDict)
@@ -2172,8 +2244,16 @@ namespace CyclingLogApplication
                             calories = results[11].ToString();
                             totalAscent = results[12].ToString();
                             totalDescent = results[13].ToString();
-                            double maxSpeedDouble = double.Parse(results[14].ToString());
-                            maxSpeed = (Math.Round(maxSpeedDouble, 1)).ToString();
+                            if (string.IsNullOrEmpty(results[14].ToString()) || results[14].ToString().Equals("- -"))
+                            {
+                                maxSpeed = "- -";
+                            }
+                            else
+                            {
+                                double maxSpeedDouble = double.Parse(results[14].ToString());
+                                maxSpeed = (Math.Round(maxSpeedDouble, 1)).ToString();
+                            }
+                            
                             averagePower = results[15].ToString();
                             maxPower = results[16].ToString();
                             route = results[17].ToString();
@@ -2292,8 +2372,8 @@ namespace CyclingLogApplication
                             SetTime(DateTime.Parse(movingTime));
                             SetDistance(decimal.Parse(rideDistance));
                             SetAvgSpeed(decimal.Parse(avgSpeed));
-                            SetWind(Convert.ToDecimal(wind));
-                            SetTemp(Convert.ToDecimal(temperature));
+                            SetWind(wind);
+                            SetTemp(temperature);
                             SetType(rideTypeIndex);
                             SetLocation(locationIndex);
                             SetEffort(effortIndex);

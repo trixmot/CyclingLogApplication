@@ -109,6 +109,7 @@
             this.tableRideInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cyclingLogDatabaseDataSet = new CyclingLogApplication.CyclingLogDatabaseDataSet();
             this.table_Ride_InformationTableAdapter = new CyclingLogApplication.CyclingLogDatabaseDataSetTableAdapters.Table_Ride_InformationTableAdapter();
+            this.label31 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBoxRetrieveDate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -407,6 +408,7 @@
             // 
             this.tbRideDataEntryAvgSpeed.Location = new System.Drawing.Point(107, 70);
             this.tbRideDataEntryAvgSpeed.Name = "tbRideDataEntryAvgSpeed";
+            this.tbRideDataEntryAvgSpeed.ReadOnly = true;
             this.tbRideDataEntryAvgSpeed.Size = new System.Drawing.Size(100, 20);
             this.tbRideDataEntryAvgSpeed.TabIndex = 18;
             this.tbRideDataEntryAvgSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -430,11 +432,11 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(50, 200);
+            this.label30.Location = new System.Drawing.Point(42, 200);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(54, 13);
+            this.label30.Size = new System.Drawing.Size(63, 13);
             this.label30.TabIndex = 53;
-            this.label30.Text = "Wind Chill";
+            this.label30.Text = "Wind Chill ^";
             // 
             // lbCustom1
             // 
@@ -564,11 +566,11 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(44, 73);
+            this.label14.Location = new System.Drawing.Point(36, 73);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(60, 13);
+            this.label14.Size = new System.Drawing.Size(69, 13);
             this.label14.TabIndex = 28;
-            this.label14.Text = "Avg Speed";
+            this.label14.Text = "Avg Speed ^";
             // 
             // label10
             // 
@@ -828,7 +830,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(68, 673);
+            this.label22.Location = new System.Drawing.Point(59, 668);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(87, 13);
             this.label22.TabIndex = 40;
@@ -868,12 +870,22 @@
             // 
             this.table_Ride_InformationTableAdapter.ClearBeforeFill = true;
             // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(57, 690);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(133, 13);
+            this.label31.TabIndex = 41;
+            this.label31.Text = "^ Auto calcualted on Save";
+            // 
             // RideDataEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 720);
             this.ControlBox = false;
+            this.Controls.Add(this.label31);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -985,5 +997,6 @@
         private System.Windows.Forms.TextBox tbRideDataEntryDistance;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox checkBoxCloneEntry;
+        private System.Windows.Forms.Label label31;
     }
 }

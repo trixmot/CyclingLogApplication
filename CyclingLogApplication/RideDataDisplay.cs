@@ -22,6 +22,7 @@ using System.CodeDom.Compiler;
 using System.Windows.Threading;
 using System.Reflection.Emit;
 using static System.Net.Mime.MediaTypeNames;
+using System.Data.Common;
 
 namespace CyclingLogApplication
 {
@@ -249,6 +250,19 @@ namespace CyclingLogApplication
             bool customDataField1Checked = false;
             bool customDataField2Checked = false;
             bool windFieldChecked = false;
+            bool rideDistanceChecked = false;
+            bool avgSpeedChecked = false;
+            bool weekNumberChecked = false;
+            bool avgPowerChecked = false;
+            bool maxPowerChecked = false;
+            bool avgHeartRateChecked = false;
+            bool maxHeartRateChecked = false;
+            bool avgCadenceChecked = false;
+            bool maxCadenceChecked = false;
+            bool caloriesChecked = false;
+            bool tempChecked = false;
+            bool windChillChecked = false;
+            bool maxSpeedChecked = false;
 
             string fieldName;
 
@@ -284,6 +298,7 @@ namespace CyclingLogApplication
                     if (fieldName.Equals("Week Number"))
                     {
                         fieldName = "WeekNumber";
+                        weekNumberChecked = true;
                     }
                     else if (fieldName.Equals("Moving Time"))
                     {
@@ -292,34 +307,48 @@ namespace CyclingLogApplication
                     else if (fieldName.Equals("Ride Distance"))
                     {
                         fieldName = "RideDistance";
+                        rideDistanceChecked = true;
                     }
                     else if (fieldName.Equals("Avg Speed"))
                     {
                         fieldName = "AvgSpeed";
+                        avgSpeedChecked = true;
                     }
                     else if (fieldName.Equals("Ride Type"))
                     {
                         fieldName = "RideType";
                     }
+                    else if (fieldName.Equals("Temperature"))
+                    {
+                        tempChecked = true;
+                    }
                     else if (fieldName.Equals("Avg Cadence"))
                     {
                         fieldName = "AvgCadence";
+                        avgCadenceChecked = true;
                     }
                     else if (fieldName.Equals("Max Cadence"))
                     {
                         fieldName = "MaxCadence";
+                        maxCadenceChecked = true;
                     }
                     else if (fieldName.Equals("Avg Heart Rate"))
                     {
                         fieldName = "AvgHeartRate";
+                        avgHeartRateChecked = true;
                     }
                     else if (fieldName.Equals("Max Heart Rate"))
                     {
                         fieldName = "MaxHeartRate";
+                        maxHeartRateChecked = true;
                     }
                     else if (fieldName.Equals("Total Ascent"))
                     {
                         fieldName = "TotalAscent";
+                    }
+                    else if (fieldName.Equals("Calories"))
+                    {
+                        caloriesChecked = true;
                     }
                     else if (fieldName.Equals("Total Descent"))
                     {
@@ -328,18 +357,22 @@ namespace CyclingLogApplication
                     else if (fieldName.Equals("Max Speed"))
                     {
                         fieldName = "MaxSpeed";
+                        maxSpeedChecked = true;
                     }
                     else if (fieldName.Equals("Avg Power"))
                     {
                         fieldName = "AveragePower";
+                        avgPowerChecked = true;
                     }
                     else if (fieldName.Equals("Max Power"))
                     {
                         fieldName = "MaxPower";
+                        maxPowerChecked = true;
                     }
                     else if (fieldName.Equals("Wind Chill"))
                     {
                         fieldName = "Windchill";
+                        windChillChecked = true;
                     }
                     else if (fieldName.Equals(custom1))
                     {
@@ -522,6 +555,7 @@ namespace CyclingLogApplication
                     {
                         //sqlDataAdapter.SelectCommand = new SqlCommand("SELECT [WeekNumber],[Id],[Date],[MovingTime],[RideDistance],[AvgSpeed],[Bike],[RideType],[Wind],[Temperature],[AvgCadence],[AvgHeartRate],[MaxHeartRate],[Calories],[TotalAscent],[TotalDescent],[Route],[Location],[Comments] from Table_Ride_Information WHERE [LogYearID]=@logyearID ORDER BY [Date] ASC", sqlConnection);
                         sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + " from Table_Ride_Information WHERE [LogYearID]=@logyearID ORDER BY [Date] " + gridOrder, sqlConnection);
+                        //sqlDataAdapter.SelectCommand = new SqlCommand("SELECT " + fieldString + ", CASE WHEN  AveragePower = 0 THEN '- -' END AS tempCol FROM Table_Ride_Information WHERE [LogYearID]=@logyearID ORDER BY [Date] " + gridOrder, sqlConnection);
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@logyearID", logYearID);
                     }
                     else
@@ -563,17 +597,47 @@ namespace CyclingLogApplication
                         dataTable.Columns["Custom2"].ColumnName = custom2;
                     }
                 }
+                if (weekNumberChecked)
+                {
+                    dataTable.Columns["WeekNumber"].ColumnName = "Week#";
+                }
 
-                dataTable.Columns["WeekNumber"].ColumnName = "Week#";
-                
                 if (windFieldChecked)
                 {
                     dataTable.Columns["Wind"].ColumnName = "Max Wind";
-                }               
+                }
+
+                //dataGridView1.AutoGenerateColumns = false;
+                //var NameField = new DataGridViewColumn();
+                //NameField.HeaderText = "AveragePower";
+                //NameField.DataPropertyName = "averagePower";
+                //dataGridView1.Columns.Add(NameField);
 
                 dataGridView1.DataSource = dataTable;
-                dataGridView1.Columns["AvgSpeed"].DefaultCellStyle.Format = "0.00";
-                dataGridView1.Columns["RideDistance"].DefaultCellStyle.Format = "0.0";
+                if (maxSpeedChecked)
+                {
+                    dataGridView1.Columns["MaxSpeed"].DefaultCellStyle.Format = "0.0";
+                }
+                if (avgSpeedChecked)
+                {
+                    dataGridView1.Columns["AvgSpeed"].DefaultCellStyle.Format = "0.0";
+                }
+                if (rideDistanceChecked)
+                {
+                    dataGridView1.Columns["RideDistance"].DefaultCellStyle.Format = "0.0";
+                }
+                if (windFieldChecked)
+                {
+                    dataGridView1.Columns["Max Wind"].DefaultCellStyle.Format = "0.0";
+                }
+                if (tempChecked)
+                {
+                    dataGridView1.Columns["Temperature"].DefaultCellStyle.Format = "0.0";
+                }
+                if (windChillChecked)
+                {
+                    dataGridView1.Columns["Windchill"].DefaultCellStyle.Format = "0.0";
+                }
 
                 // Resize the master DataGridView columns to fit the newly loaded data.
                 dataGridView1.AutoResizeColumns();
@@ -648,6 +712,68 @@ namespace CyclingLogApplication
                         }
                     }
                 }
+
+                //For fields that do not contain values, enter '- -' to know that no value was entered at post time.
+               
+                //for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                //{
+                //    if (tempChecked)
+                //    {
+                //        if (dataGridView1.Rows[i].Cells["Temperature"].Value.ToString().Equals("0"))
+                //        {
+                //            dataGridView1.Rows[i].Cells["Temperature"].Value = DBNull.Value;
+                //        }
+                //    }
+                //    if (caloriesChecked)
+                //    {
+                //        if (dataGridView1.Rows[i].Cells["Calories"].Value.ToString().Equals("0"))
+                //        {
+                //            dataGridView1.Rows[i].Cells["Calories"].Value = DBNull.Value;
+                //        }
+                //    }
+                //    if (avgCadenceChecked)
+                //    {
+                //        if (dataGridView1.Rows[i].Cells["AvgCadence"].Value.ToString().Equals("0"))
+                //        {
+                //            dataGridView1.Rows[i].Cells["AvgCadence"].Value = DBNull.Value;
+                //        }
+                //    }
+                //    if (maxCadenceChecked)
+                //    {
+                //        if (dataGridView1.Rows[i].Cells["MaxCadence"].Value.ToString().Equals("0"))
+                //        {
+                //            dataGridView1.Rows[i].Cells["MaxCadence"].Value = DBNull.Value;
+                //        }
+                //    }
+                //    if (maxPowerChecked)
+                //    {
+                //        if (dataGridView1.Rows[i].Cells["MaxPower"].Value.ToString().Equals("0"))
+                //        {
+                //            dataGridView1.Rows[i].Cells["MaxPower"].Value = DBNull.Value;
+                //        }
+                //    }
+                //    if (avgPowerChecked)
+                //    {
+                //        if (dataGridView1.Rows[i].Cells["AveragePower"].Value.ToString().Equals("0"))
+                //        {
+                //            dataGridView1.Rows[i].Cells["AveragePower"].Value = DBNull.Value;
+                //        }
+                //    }
+                //    if (avgHeartRateChecked)
+                //    {
+                //        if (dataGridView1.Rows[i].Cells["AvgHeartRate"].Value.ToString().Equals("0"))
+                //        {
+                //            dataGridView1.Rows[i].Cells["AvgHeartRate"].Value = DBNull.Value;
+                //        }
+                //    }
+                //    if (maxHeartRateChecked)
+                //    {
+                //        if (dataGridView1.Rows[i].Cells["MaxHeartRate"].Value.ToString().Equals("0"))
+                //        {
+                //            dataGridView1.Rows[i].Cells["MaxHeartRate"].Value = DBNull.Value;
+                //        }
+                //    }
+                //}
 
                 //dataGridView1.Refresh();
             }
