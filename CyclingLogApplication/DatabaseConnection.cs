@@ -150,16 +150,16 @@ namespace CyclingLogApplication
 
             try {
                 //string databaseString = this.Connection.Database.ToString();
-                if (this.Connection.Database != null) {
-              
-                } else
-                {
-                    if (!object.ReferenceEquals(this.Connection, null) || Connection != null && Connection.State == ConnectionState.Open)
-                    {
-                        Connection.Close();
-                    }
-                }
-                
+                //if (!this.Connection. .Database.Equals(null)) {
+                if (Connection is IDisposable) Connection.Dispose();
+                //} else
+                //{
+                //    if (!object.ReferenceEquals(this.Connection, null) || Connection != null && Connection.State == ConnectionState.Open)
+                //    {
+                //        Connection.Close();
+                //    }
+                //}
+
             }
             catch { }
 
