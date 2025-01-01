@@ -1169,7 +1169,7 @@ namespace CyclingLogApplication
                     objectValues.Add(logYearTitle);
                     objectValues.Add(Convert.ToInt32(logYear));
                     RunStoredProcedure(objectValues, "Log_Year_Add");
-                    RunStoredProcedure(objectValues, "LogID_Update");
+                    //RunStoredProcedure(objectValues, "LogID_Update");
                 }
                 // Update to an existing log:
                 else
@@ -1258,7 +1258,7 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to add/udpate log title." + ex.Message.ToString());
+                Logger.LogError("[ERROR]: Exception while trying to add/udpate log title. " + ex.Message.ToString());
             }
             MessageBox.Show("Log Title save is complete.");
         }
@@ -2251,11 +2251,17 @@ namespace CyclingLogApplication
                                 }
 
                                 // Onto a new week, so reset weekly total:
-                                weekMilesTotal = (double)reader["RideDistance"];
+                                if (reader["RideDistance"] != DBNull.Value)
+                                {
+                                    weekMilesTotal = (double)reader["RideDistance"];
+                                }
                             }
                             else
                             {
-                                weekMilesTotal += (double)reader["RideDistance"];
+                                if (reader["RideDistance"] != DBNull.Value)
+                                {
+                                    weekMilesTotal += (double)reader["RideDistance"];
+                                }
                             }
                         }
                     }
@@ -2265,7 +2271,7 @@ namespace CyclingLogApplication
 
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to the Log year Index from the database." + ex.Message.ToString());
+                Logger.LogError("[ERROR]: GetHighMileageWeekNumber() Exception: " + ex.Message.ToString());
             }
             finally
             {
@@ -2345,11 +2351,17 @@ namespace CyclingLogApplication
                                 }
 
                                 // Onto a new week, so reset weekly total:
-                                weekAscentTotal = int.Parse(reader["TotalAscent"].ToString());
+                                if (reader["TotalAscent"] != DBNull.Value)
+                                {
+                                    weekAscentTotal = int.Parse(reader["TotalAscent"].ToString());
+                                }
                             }
                             else
                             {
-                                weekAscentTotal += int.Parse(reader["TotalAscent"].ToString());
+                                if (reader["TotalAscent"] != DBNull.Value)
+                                {
+                                    weekAscentTotal += int.Parse(reader["TotalAscent"].ToString());
+                                }
                             }
                         }
                     }
@@ -2359,7 +2371,7 @@ namespace CyclingLogApplication
 
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to the Log year Index from the database." + ex.Message.ToString());
+                Logger.LogError("[ERROR]: GetHighAscentWeekNumber() Exception: " + ex.Message.ToString());
             }
             finally
             {
@@ -2947,7 +2959,7 @@ namespace CyclingLogApplication
         {
             lbMaintError.Text = "";
 
-            Logger.Log("[DEBUG] Maintenance count. " + GetMaintCount(), 0, 0);
+            //Logger.Log("[DEBUG] Maintenance count. " + GetMaintCount(), 0, 0);
 
             if (GetMaintCount() < 1)
             {
@@ -3793,11 +3805,17 @@ namespace CyclingLogApplication
                                 }
 
                                 // Onto a new week, so reset weekly total:
-                                weekMilesTotal = (double)reader["RideDistance"];
+                                if (reader["RideDistance"] != DBNull.Value)
+                                {
+                                    weekMilesTotal = (double)reader["RideDistance"];
+                                }
                             }
                             else
                             {
-                                weekMilesTotal += (double)reader["RideDistance"];
+                                if (reader["RideDistance"] != DBNull.Value)
+                                {
+                                    weekMilesTotal += (double)reader["RideDistance"];
+                                }
                             }
                         }
 
@@ -3809,7 +3827,7 @@ namespace CyclingLogApplication
 
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to the Log year Index from the database." + ex.Message.ToString());
+                Logger.LogError("[ERROR]: GetMonthlyHighMileageWeekNumber() Exception: " + ex.Message.ToString());
             }
             finally
             {
@@ -3868,11 +3886,17 @@ namespace CyclingLogApplication
                                     }
 
                                     // Onto a new week, so reset weekly total:
-                                    weekMilesTotal = (double)reader["RideDistance"];
+                                    if (reader["RideDistance"] != DBNull.Value)
+                                    {
+                                        weekMilesTotal = (double)reader["RideDistance"];
+                                    }
                                 }
                                 else
                                 {
-                                    weekMilesTotal += (double)reader["RideDistance"];
+                                    if (reader["RideDistance"] != DBNull.Value)
+                                    {
+                                        weekMilesTotal += (double)reader["RideDistance"];
+                                    }
                                 }
                             }
 
@@ -3893,7 +3917,7 @@ namespace CyclingLogApplication
 
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to the Log year Index from the database." + ex.Message.ToString());
+                Logger.LogError("[ERROR]: GetMonthlyHighMileageWeekNumberAll() Exception: " + ex.Message.ToString());
             }
             finally
             {
@@ -3948,11 +3972,17 @@ namespace CyclingLogApplication
                                     }
 
                                     // Onto a new week, so reset weekly total:
-                                    weekAscentTotal = int.Parse(reader["TotalAscent"].ToString());
+                                    if (reader["TotalAscent"] != DBNull.Value)
+                                    {
+                                        weekAscentTotal = int.Parse(reader["TotalAscent"].ToString());
+                                    }
                                 }
                                 else
                                 {
-                                    weekAscentTotal += int.Parse(reader["TotalAscent"].ToString());
+                                    if (reader["TotalAscent"] != DBNull.Value)
+                                    {
+                                        weekAscentTotal += int.Parse(reader["TotalAscent"].ToString());
+                                    }
                                 }
                             }
 
@@ -3973,7 +4003,7 @@ namespace CyclingLogApplication
 
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to the Log year Index from the database." + ex.Message.ToString());
+                Logger.LogError("[ERROR]: GetHighAscentWeekAll() Exception. " + ex.Message.ToString());
             }
             finally
             {
@@ -4034,7 +4064,7 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to the Log year Index from the database." + ex.Message.ToString());
+                Logger.LogError("[ERROR]: GetTEST() Exception. " + ex.Message.ToString());
             }
             finally
             {
