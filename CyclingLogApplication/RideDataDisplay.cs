@@ -713,8 +713,9 @@ namespace CyclingLogApplication
                     }
                 }
 
-                //For fields that do not contain values, enter '- -' to know that no value was entered at post time.
-               
+                //****************  This causes the load time to be very long  ************************
+                //For fields that do not contain values, enter 'DBNull.Value' to know that no value was entered at post time.
+
                 //for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 //{
                 //    if (tempChecked)

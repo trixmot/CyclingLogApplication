@@ -111,7 +111,7 @@ namespace CyclingLogApplication
             cbLogYearDataEntry.SelectedIndex = MainForm.GetLastLogSelectedDataEntry();
 
             //Set index for the LogYear:
-            int logYearIndex = Convert.ToInt32(MainForm.GetLastLogSelectedDataEntry());
+            int logYearIndex = Convert.ToInt32(cbLogYearDataEntry.SelectedIndex);
 
             if (logYearIndex == -1)
             {
@@ -171,7 +171,7 @@ namespace CyclingLogApplication
             }
 
             cbRouteDataEntry.SelectedIndex = 0;
-            cbBikeDataEntrySelection.SelectedIndex = 0;
+            //cbBikeDataEntrySelection.SelectedIndex = 0;
             cbRideTypeDataEntry.SelectedIndex = 0;
             cbLocationDataEntry.SelectedIndex = 0;
             cbEffortRideDataEntry.SelectedIndex = 0;
@@ -311,7 +311,6 @@ namespace CyclingLogApplication
             {
                 calories.Text = caloriesValue;
             }
-
         }
 
         public void SetRouteIndex(int routeIndex)
@@ -334,6 +333,7 @@ namespace CyclingLogApplication
             return bike;
         }
 
+        //Used to load display data into entry form:
         public void SetBikeIndex(int bikeIndexValue)
         {
             cbBikeDataEntrySelection.SelectedIndex = bikeIndexValue;
@@ -865,8 +865,8 @@ namespace CyclingLogApplication
         {
             using (MainForm mainForm = new MainForm(""))
             {
-                MainForm.SetLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
-                MainForm.SetLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);
+                //MainForm.SetLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
+                //MainForm.SetLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);
                 //MainForm mainForm2 = new MainForm();
                 //mainForm2.refreshData();
                 //Close();
@@ -1279,6 +1279,7 @@ namespace CyclingLogApplication
                 }
                 
                 objectValues.Add(cbBikeDataEntrySelection.SelectedItem.ToString());     //Bike:
+                MainForm.SetLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
                 objectValues.Add(cbRideTypeDataEntry.SelectedItem.ToString());          //Ride Type:
                 float windspeed;
                 Boolean noTemp = false;
@@ -2746,6 +2747,7 @@ namespace CyclingLogApplication
         private void btLogEntrySave_Click(object sender, EventArgs e)
         {
             RideInformationChange(false);
+            ConfigurationFile.WriteConfigFile();
         }
     }
 }
