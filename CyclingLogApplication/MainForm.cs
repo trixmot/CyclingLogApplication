@@ -1169,7 +1169,8 @@ namespace CyclingLogApplication
                     objectValues.Add(logYearTitle);
                     objectValues.Add(Convert.ToInt32(logYear));
                     RunStoredProcedure(objectValues, "Log_Year_Add");
-                    //RunStoredProcedure(objectValues, "LogID_Update");
+                    List<object> objectNoValues = new List<object>();
+                    RunStoredProcedure(objectNoValues, "LogID_Update");
                 }
                 // Update to an existing log:
                 else
@@ -1714,8 +1715,16 @@ namespace CyclingLogApplication
 
         private void BtSaveBikeConfig_Click(object sender, EventArgs e)
         {
+            string bikeName = tbBikeConfig.Text.ToString();
+
+            if (string.IsNullOrEmpty(bikeName))
+            {
+                MessageBox.Show("No Bike name has been entered to save. Enter a value and try again.");
+
+                return;
+            }
+
             string bikeOldName = tbBikeOldName.Text;
-            string bikeName = tbBikeConfig.Text;
             float notInMiles = float.Parse(tbConfigMilesNotInLog.Text);
             float logMiles = 0;
             float totalMiles = 0;
@@ -1833,12 +1842,19 @@ namespace CyclingLogApplication
 
         private void BtRemoveBikeConfig_Click(object sender, EventArgs e)
         {
+            string bikeName = tbBikeConfig.Text.ToString();
+
+            if (string.IsNullOrEmpty(bikeName))
+            {
+                MessageBox.Show("No Bike has been selected to remove.  Select a Bike and try again.");
+
+                return;
+            }
+
             DialogResult result = MessageBox.Show("Do you really want to delete the bike option?", "Delete Bike Option", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
-                string bikeName = tbBikeConfig.Text.ToString();
-
                 //Note: only removing value as an option, all records using this value are unchanged:
                 cbBikeMaint.Items.Remove(bikeName);
 
@@ -3106,7 +3122,7 @@ namespace CyclingLogApplication
 
         private void BtDeleteAllData_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("This function will delete all data and from the Cycling Log Application's database. Are you sure you want to continue? If you have not made a backup copy of the database, select No, and make a copy and then run the function once again.", "Delete All Data From Database", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("This function will delete all data and from the Cycling Log Application's database. If you have not made a backup copy of the database, click No, and make a copy and then run the function once again. If you want to continue with the deletion, then click Yes", "Delete All Data From Database", MessageBoxButtons.YesNo);
             if (result == DialogResult.No)
             {
                 return;
@@ -3169,6 +3185,9 @@ namespace CyclingLogApplication
             //Refresh all data and controls:
             MainForm_Load(this, null);
             RefreshData();
+
+            dataGridViewCalendar.DataSource = null;
+            dataGridViewCalendar.Rows.Clear();
             MessageBox.Show("All Data has been removed successful.");
         }
 
@@ -5641,6 +5660,9 @@ namespace CyclingLogApplication
             string logYearName = cbLogYearWeekly.SelectedItem.ToString();
             if (cbLogYearWeekly.SelectedIndex == 0 || logYearName.Equals("--Select Value--"))
             {
+                dataGridViewWeekly.DataSource = null;
+                dataGridViewWeekly.Rows.Clear();
+
                 return;
             }
 
@@ -6656,6 +6678,8 @@ namespace CyclingLogApplication
         {
             if (cbCalendarMonth.SelectedIndex < 1 || cbCalendarLogs.SelectedIndex < 1)
             {
+                //MessageBox.Show("No Log has been selected.");
+
                 return;
             }
 
@@ -8641,6 +8665,13 @@ namespace CyclingLogApplication
 
         private void btRefresh_Click(object sender, EventArgs e)
         {
+            if (cbCalendarMonth.SelectedIndex < 1 || cbCalendarLogs.SelectedIndex < 1)
+            {
+                MessageBox.Show("No Log has been selected.");
+
+                return;
+            }
+
             RunCalendar();
         }
 
@@ -8740,6 +8771,9 @@ namespace CyclingLogApplication
         {
             if (cbLogYearWeekly.SelectedIndex == 0)
             {
+                dataGridViewWeekly.DataSource = null;
+                dataGridViewWeekly.Rows.Clear();
+
                 return;
             }
 

@@ -96,9 +96,18 @@ namespace CyclingLogApplication
                 cbHold.Checked = false;
             }
 
-            cbPlannerLogs.SelectedIndex = logTitleIndex;
-            cbPlannerMonth.SelectedIndex = DateTime.Now.Month;
-            cbPlannerDate.SelectedIndex = weekCount;
+            if (logTitleIndex < 0)
+            {
+                cbPlannerLogs.SelectedIndex = 0;
+                cbPlannerMonth.SelectedIndex = 0;
+                cbPlannerDate.SelectedIndex = 0;
+            } else
+            {
+                cbPlannerLogs.SelectedIndex = logTitleIndex;
+                cbPlannerMonth.SelectedIndex = DateTime.Now.Month;
+                cbPlannerDate.SelectedIndex = weekCount;
+            }
+            
         }
 
         private string GetFirstDayForMonth(int logYear, int month)
@@ -126,6 +135,15 @@ namespace CyclingLogApplication
 
             int nextMonthIndex = monthIndex + 1;
             string logName = cbPlannerLogs.SelectedItem.ToString();
+
+            if (cbPlannerLogs.SelectedIndex < 1)
+            {
+                dataGridViewPlanner.DataSource = null;
+                dataGridViewPlanner.Rows.Clear();
+
+                return;
+            }
+
             int logIndex = MainForm.GetLogIndexByName(logName);
             int logYear = MainForm.GetLogYearByName(logName);
             string firstDay = GetFirstDayForMonth(logYear, monthIndex);

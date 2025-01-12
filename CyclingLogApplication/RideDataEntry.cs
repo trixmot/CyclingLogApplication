@@ -905,13 +905,24 @@ namespace CyclingLogApplication
             string procedureName = "";
 
             //Make sure certain required fields are filled in:
-            DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-            if (dtpTimeRideDataEntry.Value == dt)
+            DateTime currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            if (dtpTimeRideDataEntry.Value == currentDate)
             {
                 lbRideDataEntryError.Text = "The Ride Time must be greater than 0:00:00.";
                 lbRideDataEntryError.Show();
+
                 return;
             }
+
+            //Make sure the selected date is not a future date:
+            DateTime selectedDate = DateTime.Parse(dtpRideDate.Value.ToString());
+            if (selectedDate > currentDate)
+            {
+                MessageBox.Show("The selected Date is past the current date.");
+
+                return;
+            }        
+
             //decimal avgspeed = decimal.Parse(tbRideDataEntryAvgSpeed.Text);
             //if (avgspeed == 0)
             //{
