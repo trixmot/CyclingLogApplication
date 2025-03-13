@@ -95,6 +95,8 @@ C:\workdir\trixmot-CyclingLogApplication\CyclingLogApplication\obj\Debug\Cycling
 C:\workdir\trixmot-CyclingLogApplication\CyclingLogApplication\obj\Debug\CyclingLogApplication.pdb
 D:\workdir\github\cycling_log\CyclingLogApplication\bin\Debug\CyclingLogDatabase.mdf
 D:\workdir\github\cycling_log\CyclingLogApplication\bin\Debug\CyclingLogDatabase_log.ldf
+D:\workdir\github\cycling_log\CyclingLogApplication\bin\Debug\license.txt
+D:\workdir\github\cycling_log\CyclingLogApplication\bin\Debug\Cycling_Log_User's_Guide.docx
 D:\workdir\github\cycling_log\CyclingLogApplication\bin\Debug\CyclingLogApplication.exe.config
 D:\workdir\github\cycling_log\CyclingLogApplication\bin\Debug\CyclingLogApplication.exe.manifest
 D:\workdir\github\cycling_log\CyclingLogApplication\bin\Debug\CyclingLogApplication.application
@@ -104,6 +106,7 @@ D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\Cycling_Log.csproj
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.ChartForm.resources
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.LegacyImport.resources
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.MainForm.resources
+D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.Planner.resources
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.ProgressBar.resources
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.Properties.Resources.resources
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.RefreshingForm.resources
@@ -115,6 +118,3 @@ D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplicat
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.application
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.exe
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.pdb
-D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.Planner.resources
-D:\workdir\github\cycling_log\CyclingLogApplication\bin\Debug\license.txt
-D:\workdir\github\cycling_log\CyclingLogApplication\bin\Debug\Cycling_Log_User's_Guide.docx

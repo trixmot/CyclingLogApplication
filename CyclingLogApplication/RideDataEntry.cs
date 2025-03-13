@@ -340,9 +340,10 @@ namespace CyclingLogApplication
             //bikeIndex = bikeIndexValue;
         }
 
-        public void SetAvgSpeed(decimal avgSpeed)
+        public void SetAvgSpeed(double avgSpeed)
         {
-            tbRideDataEntryAvgSpeed.Text = avgSpeed.ToString();
+            double speed = Math.Round(double.Parse(avgSpeed.ToString()), 1);
+            tbRideDataEntryAvgSpeed.Text = speed.ToString();
         }
 
         public void SetWind(string windIndex)
@@ -1171,8 +1172,8 @@ namespace CyclingLogApplication
                 }
 
                 double averageSpeed = 0;
-                if (tbRideDataEntryAvgSpeed.Text.Equals(""))
-                {
+                //if (tbRideDataEntryAvgSpeed.Text.Equals(""))
+                //{
                     //Value missing, need to calculate it (miles/time:
                     double miles = double.Parse(tbRideDataEntryDistance.Text);
                     int timeHours = DateTime.Parse(dtpTimeRideDataEntry.Value.ToString()).Hour;
@@ -1181,8 +1182,8 @@ namespace CyclingLogApplication
                     string timeString = timeHours.ToString() + ":" + timeMin.ToString() + ":" + timeSec.ToString();
                     double timeInHours = TimeSpan.Parse(timeString).TotalHours;
                     averageSpeed = miles / timeInHours;
-                    tbRideDataEntryAvgSpeed.Text = averageSpeed.ToString();
-                }
+                    tbRideDataEntryAvgSpeed.Text = Math.Round(averageSpeed, 1).ToString();
+                //}
 
                 //*****************************************************************************
                 //*************  VERIFY INPUT DATA IS IN CORRECT FORMAT ***********************
@@ -1738,8 +1739,8 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                Logger.LogError("[ERROR]: Exception while trying to retrive ride data. " + ex.Message.ToString());
-                MessageBox.Show("[ERROR] Exception occurred. Refer to the log for more information. ");
+                Logger.LogError("[ERROR]: Exception while trying to import ride data. " + ex.Message.ToString());
+                MessageBox.Show("[ERROR] Exception occurred during data import. " + ex.Message.ToString());
             }
 
             double windChill;
@@ -2383,7 +2384,7 @@ namespace CyclingLogApplication
                             //Thread.Sleep(2000); // 1000 milliseconds i.e 1sec
                             SetTime(DateTime.Parse(movingTime));
                             SetDistance(decimal.Parse(rideDistance));
-                            SetAvgSpeed(decimal.Parse(avgSpeed));
+                            SetAvgSpeed(double.Parse(avgSpeed));
                             SetWind(wind);
                             SetTemp(temperature);
                             SetType(rideTypeIndex);
@@ -2758,6 +2759,7 @@ namespace CyclingLogApplication
         private void btLogEntrySave_Click(object sender, EventArgs e)
         {
             RideInformationChange(false);
+            MainForm.SetLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);
             ConfigurationFile.WriteConfigFile();
         }
     }

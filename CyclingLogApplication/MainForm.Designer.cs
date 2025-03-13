@@ -932,7 +932,7 @@
             this.btMonthlyStatReset.Name = "btMonthlyStatReset";
             this.btMonthlyStatReset.Size = new System.Drawing.Size(56, 23);
             this.btMonthlyStatReset.TabIndex = 160;
-            this.btMonthlyStatReset.Text = "Reset";
+            this.btMonthlyStatReset.Text = "Refresh";
             this.btMonthlyStatReset.UseVisualStyleBackColor = true;
             this.btMonthlyStatReset.Click += new System.EventHandler(this.btMonthlyStatReset_Click);
             // 
@@ -994,7 +994,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(56, 23);
             this.button6.TabIndex = 180;
-            this.button6.Text = "Reset";
+            this.button6.Text = "Refresh";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -3263,7 +3263,7 @@
             this.groupBox18.Size = new System.Drawing.Size(212, 171);
             this.groupBox18.TabIndex = 73;
             this.groupBox18.TabStop = false;
-            this.groupBox18.Text = "First Day Of Week";
+            this.groupBox18.Text = "First Day of Week";
             // 
             // groupBox25
             // 

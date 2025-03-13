@@ -180,7 +180,7 @@
             // 
             // btRideDisplayUpdate
             // 
-            this.btRideDisplayUpdate.Location = new System.Drawing.Point(395, 71);
+            this.btRideDisplayUpdate.Location = new System.Drawing.Point(356, 64);
             this.btRideDisplayUpdate.Name = "btRideDisplayUpdate";
             this.btRideDisplayUpdate.Size = new System.Drawing.Size(85, 34);
             this.btRideDisplayUpdate.TabIndex = 9;
@@ -308,7 +308,7 @@
             this.btImportDataEntry.Name = "btImportDataEntry";
             this.btImportDataEntry.Size = new System.Drawing.Size(75, 23);
             this.btImportDataEntry.TabIndex = 6;
-            this.btImportDataEntry.Text = "Import";
+            this.btImportDataEntry.Text = "Garmin CSV";
             this.btImportDataEntry.UseVisualStyleBackColor = true;
             this.btImportDataEntry.Click += new System.EventHandler(this.ImportData);
             // 
