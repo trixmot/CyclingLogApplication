@@ -93,3 +93,4 @@ D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplic
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.application
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.exe
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.pdb
+D:\workdir\github\cycling_log\CyclingLogApplication\obj\Release\CyclingLogApplication.exe.config

@@ -1,0 +1,420 @@
+[9:26:24 AM] : INFO : **********************************************
+[9:26:24 AM] : INFO : Starting Log Application
+[9:26:24 AM] : INFO : **********************************************
+[9:26:24 AM] : INFO : Configuration Read: DAYSTOKEEPLOGS: 90
+[9:26:24 AM] : INFO : Configuration Read: LOGLEVEL : 0
+[9:26:24 AM] : INFO : Configuration Read: GRIDORDER : DESC
+[9:26:24 AM] : INFO : Configuration Read: FIRSTDAY : Monday
+[9:26:24 AM] : INFO : Configuration Read: FIRSTDAYCALENDAR : Monday
+[9:26:24 AM] : INFO : Configuration Read: IDCOLUMN : 0
+[9:26:24 AM] : INFO : Configuration Read: custom1 : 
+[9:26:24 AM] : INFO : Configuration Read: custom2 : 
+[9:26:24 AM] : INFO : Configuration Read: color maint : Beige
+[9:26:24 AM] : INFO : Configuration Read: color weekly : Beige
+[9:26:24 AM] : INFO : Configuration Read: color monthly : Beige
+[9:26:24 AM] : INFO : Configuration Read: color yearly : Beige
+[9:26:24 AM] : INFO : Configuration Read: color display data : Beige
+[9:26:24 AM] : INFO : Configuration Read: color bike : Beige
+[9:26:24 AM] : INFO : Configuration Read: color route : Beige
+[9:26:24 AM] : INFO : Configuration Read: color calendar : Beige
+[9:26:24 AM] : INFO : Configuration Read: text maint : True
+[9:26:24 AM] : INFO : Configuration Read: text weekly : True
+[9:26:24 AM] : INFO : Configuration Read: text monthly : True
+[9:26:24 AM] : INFO : Configuration Read: text yearly : True
+[9:26:24 AM] : INFO : Configuration Read: text display : True
+[9:26:24 AM] : INFO : Configuration Read: text bike : True
+[9:26:24 AM] : INFO : Configuration Read: text route : True
+[9:26:24 AM] : INFO : Configuration Read: text calendar : True
+[9:26:24 AM] : INFO : Configuration Read: lastLogYearFilterSelected : 0
+[9:26:24 AM] : INFO : Configuration Read: lastLogYearSelected : 0
+[9:26:24 AM] : INFO : Configuration Read: lastBikeSelected : 0
+[9:26:24 AM] : INFO : Configuration Read: lastLogSelectedWeekly : 0
+[9:26:24 AM] : INFO : Configuration Read: chartLogYearSelected : 0
+[9:26:24 AM] : INFO : Configuration Read: chartRouteSelected : 0
+[9:26:24 AM] : INFO : Configuration Read: chartTypeSelected : 0
+[9:26:24 AM] : INFO : Configuration Read: chartTimeTypeSelected : 0
+[9:26:24 AM] : INFO : Configuration Read: planGoal : 75
+[9:26:24 AM] : INFO : Configuration Read: planHold : True
+[9:26:24 AM] : INFO : Configuration Read: lastMonthlyLogYearSelected : 0
+[9:26:24 AM] : INFO : Configuration Read: lastLogYearSelectedDataEntry : 0
+[9:26:24 AM] : INFO : Configuration Read: license : false
+[9:26:24 AM] : INFO : Configuration Read: custom1 : 
+[9:26:24 AM] : INFO : Configuration Read: custom2 : 
+[9:26:27 AM] : INFO : Write Config Values: VERSION written:1.0.0
+[9:26:27 AM] : INFO : Write Config Values: GRIDORDER written:DESC
+[9:26:27 AM] : INFO : Write Config Values: IDCOLUMN written:0
+[9:26:27 AM] : INFO : Write Config Values: FIRSTDAY written:Monday
+[9:26:27 AM] : INFO : Write Config Values: FIRSTDAYCALENDAR written:Monday
+[9:26:27 AM] : INFO : Write Config Values: LICENSE written:true
+[9:26:27 AM] : INFO : Write Config Values: CUSTOMFIELD1 written:
+[9:26:27 AM] : INFO : Write Config Values: CUSTOMFIELD2 written:
+[9:26:27 AM] : INFO : Write Config Values: COLORMAINT written:Beige
+[9:26:27 AM] : INFO : Write Config Values: COLORDISPLAYDATA written:Beige
+[9:26:27 AM] : INFO : Write Config Values: COLORBIKE written:Beige
+[9:26:27 AM] : INFO : Write Config Values: COLORROUTE written:Beige
+[9:26:27 AM] : INFO : Write Config Values: COLORCALENDAR written:Beige
+[9:26:27 AM] : INFO : Write Config Values: COLORWEEKLY written:Beige
+[9:26:27 AM] : INFO : Write Config Values: COLORMONTHLY written:Beige
+[9:26:27 AM] : INFO : Write Config Values: COLORYEARLY written:Beige
+[9:26:27 AM] : INFO : Write Config Values: COLORMAINTTEXT written:True
+[9:26:27 AM] : INFO : Write Config Values: COLORWEEKLYTEXT written:True
+[9:26:27 AM] : INFO : Write Config Values: COLORMONTHLYTEXT written:True
+[9:26:27 AM] : INFO : Write Config Values: COLORYEARLYTEXT written:True
+[9:26:27 AM] : INFO : Write Config Values: COLORDISPLAYTEXT written:True
+[9:26:27 AM] : INFO : Write Config Values: COLORBIKETEXT written:True
+[9:26:27 AM] : INFO : Write Config Values: COLORROUTETEXT written:True
+[9:26:27 AM] : INFO : Write Config Values: COLORCALENDARTEXT written:True
+[9:26:27 AM] : INFO : Write Config Values: lastLogSelected written:0
+[9:26:27 AM] : INFO : Write Config Values: lastBikeSelected written:0
+[9:26:27 AM] : INFO : Write Config Values: lastLogFilterSelected written:0
+[9:26:27 AM] : INFO : Write Config Values: LastLogSelectedWeekly written:0
+[9:26:27 AM] : INFO : Write Config Values: lastLogYearChartSelected written:0
+[9:26:27 AM] : INFO : Write Config Values: lastRouteChartSelected written:0
+[9:26:27 AM] : INFO : Write Config Values: lastTypeChartSelected written:0
+[9:26:27 AM] : INFO : Write Config Values: lastTypeTimeChartSelected written:0
+[9:26:27 AM] : INFO : Write Config Values: lastMonthlyLogSelected written:0
+[9:26:27 AM] : INFO : Write Config Values: lastLogSelectedDataEntry written:0
+[9:26:27 AM] : INFO : Write Config Values: PLANGOAL written:75
+[9:26:27 AM] : INFO : Write Config Values: PLANHOLD written:True
+[9:26:28 AM] : INFO : Configuration Read: DAYSTOKEEPLOGS: 90
+[9:26:28 AM] : INFO : Configuration Read: LOGLEVEL : 0
+[9:26:28 AM] : INFO : Configuration Read: GRIDORDER : DESC
+[9:26:28 AM] : INFO : Configuration Read: FIRSTDAY : Monday
+[9:26:28 AM] : INFO : Configuration Read: FIRSTDAYCALENDAR : Monday
+[9:26:28 AM] : INFO : Configuration Read: IDCOLUMN : 0
+[9:26:28 AM] : INFO : Configuration Read: custom1 : 
+[9:26:28 AM] : INFO : Configuration Read: custom2 : 
+[9:26:28 AM] : INFO : Configuration Read: color maint : Beige
+[9:26:28 AM] : INFO : Configuration Read: color weekly : Beige
+[9:26:28 AM] : INFO : Configuration Read: color monthly : Beige
+[9:26:28 AM] : INFO : Configuration Read: color yearly : Beige
+[9:26:28 AM] : INFO : Configuration Read: color display data : Beige
+[9:26:28 AM] : INFO : Configuration Read: color bike : Beige
+[9:26:28 AM] : INFO : Configuration Read: color route : Beige
+[9:26:28 AM] : INFO : Configuration Read: color calendar : Beige
+[9:26:28 AM] : INFO : Configuration Read: text maint : True
+[9:26:28 AM] : INFO : Configuration Read: text weekly : True
+[9:26:28 AM] : INFO : Configuration Read: text monthly : True
+[9:26:28 AM] : INFO : Configuration Read: text yearly : True
+[9:26:28 AM] : INFO : Configuration Read: text display : True
+[9:26:28 AM] : INFO : Configuration Read: text bike : True
+[9:26:28 AM] : INFO : Configuration Read: text route : True
+[9:26:28 AM] : INFO : Configuration Read: text calendar : True
+[9:26:28 AM] : INFO : Configuration Read: lastLogYearFilterSelected : 0
+[9:26:28 AM] : INFO : Configuration Read: lastLogYearSelected : 0
+[9:26:28 AM] : INFO : Configuration Read: lastBikeSelected : 0
+[9:26:28 AM] : INFO : Configuration Read: lastLogSelectedWeekly : 0
+[9:26:28 AM] : INFO : Configuration Read: chartLogYearSelected : 0
+[9:26:28 AM] : INFO : Configuration Read: chartRouteSelected : 0
+[9:26:28 AM] : INFO : Configuration Read: chartTypeSelected : 0
+[9:26:28 AM] : INFO : Configuration Read: chartTimeTypeSelected : 0
+[9:26:28 AM] : INFO : Configuration Read: planGoal : 75
+[9:26:28 AM] : INFO : Configuration Read: planHold : True
+[9:26:28 AM] : INFO : Configuration Read: lastMonthlyLogYearSelected : 0
+[9:26:28 AM] : INFO : Configuration Read: lastLogYearSelectedDataEntry : 0
+[9:26:28 AM] : INFO : Configuration Read: license : true
+[9:26:28 AM] : INFO : Configuration Read: custom1 : 
+[9:26:28 AM] : INFO : Configuration Read: custom2 : 
+[9:26:32 AM] : INFO : Configuration Read: DAYSTOKEEPLOGS: 90
+[9:26:32 AM] : INFO : Configuration Read: LOGLEVEL : 0
+[9:26:32 AM] : INFO : Configuration Read: GRIDORDER : DESC
+[9:26:32 AM] : INFO : Configuration Read: FIRSTDAY : Monday
+[9:26:32 AM] : INFO : Configuration Read: FIRSTDAYCALENDAR : Monday
+[9:26:32 AM] : INFO : Configuration Read: IDCOLUMN : 0
+[9:26:32 AM] : INFO : Configuration Read: custom1 : 
+[9:26:32 AM] : INFO : Configuration Read: custom2 : 
+[9:26:32 AM] : INFO : Configuration Read: color maint : Beige
+[9:26:32 AM] : INFO : Configuration Read: color weekly : Beige
+[9:26:32 AM] : INFO : Configuration Read: color monthly : Beige
+[9:26:32 AM] : INFO : Configuration Read: color yearly : Beige
+[9:26:32 AM] : INFO : Configuration Read: color display data : Beige
+[9:26:32 AM] : INFO : Configuration Read: color bike : Beige
+[9:26:32 AM] : INFO : Configuration Read: color route : Beige
+[9:26:32 AM] : INFO : Configuration Read: color calendar : Beige
+[9:26:32 AM] : INFO : Configuration Read: text maint : True
+[9:26:32 AM] : INFO : Configuration Read: text weekly : True
+[9:26:32 AM] : INFO : Configuration Read: text monthly : True
+[9:26:32 AM] : INFO : Configuration Read: text yearly : True
+[9:26:32 AM] : INFO : Configuration Read: text display : True
+[9:26:32 AM] : INFO : Configuration Read: text bike : True
+[9:26:32 AM] : INFO : Configuration Read: text route : True
+[9:26:32 AM] : INFO : Configuration Read: text calendar : True
+[9:26:32 AM] : INFO : Configuration Read: lastLogYearFilterSelected : 0
+[9:26:32 AM] : INFO : Configuration Read: lastLogYearSelected : 0
+[9:26:32 AM] : INFO : Configuration Read: lastBikeSelected : 0
+[9:26:32 AM] : INFO : Configuration Read: lastLogSelectedWeekly : 0
+[9:26:32 AM] : INFO : Configuration Read: chartLogYearSelected : 0
+[9:26:32 AM] : INFO : Configuration Read: chartRouteSelected : 0
+[9:26:32 AM] : INFO : Configuration Read: chartTypeSelected : 0
+[9:26:32 AM] : INFO : Configuration Read: chartTimeTypeSelected : 0
+[9:26:32 AM] : INFO : Configuration Read: planGoal : 75
+[9:26:32 AM] : INFO : Configuration Read: planHold : True
+[9:26:32 AM] : INFO : Configuration Read: lastMonthlyLogYearSelected : 0
+[9:26:32 AM] : INFO : Configuration Read: lastLogYearSelectedDataEntry : 0
+[9:26:32 AM] : INFO : Configuration Read: license : true
+[9:26:32 AM] : INFO : Configuration Read: custom1 : 
+[9:26:32 AM] : INFO : Configuration Read: custom2 : 
+[9:27:37 AM] : INFO : Write Config Values: VERSION written:1.0.0
+[9:27:37 AM] : INFO : Write Config Values: GRIDORDER written:DESC
+[9:27:37 AM] : INFO : Write Config Values: IDCOLUMN written:0
+[9:27:37 AM] : INFO : Write Config Values: FIRSTDAY written:Monday
+[9:27:37 AM] : INFO : Write Config Values: FIRSTDAYCALENDAR written:Monday
+[9:27:37 AM] : INFO : Write Config Values: LICENSE written:true
+[9:27:37 AM] : INFO : Write Config Values: CUSTOMFIELD1 written:
+[9:27:37 AM] : INFO : Write Config Values: CUSTOMFIELD2 written:
+[9:27:37 AM] : INFO : Write Config Values: COLORMAINT written:Beige
+[9:27:37 AM] : INFO : Write Config Values: COLORDISPLAYDATA written:Beige
+[9:27:37 AM] : INFO : Write Config Values: COLORBIKE written:Beige
+[9:27:37 AM] : INFO : Write Config Values: COLORROUTE written:Beige
+[9:27:37 AM] : INFO : Write Config Values: COLORCALENDAR written:Beige
+[9:27:37 AM] : INFO : Write Config Values: COLORWEEKLY written:Beige
+[9:27:37 AM] : INFO : Write Config Values: COLORMONTHLY written:Beige
+[9:27:37 AM] : INFO : Write Config Values: COLORYEARLY written:Beige
+[9:27:37 AM] : INFO : Write Config Values: COLORMAINTTEXT written:True
+[9:27:37 AM] : INFO : Write Config Values: COLORWEEKLYTEXT written:True
+[9:27:37 AM] : INFO : Write Config Values: COLORMONTHLYTEXT written:True
+[9:27:37 AM] : INFO : Write Config Values: COLORYEARLYTEXT written:True
+[9:27:37 AM] : INFO : Write Config Values: COLORDISPLAYTEXT written:True
+[9:27:37 AM] : INFO : Write Config Values: COLORBIKETEXT written:True
+[9:27:37 AM] : INFO : Write Config Values: COLORROUTETEXT written:True
+[9:27:37 AM] : INFO : Write Config Values: COLORCALENDARTEXT written:True
+[9:27:37 AM] : INFO : Write Config Values: lastLogSelected written:1
+[9:27:37 AM] : INFO : Write Config Values: lastBikeSelected written:3
+[9:27:37 AM] : INFO : Write Config Values: lastLogFilterSelected written:0
+[9:27:37 AM] : INFO : Write Config Values: LastLogSelectedWeekly written:0
+[9:27:37 AM] : INFO : Write Config Values: lastLogYearChartSelected written:0
+[9:27:37 AM] : INFO : Write Config Values: lastRouteChartSelected written:0
+[9:27:37 AM] : INFO : Write Config Values: lastTypeChartSelected written:0
+[9:27:37 AM] : INFO : Write Config Values: lastTypeTimeChartSelected written:0
+[9:27:37 AM] : INFO : Write Config Values: lastMonthlyLogSelected written:0
+[9:27:37 AM] : INFO : Write Config Values: lastLogSelectedDataEntry written:1
+[9:27:37 AM] : INFO : Write Config Values: PLANGOAL written:75
+[9:27:37 AM] : INFO : Write Config Values: PLANHOLD written:True
+[9:27:53 AM] : INFO : Write Config Values: VERSION written:1.0.0
+[9:27:53 AM] : INFO : Write Config Values: GRIDORDER written:DESC
+[9:27:53 AM] : INFO : Write Config Values: IDCOLUMN written:0
+[9:27:53 AM] : INFO : Write Config Values: FIRSTDAY written:Monday
+[9:27:53 AM] : INFO : Write Config Values: FIRSTDAYCALENDAR written:Monday
+[9:27:53 AM] : INFO : Write Config Values: LICENSE written:true
+[9:27:53 AM] : INFO : Write Config Values: CUSTOMFIELD1 written:
+[9:27:53 AM] : INFO : Write Config Values: CUSTOMFIELD2 written:
+[9:27:53 AM] : INFO : Write Config Values: COLORMAINT written:Beige
+[9:27:53 AM] : INFO : Write Config Values: COLORDISPLAYDATA written:Beige
+[9:27:53 AM] : INFO : Write Config Values: COLORBIKE written:Beige
+[9:27:53 AM] : INFO : Write Config Values: COLORROUTE written:Beige
+[9:27:53 AM] : INFO : Write Config Values: COLORCALENDAR written:Beige
+[9:27:53 AM] : INFO : Write Config Values: COLORWEEKLY written:Beige
+[9:27:53 AM] : INFO : Write Config Values: COLORMONTHLY written:Beige
+[9:27:53 AM] : INFO : Write Config Values: COLORYEARLY written:Beige
+[9:27:53 AM] : INFO : Write Config Values: COLORMAINTTEXT written:True
+[9:27:53 AM] : INFO : Write Config Values: COLORWEEKLYTEXT written:True
+[9:27:53 AM] : INFO : Write Config Values: COLORMONTHLYTEXT written:True
+[9:27:53 AM] : INFO : Write Config Values: COLORYEARLYTEXT written:True
+[9:27:53 AM] : INFO : Write Config Values: COLORDISPLAYTEXT written:True
+[9:27:53 AM] : INFO : Write Config Values: COLORBIKETEXT written:True
+[9:27:53 AM] : INFO : Write Config Values: COLORROUTETEXT written:True
+[9:27:53 AM] : INFO : Write Config Values: COLORCALENDARTEXT written:True
+[9:27:53 AM] : INFO : Write Config Values: lastLogSelected written:1
+[9:27:53 AM] : INFO : Write Config Values: lastBikeSelected written:3
+[9:27:53 AM] : INFO : Write Config Values: lastLogFilterSelected written:0
+[9:27:53 AM] : INFO : Write Config Values: LastLogSelectedWeekly written:0
+[9:27:53 AM] : INFO : Write Config Values: lastLogYearChartSelected written:0
+[9:27:53 AM] : INFO : Write Config Values: lastRouteChartSelected written:0
+[9:27:53 AM] : INFO : Write Config Values: lastTypeChartSelected written:0
+[9:27:53 AM] : INFO : Write Config Values: lastTypeTimeChartSelected written:0
+[9:27:53 AM] : INFO : Write Config Values: lastMonthlyLogSelected written:0
+[9:27:53 AM] : INFO : Write Config Values: lastLogSelectedDataEntry written:1
+[9:27:53 AM] : INFO : Write Config Values: PLANGOAL written:75
+[9:27:53 AM] : INFO : Write Config Values: PLANHOLD written:True
+[9:28:05 AM] : INFO : Write Config Values: VERSION written:1.0.0
+[9:28:05 AM] : INFO : Write Config Values: GRIDORDER written:DESC
+[9:28:05 AM] : INFO : Write Config Values: IDCOLUMN written:0
+[9:28:05 AM] : INFO : Write Config Values: FIRSTDAY written:Monday
+[9:28:05 AM] : INFO : Write Config Values: FIRSTDAYCALENDAR written:Monday
+[9:28:05 AM] : INFO : Write Config Values: LICENSE written:true
+[9:28:05 AM] : INFO : Write Config Values: CUSTOMFIELD1 written:
+[9:28:05 AM] : INFO : Write Config Values: CUSTOMFIELD2 written:
+[9:28:05 AM] : INFO : Write Config Values: COLORMAINT written:Beige
+[9:28:05 AM] : INFO : Write Config Values: COLORDISPLAYDATA written:Beige
+[9:28:05 AM] : INFO : Write Config Values: COLORBIKE written:Beige
+[9:28:05 AM] : INFO : Write Config Values: COLORROUTE written:Beige
+[9:28:05 AM] : INFO : Write Config Values: COLORCALENDAR written:Beige
+[9:28:05 AM] : INFO : Write Config Values: COLORWEEKLY written:Beige
+[9:28:05 AM] : INFO : Write Config Values: COLORMONTHLY written:Beige
+[9:28:05 AM] : INFO : Write Config Values: COLORYEARLY written:Beige
+[9:28:05 AM] : INFO : Write Config Values: COLORMAINTTEXT written:True
+[9:28:05 AM] : INFO : Write Config Values: COLORWEEKLYTEXT written:True
+[9:28:05 AM] : INFO : Write Config Values: COLORMONTHLYTEXT written:True
+[9:28:05 AM] : INFO : Write Config Values: COLORYEARLYTEXT written:True
+[9:28:05 AM] : INFO : Write Config Values: COLORDISPLAYTEXT written:True
+[9:28:05 AM] : INFO : Write Config Values: COLORBIKETEXT written:True
+[9:28:05 AM] : INFO : Write Config Values: COLORROUTETEXT written:True
+[9:28:05 AM] : INFO : Write Config Values: COLORCALENDARTEXT written:True
+[9:28:05 AM] : INFO : Write Config Values: lastLogSelected written:1
+[9:28:05 AM] : INFO : Write Config Values: lastBikeSelected written:3
+[9:28:05 AM] : INFO : Write Config Values: lastLogFilterSelected written:0
+[9:28:05 AM] : INFO : Write Config Values: LastLogSelectedWeekly written:0
+[9:28:05 AM] : INFO : Write Config Values: lastLogYearChartSelected written:0
+[9:28:05 AM] : INFO : Write Config Values: lastRouteChartSelected written:0
+[9:28:05 AM] : INFO : Write Config Values: lastTypeChartSelected written:0
+[9:28:05 AM] : INFO : Write Config Values: lastTypeTimeChartSelected written:0
+[9:28:05 AM] : INFO : Write Config Values: lastMonthlyLogSelected written:0
+[9:28:05 AM] : INFO : Write Config Values: lastLogSelectedDataEntry written:1
+[9:28:05 AM] : INFO : Write Config Values: PLANGOAL written:75
+[9:28:05 AM] : INFO : Write Config Values: PLANHOLD written:True
+[9:28:56 AM] : INFO : **********************************************
+[9:28:56 AM] : INFO : Starting Log Application
+[9:28:56 AM] : INFO : **********************************************
+[9:28:57 AM] : INFO : Configuration Read: DAYSTOKEEPLOGS: 90
+[9:28:57 AM] : INFO : Configuration Read: LOGLEVEL : 0
+[9:28:57 AM] : INFO : Configuration Read: GRIDORDER : DESC
+[9:28:57 AM] : INFO : Configuration Read: FIRSTDAY : Monday
+[9:28:57 AM] : INFO : Configuration Read: FIRSTDAYCALENDAR : Monday
+[9:28:57 AM] : INFO : Configuration Read: IDCOLUMN : 0
+[9:28:57 AM] : INFO : Configuration Read: custom1 : 
+[9:28:57 AM] : INFO : Configuration Read: custom2 : 
+[9:28:57 AM] : INFO : Configuration Read: color maint : Beige
+[9:28:57 AM] : INFO : Configuration Read: color weekly : Beige
+[9:28:57 AM] : INFO : Configuration Read: color monthly : Beige
+[9:28:57 AM] : INFO : Configuration Read: color yearly : Beige
+[9:28:57 AM] : INFO : Configuration Read: color display data : Beige
+[9:28:57 AM] : INFO : Configuration Read: color bike : Beige
+[9:28:57 AM] : INFO : Configuration Read: color route : Beige
+[9:28:57 AM] : INFO : Configuration Read: color calendar : Beige
+[9:28:57 AM] : INFO : Configuration Read: text maint : True
+[9:28:57 AM] : INFO : Configuration Read: text weekly : True
+[9:28:57 AM] : INFO : Configuration Read: text monthly : True
+[9:28:57 AM] : INFO : Configuration Read: text yearly : True
+[9:28:57 AM] : INFO : Configuration Read: text display : True
+[9:28:57 AM] : INFO : Configuration Read: text bike : True
+[9:28:57 AM] : INFO : Configuration Read: text route : True
+[9:28:57 AM] : INFO : Configuration Read: text calendar : True
+[9:28:57 AM] : INFO : Configuration Read: lastLogYearFilterSelected : 0
+[9:28:57 AM] : INFO : Configuration Read: lastLogYearSelected : 1
+[9:28:57 AM] : INFO : Configuration Read: lastBikeSelected : 3
+[9:28:57 AM] : INFO : Configuration Read: lastLogSelectedWeekly : 0
+[9:28:57 AM] : INFO : Configuration Read: chartLogYearSelected : 0
+[9:28:57 AM] : INFO : Configuration Read: chartRouteSelected : 0
+[9:28:57 AM] : INFO : Configuration Read: chartTypeSelected : 0
+[9:28:57 AM] : INFO : Configuration Read: chartTimeTypeSelected : 0
+[9:28:57 AM] : INFO : Configuration Read: planGoal : 75
+[9:28:57 AM] : INFO : Configuration Read: planHold : True
+[9:28:57 AM] : INFO : Configuration Read: lastMonthlyLogYearSelected : 0
+[9:28:57 AM] : INFO : Configuration Read: lastLogYearSelectedDataEntry : 1
+[9:28:57 AM] : INFO : Configuration Read: license : true
+[9:28:57 AM] : INFO : Configuration Read: custom1 : 
+[9:28:57 AM] : INFO : Configuration Read: custom2 : 
+[9:28:57 AM] : INFO : Configuration Read: DAYSTOKEEPLOGS: 90
+[9:28:57 AM] : INFO : Configuration Read: LOGLEVEL : 0
+[9:28:57 AM] : INFO : Configuration Read: GRIDORDER : DESC
+[9:28:57 AM] : INFO : Configuration Read: FIRSTDAY : Monday
+[9:28:57 AM] : INFO : Configuration Read: FIRSTDAYCALENDAR : Monday
+[9:28:57 AM] : INFO : Configuration Read: IDCOLUMN : 0
+[9:28:57 AM] : INFO : Configuration Read: custom1 : 
+[9:28:57 AM] : INFO : Configuration Read: custom2 : 
+[9:28:57 AM] : INFO : Configuration Read: color maint : Beige
+[9:28:57 AM] : INFO : Configuration Read: color weekly : Beige
+[9:28:57 AM] : INFO : Configuration Read: color monthly : Beige
+[9:28:57 AM] : INFO : Configuration Read: color yearly : Beige
+[9:28:57 AM] : INFO : Configuration Read: color display data : Beige
+[9:28:57 AM] : INFO : Configuration Read: color bike : Beige
+[9:28:57 AM] : INFO : Configuration Read: color route : Beige
+[9:28:57 AM] : INFO : Configuration Read: color calendar : Beige
+[9:28:57 AM] : INFO : Configuration Read: text maint : True
+[9:28:57 AM] : INFO : Configuration Read: text weekly : True
+[9:28:57 AM] : INFO : Configuration Read: text monthly : True
+[9:28:57 AM] : INFO : Configuration Read: text yearly : True
+[9:28:57 AM] : INFO : Configuration Read: text display : True
+[9:28:57 AM] : INFO : Configuration Read: text bike : True
+[9:28:57 AM] : INFO : Configuration Read: text route : True
+[9:28:57 AM] : INFO : Configuration Read: text calendar : True
+[9:28:57 AM] : INFO : Configuration Read: lastLogYearFilterSelected : 0
+[9:28:57 AM] : INFO : Configuration Read: lastLogYearSelected : 1
+[9:28:57 AM] : INFO : Configuration Read: lastBikeSelected : 3
+[9:28:57 AM] : INFO : Configuration Read: lastLogSelectedWeekly : 0
+[9:28:57 AM] : INFO : Configuration Read: chartLogYearSelected : 0
+[9:28:57 AM] : INFO : Configuration Read: chartRouteSelected : 0
+[9:28:57 AM] : INFO : Configuration Read: chartTypeSelected : 0
+[9:28:57 AM] : INFO : Configuration Read: chartTimeTypeSelected : 0
+[9:28:57 AM] : INFO : Configuration Read: planGoal : 75
+[9:28:57 AM] : INFO : Configuration Read: planHold : True
+[9:28:57 AM] : INFO : Configuration Read: lastMonthlyLogYearSelected : 0
+[9:28:57 AM] : INFO : Configuration Read: lastLogYearSelectedDataEntry : 1
+[9:28:57 AM] : INFO : Configuration Read: license : true
+[9:28:57 AM] : INFO : Configuration Read: custom1 : 
+[9:28:57 AM] : INFO : Configuration Read: custom2 : 
+[9:29:00 AM] : INFO : Configuration Read: DAYSTOKEEPLOGS: 90
+[9:29:00 AM] : INFO : Configuration Read: LOGLEVEL : 0
+[9:29:00 AM] : INFO : Configuration Read: GRIDORDER : DESC
+[9:29:00 AM] : INFO : Configuration Read: FIRSTDAY : Monday
+[9:29:00 AM] : INFO : Configuration Read: FIRSTDAYCALENDAR : Monday
+[9:29:00 AM] : INFO : Configuration Read: IDCOLUMN : 0
+[9:29:00 AM] : INFO : Configuration Read: custom1 : 
+[9:29:00 AM] : INFO : Configuration Read: custom2 : 
+[9:29:00 AM] : INFO : Configuration Read: color maint : Beige
+[9:29:00 AM] : INFO : Configuration Read: color weekly : Beige
+[9:29:00 AM] : INFO : Configuration Read: color monthly : Beige
+[9:29:00 AM] : INFO : Configuration Read: color yearly : Beige
+[9:29:00 AM] : INFO : Configuration Read: color display data : Beige
+[9:29:00 AM] : INFO : Configuration Read: color bike : Beige
+[9:29:00 AM] : INFO : Configuration Read: color route : Beige
+[9:29:00 AM] : INFO : Configuration Read: color calendar : Beige
+[9:29:00 AM] : INFO : Configuration Read: text maint : True
+[9:29:00 AM] : INFO : Configuration Read: text weekly : True
+[9:29:00 AM] : INFO : Configuration Read: text monthly : True
+[9:29:00 AM] : INFO : Configuration Read: text yearly : True
+[9:29:00 AM] : INFO : Configuration Read: text display : True
+[9:29:00 AM] : INFO : Configuration Read: text bike : True
+[9:29:00 AM] : INFO : Configuration Read: text route : True
+[9:29:00 AM] : INFO : Configuration Read: text calendar : True
+[9:29:00 AM] : INFO : Configuration Read: lastLogYearFilterSelected : 0
+[9:29:00 AM] : INFO : Configuration Read: lastLogYearSelected : 1
+[9:29:00 AM] : INFO : Configuration Read: lastBikeSelected : 3
+[9:29:00 AM] : INFO : Configuration Read: lastLogSelectedWeekly : 0
+[9:29:00 AM] : INFO : Configuration Read: chartLogYearSelected : 0
+[9:29:00 AM] : INFO : Configuration Read: chartRouteSelected : 0
+[9:29:00 AM] : INFO : Configuration Read: chartTypeSelected : 0
+[9:29:00 AM] : INFO : Configuration Read: chartTimeTypeSelected : 0
+[9:29:00 AM] : INFO : Configuration Read: planGoal : 75
+[9:29:00 AM] : INFO : Configuration Read: planHold : True
+[9:29:00 AM] : INFO : Configuration Read: lastMonthlyLogYearSelected : 0
+[9:29:00 AM] : INFO : Configuration Read: lastLogYearSelectedDataEntry : 1
+[9:29:00 AM] : INFO : Configuration Read: license : true
+[9:29:00 AM] : INFO : Configuration Read: custom1 : 
+[9:29:00 AM] : INFO : Configuration Read: custom2 : 
+[9:29:12 AM] : INFO : Write Config Values: VERSION written:1.0.0
+[9:29:12 AM] : INFO : Write Config Values: GRIDORDER written:DESC
+[9:29:12 AM] : INFO : Write Config Values: IDCOLUMN written:0
+[9:29:12 AM] : INFO : Write Config Values: FIRSTDAY written:Monday
+[9:29:12 AM] : INFO : Write Config Values: FIRSTDAYCALENDAR written:Monday
+[9:29:12 AM] : INFO : Write Config Values: LICENSE written:true
+[9:29:12 AM] : INFO : Write Config Values: CUSTOMFIELD1 written:
+[9:29:12 AM] : INFO : Write Config Values: CUSTOMFIELD2 written:
+[9:29:12 AM] : INFO : Write Config Values: COLORMAINT written:Beige
+[9:29:12 AM] : INFO : Write Config Values: COLORDISPLAYDATA written:Beige
+[9:29:12 AM] : INFO : Write Config Values: COLORBIKE written:Beige
+[9:29:12 AM] : INFO : Write Config Values: COLORROUTE written:Beige
+[9:29:12 AM] : INFO : Write Config Values: COLORCALENDAR written:Beige
+[9:29:12 AM] : INFO : Write Config Values: COLORWEEKLY written:Beige
+[9:29:12 AM] : INFO : Write Config Values: COLORMONTHLY written:Beige
+[9:29:12 AM] : INFO : Write Config Values: COLORYEARLY written:Beige
+[9:29:12 AM] : INFO : Write Config Values: COLORMAINTTEXT written:True
+[9:29:12 AM] : INFO : Write Config Values: COLORWEEKLYTEXT written:True
+[9:29:12 AM] : INFO : Write Config Values: COLORMONTHLYTEXT written:True
+[9:29:12 AM] : INFO : Write Config Values: COLORYEARLYTEXT written:True
+[9:29:12 AM] : INFO : Write Config Values: COLORDISPLAYTEXT written:True
+[9:29:12 AM] : INFO : Write Config Values: COLORBIKETEXT written:True
+[9:29:12 AM] : INFO : Write Config Values: COLORROUTETEXT written:True
+[9:29:12 AM] : INFO : Write Config Values: COLORCALENDARTEXT written:True
+[9:29:12 AM] : INFO : Write Config Values: lastLogSelected written:1
+[9:29:12 AM] : INFO : Write Config Values: lastBikeSelected written:3
+[9:29:12 AM] : INFO : Write Config Values: lastLogFilterSelected written:0
+[9:29:12 AM] : INFO : Write Config Values: LastLogSelectedWeekly written:0
+[9:29:12 AM] : INFO : Write Config Values: lastLogYearChartSelected written:0
+[9:29:12 AM] : INFO : Write Config Values: lastRouteChartSelected written:0
+[9:29:12 AM] : INFO : Write Config Values: lastTypeChartSelected written:0
+[9:29:12 AM] : INFO : Write Config Values: lastTypeTimeChartSelected written:0
+[9:29:12 AM] : INFO : Write Config Values: lastMonthlyLogSelected written:0
+[9:29:12 AM] : INFO : Write Config Values: lastLogSelectedDataEntry written:1
+[9:29:12 AM] : INFO : Write Config Values: PLANGOAL written:75
+[9:29:12 AM] : INFO : Write Config Values: PLANHOLD written:True

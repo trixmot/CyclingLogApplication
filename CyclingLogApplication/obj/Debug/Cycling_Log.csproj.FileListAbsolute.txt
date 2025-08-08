@@ -118,3 +118,4 @@ D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplicat
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.application
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.exe
 D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.pdb
+D:\workdir\github\cycling_log\CyclingLogApplication\obj\Debug\CyclingLogApplication.exe.config

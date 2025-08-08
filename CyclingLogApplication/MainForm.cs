@@ -5269,6 +5269,15 @@ namespace CyclingLogApplication
                 return;
             }
             RefreshData();
+
+            if (cbCalendarMonth.SelectedIndex < 1 || cbCalendarLogs.SelectedIndex < 1)
+            {
+                //Skip refresh:
+            } else
+            {
+                RunCalendar();
+            }           
+
             MessageBox.Show("All data fields have been updated.");
         }
 
@@ -9740,6 +9749,16 @@ namespace CyclingLogApplication
 
             //Export database tables to csv files:
             ExportTables();
+        }
+
+        private void maint_clear_Click(object sender, EventArgs e)
+        {
+            //Clear comments, set date to current date, clear miles, bike to select value
+            rtbMaintComments.Text = "";
+            tbMaintMiles.Text = "";
+            cbBikeMaint.SelectedIndex = 0;
+            dateTimePicker1.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+
         }
     }
 }

@@ -111,6 +111,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.cbCalendarLogs = new System.Windows.Forms.ComboBox();
             this.Maintenance = new System.Windows.Forms.TabPage();
+            this.maint_clear = new System.Windows.Forms.Button();
             this.tbMaintDateCheck = new System.Windows.Forms.TextBox();
             this.tbMaintID = new System.Windows.Forms.TextBox();
             this.lbMaintError = new System.Windows.Forms.Label();
@@ -1168,6 +1169,7 @@
             // 
             // Maintenance
             // 
+            this.Maintenance.Controls.Add(this.maint_clear);
             this.Maintenance.Controls.Add(this.tbMaintDateCheck);
             this.Maintenance.Controls.Add(this.tbMaintID);
             this.Maintenance.Controls.Add(this.lbMaintError);
@@ -1190,6 +1192,16 @@
             this.Maintenance.TabIndex = 4;
             this.Maintenance.Text = "Maintenance";
             this.Maintenance.UseVisualStyleBackColor = true;
+            // 
+            // maint_clear
+            // 
+            this.maint_clear.Location = new System.Drawing.Point(741, 54);
+            this.maint_clear.Name = "maint_clear";
+            this.maint_clear.Size = new System.Drawing.Size(75, 23);
+            this.maint_clear.TabIndex = 20;
+            this.maint_clear.Text = "Clear";
+            this.maint_clear.UseVisualStyleBackColor = true;
+            this.maint_clear.Click += new System.EventHandler(this.maint_clear_Click);
             // 
             // tbMaintDateCheck
             // 
@@ -1298,7 +1310,7 @@
             // 
             // btMaintAdd
             // 
-            this.btMaintAdd.Location = new System.Drawing.Point(730, 54);
+            this.btMaintAdd.Location = new System.Drawing.Point(660, 54);
             this.btMaintAdd.Name = "btMaintAdd";
             this.btMaintAdd.Size = new System.Drawing.Size(75, 23);
             this.btMaintAdd.TabIndex = 3;
@@ -3935,6 +3947,7 @@
         private System.Windows.Forms.RadioButton rbFirstDayMondayCal;
         private System.Windows.Forms.GroupBox groupBox26;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button maint_clear;
     }
 }
 
