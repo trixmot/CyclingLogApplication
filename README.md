@@ -1,4 +1,4 @@
-# CylingLogApplication
+# CyclingLogApplication
 
 Cycling log to track bike rides.  Data can be entered manually or imported using the activity*******.csv file from Garmin (Export Splits to CSV).
 
