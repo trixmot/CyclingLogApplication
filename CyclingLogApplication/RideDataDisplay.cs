@@ -1657,6 +1657,9 @@ namespace CyclingLogApplication
         {
             RunGridUpdate();
 
+            MainForm.SetLastLogFilterSelected(cbLogYearFilter.SelectedIndex);
+            ConfigurationFile.WriteConfigFile();
+
             if (rbAscendingOrder.Checked)
             {
                 MainForm.SetGridOrder("ASC");

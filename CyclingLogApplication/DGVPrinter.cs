@@ -148,9 +148,9 @@ namespace DGVPrinterHelper //AllocationRequest
         public static void Write(String from, LogManager.Categories category, String msg, String path, String name)
         {
             StringBuilder line = new StringBuilder();
-            line.Append(DateTime.Now.ToShortDateString().ToString());
+            line.Append(DateTime.Now.ToShortDateString());
             line.Append("-");
-            line.Append(DateTime.Now.ToLongTimeString().ToString());
+            line.Append(DateTime.Now.ToLongTimeString());
             line.Append(", ");
             line.Append(category.ToString().PadRight(6, ' '));
             line.Append(",");
@@ -405,7 +405,7 @@ namespace DGVPrinterHelper //AllocationRequest
         private float colheaderheight = 0;
         //private List<float> rowheights;
         private List<float> colwidths;
-        private List<List<SizeF>> cellsizes;
+        //private List<List<SizeF>> cellsizes;
 
         #endregion
 
@@ -2142,7 +2142,7 @@ namespace DGVPrinterHelper //AllocationRequest
                 {
                     fixedcolumns.Add(GetColumnIndex(colname));
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     // missing column, so add it to print list and retry
                     colstoprint.Add(dgv.Columns[colname]);

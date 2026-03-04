@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CyclingLogApplication.exe" size="520192">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CyclingLogApplication.exe" size="520704">
       <assemblyIdentity name="CyclingLogApplication" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Mh+7j0hjd2GqdEnIYVkyVV5CH3kX+772ahg00k3oXdo=</dsig:DigestValue>
+        <dsig:DigestValue>PJgEDgY1eGSRLZWcmht5Dlh2NTJvya6Sx4GjCS5zeCs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -86,7 +86,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>tDyHvFetbEqQZAOlex7vgokv1/XH6rUbVUq7BnjmboM=</dsig:DigestValue>
+      <dsig:DigestValue>KTsjP1rpSsEfWDswaFuBRrWf+nrzyFCuFjgnbNu8mL0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="CyclingLogDatabase_log.ldf" size="573440" writeableType="applicationData">
@@ -95,7 +95,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>JpSYm/oMdxQYePV5ehbewJgZ1fq+13fImLKVI3U3qK0=</dsig:DigestValue>
+      <dsig:DigestValue>WuAeRAJj1WCxOueZxlrD2aRx9Je//57FxZ/4vXqMrEw=</dsig:DigestValue>
     </hash>
   </file>
   <file name="license.txt" size="1080">
@@ -104,7 +104,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>qRs+gaUb6xdYG8TrRRb0nYZw1HIvCNYlWDnLLGVIDVQ=</dsig:DigestValue>
+      <dsig:DigestValue>H8V1dyS3xnR/Enn6/XAUv3X8CgioE4tdB3Teb3HDiRk=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

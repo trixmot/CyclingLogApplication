@@ -6,51 +6,44 @@ using System.Windows.Forms;
 using System.Management;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 
 namespace CyclingLogApplication
 {
     static class Program
     {
+        private const string SingleInstanceMutexName = "Global\\CyclingLogApplication_SingleInstance_Mutex";
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            //https://social.technet.microsoft.com/wiki/contents/articles/940.how-to-embed-sql-server-express-in-an-application.aspx
-            //WebPlatformInstaller.exe /id SQLExpress
-            //System.Diagnostics.Process.Start(@"C:\Program Files\Microsoft\Web Platform Installer\webplatforminstaller.exe"," /id SQLExpress");
-            //System.Diagnostics.Process.Start("http://www.microsoft.com/web/gallery/install.aspx?appsxml=&appid=SQLExpress");
+            // Ensure single instance using a named mutex
+            bool createdNew = false;
+            using (var mutex = new Mutex(true, SingleInstanceMutexName, out createdNew))
+            {
+                if (!createdNew)
+                {
+                    // Another instance is already running - exit quietly
+                    MessageBox.Show("Another instance of Cycling Log is already running.", "Already Running", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
-            //Process process = Process.Start(@"sc", " query MSSQLSERVER");
-            //Process compiler = new Process();
-            //compiler.StartInfo.FileName = "sc";
-            //compiler.StartInfo.Arguments = "query MSSQLSERVER";
-            //compiler.StartInfo.UseShellExecute = false;
-            //compiler.StartInfo.RedirectStandardOutput = true;
-            //compiler.Start();
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
 
-            //Console.WriteLine(compiler.StandardOutput.ReadToEnd());
-            //Logger.Log("[DEBUG] " + compiler.StandardOutput.ReadToEnd(), 0, 0);
-            //compiler.WaitForExit();
+                Logger.Log("**********************************************", 1, 0);
+                Logger.Log("Starting Log Application", 1, 0);
+                Logger.Log("**********************************************", 1, 0);
 
-            //System.Diagnostics.Process.Start(@"sc", " query MSSQLSERVER");
-            //Command line:
-            //sc query MSSQLSERVER
-            //Wmic service where (PathName like '%Binn\\sqlservr%') get caption, name, startmode, state, PathName, ProcessId
+                Application.Run(new MainForm());
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            
-            Logger.Log("**********************************************", 1, 0);
-            Logger.Log("Starting Log Application", 1, 0);
-            Logger.Log("**********************************************", 1, 0);
-
-            Application.Run(new MainForm());
-
-            Logger.Log("**********************************************", 1, 0);
-            Logger.Log("Ending Log Application", 1, 0);
-            Logger.Log("**********************************************", 1, 0);
+                Logger.Log("**********************************************", 1, 0);
+                Logger.Log("Ending Log Application", 1, 0);
+                Logger.Log("**********************************************", 1, 0);
+            }
         }
 
         /// <summary>

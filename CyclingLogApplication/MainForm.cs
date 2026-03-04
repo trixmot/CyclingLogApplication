@@ -34,7 +34,7 @@ namespace CyclingLogApplication
         //private static Mutex mutex = null;
         Boolean formloading = false;
 
-        private static string logVersion = "1.0.0";
+        private static string logVersion = "1.1.0";
         private static int logLevel = 0;
         private static string gridOrder;
         private static int lastLogSelected = 0;
@@ -74,10 +74,10 @@ namespace CyclingLogApplication
         private static string gridRouteTextColor;
         private static string gridCalendarTextColor;
 
-        private static Dictionary<string, string> fieldNameDict = new Dictionary<string, string>();
-        private static Dictionary<string, string> logNameIDDict = new Dictionary<string, string>();
-        private static List<string> fieldNamesList = new List<string>();
-        private static List<string> routeNamesList = new List<string>();
+        private static readonly Dictionary<string, string> fieldNameDict = new Dictionary<string, string>();
+        private static readonly Dictionary<string, string> logNameIDDict = new Dictionary<string, string>();
+        private static readonly List<string> fieldNamesList = new List<string>();
+        private static readonly List<string> routeNamesList = new List<string>();
 
         private static SqlConnection sqlConnection;             // = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=False");
         private static DatabaseConnection databaseConnection;   // = new DatabaseConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=False");
@@ -132,13 +132,13 @@ namespace CyclingLogApplication
 
             InitializeComponent();
             GetConnectionStrings();
-            int logSetting = GetLogLevel();
+            //int logSetting = GetLogLevel();
 
             tbWeekCount.Text = GetCurrentWeekCount().ToString(); //For current year only:
             tbDayCount.Text = GetCurrentDayCount().ToString();
             tbTimeChange.Text = GetDaysToNextTimeChange().ToString();
 
-            textBox1.Text = "The MIT License\r\nCopyright (c) 2025, John T Flynn\r\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation\r\nfiles (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify,\r\nmerge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom\r\nthe Software is furnished to do so, subject to the following conditions:\r\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\r\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\r\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\r\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\r\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\r\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\r\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.";
+            textBox1.Text = "The MIT License\r\nCopyright (c) 2026, John T Flynn\r\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation\r\nfiles (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify,\r\nmerge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom\r\nthe Software is furnished to do so, subject to the following conditions:\r\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\r\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\r\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\r\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\r\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\r\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\r\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.";
         }
 
         public MainForm(string emptyConstructor)
@@ -493,7 +493,7 @@ namespace CyclingLogApplication
 
         static void GetConnectionStrings()
         {
-            string conStr = ConfigurationManager.ConnectionStrings["CyclingLogApplication.Properties.Settings.CyclingLogDatabaseConnectionString"].ConnectionString;
+            //string conStr = ConfigurationManager.ConnectionStrings["CyclingLogApplication.Properties.Settings.CyclingLogDatabaseConnectionString"].ConnectionString;
             //Logger.Log("conStr Name: " + conStr, 1, 1);
             ConnectionStringSettingsCollection settings = ConfigurationManager.ConnectionStrings;
 
@@ -8932,7 +8932,7 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                Logger.LogError("Log year Data could not be written to the CSV file.");
+                Logger.LogError("Log year Data could not be written to the CSV file." + ex.Message.ToString());
                 returnStatus = false;
 
                 return returnStatus;
@@ -8996,7 +8996,7 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                Logger.LogError("Bike Data could not be written to the CSV file.");
+                Logger.LogError("Bike Data could not be written to the CSV file." + ex.Message.ToString());
                 returnStatus = false;
 
                 return returnStatus;
@@ -9061,7 +9061,7 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                Logger.LogError("Maintenance Data could not be written to the CSV file.");
+                Logger.LogError("Maintenance Data could not be written to the CSV file." + ex.Message.ToString());
                 returnStatus = false;
 
                 return returnStatus;
@@ -9117,7 +9117,7 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                Logger.LogError("Route Data could not be written to the CSV file.");
+                Logger.LogError("Route Data could not be written to the CSV file." + ex.Message.ToString());
                 returnStatus = false;
 
                 return returnStatus;
@@ -9234,7 +9234,7 @@ namespace CyclingLogApplication
             }
             catch (Exception ex)
             {
-                Logger.LogError("Ride Data could not be written to the CSV file.");
+                Logger.LogError("Ride Data could not be written to the CSV file." + ex.Message.ToString());
                 returnStatus = false;
 
                 return returnStatus;

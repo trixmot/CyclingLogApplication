@@ -40,7 +40,7 @@ namespace CyclingLogApplication
         private int id;
         private int logYearID;
         private DateTime date;
-        private int bikeIndex;
+        //private int bikeIndex;
         private string bike;
         private string route;
 

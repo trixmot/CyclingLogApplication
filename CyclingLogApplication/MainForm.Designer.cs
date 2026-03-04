@@ -651,7 +651,7 @@
             // tbDayCount
             // 
             this.tbDayCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDayCount.Location = new System.Drawing.Point(127, 83);
+            this.tbDayCount.Location = new System.Drawing.Point(127, 95);
             this.tbDayCount.Name = "tbDayCount";
             this.tbDayCount.ReadOnly = true;
             this.tbDayCount.Size = new System.Drawing.Size(47, 26);
@@ -672,7 +672,7 @@
             // tbTimeChange
             // 
             this.tbTimeChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTimeChange.Location = new System.Drawing.Point(127, 115);
+            this.tbTimeChange.Location = new System.Drawing.Point(127, 131);
             this.tbTimeChange.Name = "tbTimeChange";
             this.tbTimeChange.ReadOnly = true;
             this.tbTimeChange.Size = new System.Drawing.Size(47, 26);
@@ -684,7 +684,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(24, 86);
+            this.label14.Location = new System.Drawing.Point(24, 95);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(97, 20);
             this.label14.TabIndex = 50;
@@ -694,7 +694,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(18, 118);
+            this.label15.Location = new System.Drawing.Point(18, 131);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(103, 20);
             this.label15.TabIndex = 52;
@@ -703,7 +703,7 @@
             // tbWeekCount
             // 
             this.tbWeekCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbWeekCount.Location = new System.Drawing.Point(127, 54);
+            this.tbWeekCount.Location = new System.Drawing.Point(127, 60);
             this.tbWeekCount.Name = "tbWeekCount";
             this.tbWeekCount.ReadOnly = true;
             this.tbWeekCount.Size = new System.Drawing.Size(47, 26);
