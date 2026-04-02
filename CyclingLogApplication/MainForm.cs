@@ -175,7 +175,7 @@ namespace CyclingLogApplication
             try
             {
                 
-                ConfigurationFile configfile = new ConfigurationFile();
+                //ConfigurationFile configfile = new ConfigurationFile();
                 ConfigurationFile.ReadConfigFile();
 
                 SetLogVersion(logVersion);
@@ -327,8 +327,10 @@ namespace CyclingLogApplication
                 //Get all values and load the comboboxes:
                 List<string> logYearList = GetLogYears();
                 List<string> routeListTemp = ReadDataNames("Table_Routes", "Name");
-                List<string> routeList = new List<string>();
-                routeList.Add("--Select Value--");
+                List<string> routeList = new List<string>
+                {
+                    "--Select Value--"
+                };
                 foreach (string route in routeListTemp)
                 {
                     routeList.Add(route);
@@ -337,11 +339,9 @@ namespace CyclingLogApplication
                 List<string> bikeList = ReadDataNames("Table_Bikes", "Name");
 
                 SetLogNameIDDictionary(logYearList);
-                ChartForm chartForm = new ChartForm();
+
                 cbLogYearConfig.Items.Clear();
                 cbLogYearConfig.Items.Add("--Add New Log--");
-
-                RideDataEntry rideDataEntryForm = new RideDataEntry();
 
                 //Load LogYear values:
                 foreach (string val in logYearList)
@@ -919,7 +919,7 @@ namespace CyclingLogApplication
                     logYearsList[i]
                 };
 
-                int logIndex = 0;
+                int logIndex;
 
                 //ExecuteScalarFunction
                 using (var results = ExecuteSimpleQueryConnection("Get_LogYear_Index_Name", objectValues))
@@ -1009,6 +1009,8 @@ namespace CyclingLogApplication
             try
             {
                 sqlConnection.Open();
+
+                //TODO check values of tableName and columnName to prevent SQL injection:
 
                 // 1. declare command object with parameter
                 using (SqlCommand cmd = new SqlCommand("SELECT " + columnName + " FROM " + tableName + " ORDER BY " + columnName + " ASC", sqlConnection))
@@ -1135,11 +1137,7 @@ namespace CyclingLogApplication
                 {
                     logType = "Update";
                     DialogResult result = MessageBox.Show("Do you really want to update the Log Title?", "Update Log", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.Yes)
-                    {
-
-                    }
-                    else
+                    if (result == DialogResult.No)
                     {
                         return;
                     }
@@ -1148,11 +1146,7 @@ namespace CyclingLogApplication
                 {
                     logType = "Add";
                     DialogResult result = MessageBox.Show("Do you really want to Add the Log Title?", "Add Log", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.Yes)
-                    {
-
-                    }
-                    else
+                    if (result == DialogResult.No)
                     {
                         return;
                     }
@@ -9760,5 +9754,6 @@ namespace CyclingLogApplication
             dateTimePicker1.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
 
         }
+
     }
 }

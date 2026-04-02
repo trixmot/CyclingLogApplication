@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\CyclingLogApplication"
   ],
+  "SelectedNode": "\\CyclingLogApplication\\MainForm.cs",
   "PreviewInSolutionExplorer": false
 }

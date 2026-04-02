@@ -5,9 +5,9 @@
   "EnableSpellChecker": true,
   "ColumnOrder": [
     "name",
-    "type",
-    "neutral-value",
-    "neutral-comment"
+    "file-path",
+    "file-name",
+    "type"
   ],
   "VisibleColumnKeys": [
     "name",

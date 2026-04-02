@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace CyclingLogApplication
@@ -146,7 +147,11 @@ namespace CyclingLogApplication
             try { 
                 CloseDataReader(); 
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception CloseConnection1: " + ex.Message.ToString());
+                MessageBox.Show("An exception error CloseConnection1.");
+            }
 
             try {
                 //string databaseString = this.Connection.Database.ToString();
@@ -161,12 +166,23 @@ namespace CyclingLogApplication
                 //}
 
             }
-            catch { }
-
-            try { 
-                SqlConnection.ClearPool(Connection); 
+            catch (Exception)
+            {
+                //Logger.LogError("[ERROR]: Exception CloseConnection2: " + ex.Message.ToString());
+                //MessageBox.Show("An exception error CloseConnection2.");
             }
-            catch { }
+
+            try {
+                if (this.Connection != null)
+                {
+                    SqlConnection.ClearPool(this.Connection);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception CloseConnection3: " + ex.Message.ToString());
+                MessageBox.Show("An exception error CloseConnection3.");
+            }
         }
 
         /// <summary>
@@ -177,7 +193,11 @@ namespace CyclingLogApplication
             if (this.dataReader != null)
             {
                 try { this.dataReader.Close(); }
-                catch { }
+                catch (Exception ex)
+                {
+                    Logger.LogError("[ERROR]: Exception CloseDataReader: " + ex.Message.ToString());
+                    MessageBox.Show("An exception error CloseDataReader.");
+                }
             }
         }
 
@@ -189,9 +209,17 @@ namespace CyclingLogApplication
             this.CloseConnection();
 
             try { this.dataReader.Dispose(); }
-            catch { }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception Dispose1: " + ex.Message.ToString());
+                MessageBox.Show("An exception error Dispose1.");
+            }
             try { this.Connection.Dispose(); }
-            catch { }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception Dispose2: " + ex.Message.ToString());
+                MessageBox.Show("An exception error Dispose2.");
+            }
         }
 
         /// <summary>
@@ -373,7 +401,11 @@ namespace CyclingLogApplication
             finally
             {
                 try { this.CloseConnection(); }
-                catch { }
+                catch (Exception ex)
+                {
+                    Logger.LogError("[ERROR]: Exception TestConnection: " + ex.Message.ToString());
+                    MessageBox.Show("An exception error TestConnection.");
+                }
             }
         }
 

@@ -357,6 +357,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.groupBox26);
             this.groupBox1.Controls.Add(this.groupBox19);
             this.groupBox1.Controls.Add(this.groupBox17);
@@ -642,11 +643,14 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(38, 23);
+            this.label22.BackColor = System.Drawing.Color.White;
+            this.label22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(57, 20);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(116, 13);
+            this.label22.Size = new System.Drawing.Size(76, 22);
             this.label22.TabIndex = 54;
-            this.label22.Text = "Week And Day Counts";
+            this.label22.Text = "Counters";
             // 
             // tbDayCount
             // 
@@ -1404,15 +1408,15 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(22, 90);
+            this.label26.Location = new System.Drawing.Point(16, 90);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(78, 13);
+            this.label26.Size = new System.Drawing.Size(96, 13);
             this.label26.TabIndex = 28;
-            this.label26.Text = "Old Bike Name";
+            this.label26.Text = "Current Bike Name";
             // 
             // tbBikeOldName
             // 
-            this.tbBikeOldName.Location = new System.Drawing.Point(106, 83);
+            this.tbBikeOldName.Location = new System.Drawing.Point(115, 83);
             this.tbBikeOldName.Name = "tbBikeOldName";
             this.tbBikeOldName.ReadOnly = true;
             this.tbBikeOldName.Size = new System.Drawing.Size(141, 20);
@@ -1439,7 +1443,7 @@
             // 
             // tbBikeLogMiles
             // 
-            this.tbBikeLogMiles.Location = new System.Drawing.Point(113, 178);
+            this.tbBikeLogMiles.Location = new System.Drawing.Point(115, 178);
             this.tbBikeLogMiles.Name = "tbBikeLogMiles";
             this.tbBikeLogMiles.ReadOnly = true;
             this.tbBikeLogMiles.Size = new System.Drawing.Size(81, 20);
@@ -1457,7 +1461,7 @@
             // 
             // tbBikeTotalMiles
             // 
-            this.tbBikeTotalMiles.Location = new System.Drawing.Point(113, 207);
+            this.tbBikeTotalMiles.Location = new System.Drawing.Point(115, 207);
             this.tbBikeTotalMiles.Name = "tbBikeTotalMiles";
             this.tbBikeTotalMiles.ReadOnly = true;
             this.tbBikeTotalMiles.Size = new System.Drawing.Size(81, 20);
@@ -1485,7 +1489,7 @@
             // 
             // tbBikeAllMilesTotal
             // 
-            this.tbBikeAllMilesTotal.Location = new System.Drawing.Point(106, 38);
+            this.tbBikeAllMilesTotal.Location = new System.Drawing.Point(115, 38);
             this.tbBikeAllMilesTotal.Name = "tbBikeAllMilesTotal";
             this.tbBikeAllMilesTotal.ReadOnly = true;
             this.tbBikeAllMilesTotal.Size = new System.Drawing.Size(80, 20);
@@ -1505,7 +1509,7 @@
             // 
             // tbBikeConfig
             // 
-            this.tbBikeConfig.Location = new System.Drawing.Point(106, 105);
+            this.tbBikeConfig.Location = new System.Drawing.Point(115, 105);
             this.tbBikeConfig.Name = "tbBikeConfig";
             this.tbBikeConfig.Size = new System.Drawing.Size(141, 20);
             this.tbBikeConfig.TabIndex = 11;
@@ -1521,7 +1525,7 @@
             // 
             // tbConfigMilesNotInLog
             // 
-            this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(113, 152);
+            this.tbConfigMilesNotInLog.Location = new System.Drawing.Point(115, 152);
             this.tbConfigMilesNotInLog.Name = "tbConfigMilesNotInLog";
             this.tbConfigMilesNotInLog.Size = new System.Drawing.Size(81, 20);
             this.tbConfigMilesNotInLog.TabIndex = 17;
@@ -1662,9 +1666,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(20, 90);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 13);
+            this.label4.Size = new System.Drawing.Size(102, 13);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Old Route Label";
+            this.label4.Text = "Current Route Label";
             // 
             // dataGridViewRoutes
             // 

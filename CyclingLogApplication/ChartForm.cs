@@ -489,7 +489,8 @@ namespace CyclingLogApplication
 
                         if (!checkBoxRouteOption.Checked)
                         {
-                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " and Date >= '" + dateFrom + "' AND Date < '" + dateTo + "' ORDER BY Date", sqlConnection);
+                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=@logIndex and Date >= '" + dateFrom + "' AND Date < '" + dateTo + "' ORDER BY Date", sqlConnection);
+                            cmd.Parameters.AddWithValue("@logIndex", logIndex);
                         }
                         else
                         {
@@ -852,7 +853,7 @@ namespace CyclingLogApplication
                 // Longest Chart
                 chart1.Series["Series1"].XValueMember = "Date";
                 chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
-                chart1.Series["Series1"].YValueMembers = "AvgSpeed";
+                chart1.Series["Series1"].YValueMembers = "Longest";
                 chart1.Series["Series1"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             }
             else if (cbTypeChartData.SelectedIndex == 3)
@@ -860,7 +861,7 @@ namespace CyclingLogApplication
                 // Miles Chart
                 chart1.Series["Series1"].XValueMember = "Date";
                 chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
-                chart1.Series["Series1"].YValueMembers = "AvgSpeed";
+                chart1.Series["Series1"].YValueMembers = "Miles";
                 chart1.Series["Series1"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             }
             else if (cbTypeChartData.SelectedIndex == 4)
@@ -868,7 +869,7 @@ namespace CyclingLogApplication
                 // High Ascent Chart
                 chart1.Series["Series1"].XValueMember = "Date";
                 chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
-                chart1.Series["Series1"].YValueMembers = "AvgSpeed";
+                chart1.Series["Series1"].YValueMembers = "High Ascent";
                 chart1.Series["Series1"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             }
             else if (cbTypeChartData.SelectedIndex == 5)
