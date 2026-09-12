@@ -878,6 +878,7 @@
             this.btYearlyStatReset.TabIndex = 159;
             this.btYearlyStatReset.Text = "Refresh";
             this.btYearlyStatReset.UseVisualStyleBackColor = true;
+            this.btYearlyStatReset.Visible = false;
             this.btYearlyStatReset.Click += new System.EventHandler(this.btYearlyStatReset_Click);
             // 
             // dataGridViewYearly
@@ -939,6 +940,7 @@
             this.btMonthlyStatReset.TabIndex = 160;
             this.btMonthlyStatReset.Text = "Refresh";
             this.btMonthlyStatReset.UseVisualStyleBackColor = true;
+            this.btMonthlyStatReset.Visible = false;
             this.btMonthlyStatReset.Click += new System.EventHandler(this.btMonthlyStatReset_Click);
             // 
             // dataGridViewMonthly
@@ -1001,6 +1003,7 @@
             this.button6.TabIndex = 180;
             this.button6.Text = "Refresh";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // label25
@@ -1110,6 +1113,7 @@
             this.btRefresh.TabIndex = 1;
             this.btRefresh.Text = "Refresh";
             this.btRefresh.UseVisualStyleBackColor = true;
+            this.btRefresh.Visible = false;
             this.btRefresh.Click += new System.EventHandler(this.btRefresh_Click);
             // 
             // lbMonth

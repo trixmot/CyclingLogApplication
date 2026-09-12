@@ -140,6 +140,7 @@
             this.brRefreshPlanner.TabIndex = 23;
             this.brRefreshPlanner.Text = "Refresh";
             this.brRefreshPlanner.UseVisualStyleBackColor = true;
+            this.brRefreshPlanner.Visible = false;
             this.brRefreshPlanner.Click += new System.EventHandler(this.brRefreshPlanner_Click);
             // 
             // tbDayPlanner2

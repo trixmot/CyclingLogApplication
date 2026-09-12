@@ -106,11 +106,12 @@ namespace CyclingLogApplication
 
         public MainForm()
         {
+            
             //if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1) return;
             //const string appName = "Cycling Log";
             //bool createdNew;
 
-            
+
 
             //mutex = new Mutex(true, appName, out createdNew);
 
@@ -160,6 +161,8 @@ namespace CyclingLogApplication
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            tabControl1.Deselecting += new TabControlCancelEventHandler(tabControl1_Deselecting);
+
             //if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1) return;
 
             //if (GetMutex() != null)
@@ -489,6 +492,25 @@ namespace CyclingLogApplication
                 //this.Dispose();
                 Application.Exit();
             }
+        }
+
+        private void tabControl1_Deselecting(object sender, TabControlCancelEventArgs e)
+        {
+            // Check if the tab you are leaving is the specific one (e.g., tabPage1)
+            if (tabControl1.SelectedTab == Main)
+            {
+                // Run your command or method here
+                RefreshData();
+
+                // Optional: If you want to cancel leaving the tab under certain conditions:
+                // e.Cancel = true; 
+            }
+        }
+
+        private void RunMyCommand()
+        {
+            // Your specific code
+            MessageBox.Show("Leaving the specific tab!");
         }
 
         static void GetConnectionStrings()
@@ -1496,6 +1518,7 @@ namespace CyclingLogApplication
 
         private void OpenRideDataForm(object sender, EventArgs e)
         {
+            RefreshData();
             RideDataDisplay rideDataDisplayForm = new RideDataDisplay();
 
             //rideDataDisplayForm.SetCustomValues();
@@ -4130,6 +4153,7 @@ namespace CyclingLogApplication
 
         private void BtCharts_Click(object sender, EventArgs e)
         {
+            RefreshData();
             ChartForm chartForm = new ChartForm();
             chartForm.Show();
             lbMaintError.Text = "";
@@ -5261,13 +5285,14 @@ namespace CyclingLogApplication
 
         public void RefreshData()
         {
-            MessageBox.Show("Testing to verify call.", "Refresh Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Testing to verify call.", "Refresh Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Run Refresh for all data fields:
             RunYearlyStatisticsGrid();
             int logYearIndex = GetLogYearIndex_ByName(cbStatMonthlyLogYear.SelectedItem.ToString());
             RunMonthlyStatisticsGrid(logYearIndex);
             RefreshWeekly();
+            RunCalendar();
             RefreshBikes();
             RefreshRoutes();
             GetMaintLog();
@@ -6592,6 +6617,7 @@ namespace CyclingLogApplication
 
         private void btPlanner_Click(object sender, EventArgs e)
         {
+            RefreshData();
             Planner planner = new Planner(); 
             planner.Show();
         }

@@ -877,7 +877,7 @@ namespace CyclingLogApplication
                 // {
                 //Close();
 
-                mainForm.RefreshData();
+               // mainForm.RefreshData();
 
 
                 formClosing = 1;
