@@ -34,6 +34,40 @@ namespace CyclingLogApplication
         }
 
         /// <summary>
+        /// Executes a command and returns the results as a DataTable.
+        /// </summary>
+        /// <param name="CommandString">A properly formed command string (use @0,@1.. parameter placeholders)</param>
+        /// <param name="_Parameters">The parameters to use as arguments for the command</param>
+        /// <returns>DataTable containing the result set</returns>
+        public DataTable ExecuteDataTable(string CommandString, List<object> _Parameters)
+        {
+            this.OpenConnection(this.ConnectionString);
+
+            using (SqlCommand cmd = new SqlCommand(CommandString, this.Connection))
+            {
+                cmd.CommandTimeout = 400;
+
+                if (_Parameters != null && _Parameters.Count > 0)
+                {
+                    cmd.Prepare();
+                    int count = 0;
+                    foreach (object _o in _Parameters)
+                    {
+                        cmd.Parameters.Add(new SqlParameter("@" + count.ToString(), _o == null ? DBNull.Value : _o) { Value = _o == null ? DBNull.Value : _o });
+                        count++;
+                    }
+                }
+
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        /// <summary>
         /// The result of a database connection test
         /// </summary>
         public class DatabaseConnectionTestResult

@@ -990,15 +990,8 @@ namespace CyclingLogApplication
 
         public static List<string> GetLogYears()
         {
-            MainForm mainform = new MainForm();
-            List<string> logYearsList = MainForm.ReadDataNamesDESC("Table_Log_year", "Name");
-
-            for (int i = 0; i < mainform.cbLogYearConfig.Items.Count; i++)
-            {
-                logYearsList.Add(logYearsList[i]);
-            }
-
-            return logYearsList;
+            // Return list of log year names from the database. Do not construct a new MainForm just to access UI controls.
+            return ReadDataNamesDESC("Table_Log_year", "Name");
         }
 
         public static List<string> GetRoutes()
