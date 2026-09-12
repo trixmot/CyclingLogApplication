@@ -33,6 +33,10 @@ namespace CyclingLogApplication
 {
     public partial class RideDataEntry : Form
     {
+        // Holds a dictionary of SQL parameters (key = parameter name including leading '@', value = parameter value)
+        private Dictionary<string, string> sqlParametersDictionary = new Dictionary<string, string>();
+        // Backwards-compatible holder for a SET command string (not used by the new parameterized update helper)
+        private string setCommandString = string.Empty;
         private static int formLoad = 1;
         private static int formClosing = 0;
         private SqlConnection sqlConnection;
@@ -92,6 +96,8 @@ namespace CyclingLogApplication
             {
                 cbRouteDataEntry.Items.Add(routeList.ElementAt(i));
             }
+
+
 
             List<string> bikeList = MainForm.ReadDataNames("Table_Bikes", "Name");
             cbBikeDataEntrySelection.Items.Add("--Select Value--");
@@ -473,6 +479,73 @@ namespace CyclingLogApplication
                 max_speed.Text = maxSpeed;
             }
             
+        }
+
+        /// <summary>
+        /// Accepts a dictionary of SQL parameters prepared by callers (keys may include a leading '@').
+        /// This is kept for compatibility with other forms that previously built parameter dictionaries.
+        /// </summary>
+        /// <param name="sqlParametersDict">Dictionary where key is parameter name (eg. "@MovingTime") and value is the value to set</param>
+        public void SetSqlParameters(Dictionary<string, string> sqlParametersDict)
+        {
+            this.sqlParametersDictionary = sqlParametersDict ?? new Dictionary<string, string>();
+        }
+
+        /// <summary>
+        /// Stores a SET command representation. The new update helper will prefer the parameter dictionary
+        /// and will construct a parameterized UPDATE statement using the dictionary keys/values.
+        /// </summary>
+        public void SetSetCommand(string setCommand)
+        {
+            this.setCommandString = setCommand ?? string.Empty;
+        }
+
+        /// <summary>
+        /// Builds a parameterized UPDATE statement from the currently stored parameter dictionary and
+        /// executes it against the database. The record id to update is read from the hidden field tbRecordID.
+        /// </summary>
+        /// <returns>Number of rows affected (0 on error)</returns>
+        public int UpdateRideInformationFromSqlParameters()
+        {
+            try
+            {
+                if (this.sqlParametersDictionary == null || this.sqlParametersDictionary.Count == 0)
+                    return 0;
+
+                List<object> parameters = new List<object>();
+                List<string> setParts = new List<string>();
+                int idx = 0;
+
+                // Maintain the insertion order from the dictionary so callers that built it in order keep that order
+                foreach (var kv in this.sqlParametersDictionary)
+                {
+                    string key = kv.Key ?? string.Empty;
+                    // column name should be the parameter name without leading '@'
+                    string col = key.StartsWith("@") ? key.Substring(1) : key;
+                    setParts.Add(col + "=@" + idx.ToString());
+                    parameters.Add(kv.Value == null ? (object)DBNull.Value : (object)kv.Value);
+                    idx++;
+                }
+
+                int recordId = 0;
+                if (!int.TryParse(tbRecordID.Text, out recordId))
+                {
+                    // If tbRecordID is not set, try the internal id field
+                    recordId = this.id;
+                }
+
+                parameters.Add(recordId);
+
+                string cmd = "UPDATE Table_Ride_Information SET " + string.Join(",", setParts) + " WHERE Id=@" + idx.ToString();
+
+                int rows = databaseConnection.ExecuteNonQueryConnection(cmd, parameters);
+                return rows;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to UpdateRideInformationFromSqlParameters. " + ex.Message.ToString());
+                return 0;
+            }
         }
 
         public void SetAvgPower(string avgPower)
@@ -864,26 +937,11 @@ namespace CyclingLogApplication
 
         private void CloseRideDataEntry(object sender, EventArgs e)
         {
-            using (MainForm mainForm = new MainForm(""))
-            {
-                //MainForm.SetLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
-                //MainForm.SetLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);
-                //MainForm mainForm2 = new MainForm();
-                //mainForm2.refreshData();
-                //Close();
-                //this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
-                //DialogResult result = MessageBox.Show("Any unsaved changes will be lost, do you want to continue?", "Exit Data Entry Form", MessageBoxButtons.YesNo);
-                //if (result == DialogResult.Yes)
-                // {
-                //Close();
-
-               // mainForm.RefreshData();
-
-
-                formClosing = 1;
-                this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
-                //}
-            }
+            // Avoid constructing a new MainForm instance just to call methods. If the main form is running, use the
+            // shared instance. (If an instance method needs to be called here, invoke it on MainForm.Instance.)
+            // Example: MainForm.Instance?.RefreshData();
+            formClosing = 1;
+            this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
         }
 
         //private void RideDataEntry_FormClosing(object sender, FormClosingEventArgs e)
@@ -2087,92 +2145,16 @@ namespace CyclingLogApplication
         //    return sqlParameters; 
         //}
 
-        //public void UpdateRideInformation()
-        //{
-        //    //Need list of fields to update:
-        // //   @MovingTime time,
-        // //   @RideDistance float,
-        // //   @AvgSpeed float,
-        // //   @Bike nvarchar(25),
-	       // //@RideType nvarchar(25),
-	       // //@Wind float,
-        // //   @Temperature float,
-        // //   @Date date,
-	       // //@AvgCadence float,
-        // //   @MaxCadence float,
-        // //   @AvgHeartRate float,
-        // //   @MaxHeartRate float,
-        // //   @Calories float,
-        // //   @TotalAscent float,
-        // //   @TotalDescent float,
-        // //   @MaxSpeed float,
-        // //   @AveragePower float,
-        // //   @MaxPower float,
-        // //   @Route nvarchar(50),
-	       // //@Comments nvarchar(200),
-	       // //@LogYearID bigint,
-        //    //@WeekNumber bigint,
-	       // //@Location nvarchar(25),
-	       // //@Windchill float,
-        //    //@Effort nvarchar(25),
-	       // //@Comfort nvarchar(25),
-	       // //@Custom1 nvarchar(25),
-	       // //@Custom2 nvarchar(25),
-
-        //    SqlDataReader reader = null;
-        //    int id = GetID();
-
-        //    string setCommand = "MovingTime=@movingTime,RideDistance=@rideDistance,AvgSpeed=@avgSpeed,Bike=@bike,RideType=@rideType,Wind=@wind,Temperature=@temperature,Date=@date,AvgCadence=@avgCadence,MaxCadence=maxCadence,AvgHeartRate=@avgHeartRate,MaxHeartRate=@maxHeartRate,Calories=@calories,TotalAscent=@totalAscent,TotalDescent=@totalDescent,MaxSpeed=@maxSpeed,AveragePower=@averagePower,MaxPower=@maxPower,Route=@route,Comments=@comments,LogYearID=@logYearID,WeekNumber=@weekNumber,Location=@location,Effort=@effort,Comfort=@comfort,Custom1=@custom1,Custom2=@custom2";
-        //    Dictionary<string, string> sqlParametersDictionary = GetSqlParameters();
-        //    string keyValue;
-
-        //    try
-        //    {
-        //        sqlConnection.Open();
-
-        //        // 1. declare command object with parameter
-        //        using (SqlCommand cmd = new SqlCommand("UPDATE Table_Ride_Information SET " + setCommand + " WHERE Id=@id", sqlConnection))
-        //        {
-        //            // 2. define parameters used in command object
-        //            SqlParameter param = new SqlParameter();
-        //            // 3. add new parameter to command object
-        //            for (int i = 0; i < sqlParametersDictionary.Count; i++)
-        //            {
-        //                //TODO: convert certain fields to correct type:
-        //                keyValue = sqlParametersDictionary.ElementAt(i).Key;
-        //                //if (keyValue.Equals("@RideDistance") || keyValue.Equals("@AvgSpeed") || keyValue.Equals("@Wind") || keyValue.Equals("@Temperature") || keyValue.Equals("@AvgCadence") || keyValue.Equals("@MaxCadence") || keyValue.Equals("@AvgHeartRate") || keyValue.Equals("@MaxHeartRate") || keyValue.Equals("@TotalAscent") || keyValue.Equals("@TotalDescent") || keyValue.Equals("@MaxSpeed") || keyValue.Equals("@AveragePower") || keyValue.Equals("@MaxPower"))
-        //                //{
-        //                //    cmd.Parameters.AddWithValue(keyValue, sqlParametersDictionary.ElementAt(i).Value);
-        //                //} else if ()
-        //                //{
-        //                //    cmd.Parameters.AddWithValue(float.Parse(keyValue), sqlParametersDictionary.ElementAt(i).Value);
-        //                //} else
-        //                //{
-        //                    cmd.Parameters.AddWithValue(keyValue, sqlParametersDictionary.ElementAt(i).Value);
-        //                //}
-                        
-        //            }
-        //            //cmd.Parameters.AddWithValue("@calories", "12345");
-
-        //            reader = cmd.ExecuteReader();
-        //        }
-
-        //        // write each record
-        //        while (reader.Read())
-        //        {
-
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Logger.LogError("[ERROR]: Exception while trying update ride data entry." + ex.Message.ToString());
-        //    }
-        //    finally
-        //    {
-        //        reader?.Close();
-        //        sqlConnection?.Close();
-        //    }
-        //}
+        // NOTE: The previous implementation constructed a concatenated SQL UPDATE and added parameters
+        // manually. That code path was removed in favor of centralized, parameterized helpers.
+        // To update ride information safely use one of the following patterns:
+        //  - Call ExecuteSimpleQueryConnection("Ride_Information_Update", objectValues) to invoke the
+        //    existing server-side procedure that accepts ordered parameters.
+        //  - Build a Dictionary<string,string> of parameter name => value and call
+        //    SetSqlParameters(...) on a RideDataEntry instance then call
+        //    UpdateRideInformationFromSqlParameters() which will construct a parameterized UPDATE and
+        //    execute it via DatabaseConnection.ExecuteNonQueryConnection(...).
+        // The old concatenated SQL has been removed to avoid accidental reintroduction of SQL injection.
 
         private void btUpdateEntry_Click(object sender, EventArgs e)
         {

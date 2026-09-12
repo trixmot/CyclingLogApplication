@@ -1278,212 +1278,44 @@ namespace CyclingLogApplication
         //        wind = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
         //        setCommand += "Wind=@wind,";
         //        sqlPrameters.Add("@wind", wind);
-        //    }
+        // NOTE: Older code built a concatenated SET clause and a dictionary of parameters then used
+        // that to execute an UPDATE. That approach was removed in favor of centralized helpers.
+        // To apply updates from a DataGridView row use the helper `ApplyParameterizedUpdateFromRow(row)`
+        // which builds a Dictionary<string,string> and invokes `RideDataEntry.UpdateRideInformationFromSqlParameters()`
+        // or call the stored-proc wrappers: ExecuteSimpleQueryConnection("Ride_Information_Add", objectValues)
+        // or ExecuteSimpleQueryConnection("Ride_Information_Update", objectValues).
 
-        //    if (checkedListBox.GetItemChecked(9))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["Temp"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        temp = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "Temp=@temp,";
-        //        sqlPrameters.Add("@temp", temp);
-        //    }
+        // Helper: Builds a parameter dictionary for a selected DataGridView row and applies the update through
+        // RideDataEntry's parameterized update helper. This is provided as a safe example replacement for
+        // earlier commented-out concatenated-SQL code. It is not invoked automatically; callers should invoke it
+        // when they want to apply edits from a selected row.
+        private int ApplyParameterizedUpdateFromRow(DataGridViewRow row)
+        {
+            try
+            {
+                if (row == null) return 0;
 
-        //    if (checkedListBox.GetItemChecked(10))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["AvgCadence"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        avgCadence = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "AvgCadence=@avgCadence,";
-        //        sqlPrameters.Add("@avgCadence", avgCadence);
-        //    }
+                var parameters = new Dictionary<string, string>();
 
-        //    if (checkedListBox.GetItemChecked(11))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["MaxCadence"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        maxCadence = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "MaxCadence=@maxCadence,";
-        //        sqlPrameters.Add("@maxCadence", maxCadence);
-        //    }
+                // Example mapping - callers should adjust keys to match the real column names they want to update.
+                if (row.Cells["MovingTime"]?.Value != null) parameters.Add("@MovingTime", row.Cells["MovingTime"].Value.ToString());
+                if (row.Cells["RideDistance"]?.Value != null) parameters.Add("@RideDistance", row.Cells["RideDistance"].Value.ToString());
+                if (row.Cells["AvgSpeed"]?.Value != null) parameters.Add("@AvgSpeed", row.Cells["AvgSpeed"].Value.ToString());
 
-        //    if (checkedListBox.GetItemChecked(12))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["AvgHeartRate"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        avgHeartRate = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "AvgHeartRate=@avgHeartRate,";
-        //        sqlPrameters.Add("@avgHeartRate", avgHeartRate);
-        //    }
-
-        //    if (checkedListBox.GetItemChecked(13))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["MaxHeartRate"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        maxHeartRate = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "MaxHeartRate=@maxHeartRate,";
-        //        sqlPrameters.Add("@maxHeartRate", maxHeartRate);
-        //    }
-
-        //    if (checkedListBox.GetItemChecked(14))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["Calories"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        calories = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "Calories=@calories,";
-        //        sqlPrameters.Add("@calories", calories);
-        //    }
-
-        //    if (checkedListBox.GetItemChecked(15))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["TotalAscent"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        totalAscent = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "TotalAscent=@totalAscent,";
-        //        sqlPrameters.Add("@totalAscent", totalAscent);
-        //    }
-
-        //    if (checkedListBox.GetItemChecked(16))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["TotalDescent"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        totalDescent = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "TotalDescent=@totalDescent,";
-        //        sqlPrameters.Add("@totalDescent", totalDescent);
-        //    }
-
-        //    if (checkedListBox.GetItemChecked(17))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["Route"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        route = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "Route=@route,";
-        //        sqlPrameters.Add("@route", route);
-        //    }
-
-        //    if (checkedListBox.GetItemChecked(18))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["Location"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        location = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "Location=@location,";
-        //        sqlPrameters.Add("@location", location);
-        //    }
-
-        //    if (checkedListBox.GetItemChecked(19))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["Comments"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        comments = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "Comments=@comments,";
-        //        sqlPrameters.Add("@comments", comments);
-        //    }
-
-        //    if (checkedListBox.GetItemChecked(20))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["Effort"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        effort = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "Effort=@effort,";
-        //        sqlPrameters.Add("@effort", effort);
-        //    }
-
-        //    if (checkedListBox.GetItemChecked(21))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["MaxSpeed"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        maxSpeed = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "MaxSpeed=@maxSpeed,";
-        //        sqlPrameters.Add("@maxSpeed", maxSpeed);
-        //    }
-
-        //    if (checkedListBox.GetItemChecked(22))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["AvgPower"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        avgPower = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "AvgPower=@avgPower,";
-        //        sqlPrameters.Add("@avgPower", avgPower);
-        //    }
-
-        //    if (checkedListBox.GetItemChecked(23))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["MaxPower"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        maxPower = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "MaxPower=@maxPower,";
-        //        sqlPrameters.Add("@maxPower", maxPower);
-        //    }
-
-        //    if (checkedListBox.GetItemChecked(24))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["Comfort"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        comfort = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "Comfort=@comfort,";
-        //        sqlPrameters.Add("@comfort", comfort);
-        //    }
-
-        //    if (checkedListBox.GetItemChecked(25))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["Custom1"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        custom1 = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "Custom1=@custom1,";
-        //        sqlPrameters.Add("@custom1", custom1);
-        //    }
-
-        //    if (checkedListBox.GetItemChecked(26))
-        //    {
-        //        var dataGridViewColumn = dataGridView1.Columns["Custom2"];
-        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
-        //        custom2 = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
-        //        setCommand += "Custom2=@custom2,";
-        //        sqlPrameters.Add("@custom2", custom2);
-        //    }
-
-        //    rideDataEntryForm.SetSqlParameters(sqlPrameters);
-        //    setCommand = setCommand.TrimEnd(',');
-        //    rideDataEntryForm.SetSetCommand(setCommand);
-
-        //    List<string> bikeList = MainForm.ReadDataNames("Table_Bikes", "Name");
-
-        //    for (int i = 0; i < bikeList.Count; i++)
-        //    {
-        //        if (bikeList[i].Equals(bike))
-        //        {
-        //            bikeIndex = i;
-        //            break;
-        //        }
-        //    }
-
-        //    List<string> routeList = MainForm.ReadDataNames("Table_Routes", "Name");
-
-        //    for (int i = 0; i < routeList.Count; i++)
-        //    {
-        //        if (routeList[i].Equals(bike))
-        //        {
-        //            routeIndex = i;
-        //            break;
-        //        }
-        //    }
-
-        //    //Populate fields in the entry form:
-        //    rideDataEntryForm.SetcbLogYearDataEntryIndex(logNameIndex - 1);
-        //    rideDataEntryForm.SetDate(DateTime.Parse(date));
-        //    rideDataEntryForm.SettbWeekCountRDE(weekNumber);
-
-        //    rideDataEntryForm.SetRoute(routeIndex);
-        //    rideDataEntryForm.SetBike(bikeIndex);
-        //    rideDataEntryForm.SetTime(DateTime.Parse(movingTime));
-        //    rideDataEntryForm.SetDistance(decimal.Parse(rideDistance));
-        //    rideDataEntryForm.SetAvgSpeed(decimal.Parse(avgSpeed));
-
-
-        //    rideDataEntryForm.SetCalories(calories);
-
-        //    rideDataEntryForm.ShowDialog();
-        //}
+                using (var form = new RideDataEntry())
+                {
+                    form.SetSqlParameters(parameters);
+                    // Ensure the record id is set on the form before calling UpdateRideInformationFromSqlParameters
+                    int rows = form.UpdateRideInformationFromSqlParameters();
+                    return rows;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError("[ERROR]: Exception while trying to ApplyParameterizedUpdateFromRow: " + ex.Message);
+                return 0;
+            }
+        }
 
         protected override void OnResize(EventArgs e)
         {
