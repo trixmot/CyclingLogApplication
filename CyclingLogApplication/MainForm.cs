@@ -34,7 +34,7 @@ namespace CyclingLogApplication
         //private static Mutex mutex = null;
         Boolean formloading = false;
 
-        private static string logVersion = "1.1.0";
+        private static string logVersion = "1.1.1";
         private static int logLevel = 0;
         private static string gridOrder;
         private static int lastLogSelected = 0;
@@ -367,7 +367,7 @@ namespace CyclingLogApplication
 
                 cbLogYear.Items.Clear();
                 cbLogYear.Items.Add("--Select Value--");
-                //cbLogYear
+                //cbLogYear  Currently adding all years from 2010 to current year + 1 for selection in the main form:
                 for (int i = currentYear + 1; i > 2009; i--)
                 {
                     cbLogYear.Items.Add(i.ToString());
@@ -2514,11 +2514,6 @@ namespace CyclingLogApplication
             //DateTime changeDate = new DateTime(moment.Year, moment.Month, moment.Day);
             //Days to time change -  (DateTime.Now - DateTime(Int32 year, Int32 month, Int32 day)).TotalDays {type DateTime}
 
-            //2016  Sun, Mar 13 -,Sun, Nov 6
-            //2017	Sun, Mar 12 - Sun, Nov 5,
-            //2018	Sun, Mar 11 - Sun, Nov 4
-            //2019	Sun, Mar 10 - Sun, Nov 3,
-
             //Check year
             //check if before or after March
             if (year == 2024)
@@ -2664,6 +2659,32 @@ namespace CyclingLogApplication
                     }
                     else
                     {
+                        dayCount = (changeDate2 - date).TotalDays;
+                    }
+                }
+            }
+            else if (year == 2031)
+            {
+                //DST Begins
+                DateTime changeDate = new DateTime(2031, 3, 9);
+                if ((changeDate - date).TotalDays > 0)
+                {
+                    //Days before DST begins
+                    dayCount = (changeDate - date).TotalDays;
+                }
+                else
+                {
+                    //DST Ends
+                    DateTime changeDate2 = new DateTime(2031, 11, 2);
+                    if (date > changeDate2)
+                    {
+                        //Next DST Begins
+                        DateTime changeDate3 = new DateTime(2032, 3, 14);
+                        dayCount = (changeDate3 - date).TotalDays;
+                    }
+                    else
+                    {
+                        //Days before DST ends
                         dayCount = (changeDate2 - date).TotalDays;
                     }
                 }
@@ -5240,6 +5261,8 @@ namespace CyclingLogApplication
 
         public void RefreshData()
         {
+            MessageBox.Show("Testing to verify call.", "Refresh Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             // Run Refresh for all data fields:
             RunYearlyStatisticsGrid();
             int logYearIndex = GetLogYearIndex_ByName(cbStatMonthlyLogYear.SelectedItem.ToString());

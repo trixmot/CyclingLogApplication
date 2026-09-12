@@ -876,7 +876,10 @@ namespace CyclingLogApplication
                 //if (result == DialogResult.Yes)
                 // {
                 //Close();
-                
+
+                mainForm.RefreshData();
+
+
                 formClosing = 1;
                 this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
                 //}
