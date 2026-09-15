@@ -129,7 +129,6 @@ namespace CyclingLogApplication
         {
             CloseDataReader();
             CloseConnection();
-            //Dispose();
         }
         #endregion
 
@@ -148,25 +147,9 @@ namespace CyclingLogApplication
         {
             if (this.Connection != null)
             {
-                if ((this.Connection.State != ConnectionState.Broken) || (this.Connection.State != ConnectionState.Closed))
-                {
-                    return true;
-                }
-                
-            } else
-            {
-                return false;
+                return this.Connection.State == ConnectionState.Open;
             }
 
-            //try
-            //{
-
-            //    return ((this.Connection.State != ConnectionState.Broken) || (this.Connection.State != ConnectionState.Closed));
-            //}
-            //catch
-            //{
-            //    return false;
-            //}
             return false;
         }
 
@@ -188,17 +171,7 @@ namespace CyclingLogApplication
             }
 
             try {
-                //string databaseString = this.Connection.Database.ToString();
-                //if (!this.Connection. .Database.Equals(null)) {
                 if (Connection is IDisposable) Connection.Dispose();
-                //} else
-                //{
-                //    if (!object.ReferenceEquals(this.Connection, null) || Connection != null && Connection.State == ConnectionState.Open)
-                //    {
-                //        Connection.Close();
-                //    }
-                //}
-
             }
             catch (Exception)
             {
@@ -264,11 +237,20 @@ namespace CyclingLogApplication
         /// <returns>The number of affected rows</returns>
         public int ExecuteSimpleNonQueryConnection(string ProcedureName, List<object> _Parameters)
         {
-            string tmpProcedureName = "EXECUTE " + ProcedureName + " ";
+            var tmpProcedureName = new StringBuilder();
+            tmpProcedureName.Append("EXECUTE ").Append(ProcedureName).Append(" ");
             for (int i = 0; i < _Parameters.Count; i++)
-                tmpProcedureName += "@" + i.ToString() + ",";
-            tmpProcedureName = tmpProcedureName.TrimEnd(',') + ";";
-            return this.ExecuteNonQueryConnection(tmpProcedureName, _Parameters);
+            {
+                tmpProcedureName.Append("@").Append(i).Append(",");
+            }
+
+            if (_Parameters.Count > 0)
+            {
+                tmpProcedureName.Length -= 1;
+            }
+
+            tmpProcedureName.Append(";");
+            return this.ExecuteNonQueryConnection(tmpProcedureName.ToString(), _Parameters);
         }
 
         /// <summary>
@@ -301,11 +283,20 @@ namespace CyclingLogApplication
         /// <returns>A reader that provides access to the data returned from the query</returns>
         public SqlDataReader ExecuteSimpleQueryConnection(string ProcedureName, List<object> _Parameters)
         {
-            string tmpProcedureName = "EXECUTE " + ProcedureName + " ";
+            var tmpProcedureName = new StringBuilder();
+            tmpProcedureName.Append("EXECUTE ").Append(ProcedureName).Append(" ");
             for (int i = 0; i < _Parameters.Count; i++)
-                tmpProcedureName += "@" + i.ToString() + ",";
-            tmpProcedureName = tmpProcedureName.TrimEnd(',') + ";";
-            SqlDataReader ToReturn = ExecuteQueryConnection(tmpProcedureName, _Parameters);
+            {
+                tmpProcedureName.Append("@").Append(i).Append(",");
+            }
+
+            if (_Parameters.Count > 0)
+            {
+                tmpProcedureName.Length -= 1;
+            }
+
+            tmpProcedureName.Append(";");
+            SqlDataReader ToReturn = ExecuteQueryConnection(tmpProcedureName.ToString(), _Parameters);
 
             return ToReturn;
         }
@@ -368,11 +359,20 @@ namespace CyclingLogApplication
         /// <returns>An object of the data returned from the function</returns>
         public object ExecuteSimpleScalarFunction(string FunctionName, List<object> _Parameters)
         {
-            string tmpFunctionName = "SELECT dbo." + FunctionName + "(";
+            var tmpFunctionName = new StringBuilder();
+            tmpFunctionName.Append("SELECT dbo.").Append(FunctionName).Append("(");
             for (int i = 0; i < _Parameters.Count; i++)
-                tmpFunctionName += "@" + i.ToString() + ",";
-            tmpFunctionName = tmpFunctionName.TrimEnd(',') + ");";
-            return this.ExecuteScalarFunction(tmpFunctionName, _Parameters);
+            {
+                tmpFunctionName.Append("@").Append(i).Append(",");
+            }
+
+            if (_Parameters.Count > 0)
+            {
+                tmpFunctionName.Length -= 1;
+            }
+
+            tmpFunctionName.Append(");");
+            return this.ExecuteScalarFunction(tmpFunctionName.ToString(), _Parameters);
         }
 
         /// <summary>

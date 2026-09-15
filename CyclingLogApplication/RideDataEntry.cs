@@ -1,19 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.ComponentModel;
-//using System.Data;
 using System.Data.SqlClient;
-//using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
-
-
-//using System.Text;
-//using System.Text.RegularExpressions;
-//using System.Threading.Tasks;
+using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using static DGVPrinterHelper.DGVPrinter;
@@ -44,7 +37,6 @@ namespace CyclingLogApplication
         private int id;
         private int logYearID;
         private DateTime date;
-        //private int bikeIndex;
         private string bike;
         private string route;
 
@@ -62,33 +54,11 @@ namespace CyclingLogApplication
             lbRideDataEntryError.Hide();
             lbRideDataEntryError.Text = "";
 
-            // Set the Minimum, Maximum, and initial Value.
-            //numericUpDown1.Value = 0;
-            //numericUpDown1.Maximum = 200;
-            //numericUpDown1.Minimum = 0;
-            //numericUpDown1.DecimalPlaces = 2;
-            //numericUpDown1.Increment = 0.10M;
-
-            //numDistanceRideDataEntry.Value = 0;
-            //numDistanceRideDataEntry.Maximum = 200;
-            //numDistanceRideDataEntry.Minimum = 0;
-            //numDistanceRideDataEntry.DecimalPlaces = 2;
-            //numDistanceRideDataEntry.Increment = 1.01M;
-
-            //tbComments.ScrollBars = ScrollBars.Horizontal;
-
             dtpTimeRideDataEntry.Format = DateTimePickerFormat.Custom;
             //For 24 H format
             dtpTimeRideDataEntry.CustomFormat = "HH:mm:ss";
             dtpTimeRideDataEntry.ShowUpDown = true;
             dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-
-            //Update Ride Type cbRideTypeDataEntry:
-            //cbRideTypeDataEntry.Items.Add("Recovery");
-            //cbRideTypeDataEntry.Items.Add("Base");
-            //cbRideTypeDataEntry.Items.Add("Distance");
-            //cbRideTypeDataEntry.Items.Add("Speed");
-            //cbRideTypeDataEntry.Items.Add("Race");
 
             List<string> routeList = MainForm.GetRoutes();
             cbRouteDataEntry.Items.Add("--Select Value--");
@@ -96,8 +66,6 @@ namespace CyclingLogApplication
             {
                 cbRouteDataEntry.Items.Add(routeList.ElementAt(i));
             }
-
-
 
             List<string> bikeList = MainForm.ReadDataNames("Table_Bikes", "Name");
             cbBikeDataEntrySelection.Items.Add("--Select Value--");
@@ -177,20 +145,17 @@ namespace CyclingLogApplication
             }
 
             cbRouteDataEntry.SelectedIndex = 0;
-            //cbBikeDataEntrySelection.SelectedIndex = 0;
             cbRideTypeDataEntry.SelectedIndex = 0;
             cbLocationDataEntry.SelectedIndex = 0;
             cbEffortRideDataEntry.SelectedIndex = 0;
             cbComfortRideDataEntry.SelectedIndex = 0;
 
-            ConfigurationFile configurationFile = new ConfigurationFile();
             ConfigurationFile.ReadConfigFile();
             string customField1 = MainForm.GetCustomField1();
             string customField2 = MainForm.GetCustomField2();
 
-            if (customField1 == null || customField1.Equals(""))
+            if (customField1 == null || string.IsNullOrEmpty(customField1))
             {
-                //lbCustom1.Text = "Custom1";
                 lbCustom1.Visible = false;
                 tbCustom1.Visible = false;
             }
@@ -201,9 +166,8 @@ namespace CyclingLogApplication
                 tbCustom1.Visible = true;
             }
 
-            if (customField2 == null || customField2.Equals(""))
+            if (customField2 == null || string.IsNullOrEmpty(customField2))
             {
-                //lbCustom2.Text = "Custom2";
                 lbCustom2.Visible = false;
                 tbCustom2.Visible = false;
             }
@@ -215,7 +179,7 @@ namespace CyclingLogApplication
             }
 
             lbRideDataEntryError.Text = "";
-            btRideDisplayUpdate.Visible = false;
+            BtRideDisplayUpdate.Visible = false;
         }
 
         public void SetDateValue(DateTime dateValue)
@@ -310,7 +274,7 @@ namespace CyclingLogApplication
 
         public void SetCalories(string caloriesValue)
         {
-            if (caloriesValue.Equals("") || caloriesValue.Equals("0")) {
+            if (string.IsNullOrEmpty(caloriesValue) || caloriesValue.Equals("0")) {
                 calories.Text = "- -";
             }
             else
@@ -343,7 +307,6 @@ namespace CyclingLogApplication
         public void SetBikeIndex(int bikeIndexValue)
         {
             cbBikeDataEntrySelection.SelectedIndex = bikeIndexValue;
-            //bikeIndex = bikeIndexValue;
         }
 
         public void SetAvgSpeed(double avgSpeed)
@@ -354,7 +317,7 @@ namespace CyclingLogApplication
 
         public void SetWind(string windIndex)
         {
-            if (windIndex.Equals("") || windIndex.Equals("- -"))
+            if (string.IsNullOrEmpty(windIndex) || windIndex.Equals("- -"))
             {
                 tbRideDataEntryWind.Text = "- -";
             } else
@@ -366,7 +329,7 @@ namespace CyclingLogApplication
 
         public void SetTemp(string temp)
         {
-            if (temp.Equals("") || temp.Equals("- -")) { 
+            if (string.IsNullOrEmpty(temp) || temp.Equals("- -")) { 
                 tbRideEntryTemp.Text = "- -";
             } else 
             {
@@ -398,7 +361,7 @@ namespace CyclingLogApplication
 
         public void SetAvgCadence(string avgCadence)
         {
-            if (avgCadence.Equals("0") || avgCadence.Equals(""))
+            if (avgCadence.Equals("0") || string.IsNullOrEmpty(avgCadence))
             {
                 avg_cadence.Text = "- -";
             } else
@@ -410,7 +373,7 @@ namespace CyclingLogApplication
 
         public void SetMaxCadence(string maxCadence)
         {
-            if (maxCadence.Equals("0") || maxCadence.Equals(""))
+            if (maxCadence.Equals("0") || string.IsNullOrEmpty(maxCadence))
             {
                 tbMaxCadence.Text = "- -";
             } else
@@ -422,7 +385,7 @@ namespace CyclingLogApplication
 
         public void SetAvgHeartRate(string avgHeartRate)
         {
-            if (avgHeartRate.Equals("0") || avgHeartRate.Equals(""))
+            if (avgHeartRate.Equals("0") || string.IsNullOrEmpty(avgHeartRate))
             {
                 avg_heart_rate.Text = "- -";
             } else
@@ -434,7 +397,7 @@ namespace CyclingLogApplication
 
         public void SetMaxHeartRate(string maxHeartRate)
         {
-            if (maxHeartRate.Equals("0") || maxHeartRate.Equals(""))
+            if (maxHeartRate.Equals("0") || string.IsNullOrEmpty(maxHeartRate))
             {
                 max_heart_rate.Text = "- -";
             } else
@@ -446,7 +409,7 @@ namespace CyclingLogApplication
 
         public void SetTotalAscent(string totalAscent)
         {
-            if (totalAscent.Equals(""))
+            if (string.IsNullOrEmpty(totalAscent))
             {
                 total_ascent.Text = "- -";
             } else
@@ -458,7 +421,7 @@ namespace CyclingLogApplication
 
         public void SetTotalDescent(string totalDescent)
         {
-            if (totalDescent.Equals(""))
+            if (string.IsNullOrEmpty(totalDescent))
             {
                 total_descent.Text = "- -";
             }
@@ -471,7 +434,7 @@ namespace CyclingLogApplication
 
         public void SetMaxSpeed(string maxSpeed)
         {
-            if (maxSpeed.Equals(""))
+            if (string.IsNullOrEmpty(maxSpeed))
             {
                 max_speed.Text = "- -";
             } else
@@ -550,7 +513,7 @@ namespace CyclingLogApplication
 
         public void SetAvgPower(string avgPower)
         {
-            if (avgPower.Equals("0") || avgPower.Equals(""))
+            if (avgPower.Equals("0") || string.IsNullOrEmpty(avgPower))
             {
                 avg_power.Text = "- -";
             }
@@ -563,7 +526,7 @@ namespace CyclingLogApplication
 
         public void SetMaxPower(string maxPower)
         {
-            if (maxPower.Equals("0") || maxPower.Equals(""))
+            if (maxPower.Equals("0") || string.IsNullOrEmpty(maxPower))
             {
                 max_power.Text = "- -";
             }
@@ -576,7 +539,7 @@ namespace CyclingLogApplication
 
         public void SetCustom1(string custom1)
         {
-            if (custom1.Equals("0") || custom1.Equals(""))
+            if (custom1.Equals("0") || string.IsNullOrEmpty(custom1))
             {
                 tbCustom1.Text = "- -";
             }
@@ -588,7 +551,7 @@ namespace CyclingLogApplication
 
         public void SetCustom2(string custom2)
         {
-            if (custom2.Equals("0") || custom2.Equals(""))
+            if (custom2.Equals("0") || string.IsNullOrEmpty(custom2))
             {
                 tbCustom2.Text = "- -";
             }
@@ -605,7 +568,7 @@ namespace CyclingLogApplication
 
         public void SetWindChill(string wind_Chill)
         {
-            if (wind_Chill.Equals(""))
+            if (string.IsNullOrEmpty(wind_Chill))
             {
                 tbRideEntryWindChill.Text = "- -";
             }
@@ -658,7 +621,6 @@ namespace CyclingLogApplication
             {
                 date
             };
-            //int logLevel;
 
             int logID = 0;
             List<object> objectValuesLogID = new List<object>
@@ -684,17 +646,12 @@ namespace CyclingLogApplication
                     //No matching date found
                 }
             }
-            //using (MainForm mainForm = new MainForm(""))
-            //{
-            //    logID = mainForm.GetLogYearIndex(cbLogYearDataEntry.SelectedItem.ToString());
-            //    logLevel = mainForm.GetLogLevel();
-            //}
+
             objectValues.Add(Convert.ToInt32(logID));
 
             string movingTime;
             string rideDistance;
             string avgSpeed;
-            string bike;
             string rideType;
             string wind;
             string temp;
@@ -708,11 +665,9 @@ namespace CyclingLogApplication
             string maxSpeed;
             string avgPower;
             string maxPower;
-            string route;
             string comments;
             string location;
             string recordID;
-            string weekNumber;
             string effort;
             string comfort;
             string custom1;
@@ -726,7 +681,6 @@ namespace CyclingLogApplication
                 //Get ride data using the date:
                 using (var results = ExecuteSimpleQueryConnection("GetRideData", objectValues))
                 {
-                    //Logger.Log("Results: " + results.FieldCount, 0, logLevel);
                     if (results.HasRows)
                     {
                         while (results.Read())
@@ -734,7 +688,6 @@ namespace CyclingLogApplication
                             recordIndex++;
                             if (recordDateIndex == recordIndex)
                             {
-                                //MessageBox.Show(String.Format("{0}", results[0]));
                                 lbRideDataEntryError.Hide();
 
                                 movingTime = results[0].ToString();
@@ -846,7 +799,6 @@ namespace CyclingLogApplication
                                 comments = results[18].ToString();
                                 location = results[19].ToString();
                                 recordID = results[20].ToString();
-                                weekNumber = results[21].ToString();
                                 effort = results[22].ToString();
                                 comfort = results[23].ToString();
                                 if (string.IsNullOrEmpty(results[24].ToString()) || results[24].ToString().Equals("0"))
@@ -884,7 +836,6 @@ namespace CyclingLogApplication
                                 cbRouteDataEntry.SelectedIndex = cbRouteDataEntry.Items.IndexOf(route);
                                 tbComments.Text = comments;
                                 tbRecordID.Text = recordID;
-                                //tbWeekNumber.Text = weekNumber;
                                 cbLocationDataEntry.SelectedIndex = cbLocationDataEntry.Items.IndexOf(location);
                                 cbEffortRideDataEntry.SelectedIndex = cbEffortRideDataEntry.Items.IndexOf(effort);
                                 cbComfortRideDataEntry.SelectedIndex = cbComfortRideDataEntry.Items.IndexOf(comfort.TrimEnd());                                
@@ -931,8 +882,6 @@ namespace CyclingLogApplication
         {
             lbRideDataEntryError.Text = "";
             lbRideDataEntryError.Hide();
-
-            //RideInformationChange("Add", "Ride_Information_Add");
         }
 
         private void CloseRideDataEntry(object sender, EventArgs e)
@@ -943,22 +892,6 @@ namespace CyclingLogApplication
             formClosing = 1;
             this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
         }
-
-        //private void RideDataEntry_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-
-        //    DialogResult result = MessageBox.Show("Do you really want to exit?", "Dialog Title", MessageBoxButtons.YesNo);
-        //    if (result == DialogResult.Yes)
-        //    {
-        //        //Close();
-        //        //this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
-        //        RideDataEntry.ActiveForm.Close();
-        //    }
-        //    else
-        //    {
-        //        e.Cancel = true;
-        //    }
-        //}
 
         private void RideInformationChange(Boolean rideDisplayChange)
         {
@@ -984,14 +917,6 @@ namespace CyclingLogApplication
 
                 return;
             }        
-
-            //decimal avgspeed = decimal.Parse(tbRideDataEntryAvgSpeed.Text);
-            //if (avgspeed == 0)
-            //{
-            //    lbRideDataEntryError.Text = "The Average Speed must be greater than 0.";
-            //    lbRideDataEntryError.Show();
-            //    return;
-            //}
             if (cbLogYearDataEntry.SelectedIndex < 1)
             {
                 lbRideDataEntryError.Text = "A Log year must be selected.";
@@ -1040,12 +965,6 @@ namespace CyclingLogApplication
                 lbRideDataEntryError.Show();
                 return;
             }
-            //if (tbRideDataEntryAvgSpeed.Text.Equals("") || tbRideDataEntryAvgSpeed.Text.Equals("0"))
-            //{
-            //    lbRideDataEntryError.Text = "An Average Speed value must be entered.";
-            //    lbRideDataEntryError.Show();
-            //    return;
-            //}
 
             //***********************************************************************
             //Check the entry type:
@@ -1093,7 +1012,6 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        // lbMaintError.Text = "No entry found for the selected Bike and Date.";
                         MessageBox.Show("No entry found for the selected Bike and Date.");
                         return;
                     }
@@ -1157,7 +1075,7 @@ namespace CyclingLogApplication
                         }
 
                         //Record Count is 0 and an ID is found, this means a planner entry was found:
-                        if (plannedEntryID.Equals("") || plannedEntryID.Equals("0"))
+                        if (string.IsNullOrEmpty(plannedEntryID) || plannedEntryID.Equals("0"))
                         {
                             changeType = "Add";
                             procedureName = "Ride_Information_Add";
@@ -1207,8 +1125,6 @@ namespace CyclingLogApplication
 
                 string recordID = tbRecordID.Text;
 
-                //MessageBox.Show("Record ID value: " + recordID);
-
                 if (changeType.Equals("Update") && recordCount > 0)
                 {
                     if (tbRecordID.Text.Equals("0"))
@@ -1233,18 +1149,16 @@ namespace CyclingLogApplication
                 }
 
                 double averageSpeed = 0;
-                //if (tbRideDataEntryAvgSpeed.Text.Equals(""))
-                //{
-                    //Value missing, need to calculate it (miles/time:
-                    double miles = double.Parse(tbRideDataEntryDistance.Text);
-                    int timeHours = DateTime.Parse(dtpTimeRideDataEntry.Value.ToString()).Hour;
-                    int timeMin = DateTime.Parse(dtpTimeRideDataEntry.Value.ToString()).Minute;                
-                    int timeSec = DateTime.Parse(dtpTimeRideDataEntry.Value.ToString()).Second;
-                    string timeString = timeHours.ToString() + ":" + timeMin.ToString() + ":" + timeSec.ToString();
-                    double timeInHours = TimeSpan.Parse(timeString).TotalHours;
-                    averageSpeed = miles / timeInHours;
-                    tbRideDataEntryAvgSpeed.Text = Math.Round(averageSpeed, 1).ToString();
-                //}
+                //Value missing, need to calculate it (miles/time:
+                double miles = double.Parse(tbRideDataEntryDistance.Text);
+                int timeHours = DateTime.Parse(dtpTimeRideDataEntry.Value.ToString()).Hour;
+                int timeMin = DateTime.Parse(dtpTimeRideDataEntry.Value.ToString()).Minute;                
+                int timeSec = DateTime.Parse(dtpTimeRideDataEntry.Value.ToString()).Second;
+                string timeString = timeHours.ToString() + ":" + timeMin.ToString() + ":" + timeSec.ToString();
+                double timeInHours = TimeSpan.Parse(timeString).TotalHours;
+                averageSpeed = miles / timeInHours;
+                tbRideDataEntryAvgSpeed.Text = Math.Round(averageSpeed, 1).ToString();
+
 
                 //*****************************************************************************
                 //*************  VERIFY INPUT DATA IS IN CORRECT FORMAT ***********************
@@ -1343,10 +1257,11 @@ namespace CyclingLogApplication
                 List<object> objectValues = new List<object>();
                 objectValues.Add(dtpTimeRideDataEntry.Value);                           //Moving Time:
                 objectValues.Add(tbRideDataEntryDistance.Text);                         //Ride Distance:
-                if (tbRideDataEntryAvgSpeed.Text.Equals(""))
+                if (string.IsNullOrEmpty(tbRideDataEntryAvgSpeed.Text))
                 {
                     objectValues.Add(averageSpeed);                         //Average Speed:
-                } else
+                }
+                else
                 {
                     objectValues.Add(tbRideDataEntryAvgSpeed.Text);                         //Average Speed:
                 }
@@ -1356,11 +1271,10 @@ namespace CyclingLogApplication
                 objectValues.Add(cbRideTypeDataEntry.SelectedItem.ToString());          //Ride Type:
                 float windspeed;
                 Boolean noTemp = false;
-                //Boolean noWind = false;
-                if (tbRideDataEntryWind.Text.Equals("") || tbRideDataEntryWind.Text.Equals("- -"))
+
+                if (string.IsNullOrEmpty(tbRideDataEntryWind.Text) || tbRideDataEntryWind.Text.Equals("- -"))
                 {
                     objectValues.Add(null);                                            //Wind:
-                    //noWind = true;
                 }
                 else
                 {
@@ -1369,7 +1283,7 @@ namespace CyclingLogApplication
                 }
                 
                 float temp = 0;
-                if (tbRideEntryTemp.Text.Equals("") || tbRideEntryTemp.Text.Equals("- -"))
+                if (string.IsNullOrEmpty(tbRideEntryTemp.Text) || tbRideEntryTemp.Text.Equals("- -"))
                 {
                     objectValues.Add(null);                                  //Temp:
                     noTemp = true;
@@ -1382,7 +1296,7 @@ namespace CyclingLogApplication
                 
                 objectValues.Add(dtpRideDate.Value);                                    //Date:
 
-                if (avg_cadence.Text.Equals("") || avg_cadence.Text.Equals("- -"))       //Average Cadence:
+                if (string.IsNullOrEmpty(avg_cadence.Text) || avg_cadence.Text.Equals("- -"))       //Average Cadence:
                 {
                     objectValues.Add(null);
                 }
@@ -1391,7 +1305,7 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(avg_cadence.Text));
                 }
 
-                if (tbMaxCadence.Text.Equals("") || tbMaxCadence.Text.Equals("- -"))     //Max Cadence:
+                if (string.IsNullOrEmpty(tbMaxCadence.Text) || tbMaxCadence.Text.Equals("- -"))     //Max Cadence:
                 {
                     objectValues.Add(null);
                 }
@@ -1400,7 +1314,7 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(tbMaxCadence.Text));
                 }
 
-                if (avg_heart_rate.Text.Equals("") || avg_heart_rate.Text.Equals("- -"))     //Average Heart Rate:
+                if (string.IsNullOrEmpty(avg_heart_rate.Text) || avg_heart_rate.Text.Equals("- -"))     //Average Heart Rate:
                 {
                     objectValues.Add(null);
                 }
@@ -1409,7 +1323,7 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(avg_heart_rate.Text));
                 }
 
-                if (max_heart_rate.Text.Equals("") || max_heart_rate.Text.Equals("- -")) //Max Heart Rate:
+                if (string.IsNullOrEmpty(max_heart_rate.Text) || max_heart_rate.Text.Equals("- -")) //Max Heart Rate:
                 {
                     objectValues.Add(null);
                 }
@@ -1477,7 +1391,6 @@ namespace CyclingLogApplication
                 objectValues.Add(tbComments.Text);                                      //Comments:
                 objectValues.Add(logIndex);                                             //LogYear index:
 
-                //DateTime date = new DateTime();
                 DayOfWeek firstDay = DayOfWeek.Monday;
 
                 DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
@@ -1578,18 +1491,25 @@ namespace CyclingLogApplication
 
         public SqlDataReader ExecuteSimpleQueryConnection(string ProcedureName, List<object> _Parameters)
         {
-            string tmpProcedureName = "EXECUTE " + ProcedureName + " ";
+            var tmpProcedureName = new StringBuilder();
+            tmpProcedureName.Append("EXECUTE ").Append(ProcedureName).Append(" ");
             SqlDataReader ToReturn = null;
 
             try
             {
                 for (int i = 0; i < _Parameters.Count; i++)
                 {
-                    tmpProcedureName += "@" + i.ToString() + ",";
+                    tmpProcedureName.Append("@").Append(i).Append(",");
                 }
 
-                tmpProcedureName = tmpProcedureName.TrimEnd(',') + ";";
-                ToReturn = databaseConnection.ExecuteQueryConnection(tmpProcedureName, _Parameters);
+                if (_Parameters.Count > 0)
+                {
+                    tmpProcedureName.Length -= 1;
+                }
+
+                tmpProcedureName.Append(";");
+
+                ToReturn = databaseConnection.ExecuteQueryConnection(tmpProcedureName.ToString(), _Parameters);
 
             }
             catch (Exception ex)
@@ -1604,14 +1524,11 @@ namespace CyclingLogApplication
         {
             // NOTE: This line of code loads data into the 'cyclingLogDatabaseDataSet.Table_Ride_Information' table. You can move, or remove it, as needed.
             this.table_Ride_InformationTableAdapter.Fill(this.cyclingLogDatabaseDataSet.Table_Ride_Information);
-            MainForm mainForm = new MainForm("");
-            //cbBikeDataEntrySelection.SelectedIndex = MainForm.GetLastBikeSelected();
-            // cbLogYearDataEntry.SelectedIndex = cbRouteDataEntry.FindStringExact("");
         }
 
         private void RideDataEntryFormClosed(object sender, FormClosedEventArgs e)
         {
-            //clearDataEntryFields();
+
         }
 
         private void ImportData(object sender, EventArgs e)
@@ -1721,22 +1638,18 @@ namespace CyclingLogApplication
                 //hh:mm:ss
                 if (temp2.Length == 0)
                 {
-                    //MessageBox.Show("Count is 0");
                     dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
                 }
                 else if (temp2.Length == 1)
                 {
-                    //MessageBox.Show("Count is 1");
                     dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, Int32.Parse(temp2[0]));
                 }
                 else if (temp2.Length == 2)
                 {
-                    //MessageBox.Show("Count is 2");
                     dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, Int32.Parse(temp2[0]), Int32.Parse(temp2[1]));
                 }
                 else if (temp2.Length == 3)
                 {
-                    //MessageBox.Show("Count is 3");
                     dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Int32.Parse(temp2[0]), Int32.Parse(temp2[1]), Int32.Parse(temp2[2]));
                 }
 
@@ -1859,10 +1772,8 @@ namespace CyclingLogApplication
             max_power.Text = "";                                                                                        //Max Power:
             cbRouteDataEntry.SelectedIndex = 0; ;                                    //Route:
             tbComments.Text = "";                                                                                       //Comments:
-            //cbLogYearDataEntry.SelectedIndex = cbLogYearDataEntry.FindStringExact("");                                //LogYear index:
             cbLocationDataEntry.SelectedIndex = 0;
             cbEffortRideDataEntry.SelectedIndex = 0;
-            //tbWeekNumber.Text = "0";
             tbRecordID.Text = "0";
             cbComfortRideDataEntry.SelectedIndex = 0;
             tbCustom1.Text = "";
@@ -1910,62 +1821,56 @@ namespace CyclingLogApplication
 
         private void CbLogYearDataEntry_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //MainForm mainForm = new MainForm("")
-            //using (MainForm mainForm = new MainForm(""))
-            //{
-                MainForm.SetLastLogSelected(cbLogYearDataEntry.SelectedIndex);
-                if (cbLogYearDataEntry.SelectedIndex < 1)
+
+            MainForm.SetLastLogSelected(cbLogYearDataEntry.SelectedIndex);
+            if (cbLogYearDataEntry.SelectedIndex < 1)
+            {
+                lbRideDataEntryError.Show();
+                lbRideDataEntryError.Text = "No Log Year selected.";
+                dtpRideDate.Enabled = false;
+            }
+            else
+            {
+                dtpRideDate.Enabled = true;
+                lbRideDataEntryError.Hide();
+
+                //Get current log year:
+                int logYear = 0;
+                List<object> objectValuesLogID = new List<object>();
+                string logName = cbLogYearDataEntry.SelectedItem.ToString();
+                objectValuesLogID.Add(logName);
+
+                using (var results = ExecuteSimpleQueryConnection("Log_Year_Get", objectValuesLogID))
                 {
-                    lbRideDataEntryError.Show();
-                    lbRideDataEntryError.Text = "No Log Year selected.";
-                    dtpRideDate.Enabled = false;
+                    if (results != null && results.HasRows)
+                    {
+                        while (results.Read())
+                        {
+                            logYear = Int32.Parse(results[0].ToString());
+                        }
+                    }
+                    else
+                    {
+                        //No matching date found
+                    }
                 }
-                else
+
+                //Update ride date to the year that matches the log:
+                //If current year, then also match current date:
+                int currentYear = DateTime.Now.Year;
+                if (currentYear == logYear)
                 {
-                    dtpRideDate.Enabled = true;
-                    lbRideDataEntryError.Hide();
-
-                    //Get current log year:
-                    int logYear = 0;
-                    List<object> objectValuesLogID = new List<object>();
-                    string logName = cbLogYearDataEntry.SelectedItem.ToString();
-                    objectValuesLogID.Add(logName);
-
-                    using (var results = ExecuteSimpleQueryConnection("Log_Year_Get", objectValuesLogID))
-                    {
-                        if (results != null && results.HasRows)
-                        {
-                            while (results.Read())
-                            {
-                                logYear = Int32.Parse(results[0].ToString());
-                            }
-                        }
-                        else
-                        {
-                            //No matching date found
-                        }
-                    }
-
-                    //Update ride date to the year that matches the log:
-                    //If current year, then also match current date:
-                    int currentYear = DateTime.Now.Year;
-                    if (currentYear == logYear)
-                    {
-                        dtpRideDate.Value = new DateTime(logYear, DateTime.Now.Month, DateTime.Now.Day);
-                    } else
-                    {
-                        dtpRideDate.Value = new DateTime(logYear, 01, 01);
-                    }
+                    dtpRideDate.Value = new DateTime(logYear, DateTime.Now.Month, DateTime.Now.Day);
+                } else
+                {
+                    dtpRideDate.Value = new DateTime(logYear, 01, 01);
+                }
                     
-                }
-            //}
+            }
         }
 
         private void DtpRideDate_ValueChanged(object sender, EventArgs e)
         {
-            //Get current date and then obtain and set week number:
-            //var rideDataSate = dtpTimeRideDataEntry.Value;
-            //DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
             CultureInfo myCI = new CultureInfo("en-US");
             Calendar myCal = myCI.Calendar;
 
@@ -1973,7 +1878,6 @@ namespace CyclingLogApplication
             CalendarWeekRule myCWR = myCI.DateTimeFormat.CalendarWeekRule;
             DayOfWeek myFirstDOW = myCI.DateTimeFormat.FirstDayOfWeek;
 
-            //Logger.LogError("Calendar value: " + dtpRideDate.Value.Date);
             int weekValue = myCal.GetWeekOfYear(dtpRideDate.Value.Date, myCWR, myFirstDOW);
             tbWeekCountRDE.Text = weekValue.ToString();
 
@@ -1994,9 +1898,6 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to delete the Ride and all its data?", "Delete Ride From Database", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                // conn and reader declared outside try block for visibility in finally block
-                //SqlConnection conn = null;
-                //SqlDataReader reader = null;
 
                 int returnValue;
 
@@ -2023,7 +1924,7 @@ namespace CyclingLogApplication
                         }
                     }
 
-                    if (numericUpDown2.Enabled == true)
+                    if (numericUpDown2.Enabled)
                     {
                         // Run to update the form with the current existing data:
                         Retrieve_run();
@@ -2048,12 +1949,12 @@ namespace CyclingLogApplication
                 NumericUpDown num = (NumericUpDown)sender;
                 if (Convert.ToInt32(num.Text) > num.Value)
                 {
-                    //MessageBox.Show("Value decreased");
+                    //Value decreased
                     GetRideData(dtpRideDate.Value.Date, Convert.ToInt16(numericUpDown2.Value));
                 }
                 else
                 {
-                    //MessageBox.Show("Value increased");
+                    //Value increased
                     GetRideData(dtpRideDate.Value.Date, Convert.ToInt16(numericUpDown2.Value));
                 }
             }
@@ -2173,8 +2074,8 @@ namespace CyclingLogApplication
             btImportDataEntry.Visible = false;
             btDeleteRideDataEntry.Visible = false;
             btClearDataEntry.Visible = false;
-            btRideDisplayUpdate.Visible = true;
-            btLogEntrySave.Visible = false;
+            BtRideDisplayUpdate.Visible = true;
+            BtLogEntrySave.Visible = false;
 
             List<object> objectValues = new List<object>
             {
@@ -2187,7 +2088,6 @@ namespace CyclingLogApplication
             string movingTime;
             string rideDistance;
             string avgSpeed;
-            string bike;
             string rideType;
             string wind;
             string temperature;
@@ -2195,16 +2095,14 @@ namespace CyclingLogApplication
             string maxCadence;
             string avgHeartRate;
             string maxHeartRate;
-            string calories;
+            string caloriesFunction;
             string totalAscent;
             string totalDescent;
             string maxSpeed;
             string averagePower;
             string maxPower;
-            string route;
             string comments;
             string location;
-            string recordID;
             string weekNumber;
             string effort;
             string comfort;
@@ -2239,7 +2137,7 @@ namespace CyclingLogApplication
                             maxCadence = results[8].ToString();
                             avgHeartRate = results[9].ToString();
                             maxHeartRate = results[10].ToString();
-                            calories = results[11].ToString();
+                            caloriesFunction = results[11].ToString();
                             totalAscent = results[12].ToString();
                             totalDescent = results[13].ToString();
                             if (string.IsNullOrEmpty(results[14].ToString()) || results[14].ToString().Equals("- -"))
@@ -2257,7 +2155,6 @@ namespace CyclingLogApplication
                             route = results[17].ToString();
                             comments = results[18].ToString();
                             location = results[19].ToString();
-                            recordID = results[20].ToString();
                             weekNumber = results[21].ToString();
                             effort = results[22].ToString();
                             comfort = results[23].ToString();
@@ -2265,7 +2162,6 @@ namespace CyclingLogApplication
                             custom2 = results[25].ToString();
                             windChill = results[26].ToString();
 
-                            MainForm mainform = new MainForm();
                             List<string> routeList = MainForm.ReadDataNames("Table_Routes", "Name");
 
                             for (int i = 0; i < routeList.Count; i++)
@@ -2366,7 +2262,6 @@ namespace CyclingLogApplication
                             SettbWeekCountRDE(weekNumber);
                             SetRouteIndex(routeIndex+1); //+1 to account for '--Select Value--'
                             SetRoute(route);
-                            //Thread.Sleep(2000); // 1000 milliseconds i.e 1sec
                             SetTime(DateTime.Parse(movingTime));
                             SetDistance(decimal.Parse(rideDistance));
                             SetAvgSpeed(double.Parse(avgSpeed));
@@ -2376,7 +2271,7 @@ namespace CyclingLogApplication
                             SetLocation(locationIndex);
                             SetEffort(effortIndex);
                             SetComfort(comfortIndex);
-                            SetCalories(calories);
+                            SetCalories(caloriesFunction);
                             SetAvgCadence(avgCadence);
                             SetMaxCadence(maxCadence);
                             SetAvgHeartRate(avgHeartRate);
@@ -2488,7 +2383,7 @@ namespace CyclingLogApplication
                         }
                     }
 
-                    if (numericUpDown2.Enabled == true)
+                    if (numericUpDown2.Enabled)
                     {
                         // Run to update the form with the current existing data:
                         Retrieve_run();
@@ -2597,7 +2492,7 @@ namespace CyclingLogApplication
                     objectValues.Add(float.Parse(avg_cadence.Text));
                 }
 
-                if (tbMaxCadence.Text.Equals("") || tbMaxCadence.Text.Equals("--"))       //Max Cadence:
+                if (tbMaxCadence.Text.Equals("") || tbMaxCadence.Text.Equals("--"))     //Max Cadence:
                 {
                     objectValues.Add(0);
                 }
@@ -2682,13 +2577,6 @@ namespace CyclingLogApplication
                 objectValues.Add(tbComments.Text);                                      //Comments:
                 objectValues.Add(logYearID);                                             //LogYear index:
 
-                //DateTime date = new DateTime();
-                DayOfWeek firstDay = DayOfWeek.Monday;
-
-                DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
-                Calendar cal = dfi.Calendar;
-                int weekValue = cal.GetWeekOfYear(dtpRideDate.Value, dfi.CalendarWeekRule, firstDay);
-
                 objectValues.Add(Int32.Parse(tbWeekCountRDE.Text));
 
                 objectValues.Add(cbLocationDataEntry.SelectedItem.ToString());          //Location:
@@ -2697,6 +2585,7 @@ namespace CyclingLogApplication
                 if (windspeed > 3 && temp < 50)                                          //Winchill:
                 {
                     winchill = 35.74 + (0.6215) * (temp) - (35.75) * (Math.Pow(windspeed, 0.16)) + (0.4275) * (Math.Pow(windspeed, 0.16));
+                    winchill = Math.Round(winchill, 1);
                     objectValues.Add(winchill.ToString());
                 }
                 else
@@ -2736,12 +2625,12 @@ namespace CyclingLogApplication
             }
         }
 
-        private void btRideDisplayUpdate_Click(object sender, EventArgs e)
+        private void BtRideDisplayUpdate_Click(object sender, EventArgs e)
         {
             RideInformationChange(true);
         }
 
-        private void btLogEntrySave_Click(object sender, EventArgs e)
+        private void BtLogEntrySave_Click(object sender, EventArgs e)
         {
             RideInformationChange(false);
             MainForm.SetLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);

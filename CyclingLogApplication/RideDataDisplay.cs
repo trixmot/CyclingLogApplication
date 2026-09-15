@@ -19,6 +19,7 @@ using System.Windows.Threading;
 using System.Reflection.Emit;
 using static System.Net.Mime.MediaTypeNames;
 using System.Data.Common;
+using System.Text;
 
 namespace CyclingLogApplication
 {
@@ -67,13 +68,13 @@ namespace CyclingLogApplication
                     {
                         string keyValue = fieldDict.Keys.ElementAt(i);
 
-                        if (custom1.Equals("") && keyValue.Equals("Custom1"))
+                        if (string.IsNullOrEmpty(custom1) && keyValue.Equals("Custom1"))
                         {
                             //skip adding
                             custom1Skipped = true;
                             numberRemoved++;
                         } 
-                        else if (custom2.Equals("") && keyValue.Equals("Custom2"))
+                        else if (string.IsNullOrEmpty(custom2) && keyValue.Equals("Custom2"))
                         {
                             //skip adding
                             custom2Skipped = true;
@@ -254,7 +255,7 @@ namespace CyclingLogApplication
                 customDataField2 = true;
             }
 
-            string fieldString = ""; //[Id],[Date]
+            StringBuilder fieldString = new StringBuilder(); //[Id],[Date]
             Boolean checkedItem = false;
 
             for (int i = 0; i < checkedListBox.Items.Count; i++)
@@ -412,7 +413,7 @@ namespace CyclingLogApplication
                         return;
                     }
 
-                    fieldString += ",[" + fieldName + "]";
+                    fieldString.Append(",[").Append(fieldName).Append("]");
                 }
             }
 
@@ -454,7 +455,7 @@ namespace CyclingLogApplication
                     {
                         sqlDataAdapter = new SqlDataAdapter
                         {                         
-                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + "FROM Table_Ride_Information WHERE [WeekNumber]=@WeekNumber and [LogYearID]=@logyearID ORDER BY [Date] " + gridOrder, sqlConnection)
+                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " FROM Table_Ride_Information WHERE [WeekNumber]=@WeekNumber and [LogYearID]=@logyearID ORDER BY [Date] " + gridOrder, sqlConnection)
                         };
 
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue(LogYearID, logYearID);
@@ -464,7 +465,7 @@ namespace CyclingLogApplication
                     {
                         sqlDataAdapter = new SqlDataAdapter
                         {
-                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + "FROM Table_Ride_Information WHERE [WeekNumber]=@WeekNumber ORDER BY [Date] " + gridOrder, sqlConnection)
+                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " FROM Table_Ride_Information WHERE [WeekNumber]=@WeekNumber ORDER BY [Date] " + gridOrder, sqlConnection)
                         };
 
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@WeekNumber", int.Parse(cbFilterValue.Text));
@@ -476,7 +477,7 @@ namespace CyclingLogApplication
                     {
                         sqlDataAdapter = new SqlDataAdapter
                         {
-                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE @Bike LIKE Bike and [LogYearID]=@logyearID ORDER BY[Date] " + gridOrder, sqlConnection)
+                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE Bike LIKE @Bike and [LogYearID]=@logyearID ORDER BY[Date] " + gridOrder, sqlConnection)
                         };
 
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue(LogYearID, logYearID);
@@ -486,7 +487,7 @@ namespace CyclingLogApplication
                     {
                         sqlDataAdapter = new SqlDataAdapter
                         {
-                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE @Bike LIKE Bike ORDER BY[Date] " + gridOrder, sqlConnection)
+                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE Bike LIKE @Bike ORDER BY[Date] " + gridOrder, sqlConnection)
                         };
 
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Bike", cbFilterValue.Text);
@@ -498,7 +499,7 @@ namespace CyclingLogApplication
                     {
                         sqlDataAdapter = new SqlDataAdapter
                         {
-                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE @RideType LIKE RideType and [LogYearID]=@logyearID ORDER BY[Date] " + gridOrder, sqlConnection)
+                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE RideType LIKE @RideType and [LogYearID]=@logyearID ORDER BY[Date] " + gridOrder, sqlConnection)
                         };
 
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue(LogYearID, logYearID);
@@ -508,7 +509,7 @@ namespace CyclingLogApplication
                     {
                         sqlDataAdapter = new SqlDataAdapter
                         {
-                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE @RideType LIKE RideType ORDER BY[Date] " + gridOrder, sqlConnection)
+                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE RideType LIKE @RideType ORDER BY[Date] " + gridOrder, sqlConnection)
                         };
 
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@RideType", cbFilterValue.Text);
@@ -520,7 +521,7 @@ namespace CyclingLogApplication
                     {
                         sqlDataAdapter = new SqlDataAdapter
                         {
-                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE @Route LIKE Route and [LogYearID]=@logyearID ORDER BY[Date] " + gridOrder, sqlConnection)
+                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE Route LIKE @Route and [LogYearID]=@logyearID ORDER BY[Date] " + gridOrder, sqlConnection)
                         };
     
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Route", cbFilterValue.Text);
@@ -531,7 +532,7 @@ namespace CyclingLogApplication
                     {
                         sqlDataAdapter = new SqlDataAdapter
                         {
-                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE @Route LIKE Route ORDER BY[Date] " + gridOrder, sqlConnection)
+                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE Route LIKE @Route ORDER BY[Date] " + gridOrder, sqlConnection)
                         };
 
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Route", cbFilterValue.Text);
@@ -543,7 +544,7 @@ namespace CyclingLogApplication
                     {
                         sqlDataAdapter = new SqlDataAdapter
                         {
-                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE @Location LIKE Location and [LogYearID]=@logyearID ORDER BY[Date] " + gridOrder, sqlConnection)
+                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE Location LIKE @Location and [LogYearID]=@logyearID ORDER BY[Date] " + gridOrder, sqlConnection)
                         };
 
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Location", cbFilterValue.Text);
@@ -552,7 +553,7 @@ namespace CyclingLogApplication
                     {
                         sqlDataAdapter = new SqlDataAdapter
                         {
-                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE @Location LIKE Location ORDER BY[Date] " + gridOrder, sqlConnection)
+                            SelectCommand = new SqlCommand("SELECT [Id],[Date]" + fieldString + " from Table_Ride_Information WHERE Location LIKE @Location ORDER BY[Date] " + gridOrder, sqlConnection)
                         };
 
                         sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@Location", cbFilterValue.Text);
@@ -1015,7 +1016,7 @@ namespace CyclingLogApplication
 
 
                 // print without redisplaying the printdialog 
-                printer.PrintPreviewDataGridView(dataGridView1);
+                printer.PrintPreviewDataGridView(dataGridView1, typeof(DataGridView));
             }
         }
 
@@ -1127,11 +1128,11 @@ namespace CyclingLogApplication
                 fieldOptionsDict.Add(checkedListBox.Items[i].ToString(), checkedListBox.GetItemChecked(i).ToString());
             }
 
-            if (custom1.Equals(""))
+            if (string.IsNullOrEmpty(custom1))
             {
                 fieldOptionsDict.Add("Custom1", "False");
             }
-            if (custom2.Equals(""))
+            if (string.IsNullOrEmpty(custom2))
             {
                 fieldOptionsDict.Add("Custom2", "False");
             }
@@ -1278,50 +1279,140 @@ namespace CyclingLogApplication
         //        wind = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
         //        setCommand += "Wind=@wind,";
         //        sqlPrameters.Add("@wind", wind);
-        // NOTE: Older code built a concatenated SET clause and a dictionary of parameters then used
-        // that to execute an UPDATE. That approach was removed in favor of centralized helpers.
-        // To apply updates from a DataGridView row use the helper `ApplyParameterizedUpdateFromRow(row)`
-        // which builds a Dictionary<string,string> and invokes `RideDataEntry.UpdateRideInformationFromSqlParameters()`
-        // or call the stored-proc wrappers: ExecuteSimpleQueryConnection("Ride_Information_Add", objectValues)
-        // or ExecuteSimpleQueryConnection("Ride_Information_Update", objectValues).
+        //        setCommand += "Temperature=@temp,";
+        //        sqlPrameters.Add("@temp", temp);
+        //    }
 
-        // Helper: Builds a parameter dictionary for a selected DataGridView row and applies the update through
-        // RideDataEntry's parameterized update helper. This is provided as a safe example replacement for
-        // earlier commented-out concatenated-SQL code. It is not invoked automatically; callers should invoke it
-        // when they want to apply edits from a selected row.
-        private int ApplyParameterizedUpdateFromRow(DataGridViewRow row)
-        {
-            try
-            {
-                if (row == null) return 0;
+        //    if (checkedListBox.GetItemChecked(9))
+        //    {
+        //        var dataGridViewColumn = dataGridView1.Columns["Temp"];
+        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+        //        temp = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+        //        setCommand += "Temperature=@temp,";
+        //        sqlPrameters.Add("@temp", temp);
+        //    }
 
-                var parameters = new Dictionary<string, string>();
+        //    if (checkedListBox.GetItemChecked(10))
+        //    {
+        //        var dataGridViewColumn = dataGridView1.Columns["AvgCadence"];
+        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+        //        avgCadence = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+        //        setCommand += "AvgCadence=@avgCadence,";
+        //        sqlPrameters.Add("@avgCadence", avgCadence);
+        //    }
 
-                // Example mapping - callers should adjust keys to match the real column names they want to update.
-                if (row.Cells["MovingTime"]?.Value != null) parameters.Add("@MovingTime", row.Cells["MovingTime"].Value.ToString());
-                if (row.Cells["RideDistance"]?.Value != null) parameters.Add("@RideDistance", row.Cells["RideDistance"].Value.ToString());
-                if (row.Cells["AvgSpeed"]?.Value != null) parameters.Add("@AvgSpeed", row.Cells["AvgSpeed"].Value.ToString());
+        //    if (checkedListBox.GetItemChecked(11))
+        //    {
+        //        var dataGridViewColumn = dataGridView1.Columns["MaxCadence"];
+        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+        //        maxCadence = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+        //        setCommand += "MaxCadence=@maxCadence,";
+        //        sqlPrameters.Add("@maxCadence", maxCadence);
+        //    }
 
-                using (var form = new RideDataEntry())
-                {
-                    form.SetSqlParameters(parameters);
-                    // Ensure the record id is set on the form before calling UpdateRideInformationFromSqlParameters
-                    int rows = form.UpdateRideInformationFromSqlParameters();
-                    return rows;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError("[ERROR]: Exception while trying to ApplyParameterizedUpdateFromRow: " + ex.Message);
-                return 0;
-            }
-        }
+        //    if (checkedListBox.GetItemChecked(12))
+        //    {
+        //        var dataGridViewColumn = dataGridView1.Columns["AvgHeartRate"];
+        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+        //        avgHeartRate = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+        //        setCommand += "AvgHeartRate=@avgHeartRate,";
+        //        sqlPrameters.Add("@avgHeartRate", avgHeartRate);
+        //    }
 
-        protected override void OnResize(EventArgs e)
-        {
-            // Invalidate the control to get a repaint.
-            this.Invalidate();
-        }
+        //    if (checkedListBox.GetItemChecked(13))
+        //    {
+        //        var dataGridViewColumn = dataGridView1.Columns["MaxHeartRate"];
+        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+        //        maxHeartRate = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+        //        setCommand += "MaxHeartRate=@maxHeartRate,";
+        //        sqlPrameters.Add("@maxHeartRate", maxHeartRate);
+        //    }
+
+        //    if (checkedListBox.GetItemChecked(14))
+        //    {
+        //        var dataGridViewColumn = dataGridView1.Columns["TotalAscent"];
+        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+        //        totalAscent = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+        //        setCommand += "TotalAscent=@totalAscent,";
+        //        sqlPrameters.Add("@totalAscent", totalAscent);
+        //    }
+
+        //    if (checkedListBox.GetItemChecked(15))
+        //    {
+        //        var dataGridViewColumn = dataGridView1.Columns["TotalDescent"];
+        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+        //        totalDescent = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+        //        setCommand += "TotalDescent=@totalDescent,";
+        //        sqlPrameters.Add("@totalDescent", totalDescent);
+        //    }
+
+        //    if (checkedListBox.GetItemChecked(16))
+        //    {
+        //        var dataGridViewColumn = dataGridView1.Columns["Calories"];
+        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+        //        calories = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+        //        setCommand += "Calories=@calories,";
+        //        sqlPrameters.Add("@calories", calories);
+        //    }
+
+        //    if (checkedListBox.GetItemChecked(17))
+        //    {
+        //        var dataGridViewColumn = dataGridView1.Columns["Comments"];
+        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+        //        comments = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+        //        setCommand += "Comments=@comments,";
+        //        sqlPrameters.Add("@comments", comments);
+        //    }
+
+        //    if (checkedListBox.GetItemChecked(18))
+        //    {
+        //        var dataGridViewColumn = dataGridView1.Columns["Route"];
+        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+        //        route = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+        //        setCommand += "Route=@route,";
+        //        sqlPrameters.Add("@route", route);
+        //    }
+
+        //    if (checkedListBox.GetItemChecked(19))
+        //    {
+        //        var dataGridViewColumn = dataGridView1.Columns["Effort"];
+        //        index = dataGridView1.Columns.IndexOf(dataGridViewColumn);
+        //        effort = dataGridView1.Rows[rowindex].Cells[index].Value.ToString();
+        //        setCommand += "Effort=@effort,";
+        //        sqlPrameters.Add("@effort", effort);
+        //    }
+
+        //    if (setCommand.EndsWith(","))
+        //    {
+        //        setCommand = setCommand.Remove(setCommand.Length - 1, 1);
+        //    }
+
+        //    setCommand = "UPDATE Table_Ride_Information SET " + setCommand + " WHERE Id=@id";
+        //    sqlPrameters.Add("@id", id);
+
+        //    try
+        //    {
+        //        //using (SqlConnection conn = new SqlConnection(sqlConnection))
+        //        //{
+        //        //    conn.Open();
+
+        //        //    using (SqlCommand cmd = new SqlCommand(setCommand, conn))
+        //        //    {
+        //        //        // Add parameters
+        //        //        foreach (var param in sqlPrameters)
+        //        //        {
+        //        //            cmd.Parameters.AddWithValue(param.Key, param.Value);
+        //        //        }
+
+        //        //        int rowsAffected = cmd.ExecuteNonQuery();
+        //        //    }
+        //        //}
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.LogError("[ERROR]: Exception while trying to execute batch update: " + ex.Message);
+        //    }
+        //}
 
         //protected override void OnPaint(PaintEventArgs e)
         //{
@@ -1500,7 +1591,7 @@ namespace CyclingLogApplication
             new Point(this.ClientRectangle.Width - PenWidth, this.ClientRectangle.Height - PenWidth));
         }
 
-        private void bFilter_Click_1(object sender, EventArgs e)
+        private void BFilter_Click_1(object sender, EventArgs e)
         {
             RunGridUpdate();
 
@@ -1543,7 +1634,7 @@ namespace CyclingLogApplication
             MessageBox.Show("For best results set page orientation to LANDSCAPE.");
 
             // print without redisplaying the printdialog 
-            printer.PrintPreviewDataGridView(dataGridView1);
+            printer.PrintPreviewDataGridView(dataGridView1, typeof(DataGridView));
         }
     }
 }

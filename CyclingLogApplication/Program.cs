@@ -159,7 +159,13 @@ namespace CyclingLogApplication
                 }
                 else
                 {
-                    return serviceName.Substring(serviceName.IndexOf('$') + 1, serviceName.Length - serviceName.IndexOf('$') - 1);
+                    int separatorIndex = serviceName.IndexOf('$');
+                    if (separatorIndex >= 0 && separatorIndex < serviceName.Length - 1)
+                    {
+                        return serviceName.Substring(separatorIndex + 1, serviceName.Length - separatorIndex - 1);
+                    }
+
+                    return serviceName;
                 }
             }
             else

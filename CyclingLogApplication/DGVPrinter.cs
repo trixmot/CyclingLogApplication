@@ -1700,11 +1700,11 @@ namespace DGVPrinterHelper //AllocationRequest
         /// </summary>
         /// <param name="dgv">The DataGridView to print</param>
         /// NOTE: Any changes to this method also need to be done in PrintPreviewDataGridView
-        public void PrintDataGridView(DataGridView dgv)
+        public void PrintDataGridView(DataGridView dgv, Type type)
         {
             if (EnableLogging) Logger.LogInfoMsg("PrintDataGridView process started");
             if (null == dgv) throw new Exception("Null Parameter passed to DGVPrinter.");
-            if (!(typeof(DataGridView).IsInstanceOfType(dgv)))
+            if (!(type.IsInstanceOfType(dgv)))
                 throw new Exception("Invalid Parameter passed to DGVPrinter.");
 
             // save the datagridview we're printing
@@ -1722,11 +1722,11 @@ namespace DGVPrinterHelper //AllocationRequest
         /// </summary>
         /// <param name="dgv">The DataGridView to print</param>
         /// NOTE: Any changes to this method also need to be done in PrintDataGridView
-        public void PrintPreviewDataGridView(DataGridView dgv)
+        public void PrintPreviewDataGridView(DataGridView dgv, Type type)
         {
             if (EnableLogging) Logger.LogInfoMsg("PrintPreviewDataGridView process started");
             if (null == dgv) throw new Exception("Null Parameter passed to DGVPrinter.");
-            if (!(typeof(DataGridView).IsInstanceOfType(dgv)))
+            if (!(type.IsInstanceOfType(dgv)))
                 throw new Exception("Invalid Parameter passed to DGVPrinter.");
 
             // save the datagridview we're printing
@@ -2624,7 +2624,7 @@ namespace DGVPrinterHelper //AllocationRequest
                 
                     // get gridview style, and override if we have a set style for this column
                     StringFormat currentformat = null;
-                    DataGridViewCellStyle colstyle = GetStyle(row, col); // = row.Cells[col.Index].InheritedStyle.Clone();
+                    DataGridViewCellStyle colstyle = GetStyle(row, col);
 
                     // build the cell style and font 
                     buildstringformat(ref currentformat, colstyle, cellformat.Alignment, cellformat.LineAlignment,
@@ -2783,7 +2783,7 @@ namespace DGVPrinterHelper //AllocationRequest
                     for (int k = 0; k < pageset.colstoprint.Count; k++)
                         columnlist = String.Format("{0},{1}", columnlist, pageset.colwidthsoverride[k]);
                     Logger.LogInfoMsg(String.Format("Overridden Column Widths: {0}", columnlist.Substring(1)));
-                    columnlist = "";
+
                 }
 
                 //-----------------------------------------------------------------
@@ -3540,7 +3540,7 @@ namespace DGVPrinterHelper //AllocationRequest
                     // get DGV column style and see if we have an override for this column
                     StringFormat finalformat = null;
                     Font cellfont = null;
-                    DataGridViewCellStyle colstyle = GetStyle(row, col); // = row.Cells[col.Index].InheritedStyle.Clone(); 
+                    DataGridViewCellStyle colstyle = GetStyle(row, col);
 
                     // set string format
                     buildstringformat(ref finalformat, colstyle, cellformat.Alignment, cellformat.LineAlignment,
@@ -3602,7 +3602,6 @@ namespace DGVPrinterHelper //AllocationRequest
                 RectangleF clip = g.ClipBounds;
 
                 // fill in the full cell background - using the selected style
-                //g.FillRectangle(new SolidBrush(colstyle.BackColor), cellprintarea);
                 g.FillRectangle(new SolidBrush(style.BackColor), cellprintarea);
 
                 // reset print area for this individual cell, adjusting 'inward' for cell padding

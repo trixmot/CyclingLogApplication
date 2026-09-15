@@ -17,13 +17,7 @@ using System.Security.Policy;
 using System.Text;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 using System.Xml.Linq;
-//using System.Threading;
-//using System.Text.RegularExpressions;
-//using System.Runtime.Remoting.Metadata.W3cXsd2001;
-//using System.Xml.Linq;
-//using static System.Net.WebRequestMethods;
-//using static DGVPrinterHelper.DGVPrinter;
-//using System.Windows.Forms.VisualStyles;
+
 
 
 
@@ -31,7 +25,7 @@ namespace CyclingLogApplication
 {
     public partial class MainForm : Form
     {
-        //private static Mutex mutex = null;
+
         Boolean formloading = false;
 
         private static string logVersion = "1.1.1";
@@ -151,7 +145,6 @@ namespace CyclingLogApplication
                     if (proc.ProcessName.Equals(Process.GetCurrentProcess().ProcessName) && proc.Id != Process.GetCurrentProcess().Id)
                     {
                         proc.Kill();
-                        //break;
                     }
                 }
                 this.Dispose();
@@ -1506,6 +1499,7 @@ namespace CyclingLogApplication
             //ExecuteScalarFunction
             using (var results = ExecuteSimpleQueryConnection("DeleteLogTitleFromRideInformation", objectValues))
             {
+                //comment
             }
         }
 
@@ -1607,7 +1601,7 @@ namespace CyclingLogApplication
                     //ExecuteScalarFunction
                     using (var results = ExecuteSimpleQueryConnection("Route_Update", objectValues))
                     {
-
+                        //comment
                     }
                 }
                 catch (Exception ex)
@@ -1709,7 +1703,7 @@ namespace CyclingLogApplication
                     //ExecuteScalarFunction
                     using (var results = ExecuteSimpleQueryConnection("Route_Remove", objectValues))
                     {
-
+                        //comment
                     }
 
                     removeRoute(deleteValue);
@@ -3244,7 +3238,7 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-
+                        //comment
                     }
                 }
             }
@@ -7015,13 +7009,13 @@ namespace CyclingLogApplication
                     }
                     else
                     {
-                        DateTime dateTime1 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime2 = new DateTime(logYear, monthIndex, 2);
-                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 3);
-                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 4);
-                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 5);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 6);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 7);
+                        DateTime dateTime1 = new DateTime(logYear, monthIndex, 1, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime2 = new DateTime(logYear, monthIndex, 2, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 3, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 4, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 5, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 6, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 7, 0, 0, 0, DateTimeKind.Local);
                         
                         miles1 = GetDataItemByDate(logIndex, dateTime1, sqlCommand, "calendar");
                         miles2 = GetDataItemByDate(logIndex, dateTime2, sqlCommand, "calendar");
@@ -7069,12 +7063,12 @@ namespace CyclingLogApplication
                     else if (startOfYear)
                     {
                         temp1 = "";
-                        DateTime dateTime2 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 2);
-                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 3);
-                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 4);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 5);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 6);
+                        DateTime dateTime2 = new DateTime(logYear, monthIndex, 1, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 2, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 3, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 4, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 5, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 6, 0, 0, 0, DateTimeKind.Local);
                         miles1 = "";
                         miles2 = GetDataItemByDate(logIndex, dateTime2, sqlCommand, "calendar");
                         miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand, "calendar");
@@ -7088,12 +7082,12 @@ namespace CyclingLogApplication
                         temp1 = daysInMonthPrevious.ToString();
                         DateTime dateTime2b = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
                         miles1 = GetDataItemByDate(logIndex, dateTime2b, sqlCommand, "calendar");
-                        DateTime dateTime2 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 2);
-                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 3);
-                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 4);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 5);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 6);
+                        DateTime dateTime2 = new DateTime(logYear, monthIndex, 1, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 2, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 3, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 4, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 5, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 6, 0, 0, 0, DateTimeKind.Local);
                         miles2 = GetDataItemByDate(logIndex, dateTime2, sqlCommand, "calendar");
                         miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand, "calendar");
                         miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand, "calendar");
@@ -7142,11 +7136,11 @@ namespace CyclingLogApplication
                         temp2 = "";
                         miles1 = "";
                         miles2 = "";
-                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 2);
-                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 3);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 4);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 5);
+                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 1, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 2, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 3, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 4, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 5, 0, 0, 0, DateTimeKind.Local);
                         miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand, "calendar");
                         miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand, "calendar");
                         miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
@@ -7157,15 +7151,15 @@ namespace CyclingLogApplication
                     {
                         temp1 = (daysInMonthPrevious - 1).ToString();
                         temp2 = (daysInMonthPrevious).ToString();
-                        DateTime dateTime31 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                        DateTime dateTime32 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
+                        DateTime dateTime31 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime32 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1, 0, 0, 0, DateTimeKind.Local);
                         miles1 = GetDataItemByDate(logIndex, dateTime32, sqlCommand, "calendar");
                         miles2 = GetDataItemByDate(logIndex, dateTime31, sqlCommand, "calendar");
-                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 2);
-                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 3);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 4);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 5);
+                        DateTime dateTime3 = new DateTime(logYear, monthIndex, 1, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 2, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 3, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 4, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 5, 0, 0, 0, DateTimeKind.Local);
                         miles3 = GetDataItemByDate(logIndex, dateTime3, sqlCommand, "calendar");
                         miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand, "calendar");
                         miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
@@ -7219,10 +7213,10 @@ namespace CyclingLogApplication
                         miles2 = "";
                         miles3 = "";
 
-                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 2);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 3);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 4);
+                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 1, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 2, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 3, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 4, 0, 0, 0, DateTimeKind.Local);
                         miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand, "calendar");
                         miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
                         miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
@@ -7234,16 +7228,16 @@ namespace CyclingLogApplication
                         temp2 = (daysInMonthPrevious - 1).ToString();
                         temp3 = (daysInMonthPrevious).ToString();
 
-                        DateTime dateTime41 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                        DateTime dateTime42 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
-                        DateTime dateTime43 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
+                        DateTime dateTime41 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime42 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime43 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2, 0, 0, 0, DateTimeKind.Local);
                         miles1 = GetDataItemByDate(logIndex, dateTime43, sqlCommand, "calendar");
                         miles2 = GetDataItemByDate(logIndex, dateTime42, sqlCommand, "calendar");
                         miles3 = GetDataItemByDate(logIndex, dateTime41, sqlCommand, "calendar");
-                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 2);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 3);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 4);
+                        DateTime dateTime4 = new DateTime(logYear, monthIndex, 1, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 2, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 3, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 4, 0, 0, 0, DateTimeKind.Local);
                         miles4 = GetDataItemByDate(logIndex, dateTime4, sqlCommand, "calendar");
                         miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
                         miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
@@ -7298,9 +7292,9 @@ namespace CyclingLogApplication
                         miles3 = "";
                         miles4 = "";
 
-                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 2);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 3);
+                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 1, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 2, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 3, 0, 0, 0, DateTimeKind.Local);
                         miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
                         miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
                         miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
@@ -7312,17 +7306,17 @@ namespace CyclingLogApplication
                         temp3 = (daysInMonthPrevious - 1).ToString();
                         temp4 = (daysInMonthPrevious).ToString();
 
-                        DateTime dateTime51 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious);
-                        DateTime dateTime52 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1);
-                        DateTime dateTime53 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2);
-                        DateTime dateTime54 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3);
+                        DateTime dateTime51 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious, 0, 0,0, DateTimeKind.Local);
+                        DateTime dateTime52 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 1, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime53 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 2, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime54 = new DateTime(logYear, previousMonthIndex, daysInMonthPrevious - 3, 0, 0, 0, DateTimeKind.Local);
                         miles1 = GetDataItemByDate(logIndex, dateTime54, sqlCommand, "calendar");
                         miles2 = GetDataItemByDate(logIndex, dateTime53, sqlCommand, "calendar");
                         miles3 = GetDataItemByDate(logIndex, dateTime52, sqlCommand, "calendar");
                         miles4 = GetDataItemByDate(logIndex, dateTime51, sqlCommand, "calendar");
-                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 1);
-                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 2);
-                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 3);
+                        DateTime dateTime5 = new DateTime(logYear, monthIndex, 1, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime6 = new DateTime(logYear, monthIndex, 2, 0, 0, 0, DateTimeKind.Local);
+                        DateTime dateTime7 = new DateTime(logYear, monthIndex, 3, 0, 0, 0, DateTimeKind.Local);
                         miles5 = GetDataItemByDate(logIndex, dateTime5, sqlCommand, "calendar");
                         miles6 = GetDataItemByDate(logIndex, dateTime6, sqlCommand, "calendar");
                         miles7 = GetDataItemByDate(logIndex, dateTime7, sqlCommand, "calendar");
@@ -9364,7 +9358,7 @@ namespace CyclingLogApplication
 
                             using (var results = ExecuteSimpleQueryConnection("Log_Year_Import", objectValues))
                             {
-
+                                //comment
                             }
                         }
 
@@ -9422,7 +9416,7 @@ namespace CyclingLogApplication
 
                             using (var results = ExecuteSimpleQueryConnection("Bike_Totals_Add", objectValues))
                             {
-
+                                //comment
                             }
                         }
 
@@ -9481,7 +9475,7 @@ namespace CyclingLogApplication
 
                             using (var results = ExecuteSimpleQueryConnection("Maintenance_Add", objectValues))
                             {
-
+                                //comment
                             }
                         }
 
@@ -9540,7 +9534,7 @@ namespace CyclingLogApplication
 
                             using (var results = ExecuteSimpleQueryConnection("Route_Add", objectValues))
                             {
-
+                                //comment
                             }
                         }
 
@@ -9745,7 +9739,7 @@ namespace CyclingLogApplication
 
                             using (var results = ExecuteSimpleQueryConnection("Ride_Information_Add_Import", objectValues))
                             {
-
+                                //comment
                             }
                         }
 

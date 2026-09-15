@@ -34,8 +34,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtpRideDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btLogEntrySave = new System.Windows.Forms.Button();
-            this.btRideDisplayUpdate = new System.Windows.Forms.Button();
+            this.BtLogEntrySave = new System.Windows.Forms.Button();
+            this.BtRideDisplayUpdate = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
             this.groupBoxRetrieveDate = new System.Windows.Forms.GroupBox();
             this.checkBoxCloneEntry = new System.Windows.Forms.CheckBox();
@@ -147,8 +147,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btLogEntrySave);
-            this.groupBox1.Controls.Add(this.btRideDisplayUpdate);
+            this.groupBox1.Controls.Add(this.BtLogEntrySave);
+            this.groupBox1.Controls.Add(this.BtRideDisplayUpdate);
             this.groupBox1.Controls.Add(this.label29);
             this.groupBox1.Controls.Add(this.groupBoxRetrieveDate);
             this.groupBox1.Controls.Add(this.label25);
@@ -168,25 +168,25 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // btLogEntrySave
+            // BtLogEntrySave
             // 
-            this.btLogEntrySave.Location = new System.Drawing.Point(420, 35);
-            this.btLogEntrySave.Name = "btLogEntrySave";
-            this.btLogEntrySave.Size = new System.Drawing.Size(75, 23);
-            this.btLogEntrySave.TabIndex = 5;
-            this.btLogEntrySave.Text = "Save";
-            this.btLogEntrySave.UseVisualStyleBackColor = true;
-            this.btLogEntrySave.Click += new System.EventHandler(this.btLogEntrySave_Click);
+            this.BtLogEntrySave.Location = new System.Drawing.Point(420, 35);
+            this.BtLogEntrySave.Name = "BtLogEntrySave";
+            this.BtLogEntrySave.Size = new System.Drawing.Size(75, 23);
+            this.BtLogEntrySave.TabIndex = 5;
+            this.BtLogEntrySave.Text = "Save";
+            this.BtLogEntrySave.UseVisualStyleBackColor = true;
+            this.BtLogEntrySave.Click += new System.EventHandler(this.BtLogEntrySave_Click);
             // 
-            // btRideDisplayUpdate
+            // BtRideDisplayUpdate
             // 
-            this.btRideDisplayUpdate.Location = new System.Drawing.Point(356, 64);
-            this.btRideDisplayUpdate.Name = "btRideDisplayUpdate";
-            this.btRideDisplayUpdate.Size = new System.Drawing.Size(85, 34);
-            this.btRideDisplayUpdate.TabIndex = 9;
-            this.btRideDisplayUpdate.Text = "Update";
-            this.btRideDisplayUpdate.UseVisualStyleBackColor = true;
-            this.btRideDisplayUpdate.Click += new System.EventHandler(this.btRideDisplayUpdate_Click);
+            this.BtRideDisplayUpdate.Location = new System.Drawing.Point(356, 64);
+            this.BtRideDisplayUpdate.Name = "BtRideDisplayUpdate";
+            this.BtRideDisplayUpdate.Size = new System.Drawing.Size(85, 34);
+            this.BtRideDisplayUpdate.TabIndex = 9;
+            this.BtRideDisplayUpdate.Text = "Update";
+            this.BtRideDisplayUpdate.UseVisualStyleBackColor = true;
+            this.BtRideDisplayUpdate.Click += new System.EventHandler(this.BtRideDisplayUpdate_Click);
             // 
             // label29
             // 
@@ -987,8 +987,8 @@
         private System.Windows.Forms.Label label28;
         public System.Windows.Forms.ComboBox cbBikeDataEntrySelection;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Button btRideDisplayUpdate;
-        private System.Windows.Forms.Button btLogEntrySave;
+        private System.Windows.Forms.Button BtRideDisplayUpdate;
+        private System.Windows.Forms.Button BtLogEntrySave;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox tbRideEntryWindChill;
         private System.Windows.Forms.TextBox tbRideEntryTemp;

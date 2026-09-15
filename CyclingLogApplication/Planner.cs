@@ -1004,38 +1004,38 @@ namespace CyclingLogApplication
 
                 if (double.TryParse(miles1, out doubleValue))
                 {
-                    totalActualMiles = totalActualMiles + double.Parse(miles1);
-                    miles1 = miles1 + " miles";
+                    totalActualMiles += double.Parse(miles1);
+                    miles1 += " miles";
                 }
                 if (double.TryParse(miles2, out doubleValue))
                 {
                     totalActualMiles += double.Parse(miles2);
-                    miles2 = miles2 + " miles";
+                    miles2 += " miles";
                 }
                 if (double.TryParse(miles3, out doubleValue))
                 {
                     totalActualMiles += double.Parse(miles3);
-                    miles3 = miles3 + " miles";
+                    miles3 += " miles";
                 }
                 if (double.TryParse(miles4, out doubleValue))
                 {
                     totalActualMiles += double.Parse(miles4);
-                    miles4 = miles4 + " miles";
+                    miles4 += " miles";
                 }
                 if (double.TryParse(miles5, out doubleValue))
                 {
                     totalActualMiles += double.Parse(miles5);
-                    miles5 = miles5 + " miles";
+                    miles5 += " miles";
                 }
                 if (double.TryParse(miles6, out doubleValue))
                 {
                     totalActualMiles += double.Parse(miles6);
-                    miles6 = miles6 + " miles";
+                    miles6 += " miles";
                 }
                 if (double.TryParse(miles7, out doubleValue))
                 {
                     totalActualMiles += double.Parse(miles7);
-                    miles7 = miles7 + " miles";
+                    miles7 += " miles";
                 }
 
                 //Date:              
@@ -1507,38 +1507,38 @@ namespace CyclingLogApplication
 
                         if (double.TryParse(miles1, out doubleValue))
                         {
-                            totalActualMiles = totalActualMiles + double.Parse(miles1);
-                            miles1 = miles1 + " miles";
+                            totalActualMiles += double.Parse(miles1);
+                            miles1 += " miles";
                         }
                         if (double.TryParse(miles2, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles2);
-                            miles2 = miles2 + " miles";
+                            miles2 += " miles";
                         }
                         if (double.TryParse(miles3, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles3);
-                            miles3 = miles3 + " miles";
+                            miles3 += " miles";
                         }
                         if (double.TryParse(miles4, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles4);
-                            miles4 = miles4 + " miles";
+                            miles4 += " miles";
                         }
                         if (double.TryParse(miles5, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles5);
-                            miles5 = miles5 + " miles";
+                            miles5 += " miles";
                         }
                         if (double.TryParse(miles6, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles6);
-                            miles6 = miles6 + " miles";
+                            miles6 += " miles";
                         }
                         if (double.TryParse(miles7, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles7);
-                            miles7 = miles7 + " miles";
+                            miles7 += " miles";
                         }
 
                         //Dates
@@ -2010,38 +2010,38 @@ namespace CyclingLogApplication
 
                         if (double.TryParse(miles1, out doubleValue))
                         {
-                            totalActualMiles = totalActualMiles + double.Parse(miles1);
-                            miles1 = miles1 + " miles";
+                            totalActualMiles += double.Parse(miles1);
+                            miles1 += " miles";
                         }
                         if (double.TryParse(miles2, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles2);
-                            miles2 = miles2 + " miles";
+                            miles2 += " miles";
                         }
                         if (double.TryParse(miles3, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles3);
-                            miles3 = miles3 + " miles";
+                            miles3 += " miles";
                         }
                         if (double.TryParse(miles4, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles4);
-                            miles4 = miles4 + " miles";
+                            miles4 += " miles";
                         }
                         if (double.TryParse(miles5, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles5);
-                            miles5 = miles5 + " miles";
+                            miles5 += " miles";
                         }
                         if (double.TryParse(miles6, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles6);
-                            miles6 = miles6 + " miles";
+                            miles6 += " miles";
                         }
                         if (double.TryParse(miles7, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles7);
-                            miles7 = miles7 + " miles";
+                            miles7 += " miles";
                         }
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
@@ -2508,38 +2508,38 @@ namespace CyclingLogApplication
 
                         if (double.TryParse(miles1, out doubleValue))
                         {
-                            totalActualMiles = totalActualMiles + double.Parse(miles1);
-                            miles1 = miles1 + " miles";
+                            totalActualMiles += double.Parse(miles1);
+                            miles1 += " miles";
                         }
                         if (double.TryParse(miles2, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles2);
-                            miles2 = miles2 + " miles";
+                            miles2 += " miles";
                         }
                         if (double.TryParse(miles3, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles3);
-                            miles3 = miles3 + " miles";
+                            miles3 += " miles";
                         }
                         if (double.TryParse(miles4, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles4);
-                            miles4 = miles4 + " miles";
+                            miles4 += " miles";
                         }
                         if (double.TryParse(miles5, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles5);
-                            miles5 = miles5 + " miles";
+                            miles5 += " miles";
                         }
                         if (double.TryParse(miles6, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles6);
-                            miles6 = miles6 + " miles";
+                            miles6 += " miles";
                         }
                         if (double.TryParse(miles7, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles7);
-                            miles7 = miles7 + " miles";
+                            miles7 += " miles";
                         }
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
@@ -3005,38 +3005,38 @@ namespace CyclingLogApplication
 
                         if (double.TryParse(miles1, out doubleValue))
                         {
-                            totalActualMiles = totalActualMiles + double.Parse(miles1);
-                            miles1 = miles1 + " miles";
+                            totalActualMiles += double.Parse(miles1);
+                            miles1 += " miles";
                         }
                         if (double.TryParse(miles2, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles2);
-                            miles2 = miles2 + " miles";
+                            miles2 += " miles";
                         }
                         if (double.TryParse(miles3, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles3);
-                            miles3 = miles3 + " miles";
+                            miles3 += " miles";
                         }
                         if (double.TryParse(miles4, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles4);
-                            miles4 = miles4 + " miles";
+                            miles4 += " miles";
                         }
                         if (double.TryParse(miles5, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles5);
-                            miles5 = miles5 + " miles";
+                            miles5 += " miles";
                         }
                         if (double.TryParse(miles6, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles6);
-                            miles6 = miles6 + " miles";
+                            miles6 += " miles";
                         }
                         if (double.TryParse(miles7, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles7);
-                            miles7 = miles7 + " miles";
+                            miles7 += " miles";
                         }
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
@@ -3501,38 +3501,38 @@ namespace CyclingLogApplication
 
                         if (double.TryParse(miles1, out doubleValue))
                         {
-                            totalActualMiles = totalActualMiles + double.Parse(miles1);
-                            miles1 = miles1 + " miles";
+                            totalActualMiles += double.Parse(miles1);
+                            miles1 += " miles";
                         }
                         if (double.TryParse(miles2, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles2);
-                            miles2 = miles2 + " miles";
+                            miles2 += " miles";
                         }
                         if (double.TryParse(miles3, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles3);
-                            miles3 = miles3 + " miles";
+                            miles3 += " miles";
                         }
                         if (double.TryParse(miles4, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles4);
-                            miles4 = miles4 + " miles";
+                            miles4 += " miles";
                         }
                         if (double.TryParse(miles5, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles5);
-                            miles5 = miles5 + " miles";
+                            miles5 += " miles";
                         }
                         if (double.TryParse(miles6, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles6);
-                            miles6 = miles6 + " miles";
+                            miles6 += " miles";
                         }
                         if (double.TryParse(miles7, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles7);
-                            miles7 = miles7 + " miles";
+                            miles7 += " miles";
                         }
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
@@ -3998,38 +3998,38 @@ namespace CyclingLogApplication
 
                         if (double.TryParse(miles1, out doubleValue))
                         {
-                            totalActualMiles = totalActualMiles + double.Parse(miles1);
-                            miles1 = miles1 + " miles";
+                            totalActualMiles += double.Parse(miles1);
+                            miles1 += " miles";
                         }
                         if (double.TryParse(miles2, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles2);
-                            miles2 = miles2 + " miles";
+                            miles2 += " miles";
                         }
                         if (double.TryParse(miles3, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles3);
-                            miles3 = miles3 + " miles";
+                            miles3 += " miles";
                         }
                         if (double.TryParse(miles4, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles4);
-                            miles4 = miles4 + " miles";
+                            miles4 += " miles";
                         }
                         if (double.TryParse(miles5, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles5);
-                            miles5 = miles5 + " miles";
+                            miles5 += " miles";
                         }
                         if (double.TryParse(miles6, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles6);
-                            miles6 = miles6 + " miles";
+                            miles6 += " miles";
                         }
                         if (double.TryParse(miles7, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles7);
-                            miles7 = miles7 + " miles";
+                            miles7 += " miles";
                         }
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
@@ -4470,38 +4470,38 @@ namespace CyclingLogApplication
 
                         if (double.TryParse(miles1, out doubleValue))
                         {
-                            totalActualMiles = totalActualMiles + double.Parse(miles1);
-                            miles1 = miles1 + " miles";
+                            totalActualMiles += double.Parse(miles1);
+                            miles1 += " miles";
                         }
                         if (double.TryParse(miles2, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles2);
-                            miles2 = miles2 + " miles";
+                            miles2 += " miles";
                         }
                         if (double.TryParse(miles3, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles3);
-                            miles3 = miles3 + " miles";
+                            miles3 += " miles";
                         }
                         if (double.TryParse(miles4, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles4);
-                            miles4 = miles4 + " miles";
+                            miles4 += " miles";
                         }
                         if (double.TryParse(miles5, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles5);
-                            miles5 = miles5 + " miles";
+                            miles5 += " miles";
                         }
                         if (double.TryParse(miles6, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles6);
-                            miles6 = miles6 + " miles";
+                            miles6 += " miles";
                         }
                         if (double.TryParse(miles7, out doubleValue))
                         {
                             totalActualMiles += double.Parse(miles7);
-                            miles7 = miles7 + " miles";
+                            miles7 += " miles";
                         }
 
                         dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
@@ -4918,38 +4918,38 @@ namespace CyclingLogApplication
 
                     if (double.TryParse(miles1, out doubleValue))
                     {
-                        totalActualMiles = totalActualMiles + double.Parse(miles1);
-                        miles1 = miles1 + " miles";
+                        totalActualMiles += double.Parse(miles1);
+                        miles1 += " miles";
                     }
                     if (double.TryParse(miles2, out doubleValue))
                     {
                         totalActualMiles += double.Parse(miles2);
-                        miles2 = miles2 + " miles";
+                        miles2 += " miles";
                     }
                     if (double.TryParse(miles3, out doubleValue))
                     {
                         totalActualMiles += double.Parse(miles3);
-                        miles3 = miles3 + " miles";
+                        miles3 += " miles";
                     }
                     if (double.TryParse(miles4, out doubleValue))
                     {
                         totalActualMiles += double.Parse(miles4);
-                        miles4 = miles4 + " miles";
+                        miles4 += " miles";
                     }
                     if (double.TryParse(miles5, out doubleValue))
                     {
                         totalActualMiles += double.Parse(miles5);
-                        miles5 = miles5 + " miles";
+                        miles5 += " miles";
                     }
                     if (double.TryParse(miles6, out doubleValue))
                     {
                         totalActualMiles += double.Parse(miles6);
-                        miles6 = miles6 + " miles";
+                        miles6 += " miles";
                     }
                     if (double.TryParse(miles7, out doubleValue))
                     {
                         totalActualMiles += double.Parse(miles7);
-                        miles7 = miles7 + " miles";
+                        miles7 += " miles";
                     }
 
                     dataGridViewPlanner.Rows.Add(temp1, temp2, temp3, temp4, temp5, temp6, temp7, "");
@@ -4996,7 +4996,7 @@ namespace CyclingLogApplication
                     if (!pMiles1.Equals("- -"))
                     {
                         //Planner value not set:
-                        if (pMiles1 == null || pMiles1.Equals("") || miles1.Equals(""))
+                        if (pMiles1 == null || string.IsNullOrEmpty(pMiles1) || string.IsNullOrEmpty(miles1))
                         {
                             dataGridViewPlanner.Rows[rowCount - 1].Cells[0].Style.BackColor = Color.White;
                         }
@@ -5030,7 +5030,7 @@ namespace CyclingLogApplication
                     if (!pMiles2.Equals("- -"))
                     {
                         //Planner value not set:
-                        if (pMiles2 == null || pMiles2.Equals("") || miles2.Equals(""))
+                        if (pMiles2 == null || string.IsNullOrEmpty(pMiles2) || string.IsNullOrEmpty(miles2))
                         {
                             dataGridViewPlanner.Rows[rowCount - 1].Cells[1].Style.BackColor = Color.White;
                         }
@@ -5064,7 +5064,7 @@ namespace CyclingLogApplication
                     if (!pMiles3.Equals("- -"))
                     {
                         //Planner value not set:
-                        if (pMiles3 == null || pMiles3.Equals("") || miles3.Equals(""))
+                        if (pMiles3 == null || string.IsNullOrEmpty(pMiles3) || string.IsNullOrEmpty(miles3))
                         {
                             dataGridViewPlanner.Rows[rowCount - 1].Cells[2].Style.BackColor = Color.White;
                         }
@@ -5098,7 +5098,7 @@ namespace CyclingLogApplication
                     if (!pMiles4.Equals("- -"))
                     {
                         //Planner value not set:
-                        if (pMiles4 == null || pMiles4.Equals("") || miles4.Equals(""))
+                        if (pMiles4 == null || string.IsNullOrEmpty(pMiles4) || string.IsNullOrEmpty(miles4))
                         {
                             dataGridViewPlanner.Rows[rowCount - 1].Cells[3].Style.BackColor = Color.White;
                         }
@@ -5132,7 +5132,7 @@ namespace CyclingLogApplication
                     if (!pMiles5.Equals("- -"))
                     {
                         //Planner value not set:
-                        if (pMiles5 == null || pMiles5.Equals("") || miles5.Equals(""))
+                        if (pMiles5 == null || string.IsNullOrEmpty(pMiles5) || string.IsNullOrEmpty(miles5))
                         {
                             dataGridViewPlanner.Rows[rowCount - 1].Cells[4].Style.BackColor = Color.White;
                         }
@@ -5166,7 +5166,7 @@ namespace CyclingLogApplication
                     if (!pMiles6.Equals("- -"))
                     {
                         //Planner value not set:
-                        if (pMiles6 == null || pMiles6.Equals("") || miles6.Equals(""))
+                        if (pMiles6 == null || string.IsNullOrEmpty(pMiles6) || string.IsNullOrEmpty(miles6))
                         {
                             dataGridViewPlanner.Rows[rowCount - 1].Cells[5].Style.BackColor = Color.White;
                         }
@@ -5200,7 +5200,7 @@ namespace CyclingLogApplication
                     if (!pMiles7.Equals("- -"))
                     {
                         //Planner value not set:
-                        if (pMiles7 == null || pMiles7.Equals("") || miles7.Equals(""))
+                        if (pMiles7 == null || string.IsNullOrEmpty(pMiles7) || string.IsNullOrEmpty(miles7))
                         {
                             dataGridViewPlanner.Rows[rowCount - 1].Cells[6].Style.BackColor = Color.White;
                         }
@@ -5236,14 +5236,12 @@ namespace CyclingLogApplication
                     if (totalPlanMiles == 0 || weekNumberProcess == currentWeekNumber)
                     {
                         dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.White;
-                        //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.Black;
                     }
                     //Planner set but no ride miles:
                     else if (totalActualMiles == 0)
                     {
 
                         dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
-                        //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
                     }
                     //Planner and miles available:
                     else
@@ -5252,84 +5250,68 @@ namespace CyclingLogApplication
                         if (compareMiles > planGoal)
                         {
                             dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.LimeGreen;
-                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
                         }
                         else
                         {
                             dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.BackColor = Color.Red;
-                            //dataGridViewPlanner.Rows[rowCount - 1].Cells[7].Style.ForeColor = Color.White;
                         }
                     }
 
-                    if (miles1.Equals(""))
+                    if (string.IsNullOrEmpty(miles1))
                     {
                         dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
-                        //dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.White;
                     }
                     else
                     {
                         dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                        //dataGridViewPlanner.Rows[rowCount].Cells[0].Style.BackColor = Color.Gray;
                     }
-                    if (miles2.Equals(""))
+                    if (string.IsNullOrEmpty(miles2))
                     {
                         dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
-                        //dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.White;
                     }
                     else
                     {
                         dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                        //dataGridViewPlanner.Rows[rowCount].Cells[1].Style.BackColor = Color.Gray;
                     }
-                    if (miles3.Equals(""))
+                    if (string.IsNullOrEmpty(miles3))
                     {
                         dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
-                        //dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.White;
                     }
                     else
                     {
                         dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                        //dataGridViewPlanner.Rows[rowCount].Cells[2].Style.BackColor = Color.Gray;
                     }
-                    if (miles4.Equals(""))
+                    if (string.IsNullOrEmpty(miles4))
                     {
                         dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
-                        //dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.White;
                     }
                     else
                     {
                         dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                        //dataGridViewPlanner.Rows[rowCount].Cells[3].Style.BackColor = Color.Gray;
                     }
-                    if (miles5.Equals(""))
+                    if (string.IsNullOrEmpty(miles5))
                     {
                         dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.White;
-                        //dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.White;
                     }
                     else
                     {
                         dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                        //dataGridViewPlanner.Rows[rowCount].Cells[4].Style.BackColor = Color.Gray;
                     }
-                    if (miles6.Equals(""))
+                    if (string.IsNullOrEmpty(miles6))
                     {
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.White;
-                        //dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.White;
                     }
                     else
                     {
                         dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                        //dataGridViewPlanner.Rows[rowCount].Cells[5].Style.BackColor = Color.Gray;
                     }
-                    if (miles7.Equals(""))
+                    if (string.IsNullOrEmpty(miles7))
                     {
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.White;
-                        //dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.White;
                     }
                     else
                     {
                         dataGridViewPlanner.Rows[rowCount].Cells[6].Style.BackColor = Color.FromName(MainForm.GetCalendarColor());
-                        //dataGridViewCalendar.Rows[rowCount].Cells[6].Style.BackColor = Color.Gray;
                     }
 
                     if (currentYearMonth)
@@ -5352,101 +5334,6 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.CurrentCell = dataGridViewPlanner.Rows[rowNumber].Cells[cellNumber];
                 }
 
-                //First Week of the month:
-                //if (day1 == 1)
-                //{
-                //    //no changes:
-                //}
-                //else if (day2 == 1)
-                //{
-                //    dataGridViewPlanner.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[0].Style.BackColor = Color.LightGray;
-
-                //}
-                //else if (day3 == 1)
-                //{
-                //    dataGridViewPlanner.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[1].Style.BackColor = Color.LightGray;
-
-                //}
-                //else if (day4 == 1)
-                //{
-                //    dataGridViewPlanner.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[1].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[2].Style.BackColor = Color.LightGray;
-
-                //}
-                //else if (day5 == 1)
-                //{
-                //    dataGridViewPlanner.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[3].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[1].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[2].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[3].Style.BackColor = Color.LightGray;
-
-                //}
-                //else if (day6 == 1)
-                //{
-                //    dataGridViewPlanner.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[4].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[3].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[4].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[1].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[2].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[3].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[4].Style.BackColor = Color.LightGray;
-                //}
-                //else if (day7 == 1)
-                //{
-                //    dataGridViewPlanner.Rows[0].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[1].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[2].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[3].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[4].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[0].Cells[5].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[1].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[2].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[3].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[4].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[1].Cells[5].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[0].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[1].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[2].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[3].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[4].Style.BackColor = Color.LightGray;
-                //    dataGridViewPlanner.Rows[2].Cells[5].Style.BackColor = Color.LightGray;
-                //}
-
-                //dataGridViewPlanner.Columns[0].DefaultCellStyle.BackColor = Color.Khaki;
-                //dataGridViewPlanner.Columns[8].DefaultCellStyle.BackColor = Color.Khaki;
-                //dataGridViewPlanner.Rows[0].Cells[7].Style.BackColor = Color.Khaki;
-                //dataGridViewPlanner.Columns[0].Width = 30;
                 // Specify a larger font for the "Date" row. 
                 using (Font font = new Font(
                     dataGridViewPlanner.DefaultCellStyle.Font.FontFamily, 23, FontStyle.Bold))
@@ -5539,7 +5426,6 @@ namespace CyclingLogApplication
                     dataGridViewPlanner.Rows[12].Cells[7].Style.BackColor = Color.Silver;
                 }
 
-                //dataGridViewPlanner.EnableHeadersVisualStyles = false;
                 dataGridViewPlanner.AllowUserToResizeRows = false;
                 dataGridViewPlanner.AllowUserToResizeColumns = false;
             }
@@ -6118,7 +6004,6 @@ namespace CyclingLogApplication
                 //Find out if date entry is plan only
                 //If plan only, delete entry, If not plan only, then just update planner value
                 DateTime planDate = firstDay.AddDays(i);
-                List<int> idList = CheckDateExists(logIndex, planDate);
 
                 List<object> objectValuesRideDate = new List<object>();
                 objectValuesRideDate.Add(planDate);

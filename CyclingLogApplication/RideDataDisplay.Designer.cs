@@ -122,7 +122,7 @@
             this.bFilter.TabIndex = 6;
             this.bFilter.Text = "Run";
             this.bFilter.UseVisualStyleBackColor = true;
-            this.bFilter.Click += new System.EventHandler(this.bFilter_Click_1);
+            this.bFilter.Click += new System.EventHandler(this.BFilter_Click_1);
             // 
             // label1
             // 

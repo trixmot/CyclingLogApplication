@@ -2,9 +2,6 @@
 using System.Xml;
 using System.Collections.Generic;
 using System.Windows.Forms;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Linq;
@@ -181,30 +178,6 @@ namespace CyclingLogApplication
             fieldCheckDictionary.Add(checkListBoxItemNAME25, checkListBoxItemCHECK25);
             fieldCheckDictionary.Add(checkListBoxItemNAME26, checkListBoxItemCHECK26);
 
-            //int heightCLB = 394;
-            //int numberRemoved = 0;
-            ////Check value of custom1:
-            //if (customDataField1.Equals(""))
-            //{
-            //    fieldCheckDictionary.Remove("Custom1");
-            //    numberRemoved++;
-            //}
-            //if (customDataField2.Equals(""))
-            //{
-            //    fieldCheckDictionary.Remove("Custom2");
-            //    numberRemoved++;
-            //}
-
-            //if (numberRemoved == 1)
-            //{
-            //    heightCLB = 379;
-            //} else if (numberRemoved == 2)
-            //{
-            //    heightCLB = 364;
-            //}
-            //Set checkedListbox height:
-            //MainForm.SetHeightCLB(heightCLB);
-
             MainForm.SetFieldDictionary(fieldCheckDictionary);
 
             string lastLogYearSelected = nodes.Item(0).SelectSingleNode("LastLogSelected").InnerText;
@@ -262,7 +235,6 @@ namespace CyclingLogApplication
             //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
             Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, logLevel, 0);
             Logger.Log("Configuration Read: LOGLEVEL : " + logLevel, logLevel, 0);
-            //Logger.Log("Configuration Read: VERSION : " + verison, logLevel, 0);
             Logger.Log("Configuration Read: GRIDORDER : " + gridOrder, logLevel, 0);
             Logger.Log("Configuration Read: FIRSTDAY : " + firstDayOfWeek, logLevel, 0);
             Logger.Log("Configuration Read: FIRSTDAYCALENDAR : " + firstDayOfWeekCalendar, logLevel, 0);
@@ -332,7 +304,6 @@ namespace CyclingLogApplication
 
             string path = strWorkPath + "\\settings";
             string pathFile = strWorkPath + "\\settings\\CyclingLogConfig.xml";
-            //MainForm mainForm = new MainForm("");
             int logSetting = MainForm.GetLogLevel();
 
             try

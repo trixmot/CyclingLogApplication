@@ -3,48 +3,68 @@
   "WorkspaceRootPath": "D:\\workdir\\github\\cycling_log\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\chartform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|d:\\workdir\\github\\cycling_log\\cyclinglogapplication\\chartform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\chartform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\chartform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\chartform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\databaseconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\databaseconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\planner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\planner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\planner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\planner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|d:\\workdir\\github\\cycling_log\\cyclinglogapplication\\refreshingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\refreshingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|d:\\workdir\\github\\cycling_log\\cyclinglogapplication\\refreshingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\refreshingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\ridedatadisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\ridedatadisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\ridedataentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\ridedataentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|d:\\workdir\\github\\cycling_log\\cyclinglogapplication\\ridedataentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\ridedataentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\ridedatadisplay.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\ridedatadisplay.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\ridedatadisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\ridedatadisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\planner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\planner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\dgvprinter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\dgvprinter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\dgvprinter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\dgvprinter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\ridedatadisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\ridedatadisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\ridedataentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\ridedataentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\ridedataentry.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\ridedataentry.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\configurationfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\configurationfile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\chartform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\chartform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\planner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\planner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\refreshingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\refreshingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\refreshingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\refreshingform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -55,31 +75,19 @@
       "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\license.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\databaseconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\databaseconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\ridedatadisplay.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\ridedatadisplay.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\mainform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\mainform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|d:\\workdir\\github\\cycling_log\\cyclinglogapplication\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|d:\\workdir\\github\\cycling_log\\cyclinglogapplication\\ridedatadisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\ridedatadisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|d:\\workdir\\github\\cycling_log\\cyclinglogapplication\\imainformhost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\imainformhost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\imainformhost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|d:\\workdir\\github\\cycling_log\\cyclinglogapplication\\mainform.instance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|D:\\workdir\\github\\cycling_log\\cyclinglogapplication\\mainform.instance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{380C8503-831C-4296-B81C-7BE7BDCC4406}|CyclingLogApplication\\Cycling_Log.csproj|solutionrelative:cyclinglogapplication\\mainform.instance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -90,11 +98,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 17,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
+              "Title": "RideDataEntry.Designer.cs",
+              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RideDataEntry.Designer.cs",
+              "RelativeDocumentMoniker": "CyclingLogApplication\\RideDataEntry.Designer.cs",
+              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RideDataEntry.Designer.cs",
+              "RelativeToolTip": "CyclingLogApplication\\RideDataEntry.Designer.cs",
+              "ViewState": "AgIAAKMAAAAAAAAAAAAcwLIAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-12T23:01:56.829Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ConfigurationFile.cs",
+              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\ConfigurationFile.cs",
+              "RelativeDocumentMoniker": "CyclingLogApplication\\ConfigurationFile.cs",
+              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\ConfigurationFile.cs",
+              "RelativeToolTip": "CyclingLogApplication\\ConfigurationFile.cs",
+              "ViewState": "AgIAACMBAAAAAAAAAAAnwDEBAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-12T21:22:59.804Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "RefreshingForm.cs",
               "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RefreshingForm.cs",
               "RelativeDocumentMoniker": "CyclingLogApplication\\RefreshingForm.cs",
@@ -102,24 +135,22 @@
               "RelativeToolTip": "CyclingLogApplication\\RefreshingForm.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-12T21:12:43.627Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-12T21:12:43.627Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 15,
               "Title": "RefreshingForm.cs [Design]",
               "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RefreshingForm.cs",
               "RelativeDocumentMoniker": "CyclingLogApplication\\RefreshingForm.cs",
               "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RefreshingForm.cs [Design]",
               "RelativeToolTip": "CyclingLogApplication\\RefreshingForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-12T21:12:40.983Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-09-12T21:12:40.983Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "MainForm.Instance.cs",
               "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\MainForm.Instance.cs",
               "RelativeDocumentMoniker": "CyclingLogApplication\\MainForm.Instance.cs",
@@ -127,12 +158,11 @@
               "RelativeToolTip": "CyclingLogApplication\\MainForm.Instance.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-12T18:41:56.794Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-12T18:41:56.794Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "IMainFormHost.cs",
               "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\IMainFormHost.cs",
               "RelativeDocumentMoniker": "CyclingLogApplication\\IMainFormHost.cs",
@@ -140,7 +170,19 @@
               "RelativeToolTip": "CyclingLogApplication\\IMainFormHost.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-12T16:04:53.073Z",
+              "WhenOpened": "2026-09-12T16:04:53.073Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ChartForm.cs",
+              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\ChartForm.cs",
+              "RelativeDocumentMoniker": "CyclingLogApplication\\ChartForm.cs",
+              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\ChartForm.cs",
+              "RelativeToolTip": "CyclingLogApplication\\ChartForm.cs",
+              "ViewState": "AgIAAIACAAAAAAAAAAAcwJcCAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T20:51:56.118Z",
               "EditorCaption": ""
             },
             {
@@ -149,7 +191,94 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
+              "Title": "RideDataDisplay.cs",
+              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RideDataDisplay.cs",
+              "RelativeDocumentMoniker": "CyclingLogApplication\\RideDataDisplay.cs",
+              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RideDataDisplay.cs",
+              "RelativeToolTip": "CyclingLogApplication\\RideDataDisplay.cs",
+              "ViewState": "AgIAAO4BAAAAAAAAAAAowP8BAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-12T12:40:05.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\MainForm.cs",
+              "RelativeDocumentMoniker": "CyclingLogApplication\\MainForm.cs",
+              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\MainForm.cs [Design]",
+              "RelativeToolTip": "CyclingLogApplication\\MainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-28T20:04:10.601Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "MainForm.Designer.cs",
+              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\MainForm.Designer.cs",
+              "RelativeDocumentMoniker": "CyclingLogApplication\\MainForm.Designer.cs",
+              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\MainForm.Designer.cs",
+              "RelativeToolTip": "CyclingLogApplication\\MainForm.Designer.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-29T01:55:01.139Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RideDataDisplay.Designer.cs",
+              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RideDataDisplay.Designer.cs",
+              "RelativeDocumentMoniker": "CyclingLogApplication\\RideDataDisplay.Designer.cs",
+              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RideDataDisplay.Designer.cs",
+              "RelativeToolTip": "CyclingLogApplication\\RideDataDisplay.Designer.cs",
+              "ViewState": "AgIAAG4AAAAAAAAAAAD4v3wAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-17T12:20:56.732Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DatabaseConnection.cs",
+              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\DatabaseConnection.cs",
+              "RelativeDocumentMoniker": "CyclingLogApplication\\DatabaseConnection.cs",
+              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\DatabaseConnection.cs",
+              "RelativeToolTip": "CyclingLogApplication\\DatabaseConnection.cs",
+              "ViewState": "AgIAAOMAAAAAAAAAAAAgwPMAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-15T13:09:55.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "license.txt",
+              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\license.txt",
+              "RelativeDocumentMoniker": "CyclingLogApplication\\license.txt",
+              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\license.txt",
+              "RelativeToolTip": "CyclingLogApplication\\license.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-03-01T19:05:43.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\Program.cs",
+              "RelativeDocumentMoniker": "CyclingLogApplication\\Program.cs",
+              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\Program.cs",
+              "RelativeToolTip": "CyclingLogApplication\\Program.cs",
+              "ViewState": "AgIAAMMAAAAAAAAAAABRwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-01T13:06:37.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "RideDataEntry.cs [Design]",
               "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RideDataEntry.cs",
               "RelativeDocumentMoniker": "CyclingLogApplication\\RideDataEntry.cs",
@@ -161,132 +290,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "RideDataDisplay.cs",
-              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RideDataDisplay.cs",
-              "RelativeDocumentMoniker": "CyclingLogApplication\\RideDataDisplay.cs",
-              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RideDataDisplay.cs",
-              "RelativeToolTip": "CyclingLogApplication\\RideDataDisplay.cs",
-              "ViewState": "AgIAAPcEAAAAAAAAAAAUwP8DAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-12T12:40:05.844Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "MainForm.cs [Design]",
-              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\MainForm.cs",
-              "RelativeDocumentMoniker": "CyclingLogApplication\\MainForm.cs",
-              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\MainForm.cs [Design]",
-              "RelativeToolTip": "CyclingLogApplication\\MainForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-28T20:04:10.601Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "MainForm.Designer.cs",
-              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\MainForm.Designer.cs",
-              "RelativeDocumentMoniker": "CyclingLogApplication\\MainForm.Designer.cs",
-              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\MainForm.Designer.cs",
-              "RelativeToolTip": "CyclingLogApplication\\MainForm.Designer.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBYAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-29T01:55:01.139Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "RideDataDisplay.Designer.cs",
-              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RideDataDisplay.Designer.cs",
-              "RelativeDocumentMoniker": "CyclingLogApplication\\RideDataDisplay.Designer.cs",
-              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RideDataDisplay.Designer.cs",
-              "RelativeToolTip": "CyclingLogApplication\\RideDataDisplay.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-17T12:20:56.732Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "DatabaseConnection.cs",
-              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\DatabaseConnection.cs",
-              "RelativeDocumentMoniker": "CyclingLogApplication\\DatabaseConnection.cs",
-              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\DatabaseConnection.cs",
-              "RelativeToolTip": "CyclingLogApplication\\DatabaseConnection.cs",
-              "ViewState": "AgIAABgBAAAAAAAAAAAIwMoAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-15T13:09:55.223Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "license.txt",
-              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\license.txt",
-              "RelativeDocumentMoniker": "CyclingLogApplication\\license.txt",
-              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\license.txt",
-              "RelativeToolTip": "CyclingLogApplication\\license.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2026-03-01T19:05:43.41Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\Program.cs",
-              "RelativeDocumentMoniker": "CyclingLogApplication\\Program.cs",
-              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\Program.cs",
-              "RelativeToolTip": "CyclingLogApplication\\Program.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-01T13:06:37.07Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "RideDataEntry.cs",
               "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RideDataEntry.cs",
               "RelativeDocumentMoniker": "CyclingLogApplication\\RideDataEntry.cs",
               "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\RideDataEntry.cs",
               "RelativeToolTip": "CyclingLogApplication\\RideDataEntry.cs",
-              "ViewState": "AgIAAKUDAAAAAAAAAAAwwLEDAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHUHAAAAAAAAAAAowIoHAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-28T19:26:45.844Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 6,
               "Title": "DGVPrinter.cs",
               "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\DGVPrinter.cs",
               "RelativeDocumentMoniker": "CyclingLogApplication\\DGVPrinter.cs",
               "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\DGVPrinter.cs",
               "RelativeToolTip": "CyclingLogApplication\\DGVPrinter.cs",
-              "ViewState": "AgIAABENAAAAAAAAAAAswC8NAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAADgJAAAAAAAAAAAkwE4JAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-28T19:23:51.928Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-28T19:23:51.928Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "MainForm.cs",
               "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\MainForm.cs",
               "RelativeDocumentMoniker": "CyclingLogApplication\\MainForm.cs",
               "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\MainForm.cs",
               "RelativeToolTip": "CyclingLogApplication\\MainForm.cs",
-              "ViewState": "AgIAAMkDAAAAAAAAAAApwM8DAABLAAAAAAAAAA==",
+              "ViewState": "AgIAAGAbAAAAAAAAAAAkwHMbAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-04T18:33:21.863Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-04T18:33:21.863Z"
             },
             {
               "$type": "Document",
@@ -302,45 +339,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ChartForm.cs",
-              "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\ChartForm.cs",
-              "RelativeDocumentMoniker": "CyclingLogApplication\\ChartForm.cs",
-              "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\ChartForm.cs",
-              "RelativeToolTip": "CyclingLogApplication\\ChartForm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T20:51:56.118Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 12,
               "Title": "ChartForm.cs [Design]",
               "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\ChartForm.cs",
               "RelativeDocumentMoniker": "CyclingLogApplication\\ChartForm.cs",
               "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\ChartForm.cs [Design]",
               "RelativeToolTip": "CyclingLogApplication\\ChartForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T20:59:41.71Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-12-06T20:59:41.71Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Planner.cs",
               "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\Planner.cs",
               "RelativeDocumentMoniker": "CyclingLogApplication\\Planner.cs",
               "ToolTip": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\Planner.cs",
               "RelativeToolTip": "CyclingLogApplication\\Planner.cs",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAowIkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADETAAAAAAAAAAAkwDcTAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-04T14:40:19.123Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 13,
               "Title": "Planner.cs [Design]",
               "DocumentMoniker": "D:\\workdir\\github\\cycling_log\\CyclingLogApplication\\Planner.cs",
               "RelativeDocumentMoniker": "CyclingLogApplication\\Planner.cs",
