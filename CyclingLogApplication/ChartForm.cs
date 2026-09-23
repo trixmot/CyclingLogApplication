@@ -327,27 +327,20 @@ namespace CyclingLogApplication
                         date = reader[0].ToString();
                         date = Convert.ToDateTime(date).ToShortDateString();
                         string pMilesString = reader[1].ToString();
-                        
+
                         double plan_miles = 0;
-                        if (pMilesString.Equals(""))
+                        if (!double.TryParse(pMilesString, out plan_miles))
                         {
                             plan_miles = 0;
-                        } else
-                        {
-                            plan_miles = double.Parse(pMilesString);
                         }
-                        
+
                         int weekValue = Convert.ToInt32(reader[2].ToString());
                         string aMilesString = reader[3].ToString();
 
                         double actual_miles = 0;
-                        if (aMilesString.Equals(""))
+                        if (!double.TryParse(aMilesString, out actual_miles))
                         {
                             actual_miles = 0;
-                        }
-                        else
-                        {
-                            actual_miles = double.Parse(aMilesString);
                         }
 
                         //Daily
@@ -598,11 +591,10 @@ namespace CyclingLogApplication
                         date = reader[0].ToString();
                         date = Convert.ToDateTime(date).ToShortDateString();
                         string test = reader[1].ToString();
-                        if (test.Equals("OFF") || test.Equals(""))
+                        if (!double.TryParse(test, out double chartDataTypeValue))
                         {
-                            string test2 = test;
+                            chartDataTypeValue = 0;
                         }
-                        double chartDataTypeValue = double.Parse(reader[1].ToString());
                         int weekValue = Convert.ToInt32(reader[2].ToString());
                         //this.chart1.Series["Series1"].Points.AddXY(reader[0].ToString(), reader[1].ToString());
 
@@ -935,13 +927,9 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (!int.TryParse(temp, out returnValue))
                         {
                             returnValue = 0;
-                        }
-                        else
-                        {
-                            returnValue = int.Parse(temp);
                         }
                     }
                 }
@@ -967,13 +955,9 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (!double.TryParse(temp, out returnValue))
                         {
                             returnValue = 0;
-                        }
-                        else
-                        {
-                            returnValue = double.Parse(temp);
                         }
                     }
                 }
@@ -1063,13 +1047,9 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (!float.TryParse(temp, out returnValue))
                         {
                             returnValue = 0;
-                        }
-                        else
-                        {
-                            returnValue = float.Parse(temp);
                         }
 
                     }
