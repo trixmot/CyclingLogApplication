@@ -28,7 +28,7 @@ namespace CyclingLogApplication
         //private static Mutex mutex = null;
         Boolean formloading = false;
 
-        private static string logVersion = "1.1.2";
+        private static string logVersion = "1.1.3";
         private static int logLevel = 0;
         private static string gridOrder;
         private static int lastLogSelected = 0;
@@ -483,7 +483,6 @@ namespace CyclingLogApplication
             if (result == DialogResult.Yes)
             {
                 ConfigurationFile.WriteConfigFile();
-                //this.Dispose();
                 Application.Exit();
             }
         }
