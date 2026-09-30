@@ -25,8 +25,8 @@ namespace CyclingLogApplication
 {
     public partial class RideDataEntry : Form
     {
-        private static int formLoad = 1;
-        private static int formClosing = 0;
+        private int formLoad;
+        private int formClosing;
         private SqlConnection sqlConnection;
         private DatabaseConnection databaseConnection;
         private int id;
@@ -740,7 +740,7 @@ namespace CyclingLogApplication
                                 {
                                     max_speed.Text = "- -";
                                 } else {
-                                    double maxSpeedDouble = double.Parse(results[14].ToString());
+                                    double.TryParse(results[14].ToString(), out double maxSpeedDouble);
                                     maxSpeed = (Math.Round(maxSpeedDouble, 1)).ToString();
                                     max_speed.Text = maxSpeed;
                                 }
@@ -1640,17 +1640,23 @@ namespace CyclingLogApplication
                 else if (temp2.Length == 1)
                 {
                     //MessageBox.Show("Count is 1");
-                    dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, Int32.Parse(temp2[0]));
+                    int.TryParse(temp2[0], out int seconds1);
+                    dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, seconds1);
                 }
                 else if (temp2.Length == 2)
                 {
                     //MessageBox.Show("Count is 2");
-                    dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, Int32.Parse(temp2[0]), Int32.Parse(temp2[1]));
+                    int.TryParse(temp2[0], out int minutes2);
+                    int.TryParse(temp2[1], out int seconds2);
+                    dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, minutes2, seconds2);
                 }
                 else if (temp2.Length == 3)
                 {
                     //MessageBox.Show("Count is 3");
-                    dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Int32.Parse(temp2[0]), Int32.Parse(temp2[1]), Int32.Parse(temp2[2]));
+                    int.TryParse(temp2[0], out int hours3);
+                    int.TryParse(temp2[1], out int minutes3);
+                    int.TryParse(temp2[2], out int seconds3);
+                    dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hours3, minutes3, seconds3);
                 }
 
                 tbRideDataEntryDistance.Text = garminDataDictionary["\"Distance\""];
@@ -1674,7 +1680,7 @@ namespace CyclingLogApplication
                     tbRideDataEntryAvgSpeed.Text = garminDataDictionary["\"Avg Speed\""];
                 }
 
-                avgSpeed = double.Parse(tbRideDataEntryAvgSpeed.Text);
+                double.TryParse(tbRideDataEntryAvgSpeed.Text, out avgSpeed);
 
                 if (garminDataDictionary.TryGetValue("\"Max Speed\"", out value))
                 {
@@ -1720,20 +1726,16 @@ namespace CyclingLogApplication
             double windChill;
             double maxSpeed;
 
-            if (max_speed.Text.Equals(""))
+            if (max_speed.Text.Equals("") || !double.TryParse(max_speed.Text, out maxSpeed))
             {
                 maxSpeed = avgSpeed;
-            } else
-            {
-                maxSpeed = double.Parse(max_speed.Text);
             }
 
-            if (tbRideEntryTemp.Text.Equals(""))
+            if (tbRideEntryTemp.Text.Equals("") || !double.TryParse(tbRideEntryTemp.Text, out double temperature))
             {
                 tbRideEntryWindChill.Text = "";
             } else
             {
-                double temperature = double.Parse(tbRideEntryTemp.Text.ToString());
 
                 if (maxSpeed > 0 && temperature > 0)
                 {
@@ -1850,7 +1852,7 @@ namespace CyclingLogApplication
                         {
                             while (results.Read())
                             {
-                                logYear = Int32.Parse(results[0].ToString());
+                                int.TryParse(results[0].ToString(), out logYear);
                             }
                         }
                         else
@@ -1927,7 +1929,7 @@ namespace CyclingLogApplication
                         {
                             while (results.Read())
                             {
-                                returnValue = Int32.Parse(results[0].ToString());
+                                int.TryParse(results[0].ToString(), out returnValue);
                             }
                         }
                         else
@@ -1974,7 +1976,7 @@ namespace CyclingLogApplication
 
         private void DtpTimeRideDataEntry_ValueChanged(object sender, EventArgs e)
         {
-
+            // Placeholder for any code that needs to be executed when the time value changes.
         }
 
         private void BtRetrieve_Click(object sender, EventArgs e)
@@ -2246,7 +2248,7 @@ namespace CyclingLogApplication
                             route = results[17].ToString();
                             comments = results[18].ToString();
                             location = results[19].ToString();
-                            recordID = results[20].ToString();
+                            //recordID = results[20].ToString();
                             weekNumber = results[21].ToString();
                             effort = results[22].ToString();
                             comfort = results[23].ToString();
@@ -2428,20 +2430,6 @@ namespace CyclingLogApplication
             //this.cbBikeDataEntrySelection.SelectedIndex = cbBikeDataEntrySelection.Items.IndexOf(GetBike());
             //cbBikeDataEntrySelection.SelectedText = GetBike();
         }
-
-        //private void btCancelDisplayUpdate_Click(object sender, EventArgs e)
-        //{
-        //    formClosing = 1;
-        //    this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
-        //}
-
-        //static double CalculateWCI(double temperature, double windSpeed)
-        //{
-        //    // Calculating Wind Chill Index (Twc)
-        //    double wci = 13.12 + 0.6215 * temperature - 11.37 * Math.Pow(windSpeed, 0.16) + 0.3965 * temperature * Math.Pow(windSpeed, 0.16);
-
-        //    return wci;
-        //}
 
         public void DeleteRecordByID(int recordID)
         {

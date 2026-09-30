@@ -17,13 +17,7 @@ using System.Security.Policy;
 using System.Text;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 using System.Xml.Linq;
-//using System.Threading;
-//using System.Text.RegularExpressions;
-//using System.Runtime.Remoting.Metadata.W3cXsd2001;
-//using System.Xml.Linq;
-//using static System.Net.WebRequestMethods;
-//using static DGVPrinterHelper.DGVPrinter;
-//using System.Windows.Forms.VisualStyles;
+
 
 
 
@@ -34,7 +28,7 @@ namespace CyclingLogApplication
         //private static Mutex mutex = null;
         Boolean formloading = false;
 
-        private static string logVersion = "1.1.1";
+        private static string logVersion = "1.1.2";
         private static int logLevel = 0;
         private static string gridOrder;
         private static int lastLogSelected = 0;

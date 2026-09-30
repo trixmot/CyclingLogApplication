@@ -4,9 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -16,6 +13,7 @@ namespace CyclingLogApplication
     {
         private static SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
         //BackgroundWorker bgw = new BackgroundWorker();
+        const double Epsilon = 0.00001;
 
         public ChartForm()
         {
@@ -281,11 +279,14 @@ namespace CyclingLogApplication
                     //Daily:
                     if (cbTypeTime.SelectedIndex == 1)
                     {
-                        DateTime dateFrom = DateTime.Parse(dtpFromDate.Value.ToString());
-                        DateTime dateTo = DateTime.Parse(dtpToDate.Value.ToString());
+                        DateTime dateFrom = dtpFromDate.Value.Date;
+                        DateTime dateTo = dtpToDate.Value.Date.AddDays(1);
 
                         //cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber, RideDistance FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " ORDER BY Date", sqlConnection);
-                        cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber, RideDistance FROM Table_Ride_Information WHERE LogYearID=" + logIndex + " and Date >= '" + dateFrom + "' AND Date < '" + dateTo + "' ORDER BY Date", sqlConnection);
+                        cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber, RideDistance FROM Table_Ride_Information WHERE LogYearID=@logIndex and Date >= @dateFrom AND Date < @dateTo ORDER BY Date", sqlConnection);
+                        cmd.Parameters.Add("@logIndex", SqlDbType.Int).Value = logIndex;
+                        cmd.Parameters.Add("@dateFrom", SqlDbType.DateTime).Value = dateFrom;
+                        cmd.Parameters.Add("@dateTo", SqlDbType.DateTime).Value = dateTo;
                         lbXAxis.Text = "Day";
                         timeFreq = "Daily";
                     }
@@ -346,7 +347,7 @@ namespace CyclingLogApplication
                         //Daily
                         if (cbTypeTime.SelectedIndex == 1)
                         {
-                            if (!date.Equals(""))
+                            if (!string.IsNullOrEmpty(date))
                             {
                                 actual_miles = Math.Round(actual_miles, 1);
                                 plan_miles = Math.Round(plan_miles, 1);
@@ -477,17 +478,23 @@ namespace CyclingLogApplication
                     //Daily:
                     if (cbTypeTime.SelectedIndex == 1)
                     {
-                        DateTime dateFrom = DateTime.Parse(dtpFromDate.Value.ToString());
-                        DateTime dateTo = DateTime.Parse(dtpToDate.Value.ToString());
+                        DateTime dateFrom = dtpFromDate.Value.Date;
+                        DateTime dateTo = dtpToDate.Value.Date.AddDays(1);
 
                         if (!checkBoxRouteOption.Checked)
                         {
-                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=@logIndex and Date >= '" + dateFrom + "' AND Date < '" + dateTo + "' ORDER BY Date", sqlConnection);
-                            cmd.Parameters.AddWithValue("@logIndex", logIndex);
+                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE LogYearID=@logIndex and Date >= @dateFrom AND Date < @dateTo ORDER BY Date", sqlConnection);
+                            cmd.Parameters.Add("@logIndex", SqlDbType.Int).Value = logIndex;
+                            cmd.Parameters.Add("@dateFrom", SqlDbType.DateTime).Value = dateFrom;
+                            cmd.Parameters.Add("@dateTo", SqlDbType.DateTime).Value = dateTo;
                         }
                         else
                         {
-                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE Route='" + cbRoutesChart.SelectedItem + "' and LogYearID=" + logIndex + " and Date >= '" + dateFrom + "' AND Date < '" + dateTo + "' ORDER BY Date", sqlConnection);
+                            cmd = new SqlCommand("SELECT Date, " + chartDataColumn + ", WeekNumber FROM Table_Ride_Information WHERE Route=@route and LogYearID=@logIndex and Date >= @dateFrom AND Date < @dateTo ORDER BY Date", sqlConnection);
+                            cmd.Parameters.Add("@route", SqlDbType.NVarChar).Value = cbRoutesChart.SelectedItem?.ToString();
+                            cmd.Parameters.Add("@logIndex", SqlDbType.Int).Value = logIndex;
+                            cmd.Parameters.Add("@dateFrom", SqlDbType.DateTime).Value = dateFrom;
+                            cmd.Parameters.Add("@dateTo", SqlDbType.DateTime).Value = dateTo;
                         }
 
                         lbXAxis.Text = "Day";
@@ -601,7 +608,7 @@ namespace CyclingLogApplication
                         //Daily
                         if (cbTypeTime.SelectedIndex == 1)
                         {
-                            if (!date.Equals(""))
+                            if (!string.IsNullOrEmpty(date))
                             {
                                 chartDataTypeValue = Math.Round(chartDataTypeValue, 1);
                                 chart1.Series["Series1"].Points.AddXY(date, chartDataTypeValue.ToString());
@@ -663,11 +670,6 @@ namespace CyclingLogApplication
                         {
                             DateTime datetime = Convert.ToDateTime(date);
                             int month = datetime.Month;
-
-                            //if (month == 11)
-                            //{
-                            //    string test = "";
-                            //}
 
                             if (monthCount != month)
                             {
@@ -780,7 +782,7 @@ namespace CyclingLogApplication
                         }
                         else
                         {
-                            if (total_value != 0)
+                            if (Math.Abs(total_value) > Epsilon)
                             {
                                 chart1.Series["Series1"].Points.AddXY(monthCount.ToString(), total_value.ToString());
                                 chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
@@ -968,7 +970,6 @@ namespace CyclingLogApplication
 
         public void GetMonthlyHighMileageWeekNumber(int LogYearID)
         {
-            //List<double> rideDistanceList = new List<double>();
             int weekNumber;
             int weekNumberTmp = 0;
             double weeklyMaxTmp;
@@ -1011,8 +1012,6 @@ namespace CyclingLogApplication
                                 }
                             }
                         }
-
-                        //reader.Close();
                     }
                     command.Cancel();
                 }
@@ -1082,7 +1081,7 @@ namespace CyclingLogApplication
 
         private void CheckBoxRouteOption_Click(object sender, EventArgs e)
         {
-            if (checkBoxRouteOption.Checked == true)
+            if (checkBoxRouteOption.Checked)
             {
                 cbRoutesChart.Enabled = true;
             }
