@@ -55,15 +55,13 @@ namespace CyclingLogApplication
             XmlDocument doc = new XmlDocument();
 
             doc.Load(strWorkPath + "\\settings\\CyclingLogConfig.xml");
-            //doc.Load(@"C:\\CyclingLogApplication\\CyclingLogConfig.xml");
-
 
             //=================================
             // Read from config file
             //=================================
             XmlNodeList nodes = doc.DocumentElement.SelectNodes("/Config");
             string daysToKeepLogs = nodes.Item(0).SelectSingleNode("DAYSTOKEEPLOGS").InnerText;
-            //string verison = nodes.Item(0).SelectSingleNode("VERSION").InnerText;
+            string verison = nodes.Item(0).SelectSingleNode("VERSION").InnerText;
             int logLevel = Convert.ToInt32(nodes.Item(0).SelectSingleNode("LOGLEVEL").InnerText);
             string firstDayOfWeek = nodes.Item(0).SelectSingleNode("FIRSTDAY").InnerText;
             string firstDayOfWeekCalendar = nodes.Item(0).SelectSingleNode("FIRSTDAYCALENDAR").InnerText;
@@ -178,30 +176,6 @@ namespace CyclingLogApplication
             fieldCheckDictionary.Add(checkListBoxItemNAME25, checkListBoxItemCHECK25);
             fieldCheckDictionary.Add(checkListBoxItemNAME26, checkListBoxItemCHECK26);
 
-            //int heightCLB = 394;
-            //int numberRemoved = 0;
-            ////Check value of custom1:
-            //if (customDataField1.Equals(""))
-            //{
-            //    fieldCheckDictionary.Remove("Custom1");
-            //    numberRemoved++;
-            //}
-            //if (customDataField2.Equals(""))
-            //{
-            //    fieldCheckDictionary.Remove("Custom2");
-            //    numberRemoved++;
-            //}
-
-            //if (numberRemoved == 1)
-            //{
-            //    heightCLB = 379;
-            //} else if (numberRemoved == 2)
-            //{
-            //    heightCLB = 364;
-            //}
-            //Set checkedListbox height:
-            //MainForm.SetHeightCLB(heightCLB);
-
             MainForm.SetFieldDictionary(fieldCheckDictionary);
 
             string lastLogYearSelected = nodes.Item(0).SelectSingleNode("LastLogSelected").InnerText;
@@ -259,7 +233,7 @@ namespace CyclingLogApplication
             //NOTE: If the dateTime value is blank then a force update will be run and a new timestamp will be written at end of run:
             Logger.Log("Configuration Read: DAYSTOKEEPLOGS: " + daysToKeepLogs, logLevel, 0);
             Logger.Log("Configuration Read: LOGLEVEL : " + logLevel, logLevel, 0);
-            //Logger.Log("Configuration Read: VERSION : " + verison, logLevel, 0);
+            Logger.Log("Configuration Read: VERSION : " + verison, logLevel, 0);
             Logger.Log("Configuration Read: GRIDORDER : " + gridOrder, logLevel, 0);
             Logger.Log("Configuration Read: FIRSTDAY : " + firstDayOfWeek, logLevel, 0);
             Logger.Log("Configuration Read: FIRSTDAYCALENDAR : " + firstDayOfWeekCalendar, logLevel, 0);
@@ -329,7 +303,6 @@ namespace CyclingLogApplication
 
             string path = strWorkPath + "\\settings";
             string pathFile = strWorkPath + "\\settings\\CyclingLogConfig.xml";
-            //MainForm mainForm = new MainForm("");
             int logSetting = MainForm.GetLogLevel();
 
             try
@@ -913,8 +886,6 @@ namespace CyclingLogApplication
             catch (Exception e)
             {
                 Logger.LogError("[ERROR]: Exception while trying to write the Config File" + e.Message.ToString());
-
-                return;
             }
         }
  

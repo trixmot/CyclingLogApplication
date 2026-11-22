@@ -25,7 +25,6 @@ namespace CyclingLogApplication
 {
     public partial class MainForm : Form
     {
-        //private static Mutex mutex = null;
         Boolean formloading = false;
 
         private static string logVersion = "1.1.3";
@@ -100,38 +99,16 @@ namespace CyclingLogApplication
 
         public MainForm()
         {
-            
-            //if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1) return;
-            //const string appName = "Cycling Log";
-            //bool createdNew;
-
-
-
-            //mutex = new Mutex(true, appName, out createdNew);
-
-            //if (!createdNew)
-            //{
-            //    //app is already running! Exiting the application
-            //    return;
-            //}
             //Set DataDirectory for the contectionstring in the app.config:
             AppDomain.CurrentDomain.SetData("DataDirectory", Directory.GetCurrentDirectory());
 
-            //Text = "Single Instance!";
-            //mutex = new Mutex(false, "SINGLE_INSTANCE_MUTEX");
-            //if (!mutex.WaitOne(0, false))
-            //{
-            //    mutex.Close();
-            //    mutex = null;
-            //}
-
             InitializeComponent();
             GetConnectionStrings();
-            //int logSetting = GetLogLevel();
 
             tbWeekCount.Text = GetCurrentWeekCount().ToString(); //For current year only:
             tbDayCount.Text = GetCurrentDayCount().ToString();
-            tbTimeChange.Text = GetDaysToNextTimeChange().ToString();
+            //tbTimeChange.Text = GetDaysToNextTimeChange().ToString();
+            tbTimeChange.Text = DaylightSavingTime.DaysUntilNextTransition(DateTime.Today).ToString();
 
             textBox1.Text = "The MIT License\r\nCopyright (c) 2026, John T Flynn\r\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation\r\nfiles (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify,\r\nmerge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom\r\nthe Software is furnished to do so, subject to the following conditions:\r\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\r\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\r\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\r\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\r\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\r\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\r\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.";
         }
@@ -145,7 +122,6 @@ namespace CyclingLogApplication
                     if (proc.ProcessName.Equals(Process.GetCurrentProcess().ProcessName) && proc.Id != Process.GetCurrentProcess().Id)
                     {
                         proc.Kill();
-                        //break;
                     }
                 }
                 this.Dispose();
@@ -157,22 +133,8 @@ namespace CyclingLogApplication
         {
             tabControl1.Deselecting += new TabControlCancelEventHandler(tabControl1_Deselecting);
 
-            //if (System.Diagnostics.Process.GetProcessesByName(System.IO.Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location)).Count() > 1) return;
-
-            //if (GetMutex() != null)
-            //{
-            //    //Application.Run(app);
-            //}
-            //else
-            //{
-            //    Logger.Log("Instance of Cycling Log Application is already running", 1, logLevel);
-            //    System.Environment.Exit(0);
-            //}
-
             try
             {
-                
-                //ConfigurationFile configfile = new ConfigurationFile();
                 ConfigurationFile.ReadConfigFile();
 
                 SetLogVersion(logVersion);
@@ -408,7 +370,7 @@ namespace CyclingLogApplication
                         Logger.Log("Loading: Calendar logs: " + val, logSetting, 1);
                     }
                     string logName = GetLogNameByYear(DateTime.Now.Year);
-                    if (logName == null || logName.Equals(""))
+                    if (logName == null || string.IsNullOrEmpty(logName))
                     {
                         cbCalendarLogs.SelectedIndex = 0;
                         cbCalendarMonth.SelectedIndex = 0;
@@ -541,17 +503,6 @@ namespace CyclingLogApplication
             return databaseConnection;
         }
 
-        //private Mutex GetMutex()
-        //{
-        //    return mutex;
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //        mutex.ReleaseMutex();
-        //    base.Dispose(disposing);
-        //}
         public static void SetTextMaint(string text)
         {
             gridMaintTextColor = text;
@@ -922,8 +873,6 @@ namespace CyclingLogApplication
 
         public static void SetLogNameIDDictionary(List<string> logYearsList)
         {
-            //List<string> logYearsList = MainForm.ReadDataNames("Table_Log_year", "Name");
-
             //Clear out current values:
             logNameIDDict.Clear();
 
@@ -1092,7 +1041,6 @@ namespace CyclingLogApplication
         public static void ResetPrimaryKeys(string tableString)
         {
             SqlDataReader reader = null;
-            //List<string> nameList = new List<string>();
             int logSetting = GetLogLevel();
 
             try
@@ -1132,7 +1080,7 @@ namespace CyclingLogApplication
             try
             {
 
-                if (logYearTitle.Equals(""))
+                if (string.IsNullOrEmpty(logYearTitle))
                 {
                     MessageBox.Show("No title entered. Enter a unique name for the log.");
                     return;
@@ -1409,10 +1357,9 @@ namespace CyclingLogApplication
             for (int i = 0; i < nameIDdict.Count; i++)
             {
                 string logName = nameIDdict.Keys.ElementAt(i);
-                //string keyValue = nameIDdict.Keys.ElementAt(i);
+
                 if (logName.Equals(logYearName))
                 {
-                    string test = nameIDdict.Values.ElementAt(i);
                     logYearIndex = int.Parse(nameIDdict.Values.ElementAt(i)); 
                     break;
                 }
@@ -1455,7 +1402,7 @@ namespace CyclingLogApplication
                 {
                     string temp = reader[0].ToString();
 
-                    if (temp.Equals(""))
+                    if (string.IsNullOrEmpty(temp))
                     {
                         returnValue = 0;
                     }
@@ -1506,6 +1453,7 @@ namespace CyclingLogApplication
             //ExecuteScalarFunction
             using (var results = ExecuteSimpleQueryConnection("DeleteLogTitleFromRideInformation", objectValues))
             {
+                //TODO: Need to complete this
             }
         }
 
@@ -1607,7 +1555,7 @@ namespace CyclingLogApplication
                     //ExecuteScalarFunction
                     using (var results = ExecuteSimpleQueryConnection("Route_Update", objectValues))
                     {
-
+                        //TODO: Need to complete this
                     }
                 }
                 catch (Exception ex)
@@ -1709,7 +1657,7 @@ namespace CyclingLogApplication
                     //ExecuteScalarFunction
                     using (var results = ExecuteSimpleQueryConnection("Route_Remove", objectValues))
                     {
-
+                        //TODO: Need to complete this
                     }
 
                     removeRoute(deleteValue);
@@ -1885,6 +1833,7 @@ namespace CyclingLogApplication
                     using (var results = ExecuteSimpleQueryConnection("Bike_Remove_Totals", objectValues))
                     {
                         //databaseConnection.CloseConnection();
+                        //TODO: Need to complete this
                     }
 
                     RefreshBikes();
@@ -1936,7 +1885,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = "0";
                         }
@@ -1971,7 +1920,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = "0";
                         }
@@ -2002,7 +1951,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = 0;
                         }
@@ -2030,7 +1979,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = 0;
                         }
@@ -2058,7 +2007,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = "0";
                         }
@@ -2087,7 +2036,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = "0";
                         }
@@ -2138,7 +2087,7 @@ namespace CyclingLogApplication
                 {
                     string temp = reader[0].ToString();
 
-                    if (temp.Equals(""))
+                    if (string.IsNullOrEmpty(temp))
                     {
                         returnValue = 0;
                     }
@@ -2446,7 +2395,7 @@ namespace CyclingLogApplication
                 while (reader.Read())
                 {
                     string temp = reader[0].ToString();
-                    if (temp.Equals(""))
+                    if (string.IsNullOrEmpty(temp))
                     {
                         returnValue = 0;
                     }
@@ -2498,7 +2447,7 @@ namespace CyclingLogApplication
                 while (reader.Read())
                 {
                     string temp = reader[0].ToString();
-                    if (temp.Equals(""))
+                    if (string.IsNullOrEmpty(temp))
                     {
                         returnValue = 0;
                     }
@@ -2845,7 +2794,7 @@ namespace CyclingLogApplication
                         while (results.Read())
                         {
                             string temp = results[0].ToString();
-                            if (temp.Equals(""))
+                            if (string.IsNullOrEmpty(temp))
                             {
                                 maxMilesTemp = 0;
                             }
@@ -2879,7 +2828,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = 0;
                         }
@@ -2907,7 +2856,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = 0;
                         }
@@ -2935,7 +2884,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = 0;
                         }
@@ -2964,7 +2913,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = "0";
                         }
@@ -3772,7 +3721,7 @@ namespace CyclingLogApplication
                     {
                         string temp = results[0].ToString();
 
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = 0;
                         }
@@ -3803,7 +3752,7 @@ namespace CyclingLogApplication
                     {
                         string temp = results[0].ToString();
 
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = 0;
                         }
@@ -4102,7 +4051,7 @@ namespace CyclingLogApplication
                 {
                     string temp = reader[0].ToString();
 
-                    if (temp.Equals(""))
+                    if (string.IsNullOrEmpty(temp))
                     {
                         returnValue = 0;
                     }
@@ -4171,7 +4120,7 @@ namespace CyclingLogApplication
                     {
                         string temp = results[0].ToString();
 
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = "0";
                         }
@@ -4213,7 +4162,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals("") || temp.Equals("00:00:00"))
+                        if (string.IsNullOrEmpty(temp) || temp.Equals("00:00:00"))
                         {
                             returnValue = "0:0:0";
                         }
@@ -4311,7 +4260,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals("") || temp.Equals("00:00:00"))
+                        if (string.IsNullOrEmpty(temp) || temp.Equals("00:00:00"))
                         {
                             returnValue = "0:0:0";
                         }
@@ -4406,7 +4355,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals("") || temp.Equals("00:00:00"))
+                        if (string.IsNullOrEmpty(temp) || temp.Equals("00:00:00"))
                         {
                             returnValue = "0:0:0";
                         }
@@ -4498,7 +4447,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = 0;
                         }
@@ -4611,7 +4560,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = 0;
                         }
@@ -4644,7 +4593,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = 0;
                         }
@@ -4677,7 +4626,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = 0;
                         }
@@ -4770,7 +4719,7 @@ namespace CyclingLogApplication
                     {
                         string temp = results[0].ToString();
 
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = 0;
                         }
@@ -4804,7 +4753,7 @@ namespace CyclingLogApplication
                     {
                         string temp = results[0].ToString();
 
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = "0";
                         }
@@ -4841,7 +4790,7 @@ namespace CyclingLogApplication
                     {
                         string temp = results[0].ToString();
 
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = "0";
                         }
@@ -4876,7 +4825,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = "0";
                         }
@@ -4908,7 +4857,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             returnValue = 0;
                         }
@@ -4948,7 +4897,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals("") || temp.Equals("00:00:00"))
+                        if (string.IsNullOrEmpty(temp) || temp.Equals("00:00:00"))
                         {
                             returnValue = "0:0:0";
                         }
@@ -5054,7 +5003,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals("") || temp.Equals("00:00:00"))
+                        if (string.IsNullOrEmpty(temp) || temp.Equals("00:00:00"))
                         {
                             return 0;
                         }
@@ -5132,7 +5081,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             MessageBox.Show("Unable to obtain the Loge year Index ID");
 
@@ -5164,7 +5113,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             MessageBox.Show("Unable to find Route by name.");
 
@@ -5196,7 +5145,7 @@ namespace CyclingLogApplication
                     while (results.Read())
                     {
                         string temp = results[0].ToString();
-                        if (temp.Equals(""))
+                        if (string.IsNullOrEmpty(temp))
                         {
                             MessageBox.Show("Unable to find Bike by name.");
 
@@ -5328,7 +5277,7 @@ namespace CyclingLogApplication
             Boolean changesMade = false;
 
             // Remove custom1 value:
-            if (customNEW1.Equals(""))
+            if (string.IsNullOrEmpty(customNEW1))
             {
                 numberRemoved++;
                 changesMade = true;
@@ -5342,7 +5291,7 @@ namespace CyclingLogApplication
             }
 
             // Remove custom1 value:
-            if (customNEW2.Equals(""))
+            if (string.IsNullOrEmpty(customNEW2))
             {
                 numberRemoved++;
                 changesMade = true;
@@ -5537,7 +5486,7 @@ namespace CyclingLogApplication
                                 {
                                     //MessageBox.Show(String.Format("{0}", results[0]));
                                     string temp = results[0].ToString();
-                                    if (temp.Equals(""))
+                                    if (string.IsNullOrEmpty(temp))
                                     {
                                         logMiles = 0;
                                     }
@@ -6539,7 +6488,7 @@ namespace CyclingLogApplication
         private void dataGridViewBikes_Click(object sender, EventArgs e)
         {
             int rowindex = dataGridViewBikes.CurrentCell.RowIndex;
-            int columnindex = dataGridViewBikes.CurrentCell.ColumnIndex;
+            //int columnindex = dataGridViewBikes.CurrentCell.ColumnIndex;
 
             tbBikeConfig.Text = dataGridViewBikes.Rows[rowindex].Cells[0].Value.ToString();
             tbBikeTotalMiles.Text = dataGridViewBikes.Rows[rowindex].Cells[2].Value.ToString();
@@ -6567,12 +6516,10 @@ namespace CyclingLogApplication
         private void dataGridViewRoutes_Click(object sender, EventArgs e)
         {
             int rowindex = dataGridViewRoutes.CurrentCell.RowIndex;
-            int columnindex = dataGridViewRoutes.CurrentCell.ColumnIndex;
+            //int columnindex = dataGridViewRoutes.CurrentCell.ColumnIndex;
 
             tbRouteConfig.Text = dataGridViewRoutes.Rows[rowindex].Cells[0].Value.ToString();
             tbRouteOldName.Text = dataGridViewRoutes.Rows[rowindex].Cells[0].Value.ToString();
-
-
         }
 
         private void btLogTitleSave_Click(object sender, EventArgs e)
@@ -7034,13 +6981,10 @@ namespace CyclingLogApplication
                 }
                 else if (day2 == 1)
                 {
-                    if (currentYearMonth)
+                    if (currentYearMonth && 1 == currentDayNumber)
                     {
-                        if (1 == currentDayNumber)
-                        {
-                            cellNumber = 1;
-                            rowNumber = 0;
-                        }
+                        cellNumber = 1;
+                        rowNumber = 0;
                     }
 
                     temp2 = "1";
@@ -7104,13 +7048,10 @@ namespace CyclingLogApplication
                 }
                 else if (day3 == 1)
                 {
-                    if (currentYearMonth)
+                    if (currentYearMonth && 1 == currentDayNumber)
                     {
-                        if (1 == currentDayNumber)
-                        {
-                            cellNumber = 2;
-                            rowNumber = 0;
-                        }
+                        cellNumber = 2;
+                        rowNumber = 0;
                     }
                  
                     temp3 = "1";
@@ -7175,13 +7116,10 @@ namespace CyclingLogApplication
                 }
                 else if (day4 == 1)
                 {
-                    if (currentYearMonth)
+                    if (currentYearMonth && 1 == currentDayNumber)
                     {
-                        if (1 == currentDayNumber)
-                        {
-                            cellNumber = 3;
-                            rowNumber = 0;
-                        }
+                        cellNumber = 3;
+                        rowNumber = 0;
                     }
 
                     
@@ -7252,13 +7190,10 @@ namespace CyclingLogApplication
                 }
                 else if (day5 == 1)
                 {
-                    if (currentYearMonth)
+                    if (currentYearMonth && 1 == currentDayNumber)
                     {
-                        if (1 == currentDayNumber)
-                        {
-                            cellNumber = 4;
-                            rowNumber = 0;
-                        }
+                        cellNumber = 4;
+                        rowNumber = 0;
                     }
 
                     temp5 = "1";
@@ -7330,13 +7265,10 @@ namespace CyclingLogApplication
                 }
                 else if (day6 == 1)
                 {
-                    if (currentYearMonth)
+                    if (currentYearMonth && 1 == currentDayNumber)
                     {
-                        if (1 == currentDayNumber)
-                        {
-                            cellNumber = 5;
-                            rowNumber = 0;
-                        }
+                        cellNumber = 5;
+                        rowNumber = 0;
                     }
                  
                     temp6 = "1";
@@ -7410,13 +7342,10 @@ namespace CyclingLogApplication
                 }
                 else if (day7 == 1)
                 {
-                    if (currentYearMonth)
+                    if (currentYearMonth && 1 == currentDayNumber)
                     {
-                        if (1 == currentDayNumber)
-                        {
-                            cellNumber = 6;
-                            rowNumber = 0;
-                        }
+                        cellNumber = 6;
+                        rowNumber = 0;
                     }
                                       
                     temp7 = "1";

@@ -295,7 +295,7 @@ namespace CyclingLogApplication
 
         public void SetCalories(string caloriesValue)
         {
-            if (caloriesValue.Equals("") || caloriesValue.Equals("0")) {
+            if (string.IsNullOrEmpty(caloriesValue) || caloriesValue.Equals("0")) {
                 calories.Text = "- -";
             }
             else
@@ -339,7 +339,7 @@ namespace CyclingLogApplication
 
         public void SetWind(string windIndex)
         {
-            if (windIndex.Equals("") || windIndex.Equals("- -"))
+            if (string.IsNullOrEmpty(windIndex) || windIndex.Equals("- -"))
             {
                 tbRideDataEntryWind.Text = "- -";
             } else
@@ -857,23 +857,8 @@ namespace CyclingLogApplication
         {
             using (MainForm mainForm = new MainForm(""))
             {
-                //MainForm.SetLastBikeSelected(cbBikeDataEntrySelection.SelectedIndex);
-                //MainForm.SetLastLogSelectedDataEntry(cbLogYearDataEntry.SelectedIndex);
-                //MainForm mainForm2 = new MainForm();
-                //mainForm2.refreshData();
-                //Close();
-                //this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
-                //DialogResult result = MessageBox.Show("Any unsaved changes will be lost, do you want to continue?", "Exit Data Entry Form", MessageBoxButtons.YesNo);
-                //if (result == DialogResult.Yes)
-                // {
-                //Close();
-
-               // mainForm.RefreshData();
-
-
                 formClosing = 1;
                 this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
-                //}
             }
         }
 
@@ -1074,7 +1059,7 @@ namespace CyclingLogApplication
                         }
 
                         //Record Count is 0 and an ID is found, this means a planner entry was found:
-                        if (plannedEntryID.Equals("") || plannedEntryID.Equals("0"))
+                        if (string.IsNullOrEmpty(plannedEntryID) || plannedEntryID.Equals("0"))
                         {
                             changeType = "Add";
                             procedureName = "Ride_Information_Add";
@@ -1411,7 +1396,7 @@ namespace CyclingLogApplication
 
                 objectValues.Add(cbLocationDataEntry.SelectedItem.ToString());          //Location:
                 double windChill = 0;
-                if (max_speed.Text == "" || noTemp)
+                if (max_speed.Text.Equals("") || noTemp)
                 {
                     objectValues.Add(null);                                                 //Winchill:
                 } else
@@ -1634,25 +1619,21 @@ namespace CyclingLogApplication
                 //hh:mm:ss
                 if (temp2.Length == 0)
                 {
-                    //MessageBox.Show("Count is 0");
                     dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
                 }
                 else if (temp2.Length == 1)
                 {
-                    //MessageBox.Show("Count is 1");
                     int.TryParse(temp2[0], out int seconds1);
                     dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, seconds1);
                 }
                 else if (temp2.Length == 2)
                 {
-                    //MessageBox.Show("Count is 2");
                     int.TryParse(temp2[0], out int minutes2);
                     int.TryParse(temp2[1], out int seconds2);
                     dtpTimeRideDataEntry.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, minutes2, seconds2);
                 }
                 else if (temp2.Length == 3)
                 {
-                    //MessageBox.Show("Count is 3");
                     int.TryParse(temp2[0], out int hours3);
                     int.TryParse(temp2[1], out int minutes3);
                     int.TryParse(temp2[2], out int seconds3);
@@ -1909,10 +1890,6 @@ namespace CyclingLogApplication
             DialogResult result = MessageBox.Show("Do you really want to delete the Ride and all its data?", "Delete Ride From Database", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                // conn and reader declared outside try block for visibility in finally block
-                //SqlConnection conn = null;
-                //SqlDataReader reader = null;
-
                 int returnValue;
 
                 try

@@ -12,41 +12,12 @@ namespace CyclingLogApplication
     public partial class ChartForm : Form
     {
         private static SqlConnection sqlConnection;// = new SqlConnection(@"Data Source=.\SQLEXPRESS;AttachDbFilename=""\\Mac\Home\Documents\Visual Studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-        //BackgroundWorker bgw = new BackgroundWorker();
         const double Epsilon = 0.00001;
 
         public ChartForm()
         {
             InitializeComponent();
-            //labelChartError.Hide();
-            //MainForm mainForm = new MainForm("");
             sqlConnection = MainForm.GetsqlConnectionString();
-            //chart1.Series["Series1"].XValueMember = "Date";
-            //chart1.Series["Series1"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
-            //chart1.Series["Series1"].YValueMembers = "AvgSpeed";
-            //chart1.Series["Series1"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-
-            //DataManipulator myDataManip = chart1.DataManipulator;
-            //myDataManip.Filter(CompareMethod.EqualTo, 0, "LogYearID");
-
-            //checkBoxRouteOption.Checked = false;
-            //cbRoutesChart.Enabled = false;
-            //rbChartTypeColumn.Checked = true;
-
-            //List<string> logList = MainForm.ReadDataNames("Table_Log_year", "Name");
-
-            //cbLogYearChart.Items.Add("--Select Value--");
-            //for (int i = 0; i < logList.Count; i++)
-            //{
-            //    cbLogYearChart.Items.Add(logList[i]);
-            //}
-
-            //List<string> routeList = MainForm.GetRoutes();
-
-            //for (int i = 0; i < routeList.Count; i++)
-            //{
-            //    cbRoutesChart.Items.Add(routeList[i]);
-            //}
         }
 
         private void ChartForm_Load(object sender, EventArgs e)
@@ -116,7 +87,6 @@ namespace CyclingLogApplication
         private void BtCloseChart_Click(object sender, EventArgs e)
         {
             this.Hide();
-            //this.Invoke(new MethodInvoker(delegate { this.Close(); }), null);
         }
 
         private void CbLogYearChart_SelectedIndexChanged(object sender, EventArgs e)
@@ -139,17 +109,10 @@ namespace CyclingLogApplication
 
         public void ChartTest()
         {
-            using (MainForm mainForm = new MainForm(""))
-            {
-                int logSetting = MainForm.GetLogLevel();
-            }
-            //int logIndex = 1;
 
             //SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
             sqlConnection.Open();
             DataSet ds = new DataSet();
-            //SqlDataAdapter adapt = new SqlDataAdapter("SELECT Date, AvgSpeed, WeekNumber FROM Table_Ride_Information WHERE LogYearID=" + logIndex, sqlConnection);
-            //adapt.Fill(ds);
             chart1.DataSource = ds;
             //set the member of the chart data source used to data bind to the X-values of the series  
             chart1.Series["Series1"].XValueMember = "Date";
@@ -160,7 +123,6 @@ namespace CyclingLogApplication
             chart1.Series["Series1"].Points.AddXY("2/10/16", "18");
 
             chart1.Titles.Add("Average Speed Chart");
-            //chart1.Series["Series1"].ChartType = SeriesChartType.Line;
             chart1.Series["Series1"].ChartType = SeriesChartType.Bar;
         }
 
@@ -224,27 +186,18 @@ namespace CyclingLogApplication
             //Longest:
             else if (cbTypeChartData.SelectedIndex == 2)
             {
-                //using (ProgressBar progressBar = new ProgressBar())
-                //{
-                //    progressBar.Show();
-
-                    //Weekly:
-                    if (cbTypeTime.SelectedIndex == 2)
-                    {
-                        GetMonthlyHighMileageWeekNumber(logIndex);
-                    }
-                    //Monthly:
-                    else if (cbTypeTime.SelectedIndex == 3)
-                    {
-                        RunLongestRideChartMonthly(logIndex);
-                    }
-
-                  //  progressBar.Hide();
-                //}
+                //Weekly:
+                if (cbTypeTime.SelectedIndex == 2)
+                {
+                    GetMonthlyHighMileageWeekNumber(logIndex);
+                }
+                //Monthly:
+                else if (cbTypeTime.SelectedIndex == 3)
+                {
+                    RunLongestRideChartMonthly(logIndex);
+                }
 
                 lbYAxis.Text = "Miles";
-
-                //return;
                 chartDataColumn = "RideDistance";
                 dataType = "longest";
             }
@@ -472,9 +425,6 @@ namespace CyclingLogApplication
                 // All other than Planner:
                 try
                 {
-                    // instantiate and open connection
-                    //conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""\\mac\home\documents\visual studio 2015\Projects\CyclingLogApplication\CyclingLogApplication\CyclingLogDatabase.mdf"";Integrated Security=True");
-
                     //Daily:
                     if (cbTypeTime.SelectedIndex == 1)
                     {
